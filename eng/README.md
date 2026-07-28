@@ -12,7 +12,7 @@ The script uses the `protoc` and C# gRPC plugin from the centrally pinned `Grpc.
 
 ```powershell
 ./eng/Test-Conformance.ps1 `
-  -ProtocolArtifactPath C:\path\to\briosa-protocol-0.2.0-dev.1-sa-2026.1.0529.7-catalog-5.zip `
+  -ProtocolArtifactPath C:\path\to\briosa-protocol-0.2.0-dev.2-sa-2026.1.0529.7-catalog-5.zip `
   -BriosaRepository C:\path\to\briosa
 ```
 

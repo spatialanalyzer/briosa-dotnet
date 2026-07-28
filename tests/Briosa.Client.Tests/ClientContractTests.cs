@@ -10,8 +10,15 @@ public sealed class ClientContractTests
     public void ProtocolIdentityMatchesPinnedArtifact()
     {
         Assert.Equal(
-            "3ba025f50b2008fdc8e733a00c263cdacdba05aa9e6292bc1a3a2b5d9473ae87",
+            "briosa-protocol-0.2.0-dev.2-sa-2026.1.0529.7-catalog-5",
+            BriosaProtocolIdentity.ArtifactName);
+        Assert.Equal(
+            "4ce33ac6ecc9db382e870aa2c005f90a25128ad863fcf007c855d00470ea3e39",
             BriosaProtocolIdentity.ArtifactSha256);
+        Assert.Equal("0.2.0-dev.2", BriosaProtocolIdentity.BriosaVersion);
+        Assert.Equal(
+            "1a0714345981592b37e26a90ffc4db0de32fe388",
+            BriosaProtocolIdentity.SourceRevision);
         Assert.Equal(
             "briosa.sa.v2026_1_0529_7.v1alpha1",
             BriosaProtocolIdentity.TargetProtocolPackage);

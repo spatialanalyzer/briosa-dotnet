@@ -18,7 +18,7 @@ This bootstrap targets:
 
 The complete generation identity is committed in [`protocol.lock.json`](protocol.lock.json). Client package versions, Briosa server versions, protocol packages, catalog revisions, and SpatialAnalyzer releases are independent coordinates. This client does not infer compatibility with another SpatialAnalyzer release.
 
-Until Briosa publishes its first v0.2 release asset, the lock uses the reversible `source_commit_bootstrap` channel: CI rebuilds `0.2.0-dev.1` from the immutable Briosa merge commit and verifies its ZIP hash. A release update will replace that channel with the published release asset without changing client semantics.
+Until Briosa publishes its first v0.2 release asset, the lock uses the reversible `source_commit_bootstrap` channel: CI rebuilds `0.2.0-dev.2` from Briosa merge commit `1a0714345981592b37e26a90ffc4db0de32fe388` and verifies its ZIP hash. A release update will replace that channel with the published release asset without changing client semantics.
 
 ## Usage
 
