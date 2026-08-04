@@ -21,6 +21,9 @@ Shared protocol and MP-command semantics remain authoritative in
 document owns the idiomatic .NET consumer experience. It must not silently
 invent shared behavior that belongs in the server or protocol project.
 
+The cross-language applicability of these principles is being reviewed in
+[SpatialAnalyzer Discussion #6](https://github.com/orgs/spatialanalyzer/discussions/6).
+
 ## Design summary
 
 The ordinary consumer experience should eventually resemble:
@@ -735,11 +738,10 @@ the result as the cross-language contract.
 
 ## Next planning steps
 
-1. Review this consolidation for accuracy.
-2. Publish the accepted direction as a GitHub Discussion or RFC.
-3. Revise briosa-dotnet issue #3, whose current generated-public-client scope
+1. Complete the cross-language review in SpatialAnalyzer Discussion #6.
+2. Revise briosa-dotnet issue #3, whose current generated-public-client scope
    conflicts with this design.
-4. Create focused architecture issues for lifecycle composition, shared server
+3. Create focused architecture issues for lifecycle composition, shared server
    launching, process ownership, compatibility gating, and the shared test host.
-5. Create implementation issues only after the relevant architecture decisions
+4. Create implementation issues only after the relevant architecture decisions
    are accepted.
