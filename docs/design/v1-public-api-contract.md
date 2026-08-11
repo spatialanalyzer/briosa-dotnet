@@ -1,30 +1,31 @@
 # Briosa .NET v1 public API contract
 
-- Status: Accepted design direction
-- Last reviewed: 2026-08-04
+- Status: Accepted .NET design direction
+- Last reviewed: 2026-08-10
 - Scope: The target-specific Briosa .NET client packages
 - Implementation status: Not yet implemented
 
-## Purpose
+## Purpose and authority
 
-This document records the foundational public-API decisions accepted for Briosa
-.NET v1. It is the design target for the handwritten .NET façade, lifecycle
-surface, packaging work, tests, and documentation.
+This document records the idiomatic .NET public-API decisions for Briosa v1. It
+is the normative design target for the handwritten .NET facade, public domain
+types, lifecycle surface, packaging, tests, and documentation.
 
-The current repository is an earlier bootstrap and does not yet conform to this
-contract. In particular, its README, generated-type visibility, request-shaped
-wrapper, package identity, and GitHub issue #3 must be reviewed against this
-document before implementation begins.
+All first-party clients also implement the authoritative
+[client-library behavioral contract](https://github.com/spatialanalyzer/briosa/blob/main/docs/architecture/client-library-behavioral-contract.md).
+That central contract owns language-neutral behavior, including MP identity,
+presence and fixed defaults, failure semantics, completion ambiguity, replay,
+lifecycle safety, runtime ownership, compatibility, capabilities, and shared
+conformance. This document owns only their .NET expression and does not repeat
+or redefine them.
 
-Shared protocol and MP-command semantics remain authoritative in
-[spatialanalyzer/briosa](https://github.com/spatialanalyzer/briosa). This
-document owns the idiomatic .NET consumer experience. It must not silently
-invent shared behavior that belongs in the server or protocol project.
+[SpatialAnalyzer Discussion #6](https://github.com/orgs/spatialanalyzer/discussions/6)
+records the completed cross-language review that established this boundary.
+The public protobuf contract, handwritten server implementation, runtime
+capability registration, and exact target remain authoritative for MP-command
+semantics.
 
-The cross-language applicability of these principles is being reviewed in
-[SpatialAnalyzer Discussion #6](https://github.com/orgs/spatialanalyzer/discussions/6).
-
-## Design summary
+## Consumer shape
 
 The ordinary consumer experience should eventually resemble:
 
@@ -56,22 +57,28 @@ public sealed class MainViewModel
 }
 ~~~
 
-The same BriosaClient singleton exists for the lifetime of the application. It
-is dormant until StartAsync establishes a verified runtime generation. MP
-commands are handwritten, flat, asynchronous, strongly typed, and recognizable
-to experienced MP developers.
+`BriosaClient` is registered as a long-lived singleton. It is dormant until
+`StartAsync` establishes a verified runtime generation. MP methods are flat,
+asynchronous, strongly typed, and recognizable to experienced MP developers.
 
-## Rule 1: Use one flat, handwritten BriosaClient façade
+## Accepted .NET API decisions
 
-All MP-command methods are declared on one public partial BriosaClient class:
+### Package and namespace
 
-~~~csharp
-await briosa.GetWorkingDirectoryAsync(cancellationToken);
-await briosa.GetWorkingFramePropertiesAsync(cancellationToken);
-~~~
+The first target package is `Briosa.2026.1.0529.7`. Target packages use unique
+assembly identities and the stable public namespace `Briosa`.
 
-Source files may be grouped by MP category for maintainability, but categories
-do not appear in the normal call path:
+Generated protobuf and gRPC code is compiled as private transport
+implementation. Generated messages, enums, service clients, call objects, and
+protocol-identity helpers are not part of the supported NuGet API. A consumer
+that needs raw gRPC generates a separate client from the matching published
+protocol artifact.
+
+### Facade and command signatures
+
+All MP methods are declared on one handwritten public partial `BriosaClient`
+class. Source files may be grouped by MP category, but categories do not appear
+in the ordinary call path:
 
 ~~~text
 BriosaClient.Analysis.cs
@@ -80,18 +87,9 @@ BriosaClient.File.cs
 BriosaClient.Utility.cs
 ~~~
 
-The v1 façade is handwritten. Briosa-specific source generation must not create
-the client class, its MP methods, domain types, mappings, result types, or
-documentation. Standard protobuf and gRPC code generation remains required.
-Façade generation may be reconsidered only after the handwritten v1 contract is
-stable.
-
-## Rule 2: Do not expose request envelopes
-
-An MP command method exposes one ordinary C# parameter for each top-level MP
-input. Generated request messages do not appear in the consumer API.
-
-Do:
+Each command accepts one ordinary C# parameter for each top-level MP input.
+Generated request envelopes never appear in the public signature. A complex
+MP-native value remains one parameter represented by a handwritten domain type.
 
 ~~~csharp
 await briosa.SetPointNotesAsync(
@@ -101,263 +99,30 @@ await briosa.SetPointNotesAsync(
     cancellationToken);
 ~~~
 
-Do not:
-
-~~~csharp
-await briosa.SetPointNotesAsync(
-    new SetPointNotesRequest
-    {
-        // Generated transport fields.
-    },
-    cancellationToken);
-~~~
-
-A complex MP-native value remains one semantic parameter represented by a
-handwritten domain type. Protocol-only controls stay outside the MP-shaped
-parameter list. Each handwritten method maps its parameters into the generated
-request internally.
-
-## Rule 3: Preserve MP parameter identity
-
-C# parameter names preserve the MP Editor input labels and abbreviations as
-closely as the language permits. Preserve input order.
-
-Examples include names such as:
-
-~~~csharp
-double rmsTol
-double maxAbsTolerance
-bool genEvent
-~~~
-
-Do not expand familiar MP abbreviations merely to make a name more verbose.
-Duplicate MP input labels are not expected. If an actual technical collision is
-found, use the smallest necessary C# clarification and retain the exact MP label
-in XML documentation.
-
-## Rule 4: Use handwritten public domain types and enums
-
-Use a built-in .NET type only when it represents the MP type exactly and
-losslessly. Otherwise, expose a handwritten public type named after the MP
-Editor concept:
-
-~~~csharp
-Vector
-CollectionObjectName
-CollectionItemName
-~~~
-
-Do not invent replacement concepts that do not correspond to SA-native types.
-For example, a parameter that accepts Collection Object Name or Collection Item
-Name must use those types rather than a convenience type such as
-WorkingFrameSelection.
-
-V1 uses concrete handwritten types and concrete handwritten enums. Mapping into
-generated protobuf types is explicit. Exact MP sentinel values must be
-preserved. System.Numerics.Vector3 is not the canonical Vector because its
-single-precision representation may lose MP data.
-
-## Rule 5: Keep transport controls outside MP semantics
-
-Every asynchronous MP method has one optional final CancellationToken:
+Every MP method has one optional final `CancellationToken`. It exposes no
+per-call gRPC `Metadata`, `CallOptions`, generated call object, or custom
+transport option bag.
 
 ~~~csharp
 public Task<string> GetWorkingDirectoryAsync(
     CancellationToken cancellationToken = default);
 ~~~
 
-The primary v1 MP methods do not expose per-call gRPC Metadata, CallOptions,
-generated call objects, or custom transport option bags.
+Remote MP work uses `Task` or `Task<T>`, not `ValueTask`, and has no synchronous
+wrapper. There is exactly one public method per MP command.
 
-BriosaClientOptions may expose a client-wide optional command timeout. Its
-default is null, meaning the client imposes no additional deadline. A caller
-that needs a one-off time limit uses CancellationTokenSource.
+### C# naming
 
-Cancellation only stops the caller from waiting. It does not prove that an
-in-flight SpatialAnalyzer operation was rolled back or did not execute.
+The central contract defines mechanical command identity. Its C# expression is:
 
-Startup has a separate timeout and cancellation policy because launching an
-application and establishing readiness is not an MP command.
-
-## Rule 6: Keep generated APIs private to the package implementation
-
-Generated protobuf and gRPC types are implementation details of the idiomatic
-Briosa .NET package. They are not its supported public NuGet API.
-
-Consumers that want to use raw gRPC generate their own client from the exact
-target-specific protocol artifact published by spatialanalyzer/briosa. The
-language-specific package does not need to serve both the idiomatic façade and
-the raw protocol audience through one supported API surface.
-
-## Rule 7: Match return cardinality to MP outputs
-
-Return shapes follow the top-level MP outputs:
-
-- No output: Task.
-- One output: Task&lt;T&gt;.
-- Multiple outputs: Task&lt;TNamedResult&gt;.
-
-Do not use tuples, ref parameters, or out parameters.
-
-~~~csharp
-public Task SetPointNotesAsync(...);
-
-public Task<string> GetWorkingDirectoryAsync(...);
-
-public Task<WorkingFrameProperties>
-    GetWorkingFramePropertiesAsync(...);
-~~~
-
-Ordinary success values do not contain transport execution metadata.
-
-## Rule 8: Use named immutable records for multiple outputs
-
-A multiple-output result is a handwritten immutable sealed record class with
-one property per top-level MP output. Preserve MP output order and terminology.
-
-~~~csharp
-public sealed record WorkingFrameProperties
-{
-    public required CollectionObjectName FrameName { get; init; }
-
-    public required Transform Transform { get; init; }
-}
-~~~
-
-Prefer a domain-concept name such as WorkingFrameProperties. Use
-CommandNameResult only when no better domain name exists. Avoid Response
-because the public result is not a transport response. Result types have public
-constructors and contain no gRPC status, trailers, or generated messages.
-
-## Rule 9: Derive nullability from the semantic output contract
-
-Public nullability follows the semantic success contract declared by Briosa:
-
-- A value required on success is non-nullable.
-- A value explicitly optional on success uses a nullable or domain-specific
-  representation.
-- A required value missing from a successful wire response is detected and
-  rejected by the client.
-
-Do not infer semantic presence from protobuf defaults alone. If the server
-contract is ambiguous, clarify or fix the shared contract instead of guessing
-in .NET.
-
-## Rule 10: Accept collection inputs as IEnumerable&lt;T&gt;
-
-Collection inputs use IEnumerable&lt;T&gt; with the correct handwritten element type:
-
-~~~csharp
-public Task DeleteObjectsAsync(
-    IEnumerable<CollectionObjectName> objectNames,
-    CancellationToken cancellationToken = default);
-~~~
-
-The client:
-
-- Rejects a null required collection.
-- Enumerates the input exactly once.
-- Materializes it before starting the RPC.
-- Rejects null elements when the element contract does not permit null.
-- Defers empty-collection validity to the command contract.
-
-The primary v1 API does not use List&lt;T&gt;, params arrays, or IAsyncEnumerable&lt;T&gt;
-for ordinary MP collection inputs.
-
-## Rule 11: Return collection outputs as arrays
-
-Collection outputs are fully mapped and detached into T[] before the task
-completes:
-
-~~~csharp
-CollectionObjectName[] names =
-    await briosa.GetCollectionNamesAsync(cancellationToken);
-~~~
-
-A required empty result is Array.Empty&lt;T&gt;(), never null. Use a nullable array
-only if the semantic contract distinguishes absent from present-but-empty.
-Generated repeated-field collections and IReadOnlyList&lt;T&gt; are not the canonical
-v1 result shape.
-
-## Rule 12: Expose reviewed compile-time defaults as optional parameters
-
-When the locked Briosa command contract declares a reviewed, fixed,
-compile-time-representable MP default, expose it as an ordinary C# optional
-parameter:
-
-~~~csharp
-public Task SetPointNotesAsync(
-    CollectionObjectName pointName,
-    string notes,
-    bool append = true,
-    CancellationToken cancellationToken = default);
-~~~
-
-Inputs without a reviewed fixed default remain required. The client sends the
-effective value explicitly so behavior is visible and stable. ObjectiveSA is
-secondary evidence; the exact Briosa target contract is authoritative.
-
-A default change is a behavioral public-API change. The matching raw server may
-retain the same fallback for direct gRPC callers, but the canonical default is
-versioned in the shared command contract and presented idiomatically by each
-client.
-
-## Rule 13: Represent fixed non-constant defaults with named domain values
-
-If a real MP input has a reviewed fixed default that cannot be expressed as a C#
-optional-parameter constant, represent it as a named immutable value of the
-same MP-native type:
-
-~~~csharp
-await briosa.SomeCommandAsync(
-    options: ProjectionOptions.Default,
-    cancellationToken);
-~~~
-
-Option-like values may support immutable editing:
-
-~~~csharp
-ProjectionOptions options =
-    ProjectionOptions.Default with
-    {
-        // Deliberate changes.
-    };
-~~~
-
-A domain-wide default belongs on the domain type. A command-specific default
-uses a command-specific name. Do not disguise the default as null, default(T),
-or a replacement type unrelated to the MP input.
-
-## Rule 14: Do not add MP convenience overloads in v1
-
-Expose exactly one public method per MP command. V1 does not reproduce the
-large convenience-overload surface maintained by ObjectiveSA.
-
-Modern collection expressions keep singleton collection calls concise:
-
-~~~csharp
-await briosa.SomeCommandAsync(
-    vectorGroups: [vectorGroup],
-    cancellationToken);
-~~~
-
-Overloads may be reconsidered after v1 only when real usage demonstrates enough
-value to justify the maintenance cost. This rule applies to MP command methods;
-small infrastructure APIs may be shaped according to their actual lifecycle
-needs.
-
-## Rule 15: Derive MP method names mechanically
-
-An MP method name is mechanically derived from the exact MP command name:
-
-- Preserve every word in its original order, including articles,
-  conjunctions, and prepositions.
-- Remove punctuation according to one documented normalization algorithm.
-- Apply deterministic C# identifier casing.
-- Retain MP abbreviations rather than expanding them.
-- Append Async.
-- Never substitute synonyms, reorder words, or apply discretionary grammatical
-  cleanup.
+- Convert the exact MP command words to PascalCase without substituting or
+  reordering words.
+- Retain MP abbreviations but use normal .NET casing, such as `Rms`, `Html`,
+  `Sdk`, and `Gdt`.
+- Append `Async`.
+- Use camelCase parameter names that preserve MP input order, labels, and
+  familiar abbreviations as closely as C# permits.
+- Record the exact MP command and input labels in XML documentation.
 
 Examples:
 
@@ -372,376 +137,218 @@ Get i-th Collection Name
     -> GetIthCollectionNameAsync
 ~~~
 
-Use normal .NET acronym casing, such as Rms, Html, Sdk, and Gdt, while retaining
-the abbreviation itself. XML documentation records the exact MP command name.
+The exact punctuation, tokenization, reserved-word, and collision algorithm
+must be specified and unit-tested before the full command surface is
+implemented. V1 provides no aliases.
 
-A genuine normalized-name collision uses a documented deterministic
-disambiguation based on the smallest MP-recognizable qualifier. V1 provides no
-aliases. Infrastructure methods such as StartAsync and StopAsync are not MP
-wrappers and are outside this mechanical MP-name rule.
+### Domain values and enums
 
-Before implementing the full surface, the project must specify and unit-test
-the exact normalization algorithm so future checksum or completeness tooling
-can reproduce names without human judgment.
-
-## Rule 16: Limit local validation to representation integrity
-
-The client validates only:
-
-- The integrity of its .NET arguments.
-- The invariants of handwritten domain values.
-- Its ability to construct the protocol request safely.
-
-The Briosa server remains authoritative for MP semantics and executability,
-including current SA state, object existence, runtime object type, licensing,
-geometry, cross-argument rules, and command-specific conditions.
-
-Detailed validation decisions, such as whether a particular native SA name may
-be empty, are made case by case while implementing the relevant domain type or
-command. Do not turn this rule into an invented universal validation catalog.
-
-## Rule 17: Expose asynchronous MP methods only
-
-V1 provides Task-based MP methods and no synchronous wrappers:
+Public MP-native values and enums are handwritten C# types. Concrete names
+follow the MP Editor concept, such as:
 
 ~~~csharp
-public Task<string> GetWorkingDirectoryAsync(
+Vector
+CollectionObjectName
+CollectionItemName
+~~~
+
+Immutable record classes are preferred when value semantics fit the MP
+concept. Exact MP sentinel values with reviewed domain meaning are represented
+by the handwritten type or enum; wire-only sentinels stay private.
+`System.Numerics.Vector3` is not the canonical `Vector` because its
+single-precision representation may lose MP data.
+
+### Results and nullability
+
+Top-level MP output cardinality maps to C# as follows:
+
+- No output: `Task`.
+- One output: `Task<T>`.
+- Multiple outputs: `Task<TNamedResult>`.
+
+A multiple-output result is a handwritten immutable sealed record class with a
+public constructor and one property per top-level MP output. Properties preserve
+MP output order and terminology. Prefer a domain name such as
+`WorkingFrameProperties`; use `CommandNameResult` only when no clearer domain
+name exists. Do not use tuples, `ref` parameters, `out` parameters, or a
+transport-shaped `Response` type.
+
+~~~csharp
+public sealed record WorkingFrameProperties
+{
+    public required CollectionObjectName FrameName { get; init; }
+
+    public required Transform Transform { get; init; }
+}
+~~~
+
+Nullable reference type annotations express the shared semantic presence
+contract. Required-on-success values are non-nullable and required immutable
+properties use `required`. An explicitly optional success value uses the
+appropriate nullable or domain-specific representation.
+
+### Collections
+
+Ordinary collection inputs use `IEnumerable<T>` with a handwritten element
+type:
+
+~~~csharp
+public Task DeleteObjectsAsync(
+    IEnumerable<CollectionObjectName> objectNames,
     CancellationToken cancellationToken = default);
 ~~~
 
-Do not add:
+The implementation materializes the enumerable once before starting the RPC.
+The canonical input shape is not `List<T>`, a `params` array, or
+`IAsyncEnumerable<T>`.
+
+Collection outputs use fresh detached `T[]` values. A required empty output is
+`Array.Empty<T>()`; nullable arrays are used only when the semantic contract
+distinguishes absence from present-but-empty. Generated repeated fields and
+`IReadOnlyList<T>` are not canonical v1 result shapes.
+
+### Fixed defaults
+
+A reviewed fixed value that is representable as a C# compile-time constant is
+an ordinary optional parameter. The client sends the effective value
+explicitly.
 
 ~~~csharp
-public string GetWorkingDirectory();
+public Task SetPointNotesAsync(
+    CollectionObjectName pointName,
+    string notes,
+    bool append = true,
+    CancellationToken cancellationToken = default);
 ~~~
 
-Do not block internally through GetAwaiter().GetResult(). Use Task and Task&lt;T&gt;,
-not ValueTask, for remote MP work. This rule applies to MP commands; ordinary
-domain construction and configuration remain synchronous where appropriate.
+A reviewed non-constant fixed value is exposed as a named immutable value of
+the same MP-native type, such as `ProjectionOptions.Default`. Option-like
+values may support nondestructive mutation with C# `with` expressions.
 
-## Rule 18: Provide a stable handwritten exception boundary
+### Exceptions
 
-A failed command faults its returned Task. The public API does not use a
-catch-all Result&lt;T&gt; wrapper for ordinary MP calls.
+The handwritten .NET exception boundary uses:
 
-The high-level failure model distinguishes:
+- `BriosaOperationException` for a valid typed Briosa operation failure;
+- `BriosaTransportException` for a transport failure without a valid typed
+  operation error;
+- conventional `ArgumentException` subclasses for invalid local input;
+- `OperationCanceledException` semantics for caller cancellation; and
+- dedicated lifecycle, startup, and compatibility exceptions for failures
+  before MP submission.
 
-- BriosaOperationException for a typed Briosa operation failure.
-- BriosaTransportException for a failure without a valid typed operation error.
-- Conventional argument exceptions for invalid local inputs.
-- OperationCanceledException semantics for caller cancellation.
-- Lifecycle/startup failures that occur before MP submission.
+Generated error messages and gRPC exceptions remain private implementation
+details. An underlying diagnostic may be retained as `InnerException` without
+making the transport type part of the supported contract. Exact exception
+properties and lifecycle exception names remain deferred.
 
-Exact lifecycle exception names and properties are deferred to architecture.
+### Construction, lifetime, and cleanup
 
-The client decodes the value-free briosa-operation-error-bin trailer and maps it
-into handwritten public .NET types. It never parses gRPC status text and does
-not require consumers to catch RpcException or understand generated error
-messages. A low-level exception may be preserved internally as an inner
-exception without becoming the supported contract.
+The primary constructor accepts a handwritten `BriosaClientOptions` value and
+performs no external I/O. Configuration is effectively immutable after
+construction.
 
-## Rule 19: Never replay an ambiguously completed command automatically
-
-A connection failure, deadline, cancellation, worker crash, or lost response
-may occur after SpatialAnalyzer executed a command. The client never silently
-submits that command again when completion is ambiguous.
-
-Preserve these dimensions separately:
-
-- Execution disposition: what is known about the original attempt.
-- Recovery guidance: what should happen before the system proceeds.
-- Replay guidance: whether another attempt is recommended.
-- Replay safety: the risk of duplicate execution.
-
-Do not collapse them into one Retryable or CanRetry Boolean. Cancellation and
-timeout stop waiting; they do not prove rollback. Applications remain
-responsible for state reconciliation and any later replay.
-
-Low-level recovery that conclusively occurs before the server observes a
-command is not prohibited. The boundary is that once execution may have
-occurred, the MP command is not automatically replayed.
-
-## Rule 20: Make one singleton safe across runtime generations
-
-BriosaClient is a long-lived application singleton. It is safe for concurrent
-use and may survive multiple start/stop generations:
+The same `BriosaClient` instance may be used concurrently and across multiple
+start/stop generations. The .NET lifecycle surface includes:
 
 ~~~csharp
-await briosa.StartAsync(cancellationToken);
-await briosa.GetWorkingDirectoryAsync(cancellationToken);
-await briosa.StopAsync(cancellationToken);
+public Task StartAsync(
+    CancellationToken cancellationToken = default);
 
-await briosa.StartAsync(cancellationToken);
-await briosa.GetWorkingDirectoryAsync(cancellationToken);
-~~~
-
-The same object remains registered throughout.
-
-The implementation stores no mutable per-command state on the shared façade.
-Configuration is effectively immutable after construction. Lifecycle state is
-managed explicitly and atomically.
-
-Concurrent MP calls must not corrupt the client, but concurrency does not
-promise SpatialAnalyzer parallelism or execution order. Code that depends on
-order awaits calls sequentially.
-
-Lifecycle operations are also concurrency-safe:
-
-- Competing StartAsync calls cannot create competing generations.
-- A command cannot enter a partially initialized generation.
-- StopAsync closes admission before dismantling a generation.
-- A failed or replaced server invalidates its generation.
-
-## Rule 21: Construct a dormant, transport-neutral client
-
-The primary constructor accepts a handwritten BriosaClientOptions contract.
-Construction:
-
-- Captures and validates immutable configuration.
-- Creates local lifecycle coordination objects.
-- Performs no RPC.
-- Launches no process.
-- Does not check SA or server readiness.
-- Does not expose generated or gRPC-specific constructor parameters.
-
-The final endpoint and active channel may not exist until StartAsync launches a
-server generation. Options therefore describe deferred runtime launch and
-connection policy in addition to client-wide command settings.
-
-Prefer one primary options-based constructor over many overlapping convenience
-constructors. Whether a standard local address is required or selected during
-startup remains an architecture and deployment decision.
-
-## Rule 22: Use explicit asynchronous runtime cleanup
-
-Because the singleton may launch and supervise a Briosa server generation,
-shutdown is not purely synchronous local disposal.
-
-BriosaClient exposes:
-
-~~~csharp
 public Task StopAsync(
     CancellationToken cancellationToken = default);
 ~~~
 
-and supports asynchronous disposal. StopAsync is the controlled path when an
-application needs shutdown diagnostics. Async disposal supplies final cleanup
-for client-owned Briosa infrastructure.
+The client implements `IAsyncDisposable` for final cleanup. `StopAsync` remains
+the reusable, diagnostic shutdown path; asynchronous disposal delegates to the
+same ownership rules. The exact DI registration API and supported runtime modes
+remain deferred.
 
-For a client-owned generation, shutdown:
+`BriosaClientOptions` may expose a nullable client-wide command timeout. `null`
+means that the client adds no deadline. A caller that needs a one-off time limit
+uses `CancellationTokenSource`; startup has separate timeout and cancellation
+settings.
 
-- Stops admitting new MP commands.
-- Unpublishes the active generation.
-- Performs bounded graceful server shutdown.
-- Allows the server to clean up its worker and SDK connection.
-- Disposes the generation channel and local resources.
-- Never claims that shutdown rolled back an in-flight MP command.
+### Public API verification
 
-The client never terminates an externally owned Briosa server. The policy for a
-graceful SpatialAnalyzer close is separate because SA may contain unsaved
-interactive work. Ordinary cleanup never forcefully terminates SpatialAnalyzer.
+The accepted public surface is protected by API-surface tests. Mapping and
+validation tests cover handwritten domain values, request construction, result
+detachment, nullable presence, exceptions, and the C# naming algorithm.
+Language-neutral behavior is exercised through the shared target-specific
+conformance host; this repository owns only its thin .NET fixture.
 
-## Rule 23: Require explicit lifecycle startup
+## Current bootstrap incompatibilities
 
-BriosaClient is dormant after construction and resolution. StartAsync
-explicitly establishes a runtime generation; StopAsync ends it.
+The current `0.1.0` bootstrap predates this contract and is not evidence that a
+different v1 API has been accepted. Known incompatibilities include:
 
-Registration, construction, DI resolution, and the first MP call never trigger
-hidden startup. An MP command invoked without a ready generation fails
-immediately rather than launching processes or waiting indefinitely.
+- It consumes the retired manifest-schema-1 artifact with split/versioned
+  protobuf packages and catalog coordinates rather than the current
+  target-owned `package briosa` artifact.
+- It publishes package and namespace identity as `Briosa.Client` instead of the
+  target-specific package and stable `Briosa` namespace.
+- Generated protobuf/gRPC types and protocol helpers are public.
+- `GetWorkingDirectoryAsync` returns a generated result message.
+- Construction requires an address and eagerly creates a gRPC channel.
+- It has no explicit `StartAsync`/`StopAsync` generation lifecycle and exposes
+  only synchronous `IDisposable` cleanup.
+- It imposes a 30-second command timeout by default instead of representing no
+  additional client deadline with `null`.
+- `BriosaCallException` combines typed operation and transport failure and
+  exposes derived Boolean policy summaries instead of the accepted handwritten
+  exception boundary and separate policy dimensions.
+- The README describes generated transport APIs as supported public surface.
 
-The common UI flow is:
+These are migration inputs for implementation issues, not reasons to weaken
+this contract.
 
-~~~csharp
-private async void StartButton_Click(
-    object sender,
-    RoutedEventArgs e)
-{
-    await _briosa.StartAsync(_shutdownToken);
-    SpatialAnalyzerFeatures.IsEnabled = true;
-}
-~~~
+## Deferred .NET decisions
 
-The singleton uses an internal lifecycle controller and verified connection
-slot. Consumers do not coordinate unrelated public singleton services.
+The following choices require focused architecture or implementation review:
 
-## Rule 24: Make StartAsync the readiness and compatibility boundary
-
-StartAsync returns only after the new generation is genuinely ready for MP work
-and compatible with the exact client package.
-
-The conceptual sequence is:
-
-~~~text
-Launch or identify SpatialAnalyzer
-    -> launch matching Briosa server
-    -> establish gRPC liveness
-    -> establish Briosa MP readiness
-    -> read server information
-    -> verify exact target and protocol identity
-    -> read admitted capabilities
-    -> atomically publish the generation
-    -> complete StartAsync
-~~~
-
-Liveness alone is insufficient. Readiness alone is also insufficient if the
-server belongs to another exact target.
-
-Verification uses only identity information actually exposed by the server. Do
-not claim a runtime schema-fingerprint check when no such field exists.
-
-ListCapabilities may contain only the operations admitted by runtime policy.
-Startup does not require every method compiled into the NuGet package to be
-enabled.
-
-The provisional startup channel remains unavailable to ordinary commands until
-all gates succeed. Every new server generation repeats verification, even when
-it appears at the same address. Startup timeout policy is separate from the
-default MP-command timeout.
-
-## Rule 25: Model the three runtime entities without sharing COM
-
-The client design recognizes three distinct lifecycle entities:
-
-- The SpatialAnalyzer application.
-- The SpatialAnalyzer SDK engine.
-- The Briosa gRPC server.
-
-Public abstractions for these entities are desirable so applications can
-support custom startup procedures, monitoring, and gradual adoption. Provisional
-names include SpatialAnalyzerApplication, SpatialAnalyzerSdkEngine, and
-BriosaServer. Their exact class/interface hierarchy, nesting, and method
-signatures are deferred to architecture design.
-
-The ordinary BriosaClient.StartAsync remains the convenience orchestration path
-for an application starting from a clean runtime state. Advanced startup may
-compose application-supplied lifecycle components.
-
-The SDK ownership rule is strict:
-
-~~~text
-Existing application owns SDK connection
-    -> disconnect and release
-No SDK client owns execution
-    -> Briosa worker creates its own connection
-Briosa worker owns SDK execution
-~~~
-
-This is an exclusive ownership handoff, not a COM-object handoff. A live
-ISpatialAnalyzerSDK object never crosses a process or language boundary. An
-existing direct-SDK application must disconnect and release its COM interface
-before the Briosa worker creates its own connection.
-
-Simultaneous direct-SDK execution and a separate Briosa worker connection are
-not supported by v1. Reusing the exact application-owned COM object would
-require a separate external-worker hosting architecture and different recovery
-guarantees.
-
-Process existence is never treated as MP readiness. The client does not create
-a competing SDK connection for interrogation. Only owned Briosa processes may
-be terminated automatically, and ordinary lifecycle APIs never forcefully
-terminate SpatialAnalyzer.
-
-Whether a direct COM wrapper belongs in the primary package or an optional
-target-specific integration package is deferred.
-
-## Rule 26: Use one shared language-neutral Briosa test host
-
-The deterministic fake environment is implemented once in the central Briosa
-server project, not independently in every language client.
-
-~~~text
-briosa-dotnet --\
-briosa-py -------+--> shared target-specific Briosa test host
-briosa-js ------/
-~~~
-
-The shared test host:
-
-- Implements the real public gRPC contract.
-- Uses deterministic fake worker behavior.
-- Exercises lifecycle, readiness, compatibility, typed failures, deadlines,
-  cancellation, crashes, and unknown completion.
-- Requires no SpatialAnalyzer installation, license, proprietary SDK binary, or
-  vendor documentation.
-- Is clearly identified as test-only software.
-- Is not a SpatialAnalyzer emulator and makes no claim about real SA geometry,
-  analysis, licensing, COM activation, port ownership, or performance.
-
-Each language repository may provide a thin idiomatic fixture that locates,
-launches, configures, and cleans up the shared host. Those fixtures do not
-reimplement MP behavior or failure semantics.
-
-Scenario configuration uses one versioned language-neutral mechanism owned by
-spatialanalyzer/briosa. A test-control service or scenario artifact must never be
-mapped accidentally by the production server.
-
-The exact test artifact name, control protocol, package placement, and consumer
-fixture API are deferred to test-host architecture.
-
-## Explicit non-goals for v1
-
-- No source-generated handwritten façade or domain model.
-- No generated request envelopes in the idiomatic API.
-- No synchronous MP wrappers.
-- No MP convenience-overload matrix.
-- No public generated protobuf/gRPC contract in the idiomatic NuGet package.
-- No invented contextual defaults or hidden preliminary MP calls.
-- No hidden startup on construction, DI resolution, or first command.
-- No automatic replay of ambiguously completed work.
-- No shared live COM interface between an existing application and Briosa.
-- No independently maintained fake MP implementation in each language client.
-- No claim that a fake test host emulates SpatialAnalyzer.
-
-## Deferred architecture decisions
-
-The following questions are intentionally not answered by the foundational
-rules:
-
-- Exact hierarchy and public interfaces for BriosaClient, BriosaServer,
-  SpatialAnalyzerApplication, and SpatialAnalyzerSdkEngine.
-- Exact default and advanced StartAsync signatures.
-- Server artifact installation, discovery, verification, and executable
-  location.
-- SpatialAnalyzer executable discovery and launch strategy.
-- Graceful SpatialAnalyzer close behavior and unsaved-work handling.
-- Detailed client, application, SDK, server, and recovery state types.
+- The exact hierarchy and public interfaces around `BriosaClient` and advanced
+  lifecycle components.
+- The exact default and advanced `StartAsync` signatures.
+- The final `BriosaClientOptions` properties and validation rules.
+- The DI registration and factory API.
+- Detailed lifecycle, startup, compatibility, and transport exception names and
+  properties.
 - State-change notification and UI-binding mechanisms.
-- Exact lifecycle and startup exception hierarchy and properties.
-- Whether direct COM integration belongs in the main package or an optional
-  package.
-- Runtime endpoint selection and multiple desktop-application-instance policy.
-- Test-host artifact format, scenario control contract, and thin language
-  fixture APIs.
-- Whether the concrete client also needs a public consumer interface; this must
-  not be decided merely for mocking convenience.
+- Whether the concrete client also needs a public consumer interface; mocking
+  convenience alone is not sufficient justification.
+- The exact command-name normalization algorithm for punctuation, tokenization,
+  reserved words, and collisions.
+- Multi-target `extern alias` guidance, deferred until a second real target
+  package exists.
 
-These decisions must be resolved through focused architecture and implementation
-issues using the rules above as constraints.
+The central lifecycle modes and ownership state machine are tracked by
+[spatialanalyzer/briosa#147](https://github.com/spatialanalyzer/briosa/issues/147).
+The shared conformance host and scenario contract are tracked by
+[spatialanalyzer/briosa#148](https://github.com/spatialanalyzer/briosa/issues/148).
+Their outcomes must be expressed idiomatically here without duplicating their
+language-neutral policy.
 
-## Required cross-project follow-up
+## .NET v1 non-goals
 
-Several accepted decisions require coordinated work outside this repository:
+- No source-generated idiomatic facade, public domain model, or documentation.
+- No generated request envelopes or generated transport types in the supported
+  NuGet API.
+- No synchronous MP wrappers or internal sync-over-async.
+- No `ValueTask` for remote MP commands.
+- No callback alternative, aliases, or MP convenience-overload matrix.
+- No tuples, `ref`, or `out` for multiple MP outputs.
+- No `params` or `IAsyncEnumerable<T>` canonical collection-input surface.
+- No `System.Numerics.Vector3` substitution for the MP-native `Vector`.
+- No public API that requires consumers to catch `RpcException` or inspect gRPC
+  details.
 
-- The central Briosa lifecycle documentation currently requires SpatialAnalyzer
-  to be started separately. Supporting a default client-orchestrated SA launch
-  must be accepted and documented in spatialanalyzer/briosa.
-- The shared target-specific test host and its language-neutral scenario
-  mechanism belong in spatialanalyzer/briosa.
-- Exact defaults, presence, error, compatibility, and capability semantics
-  remain shared server/protocol contracts.
-- Other first-party clients should offer equivalent behavior without copying
-  .NET-specific type shapes or reimplementing the fake backend.
+Language-neutral v1 non-goals are defined only in the
+[shared behavioral contract](https://github.com/spatialanalyzer/briosa/blob/main/docs/architecture/client-library-behavioral-contract.md).
 
-Do not implement these shared behaviors solely in briosa-dotnet and then treat
-the result as the cross-language contract.
+## Planning boundary
 
-## Next planning steps
-
-1. Complete the cross-language review in SpatialAnalyzer Discussion #6.
-2. Revise briosa-dotnet issue #3, whose current generated-public-client scope
-   conflicts with this design.
-3. Create focused architecture issues for lifecycle composition, shared server
-   launching, process ownership, compatibility gating, and the shared test host.
-4. Create implementation issues only after the relevant architecture decisions
-   are accepted.
+[Issue #3](https://github.com/spatialanalyzer/briosa-dotnet/issues/3) is the v1
+client epic and is consistent with this contract. Implementation work must
+resolve the relevant deferred decisions and replace bootstrap behavior through
+focused, reviewable issues. A local implementation must not silently redefine
+the central behavioral contract.
