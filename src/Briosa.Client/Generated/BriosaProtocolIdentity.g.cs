@@ -7,11 +7,11 @@ internal static class BriosaProtocolIdentity
     /// <summary>Gets the protocol artifact's stable name.</summary>
     public const string ArtifactName = "briosa-protocol-0.2.0-lifecycle-sa-2026.1.0529.7";
     /// <summary>Gets the SHA-256 of the complete protocol ZIP.</summary>
-    public const string ArtifactSha256 = "41946cab74ce0dead5b7ac0763173dfc0097a017658b1289d6ccfc91800e417b";
+    public const string ArtifactSha256 = "47f4d557a5c0391fddca083e32c963b5a6ed80c8a0c6da343e86058a075ea9fb";
     /// <summary>Gets the Briosa version coordinate used to build the artifact.</summary>
     public const string BriosaVersion = "0.2.0-lifecycle";
     /// <summary>Gets the immutable Briosa source revision used to build the artifact.</summary>
-    public const string SourceRevision = "cd36842dcbdc910a05a96e22453a54f5769b05fe";
+    public const string SourceRevision = "bd19e8f32a8bd717e6cf2ec2aea93b68b8c39c11";
     /// <summary>Gets the aggregate canonical protobuf-source fingerprint.</summary>
     public const string ProtocolSchemaSha256 = "cad3d358bd9044ee667f49f6e0c8b6e392138236942ed4996423a93706b9d3d5";
     /// <summary>Gets the pure protobuf descriptor-set fingerprint.</summary>

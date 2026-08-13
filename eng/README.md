@@ -15,7 +15,10 @@ The current bootstrap artifact is:
   -SourceChannel source_commit_bootstrap
 ```
 
-`Briosa.Client.Conformance` emits the normalized lifecycle contract implemented
-by this client. Behavioral coverage lives in `Briosa.Client.Tests` and uses fake
-server/transport boundaries; no SpatialAnalyzer installation or license is
-required.
+`Test-Conformance.ps1` verifies the immutable package named by
+`conformance.lock.json`, then runs the shared Briosa scenario runner against the
+public-API-only `Briosa.Client.Conformance` fixture. The package supplies the
+real Briosa server plus a portable fake SDK/application host, so lifecycle,
+compatibility, capability, failure, interruption, worker-loss, recovery, and
+cleanup behavior can run in ordinary Windows CI without SpatialAnalyzer or a
+license.

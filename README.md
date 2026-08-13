@@ -60,11 +60,13 @@ or startup option types.
 dotnet restore Briosa.DotNet.slnx --locked-mode
 dotnet build Briosa.DotNet.slnx -c Release --no-restore
 dotnet test Briosa.DotNet.slnx -c Release --no-build --no-restore
+./eng/Test-Conformance.ps1 -ArtifactPath C:\path\to\briosa-client-conformance-0.2.0-lifecycle-sa-2026.1.0529.7-win-x64.zip
 dotnet pack src/Briosa.Client/Briosa.Client.csproj -c Release --no-build --no-restore
 ```
 
-Ordinary builds and tests use a fake private transport and require neither
-SpatialAnalyzer nor a license.
+Unit tests use a fake private transport. The shared conformance suite runs the
+real client and server against a portable fake SDK/application host. Neither
+path requires SpatialAnalyzer or a license.
 
 ## Protocol regeneration
 
