@@ -8,8 +8,8 @@ permissions:
   contents: read
 
 jobs:
-  build-test-conformance:
-    name: Build, package, and shared conformance
+  build-test-package:
+    name: Build, test, and package
     runs-on: windows-latest
     timeout-minutes: 20
 
@@ -29,6 +29,7 @@ jobs:
           "source_revision=$($lock.artifact.source_revision)" | Out-File $env:GITHUB_OUTPUT -Append
           "briosa_version=$($lock.artifact.briosa_version)" | Out-File $env:GITHUB_OUTPUT -Append
           "artifact_file_name=$($lock.artifact.file_name)" | Out-File $env:GITHUB_OUTPUT -Append
+          "spatial_analyzer_target=$($lock.target.spatial_analyzer)" | Out-File $env:GITHUB_OUTPUT -Append
 
       - name: Check out pinned Briosa source
         uses: actions/checkout@v6
@@ -56,7 +57,7 @@ jobs:
       - name: Rebuild pinned protocol artifact
         shell: pwsh
         run: >
-          ./briosa-source/eng/New-ProtocolArtifact.ps1
+          ./briosa-source/targets/${{ steps.protocol.outputs.spatial_analyzer_target }}/eng/New-ProtocolArtifact.ps1
           -Version "${{ steps.protocol.outputs.briosa_version }}"
           -SourceRevision "${{ steps.protocol.outputs.source_revision }}"
           -OutputDirectory "${{ github.workspace }}/artifacts/protocol"
@@ -73,6 +74,14 @@ jobs:
       - name: Test
         run: dotnet test Briosa.DotNet.slnx -c Release --no-build --no-restore
 
+      - name: Emit lifecycle contract report
+        run: >
+          dotnet run
+          --project tools/Briosa.Client.Conformance/Briosa.Client.Conformance.csproj
+          -c Release
+          --no-build
+          --no-restore
+
       - name: Verify formatting
         run: dotnet format Briosa.DotNet.slnx --verify-no-changes --no-restore
 
@@ -83,10 +92,3 @@ jobs:
           --no-build
           --no-restore
           -o artifacts/package
-
-      - name: Run shared conformance
-        shell: pwsh
-        run: >
-          ./eng/Test-Conformance.ps1
-          -ProtocolArtifactPath "artifacts/protocol/${{ steps.protocol.outputs.artifact_file_name }}"
-          -BriosaRepository briosa-source
