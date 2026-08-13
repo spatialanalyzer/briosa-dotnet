@@ -1,9 +1,9 @@
 # Briosa .NET v1 public API contract
 
 - Status: Accepted .NET design direction
-- Last reviewed: 2026-08-10
+- Last reviewed: 2026-08-12
 - Scope: The target-specific Briosa .NET client packages
-- Implementation status: Not yet implemented
+- Implementation status: Lifecycle foundation conforming; MP surface expanding
 
 ## Purpose and authority
 
@@ -277,30 +277,13 @@ detachment, nullable presence, exceptions, and the C# naming algorithm.
 Language-neutral behavior is exercised through the shared target-specific
 conformance host; this repository owns only its thin .NET fixture.
 
-## Current bootstrap incompatibilities
+## Implemented Lifecycle Foundation
 
-The current `0.1.0` bootstrap predates this contract and is not evidence that a
-different v1 API has been accepted. Known incompatibilities include:
-
-- It consumes the retired manifest-schema-1 artifact with split/versioned
-  protobuf packages and catalog coordinates rather than the current
-  target-owned `package briosa` artifact.
-- It publishes package and namespace identity as `Briosa.Client` instead of the
-  target-specific package and stable `Briosa` namespace.
-- Generated protobuf/gRPC types and protocol helpers are public.
-- `GetWorkingDirectoryAsync` returns a generated result message.
-- Construction requires an address and eagerly creates a gRPC channel.
-- It has no explicit `StartAsync`/`StopAsync` generation lifecycle and exposes
-  only synchronous `IDisposable` cleanup.
-- It imposes a 30-second command timeout by default instead of representing no
-  additional client deadline with `null`.
-- `BriosaCallException` combines typed operation and transport failure and
-  exposes derived Boolean policy summaries instead of the accepted handwritten
-  exception boundary and separate policy dimensions.
-- The README describes generated transport APIs as supported public surface.
-
-These are migration inputs for implementation issues, not reasons to weaken
-this contract.
+The package now uses dormant construction, explicit reusable asynchronous
+lifecycle, asynchronous disposal, private generated transport, handwritten
+public states and exceptions, cancellation tokens, exact-target compatibility
+checks, and detached MP results required by this contract. Subsequent vertical
+slices add handwritten MP methods without changing this lifecycle foundation.
 
 ## Deferred .NET decisions
 
