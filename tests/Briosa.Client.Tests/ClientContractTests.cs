@@ -19,7 +19,7 @@ public sealed class ClientContractTests
             "standard-protobuf-grpc",
             Transport.BriosaProtocolIdentity.ClientGenerationContract);
         Assert.Equal(
-            "cd36842dcbdc910a05a96e22453a54f5769b05fe",
+            "cf8d01288fb52b8880262e76c6a68bc8d1bc743f",
             Transport.BriosaProtocolIdentity.SourceRevision);
         Assert.Equal(
             "2026.1.0529.7",
