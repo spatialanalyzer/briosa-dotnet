@@ -54,7 +54,7 @@ jobs:
       - name: Install .NET SDK
         uses: actions/setup-dotnet@v5
         with:
-          global-json-file: global.json
+          global-json-file: briosa-source/global.json
           cache: true
           cache-dependency-path: '**/packages.lock.json'
 
@@ -77,8 +77,9 @@ jobs:
 
       - name: Rebuild pinned client conformance artifact
         shell: pwsh
+        working-directory: briosa-source
         run: >
-          ./briosa-source/targets/${{ steps.protocol.outputs.spatial_analyzer_target }}/eng/New-ClientConformancePackage.ps1
+          ./targets/${{ steps.protocol.outputs.spatial_analyzer_target }}/eng/New-ClientConformancePackage.ps1
           -Version "${{ steps.protocol.outputs.briosa_version }}"
           -SourceRevision "${{ steps.protocol.outputs.source_revision }}"
           -OutputDirectory "${{ github.workspace }}/artifacts/conformance"
