@@ -1,56 +1,58 @@
 # Briosa .NET client
 
-`Briosa.Client` is the thin asynchronous .NET client for the open-source [Briosa](https://github.com/spatialanalyzer/briosa) gRPC bridge.
+`Briosa.Client` is the asynchronous .NET client for the open-source
+[Briosa](https://github.com/spatialanalyzer/briosa) SpatialAnalyzer bridge.
+It provides an idiomatic lifecycle API and handwritten MP methods while keeping
+generated gRPC types private.
 
-The client does not contain SpatialAnalyzer, the SpatialAnalyzer SDK, or a license. A compatible Briosa server and a separately installed, running, licensed SpatialAnalyzer instance are required for useful work.
-
-## Current compatibility
-
-This bootstrap targets:
-
-| Coordinate | Pinned value |
-| --- | --- |
-| SpatialAnalyzer | `2026.1.0529.7` exactly |
-| Core protocol | `briosa.core.v1alpha1` |
-| Target protocol | `briosa.sa.v2026_1_0529_7.v1alpha1` |
-| Catalog | `briosa.sa.2026.1.0529.7`, revision `5` |
-| .NET | `net10.0` |
-
-The complete generation identity is committed in [`protocol.lock.json`](protocol.lock.json). Client package versions, Briosa server versions, protocol packages, catalog revisions, and SpatialAnalyzer releases are independent coordinates. This client does not infer compatibility with another SpatialAnalyzer release.
-
-Until Briosa publishes its first v0.2 release asset, the lock uses the reversible `source_commit_bootstrap` channel: CI rebuilds `0.2.0-dev.2` from Briosa merge commit `1a0714345981592b37e26a90ffc4db0de32fe388` and verifies its ZIP hash. A release update will replace that channel with the published release asset without changing client semantics.
+The package does not include SpatialAnalyzer, the SA SDK, or a license. The
+current package targets SpatialAnalyzer `2026.1.0529.7` exactly and .NET 10 on
+Windows x64. Its full protocol identity is pinned in
+[`protocol.lock.json`](protocol.lock.json).
 
 ## Usage
 
 ```csharp
-using Briosa.Client;
+using Briosa;
 
-using var client = new BriosaClient(new BriosaClientOptions
-{
-    Address = new Uri("http://127.0.0.1:50051"),
-    DefaultTimeout = TimeSpan.FromSeconds(30)
-});
+await using var briosa = new BriosaClient();
+await briosa.StartAsync();
 
-var snapshot = await client.GetServerSnapshotAsync(cancellationToken: cancellationToken);
-if (!snapshot.ReadyForMp)
-{
-    return;
-}
-
-var result = await client.GetWorkingDirectoryAsync(
-    cancellationToken: cancellationToken);
-
-if (result.HasDirectory)
-{
-    var workingDirectory = result.Directory;
-}
+string workingDirectory = await briosa.GetWorkingDirectoryAsync();
 ```
 
-`GetServerSnapshotAsync` verifies the exact target protocol and catalog identity before returning discovery data. Generated protobuf messages preserve field presence, including `GetWorkingDirectoryResult.HasDirectory`.
+Construction is dormant. By default, `StartAsync()`:
 
-Failed calls throw `BriosaCallException`. Its `StatusCode` is independent from its optional typed `OperationError`; the client decodes `briosa-operation-error-bin` and never parses status text. `CompletionUnknown` and `ReconciliationRequired` remain distinct from worker recovery. The client performs no automatic operation replay.
+1. Locates and launches the matching local Briosa server on an owned loopback
+   endpoint.
+2. Starts a disconnected SA SDK generation.
+3. Launches a fresh SpatialAnalyzer application.
+4. Connects the SDK and verifies exact identity and MP readiness.
 
-Only asynchronous convenience methods are hand-written. Generated messages and transport clients are public for callers that need lower-level gRPC control; this repository does not reproduce ObjectiveSA-style parallel synchronous/asynchronous command implementations.
+`BriosaStartOptions` can select a control-plane-only startup or connect to an
+eligible application that is already running. The application and SDK also have
+distinct state, launch, connect, stop, and recovery methods. `StopAsync()` and
+`DisposeAsync()` stop the owned server and SDK but never close SpatialAnalyzer.
+
+The client retains lifecycle generations and supplies RPC guards automatically.
+Typed lifecycle failures, compatibility failures, ambiguous MP completion, and
+replay guidance remain distinct. The client never automatically replays an MP
+operation.
+
+See the [Briosa documentation](https://spatialanalyzer.github.io/briosa-docs/api/dotnet/)
+for the complete Next API contract.
+
+## Server distribution lookup
+
+The client resolves the matching server distribution in this order:
+
+1. `BRIOSA_SERVER_PATH`
+2. A package-local `briosa-server/Briosa.Server.exe`
+3. `%LOCALAPPDATA%/Briosa/servers/<briosa-version>/sa-<sa-target>/Briosa.Server.exe`
+
+This locator is intentionally isolated from the public lifecycle API so the
+eventual installer/package layout can change without adding server paths to MP
+or startup option types.
 
 ## Build and test
 
@@ -61,17 +63,22 @@ dotnet test Briosa.DotNet.slnx -c Release --no-build --no-restore
 dotnet pack src/Briosa.Client/Briosa.Client.csproj -c Release --no-build --no-restore
 ```
 
-Ordinary builds and unit tests require neither SpatialAnalyzer nor the Briosa server.
+Ordinary builds and tests use a fake private transport and require neither
+SpatialAnalyzer nor a license.
 
 ## Protocol regeneration
 
-Restore first so the pinned `Grpc.Tools` compiler is available, then import an exact Briosa protocol ZIP:
+After locked restore, import the exact lifecycle artifact through the repository
+script:
 
 ```powershell
-./eng/Import-ProtocolArtifact.ps1 -ArtifactPath C:\path\to\briosa-protocol-....zip -Update
-./eng/Import-ProtocolArtifact.ps1 -ArtifactPath C:\path\to\briosa-protocol-....zip
+./eng/Import-ProtocolArtifact.ps1 `
+  -ArtifactPath C:\path\to\briosa-protocol-0.2.0-lifecycle-sa-2026.1.0529.7.zip `
+  -Update `
+  -SourceChannel source_commit_bootstrap
+
+./eng/Import-ProtocolArtifact.ps1 `
+  -ArtifactPath C:\path\to\briosa-protocol-0.2.0-lifecycle-sa-2026.1.0529.7.zip
 ```
 
-`-Update` is an intentional dependency update. It requires and verifies the adjacent `.zip.sha256`, regenerates transport sources, and atomically records the artifact, schema, descriptor, catalog, target, and conformance identities. Its default source channel is `github_release`; use `-SourceChannel source_commit_bootstrap` only for the current unreleased, immutable-commit bootstrap. Verification mode fails on ZIP, manifest, coordinate, generated-file, or file-list drift. Never edit `src/Briosa.Client/Generated` or `protocol.lock.json` by hand.
-
-`./eng/Test-Conformance.ps1` rebuilds the pinned Briosa server package and runs the shared live and typed-error fixture sets with its fake worker. The test requires 64-bit Windows but not SpatialAnalyzer or a license.
+Never edit `src/Briosa.Client/Generated` or `protocol.lock.json` by hand.
