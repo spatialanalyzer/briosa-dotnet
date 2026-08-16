@@ -12,7 +12,7 @@ The current released artifact is:
 ./eng/Import-ProtocolArtifact.ps1 `
   -ArtifactPath C:\path\to\briosa-protocol-0.2.1-sa-2026.1.0529.7.zip `
   -Update `
-  -SourceChannel github_actions_artifact
+  -SourceChannel github_release
 ```
 
 `Test-Conformance.ps1` verifies the immutable package named by
