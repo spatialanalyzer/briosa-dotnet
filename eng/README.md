@@ -6,13 +6,13 @@ namespace beneath `Briosa.Client.Transport`, and records exact artifact, source,
 schema, descriptor, package, generation-contract, and SA-target identities.
 Verification mode regenerates into a temporary directory and fails on any drift.
 
-The current bootstrap artifact is:
+The current released artifact is:
 
 ```powershell
 ./eng/Import-ProtocolArtifact.ps1 `
-  -ArtifactPath C:\path\to\briosa-protocol-0.2.0-lifecycle-sa-2026.1.0529.7.zip `
+  -ArtifactPath C:\path\to\briosa-protocol-0.2.1-sa-2026.1.0529.7.zip `
   -Update `
-  -SourceChannel source_commit_bootstrap
+  -SourceChannel github_actions_artifact
 ```
 
 `Test-Conformance.ps1` verifies the immutable package named by

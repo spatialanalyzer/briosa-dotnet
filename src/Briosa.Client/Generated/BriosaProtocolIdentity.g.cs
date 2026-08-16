@@ -5,13 +5,13 @@ namespace Briosa.Client.Transport;
 internal static class BriosaProtocolIdentity
 {
     /// <summary>Gets the protocol artifact's stable name.</summary>
-    public const string ArtifactName = "briosa-protocol-0.2.0-sa-2026.1.0529.7";
+    public const string ArtifactName = "briosa-protocol-0.2.1-sa-2026.1.0529.7";
     /// <summary>Gets the SHA-256 of the complete protocol ZIP.</summary>
-    public const string ArtifactSha256 = "34be1b2c6882f945f58db7dbf2816b848528aa9758fd0c0e8b3a6b61b8110f6b";
+    public const string ArtifactSha256 = "593b050f8b046c4af01b7ecbb1bedbe4a00af7ef4c6d02521f620c5b61ffe072";
     /// <summary>Gets the Briosa version coordinate used to build the artifact.</summary>
-    public const string BriosaVersion = "0.2.0";
+    public const string BriosaVersion = "0.2.1";
     /// <summary>Gets the immutable Briosa source revision used to build the artifact.</summary>
-    public const string SourceRevision = "a009d95c1a5d293bdcbe3edb2edfe9cd99081c2e";
+    public const string SourceRevision = "dc361c55e09cf2b6cdf5b058c9a2b75d52907bd5";
     /// <summary>Gets the aggregate canonical protobuf-source fingerprint.</summary>
     public const string ProtocolSchemaSha256 = "68e4814664ece0f0fb0beb9bff2c53e503f1f93f34a2fbdc1acf28777a5433ea";
     /// <summary>Gets the pure protobuf descriptor-set fingerprint.</summary>

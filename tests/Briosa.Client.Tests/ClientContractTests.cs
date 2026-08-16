@@ -12,14 +12,14 @@ public sealed class ClientContractTests
     public void ProtocolIdentityMatchesMergedWaveAArtifact()
     {
         Assert.Equal(
-            "briosa-protocol-0.2.0-sa-2026.1.0529.7",
+            "briosa-protocol-0.2.1-sa-2026.1.0529.7",
             Transport.BriosaProtocolIdentity.ArtifactName);
         Assert.Equal("briosa", Transport.BriosaProtocolIdentity.ProtocolPackage);
         Assert.Equal(
             "standard-protobuf-grpc",
             Transport.BriosaProtocolIdentity.ClientGenerationContract);
         Assert.Equal(
-            "a009d95c1a5d293bdcbe3edb2edfe9cd99081c2e",
+            "dc361c55e09cf2b6cdf5b058c9a2b75d52907bd5",
             Transport.BriosaProtocolIdentity.SourceRevision);
         Assert.Equal(
             "2026.1.0529.7",
