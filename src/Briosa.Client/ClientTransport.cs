@@ -1,5 +1,6 @@
 using Grpc.Core;
 using Grpc.Net.Client;
+using Google.Protobuf;
 using Transport = Briosa.Client.Transport;
 
 namespace Briosa;
@@ -42,6 +43,14 @@ internal interface IClientTransport : IAsyncDisposable
     Task<string> GetWorkingDirectoryAsync(
         TimeSpan? timeout,
         CancellationToken cancellationToken);
+
+    Task<IMessage> InvokeOperationAsync(
+        string service,
+        string rpc,
+        IMessage request,
+        MessageParser responseParser,
+        TimeSpan? timeout,
+        CancellationToken cancellationToken);
 }
 
 internal interface IClientTransportFactory
@@ -61,6 +70,7 @@ internal sealed class GrpcClientTransport : IClientTransport
     private readonly Transport.SpatialAnalyzerLifecycle.SpatialAnalyzerLifecycleClient _application;
     private readonly Transport.SpatialAnalyzerSdkLifecycle.SpatialAnalyzerSdkLifecycleClient _sdk;
     private readonly Transport.FileOperations.FileOperationsClient _fileOperations;
+    private readonly CallInvoker _callInvoker;
 
     public GrpcClientTransport(Uri address)
     {
@@ -69,6 +79,7 @@ internal sealed class GrpcClientTransport : IClientTransport
         _application = new(_channel);
         _sdk = new(_channel);
         _fileOperations = new(_channel);
+        _callInvoker = _channel.CreateCallInvoker();
     }
 
     public async Task<(Transport.GetServerInfoResponse, Transport.ListCapabilitiesResponse)>
@@ -203,6 +214,37 @@ internal sealed class GrpcClientTransport : IClientTransport
         }
 
         return response.Directory;
+    }
+
+    public async Task<IMessage> InvokeOperationAsync(
+        string service,
+        string rpc,
+        IMessage request,
+        MessageParser responseParser,
+        TimeSpan? timeout,
+        CancellationToken cancellationToken)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(service);
+        ArgumentException.ThrowIfNullOrWhiteSpace(rpc);
+        ArgumentNullException.ThrowIfNull(request);
+        ArgumentNullException.ThrowIfNull(responseParser);
+
+        var method = new Method<IMessage, IMessage>(
+            MethodType.Unary,
+            service,
+            rpc,
+            Marshallers.Create<IMessage>(
+                static value => value.ToByteArray(),
+                static _ => throw new NotSupportedException(
+                    "Briosa request deserialization is server-owned.")),
+            Marshallers.Create<IMessage>(
+                static value => value.ToByteArray(),
+                responseParser.ParseFrom));
+        var options = new CallOptions(
+            deadline: timeout is null ? null : DateTime.UtcNow.Add(timeout.Value),
+            cancellationToken: cancellationToken);
+        return await _callInvoker.AsyncUnaryCall(method, null, options, request)
+            .ResponseAsync.ConfigureAwait(false);
     }
 
     public ValueTask DisposeAsync()

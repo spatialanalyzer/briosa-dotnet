@@ -46,9 +46,569 @@ namespace Briosa.Client.Transport {
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.BackupNowRequest> __Marshaller_briosa_BackupNowRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.BackupNowRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.BackupNowResult> __Marshaller_briosa_BackupNowResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.BackupNowResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.CopyGeneralFileRequest> __Marshaller_briosa_CopyGeneralFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.CopyGeneralFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.CopyGeneralFileResult> __Marshaller_briosa_CopyGeneralFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.CopyGeneralFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.DeleteGeneralFileRequest> __Marshaller_briosa_DeleteGeneralFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.DeleteGeneralFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.DeleteGeneralFileResult> __Marshaller_briosa_DeleteGeneralFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.DeleteGeneralFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.DirectCadAccessRequest> __Marshaller_briosa_DirectCadAccessRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.DirectCadAccessRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.DirectCadAccessResult> __Marshaller_briosa_DirectCadAccessResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.DirectCadAccessResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportAsciiFrameSetRequest> __Marshaller_briosa_ExportAsciiFrameSetRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportAsciiFrameSetRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportAsciiFrameSetResult> __Marshaller_briosa_ExportAsciiFrameSetResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportAsciiFrameSetResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportAsciiFramesRequest> __Marshaller_briosa_ExportAsciiFramesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportAsciiFramesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportAsciiFramesResult> __Marshaller_briosa_ExportAsciiFramesResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportAsciiFramesResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportAsciiPointCloudsRequest> __Marshaller_briosa_ExportAsciiPointCloudsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportAsciiPointCloudsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportAsciiPointCloudsResult> __Marshaller_briosa_ExportAsciiPointCloudsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportAsciiPointCloudsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportAsciiPointSetRequest> __Marshaller_briosa_ExportAsciiPointSetRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportAsciiPointSetRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportAsciiPointSetResult> __Marshaller_briosa_ExportAsciiPointSetResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportAsciiPointSetResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportAsciiPointsRequest> __Marshaller_briosa_ExportAsciiPointsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportAsciiPointsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportAsciiPointsResult> __Marshaller_briosa_ExportAsciiPointsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportAsciiPointsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportDxfRequest> __Marshaller_briosa_ExportDxfRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportDxfRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportDxfResult> __Marshaller_briosa_ExportDxfResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportDxfResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportEmbeddedFileRequest> __Marshaller_briosa_ExportEmbeddedFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportEmbeddedFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportEmbeddedFileResult> __Marshaller_briosa_ExportEmbeddedFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportEmbeddedFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportHiddenPointBarXmlFileRequest> __Marshaller_briosa_ExportHiddenPointBarXmlFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportHiddenPointBarXmlFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportHiddenPointBarXmlFileResult> __Marshaller_briosa_ExportHiddenPointBarXmlFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportHiddenPointBarXmlFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportIgesFileEntireModelRequest> __Marshaller_briosa_ExportIgesFileEntireModelRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportIgesFileEntireModelRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportIgesFileEntireModelResult> __Marshaller_briosa_ExportIgesFileEntireModelResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportIgesFileEntireModelResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportIgesFilePartialModelRequest> __Marshaller_briosa_ExportIgesFilePartialModelRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportIgesFilePartialModelRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportIgesFilePartialModelResult> __Marshaller_briosa_ExportIgesFilePartialModelResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportIgesFilePartialModelResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportPtxPointCloudsRequest> __Marshaller_briosa_ExportPtxPointCloudsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportPtxPointCloudsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportPtxPointCloudsResult> __Marshaller_briosa_ExportPtxPointCloudsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportPtxPointCloudsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportQdasCharacteristicsRequest> __Marshaller_briosa_ExportQdasCharacteristicsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportQdasCharacteristicsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportQdasCharacteristicsResult> __Marshaller_briosa_ExportQdasCharacteristicsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportQdasCharacteristicsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportQdasDataListRequest> __Marshaller_briosa_ExportQdasDataListRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportQdasDataListRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportQdasDataListResult> __Marshaller_briosa_ExportQdasDataListResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportQdasDataListResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportScanStripeMeshToStlFileRequest> __Marshaller_briosa_ExportScanStripeMeshToStlFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportScanStripeMeshToStlFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportScanStripeMeshToStlFileResult> __Marshaller_briosa_ExportScanStripeMeshToStlFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportScanStripeMeshToStlFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportStepFileEntireModelRequest> __Marshaller_briosa_ExportStepFileEntireModelRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportStepFileEntireModelRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportStepFileEntireModelResult> __Marshaller_briosa_ExportStepFileEntireModelResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportStepFileEntireModelResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportStepFilePartialModelRequest> __Marshaller_briosa_ExportStepFilePartialModelRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportStepFilePartialModelRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportStepFilePartialModelResult> __Marshaller_briosa_ExportStepFilePartialModelResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportStepFilePartialModelResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportVdaFsFileEntireModelRequest> __Marshaller_briosa_ExportVdaFsFileEntireModelRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportVdaFsFileEntireModelRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportVdaFsFileEntireModelResult> __Marshaller_briosa_ExportVdaFsFileEntireModelResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportVdaFsFileEntireModelResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportVdaFsFilePartialModelRequest> __Marshaller_briosa_ExportVdaFsFilePartialModelRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportVdaFsFilePartialModelRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportVdaFsFilePartialModelResult> __Marshaller_briosa_ExportVdaFsFilePartialModelResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportVdaFsFilePartialModelResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportVectorContainerToAsciiFileRequest> __Marshaller_briosa_ExportVectorContainerToAsciiFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportVectorContainerToAsciiFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExportVectorContainerToAsciiFileResult> __Marshaller_briosa_ExportVectorContainerToAsciiFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExportVectorContainerToAsciiFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.FindFilesInDirectoryRequest> __Marshaller_briosa_FindFilesInDirectoryRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.FindFilesInDirectoryRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.FindFilesInDirectoryResult> __Marshaller_briosa_FindFilesInDirectoryResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.FindFilesInDirectoryResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.FindSubDirectoriesInDirectoryRequest> __Marshaller_briosa_FindSubDirectoriesInDirectoryRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.FindSubDirectoriesInDirectoryRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.FindSubDirectoriesInDirectoryResult> __Marshaller_briosa_FindSubDirectoriesInDirectoryResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.FindSubDirectoriesInDirectoryResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetBooleanFromDataShareFileRequest> __Marshaller_briosa_GetBooleanFromDataShareFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetBooleanFromDataShareFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetBooleanFromDataShareFileResult> __Marshaller_briosa_GetBooleanFromDataShareFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetBooleanFromDataShareFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetDoubleFromDataShareFileRequest> __Marshaller_briosa_GetDoubleFromDataShareFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetDoubleFromDataShareFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetDoubleFromDataShareFileResult> __Marshaller_briosa_GetDoubleFromDataShareFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetDoubleFromDataShareFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetIntegerFromDataShareFileRequest> __Marshaller_briosa_GetIntegerFromDataShareFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetIntegerFromDataShareFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetIntegerFromDataShareFileResult> __Marshaller_briosa_GetIntegerFromDataShareFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetIntegerFromDataShareFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetQdasCatalogEntriesRequest> __Marshaller_briosa_GetQdasCatalogEntriesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetQdasCatalogEntriesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetQdasCatalogEntriesResult> __Marshaller_briosa_GetQdasCatalogEntriesResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetQdasCatalogEntriesResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetStringFromDataShareFileRequest> __Marshaller_briosa_GetStringFromDataShareFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetStringFromDataShareFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetStringFromDataShareFileResult> __Marshaller_briosa_GetStringFromDataShareFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetStringFromDataShareFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetTransformFromDataShareFileRequest> __Marshaller_briosa_GetTransformFromDataShareFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetTransformFromDataShareFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetTransformFromDataShareFileResult> __Marshaller_briosa_GetTransformFromDataShareFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetTransformFromDataShareFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetVectorFromDataShareFileRequest> __Marshaller_briosa_GetVectorFromDataShareFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetVectorFromDataShareFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetVectorFromDataShareFileResult> __Marshaller_briosa_GetVectorFromDataShareFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetVectorFromDataShareFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetWorkingDirectoryRequest> __Marshaller_briosa_GetWorkingDirectoryRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetWorkingDirectoryRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetWorkingDirectoryResult> __Marshaller_briosa_GetWorkingDirectoryResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetWorkingDirectoryResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportAsciiPredefinedFormatsRequest> __Marshaller_briosa_ImportAsciiPredefinedFormatsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportAsciiPredefinedFormatsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportAsciiPredefinedFormatsResult> __Marshaller_briosa_ImportAsciiPredefinedFormatsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportAsciiPredefinedFormatsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportAsciiPredefinedFrameSetFormatsRequest> __Marshaller_briosa_ImportAsciiPredefinedFrameSetFormatsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportAsciiPredefinedFrameSetFormatsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportAsciiPredefinedFrameSetFormatsResult> __Marshaller_briosa_ImportAsciiPredefinedFrameSetFormatsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportAsciiPredefinedFrameSetFormatsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportE57FileRequest> __Marshaller_briosa_ImportE57FileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportE57FileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportE57FileResult> __Marshaller_briosa_ImportE57FileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportE57FileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportFileAsEmbeddedFileRequest> __Marshaller_briosa_ImportFileAsEmbeddedFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportFileAsEmbeddedFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportFileAsEmbeddedFileResult> __Marshaller_briosa_ImportFileAsEmbeddedFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportFileAsEmbeddedFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportFileAsPictureRequest> __Marshaller_briosa_ImportFileAsPictureRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportFileAsPictureRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportFileAsPictureResult> __Marshaller_briosa_ImportFileAsPictureResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportFileAsPictureResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportHiddenPointBarXmlFileRequest> __Marshaller_briosa_ImportHiddenPointBarXmlFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportHiddenPointBarXmlFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportHiddenPointBarXmlFileResult> __Marshaller_briosa_ImportHiddenPointBarXmlFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportHiddenPointBarXmlFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportIgesFileRequest> __Marshaller_briosa_ImportIgesFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportIgesFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportIgesFileResult> __Marshaller_briosa_ImportIgesFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportIgesFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportLeicaGsiFileRequest> __Marshaller_briosa_ImportLeicaGsiFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportLeicaGsiFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportLeicaGsiFileResult> __Marshaller_briosa_ImportLeicaGsiFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportLeicaGsiFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportLeicaSdbFileRequest> __Marshaller_briosa_ImportLeicaSdbFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportLeicaSdbFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportLeicaSdbFileResult> __Marshaller_briosa_ImportLeicaSdbFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportLeicaSdbFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportMpFileAsEmbeddedMpRequest> __Marshaller_briosa_ImportMpFileAsEmbeddedMpRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportMpFileAsEmbeddedMpRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportMpFileAsEmbeddedMpResult> __Marshaller_briosa_ImportMpFileAsEmbeddedMpResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportMpFileAsEmbeddedMpResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportNominalsFromXmlFileRequest> __Marshaller_briosa_ImportNominalsFromXmlFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportNominalsFromXmlFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportNominalsFromXmlFileResult> __Marshaller_briosa_ImportNominalsFromXmlFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportNominalsFromXmlFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportPolyworksFileRequest> __Marshaller_briosa_ImportPolyworksFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportPolyworksFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportPolyworksFileResult> __Marshaller_briosa_ImportPolyworksFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportPolyworksFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportQdasCatalogFileRequest> __Marshaller_briosa_ImportQdasCatalogFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportQdasCatalogFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportQdasCatalogFileResult> __Marshaller_briosa_ImportQdasCatalogFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportQdasCatalogFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportSaFileRequest> __Marshaller_briosa_ImportSaFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportSaFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportSaFileResult> __Marshaller_briosa_ImportSaFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportSaFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportSaWindowsPlacementRequest> __Marshaller_briosa_ImportSaWindowsPlacementRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportSaWindowsPlacementRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportSaWindowsPlacementResult> __Marshaller_briosa_ImportSaWindowsPlacementResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportSaWindowsPlacementResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportSatFileRequest> __Marshaller_briosa_ImportSatFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportSatFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportSatFileResult> __Marshaller_briosa_ImportSatFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportSatFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportStepFileRequest> __Marshaller_briosa_ImportStepFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportStepFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportStepFileResult> __Marshaller_briosa_ImportStepFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportStepFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportStlFileRequest> __Marshaller_briosa_ImportStlFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportStlFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportStlFileResult> __Marshaller_briosa_ImportStlFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportStlFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportVdaFsFileRequest> __Marshaller_briosa_ImportVdaFsFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportVdaFsFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportVdaFsFileResult> __Marshaller_briosa_ImportVdaFsFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportVdaFsFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportVstarsXyzFileRequest> __Marshaller_briosa_ImportVstarsXyzFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportVstarsXyzFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportVstarsXyzFileResult> __Marshaller_briosa_ImportVstarsXyzFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportVstarsXyzFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportVstarsCamerasRequest> __Marshaller_briosa_ImportVstarsCamerasRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportVstarsCamerasRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ImportVstarsCamerasResult> __Marshaller_briosa_ImportVstarsCamerasResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ImportVstarsCamerasResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.LoadHtmlFormRequest> __Marshaller_briosa_LoadHtmlFormRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.LoadHtmlFormRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.LoadHtmlFormResult> __Marshaller_briosa_LoadHtmlFormResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.LoadHtmlFormResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.LoadHtmlFormInEdgeBrowserRequest> __Marshaller_briosa_LoadHtmlFormInEdgeBrowserRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.LoadHtmlFormInEdgeBrowserRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.LoadHtmlFormInEdgeBrowserResult> __Marshaller_briosa_LoadHtmlFormInEdgeBrowserResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.LoadHtmlFormInEdgeBrowserResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeEmbeddedFileNameListRequest> __Marshaller_briosa_MakeEmbeddedFileNameListRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeEmbeddedFileNameListRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeEmbeddedFileNameListResult> __Marshaller_briosa_MakeEmbeddedFileNameListResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeEmbeddedFileNameListResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MergeMeasurementsIntoXmlFileRequest> __Marshaller_briosa_MergeMeasurementsIntoXmlFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MergeMeasurementsIntoXmlFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MergeMeasurementsIntoXmlFileResult> __Marshaller_briosa_MergeMeasurementsIntoXmlFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MergeMeasurementsIntoXmlFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.NewSaFileRequest> __Marshaller_briosa_NewSaFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.NewSaFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.NewSaFileResult> __Marshaller_briosa_NewSaFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.NewSaFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.OpenSaFileRequest> __Marshaller_briosa_OpenSaFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.OpenSaFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.OpenSaFileResult> __Marshaller_briosa_OpenSaFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.OpenSaFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.OpenTemplateFileRequest> __Marshaller_briosa_OpenTemplateFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.OpenTemplateFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.OpenTemplateFileResult> __Marshaller_briosa_OpenTemplateFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.OpenTemplateFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.PopPolyBayAnalysisWindowRequest> __Marshaller_briosa_PopPolyBayAnalysisWindowRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.PopPolyBayAnalysisWindowRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.PopPolyBayAnalysisWindowResult> __Marshaller_briosa_PopPolyBayAnalysisWindowResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.PopPolyBayAnalysisWindowResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.PrepareQdasDataListRequest> __Marshaller_briosa_PrepareQdasDataListRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.PrepareQdasDataListRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.PrepareQdasDataListResult> __Marshaller_briosa_PrepareQdasDataListResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.PrepareQdasDataListResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.RenameGeneralFileRequest> __Marshaller_briosa_RenameGeneralFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.RenameGeneralFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.RenameGeneralFileResult> __Marshaller_briosa_RenameGeneralFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.RenameGeneralFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SaveRequest> __Marshaller_briosa_SaveRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SaveRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SaveResult> __Marshaller_briosa_SaveResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SaveResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SaveAsReadOnlyTemplateRequest> __Marshaller_briosa_SaveAsReadOnlyTemplateRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SaveAsReadOnlyTemplateRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SaveAsReadOnlyTemplateResult> __Marshaller_briosa_SaveAsReadOnlyTemplateResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SaveAsReadOnlyTemplateResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SaveAsRequest> __Marshaller_briosa_SaveAsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SaveAsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SaveAsResult> __Marshaller_briosa_SaveAsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SaveAsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetBooleanInDataShareFileRequest> __Marshaller_briosa_SetBooleanInDataShareFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetBooleanInDataShareFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetBooleanInDataShareFileResult> __Marshaller_briosa_SetBooleanInDataShareFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetBooleanInDataShareFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetDoubleInDataShareFileRequest> __Marshaller_briosa_SetDoubleInDataShareFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetDoubleInDataShareFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetDoubleInDataShareFileResult> __Marshaller_briosa_SetDoubleInDataShareFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetDoubleInDataShareFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetIntegerInDataShareFileRequest> __Marshaller_briosa_SetIntegerInDataShareFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetIntegerInDataShareFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetIntegerInDataShareFileResult> __Marshaller_briosa_SetIntegerInDataShareFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetIntegerInDataShareFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetStringInDataShareFileRequest> __Marshaller_briosa_SetStringInDataShareFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetStringInDataShareFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetStringInDataShareFileResult> __Marshaller_briosa_SetStringInDataShareFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetStringInDataShareFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetTransformInDataShareFileRequest> __Marshaller_briosa_SetTransformInDataShareFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetTransformInDataShareFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetTransformInDataShareFileResult> __Marshaller_briosa_SetTransformInDataShareFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetTransformInDataShareFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetVectorInDataShareFileRequest> __Marshaller_briosa_SetVectorInDataShareFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetVectorInDataShareFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetVectorInDataShareFileResult> __Marshaller_briosa_SetVectorInDataShareFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetVectorInDataShareFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.TerminateAllRunningMPsRequest> __Marshaller_briosa_TerminateAllRunningMPsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.TerminateAllRunningMPsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.TerminateAllRunningMPsResult> __Marshaller_briosa_TerminateAllRunningMPsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.TerminateAllRunningMPsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.UseNrkxmlLibraryRequest> __Marshaller_briosa_UseNrkxmlLibraryRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.UseNrkxmlLibraryRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.UseNrkxmlLibraryResult> __Marshaller_briosa_UseNrkxmlLibraryResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.UseNrkxmlLibraryResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.VerifyGeneralFileExistsRequest> __Marshaller_briosa_VerifyGeneralFileExistsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.VerifyGeneralFileExistsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.VerifyGeneralFileExistsResult> __Marshaller_briosa_VerifyGeneralFileExistsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.VerifyGeneralFileExistsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.VerifyMpFileExistsRequest> __Marshaller_briosa_VerifyMpFileExistsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.VerifyMpFileExistsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.VerifyMpFileExistsResult> __Marshaller_briosa_VerifyMpFileExistsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.VerifyMpFileExistsResult.Parser));
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.BackupNowRequest, global::Briosa.Client.Transport.BackupNowResult> __Method_BackupNow = new grpc::Method<global::Briosa.Client.Transport.BackupNowRequest, global::Briosa.Client.Transport.BackupNowResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "BackupNow",
+        __Marshaller_briosa_BackupNowRequest,
+        __Marshaller_briosa_BackupNowResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.CopyGeneralFileRequest, global::Briosa.Client.Transport.CopyGeneralFileResult> __Method_CopyGeneralFile = new grpc::Method<global::Briosa.Client.Transport.CopyGeneralFileRequest, global::Briosa.Client.Transport.CopyGeneralFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "CopyGeneralFile",
+        __Marshaller_briosa_CopyGeneralFileRequest,
+        __Marshaller_briosa_CopyGeneralFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.DeleteGeneralFileRequest, global::Briosa.Client.Transport.DeleteGeneralFileResult> __Method_DeleteGeneralFile = new grpc::Method<global::Briosa.Client.Transport.DeleteGeneralFileRequest, global::Briosa.Client.Transport.DeleteGeneralFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DeleteGeneralFile",
+        __Marshaller_briosa_DeleteGeneralFileRequest,
+        __Marshaller_briosa_DeleteGeneralFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.DirectCadAccessRequest, global::Briosa.Client.Transport.DirectCadAccessResult> __Method_DirectCadAccess = new grpc::Method<global::Briosa.Client.Transport.DirectCadAccessRequest, global::Briosa.Client.Transport.DirectCadAccessResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DirectCadAccess",
+        __Marshaller_briosa_DirectCadAccessRequest,
+        __Marshaller_briosa_DirectCadAccessResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportAsciiFrameSetRequest, global::Briosa.Client.Transport.ExportAsciiFrameSetResult> __Method_ExportAsciiFrameSet = new grpc::Method<global::Briosa.Client.Transport.ExportAsciiFrameSetRequest, global::Briosa.Client.Transport.ExportAsciiFrameSetResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportAsciiFrameSet",
+        __Marshaller_briosa_ExportAsciiFrameSetRequest,
+        __Marshaller_briosa_ExportAsciiFrameSetResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportAsciiFramesRequest, global::Briosa.Client.Transport.ExportAsciiFramesResult> __Method_ExportAsciiFrames = new grpc::Method<global::Briosa.Client.Transport.ExportAsciiFramesRequest, global::Briosa.Client.Transport.ExportAsciiFramesResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportAsciiFrames",
+        __Marshaller_briosa_ExportAsciiFramesRequest,
+        __Marshaller_briosa_ExportAsciiFramesResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportAsciiPointCloudsRequest, global::Briosa.Client.Transport.ExportAsciiPointCloudsResult> __Method_ExportAsciiPointClouds = new grpc::Method<global::Briosa.Client.Transport.ExportAsciiPointCloudsRequest, global::Briosa.Client.Transport.ExportAsciiPointCloudsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportAsciiPointClouds",
+        __Marshaller_briosa_ExportAsciiPointCloudsRequest,
+        __Marshaller_briosa_ExportAsciiPointCloudsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportAsciiPointSetRequest, global::Briosa.Client.Transport.ExportAsciiPointSetResult> __Method_ExportAsciiPointSet = new grpc::Method<global::Briosa.Client.Transport.ExportAsciiPointSetRequest, global::Briosa.Client.Transport.ExportAsciiPointSetResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportAsciiPointSet",
+        __Marshaller_briosa_ExportAsciiPointSetRequest,
+        __Marshaller_briosa_ExportAsciiPointSetResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportAsciiPointsRequest, global::Briosa.Client.Transport.ExportAsciiPointsResult> __Method_ExportAsciiPoints = new grpc::Method<global::Briosa.Client.Transport.ExportAsciiPointsRequest, global::Briosa.Client.Transport.ExportAsciiPointsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportAsciiPoints",
+        __Marshaller_briosa_ExportAsciiPointsRequest,
+        __Marshaller_briosa_ExportAsciiPointsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportDxfRequest, global::Briosa.Client.Transport.ExportDxfResult> __Method_ExportDxf = new grpc::Method<global::Briosa.Client.Transport.ExportDxfRequest, global::Briosa.Client.Transport.ExportDxfResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportDxf",
+        __Marshaller_briosa_ExportDxfRequest,
+        __Marshaller_briosa_ExportDxfResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportEmbeddedFileRequest, global::Briosa.Client.Transport.ExportEmbeddedFileResult> __Method_ExportEmbeddedFile = new grpc::Method<global::Briosa.Client.Transport.ExportEmbeddedFileRequest, global::Briosa.Client.Transport.ExportEmbeddedFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportEmbeddedFile",
+        __Marshaller_briosa_ExportEmbeddedFileRequest,
+        __Marshaller_briosa_ExportEmbeddedFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportHiddenPointBarXmlFileRequest, global::Briosa.Client.Transport.ExportHiddenPointBarXmlFileResult> __Method_ExportHiddenPointBarXmlFile = new grpc::Method<global::Briosa.Client.Transport.ExportHiddenPointBarXmlFileRequest, global::Briosa.Client.Transport.ExportHiddenPointBarXmlFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportHiddenPointBarXmlFile",
+        __Marshaller_briosa_ExportHiddenPointBarXmlFileRequest,
+        __Marshaller_briosa_ExportHiddenPointBarXmlFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportIgesFileEntireModelRequest, global::Briosa.Client.Transport.ExportIgesFileEntireModelResult> __Method_ExportIgesFileEntireModel = new grpc::Method<global::Briosa.Client.Transport.ExportIgesFileEntireModelRequest, global::Briosa.Client.Transport.ExportIgesFileEntireModelResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportIgesFileEntireModel",
+        __Marshaller_briosa_ExportIgesFileEntireModelRequest,
+        __Marshaller_briosa_ExportIgesFileEntireModelResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportIgesFilePartialModelRequest, global::Briosa.Client.Transport.ExportIgesFilePartialModelResult> __Method_ExportIgesFilePartialModel = new grpc::Method<global::Briosa.Client.Transport.ExportIgesFilePartialModelRequest, global::Briosa.Client.Transport.ExportIgesFilePartialModelResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportIgesFilePartialModel",
+        __Marshaller_briosa_ExportIgesFilePartialModelRequest,
+        __Marshaller_briosa_ExportIgesFilePartialModelResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportPtxPointCloudsRequest, global::Briosa.Client.Transport.ExportPtxPointCloudsResult> __Method_ExportPtxPointClouds = new grpc::Method<global::Briosa.Client.Transport.ExportPtxPointCloudsRequest, global::Briosa.Client.Transport.ExportPtxPointCloudsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportPtxPointClouds",
+        __Marshaller_briosa_ExportPtxPointCloudsRequest,
+        __Marshaller_briosa_ExportPtxPointCloudsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportQdasCharacteristicsRequest, global::Briosa.Client.Transport.ExportQdasCharacteristicsResult> __Method_ExportQdasCharacteristics = new grpc::Method<global::Briosa.Client.Transport.ExportQdasCharacteristicsRequest, global::Briosa.Client.Transport.ExportQdasCharacteristicsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportQdasCharacteristics",
+        __Marshaller_briosa_ExportQdasCharacteristicsRequest,
+        __Marshaller_briosa_ExportQdasCharacteristicsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportQdasDataListRequest, global::Briosa.Client.Transport.ExportQdasDataListResult> __Method_ExportQdasDataList = new grpc::Method<global::Briosa.Client.Transport.ExportQdasDataListRequest, global::Briosa.Client.Transport.ExportQdasDataListResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportQdasDataList",
+        __Marshaller_briosa_ExportQdasDataListRequest,
+        __Marshaller_briosa_ExportQdasDataListResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportScanStripeMeshToStlFileRequest, global::Briosa.Client.Transport.ExportScanStripeMeshToStlFileResult> __Method_ExportScanStripeMeshToStlFile = new grpc::Method<global::Briosa.Client.Transport.ExportScanStripeMeshToStlFileRequest, global::Briosa.Client.Transport.ExportScanStripeMeshToStlFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportScanStripeMeshToStlFile",
+        __Marshaller_briosa_ExportScanStripeMeshToStlFileRequest,
+        __Marshaller_briosa_ExportScanStripeMeshToStlFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportStepFileEntireModelRequest, global::Briosa.Client.Transport.ExportStepFileEntireModelResult> __Method_ExportStepFileEntireModel = new grpc::Method<global::Briosa.Client.Transport.ExportStepFileEntireModelRequest, global::Briosa.Client.Transport.ExportStepFileEntireModelResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportStepFileEntireModel",
+        __Marshaller_briosa_ExportStepFileEntireModelRequest,
+        __Marshaller_briosa_ExportStepFileEntireModelResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportStepFilePartialModelRequest, global::Briosa.Client.Transport.ExportStepFilePartialModelResult> __Method_ExportStepFilePartialModel = new grpc::Method<global::Briosa.Client.Transport.ExportStepFilePartialModelRequest, global::Briosa.Client.Transport.ExportStepFilePartialModelResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportStepFilePartialModel",
+        __Marshaller_briosa_ExportStepFilePartialModelRequest,
+        __Marshaller_briosa_ExportStepFilePartialModelResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportVdaFsFileEntireModelRequest, global::Briosa.Client.Transport.ExportVdaFsFileEntireModelResult> __Method_ExportVdaFsFileEntireModel = new grpc::Method<global::Briosa.Client.Transport.ExportVdaFsFileEntireModelRequest, global::Briosa.Client.Transport.ExportVdaFsFileEntireModelResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportVdaFsFileEntireModel",
+        __Marshaller_briosa_ExportVdaFsFileEntireModelRequest,
+        __Marshaller_briosa_ExportVdaFsFileEntireModelResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportVdaFsFilePartialModelRequest, global::Briosa.Client.Transport.ExportVdaFsFilePartialModelResult> __Method_ExportVdaFsFilePartialModel = new grpc::Method<global::Briosa.Client.Transport.ExportVdaFsFilePartialModelRequest, global::Briosa.Client.Transport.ExportVdaFsFilePartialModelResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportVdaFsFilePartialModel",
+        __Marshaller_briosa_ExportVdaFsFilePartialModelRequest,
+        __Marshaller_briosa_ExportVdaFsFilePartialModelResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExportVectorContainerToAsciiFileRequest, global::Briosa.Client.Transport.ExportVectorContainerToAsciiFileResult> __Method_ExportVectorContainerToAsciiFile = new grpc::Method<global::Briosa.Client.Transport.ExportVectorContainerToAsciiFileRequest, global::Briosa.Client.Transport.ExportVectorContainerToAsciiFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExportVectorContainerToAsciiFile",
+        __Marshaller_briosa_ExportVectorContainerToAsciiFileRequest,
+        __Marshaller_briosa_ExportVectorContainerToAsciiFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.FindFilesInDirectoryRequest, global::Briosa.Client.Transport.FindFilesInDirectoryResult> __Method_FindFilesInDirectory = new grpc::Method<global::Briosa.Client.Transport.FindFilesInDirectoryRequest, global::Briosa.Client.Transport.FindFilesInDirectoryResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "FindFilesInDirectory",
+        __Marshaller_briosa_FindFilesInDirectoryRequest,
+        __Marshaller_briosa_FindFilesInDirectoryResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.FindSubDirectoriesInDirectoryRequest, global::Briosa.Client.Transport.FindSubDirectoriesInDirectoryResult> __Method_FindSubDirectoriesInDirectory = new grpc::Method<global::Briosa.Client.Transport.FindSubDirectoriesInDirectoryRequest, global::Briosa.Client.Transport.FindSubDirectoriesInDirectoryResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "FindSubDirectoriesInDirectory",
+        __Marshaller_briosa_FindSubDirectoriesInDirectoryRequest,
+        __Marshaller_briosa_FindSubDirectoriesInDirectoryResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetBooleanFromDataShareFileRequest, global::Briosa.Client.Transport.GetBooleanFromDataShareFileResult> __Method_GetBooleanFromDataShareFile = new grpc::Method<global::Briosa.Client.Transport.GetBooleanFromDataShareFileRequest, global::Briosa.Client.Transport.GetBooleanFromDataShareFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetBooleanFromDataShareFile",
+        __Marshaller_briosa_GetBooleanFromDataShareFileRequest,
+        __Marshaller_briosa_GetBooleanFromDataShareFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetDoubleFromDataShareFileRequest, global::Briosa.Client.Transport.GetDoubleFromDataShareFileResult> __Method_GetDoubleFromDataShareFile = new grpc::Method<global::Briosa.Client.Transport.GetDoubleFromDataShareFileRequest, global::Briosa.Client.Transport.GetDoubleFromDataShareFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetDoubleFromDataShareFile",
+        __Marshaller_briosa_GetDoubleFromDataShareFileRequest,
+        __Marshaller_briosa_GetDoubleFromDataShareFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetIntegerFromDataShareFileRequest, global::Briosa.Client.Transport.GetIntegerFromDataShareFileResult> __Method_GetIntegerFromDataShareFile = new grpc::Method<global::Briosa.Client.Transport.GetIntegerFromDataShareFileRequest, global::Briosa.Client.Transport.GetIntegerFromDataShareFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetIntegerFromDataShareFile",
+        __Marshaller_briosa_GetIntegerFromDataShareFileRequest,
+        __Marshaller_briosa_GetIntegerFromDataShareFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetQdasCatalogEntriesRequest, global::Briosa.Client.Transport.GetQdasCatalogEntriesResult> __Method_GetQdasCatalogEntries = new grpc::Method<global::Briosa.Client.Transport.GetQdasCatalogEntriesRequest, global::Briosa.Client.Transport.GetQdasCatalogEntriesResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetQdasCatalogEntries",
+        __Marshaller_briosa_GetQdasCatalogEntriesRequest,
+        __Marshaller_briosa_GetQdasCatalogEntriesResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetStringFromDataShareFileRequest, global::Briosa.Client.Transport.GetStringFromDataShareFileResult> __Method_GetStringFromDataShareFile = new grpc::Method<global::Briosa.Client.Transport.GetStringFromDataShareFileRequest, global::Briosa.Client.Transport.GetStringFromDataShareFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetStringFromDataShareFile",
+        __Marshaller_briosa_GetStringFromDataShareFileRequest,
+        __Marshaller_briosa_GetStringFromDataShareFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetTransformFromDataShareFileRequest, global::Briosa.Client.Transport.GetTransformFromDataShareFileResult> __Method_GetTransformFromDataShareFile = new grpc::Method<global::Briosa.Client.Transport.GetTransformFromDataShareFileRequest, global::Briosa.Client.Transport.GetTransformFromDataShareFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetTransformFromDataShareFile",
+        __Marshaller_briosa_GetTransformFromDataShareFileRequest,
+        __Marshaller_briosa_GetTransformFromDataShareFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetVectorFromDataShareFileRequest, global::Briosa.Client.Transport.GetVectorFromDataShareFileResult> __Method_GetVectorFromDataShareFile = new grpc::Method<global::Briosa.Client.Transport.GetVectorFromDataShareFileRequest, global::Briosa.Client.Transport.GetVectorFromDataShareFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetVectorFromDataShareFile",
+        __Marshaller_briosa_GetVectorFromDataShareFileRequest,
+        __Marshaller_briosa_GetVectorFromDataShareFileResult);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Briosa.Client.Transport.GetWorkingDirectoryRequest, global::Briosa.Client.Transport.GetWorkingDirectoryResult> __Method_GetWorkingDirectory = new grpc::Method<global::Briosa.Client.Transport.GetWorkingDirectoryRequest, global::Briosa.Client.Transport.GetWorkingDirectoryResult>(
@@ -57,6 +617,358 @@ namespace Briosa.Client.Transport {
         "GetWorkingDirectory",
         __Marshaller_briosa_GetWorkingDirectoryRequest,
         __Marshaller_briosa_GetWorkingDirectoryResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportAsciiPredefinedFormatsRequest, global::Briosa.Client.Transport.ImportAsciiPredefinedFormatsResult> __Method_ImportAsciiPredefinedFormats = new grpc::Method<global::Briosa.Client.Transport.ImportAsciiPredefinedFormatsRequest, global::Briosa.Client.Transport.ImportAsciiPredefinedFormatsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportAsciiPredefinedFormats",
+        __Marshaller_briosa_ImportAsciiPredefinedFormatsRequest,
+        __Marshaller_briosa_ImportAsciiPredefinedFormatsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportAsciiPredefinedFrameSetFormatsRequest, global::Briosa.Client.Transport.ImportAsciiPredefinedFrameSetFormatsResult> __Method_ImportAsciiPredefinedFrameSetFormats = new grpc::Method<global::Briosa.Client.Transport.ImportAsciiPredefinedFrameSetFormatsRequest, global::Briosa.Client.Transport.ImportAsciiPredefinedFrameSetFormatsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportAsciiPredefinedFrameSetFormats",
+        __Marshaller_briosa_ImportAsciiPredefinedFrameSetFormatsRequest,
+        __Marshaller_briosa_ImportAsciiPredefinedFrameSetFormatsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportE57FileRequest, global::Briosa.Client.Transport.ImportE57FileResult> __Method_ImportE57File = new grpc::Method<global::Briosa.Client.Transport.ImportE57FileRequest, global::Briosa.Client.Transport.ImportE57FileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportE57File",
+        __Marshaller_briosa_ImportE57FileRequest,
+        __Marshaller_briosa_ImportE57FileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportFileAsEmbeddedFileRequest, global::Briosa.Client.Transport.ImportFileAsEmbeddedFileResult> __Method_ImportFileAsEmbeddedFile = new grpc::Method<global::Briosa.Client.Transport.ImportFileAsEmbeddedFileRequest, global::Briosa.Client.Transport.ImportFileAsEmbeddedFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportFileAsEmbeddedFile",
+        __Marshaller_briosa_ImportFileAsEmbeddedFileRequest,
+        __Marshaller_briosa_ImportFileAsEmbeddedFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportFileAsPictureRequest, global::Briosa.Client.Transport.ImportFileAsPictureResult> __Method_ImportFileAsPicture = new grpc::Method<global::Briosa.Client.Transport.ImportFileAsPictureRequest, global::Briosa.Client.Transport.ImportFileAsPictureResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportFileAsPicture",
+        __Marshaller_briosa_ImportFileAsPictureRequest,
+        __Marshaller_briosa_ImportFileAsPictureResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportHiddenPointBarXmlFileRequest, global::Briosa.Client.Transport.ImportHiddenPointBarXmlFileResult> __Method_ImportHiddenPointBarXmlFile = new grpc::Method<global::Briosa.Client.Transport.ImportHiddenPointBarXmlFileRequest, global::Briosa.Client.Transport.ImportHiddenPointBarXmlFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportHiddenPointBarXmlFile",
+        __Marshaller_briosa_ImportHiddenPointBarXmlFileRequest,
+        __Marshaller_briosa_ImportHiddenPointBarXmlFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportIgesFileRequest, global::Briosa.Client.Transport.ImportIgesFileResult> __Method_ImportIgesFile = new grpc::Method<global::Briosa.Client.Transport.ImportIgesFileRequest, global::Briosa.Client.Transport.ImportIgesFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportIgesFile",
+        __Marshaller_briosa_ImportIgesFileRequest,
+        __Marshaller_briosa_ImportIgesFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportLeicaGsiFileRequest, global::Briosa.Client.Transport.ImportLeicaGsiFileResult> __Method_ImportLeicaGsiFile = new grpc::Method<global::Briosa.Client.Transport.ImportLeicaGsiFileRequest, global::Briosa.Client.Transport.ImportLeicaGsiFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportLeicaGsiFile",
+        __Marshaller_briosa_ImportLeicaGsiFileRequest,
+        __Marshaller_briosa_ImportLeicaGsiFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportLeicaSdbFileRequest, global::Briosa.Client.Transport.ImportLeicaSdbFileResult> __Method_ImportLeicaSdbFile = new grpc::Method<global::Briosa.Client.Transport.ImportLeicaSdbFileRequest, global::Briosa.Client.Transport.ImportLeicaSdbFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportLeicaSdbFile",
+        __Marshaller_briosa_ImportLeicaSdbFileRequest,
+        __Marshaller_briosa_ImportLeicaSdbFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportMpFileAsEmbeddedMpRequest, global::Briosa.Client.Transport.ImportMpFileAsEmbeddedMpResult> __Method_ImportMpFileAsEmbeddedMp = new grpc::Method<global::Briosa.Client.Transport.ImportMpFileAsEmbeddedMpRequest, global::Briosa.Client.Transport.ImportMpFileAsEmbeddedMpResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportMpFileAsEmbeddedMp",
+        __Marshaller_briosa_ImportMpFileAsEmbeddedMpRequest,
+        __Marshaller_briosa_ImportMpFileAsEmbeddedMpResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportNominalsFromXmlFileRequest, global::Briosa.Client.Transport.ImportNominalsFromXmlFileResult> __Method_ImportNominalsFromXmlFile = new grpc::Method<global::Briosa.Client.Transport.ImportNominalsFromXmlFileRequest, global::Briosa.Client.Transport.ImportNominalsFromXmlFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportNominalsFromXmlFile",
+        __Marshaller_briosa_ImportNominalsFromXmlFileRequest,
+        __Marshaller_briosa_ImportNominalsFromXmlFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportPolyworksFileRequest, global::Briosa.Client.Transport.ImportPolyworksFileResult> __Method_ImportPolyworksFile = new grpc::Method<global::Briosa.Client.Transport.ImportPolyworksFileRequest, global::Briosa.Client.Transport.ImportPolyworksFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportPolyworksFile",
+        __Marshaller_briosa_ImportPolyworksFileRequest,
+        __Marshaller_briosa_ImportPolyworksFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportQdasCatalogFileRequest, global::Briosa.Client.Transport.ImportQdasCatalogFileResult> __Method_ImportQdasCatalogFile = new grpc::Method<global::Briosa.Client.Transport.ImportQdasCatalogFileRequest, global::Briosa.Client.Transport.ImportQdasCatalogFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportQdasCatalogFile",
+        __Marshaller_briosa_ImportQdasCatalogFileRequest,
+        __Marshaller_briosa_ImportQdasCatalogFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportSaFileRequest, global::Briosa.Client.Transport.ImportSaFileResult> __Method_ImportSaFile = new grpc::Method<global::Briosa.Client.Transport.ImportSaFileRequest, global::Briosa.Client.Transport.ImportSaFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportSaFile",
+        __Marshaller_briosa_ImportSaFileRequest,
+        __Marshaller_briosa_ImportSaFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportSaWindowsPlacementRequest, global::Briosa.Client.Transport.ImportSaWindowsPlacementResult> __Method_ImportSaWindowsPlacement = new grpc::Method<global::Briosa.Client.Transport.ImportSaWindowsPlacementRequest, global::Briosa.Client.Transport.ImportSaWindowsPlacementResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportSaWindowsPlacement",
+        __Marshaller_briosa_ImportSaWindowsPlacementRequest,
+        __Marshaller_briosa_ImportSaWindowsPlacementResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportSatFileRequest, global::Briosa.Client.Transport.ImportSatFileResult> __Method_ImportSatFile = new grpc::Method<global::Briosa.Client.Transport.ImportSatFileRequest, global::Briosa.Client.Transport.ImportSatFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportSatFile",
+        __Marshaller_briosa_ImportSatFileRequest,
+        __Marshaller_briosa_ImportSatFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportStepFileRequest, global::Briosa.Client.Transport.ImportStepFileResult> __Method_ImportStepFile = new grpc::Method<global::Briosa.Client.Transport.ImportStepFileRequest, global::Briosa.Client.Transport.ImportStepFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportStepFile",
+        __Marshaller_briosa_ImportStepFileRequest,
+        __Marshaller_briosa_ImportStepFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportStlFileRequest, global::Briosa.Client.Transport.ImportStlFileResult> __Method_ImportStlFile = new grpc::Method<global::Briosa.Client.Transport.ImportStlFileRequest, global::Briosa.Client.Transport.ImportStlFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportStlFile",
+        __Marshaller_briosa_ImportStlFileRequest,
+        __Marshaller_briosa_ImportStlFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportVdaFsFileRequest, global::Briosa.Client.Transport.ImportVdaFsFileResult> __Method_ImportVdaFsFile = new grpc::Method<global::Briosa.Client.Transport.ImportVdaFsFileRequest, global::Briosa.Client.Transport.ImportVdaFsFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportVdaFsFile",
+        __Marshaller_briosa_ImportVdaFsFileRequest,
+        __Marshaller_briosa_ImportVdaFsFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportVstarsXyzFileRequest, global::Briosa.Client.Transport.ImportVstarsXyzFileResult> __Method_ImportVstarsXyzFile = new grpc::Method<global::Briosa.Client.Transport.ImportVstarsXyzFileRequest, global::Briosa.Client.Transport.ImportVstarsXyzFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportVstarsXyzFile",
+        __Marshaller_briosa_ImportVstarsXyzFileRequest,
+        __Marshaller_briosa_ImportVstarsXyzFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ImportVstarsCamerasRequest, global::Briosa.Client.Transport.ImportVstarsCamerasResult> __Method_ImportVstarsCameras = new grpc::Method<global::Briosa.Client.Transport.ImportVstarsCamerasRequest, global::Briosa.Client.Transport.ImportVstarsCamerasResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ImportVstarsCameras",
+        __Marshaller_briosa_ImportVstarsCamerasRequest,
+        __Marshaller_briosa_ImportVstarsCamerasResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.LoadHtmlFormRequest, global::Briosa.Client.Transport.LoadHtmlFormResult> __Method_LoadHtmlForm = new grpc::Method<global::Briosa.Client.Transport.LoadHtmlFormRequest, global::Briosa.Client.Transport.LoadHtmlFormResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "LoadHtmlForm",
+        __Marshaller_briosa_LoadHtmlFormRequest,
+        __Marshaller_briosa_LoadHtmlFormResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.LoadHtmlFormInEdgeBrowserRequest, global::Briosa.Client.Transport.LoadHtmlFormInEdgeBrowserResult> __Method_LoadHtmlFormInEdgeBrowser = new grpc::Method<global::Briosa.Client.Transport.LoadHtmlFormInEdgeBrowserRequest, global::Briosa.Client.Transport.LoadHtmlFormInEdgeBrowserResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "LoadHtmlFormInEdgeBrowser",
+        __Marshaller_briosa_LoadHtmlFormInEdgeBrowserRequest,
+        __Marshaller_briosa_LoadHtmlFormInEdgeBrowserResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakeEmbeddedFileNameListRequest, global::Briosa.Client.Transport.MakeEmbeddedFileNameListResult> __Method_MakeEmbeddedFileNameList = new grpc::Method<global::Briosa.Client.Transport.MakeEmbeddedFileNameListRequest, global::Briosa.Client.Transport.MakeEmbeddedFileNameListResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakeEmbeddedFileNameList",
+        __Marshaller_briosa_MakeEmbeddedFileNameListRequest,
+        __Marshaller_briosa_MakeEmbeddedFileNameListResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MergeMeasurementsIntoXmlFileRequest, global::Briosa.Client.Transport.MergeMeasurementsIntoXmlFileResult> __Method_MergeMeasurementsIntoXmlFile = new grpc::Method<global::Briosa.Client.Transport.MergeMeasurementsIntoXmlFileRequest, global::Briosa.Client.Transport.MergeMeasurementsIntoXmlFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MergeMeasurementsIntoXmlFile",
+        __Marshaller_briosa_MergeMeasurementsIntoXmlFileRequest,
+        __Marshaller_briosa_MergeMeasurementsIntoXmlFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.NewSaFileRequest, global::Briosa.Client.Transport.NewSaFileResult> __Method_NewSaFile = new grpc::Method<global::Briosa.Client.Transport.NewSaFileRequest, global::Briosa.Client.Transport.NewSaFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "NewSaFile",
+        __Marshaller_briosa_NewSaFileRequest,
+        __Marshaller_briosa_NewSaFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.OpenSaFileRequest, global::Briosa.Client.Transport.OpenSaFileResult> __Method_OpenSaFile = new grpc::Method<global::Briosa.Client.Transport.OpenSaFileRequest, global::Briosa.Client.Transport.OpenSaFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "OpenSaFile",
+        __Marshaller_briosa_OpenSaFileRequest,
+        __Marshaller_briosa_OpenSaFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.OpenTemplateFileRequest, global::Briosa.Client.Transport.OpenTemplateFileResult> __Method_OpenTemplateFile = new grpc::Method<global::Briosa.Client.Transport.OpenTemplateFileRequest, global::Briosa.Client.Transport.OpenTemplateFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "OpenTemplateFile",
+        __Marshaller_briosa_OpenTemplateFileRequest,
+        __Marshaller_briosa_OpenTemplateFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.PopPolyBayAnalysisWindowRequest, global::Briosa.Client.Transport.PopPolyBayAnalysisWindowResult> __Method_PopPolyBayAnalysisWindow = new grpc::Method<global::Briosa.Client.Transport.PopPolyBayAnalysisWindowRequest, global::Briosa.Client.Transport.PopPolyBayAnalysisWindowResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "PopPolyBayAnalysisWindow",
+        __Marshaller_briosa_PopPolyBayAnalysisWindowRequest,
+        __Marshaller_briosa_PopPolyBayAnalysisWindowResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.PrepareQdasDataListRequest, global::Briosa.Client.Transport.PrepareQdasDataListResult> __Method_PrepareQdasDataList = new grpc::Method<global::Briosa.Client.Transport.PrepareQdasDataListRequest, global::Briosa.Client.Transport.PrepareQdasDataListResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "PrepareQdasDataList",
+        __Marshaller_briosa_PrepareQdasDataListRequest,
+        __Marshaller_briosa_PrepareQdasDataListResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.RenameGeneralFileRequest, global::Briosa.Client.Transport.RenameGeneralFileResult> __Method_RenameGeneralFile = new grpc::Method<global::Briosa.Client.Transport.RenameGeneralFileRequest, global::Briosa.Client.Transport.RenameGeneralFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "RenameGeneralFile",
+        __Marshaller_briosa_RenameGeneralFileRequest,
+        __Marshaller_briosa_RenameGeneralFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SaveRequest, global::Briosa.Client.Transport.SaveResult> __Method_Save = new grpc::Method<global::Briosa.Client.Transport.SaveRequest, global::Briosa.Client.Transport.SaveResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "Save",
+        __Marshaller_briosa_SaveRequest,
+        __Marshaller_briosa_SaveResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SaveAsReadOnlyTemplateRequest, global::Briosa.Client.Transport.SaveAsReadOnlyTemplateResult> __Method_SaveAsReadOnlyTemplate = new grpc::Method<global::Briosa.Client.Transport.SaveAsReadOnlyTemplateRequest, global::Briosa.Client.Transport.SaveAsReadOnlyTemplateResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SaveAsReadOnlyTemplate",
+        __Marshaller_briosa_SaveAsReadOnlyTemplateRequest,
+        __Marshaller_briosa_SaveAsReadOnlyTemplateResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SaveAsRequest, global::Briosa.Client.Transport.SaveAsResult> __Method_SaveAs = new grpc::Method<global::Briosa.Client.Transport.SaveAsRequest, global::Briosa.Client.Transport.SaveAsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SaveAs",
+        __Marshaller_briosa_SaveAsRequest,
+        __Marshaller_briosa_SaveAsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetBooleanInDataShareFileRequest, global::Briosa.Client.Transport.SetBooleanInDataShareFileResult> __Method_SetBooleanInDataShareFile = new grpc::Method<global::Briosa.Client.Transport.SetBooleanInDataShareFileRequest, global::Briosa.Client.Transport.SetBooleanInDataShareFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetBooleanInDataShareFile",
+        __Marshaller_briosa_SetBooleanInDataShareFileRequest,
+        __Marshaller_briosa_SetBooleanInDataShareFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetDoubleInDataShareFileRequest, global::Briosa.Client.Transport.SetDoubleInDataShareFileResult> __Method_SetDoubleInDataShareFile = new grpc::Method<global::Briosa.Client.Transport.SetDoubleInDataShareFileRequest, global::Briosa.Client.Transport.SetDoubleInDataShareFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetDoubleInDataShareFile",
+        __Marshaller_briosa_SetDoubleInDataShareFileRequest,
+        __Marshaller_briosa_SetDoubleInDataShareFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetIntegerInDataShareFileRequest, global::Briosa.Client.Transport.SetIntegerInDataShareFileResult> __Method_SetIntegerInDataShareFile = new grpc::Method<global::Briosa.Client.Transport.SetIntegerInDataShareFileRequest, global::Briosa.Client.Transport.SetIntegerInDataShareFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetIntegerInDataShareFile",
+        __Marshaller_briosa_SetIntegerInDataShareFileRequest,
+        __Marshaller_briosa_SetIntegerInDataShareFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetStringInDataShareFileRequest, global::Briosa.Client.Transport.SetStringInDataShareFileResult> __Method_SetStringInDataShareFile = new grpc::Method<global::Briosa.Client.Transport.SetStringInDataShareFileRequest, global::Briosa.Client.Transport.SetStringInDataShareFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetStringInDataShareFile",
+        __Marshaller_briosa_SetStringInDataShareFileRequest,
+        __Marshaller_briosa_SetStringInDataShareFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetTransformInDataShareFileRequest, global::Briosa.Client.Transport.SetTransformInDataShareFileResult> __Method_SetTransformInDataShareFile = new grpc::Method<global::Briosa.Client.Transport.SetTransformInDataShareFileRequest, global::Briosa.Client.Transport.SetTransformInDataShareFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetTransformInDataShareFile",
+        __Marshaller_briosa_SetTransformInDataShareFileRequest,
+        __Marshaller_briosa_SetTransformInDataShareFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetVectorInDataShareFileRequest, global::Briosa.Client.Transport.SetVectorInDataShareFileResult> __Method_SetVectorInDataShareFile = new grpc::Method<global::Briosa.Client.Transport.SetVectorInDataShareFileRequest, global::Briosa.Client.Transport.SetVectorInDataShareFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetVectorInDataShareFile",
+        __Marshaller_briosa_SetVectorInDataShareFileRequest,
+        __Marshaller_briosa_SetVectorInDataShareFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.TerminateAllRunningMPsRequest, global::Briosa.Client.Transport.TerminateAllRunningMPsResult> __Method_TerminateAllRunningMPs = new grpc::Method<global::Briosa.Client.Transport.TerminateAllRunningMPsRequest, global::Briosa.Client.Transport.TerminateAllRunningMPsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "TerminateAllRunningMPs",
+        __Marshaller_briosa_TerminateAllRunningMPsRequest,
+        __Marshaller_briosa_TerminateAllRunningMPsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.UseNrkxmlLibraryRequest, global::Briosa.Client.Transport.UseNrkxmlLibraryResult> __Method_UseNrkxmlLibrary = new grpc::Method<global::Briosa.Client.Transport.UseNrkxmlLibraryRequest, global::Briosa.Client.Transport.UseNrkxmlLibraryResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UseNrkxmlLibrary",
+        __Marshaller_briosa_UseNrkxmlLibraryRequest,
+        __Marshaller_briosa_UseNrkxmlLibraryResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.VerifyGeneralFileExistsRequest, global::Briosa.Client.Transport.VerifyGeneralFileExistsResult> __Method_VerifyGeneralFileExists = new grpc::Method<global::Briosa.Client.Transport.VerifyGeneralFileExistsRequest, global::Briosa.Client.Transport.VerifyGeneralFileExistsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "VerifyGeneralFileExists",
+        __Marshaller_briosa_VerifyGeneralFileExistsRequest,
+        __Marshaller_briosa_VerifyGeneralFileExistsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.VerifyMpFileExistsRequest, global::Briosa.Client.Transport.VerifyMpFileExistsResult> __Method_VerifyMpFileExists = new grpc::Method<global::Briosa.Client.Transport.VerifyMpFileExistsRequest, global::Briosa.Client.Transport.VerifyMpFileExistsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "VerifyMpFileExists",
+        __Marshaller_briosa_VerifyMpFileExistsRequest,
+        __Marshaller_briosa_VerifyMpFileExistsResult);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -91,53 +1003,1545 @@ namespace Briosa.Client.Transport {
       {
       }
 
-      /// <summary>
-      /// Executes the "Get Working Directory" MP command.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.BackupNowResult BackupNow(global::Briosa.Client.Transport.BackupNowRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return BackupNow(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.BackupNowResult BackupNow(global::Briosa.Client.Transport.BackupNowRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_BackupNow, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.BackupNowResult> BackupNowAsync(global::Briosa.Client.Transport.BackupNowRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return BackupNowAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.BackupNowResult> BackupNowAsync(global::Briosa.Client.Transport.BackupNowRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_BackupNow, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.CopyGeneralFileResult CopyGeneralFile(global::Briosa.Client.Transport.CopyGeneralFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CopyGeneralFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.CopyGeneralFileResult CopyGeneralFile(global::Briosa.Client.Transport.CopyGeneralFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_CopyGeneralFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.CopyGeneralFileResult> CopyGeneralFileAsync(global::Briosa.Client.Transport.CopyGeneralFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CopyGeneralFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.CopyGeneralFileResult> CopyGeneralFileAsync(global::Briosa.Client.Transport.CopyGeneralFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_CopyGeneralFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.DeleteGeneralFileResult DeleteGeneralFile(global::Briosa.Client.Transport.DeleteGeneralFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteGeneralFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.DeleteGeneralFileResult DeleteGeneralFile(global::Briosa.Client.Transport.DeleteGeneralFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DeleteGeneralFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.DeleteGeneralFileResult> DeleteGeneralFileAsync(global::Briosa.Client.Transport.DeleteGeneralFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteGeneralFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.DeleteGeneralFileResult> DeleteGeneralFileAsync(global::Briosa.Client.Transport.DeleteGeneralFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DeleteGeneralFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.DirectCadAccessResult DirectCadAccess(global::Briosa.Client.Transport.DirectCadAccessRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DirectCadAccess(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.DirectCadAccessResult DirectCadAccess(global::Briosa.Client.Transport.DirectCadAccessRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DirectCadAccess, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.DirectCadAccessResult> DirectCadAccessAsync(global::Briosa.Client.Transport.DirectCadAccessRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DirectCadAccessAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.DirectCadAccessResult> DirectCadAccessAsync(global::Briosa.Client.Transport.DirectCadAccessRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DirectCadAccess, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportAsciiFrameSetResult ExportAsciiFrameSet(global::Briosa.Client.Transport.ExportAsciiFrameSetRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportAsciiFrameSet(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportAsciiFrameSetResult ExportAsciiFrameSet(global::Briosa.Client.Transport.ExportAsciiFrameSetRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportAsciiFrameSet, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportAsciiFrameSetResult> ExportAsciiFrameSetAsync(global::Briosa.Client.Transport.ExportAsciiFrameSetRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportAsciiFrameSetAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportAsciiFrameSetResult> ExportAsciiFrameSetAsync(global::Briosa.Client.Transport.ExportAsciiFrameSetRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportAsciiFrameSet, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportAsciiFramesResult ExportAsciiFrames(global::Briosa.Client.Transport.ExportAsciiFramesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportAsciiFrames(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportAsciiFramesResult ExportAsciiFrames(global::Briosa.Client.Transport.ExportAsciiFramesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportAsciiFrames, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportAsciiFramesResult> ExportAsciiFramesAsync(global::Briosa.Client.Transport.ExportAsciiFramesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportAsciiFramesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportAsciiFramesResult> ExportAsciiFramesAsync(global::Briosa.Client.Transport.ExportAsciiFramesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportAsciiFrames, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportAsciiPointCloudsResult ExportAsciiPointClouds(global::Briosa.Client.Transport.ExportAsciiPointCloudsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportAsciiPointClouds(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportAsciiPointCloudsResult ExportAsciiPointClouds(global::Briosa.Client.Transport.ExportAsciiPointCloudsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportAsciiPointClouds, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportAsciiPointCloudsResult> ExportAsciiPointCloudsAsync(global::Briosa.Client.Transport.ExportAsciiPointCloudsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportAsciiPointCloudsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportAsciiPointCloudsResult> ExportAsciiPointCloudsAsync(global::Briosa.Client.Transport.ExportAsciiPointCloudsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportAsciiPointClouds, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportAsciiPointSetResult ExportAsciiPointSet(global::Briosa.Client.Transport.ExportAsciiPointSetRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportAsciiPointSet(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportAsciiPointSetResult ExportAsciiPointSet(global::Briosa.Client.Transport.ExportAsciiPointSetRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportAsciiPointSet, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportAsciiPointSetResult> ExportAsciiPointSetAsync(global::Briosa.Client.Transport.ExportAsciiPointSetRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportAsciiPointSetAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportAsciiPointSetResult> ExportAsciiPointSetAsync(global::Briosa.Client.Transport.ExportAsciiPointSetRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportAsciiPointSet, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportAsciiPointsResult ExportAsciiPoints(global::Briosa.Client.Transport.ExportAsciiPointsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportAsciiPoints(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportAsciiPointsResult ExportAsciiPoints(global::Briosa.Client.Transport.ExportAsciiPointsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportAsciiPoints, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportAsciiPointsResult> ExportAsciiPointsAsync(global::Briosa.Client.Transport.ExportAsciiPointsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportAsciiPointsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportAsciiPointsResult> ExportAsciiPointsAsync(global::Briosa.Client.Transport.ExportAsciiPointsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportAsciiPoints, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportDxfResult ExportDxf(global::Briosa.Client.Transport.ExportDxfRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportDxf(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportDxfResult ExportDxf(global::Briosa.Client.Transport.ExportDxfRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportDxf, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportDxfResult> ExportDxfAsync(global::Briosa.Client.Transport.ExportDxfRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportDxfAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportDxfResult> ExportDxfAsync(global::Briosa.Client.Transport.ExportDxfRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportDxf, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportEmbeddedFileResult ExportEmbeddedFile(global::Briosa.Client.Transport.ExportEmbeddedFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportEmbeddedFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportEmbeddedFileResult ExportEmbeddedFile(global::Briosa.Client.Transport.ExportEmbeddedFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportEmbeddedFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportEmbeddedFileResult> ExportEmbeddedFileAsync(global::Briosa.Client.Transport.ExportEmbeddedFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportEmbeddedFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportEmbeddedFileResult> ExportEmbeddedFileAsync(global::Briosa.Client.Transport.ExportEmbeddedFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportEmbeddedFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportHiddenPointBarXmlFileResult ExportHiddenPointBarXmlFile(global::Briosa.Client.Transport.ExportHiddenPointBarXmlFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportHiddenPointBarXmlFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportHiddenPointBarXmlFileResult ExportHiddenPointBarXmlFile(global::Briosa.Client.Transport.ExportHiddenPointBarXmlFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportHiddenPointBarXmlFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportHiddenPointBarXmlFileResult> ExportHiddenPointBarXmlFileAsync(global::Briosa.Client.Transport.ExportHiddenPointBarXmlFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportHiddenPointBarXmlFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportHiddenPointBarXmlFileResult> ExportHiddenPointBarXmlFileAsync(global::Briosa.Client.Transport.ExportHiddenPointBarXmlFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportHiddenPointBarXmlFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportIgesFileEntireModelResult ExportIgesFileEntireModel(global::Briosa.Client.Transport.ExportIgesFileEntireModelRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportIgesFileEntireModel(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportIgesFileEntireModelResult ExportIgesFileEntireModel(global::Briosa.Client.Transport.ExportIgesFileEntireModelRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportIgesFileEntireModel, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportIgesFileEntireModelResult> ExportIgesFileEntireModelAsync(global::Briosa.Client.Transport.ExportIgesFileEntireModelRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportIgesFileEntireModelAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportIgesFileEntireModelResult> ExportIgesFileEntireModelAsync(global::Briosa.Client.Transport.ExportIgesFileEntireModelRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportIgesFileEntireModel, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportIgesFilePartialModelResult ExportIgesFilePartialModel(global::Briosa.Client.Transport.ExportIgesFilePartialModelRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportIgesFilePartialModel(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportIgesFilePartialModelResult ExportIgesFilePartialModel(global::Briosa.Client.Transport.ExportIgesFilePartialModelRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportIgesFilePartialModel, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportIgesFilePartialModelResult> ExportIgesFilePartialModelAsync(global::Briosa.Client.Transport.ExportIgesFilePartialModelRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportIgesFilePartialModelAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportIgesFilePartialModelResult> ExportIgesFilePartialModelAsync(global::Briosa.Client.Transport.ExportIgesFilePartialModelRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportIgesFilePartialModel, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportPtxPointCloudsResult ExportPtxPointClouds(global::Briosa.Client.Transport.ExportPtxPointCloudsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportPtxPointClouds(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportPtxPointCloudsResult ExportPtxPointClouds(global::Briosa.Client.Transport.ExportPtxPointCloudsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportPtxPointClouds, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportPtxPointCloudsResult> ExportPtxPointCloudsAsync(global::Briosa.Client.Transport.ExportPtxPointCloudsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportPtxPointCloudsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportPtxPointCloudsResult> ExportPtxPointCloudsAsync(global::Briosa.Client.Transport.ExportPtxPointCloudsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportPtxPointClouds, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportQdasCharacteristicsResult ExportQdasCharacteristics(global::Briosa.Client.Transport.ExportQdasCharacteristicsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportQdasCharacteristics(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportQdasCharacteristicsResult ExportQdasCharacteristics(global::Briosa.Client.Transport.ExportQdasCharacteristicsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportQdasCharacteristics, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportQdasCharacteristicsResult> ExportQdasCharacteristicsAsync(global::Briosa.Client.Transport.ExportQdasCharacteristicsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportQdasCharacteristicsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportQdasCharacteristicsResult> ExportQdasCharacteristicsAsync(global::Briosa.Client.Transport.ExportQdasCharacteristicsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportQdasCharacteristics, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportQdasDataListResult ExportQdasDataList(global::Briosa.Client.Transport.ExportQdasDataListRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportQdasDataList(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportQdasDataListResult ExportQdasDataList(global::Briosa.Client.Transport.ExportQdasDataListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportQdasDataList, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportQdasDataListResult> ExportQdasDataListAsync(global::Briosa.Client.Transport.ExportQdasDataListRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportQdasDataListAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportQdasDataListResult> ExportQdasDataListAsync(global::Briosa.Client.Transport.ExportQdasDataListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportQdasDataList, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportScanStripeMeshToStlFileResult ExportScanStripeMeshToStlFile(global::Briosa.Client.Transport.ExportScanStripeMeshToStlFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportScanStripeMeshToStlFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportScanStripeMeshToStlFileResult ExportScanStripeMeshToStlFile(global::Briosa.Client.Transport.ExportScanStripeMeshToStlFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportScanStripeMeshToStlFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportScanStripeMeshToStlFileResult> ExportScanStripeMeshToStlFileAsync(global::Briosa.Client.Transport.ExportScanStripeMeshToStlFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportScanStripeMeshToStlFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportScanStripeMeshToStlFileResult> ExportScanStripeMeshToStlFileAsync(global::Briosa.Client.Transport.ExportScanStripeMeshToStlFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportScanStripeMeshToStlFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportStepFileEntireModelResult ExportStepFileEntireModel(global::Briosa.Client.Transport.ExportStepFileEntireModelRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportStepFileEntireModel(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportStepFileEntireModelResult ExportStepFileEntireModel(global::Briosa.Client.Transport.ExportStepFileEntireModelRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportStepFileEntireModel, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportStepFileEntireModelResult> ExportStepFileEntireModelAsync(global::Briosa.Client.Transport.ExportStepFileEntireModelRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportStepFileEntireModelAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportStepFileEntireModelResult> ExportStepFileEntireModelAsync(global::Briosa.Client.Transport.ExportStepFileEntireModelRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportStepFileEntireModel, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportStepFilePartialModelResult ExportStepFilePartialModel(global::Briosa.Client.Transport.ExportStepFilePartialModelRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportStepFilePartialModel(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportStepFilePartialModelResult ExportStepFilePartialModel(global::Briosa.Client.Transport.ExportStepFilePartialModelRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportStepFilePartialModel, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportStepFilePartialModelResult> ExportStepFilePartialModelAsync(global::Briosa.Client.Transport.ExportStepFilePartialModelRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportStepFilePartialModelAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportStepFilePartialModelResult> ExportStepFilePartialModelAsync(global::Briosa.Client.Transport.ExportStepFilePartialModelRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportStepFilePartialModel, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportVdaFsFileEntireModelResult ExportVdaFsFileEntireModel(global::Briosa.Client.Transport.ExportVdaFsFileEntireModelRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportVdaFsFileEntireModel(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportVdaFsFileEntireModelResult ExportVdaFsFileEntireModel(global::Briosa.Client.Transport.ExportVdaFsFileEntireModelRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportVdaFsFileEntireModel, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportVdaFsFileEntireModelResult> ExportVdaFsFileEntireModelAsync(global::Briosa.Client.Transport.ExportVdaFsFileEntireModelRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportVdaFsFileEntireModelAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportVdaFsFileEntireModelResult> ExportVdaFsFileEntireModelAsync(global::Briosa.Client.Transport.ExportVdaFsFileEntireModelRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportVdaFsFileEntireModel, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportVdaFsFilePartialModelResult ExportVdaFsFilePartialModel(global::Briosa.Client.Transport.ExportVdaFsFilePartialModelRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportVdaFsFilePartialModel(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportVdaFsFilePartialModelResult ExportVdaFsFilePartialModel(global::Briosa.Client.Transport.ExportVdaFsFilePartialModelRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportVdaFsFilePartialModel, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportVdaFsFilePartialModelResult> ExportVdaFsFilePartialModelAsync(global::Briosa.Client.Transport.ExportVdaFsFilePartialModelRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportVdaFsFilePartialModelAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportVdaFsFilePartialModelResult> ExportVdaFsFilePartialModelAsync(global::Briosa.Client.Transport.ExportVdaFsFilePartialModelRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportVdaFsFilePartialModel, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportVectorContainerToAsciiFileResult ExportVectorContainerToAsciiFile(global::Briosa.Client.Transport.ExportVectorContainerToAsciiFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportVectorContainerToAsciiFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExportVectorContainerToAsciiFileResult ExportVectorContainerToAsciiFile(global::Briosa.Client.Transport.ExportVectorContainerToAsciiFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExportVectorContainerToAsciiFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportVectorContainerToAsciiFileResult> ExportVectorContainerToAsciiFileAsync(global::Briosa.Client.Transport.ExportVectorContainerToAsciiFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExportVectorContainerToAsciiFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExportVectorContainerToAsciiFileResult> ExportVectorContainerToAsciiFileAsync(global::Briosa.Client.Transport.ExportVectorContainerToAsciiFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExportVectorContainerToAsciiFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.FindFilesInDirectoryResult FindFilesInDirectory(global::Briosa.Client.Transport.FindFilesInDirectoryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return FindFilesInDirectory(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.FindFilesInDirectoryResult FindFilesInDirectory(global::Briosa.Client.Transport.FindFilesInDirectoryRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_FindFilesInDirectory, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.FindFilesInDirectoryResult> FindFilesInDirectoryAsync(global::Briosa.Client.Transport.FindFilesInDirectoryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return FindFilesInDirectoryAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.FindFilesInDirectoryResult> FindFilesInDirectoryAsync(global::Briosa.Client.Transport.FindFilesInDirectoryRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_FindFilesInDirectory, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.FindSubDirectoriesInDirectoryResult FindSubDirectoriesInDirectory(global::Briosa.Client.Transport.FindSubDirectoriesInDirectoryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return FindSubDirectoriesInDirectory(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.FindSubDirectoriesInDirectoryResult FindSubDirectoriesInDirectory(global::Briosa.Client.Transport.FindSubDirectoriesInDirectoryRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_FindSubDirectoriesInDirectory, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.FindSubDirectoriesInDirectoryResult> FindSubDirectoriesInDirectoryAsync(global::Briosa.Client.Transport.FindSubDirectoriesInDirectoryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return FindSubDirectoriesInDirectoryAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.FindSubDirectoriesInDirectoryResult> FindSubDirectoriesInDirectoryAsync(global::Briosa.Client.Transport.FindSubDirectoriesInDirectoryRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_FindSubDirectoriesInDirectory, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetBooleanFromDataShareFileResult GetBooleanFromDataShareFile(global::Briosa.Client.Transport.GetBooleanFromDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetBooleanFromDataShareFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetBooleanFromDataShareFileResult GetBooleanFromDataShareFile(global::Briosa.Client.Transport.GetBooleanFromDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetBooleanFromDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetBooleanFromDataShareFileResult> GetBooleanFromDataShareFileAsync(global::Briosa.Client.Transport.GetBooleanFromDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetBooleanFromDataShareFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetBooleanFromDataShareFileResult> GetBooleanFromDataShareFileAsync(global::Briosa.Client.Transport.GetBooleanFromDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetBooleanFromDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetDoubleFromDataShareFileResult GetDoubleFromDataShareFile(global::Briosa.Client.Transport.GetDoubleFromDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetDoubleFromDataShareFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetDoubleFromDataShareFileResult GetDoubleFromDataShareFile(global::Briosa.Client.Transport.GetDoubleFromDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetDoubleFromDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetDoubleFromDataShareFileResult> GetDoubleFromDataShareFileAsync(global::Briosa.Client.Transport.GetDoubleFromDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetDoubleFromDataShareFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetDoubleFromDataShareFileResult> GetDoubleFromDataShareFileAsync(global::Briosa.Client.Transport.GetDoubleFromDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetDoubleFromDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetIntegerFromDataShareFileResult GetIntegerFromDataShareFile(global::Briosa.Client.Transport.GetIntegerFromDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetIntegerFromDataShareFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetIntegerFromDataShareFileResult GetIntegerFromDataShareFile(global::Briosa.Client.Transport.GetIntegerFromDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetIntegerFromDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetIntegerFromDataShareFileResult> GetIntegerFromDataShareFileAsync(global::Briosa.Client.Transport.GetIntegerFromDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetIntegerFromDataShareFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetIntegerFromDataShareFileResult> GetIntegerFromDataShareFileAsync(global::Briosa.Client.Transport.GetIntegerFromDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetIntegerFromDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetQdasCatalogEntriesResult GetQdasCatalogEntries(global::Briosa.Client.Transport.GetQdasCatalogEntriesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetQdasCatalogEntries(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetQdasCatalogEntriesResult GetQdasCatalogEntries(global::Briosa.Client.Transport.GetQdasCatalogEntriesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetQdasCatalogEntries, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetQdasCatalogEntriesResult> GetQdasCatalogEntriesAsync(global::Briosa.Client.Transport.GetQdasCatalogEntriesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetQdasCatalogEntriesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetQdasCatalogEntriesResult> GetQdasCatalogEntriesAsync(global::Briosa.Client.Transport.GetQdasCatalogEntriesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetQdasCatalogEntries, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetStringFromDataShareFileResult GetStringFromDataShareFile(global::Briosa.Client.Transport.GetStringFromDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetStringFromDataShareFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetStringFromDataShareFileResult GetStringFromDataShareFile(global::Briosa.Client.Transport.GetStringFromDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetStringFromDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetStringFromDataShareFileResult> GetStringFromDataShareFileAsync(global::Briosa.Client.Transport.GetStringFromDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetStringFromDataShareFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetStringFromDataShareFileResult> GetStringFromDataShareFileAsync(global::Briosa.Client.Transport.GetStringFromDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetStringFromDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetTransformFromDataShareFileResult GetTransformFromDataShareFile(global::Briosa.Client.Transport.GetTransformFromDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetTransformFromDataShareFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetTransformFromDataShareFileResult GetTransformFromDataShareFile(global::Briosa.Client.Transport.GetTransformFromDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetTransformFromDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetTransformFromDataShareFileResult> GetTransformFromDataShareFileAsync(global::Briosa.Client.Transport.GetTransformFromDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetTransformFromDataShareFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetTransformFromDataShareFileResult> GetTransformFromDataShareFileAsync(global::Briosa.Client.Transport.GetTransformFromDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetTransformFromDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetVectorFromDataShareFileResult GetVectorFromDataShareFile(global::Briosa.Client.Transport.GetVectorFromDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetVectorFromDataShareFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetVectorFromDataShareFileResult GetVectorFromDataShareFile(global::Briosa.Client.Transport.GetVectorFromDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetVectorFromDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetVectorFromDataShareFileResult> GetVectorFromDataShareFileAsync(global::Briosa.Client.Transport.GetVectorFromDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetVectorFromDataShareFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetVectorFromDataShareFileResult> GetVectorFromDataShareFileAsync(global::Briosa.Client.Transport.GetVectorFromDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetVectorFromDataShareFile, null, options, request);
+      }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Briosa.Client.Transport.GetWorkingDirectoryResult GetWorkingDirectory(global::Briosa.Client.Transport.GetWorkingDirectoryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return GetWorkingDirectory(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      /// <summary>
-      /// Executes the "Get Working Directory" MP command.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The response received from the server.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Briosa.Client.Transport.GetWorkingDirectoryResult GetWorkingDirectory(global::Briosa.Client.Transport.GetWorkingDirectoryRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_GetWorkingDirectory, null, options, request);
       }
-      /// <summary>
-      /// Executes the "Get Working Directory" MP command.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The call object.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetWorkingDirectoryResult> GetWorkingDirectoryAsync(global::Briosa.Client.Transport.GetWorkingDirectoryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return GetWorkingDirectoryAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      /// <summary>
-      /// Executes the "Get Working Directory" MP command.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The call object.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetWorkingDirectoryResult> GetWorkingDirectoryAsync(global::Briosa.Client.Transport.GetWorkingDirectoryRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetWorkingDirectory, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportAsciiPredefinedFormatsResult ImportAsciiPredefinedFormats(global::Briosa.Client.Transport.ImportAsciiPredefinedFormatsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportAsciiPredefinedFormats(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportAsciiPredefinedFormatsResult ImportAsciiPredefinedFormats(global::Briosa.Client.Transport.ImportAsciiPredefinedFormatsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportAsciiPredefinedFormats, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportAsciiPredefinedFormatsResult> ImportAsciiPredefinedFormatsAsync(global::Briosa.Client.Transport.ImportAsciiPredefinedFormatsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportAsciiPredefinedFormatsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportAsciiPredefinedFormatsResult> ImportAsciiPredefinedFormatsAsync(global::Briosa.Client.Transport.ImportAsciiPredefinedFormatsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportAsciiPredefinedFormats, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportAsciiPredefinedFrameSetFormatsResult ImportAsciiPredefinedFrameSetFormats(global::Briosa.Client.Transport.ImportAsciiPredefinedFrameSetFormatsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportAsciiPredefinedFrameSetFormats(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportAsciiPredefinedFrameSetFormatsResult ImportAsciiPredefinedFrameSetFormats(global::Briosa.Client.Transport.ImportAsciiPredefinedFrameSetFormatsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportAsciiPredefinedFrameSetFormats, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportAsciiPredefinedFrameSetFormatsResult> ImportAsciiPredefinedFrameSetFormatsAsync(global::Briosa.Client.Transport.ImportAsciiPredefinedFrameSetFormatsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportAsciiPredefinedFrameSetFormatsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportAsciiPredefinedFrameSetFormatsResult> ImportAsciiPredefinedFrameSetFormatsAsync(global::Briosa.Client.Transport.ImportAsciiPredefinedFrameSetFormatsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportAsciiPredefinedFrameSetFormats, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportE57FileResult ImportE57File(global::Briosa.Client.Transport.ImportE57FileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportE57File(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportE57FileResult ImportE57File(global::Briosa.Client.Transport.ImportE57FileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportE57File, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportE57FileResult> ImportE57FileAsync(global::Briosa.Client.Transport.ImportE57FileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportE57FileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportE57FileResult> ImportE57FileAsync(global::Briosa.Client.Transport.ImportE57FileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportE57File, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportFileAsEmbeddedFileResult ImportFileAsEmbeddedFile(global::Briosa.Client.Transport.ImportFileAsEmbeddedFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportFileAsEmbeddedFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportFileAsEmbeddedFileResult ImportFileAsEmbeddedFile(global::Briosa.Client.Transport.ImportFileAsEmbeddedFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportFileAsEmbeddedFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportFileAsEmbeddedFileResult> ImportFileAsEmbeddedFileAsync(global::Briosa.Client.Transport.ImportFileAsEmbeddedFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportFileAsEmbeddedFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportFileAsEmbeddedFileResult> ImportFileAsEmbeddedFileAsync(global::Briosa.Client.Transport.ImportFileAsEmbeddedFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportFileAsEmbeddedFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportFileAsPictureResult ImportFileAsPicture(global::Briosa.Client.Transport.ImportFileAsPictureRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportFileAsPicture(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportFileAsPictureResult ImportFileAsPicture(global::Briosa.Client.Transport.ImportFileAsPictureRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportFileAsPicture, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportFileAsPictureResult> ImportFileAsPictureAsync(global::Briosa.Client.Transport.ImportFileAsPictureRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportFileAsPictureAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportFileAsPictureResult> ImportFileAsPictureAsync(global::Briosa.Client.Transport.ImportFileAsPictureRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportFileAsPicture, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportHiddenPointBarXmlFileResult ImportHiddenPointBarXmlFile(global::Briosa.Client.Transport.ImportHiddenPointBarXmlFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportHiddenPointBarXmlFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportHiddenPointBarXmlFileResult ImportHiddenPointBarXmlFile(global::Briosa.Client.Transport.ImportHiddenPointBarXmlFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportHiddenPointBarXmlFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportHiddenPointBarXmlFileResult> ImportHiddenPointBarXmlFileAsync(global::Briosa.Client.Transport.ImportHiddenPointBarXmlFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportHiddenPointBarXmlFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportHiddenPointBarXmlFileResult> ImportHiddenPointBarXmlFileAsync(global::Briosa.Client.Transport.ImportHiddenPointBarXmlFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportHiddenPointBarXmlFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportIgesFileResult ImportIgesFile(global::Briosa.Client.Transport.ImportIgesFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportIgesFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportIgesFileResult ImportIgesFile(global::Briosa.Client.Transport.ImportIgesFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportIgesFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportIgesFileResult> ImportIgesFileAsync(global::Briosa.Client.Transport.ImportIgesFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportIgesFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportIgesFileResult> ImportIgesFileAsync(global::Briosa.Client.Transport.ImportIgesFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportIgesFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportLeicaGsiFileResult ImportLeicaGsiFile(global::Briosa.Client.Transport.ImportLeicaGsiFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportLeicaGsiFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportLeicaGsiFileResult ImportLeicaGsiFile(global::Briosa.Client.Transport.ImportLeicaGsiFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportLeicaGsiFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportLeicaGsiFileResult> ImportLeicaGsiFileAsync(global::Briosa.Client.Transport.ImportLeicaGsiFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportLeicaGsiFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportLeicaGsiFileResult> ImportLeicaGsiFileAsync(global::Briosa.Client.Transport.ImportLeicaGsiFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportLeicaGsiFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportLeicaSdbFileResult ImportLeicaSdbFile(global::Briosa.Client.Transport.ImportLeicaSdbFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportLeicaSdbFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportLeicaSdbFileResult ImportLeicaSdbFile(global::Briosa.Client.Transport.ImportLeicaSdbFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportLeicaSdbFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportLeicaSdbFileResult> ImportLeicaSdbFileAsync(global::Briosa.Client.Transport.ImportLeicaSdbFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportLeicaSdbFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportLeicaSdbFileResult> ImportLeicaSdbFileAsync(global::Briosa.Client.Transport.ImportLeicaSdbFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportLeicaSdbFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportMpFileAsEmbeddedMpResult ImportMpFileAsEmbeddedMp(global::Briosa.Client.Transport.ImportMpFileAsEmbeddedMpRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportMpFileAsEmbeddedMp(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportMpFileAsEmbeddedMpResult ImportMpFileAsEmbeddedMp(global::Briosa.Client.Transport.ImportMpFileAsEmbeddedMpRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportMpFileAsEmbeddedMp, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportMpFileAsEmbeddedMpResult> ImportMpFileAsEmbeddedMpAsync(global::Briosa.Client.Transport.ImportMpFileAsEmbeddedMpRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportMpFileAsEmbeddedMpAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportMpFileAsEmbeddedMpResult> ImportMpFileAsEmbeddedMpAsync(global::Briosa.Client.Transport.ImportMpFileAsEmbeddedMpRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportMpFileAsEmbeddedMp, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportNominalsFromXmlFileResult ImportNominalsFromXmlFile(global::Briosa.Client.Transport.ImportNominalsFromXmlFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportNominalsFromXmlFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportNominalsFromXmlFileResult ImportNominalsFromXmlFile(global::Briosa.Client.Transport.ImportNominalsFromXmlFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportNominalsFromXmlFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportNominalsFromXmlFileResult> ImportNominalsFromXmlFileAsync(global::Briosa.Client.Transport.ImportNominalsFromXmlFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportNominalsFromXmlFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportNominalsFromXmlFileResult> ImportNominalsFromXmlFileAsync(global::Briosa.Client.Transport.ImportNominalsFromXmlFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportNominalsFromXmlFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportPolyworksFileResult ImportPolyworksFile(global::Briosa.Client.Transport.ImportPolyworksFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportPolyworksFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportPolyworksFileResult ImportPolyworksFile(global::Briosa.Client.Transport.ImportPolyworksFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportPolyworksFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportPolyworksFileResult> ImportPolyworksFileAsync(global::Briosa.Client.Transport.ImportPolyworksFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportPolyworksFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportPolyworksFileResult> ImportPolyworksFileAsync(global::Briosa.Client.Transport.ImportPolyworksFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportPolyworksFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportQdasCatalogFileResult ImportQdasCatalogFile(global::Briosa.Client.Transport.ImportQdasCatalogFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportQdasCatalogFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportQdasCatalogFileResult ImportQdasCatalogFile(global::Briosa.Client.Transport.ImportQdasCatalogFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportQdasCatalogFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportQdasCatalogFileResult> ImportQdasCatalogFileAsync(global::Briosa.Client.Transport.ImportQdasCatalogFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportQdasCatalogFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportQdasCatalogFileResult> ImportQdasCatalogFileAsync(global::Briosa.Client.Transport.ImportQdasCatalogFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportQdasCatalogFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportSaFileResult ImportSaFile(global::Briosa.Client.Transport.ImportSaFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportSaFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportSaFileResult ImportSaFile(global::Briosa.Client.Transport.ImportSaFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportSaFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportSaFileResult> ImportSaFileAsync(global::Briosa.Client.Transport.ImportSaFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportSaFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportSaFileResult> ImportSaFileAsync(global::Briosa.Client.Transport.ImportSaFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportSaFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportSaWindowsPlacementResult ImportSaWindowsPlacement(global::Briosa.Client.Transport.ImportSaWindowsPlacementRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportSaWindowsPlacement(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportSaWindowsPlacementResult ImportSaWindowsPlacement(global::Briosa.Client.Transport.ImportSaWindowsPlacementRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportSaWindowsPlacement, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportSaWindowsPlacementResult> ImportSaWindowsPlacementAsync(global::Briosa.Client.Transport.ImportSaWindowsPlacementRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportSaWindowsPlacementAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportSaWindowsPlacementResult> ImportSaWindowsPlacementAsync(global::Briosa.Client.Transport.ImportSaWindowsPlacementRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportSaWindowsPlacement, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportSatFileResult ImportSatFile(global::Briosa.Client.Transport.ImportSatFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportSatFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportSatFileResult ImportSatFile(global::Briosa.Client.Transport.ImportSatFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportSatFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportSatFileResult> ImportSatFileAsync(global::Briosa.Client.Transport.ImportSatFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportSatFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportSatFileResult> ImportSatFileAsync(global::Briosa.Client.Transport.ImportSatFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportSatFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportStepFileResult ImportStepFile(global::Briosa.Client.Transport.ImportStepFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportStepFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportStepFileResult ImportStepFile(global::Briosa.Client.Transport.ImportStepFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportStepFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportStepFileResult> ImportStepFileAsync(global::Briosa.Client.Transport.ImportStepFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportStepFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportStepFileResult> ImportStepFileAsync(global::Briosa.Client.Transport.ImportStepFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportStepFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportStlFileResult ImportStlFile(global::Briosa.Client.Transport.ImportStlFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportStlFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportStlFileResult ImportStlFile(global::Briosa.Client.Transport.ImportStlFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportStlFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportStlFileResult> ImportStlFileAsync(global::Briosa.Client.Transport.ImportStlFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportStlFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportStlFileResult> ImportStlFileAsync(global::Briosa.Client.Transport.ImportStlFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportStlFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportVdaFsFileResult ImportVdaFsFile(global::Briosa.Client.Transport.ImportVdaFsFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportVdaFsFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportVdaFsFileResult ImportVdaFsFile(global::Briosa.Client.Transport.ImportVdaFsFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportVdaFsFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportVdaFsFileResult> ImportVdaFsFileAsync(global::Briosa.Client.Transport.ImportVdaFsFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportVdaFsFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportVdaFsFileResult> ImportVdaFsFileAsync(global::Briosa.Client.Transport.ImportVdaFsFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportVdaFsFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportVstarsXyzFileResult ImportVstarsXyzFile(global::Briosa.Client.Transport.ImportVstarsXyzFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportVstarsXyzFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportVstarsXyzFileResult ImportVstarsXyzFile(global::Briosa.Client.Transport.ImportVstarsXyzFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportVstarsXyzFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportVstarsXyzFileResult> ImportVstarsXyzFileAsync(global::Briosa.Client.Transport.ImportVstarsXyzFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportVstarsXyzFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportVstarsXyzFileResult> ImportVstarsXyzFileAsync(global::Briosa.Client.Transport.ImportVstarsXyzFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportVstarsXyzFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportVstarsCamerasResult ImportVstarsCameras(global::Briosa.Client.Transport.ImportVstarsCamerasRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportVstarsCameras(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ImportVstarsCamerasResult ImportVstarsCameras(global::Briosa.Client.Transport.ImportVstarsCamerasRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ImportVstarsCameras, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportVstarsCamerasResult> ImportVstarsCamerasAsync(global::Briosa.Client.Transport.ImportVstarsCamerasRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ImportVstarsCamerasAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ImportVstarsCamerasResult> ImportVstarsCamerasAsync(global::Briosa.Client.Transport.ImportVstarsCamerasRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ImportVstarsCameras, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.LoadHtmlFormResult LoadHtmlForm(global::Briosa.Client.Transport.LoadHtmlFormRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return LoadHtmlForm(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.LoadHtmlFormResult LoadHtmlForm(global::Briosa.Client.Transport.LoadHtmlFormRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_LoadHtmlForm, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.LoadHtmlFormResult> LoadHtmlFormAsync(global::Briosa.Client.Transport.LoadHtmlFormRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return LoadHtmlFormAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.LoadHtmlFormResult> LoadHtmlFormAsync(global::Briosa.Client.Transport.LoadHtmlFormRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_LoadHtmlForm, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.LoadHtmlFormInEdgeBrowserResult LoadHtmlFormInEdgeBrowser(global::Briosa.Client.Transport.LoadHtmlFormInEdgeBrowserRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return LoadHtmlFormInEdgeBrowser(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.LoadHtmlFormInEdgeBrowserResult LoadHtmlFormInEdgeBrowser(global::Briosa.Client.Transport.LoadHtmlFormInEdgeBrowserRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_LoadHtmlFormInEdgeBrowser, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.LoadHtmlFormInEdgeBrowserResult> LoadHtmlFormInEdgeBrowserAsync(global::Briosa.Client.Transport.LoadHtmlFormInEdgeBrowserRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return LoadHtmlFormInEdgeBrowserAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.LoadHtmlFormInEdgeBrowserResult> LoadHtmlFormInEdgeBrowserAsync(global::Briosa.Client.Transport.LoadHtmlFormInEdgeBrowserRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_LoadHtmlFormInEdgeBrowser, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeEmbeddedFileNameListResult MakeEmbeddedFileNameList(global::Briosa.Client.Transport.MakeEmbeddedFileNameListRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeEmbeddedFileNameList(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeEmbeddedFileNameListResult MakeEmbeddedFileNameList(global::Briosa.Client.Transport.MakeEmbeddedFileNameListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakeEmbeddedFileNameList, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeEmbeddedFileNameListResult> MakeEmbeddedFileNameListAsync(global::Briosa.Client.Transport.MakeEmbeddedFileNameListRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeEmbeddedFileNameListAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeEmbeddedFileNameListResult> MakeEmbeddedFileNameListAsync(global::Briosa.Client.Transport.MakeEmbeddedFileNameListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakeEmbeddedFileNameList, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MergeMeasurementsIntoXmlFileResult MergeMeasurementsIntoXmlFile(global::Briosa.Client.Transport.MergeMeasurementsIntoXmlFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MergeMeasurementsIntoXmlFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MergeMeasurementsIntoXmlFileResult MergeMeasurementsIntoXmlFile(global::Briosa.Client.Transport.MergeMeasurementsIntoXmlFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MergeMeasurementsIntoXmlFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MergeMeasurementsIntoXmlFileResult> MergeMeasurementsIntoXmlFileAsync(global::Briosa.Client.Transport.MergeMeasurementsIntoXmlFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MergeMeasurementsIntoXmlFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MergeMeasurementsIntoXmlFileResult> MergeMeasurementsIntoXmlFileAsync(global::Briosa.Client.Transport.MergeMeasurementsIntoXmlFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MergeMeasurementsIntoXmlFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.NewSaFileResult NewSaFile(global::Briosa.Client.Transport.NewSaFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return NewSaFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.NewSaFileResult NewSaFile(global::Briosa.Client.Transport.NewSaFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_NewSaFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.NewSaFileResult> NewSaFileAsync(global::Briosa.Client.Transport.NewSaFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return NewSaFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.NewSaFileResult> NewSaFileAsync(global::Briosa.Client.Transport.NewSaFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_NewSaFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.OpenSaFileResult OpenSaFile(global::Briosa.Client.Transport.OpenSaFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return OpenSaFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.OpenSaFileResult OpenSaFile(global::Briosa.Client.Transport.OpenSaFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_OpenSaFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.OpenSaFileResult> OpenSaFileAsync(global::Briosa.Client.Transport.OpenSaFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return OpenSaFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.OpenSaFileResult> OpenSaFileAsync(global::Briosa.Client.Transport.OpenSaFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_OpenSaFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.OpenTemplateFileResult OpenTemplateFile(global::Briosa.Client.Transport.OpenTemplateFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return OpenTemplateFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.OpenTemplateFileResult OpenTemplateFile(global::Briosa.Client.Transport.OpenTemplateFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_OpenTemplateFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.OpenTemplateFileResult> OpenTemplateFileAsync(global::Briosa.Client.Transport.OpenTemplateFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return OpenTemplateFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.OpenTemplateFileResult> OpenTemplateFileAsync(global::Briosa.Client.Transport.OpenTemplateFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_OpenTemplateFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.PopPolyBayAnalysisWindowResult PopPolyBayAnalysisWindow(global::Briosa.Client.Transport.PopPolyBayAnalysisWindowRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return PopPolyBayAnalysisWindow(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.PopPolyBayAnalysisWindowResult PopPolyBayAnalysisWindow(global::Briosa.Client.Transport.PopPolyBayAnalysisWindowRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_PopPolyBayAnalysisWindow, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.PopPolyBayAnalysisWindowResult> PopPolyBayAnalysisWindowAsync(global::Briosa.Client.Transport.PopPolyBayAnalysisWindowRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return PopPolyBayAnalysisWindowAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.PopPolyBayAnalysisWindowResult> PopPolyBayAnalysisWindowAsync(global::Briosa.Client.Transport.PopPolyBayAnalysisWindowRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_PopPolyBayAnalysisWindow, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.PrepareQdasDataListResult PrepareQdasDataList(global::Briosa.Client.Transport.PrepareQdasDataListRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return PrepareQdasDataList(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.PrepareQdasDataListResult PrepareQdasDataList(global::Briosa.Client.Transport.PrepareQdasDataListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_PrepareQdasDataList, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.PrepareQdasDataListResult> PrepareQdasDataListAsync(global::Briosa.Client.Transport.PrepareQdasDataListRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return PrepareQdasDataListAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.PrepareQdasDataListResult> PrepareQdasDataListAsync(global::Briosa.Client.Transport.PrepareQdasDataListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_PrepareQdasDataList, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.RenameGeneralFileResult RenameGeneralFile(global::Briosa.Client.Transport.RenameGeneralFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RenameGeneralFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.RenameGeneralFileResult RenameGeneralFile(global::Briosa.Client.Transport.RenameGeneralFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_RenameGeneralFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.RenameGeneralFileResult> RenameGeneralFileAsync(global::Briosa.Client.Transport.RenameGeneralFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RenameGeneralFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.RenameGeneralFileResult> RenameGeneralFileAsync(global::Briosa.Client.Transport.RenameGeneralFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_RenameGeneralFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SaveResult Save(global::Briosa.Client.Transport.SaveRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return Save(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SaveResult Save(global::Briosa.Client.Transport.SaveRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_Save, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SaveResult> SaveAsync(global::Briosa.Client.Transport.SaveRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SaveAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SaveResult> SaveAsync(global::Briosa.Client.Transport.SaveRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_Save, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SaveAsReadOnlyTemplateResult SaveAsReadOnlyTemplate(global::Briosa.Client.Transport.SaveAsReadOnlyTemplateRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SaveAsReadOnlyTemplate(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SaveAsReadOnlyTemplateResult SaveAsReadOnlyTemplate(global::Briosa.Client.Transport.SaveAsReadOnlyTemplateRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SaveAsReadOnlyTemplate, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SaveAsReadOnlyTemplateResult> SaveAsReadOnlyTemplateAsync(global::Briosa.Client.Transport.SaveAsReadOnlyTemplateRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SaveAsReadOnlyTemplateAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SaveAsReadOnlyTemplateResult> SaveAsReadOnlyTemplateAsync(global::Briosa.Client.Transport.SaveAsReadOnlyTemplateRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SaveAsReadOnlyTemplate, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SaveAsResult SaveAs(global::Briosa.Client.Transport.SaveAsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SaveAs(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SaveAsResult SaveAs(global::Briosa.Client.Transport.SaveAsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SaveAs, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SaveAsResult> SaveAsAsync(global::Briosa.Client.Transport.SaveAsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SaveAsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SaveAsResult> SaveAsAsync(global::Briosa.Client.Transport.SaveAsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SaveAs, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetBooleanInDataShareFileResult SetBooleanInDataShareFile(global::Briosa.Client.Transport.SetBooleanInDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetBooleanInDataShareFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetBooleanInDataShareFileResult SetBooleanInDataShareFile(global::Briosa.Client.Transport.SetBooleanInDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetBooleanInDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetBooleanInDataShareFileResult> SetBooleanInDataShareFileAsync(global::Briosa.Client.Transport.SetBooleanInDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetBooleanInDataShareFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetBooleanInDataShareFileResult> SetBooleanInDataShareFileAsync(global::Briosa.Client.Transport.SetBooleanInDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetBooleanInDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetDoubleInDataShareFileResult SetDoubleInDataShareFile(global::Briosa.Client.Transport.SetDoubleInDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetDoubleInDataShareFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetDoubleInDataShareFileResult SetDoubleInDataShareFile(global::Briosa.Client.Transport.SetDoubleInDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetDoubleInDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetDoubleInDataShareFileResult> SetDoubleInDataShareFileAsync(global::Briosa.Client.Transport.SetDoubleInDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetDoubleInDataShareFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetDoubleInDataShareFileResult> SetDoubleInDataShareFileAsync(global::Briosa.Client.Transport.SetDoubleInDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetDoubleInDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetIntegerInDataShareFileResult SetIntegerInDataShareFile(global::Briosa.Client.Transport.SetIntegerInDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetIntegerInDataShareFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetIntegerInDataShareFileResult SetIntegerInDataShareFile(global::Briosa.Client.Transport.SetIntegerInDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetIntegerInDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetIntegerInDataShareFileResult> SetIntegerInDataShareFileAsync(global::Briosa.Client.Transport.SetIntegerInDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetIntegerInDataShareFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetIntegerInDataShareFileResult> SetIntegerInDataShareFileAsync(global::Briosa.Client.Transport.SetIntegerInDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetIntegerInDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetStringInDataShareFileResult SetStringInDataShareFile(global::Briosa.Client.Transport.SetStringInDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetStringInDataShareFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetStringInDataShareFileResult SetStringInDataShareFile(global::Briosa.Client.Transport.SetStringInDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetStringInDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetStringInDataShareFileResult> SetStringInDataShareFileAsync(global::Briosa.Client.Transport.SetStringInDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetStringInDataShareFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetStringInDataShareFileResult> SetStringInDataShareFileAsync(global::Briosa.Client.Transport.SetStringInDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetStringInDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetTransformInDataShareFileResult SetTransformInDataShareFile(global::Briosa.Client.Transport.SetTransformInDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetTransformInDataShareFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetTransformInDataShareFileResult SetTransformInDataShareFile(global::Briosa.Client.Transport.SetTransformInDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetTransformInDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetTransformInDataShareFileResult> SetTransformInDataShareFileAsync(global::Briosa.Client.Transport.SetTransformInDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetTransformInDataShareFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetTransformInDataShareFileResult> SetTransformInDataShareFileAsync(global::Briosa.Client.Transport.SetTransformInDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetTransformInDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetVectorInDataShareFileResult SetVectorInDataShareFile(global::Briosa.Client.Transport.SetVectorInDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetVectorInDataShareFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetVectorInDataShareFileResult SetVectorInDataShareFile(global::Briosa.Client.Transport.SetVectorInDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetVectorInDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetVectorInDataShareFileResult> SetVectorInDataShareFileAsync(global::Briosa.Client.Transport.SetVectorInDataShareFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetVectorInDataShareFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetVectorInDataShareFileResult> SetVectorInDataShareFileAsync(global::Briosa.Client.Transport.SetVectorInDataShareFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetVectorInDataShareFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.TerminateAllRunningMPsResult TerminateAllRunningMPs(global::Briosa.Client.Transport.TerminateAllRunningMPsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return TerminateAllRunningMPs(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.TerminateAllRunningMPsResult TerminateAllRunningMPs(global::Briosa.Client.Transport.TerminateAllRunningMPsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_TerminateAllRunningMPs, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.TerminateAllRunningMPsResult> TerminateAllRunningMPsAsync(global::Briosa.Client.Transport.TerminateAllRunningMPsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return TerminateAllRunningMPsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.TerminateAllRunningMPsResult> TerminateAllRunningMPsAsync(global::Briosa.Client.Transport.TerminateAllRunningMPsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_TerminateAllRunningMPs, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.UseNrkxmlLibraryResult UseNrkxmlLibrary(global::Briosa.Client.Transport.UseNrkxmlLibraryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UseNrkxmlLibrary(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.UseNrkxmlLibraryResult UseNrkxmlLibrary(global::Briosa.Client.Transport.UseNrkxmlLibraryRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UseNrkxmlLibrary, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.UseNrkxmlLibraryResult> UseNrkxmlLibraryAsync(global::Briosa.Client.Transport.UseNrkxmlLibraryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UseNrkxmlLibraryAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.UseNrkxmlLibraryResult> UseNrkxmlLibraryAsync(global::Briosa.Client.Transport.UseNrkxmlLibraryRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UseNrkxmlLibrary, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.VerifyGeneralFileExistsResult VerifyGeneralFileExists(global::Briosa.Client.Transport.VerifyGeneralFileExistsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return VerifyGeneralFileExists(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.VerifyGeneralFileExistsResult VerifyGeneralFileExists(global::Briosa.Client.Transport.VerifyGeneralFileExistsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_VerifyGeneralFileExists, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.VerifyGeneralFileExistsResult> VerifyGeneralFileExistsAsync(global::Briosa.Client.Transport.VerifyGeneralFileExistsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return VerifyGeneralFileExistsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.VerifyGeneralFileExistsResult> VerifyGeneralFileExistsAsync(global::Briosa.Client.Transport.VerifyGeneralFileExistsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_VerifyGeneralFileExists, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.VerifyMpFileExistsResult VerifyMpFileExists(global::Briosa.Client.Transport.VerifyMpFileExistsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return VerifyMpFileExists(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.VerifyMpFileExistsResult VerifyMpFileExists(global::Briosa.Client.Transport.VerifyMpFileExistsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_VerifyMpFileExists, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.VerifyMpFileExistsResult> VerifyMpFileExistsAsync(global::Briosa.Client.Transport.VerifyMpFileExistsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return VerifyMpFileExistsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.VerifyMpFileExistsResult> VerifyMpFileExistsAsync(global::Briosa.Client.Transport.VerifyMpFileExistsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_VerifyMpFileExists, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]

@@ -6,7 +6,7 @@ namespace Briosa;
 /// Owns one local Briosa server session and provides typed lifecycle and MP
 /// operations for its exact SpatialAnalyzer target.
 /// </summary>
-public sealed class BriosaClient : IAsyncDisposable
+public sealed partial class BriosaClient : IAsyncDisposable
 {
     private static readonly TimeSpan ServerProbeDelay = TimeSpan.FromMilliseconds(50);
 
