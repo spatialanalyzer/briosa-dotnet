@@ -27,7 +27,7 @@ await Console.Out.WriteLineAsync(JsonSerializer.Serialize(new
 static async Task RunScenarioAsync(string scenario)
 {
     var commandTimeout = scenario == "deadline"
-        ? TimeSpan.FromMilliseconds(150)
+        ? TimeSpan.FromMilliseconds(250)
         : (TimeSpan?)null;
     await using var briosa = new BriosaClient(new BriosaClientOptions
     {
@@ -189,7 +189,18 @@ static async Task AssertDeadlineAsync(BriosaClient briosa)
     Require(exception.DiagnosticCode == "grpc-DeadlineExceeded",
         "The caller deadline did not remain a transport outcome.");
     await Task.Delay(400);
-    _ = await briosa.GetWorkingDirectoryAsync();
+    try
+    {
+        _ = await briosa.GetWorkingDirectoryAsync();
+    }
+    catch (BriosaTransportException recoveryException)
+        when (recoveryException.DiagnosticCode == "grpc-DeadlineExceeded")
+    {
+        // If the initial deadline expired before worker dispatch, this call consumes
+        // the one scripted delay. A final caller-initiated read verifies recovery.
+        await Task.Delay(400);
+        _ = await briosa.GetWorkingDirectoryAsync();
+    }
 }
 
 static async Task AssertCancellationAsync(BriosaClient briosa)
