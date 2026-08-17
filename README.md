@@ -60,7 +60,7 @@ or startup option types.
 dotnet restore Briosa.DotNet.slnx --locked-mode
 dotnet build Briosa.DotNet.slnx -c Release --no-restore
 dotnet test Briosa.DotNet.slnx -c Release --no-build --no-restore
-./eng/Test-Conformance.ps1 -ArtifactPath C:\path\to\briosa-client-conformance-0.2.0-lifecycle-sa-2026.1.0529.7-win-x64.zip
+./eng/Test-Conformance.ps1 -ArtifactPath C:\path\to\briosa-client-conformance-0.2.1-sa-2026.1.0529.7-win-x64.zip
 dotnet pack src/Briosa.Client/Briosa.Client.csproj -c Release --no-build --no-restore
 ```
 
@@ -75,12 +75,12 @@ script:
 
 ```powershell
 ./eng/Import-ProtocolArtifact.ps1 `
-  -ArtifactPath C:\path\to\briosa-protocol-0.2.0-lifecycle-sa-2026.1.0529.7.zip `
+  -ArtifactPath C:\path\to\briosa-protocol-0.2.1-sa-2026.1.0529.7.zip `
   -Update `
-  -SourceChannel source_commit_bootstrap
+  -SourceChannel github_release
 
 ./eng/Import-ProtocolArtifact.ps1 `
-  -ArtifactPath C:\path\to\briosa-protocol-0.2.0-lifecycle-sa-2026.1.0529.7.zip
+  -ArtifactPath C:\path\to\briosa-protocol-0.2.1-sa-2026.1.0529.7.zip
 ```
 
 Never edit `src/Briosa.Client/Generated` or `protocol.lock.json` by hand.

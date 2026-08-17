@@ -5,7 +5,7 @@ param(
 
     [switch]$Update,
 
-    [ValidateSet("github_release", "source_commit_bootstrap")]
+    [ValidateSet("github_release", "github_actions_artifact", "source_commit_bootstrap")]
     [string]$SourceChannel = "github_release"
 )
 

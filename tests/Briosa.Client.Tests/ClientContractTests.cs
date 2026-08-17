@@ -9,21 +9,230 @@ namespace Briosa.Client.Tests;
 public sealed class ClientContractTests
 {
     [Fact]
-    public void ProtocolIdentityMatchesMergedLifecycleArtifact()
+    public void ProtocolIdentityMatchesMergedWaveAArtifact()
     {
         Assert.Equal(
-            "briosa-protocol-0.2.0-lifecycle-sa-2026.1.0529.7",
+            "briosa-protocol-0.2.1-sa-2026.1.0529.7",
             Transport.BriosaProtocolIdentity.ArtifactName);
         Assert.Equal("briosa", Transport.BriosaProtocolIdentity.ProtocolPackage);
         Assert.Equal(
             "standard-protobuf-grpc",
             Transport.BriosaProtocolIdentity.ClientGenerationContract);
         Assert.Equal(
-            "bd19e8f32a8bd717e6cf2ec2aea93b68b8c39c11",
+            "dc361c55e09cf2b6cdf5b058c9a2b75d52907bd5",
             Transport.BriosaProtocolIdentity.SourceRevision);
         Assert.Equal(
             "2026.1.0529.7",
             Transport.BriosaProtocolIdentity.SpatialAnalyzerTarget);
+    }
+
+    [Fact]
+    public void WaveAContractPublishesEveryReviewedOperationOnce()
+    {
+        Assert.Equal(469, BriosaClient.WaveAOperationNames.Count);
+        Assert.Equal(469, BriosaClient.WaveAOperationNames.Distinct().Count());
+        var methods = typeof(BriosaClient).GetMethods()
+            .Select(method => method.Name)
+            .ToHashSet(StringComparer.Ordinal);
+        Assert.All(
+            BriosaClient.WaveAOperationNames,
+            operation => Assert.Contains(operation + "Async", methods));
+    }
+
+    [Fact]
+    public async Task WaveAOperationMapsHandwrittenInputsAndDetachedOutput()
+    {
+        var transport = new FakeTransport
+        {
+            OperationResponse = new Transport.AngleBetweenLineAndPlaneResult
+            {
+                Angle = 12.5,
+            },
+        };
+        await using var client = CreateClient(new FakeServerLauncher(), transport);
+        await client.StartAsync();
+
+        var angle = await client.AngleBetweenLineAndPlaneAsync(
+            new CollectionObjectName
+            {
+                CollectionName = "C",
+                ObjectName = "L",
+                ObjectType = ObjectType.Line,
+            },
+            new CollectionObjectName
+            {
+                CollectionName = "C",
+                ObjectName = "P",
+                ObjectType = ObjectType.Plane,
+            });
+
+        Assert.Equal(12.5, angle);
+        Assert.Equal("briosa.AnalysisOperations", transport.LastOperationService);
+        Assert.Equal("AngleBetweenLineAndPlane", transport.LastOperationRpc);
+        var request = Assert.IsType<Transport.AngleBetweenLineAndPlaneRequest>(
+            transport.LastOperationRequest);
+        Assert.Equal("L", request.SelectedLine.ObjectName);
+        Assert.Equal(Transport.ObjectType.Line, request.SelectedLine.ObjectType);
+        Assert.Equal("P", request.SelectedPlane.ObjectName);
+    }
+
+    [Fact]
+    public async Task WaveAOperationMapsRepeatedValuesAndStructuredResults()
+    {
+        var transport = new FakeTransport
+        {
+            OperationResponse = new Transport.GetPointCoordinateResult
+            {
+                VectorRepresentation = new Transport.Vector { X = 1, Y = 2, Z = 3 },
+                XValue = 1,
+                YValue = 2,
+                ZValue = 3,
+            },
+        };
+        await using var client = CreateClient(new FakeServerLauncher(), transport);
+        await client.StartAsync();
+
+        var result = await client.GetPointCoordinateAsync(new PointName
+        {
+            CollectionName = "C",
+            GroupName = "G",
+            TargetName = "P1",
+        });
+
+        Assert.Equal(1, result.VectorRepresentation.X);
+        Assert.Equal(3, result.ZValue);
+
+        transport.OperationResponse = new Transport.DeleteObjectsResult();
+        await client.DeleteObjectsAsync(
+        [
+            new CollectionObjectName
+            {
+                CollectionName = "C",
+                ObjectName = "One",
+                ObjectType = ObjectType.Sphere,
+            },
+            new CollectionObjectName
+            {
+                CollectionName = "C",
+                ObjectName = "Two",
+                ObjectType = ObjectType.Plane,
+            },
+        ]);
+        var request = Assert.IsType<Transport.DeleteObjectsRequest>(
+            transport.LastOperationRequest);
+        Assert.Equal(["One", "Two"], request.ObjectNames.Select(item => item.ObjectName));
+    }
+
+    [Fact]
+    public async Task WaveADefaultScalarOptionsPreserveTheMpDisabledShape()
+    {
+        var transport = new FakeTransport
+        {
+            OperationResponse = new Transport.SetRelationshipFitConstraintsScalarTypeResult(),
+        };
+        await using var client = CreateClient(new FakeServerLauncher(), transport);
+        await client.StartAsync();
+
+        await client.SetRelationshipFitConstraintsScalarTypeAsync(
+            new CollectionObjectName
+            {
+                CollectionName = "C",
+                ObjectName = "R",
+                ObjectType = ObjectType.Any,
+            });
+
+        var request = Assert.IsType<Transport.SetRelationshipFitConstraintsScalarTypeRequest>(
+            transport.LastOperationRequest);
+        Assert.NotNull(request.FitConstraintOptions.High);
+        Assert.NotNull(request.FitConstraintOptions.Low);
+        Assert.False(request.FitConstraintOptions.High.Enabled);
+        Assert.Equal(0, request.FitConstraintOptions.High.Value);
+    }
+
+    [Fact]
+    public async Task WaveAValuesFailClosedBeforeInvalidDataReachesTheTransport()
+    {
+        var transport = new FakeTransport();
+        await using var client = CreateClient(new FakeServerLauncher(), transport);
+        await client.StartAsync();
+
+        await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
+            client.AngleBetweenLineAndPlaneAsync(
+                new CollectionObjectName
+                {
+                    CollectionName = "C",
+                    ObjectName = "L",
+                    ObjectType = (ObjectType)0,
+                },
+                new CollectionObjectName
+                {
+                    CollectionName = "C",
+                    ObjectName = "P",
+                    ObjectType = ObjectType.Plane,
+                }));
+        await Assert.ThrowsAsync<ArgumentException>(() =>
+            client.SetObjectsColorAsync(
+                [new CollectionObjectName
+                {
+                    CollectionName = "C",
+                    ObjectName = "P",
+                    ObjectType = ObjectType.PointGroup,
+                }],
+                new Color { Red = 256, Green = 0, Blue = 0 }));
+        await Assert.ThrowsAsync<ArgumentException>(() =>
+            client.SetTransformInDataShareFileAsync(
+                new FileReference { Path = @"C:\Data\share.xml" },
+                "Invalid",
+                new Transform { Values = [1, 2, 3] }));
+
+        Assert.DoesNotContain(
+            transport.Calls,
+            call => call.StartsWith("operation:", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public async Task WaveAValuesFailClosedOnUnknownServerEnumValues()
+    {
+        var transport = new FakeTransport
+        {
+            OperationResponse = new Transport.GetObjectReportingFrameResult
+            {
+                ReportingFrame = new Transport.CollectionObjectName
+                {
+                    CollectionName = "Frames",
+                    ObjectName = "Working",
+                    ObjectType = (Transport.ObjectType)999,
+                },
+            },
+        };
+        await using var client = CreateClient(new FakeServerLauncher(), transport);
+        await client.StartAsync();
+
+        var failure = await Assert.ThrowsAsync<BriosaProtocolException>(() =>
+            client.GetObjectReportingFrameAsync(new CollectionObjectName
+            {
+                CollectionName = "Objects",
+                ObjectName = "Plane 1",
+                ObjectType = ObjectType.Plane,
+            }));
+
+        Assert.Equal("unknown-enum-value:object_type", failure.DiagnosticCode);
+    }
+
+    [Fact]
+    public async Task WaveAValuesFailClosedWhenARequiredOutputIsAbsent()
+    {
+        var transport = new FakeTransport
+        {
+            OperationResponse = new Transport.GetNumberOfCollectionsResult(),
+        };
+        await using var client = CreateClient(new FakeServerLauncher(), transport);
+        await client.StartAsync();
+
+        var failure = await Assert.ThrowsAsync<BriosaProtocolException>(
+            () => client.GetNumberOfCollectionsAsync());
+
+        Assert.Equal("required-output-missing:total_count", failure.DiagnosticCode);
     }
 
     [Fact]
@@ -262,6 +471,10 @@ public sealed class ClientContractTests
         public int CloseApplicationCount { get; private set; }
         public RpcException? LaunchFailure { get; init; }
         public bool PublishReadySnapshot { get; init; } = true;
+        public IMessage? OperationResponse { get; set; }
+        public IMessage? LastOperationRequest { get; private set; }
+        public string? LastOperationService { get; private set; }
+        public string? LastOperationRpc { get; private set; }
 
         public Task<(Transport.GetServerInfoResponse, Transport.ListCapabilitiesResponse)>
             GetServerSnapshotAsync(CancellationToken cancellationToken)
@@ -355,6 +568,22 @@ public sealed class ClientContractTests
         {
             Calls.Add("get-working-directory");
             return Task.FromResult("C:\\Working");
+        }
+
+        public Task<IMessage> InvokeOperationAsync(
+            string service,
+            string rpc,
+            IMessage request,
+            MessageParser responseParser,
+            TimeSpan? timeout,
+            CancellationToken cancellationToken)
+        {
+            Calls.Add($"operation:{service}/{rpc}");
+            LastOperationService = service;
+            LastOperationRpc = rpc;
+            LastOperationRequest = request;
+            return Task.FromResult(
+                OperationResponse ?? responseParser.ParseFrom(Array.Empty<byte>()));
         }
 
         public ValueTask DisposeAsync() => ValueTask.CompletedTask;

@@ -46,13 +46,249 @@ namespace Briosa.Client.Transport {
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.CloseAllWatchWindowsRequest> __Marshaller_briosa_CloseAllWatchWindowsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.CloseAllWatchWindowsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.CloseAllWatchWindowsResult> __Marshaller_briosa_CloseAllWatchWindowsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.CloseAllWatchWindowsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.DeleteFolderRequest> __Marshaller_briosa_DeleteFolderRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.DeleteFolderRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.DeleteFolderResult> __Marshaller_briosa_DeleteFolderResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.DeleteFolderResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.DeleteItemsRequest> __Marshaller_briosa_DeleteItemsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.DeleteItemsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.DeleteItemsResult> __Marshaller_briosa_DeleteItemsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.DeleteItemsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.DeleteObjectsRequest> __Marshaller_briosa_DeleteObjectsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.DeleteObjectsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.DeleteObjectsResult> __Marshaller_briosa_DeleteObjectsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.DeleteObjectsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetActiveLanguageRequest> __Marshaller_briosa_GetActiveLanguageRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetActiveLanguageRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetActiveLanguageResult> __Marshaller_briosa_GetActiveLanguageResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetActiveLanguageResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetActiveUnitsRequest> __Marshaller_briosa_GetActiveUnitsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetActiveUnitsRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetActiveUnitsResult> __Marshaller_briosa_GetActiveUnitsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetActiveUnitsResult.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetAngularRepresentationRequest> __Marshaller_briosa_GetAngularRepresentationRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetAngularRepresentationRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetAngularRepresentationResult> __Marshaller_briosa_GetAngularRepresentationResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetAngularRepresentationResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetCollectionNotesRequest> __Marshaller_briosa_GetCollectionNotesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetCollectionNotesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetCollectionNotesResult> __Marshaller_briosa_GetCollectionNotesResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetCollectionNotesResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetFolderCollectionsRequest> __Marshaller_briosa_GetFolderCollectionsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetFolderCollectionsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetFolderCollectionsResult> __Marshaller_briosa_GetFolderCollectionsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetFolderCollectionsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetFolderNotesRequest> __Marshaller_briosa_GetFolderNotesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetFolderNotesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetFolderNotesResult> __Marshaller_briosa_GetFolderNotesResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetFolderNotesResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetFoldersByWildcardRequest> __Marshaller_briosa_GetFoldersByWildcardRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetFoldersByWildcardRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetFoldersByWildcardResult> __Marshaller_briosa_GetFoldersByWildcardResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetFoldersByWildcardResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetObjectNotesRequest> __Marshaller_briosa_GetObjectNotesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetObjectNotesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetObjectNotesResult> __Marshaller_briosa_GetObjectNotesResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetObjectNotesResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetOpcDaTagValueDoubleRequest> __Marshaller_briosa_GetOpcDaTagValueDoubleRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetOpcDaTagValueDoubleRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetOpcDaTagValueDoubleResult> __Marshaller_briosa_GetOpcDaTagValueDoubleResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetOpcDaTagValueDoubleResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetOpcDaTagValueIntegerRequest> __Marshaller_briosa_GetOpcDaTagValueIntegerRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetOpcDaTagValueIntegerRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetOpcDaTagValueIntegerResult> __Marshaller_briosa_GetOpcDaTagValueIntegerResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetOpcDaTagValueIntegerResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetOpcDaTagValueStringRequest> __Marshaller_briosa_GetOpcDaTagValueStringRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetOpcDaTagValueStringRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetOpcDaTagValueStringResult> __Marshaller_briosa_GetOpcDaTagValueStringResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetOpcDaTagValueStringResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetPointNotesRequest> __Marshaller_briosa_GetPointNotesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetPointNotesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetPointNotesResult> __Marshaller_briosa_GetPointNotesResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetPointNotesResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetScreenResolutionRequest> __Marshaller_briosa_GetScreenResolutionRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetScreenResolutionRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetScreenResolutionResult> __Marshaller_briosa_GetScreenResolutionResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetScreenResolutionResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetWorkingFramePropertiesRequest> __Marshaller_briosa_GetWorkingFramePropertiesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetWorkingFramePropertiesRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetWorkingFramePropertiesResult> __Marshaller_briosa_GetWorkingFramePropertiesResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetWorkingFramePropertiesResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.IncrementPointNameRequest> __Marshaller_briosa_IncrementPointNameRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.IncrementPointNameRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.IncrementPointNameResult> __Marshaller_briosa_IncrementPointNameResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.IncrementPointNameResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.LockImportedItemsRequest> __Marshaller_briosa_LockImportedItemsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.LockImportedItemsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.LockImportedItemsResult> __Marshaller_briosa_LockImportedItemsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.LockImportedItemsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.LockUnlockSelectedItemsRequest> __Marshaller_briosa_LockUnlockSelectedItemsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.LockUnlockSelectedItemsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.LockUnlockSelectedItemsResult> __Marshaller_briosa_LockUnlockSelectedItemsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.LockUnlockSelectedItemsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.LockUnlockTrappingControlRequest> __Marshaller_briosa_LockUnlockTrappingControlRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.LockUnlockTrappingControlRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.LockUnlockTrappingControlResult> __Marshaller_briosa_LockUnlockTrappingControlResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.LockUnlockTrappingControlResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MoveCollectionToFolderRequest> __Marshaller_briosa_MoveCollectionToFolderRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MoveCollectionToFolderRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MoveCollectionToFolderResult> __Marshaller_briosa_MoveCollectionToFolderResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MoveCollectionToFolderResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MoveFolderToFolderRequest> __Marshaller_briosa_MoveFolderToFolderRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MoveFolderToFolderRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MoveFolderToFolderResult> __Marshaller_briosa_MoveFolderToFolderResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MoveFolderToFolderResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MoveInstrumentsDragGraphicallyRequest> __Marshaller_briosa_MoveInstrumentsDragGraphicallyRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MoveInstrumentsDragGraphicallyRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MoveInstrumentsDragGraphicallyResult> __Marshaller_briosa_MoveInstrumentsDragGraphicallyResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MoveInstrumentsDragGraphicallyResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MoveObjectsDragGraphicallyRequest> __Marshaller_briosa_MoveObjectsDragGraphicallyRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MoveObjectsDragGraphicallyRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MoveObjectsDragGraphicallyResult> __Marshaller_briosa_MoveObjectsDragGraphicallyResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MoveObjectsDragGraphicallyResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ScaleObjectsRequest> __Marshaller_briosa_ScaleObjectsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ScaleObjectsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ScaleObjectsResult> __Marshaller_briosa_ScaleObjectsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ScaleObjectsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetActiveCustomLanguageRequest> __Marshaller_briosa_SetActiveCustomLanguageRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetActiveCustomLanguageRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetActiveCustomLanguageResult> __Marshaller_briosa_SetActiveCustomLanguageResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetActiveCustomLanguageResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetActiveUnitsRequest> __Marshaller_briosa_SetActiveUnitsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetActiveUnitsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetActiveUnitsResult> __Marshaller_briosa_SetActiveUnitsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetActiveUnitsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetAngularRepresentationRequest> __Marshaller_briosa_SetAngularRepresentationRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetAngularRepresentationRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetAngularRepresentationResult> __Marshaller_briosa_SetAngularRepresentationResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetAngularRepresentationResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetAutoEventCreationRequest> __Marshaller_briosa_SetAutoEventCreationRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetAutoEventCreationRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetAutoEventCreationResult> __Marshaller_briosa_SetAutoEventCreationResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetAutoEventCreationResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetAutomaticBackupStateRequest> __Marshaller_briosa_SetAutomaticBackupStateRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetAutomaticBackupStateRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetAutomaticBackupStateResult> __Marshaller_briosa_SetAutomaticBackupStateResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetAutomaticBackupStateResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetAutomaticRelationshipConstructionStateRequest> __Marshaller_briosa_SetAutomaticRelationshipConstructionStateRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetAutomaticRelationshipConstructionStateRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetAutomaticRelationshipConstructionStateResult> __Marshaller_briosa_SetAutomaticRelationshipConstructionStateResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetAutomaticRelationshipConstructionStateResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetCollectionNotesRequest> __Marshaller_briosa_SetCollectionNotesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetCollectionNotesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetCollectionNotesResult> __Marshaller_briosa_SetCollectionNotesResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetCollectionNotesResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetDecimalDigitsForDisplayRequest> __Marshaller_briosa_SetDecimalDigitsForDisplayRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetDecimalDigitsForDisplayRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetDecimalDigitsForDisplayResult> __Marshaller_briosa_SetDecimalDigitsForDisplayResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetDecimalDigitsForDisplayResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetFolderNotesRequest> __Marshaller_briosa_SetFolderNotesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetFolderNotesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetFolderNotesResult> __Marshaller_briosa_SetFolderNotesResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetFolderNotesResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetInteractionModeRequest> __Marshaller_briosa_SetInteractionModeRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetInteractionModeRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetInteractionModeResult> __Marshaller_briosa_SetInteractionModeResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetInteractionModeResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetLoggingStateRequest> __Marshaller_briosa_SetLoggingStateRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetLoggingStateRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetLoggingStateResult> __Marshaller_briosa_SetLoggingStateResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetLoggingStateResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetNotificationCancelOverrideRequest> __Marshaller_briosa_SetNotificationCancelOverrideRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetNotificationCancelOverrideRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetNotificationCancelOverrideResult> __Marshaller_briosa_SetNotificationCancelOverrideResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetNotificationCancelOverrideResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetObjectNotesRequest> __Marshaller_briosa_SetObjectNotesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetObjectNotesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetObjectNotesResult> __Marshaller_briosa_SetObjectNotesResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetObjectNotesResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetOpcDaTagValueDoubleRequest> __Marshaller_briosa_SetOpcDaTagValueDoubleRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetOpcDaTagValueDoubleRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetOpcDaTagValueDoubleResult> __Marshaller_briosa_SetOpcDaTagValueDoubleResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetOpcDaTagValueDoubleResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetOpcDaTagValueIntegerRequest> __Marshaller_briosa_SetOpcDaTagValueIntegerRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetOpcDaTagValueIntegerRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetOpcDaTagValueIntegerResult> __Marshaller_briosa_SetOpcDaTagValueIntegerResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetOpcDaTagValueIntegerResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetOpcDaTagValueStringRequest> __Marshaller_briosa_SetOpcDaTagValueStringRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetOpcDaTagValueStringRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetOpcDaTagValueStringResult> __Marshaller_briosa_SetOpcDaTagValueStringResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetOpcDaTagValueStringResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetPointNotesRequest> __Marshaller_briosa_SetPointNotesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetPointNotesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetPointNotesResult> __Marshaller_briosa_SetPointNotesResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetPointNotesResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetUserInterfaceProfileRequest> __Marshaller_briosa_SetUserInterfaceProfileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetUserInterfaceProfileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetUserInterfaceProfileResult> __Marshaller_briosa_SetUserInterfaceProfileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetUserInterfaceProfileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetViewIdleUpdateFrequencyRequest> __Marshaller_briosa_SetViewIdleUpdateFrequencyRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetViewIdleUpdateFrequencyRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetViewIdleUpdateFrequencyResult> __Marshaller_briosa_SetViewIdleUpdateFrequencyResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetViewIdleUpdateFrequencyResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetWildCardAsteriskModeRequest> __Marshaller_briosa_SetWildCardAsteriskModeRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetWildCardAsteriskModeRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetWildCardAsteriskModeResult> __Marshaller_briosa_SetWildCardAsteriskModeResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetWildCardAsteriskModeResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetWorkingFrameRequest> __Marshaller_briosa_SetWorkingFrameRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetWorkingFrameRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetWorkingFrameResult> __Marshaller_briosa_SetWorkingFrameResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetWorkingFrameResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.StatusDialogRequest> __Marshaller_briosa_StatusDialogRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.StatusDialogRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.StatusDialogResult> __Marshaller_briosa_StatusDialogResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.StatusDialogResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.TrimLogFileRequest> __Marshaller_briosa_TrimLogFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.TrimLogFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.TrimLogFileResult> __Marshaller_briosa_TrimLogFileResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.TrimLogFileResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.WriteToLogRequest> __Marshaller_briosa_WriteToLogRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.WriteToLogRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.WriteToLogResult> __Marshaller_briosa_WriteToLogResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.WriteToLogResult.Parser));
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.CloseAllWatchWindowsRequest, global::Briosa.Client.Transport.CloseAllWatchWindowsResult> __Method_CloseAllWatchWindows = new grpc::Method<global::Briosa.Client.Transport.CloseAllWatchWindowsRequest, global::Briosa.Client.Transport.CloseAllWatchWindowsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "CloseAllWatchWindows",
+        __Marshaller_briosa_CloseAllWatchWindowsRequest,
+        __Marshaller_briosa_CloseAllWatchWindowsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.DeleteFolderRequest, global::Briosa.Client.Transport.DeleteFolderResult> __Method_DeleteFolder = new grpc::Method<global::Briosa.Client.Transport.DeleteFolderRequest, global::Briosa.Client.Transport.DeleteFolderResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DeleteFolder",
+        __Marshaller_briosa_DeleteFolderRequest,
+        __Marshaller_briosa_DeleteFolderResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.DeleteItemsRequest, global::Briosa.Client.Transport.DeleteItemsResult> __Method_DeleteItems = new grpc::Method<global::Briosa.Client.Transport.DeleteItemsRequest, global::Briosa.Client.Transport.DeleteItemsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DeleteItems",
+        __Marshaller_briosa_DeleteItemsRequest,
+        __Marshaller_briosa_DeleteItemsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.DeleteObjectsRequest, global::Briosa.Client.Transport.DeleteObjectsResult> __Method_DeleteObjects = new grpc::Method<global::Briosa.Client.Transport.DeleteObjectsRequest, global::Briosa.Client.Transport.DeleteObjectsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DeleteObjects",
+        __Marshaller_briosa_DeleteObjectsRequest,
+        __Marshaller_briosa_DeleteObjectsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetActiveLanguageRequest, global::Briosa.Client.Transport.GetActiveLanguageResult> __Method_GetActiveLanguage = new grpc::Method<global::Briosa.Client.Transport.GetActiveLanguageRequest, global::Briosa.Client.Transport.GetActiveLanguageResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetActiveLanguage",
+        __Marshaller_briosa_GetActiveLanguageRequest,
+        __Marshaller_briosa_GetActiveLanguageResult);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Briosa.Client.Transport.GetActiveUnitsRequest, global::Briosa.Client.Transport.GetActiveUnitsResult> __Method_GetActiveUnits = new grpc::Method<global::Briosa.Client.Transport.GetActiveUnitsRequest, global::Briosa.Client.Transport.GetActiveUnitsResult>(
@@ -63,12 +299,364 @@ namespace Briosa.Client.Transport {
         __Marshaller_briosa_GetActiveUnitsResult);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetAngularRepresentationRequest, global::Briosa.Client.Transport.GetAngularRepresentationResult> __Method_GetAngularRepresentation = new grpc::Method<global::Briosa.Client.Transport.GetAngularRepresentationRequest, global::Briosa.Client.Transport.GetAngularRepresentationResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetAngularRepresentation",
+        __Marshaller_briosa_GetAngularRepresentationRequest,
+        __Marshaller_briosa_GetAngularRepresentationResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetCollectionNotesRequest, global::Briosa.Client.Transport.GetCollectionNotesResult> __Method_GetCollectionNotes = new grpc::Method<global::Briosa.Client.Transport.GetCollectionNotesRequest, global::Briosa.Client.Transport.GetCollectionNotesResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetCollectionNotes",
+        __Marshaller_briosa_GetCollectionNotesRequest,
+        __Marshaller_briosa_GetCollectionNotesResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetFolderCollectionsRequest, global::Briosa.Client.Transport.GetFolderCollectionsResult> __Method_GetFolderCollections = new grpc::Method<global::Briosa.Client.Transport.GetFolderCollectionsRequest, global::Briosa.Client.Transport.GetFolderCollectionsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetFolderCollections",
+        __Marshaller_briosa_GetFolderCollectionsRequest,
+        __Marshaller_briosa_GetFolderCollectionsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetFolderNotesRequest, global::Briosa.Client.Transport.GetFolderNotesResult> __Method_GetFolderNotes = new grpc::Method<global::Briosa.Client.Transport.GetFolderNotesRequest, global::Briosa.Client.Transport.GetFolderNotesResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetFolderNotes",
+        __Marshaller_briosa_GetFolderNotesRequest,
+        __Marshaller_briosa_GetFolderNotesResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetFoldersByWildcardRequest, global::Briosa.Client.Transport.GetFoldersByWildcardResult> __Method_GetFoldersByWildcard = new grpc::Method<global::Briosa.Client.Transport.GetFoldersByWildcardRequest, global::Briosa.Client.Transport.GetFoldersByWildcardResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetFoldersByWildcard",
+        __Marshaller_briosa_GetFoldersByWildcardRequest,
+        __Marshaller_briosa_GetFoldersByWildcardResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetObjectNotesRequest, global::Briosa.Client.Transport.GetObjectNotesResult> __Method_GetObjectNotes = new grpc::Method<global::Briosa.Client.Transport.GetObjectNotesRequest, global::Briosa.Client.Transport.GetObjectNotesResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetObjectNotes",
+        __Marshaller_briosa_GetObjectNotesRequest,
+        __Marshaller_briosa_GetObjectNotesResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetOpcDaTagValueDoubleRequest, global::Briosa.Client.Transport.GetOpcDaTagValueDoubleResult> __Method_GetOpcDaTagValueDouble = new grpc::Method<global::Briosa.Client.Transport.GetOpcDaTagValueDoubleRequest, global::Briosa.Client.Transport.GetOpcDaTagValueDoubleResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetOpcDaTagValueDouble",
+        __Marshaller_briosa_GetOpcDaTagValueDoubleRequest,
+        __Marshaller_briosa_GetOpcDaTagValueDoubleResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetOpcDaTagValueIntegerRequest, global::Briosa.Client.Transport.GetOpcDaTagValueIntegerResult> __Method_GetOpcDaTagValueInteger = new grpc::Method<global::Briosa.Client.Transport.GetOpcDaTagValueIntegerRequest, global::Briosa.Client.Transport.GetOpcDaTagValueIntegerResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetOpcDaTagValueInteger",
+        __Marshaller_briosa_GetOpcDaTagValueIntegerRequest,
+        __Marshaller_briosa_GetOpcDaTagValueIntegerResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetOpcDaTagValueStringRequest, global::Briosa.Client.Transport.GetOpcDaTagValueStringResult> __Method_GetOpcDaTagValueString = new grpc::Method<global::Briosa.Client.Transport.GetOpcDaTagValueStringRequest, global::Briosa.Client.Transport.GetOpcDaTagValueStringResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetOpcDaTagValueString",
+        __Marshaller_briosa_GetOpcDaTagValueStringRequest,
+        __Marshaller_briosa_GetOpcDaTagValueStringResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetPointNotesRequest, global::Briosa.Client.Transport.GetPointNotesResult> __Method_GetPointNotes = new grpc::Method<global::Briosa.Client.Transport.GetPointNotesRequest, global::Briosa.Client.Transport.GetPointNotesResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetPointNotes",
+        __Marshaller_briosa_GetPointNotesRequest,
+        __Marshaller_briosa_GetPointNotesResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetScreenResolutionRequest, global::Briosa.Client.Transport.GetScreenResolutionResult> __Method_GetScreenResolution = new grpc::Method<global::Briosa.Client.Transport.GetScreenResolutionRequest, global::Briosa.Client.Transport.GetScreenResolutionResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetScreenResolution",
+        __Marshaller_briosa_GetScreenResolutionRequest,
+        __Marshaller_briosa_GetScreenResolutionResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Briosa.Client.Transport.GetWorkingFramePropertiesRequest, global::Briosa.Client.Transport.GetWorkingFramePropertiesResult> __Method_GetWorkingFrameProperties = new grpc::Method<global::Briosa.Client.Transport.GetWorkingFramePropertiesRequest, global::Briosa.Client.Transport.GetWorkingFramePropertiesResult>(
         grpc::MethodType.Unary,
         __ServiceName,
         "GetWorkingFrameProperties",
         __Marshaller_briosa_GetWorkingFramePropertiesRequest,
         __Marshaller_briosa_GetWorkingFramePropertiesResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.IncrementPointNameRequest, global::Briosa.Client.Transport.IncrementPointNameResult> __Method_IncrementPointName = new grpc::Method<global::Briosa.Client.Transport.IncrementPointNameRequest, global::Briosa.Client.Transport.IncrementPointNameResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "IncrementPointName",
+        __Marshaller_briosa_IncrementPointNameRequest,
+        __Marshaller_briosa_IncrementPointNameResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.LockImportedItemsRequest, global::Briosa.Client.Transport.LockImportedItemsResult> __Method_LockImportedItems = new grpc::Method<global::Briosa.Client.Transport.LockImportedItemsRequest, global::Briosa.Client.Transport.LockImportedItemsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "LockImportedItems",
+        __Marshaller_briosa_LockImportedItemsRequest,
+        __Marshaller_briosa_LockImportedItemsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.LockUnlockSelectedItemsRequest, global::Briosa.Client.Transport.LockUnlockSelectedItemsResult> __Method_LockUnlockSelectedItems = new grpc::Method<global::Briosa.Client.Transport.LockUnlockSelectedItemsRequest, global::Briosa.Client.Transport.LockUnlockSelectedItemsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "LockUnlockSelectedItems",
+        __Marshaller_briosa_LockUnlockSelectedItemsRequest,
+        __Marshaller_briosa_LockUnlockSelectedItemsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.LockUnlockTrappingControlRequest, global::Briosa.Client.Transport.LockUnlockTrappingControlResult> __Method_LockUnlockTrappingControl = new grpc::Method<global::Briosa.Client.Transport.LockUnlockTrappingControlRequest, global::Briosa.Client.Transport.LockUnlockTrappingControlResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "LockUnlockTrappingControl",
+        __Marshaller_briosa_LockUnlockTrappingControlRequest,
+        __Marshaller_briosa_LockUnlockTrappingControlResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MoveCollectionToFolderRequest, global::Briosa.Client.Transport.MoveCollectionToFolderResult> __Method_MoveCollectionToFolder = new grpc::Method<global::Briosa.Client.Transport.MoveCollectionToFolderRequest, global::Briosa.Client.Transport.MoveCollectionToFolderResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MoveCollectionToFolder",
+        __Marshaller_briosa_MoveCollectionToFolderRequest,
+        __Marshaller_briosa_MoveCollectionToFolderResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MoveFolderToFolderRequest, global::Briosa.Client.Transport.MoveFolderToFolderResult> __Method_MoveFolderToFolder = new grpc::Method<global::Briosa.Client.Transport.MoveFolderToFolderRequest, global::Briosa.Client.Transport.MoveFolderToFolderResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MoveFolderToFolder",
+        __Marshaller_briosa_MoveFolderToFolderRequest,
+        __Marshaller_briosa_MoveFolderToFolderResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MoveInstrumentsDragGraphicallyRequest, global::Briosa.Client.Transport.MoveInstrumentsDragGraphicallyResult> __Method_MoveInstrumentsDragGraphically = new grpc::Method<global::Briosa.Client.Transport.MoveInstrumentsDragGraphicallyRequest, global::Briosa.Client.Transport.MoveInstrumentsDragGraphicallyResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MoveInstrumentsDragGraphically",
+        __Marshaller_briosa_MoveInstrumentsDragGraphicallyRequest,
+        __Marshaller_briosa_MoveInstrumentsDragGraphicallyResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MoveObjectsDragGraphicallyRequest, global::Briosa.Client.Transport.MoveObjectsDragGraphicallyResult> __Method_MoveObjectsDragGraphically = new grpc::Method<global::Briosa.Client.Transport.MoveObjectsDragGraphicallyRequest, global::Briosa.Client.Transport.MoveObjectsDragGraphicallyResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MoveObjectsDragGraphically",
+        __Marshaller_briosa_MoveObjectsDragGraphicallyRequest,
+        __Marshaller_briosa_MoveObjectsDragGraphicallyResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ScaleObjectsRequest, global::Briosa.Client.Transport.ScaleObjectsResult> __Method_ScaleObjects = new grpc::Method<global::Briosa.Client.Transport.ScaleObjectsRequest, global::Briosa.Client.Transport.ScaleObjectsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ScaleObjects",
+        __Marshaller_briosa_ScaleObjectsRequest,
+        __Marshaller_briosa_ScaleObjectsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetActiveCustomLanguageRequest, global::Briosa.Client.Transport.SetActiveCustomLanguageResult> __Method_SetActiveCustomLanguage = new grpc::Method<global::Briosa.Client.Transport.SetActiveCustomLanguageRequest, global::Briosa.Client.Transport.SetActiveCustomLanguageResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetActiveCustomLanguage",
+        __Marshaller_briosa_SetActiveCustomLanguageRequest,
+        __Marshaller_briosa_SetActiveCustomLanguageResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetActiveUnitsRequest, global::Briosa.Client.Transport.SetActiveUnitsResult> __Method_SetActiveUnits = new grpc::Method<global::Briosa.Client.Transport.SetActiveUnitsRequest, global::Briosa.Client.Transport.SetActiveUnitsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetActiveUnits",
+        __Marshaller_briosa_SetActiveUnitsRequest,
+        __Marshaller_briosa_SetActiveUnitsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetAngularRepresentationRequest, global::Briosa.Client.Transport.SetAngularRepresentationResult> __Method_SetAngularRepresentation = new grpc::Method<global::Briosa.Client.Transport.SetAngularRepresentationRequest, global::Briosa.Client.Transport.SetAngularRepresentationResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetAngularRepresentation",
+        __Marshaller_briosa_SetAngularRepresentationRequest,
+        __Marshaller_briosa_SetAngularRepresentationResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetAutoEventCreationRequest, global::Briosa.Client.Transport.SetAutoEventCreationResult> __Method_SetAutoEventCreation = new grpc::Method<global::Briosa.Client.Transport.SetAutoEventCreationRequest, global::Briosa.Client.Transport.SetAutoEventCreationResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetAutoEventCreation",
+        __Marshaller_briosa_SetAutoEventCreationRequest,
+        __Marshaller_briosa_SetAutoEventCreationResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetAutomaticBackupStateRequest, global::Briosa.Client.Transport.SetAutomaticBackupStateResult> __Method_SetAutomaticBackupState = new grpc::Method<global::Briosa.Client.Transport.SetAutomaticBackupStateRequest, global::Briosa.Client.Transport.SetAutomaticBackupStateResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetAutomaticBackupState",
+        __Marshaller_briosa_SetAutomaticBackupStateRequest,
+        __Marshaller_briosa_SetAutomaticBackupStateResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetAutomaticRelationshipConstructionStateRequest, global::Briosa.Client.Transport.SetAutomaticRelationshipConstructionStateResult> __Method_SetAutomaticRelationshipConstructionState = new grpc::Method<global::Briosa.Client.Transport.SetAutomaticRelationshipConstructionStateRequest, global::Briosa.Client.Transport.SetAutomaticRelationshipConstructionStateResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetAutomaticRelationshipConstructionState",
+        __Marshaller_briosa_SetAutomaticRelationshipConstructionStateRequest,
+        __Marshaller_briosa_SetAutomaticRelationshipConstructionStateResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetCollectionNotesRequest, global::Briosa.Client.Transport.SetCollectionNotesResult> __Method_SetCollectionNotes = new grpc::Method<global::Briosa.Client.Transport.SetCollectionNotesRequest, global::Briosa.Client.Transport.SetCollectionNotesResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetCollectionNotes",
+        __Marshaller_briosa_SetCollectionNotesRequest,
+        __Marshaller_briosa_SetCollectionNotesResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetDecimalDigitsForDisplayRequest, global::Briosa.Client.Transport.SetDecimalDigitsForDisplayResult> __Method_SetDecimalDigitsForDisplay = new grpc::Method<global::Briosa.Client.Transport.SetDecimalDigitsForDisplayRequest, global::Briosa.Client.Transport.SetDecimalDigitsForDisplayResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetDecimalDigitsForDisplay",
+        __Marshaller_briosa_SetDecimalDigitsForDisplayRequest,
+        __Marshaller_briosa_SetDecimalDigitsForDisplayResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetFolderNotesRequest, global::Briosa.Client.Transport.SetFolderNotesResult> __Method_SetFolderNotes = new grpc::Method<global::Briosa.Client.Transport.SetFolderNotesRequest, global::Briosa.Client.Transport.SetFolderNotesResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetFolderNotes",
+        __Marshaller_briosa_SetFolderNotesRequest,
+        __Marshaller_briosa_SetFolderNotesResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetInteractionModeRequest, global::Briosa.Client.Transport.SetInteractionModeResult> __Method_SetInteractionMode = new grpc::Method<global::Briosa.Client.Transport.SetInteractionModeRequest, global::Briosa.Client.Transport.SetInteractionModeResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetInteractionMode",
+        __Marshaller_briosa_SetInteractionModeRequest,
+        __Marshaller_briosa_SetInteractionModeResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetLoggingStateRequest, global::Briosa.Client.Transport.SetLoggingStateResult> __Method_SetLoggingState = new grpc::Method<global::Briosa.Client.Transport.SetLoggingStateRequest, global::Briosa.Client.Transport.SetLoggingStateResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetLoggingState",
+        __Marshaller_briosa_SetLoggingStateRequest,
+        __Marshaller_briosa_SetLoggingStateResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetNotificationCancelOverrideRequest, global::Briosa.Client.Transport.SetNotificationCancelOverrideResult> __Method_SetNotificationCancelOverride = new grpc::Method<global::Briosa.Client.Transport.SetNotificationCancelOverrideRequest, global::Briosa.Client.Transport.SetNotificationCancelOverrideResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetNotificationCancelOverride",
+        __Marshaller_briosa_SetNotificationCancelOverrideRequest,
+        __Marshaller_briosa_SetNotificationCancelOverrideResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetObjectNotesRequest, global::Briosa.Client.Transport.SetObjectNotesResult> __Method_SetObjectNotes = new grpc::Method<global::Briosa.Client.Transport.SetObjectNotesRequest, global::Briosa.Client.Transport.SetObjectNotesResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetObjectNotes",
+        __Marshaller_briosa_SetObjectNotesRequest,
+        __Marshaller_briosa_SetObjectNotesResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetOpcDaTagValueDoubleRequest, global::Briosa.Client.Transport.SetOpcDaTagValueDoubleResult> __Method_SetOpcDaTagValueDouble = new grpc::Method<global::Briosa.Client.Transport.SetOpcDaTagValueDoubleRequest, global::Briosa.Client.Transport.SetOpcDaTagValueDoubleResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetOpcDaTagValueDouble",
+        __Marshaller_briosa_SetOpcDaTagValueDoubleRequest,
+        __Marshaller_briosa_SetOpcDaTagValueDoubleResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetOpcDaTagValueIntegerRequest, global::Briosa.Client.Transport.SetOpcDaTagValueIntegerResult> __Method_SetOpcDaTagValueInteger = new grpc::Method<global::Briosa.Client.Transport.SetOpcDaTagValueIntegerRequest, global::Briosa.Client.Transport.SetOpcDaTagValueIntegerResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetOpcDaTagValueInteger",
+        __Marshaller_briosa_SetOpcDaTagValueIntegerRequest,
+        __Marshaller_briosa_SetOpcDaTagValueIntegerResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetOpcDaTagValueStringRequest, global::Briosa.Client.Transport.SetOpcDaTagValueStringResult> __Method_SetOpcDaTagValueString = new grpc::Method<global::Briosa.Client.Transport.SetOpcDaTagValueStringRequest, global::Briosa.Client.Transport.SetOpcDaTagValueStringResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetOpcDaTagValueString",
+        __Marshaller_briosa_SetOpcDaTagValueStringRequest,
+        __Marshaller_briosa_SetOpcDaTagValueStringResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetPointNotesRequest, global::Briosa.Client.Transport.SetPointNotesResult> __Method_SetPointNotes = new grpc::Method<global::Briosa.Client.Transport.SetPointNotesRequest, global::Briosa.Client.Transport.SetPointNotesResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetPointNotes",
+        __Marshaller_briosa_SetPointNotesRequest,
+        __Marshaller_briosa_SetPointNotesResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetUserInterfaceProfileRequest, global::Briosa.Client.Transport.SetUserInterfaceProfileResult> __Method_SetUserInterfaceProfile = new grpc::Method<global::Briosa.Client.Transport.SetUserInterfaceProfileRequest, global::Briosa.Client.Transport.SetUserInterfaceProfileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetUserInterfaceProfile",
+        __Marshaller_briosa_SetUserInterfaceProfileRequest,
+        __Marshaller_briosa_SetUserInterfaceProfileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetViewIdleUpdateFrequencyRequest, global::Briosa.Client.Transport.SetViewIdleUpdateFrequencyResult> __Method_SetViewIdleUpdateFrequency = new grpc::Method<global::Briosa.Client.Transport.SetViewIdleUpdateFrequencyRequest, global::Briosa.Client.Transport.SetViewIdleUpdateFrequencyResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetViewIdleUpdateFrequency",
+        __Marshaller_briosa_SetViewIdleUpdateFrequencyRequest,
+        __Marshaller_briosa_SetViewIdleUpdateFrequencyResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetWildCardAsteriskModeRequest, global::Briosa.Client.Transport.SetWildCardAsteriskModeResult> __Method_SetWildCardAsteriskMode = new grpc::Method<global::Briosa.Client.Transport.SetWildCardAsteriskModeRequest, global::Briosa.Client.Transport.SetWildCardAsteriskModeResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetWildCardAsteriskMode",
+        __Marshaller_briosa_SetWildCardAsteriskModeRequest,
+        __Marshaller_briosa_SetWildCardAsteriskModeResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetWorkingFrameRequest, global::Briosa.Client.Transport.SetWorkingFrameResult> __Method_SetWorkingFrame = new grpc::Method<global::Briosa.Client.Transport.SetWorkingFrameRequest, global::Briosa.Client.Transport.SetWorkingFrameResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetWorkingFrame",
+        __Marshaller_briosa_SetWorkingFrameRequest,
+        __Marshaller_briosa_SetWorkingFrameResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.StatusDialogRequest, global::Briosa.Client.Transport.StatusDialogResult> __Method_StatusDialog = new grpc::Method<global::Briosa.Client.Transport.StatusDialogRequest, global::Briosa.Client.Transport.StatusDialogResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "StatusDialog",
+        __Marshaller_briosa_StatusDialogRequest,
+        __Marshaller_briosa_StatusDialogResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.TrimLogFileRequest, global::Briosa.Client.Transport.TrimLogFileResult> __Method_TrimLogFile = new grpc::Method<global::Briosa.Client.Transport.TrimLogFileRequest, global::Briosa.Client.Transport.TrimLogFileResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "TrimLogFile",
+        __Marshaller_briosa_TrimLogFileRequest,
+        __Marshaller_briosa_TrimLogFileResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.WriteToLogRequest, global::Briosa.Client.Transport.WriteToLogResult> __Method_WriteToLog = new grpc::Method<global::Briosa.Client.Transport.WriteToLogRequest, global::Briosa.Client.Transport.WriteToLogResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "WriteToLog",
+        __Marshaller_briosa_WriteToLogRequest,
+        __Marshaller_briosa_WriteToLogResult);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -103,101 +691,1025 @@ namespace Briosa.Client.Transport {
       {
       }
 
-      /// <summary>
-      /// Executes the "Get Active Units" MP command.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.CloseAllWatchWindowsResult CloseAllWatchWindows(global::Briosa.Client.Transport.CloseAllWatchWindowsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CloseAllWatchWindows(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.CloseAllWatchWindowsResult CloseAllWatchWindows(global::Briosa.Client.Transport.CloseAllWatchWindowsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_CloseAllWatchWindows, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.CloseAllWatchWindowsResult> CloseAllWatchWindowsAsync(global::Briosa.Client.Transport.CloseAllWatchWindowsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CloseAllWatchWindowsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.CloseAllWatchWindowsResult> CloseAllWatchWindowsAsync(global::Briosa.Client.Transport.CloseAllWatchWindowsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_CloseAllWatchWindows, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.DeleteFolderResult DeleteFolder(global::Briosa.Client.Transport.DeleteFolderRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteFolder(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.DeleteFolderResult DeleteFolder(global::Briosa.Client.Transport.DeleteFolderRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DeleteFolder, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.DeleteFolderResult> DeleteFolderAsync(global::Briosa.Client.Transport.DeleteFolderRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteFolderAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.DeleteFolderResult> DeleteFolderAsync(global::Briosa.Client.Transport.DeleteFolderRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DeleteFolder, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.DeleteItemsResult DeleteItems(global::Briosa.Client.Transport.DeleteItemsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteItems(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.DeleteItemsResult DeleteItems(global::Briosa.Client.Transport.DeleteItemsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DeleteItems, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.DeleteItemsResult> DeleteItemsAsync(global::Briosa.Client.Transport.DeleteItemsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteItemsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.DeleteItemsResult> DeleteItemsAsync(global::Briosa.Client.Transport.DeleteItemsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DeleteItems, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.DeleteObjectsResult DeleteObjects(global::Briosa.Client.Transport.DeleteObjectsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteObjects(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.DeleteObjectsResult DeleteObjects(global::Briosa.Client.Transport.DeleteObjectsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DeleteObjects, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.DeleteObjectsResult> DeleteObjectsAsync(global::Briosa.Client.Transport.DeleteObjectsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteObjectsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.DeleteObjectsResult> DeleteObjectsAsync(global::Briosa.Client.Transport.DeleteObjectsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DeleteObjects, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetActiveLanguageResult GetActiveLanguage(global::Briosa.Client.Transport.GetActiveLanguageRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetActiveLanguage(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetActiveLanguageResult GetActiveLanguage(global::Briosa.Client.Transport.GetActiveLanguageRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetActiveLanguage, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetActiveLanguageResult> GetActiveLanguageAsync(global::Briosa.Client.Transport.GetActiveLanguageRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetActiveLanguageAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetActiveLanguageResult> GetActiveLanguageAsync(global::Briosa.Client.Transport.GetActiveLanguageRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetActiveLanguage, null, options, request);
+      }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Briosa.Client.Transport.GetActiveUnitsResult GetActiveUnits(global::Briosa.Client.Transport.GetActiveUnitsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return GetActiveUnits(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      /// <summary>
-      /// Executes the "Get Active Units" MP command.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The response received from the server.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Briosa.Client.Transport.GetActiveUnitsResult GetActiveUnits(global::Briosa.Client.Transport.GetActiveUnitsRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_GetActiveUnits, null, options, request);
       }
-      /// <summary>
-      /// Executes the "Get Active Units" MP command.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The call object.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetActiveUnitsResult> GetActiveUnitsAsync(global::Briosa.Client.Transport.GetActiveUnitsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return GetActiveUnitsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      /// <summary>
-      /// Executes the "Get Active Units" MP command.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The call object.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetActiveUnitsResult> GetActiveUnitsAsync(global::Briosa.Client.Transport.GetActiveUnitsRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetActiveUnits, null, options, request);
       }
-      /// <summary>
-      /// Executes the "Get Working Frame Properties" MP command.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetAngularRepresentationResult GetAngularRepresentation(global::Briosa.Client.Transport.GetAngularRepresentationRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetAngularRepresentation(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetAngularRepresentationResult GetAngularRepresentation(global::Briosa.Client.Transport.GetAngularRepresentationRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetAngularRepresentation, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetAngularRepresentationResult> GetAngularRepresentationAsync(global::Briosa.Client.Transport.GetAngularRepresentationRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetAngularRepresentationAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetAngularRepresentationResult> GetAngularRepresentationAsync(global::Briosa.Client.Transport.GetAngularRepresentationRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetAngularRepresentation, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetCollectionNotesResult GetCollectionNotes(global::Briosa.Client.Transport.GetCollectionNotesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetCollectionNotes(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetCollectionNotesResult GetCollectionNotes(global::Briosa.Client.Transport.GetCollectionNotesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetCollectionNotes, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetCollectionNotesResult> GetCollectionNotesAsync(global::Briosa.Client.Transport.GetCollectionNotesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetCollectionNotesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetCollectionNotesResult> GetCollectionNotesAsync(global::Briosa.Client.Transport.GetCollectionNotesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetCollectionNotes, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetFolderCollectionsResult GetFolderCollections(global::Briosa.Client.Transport.GetFolderCollectionsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetFolderCollections(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetFolderCollectionsResult GetFolderCollections(global::Briosa.Client.Transport.GetFolderCollectionsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetFolderCollections, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetFolderCollectionsResult> GetFolderCollectionsAsync(global::Briosa.Client.Transport.GetFolderCollectionsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetFolderCollectionsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetFolderCollectionsResult> GetFolderCollectionsAsync(global::Briosa.Client.Transport.GetFolderCollectionsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetFolderCollections, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetFolderNotesResult GetFolderNotes(global::Briosa.Client.Transport.GetFolderNotesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetFolderNotes(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetFolderNotesResult GetFolderNotes(global::Briosa.Client.Transport.GetFolderNotesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetFolderNotes, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetFolderNotesResult> GetFolderNotesAsync(global::Briosa.Client.Transport.GetFolderNotesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetFolderNotesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetFolderNotesResult> GetFolderNotesAsync(global::Briosa.Client.Transport.GetFolderNotesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetFolderNotes, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetFoldersByWildcardResult GetFoldersByWildcard(global::Briosa.Client.Transport.GetFoldersByWildcardRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetFoldersByWildcard(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetFoldersByWildcardResult GetFoldersByWildcard(global::Briosa.Client.Transport.GetFoldersByWildcardRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetFoldersByWildcard, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetFoldersByWildcardResult> GetFoldersByWildcardAsync(global::Briosa.Client.Transport.GetFoldersByWildcardRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetFoldersByWildcardAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetFoldersByWildcardResult> GetFoldersByWildcardAsync(global::Briosa.Client.Transport.GetFoldersByWildcardRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetFoldersByWildcard, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetObjectNotesResult GetObjectNotes(global::Briosa.Client.Transport.GetObjectNotesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetObjectNotes(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetObjectNotesResult GetObjectNotes(global::Briosa.Client.Transport.GetObjectNotesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetObjectNotes, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetObjectNotesResult> GetObjectNotesAsync(global::Briosa.Client.Transport.GetObjectNotesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetObjectNotesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetObjectNotesResult> GetObjectNotesAsync(global::Briosa.Client.Transport.GetObjectNotesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetObjectNotes, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetOpcDaTagValueDoubleResult GetOpcDaTagValueDouble(global::Briosa.Client.Transport.GetOpcDaTagValueDoubleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetOpcDaTagValueDouble(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetOpcDaTagValueDoubleResult GetOpcDaTagValueDouble(global::Briosa.Client.Transport.GetOpcDaTagValueDoubleRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetOpcDaTagValueDouble, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetOpcDaTagValueDoubleResult> GetOpcDaTagValueDoubleAsync(global::Briosa.Client.Transport.GetOpcDaTagValueDoubleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetOpcDaTagValueDoubleAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetOpcDaTagValueDoubleResult> GetOpcDaTagValueDoubleAsync(global::Briosa.Client.Transport.GetOpcDaTagValueDoubleRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetOpcDaTagValueDouble, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetOpcDaTagValueIntegerResult GetOpcDaTagValueInteger(global::Briosa.Client.Transport.GetOpcDaTagValueIntegerRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetOpcDaTagValueInteger(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetOpcDaTagValueIntegerResult GetOpcDaTagValueInteger(global::Briosa.Client.Transport.GetOpcDaTagValueIntegerRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetOpcDaTagValueInteger, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetOpcDaTagValueIntegerResult> GetOpcDaTagValueIntegerAsync(global::Briosa.Client.Transport.GetOpcDaTagValueIntegerRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetOpcDaTagValueIntegerAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetOpcDaTagValueIntegerResult> GetOpcDaTagValueIntegerAsync(global::Briosa.Client.Transport.GetOpcDaTagValueIntegerRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetOpcDaTagValueInteger, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetOpcDaTagValueStringResult GetOpcDaTagValueString(global::Briosa.Client.Transport.GetOpcDaTagValueStringRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetOpcDaTagValueString(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetOpcDaTagValueStringResult GetOpcDaTagValueString(global::Briosa.Client.Transport.GetOpcDaTagValueStringRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetOpcDaTagValueString, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetOpcDaTagValueStringResult> GetOpcDaTagValueStringAsync(global::Briosa.Client.Transport.GetOpcDaTagValueStringRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetOpcDaTagValueStringAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetOpcDaTagValueStringResult> GetOpcDaTagValueStringAsync(global::Briosa.Client.Transport.GetOpcDaTagValueStringRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetOpcDaTagValueString, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetPointNotesResult GetPointNotes(global::Briosa.Client.Transport.GetPointNotesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetPointNotes(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetPointNotesResult GetPointNotes(global::Briosa.Client.Transport.GetPointNotesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetPointNotes, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetPointNotesResult> GetPointNotesAsync(global::Briosa.Client.Transport.GetPointNotesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetPointNotesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetPointNotesResult> GetPointNotesAsync(global::Briosa.Client.Transport.GetPointNotesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetPointNotes, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetScreenResolutionResult GetScreenResolution(global::Briosa.Client.Transport.GetScreenResolutionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetScreenResolution(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetScreenResolutionResult GetScreenResolution(global::Briosa.Client.Transport.GetScreenResolutionRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetScreenResolution, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetScreenResolutionResult> GetScreenResolutionAsync(global::Briosa.Client.Transport.GetScreenResolutionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetScreenResolutionAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetScreenResolutionResult> GetScreenResolutionAsync(global::Briosa.Client.Transport.GetScreenResolutionRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetScreenResolution, null, options, request);
+      }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Briosa.Client.Transport.GetWorkingFramePropertiesResult GetWorkingFrameProperties(global::Briosa.Client.Transport.GetWorkingFramePropertiesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return GetWorkingFrameProperties(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      /// <summary>
-      /// Executes the "Get Working Frame Properties" MP command.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The response received from the server.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Briosa.Client.Transport.GetWorkingFramePropertiesResult GetWorkingFrameProperties(global::Briosa.Client.Transport.GetWorkingFramePropertiesRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_GetWorkingFrameProperties, null, options, request);
       }
-      /// <summary>
-      /// Executes the "Get Working Frame Properties" MP command.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The call object.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetWorkingFramePropertiesResult> GetWorkingFramePropertiesAsync(global::Briosa.Client.Transport.GetWorkingFramePropertiesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return GetWorkingFramePropertiesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      /// <summary>
-      /// Executes the "Get Working Frame Properties" MP command.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The call object.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetWorkingFramePropertiesResult> GetWorkingFramePropertiesAsync(global::Briosa.Client.Transport.GetWorkingFramePropertiesRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetWorkingFrameProperties, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.IncrementPointNameResult IncrementPointName(global::Briosa.Client.Transport.IncrementPointNameRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return IncrementPointName(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.IncrementPointNameResult IncrementPointName(global::Briosa.Client.Transport.IncrementPointNameRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_IncrementPointName, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.IncrementPointNameResult> IncrementPointNameAsync(global::Briosa.Client.Transport.IncrementPointNameRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return IncrementPointNameAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.IncrementPointNameResult> IncrementPointNameAsync(global::Briosa.Client.Transport.IncrementPointNameRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_IncrementPointName, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.LockImportedItemsResult LockImportedItems(global::Briosa.Client.Transport.LockImportedItemsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return LockImportedItems(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.LockImportedItemsResult LockImportedItems(global::Briosa.Client.Transport.LockImportedItemsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_LockImportedItems, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.LockImportedItemsResult> LockImportedItemsAsync(global::Briosa.Client.Transport.LockImportedItemsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return LockImportedItemsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.LockImportedItemsResult> LockImportedItemsAsync(global::Briosa.Client.Transport.LockImportedItemsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_LockImportedItems, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.LockUnlockSelectedItemsResult LockUnlockSelectedItems(global::Briosa.Client.Transport.LockUnlockSelectedItemsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return LockUnlockSelectedItems(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.LockUnlockSelectedItemsResult LockUnlockSelectedItems(global::Briosa.Client.Transport.LockUnlockSelectedItemsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_LockUnlockSelectedItems, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.LockUnlockSelectedItemsResult> LockUnlockSelectedItemsAsync(global::Briosa.Client.Transport.LockUnlockSelectedItemsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return LockUnlockSelectedItemsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.LockUnlockSelectedItemsResult> LockUnlockSelectedItemsAsync(global::Briosa.Client.Transport.LockUnlockSelectedItemsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_LockUnlockSelectedItems, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.LockUnlockTrappingControlResult LockUnlockTrappingControl(global::Briosa.Client.Transport.LockUnlockTrappingControlRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return LockUnlockTrappingControl(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.LockUnlockTrappingControlResult LockUnlockTrappingControl(global::Briosa.Client.Transport.LockUnlockTrappingControlRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_LockUnlockTrappingControl, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.LockUnlockTrappingControlResult> LockUnlockTrappingControlAsync(global::Briosa.Client.Transport.LockUnlockTrappingControlRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return LockUnlockTrappingControlAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.LockUnlockTrappingControlResult> LockUnlockTrappingControlAsync(global::Briosa.Client.Transport.LockUnlockTrappingControlRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_LockUnlockTrappingControl, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MoveCollectionToFolderResult MoveCollectionToFolder(global::Briosa.Client.Transport.MoveCollectionToFolderRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MoveCollectionToFolder(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MoveCollectionToFolderResult MoveCollectionToFolder(global::Briosa.Client.Transport.MoveCollectionToFolderRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MoveCollectionToFolder, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MoveCollectionToFolderResult> MoveCollectionToFolderAsync(global::Briosa.Client.Transport.MoveCollectionToFolderRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MoveCollectionToFolderAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MoveCollectionToFolderResult> MoveCollectionToFolderAsync(global::Briosa.Client.Transport.MoveCollectionToFolderRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MoveCollectionToFolder, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MoveFolderToFolderResult MoveFolderToFolder(global::Briosa.Client.Transport.MoveFolderToFolderRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MoveFolderToFolder(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MoveFolderToFolderResult MoveFolderToFolder(global::Briosa.Client.Transport.MoveFolderToFolderRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MoveFolderToFolder, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MoveFolderToFolderResult> MoveFolderToFolderAsync(global::Briosa.Client.Transport.MoveFolderToFolderRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MoveFolderToFolderAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MoveFolderToFolderResult> MoveFolderToFolderAsync(global::Briosa.Client.Transport.MoveFolderToFolderRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MoveFolderToFolder, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MoveInstrumentsDragGraphicallyResult MoveInstrumentsDragGraphically(global::Briosa.Client.Transport.MoveInstrumentsDragGraphicallyRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MoveInstrumentsDragGraphically(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MoveInstrumentsDragGraphicallyResult MoveInstrumentsDragGraphically(global::Briosa.Client.Transport.MoveInstrumentsDragGraphicallyRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MoveInstrumentsDragGraphically, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MoveInstrumentsDragGraphicallyResult> MoveInstrumentsDragGraphicallyAsync(global::Briosa.Client.Transport.MoveInstrumentsDragGraphicallyRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MoveInstrumentsDragGraphicallyAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MoveInstrumentsDragGraphicallyResult> MoveInstrumentsDragGraphicallyAsync(global::Briosa.Client.Transport.MoveInstrumentsDragGraphicallyRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MoveInstrumentsDragGraphically, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MoveObjectsDragGraphicallyResult MoveObjectsDragGraphically(global::Briosa.Client.Transport.MoveObjectsDragGraphicallyRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MoveObjectsDragGraphically(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MoveObjectsDragGraphicallyResult MoveObjectsDragGraphically(global::Briosa.Client.Transport.MoveObjectsDragGraphicallyRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MoveObjectsDragGraphically, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MoveObjectsDragGraphicallyResult> MoveObjectsDragGraphicallyAsync(global::Briosa.Client.Transport.MoveObjectsDragGraphicallyRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MoveObjectsDragGraphicallyAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MoveObjectsDragGraphicallyResult> MoveObjectsDragGraphicallyAsync(global::Briosa.Client.Transport.MoveObjectsDragGraphicallyRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MoveObjectsDragGraphically, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ScaleObjectsResult ScaleObjects(global::Briosa.Client.Transport.ScaleObjectsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ScaleObjects(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ScaleObjectsResult ScaleObjects(global::Briosa.Client.Transport.ScaleObjectsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ScaleObjects, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ScaleObjectsResult> ScaleObjectsAsync(global::Briosa.Client.Transport.ScaleObjectsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ScaleObjectsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ScaleObjectsResult> ScaleObjectsAsync(global::Briosa.Client.Transport.ScaleObjectsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ScaleObjects, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetActiveCustomLanguageResult SetActiveCustomLanguage(global::Briosa.Client.Transport.SetActiveCustomLanguageRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetActiveCustomLanguage(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetActiveCustomLanguageResult SetActiveCustomLanguage(global::Briosa.Client.Transport.SetActiveCustomLanguageRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetActiveCustomLanguage, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetActiveCustomLanguageResult> SetActiveCustomLanguageAsync(global::Briosa.Client.Transport.SetActiveCustomLanguageRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetActiveCustomLanguageAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetActiveCustomLanguageResult> SetActiveCustomLanguageAsync(global::Briosa.Client.Transport.SetActiveCustomLanguageRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetActiveCustomLanguage, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetActiveUnitsResult SetActiveUnits(global::Briosa.Client.Transport.SetActiveUnitsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetActiveUnits(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetActiveUnitsResult SetActiveUnits(global::Briosa.Client.Transport.SetActiveUnitsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetActiveUnits, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetActiveUnitsResult> SetActiveUnitsAsync(global::Briosa.Client.Transport.SetActiveUnitsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetActiveUnitsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetActiveUnitsResult> SetActiveUnitsAsync(global::Briosa.Client.Transport.SetActiveUnitsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetActiveUnits, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetAngularRepresentationResult SetAngularRepresentation(global::Briosa.Client.Transport.SetAngularRepresentationRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetAngularRepresentation(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetAngularRepresentationResult SetAngularRepresentation(global::Briosa.Client.Transport.SetAngularRepresentationRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetAngularRepresentation, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetAngularRepresentationResult> SetAngularRepresentationAsync(global::Briosa.Client.Transport.SetAngularRepresentationRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetAngularRepresentationAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetAngularRepresentationResult> SetAngularRepresentationAsync(global::Briosa.Client.Transport.SetAngularRepresentationRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetAngularRepresentation, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetAutoEventCreationResult SetAutoEventCreation(global::Briosa.Client.Transport.SetAutoEventCreationRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetAutoEventCreation(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetAutoEventCreationResult SetAutoEventCreation(global::Briosa.Client.Transport.SetAutoEventCreationRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetAutoEventCreation, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetAutoEventCreationResult> SetAutoEventCreationAsync(global::Briosa.Client.Transport.SetAutoEventCreationRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetAutoEventCreationAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetAutoEventCreationResult> SetAutoEventCreationAsync(global::Briosa.Client.Transport.SetAutoEventCreationRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetAutoEventCreation, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetAutomaticBackupStateResult SetAutomaticBackupState(global::Briosa.Client.Transport.SetAutomaticBackupStateRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetAutomaticBackupState(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetAutomaticBackupStateResult SetAutomaticBackupState(global::Briosa.Client.Transport.SetAutomaticBackupStateRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetAutomaticBackupState, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetAutomaticBackupStateResult> SetAutomaticBackupStateAsync(global::Briosa.Client.Transport.SetAutomaticBackupStateRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetAutomaticBackupStateAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetAutomaticBackupStateResult> SetAutomaticBackupStateAsync(global::Briosa.Client.Transport.SetAutomaticBackupStateRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetAutomaticBackupState, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetAutomaticRelationshipConstructionStateResult SetAutomaticRelationshipConstructionState(global::Briosa.Client.Transport.SetAutomaticRelationshipConstructionStateRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetAutomaticRelationshipConstructionState(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetAutomaticRelationshipConstructionStateResult SetAutomaticRelationshipConstructionState(global::Briosa.Client.Transport.SetAutomaticRelationshipConstructionStateRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetAutomaticRelationshipConstructionState, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetAutomaticRelationshipConstructionStateResult> SetAutomaticRelationshipConstructionStateAsync(global::Briosa.Client.Transport.SetAutomaticRelationshipConstructionStateRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetAutomaticRelationshipConstructionStateAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetAutomaticRelationshipConstructionStateResult> SetAutomaticRelationshipConstructionStateAsync(global::Briosa.Client.Transport.SetAutomaticRelationshipConstructionStateRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetAutomaticRelationshipConstructionState, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetCollectionNotesResult SetCollectionNotes(global::Briosa.Client.Transport.SetCollectionNotesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetCollectionNotes(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetCollectionNotesResult SetCollectionNotes(global::Briosa.Client.Transport.SetCollectionNotesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetCollectionNotes, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetCollectionNotesResult> SetCollectionNotesAsync(global::Briosa.Client.Transport.SetCollectionNotesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetCollectionNotesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetCollectionNotesResult> SetCollectionNotesAsync(global::Briosa.Client.Transport.SetCollectionNotesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetCollectionNotes, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetDecimalDigitsForDisplayResult SetDecimalDigitsForDisplay(global::Briosa.Client.Transport.SetDecimalDigitsForDisplayRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetDecimalDigitsForDisplay(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetDecimalDigitsForDisplayResult SetDecimalDigitsForDisplay(global::Briosa.Client.Transport.SetDecimalDigitsForDisplayRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetDecimalDigitsForDisplay, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetDecimalDigitsForDisplayResult> SetDecimalDigitsForDisplayAsync(global::Briosa.Client.Transport.SetDecimalDigitsForDisplayRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetDecimalDigitsForDisplayAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetDecimalDigitsForDisplayResult> SetDecimalDigitsForDisplayAsync(global::Briosa.Client.Transport.SetDecimalDigitsForDisplayRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetDecimalDigitsForDisplay, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetFolderNotesResult SetFolderNotes(global::Briosa.Client.Transport.SetFolderNotesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetFolderNotes(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetFolderNotesResult SetFolderNotes(global::Briosa.Client.Transport.SetFolderNotesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetFolderNotes, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetFolderNotesResult> SetFolderNotesAsync(global::Briosa.Client.Transport.SetFolderNotesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetFolderNotesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetFolderNotesResult> SetFolderNotesAsync(global::Briosa.Client.Transport.SetFolderNotesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetFolderNotes, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetInteractionModeResult SetInteractionMode(global::Briosa.Client.Transport.SetInteractionModeRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetInteractionMode(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetInteractionModeResult SetInteractionMode(global::Briosa.Client.Transport.SetInteractionModeRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetInteractionMode, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetInteractionModeResult> SetInteractionModeAsync(global::Briosa.Client.Transport.SetInteractionModeRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetInteractionModeAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetInteractionModeResult> SetInteractionModeAsync(global::Briosa.Client.Transport.SetInteractionModeRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetInteractionMode, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetLoggingStateResult SetLoggingState(global::Briosa.Client.Transport.SetLoggingStateRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetLoggingState(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetLoggingStateResult SetLoggingState(global::Briosa.Client.Transport.SetLoggingStateRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetLoggingState, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetLoggingStateResult> SetLoggingStateAsync(global::Briosa.Client.Transport.SetLoggingStateRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetLoggingStateAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetLoggingStateResult> SetLoggingStateAsync(global::Briosa.Client.Transport.SetLoggingStateRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetLoggingState, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetNotificationCancelOverrideResult SetNotificationCancelOverride(global::Briosa.Client.Transport.SetNotificationCancelOverrideRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetNotificationCancelOverride(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetNotificationCancelOverrideResult SetNotificationCancelOverride(global::Briosa.Client.Transport.SetNotificationCancelOverrideRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetNotificationCancelOverride, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetNotificationCancelOverrideResult> SetNotificationCancelOverrideAsync(global::Briosa.Client.Transport.SetNotificationCancelOverrideRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetNotificationCancelOverrideAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetNotificationCancelOverrideResult> SetNotificationCancelOverrideAsync(global::Briosa.Client.Transport.SetNotificationCancelOverrideRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetNotificationCancelOverride, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetObjectNotesResult SetObjectNotes(global::Briosa.Client.Transport.SetObjectNotesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetObjectNotes(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetObjectNotesResult SetObjectNotes(global::Briosa.Client.Transport.SetObjectNotesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetObjectNotes, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetObjectNotesResult> SetObjectNotesAsync(global::Briosa.Client.Transport.SetObjectNotesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetObjectNotesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetObjectNotesResult> SetObjectNotesAsync(global::Briosa.Client.Transport.SetObjectNotesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetObjectNotes, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetOpcDaTagValueDoubleResult SetOpcDaTagValueDouble(global::Briosa.Client.Transport.SetOpcDaTagValueDoubleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetOpcDaTagValueDouble(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetOpcDaTagValueDoubleResult SetOpcDaTagValueDouble(global::Briosa.Client.Transport.SetOpcDaTagValueDoubleRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetOpcDaTagValueDouble, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetOpcDaTagValueDoubleResult> SetOpcDaTagValueDoubleAsync(global::Briosa.Client.Transport.SetOpcDaTagValueDoubleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetOpcDaTagValueDoubleAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetOpcDaTagValueDoubleResult> SetOpcDaTagValueDoubleAsync(global::Briosa.Client.Transport.SetOpcDaTagValueDoubleRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetOpcDaTagValueDouble, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetOpcDaTagValueIntegerResult SetOpcDaTagValueInteger(global::Briosa.Client.Transport.SetOpcDaTagValueIntegerRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetOpcDaTagValueInteger(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetOpcDaTagValueIntegerResult SetOpcDaTagValueInteger(global::Briosa.Client.Transport.SetOpcDaTagValueIntegerRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetOpcDaTagValueInteger, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetOpcDaTagValueIntegerResult> SetOpcDaTagValueIntegerAsync(global::Briosa.Client.Transport.SetOpcDaTagValueIntegerRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetOpcDaTagValueIntegerAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetOpcDaTagValueIntegerResult> SetOpcDaTagValueIntegerAsync(global::Briosa.Client.Transport.SetOpcDaTagValueIntegerRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetOpcDaTagValueInteger, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetOpcDaTagValueStringResult SetOpcDaTagValueString(global::Briosa.Client.Transport.SetOpcDaTagValueStringRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetOpcDaTagValueString(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetOpcDaTagValueStringResult SetOpcDaTagValueString(global::Briosa.Client.Transport.SetOpcDaTagValueStringRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetOpcDaTagValueString, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetOpcDaTagValueStringResult> SetOpcDaTagValueStringAsync(global::Briosa.Client.Transport.SetOpcDaTagValueStringRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetOpcDaTagValueStringAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetOpcDaTagValueStringResult> SetOpcDaTagValueStringAsync(global::Briosa.Client.Transport.SetOpcDaTagValueStringRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetOpcDaTagValueString, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetPointNotesResult SetPointNotes(global::Briosa.Client.Transport.SetPointNotesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetPointNotes(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetPointNotesResult SetPointNotes(global::Briosa.Client.Transport.SetPointNotesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetPointNotes, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetPointNotesResult> SetPointNotesAsync(global::Briosa.Client.Transport.SetPointNotesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetPointNotesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetPointNotesResult> SetPointNotesAsync(global::Briosa.Client.Transport.SetPointNotesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetPointNotes, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetUserInterfaceProfileResult SetUserInterfaceProfile(global::Briosa.Client.Transport.SetUserInterfaceProfileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetUserInterfaceProfile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetUserInterfaceProfileResult SetUserInterfaceProfile(global::Briosa.Client.Transport.SetUserInterfaceProfileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetUserInterfaceProfile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetUserInterfaceProfileResult> SetUserInterfaceProfileAsync(global::Briosa.Client.Transport.SetUserInterfaceProfileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetUserInterfaceProfileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetUserInterfaceProfileResult> SetUserInterfaceProfileAsync(global::Briosa.Client.Transport.SetUserInterfaceProfileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetUserInterfaceProfile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetViewIdleUpdateFrequencyResult SetViewIdleUpdateFrequency(global::Briosa.Client.Transport.SetViewIdleUpdateFrequencyRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetViewIdleUpdateFrequency(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetViewIdleUpdateFrequencyResult SetViewIdleUpdateFrequency(global::Briosa.Client.Transport.SetViewIdleUpdateFrequencyRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetViewIdleUpdateFrequency, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetViewIdleUpdateFrequencyResult> SetViewIdleUpdateFrequencyAsync(global::Briosa.Client.Transport.SetViewIdleUpdateFrequencyRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetViewIdleUpdateFrequencyAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetViewIdleUpdateFrequencyResult> SetViewIdleUpdateFrequencyAsync(global::Briosa.Client.Transport.SetViewIdleUpdateFrequencyRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetViewIdleUpdateFrequency, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetWildCardAsteriskModeResult SetWildCardAsteriskMode(global::Briosa.Client.Transport.SetWildCardAsteriskModeRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetWildCardAsteriskMode(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetWildCardAsteriskModeResult SetWildCardAsteriskMode(global::Briosa.Client.Transport.SetWildCardAsteriskModeRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetWildCardAsteriskMode, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetWildCardAsteriskModeResult> SetWildCardAsteriskModeAsync(global::Briosa.Client.Transport.SetWildCardAsteriskModeRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetWildCardAsteriskModeAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetWildCardAsteriskModeResult> SetWildCardAsteriskModeAsync(global::Briosa.Client.Transport.SetWildCardAsteriskModeRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetWildCardAsteriskMode, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetWorkingFrameResult SetWorkingFrame(global::Briosa.Client.Transport.SetWorkingFrameRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetWorkingFrame(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetWorkingFrameResult SetWorkingFrame(global::Briosa.Client.Transport.SetWorkingFrameRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetWorkingFrame, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetWorkingFrameResult> SetWorkingFrameAsync(global::Briosa.Client.Transport.SetWorkingFrameRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetWorkingFrameAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetWorkingFrameResult> SetWorkingFrameAsync(global::Briosa.Client.Transport.SetWorkingFrameRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetWorkingFrame, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.StatusDialogResult StatusDialog(global::Briosa.Client.Transport.StatusDialogRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return StatusDialog(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.StatusDialogResult StatusDialog(global::Briosa.Client.Transport.StatusDialogRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_StatusDialog, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.StatusDialogResult> StatusDialogAsync(global::Briosa.Client.Transport.StatusDialogRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return StatusDialogAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.StatusDialogResult> StatusDialogAsync(global::Briosa.Client.Transport.StatusDialogRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_StatusDialog, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.TrimLogFileResult TrimLogFile(global::Briosa.Client.Transport.TrimLogFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return TrimLogFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.TrimLogFileResult TrimLogFile(global::Briosa.Client.Transport.TrimLogFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_TrimLogFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.TrimLogFileResult> TrimLogFileAsync(global::Briosa.Client.Transport.TrimLogFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return TrimLogFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.TrimLogFileResult> TrimLogFileAsync(global::Briosa.Client.Transport.TrimLogFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_TrimLogFile, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.WriteToLogResult WriteToLog(global::Briosa.Client.Transport.WriteToLogRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return WriteToLog(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.WriteToLogResult WriteToLog(global::Briosa.Client.Transport.WriteToLogRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_WriteToLog, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.WriteToLogResult> WriteToLogAsync(global::Briosa.Client.Transport.WriteToLogRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return WriteToLogAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.WriteToLogResult> WriteToLogAsync(global::Briosa.Client.Transport.WriteToLogRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_WriteToLog, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
