@@ -265,6 +265,222 @@ namespace Briosa.Client.Transport {
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetRelationshipWeightsNormalizedRequest> __Marshaller_briosa_SetRelationshipWeightsNormalizedRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetRelationshipWeightsNormalizedRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetRelationshipWeightsNormalizedResult> __Marshaller_briosa_SetRelationshipWeightsNormalizedResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetRelationshipWeightsNormalizedResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetRelationshipAssociatedDataRequest> __Marshaller_briosa_SetRelationshipAssociatedDataRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetRelationshipAssociatedDataRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetRelationshipAssociatedDataResult> __Marshaller_briosa_SetRelationshipAssociatedDataResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetRelationshipAssociatedDataResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeVectorGroupToVectorGroupRelationshipRequest> __Marshaller_briosa_MakeVectorGroupToVectorGroupRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeVectorGroupToVectorGroupRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeVectorGroupToVectorGroupRelationshipResult> __Marshaller_briosa_MakeVectorGroupToVectorGroupRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeVectorGroupToVectorGroupRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.FilterGeometryRelationshipOutlierCloudPointsRequest> __Marshaller_briosa_FilterGeometryRelationshipOutlierCloudPointsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.FilterGeometryRelationshipOutlierCloudPointsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.FilterGeometryRelationshipOutlierCloudPointsResult> __Marshaller_briosa_FilterGeometryRelationshipOutlierCloudPointsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.FilterGeometryRelationshipOutlierCloudPointsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupCylindricalZoneRequest> __Marshaller_briosa_SetVectorGroupToVectorGroupCylindricalZoneRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetVectorGroupToVectorGroupCylindricalZoneRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupCylindricalZoneResult> __Marshaller_briosa_SetVectorGroupToVectorGroupCylindricalZoneResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetVectorGroupToVectorGroupCylindricalZoneResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.DoRelationshipFitRequest> __Marshaller_briosa_DoRelationshipFitRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.DoRelationshipFitRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.DoRelationshipFitResult> __Marshaller_briosa_DoRelationshipFitResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.DoRelationshipFitResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetGeomRelationshipCriteriaNameListRequest> __Marshaller_briosa_GetGeomRelationshipCriteriaNameListRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetGeomRelationshipCriteriaNameListRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetGeomRelationshipCriteriaNameListResult> __Marshaller_briosa_GetGeomRelationshipCriteriaNameListResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetGeomRelationshipCriteriaNameListResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetGroupToNominalGroupViewZoomingRequest> __Marshaller_briosa_SetGroupToNominalGroupViewZoomingRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetGroupToNominalGroupViewZoomingRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetGroupToNominalGroupViewZoomingResult> __Marshaller_briosa_SetGroupToNominalGroupViewZoomingResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetGroupToNominalGroupViewZoomingResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitWeightsRequest> __Marshaller_briosa_SetVectorGroupToVectorGroupFitWeightsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitWeightsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitWeightsResult> __Marshaller_briosa_SetVectorGroupToVectorGroupFitWeightsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitWeightsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeDynamicEllipseRelationshipRequest> __Marshaller_briosa_MakeDynamicEllipseRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeDynamicEllipseRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeDynamicEllipseRelationshipResult> __Marshaller_briosa_MakeDynamicEllipseRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeDynamicEllipseRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetObjectToObjectDirectionRelationshipTolerancesRequest> __Marshaller_briosa_SetObjectToObjectDirectionRelationshipTolerancesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetObjectToObjectDirectionRelationshipTolerancesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetObjectToObjectDirectionRelationshipTolerancesResult> __Marshaller_briosa_SetObjectToObjectDirectionRelationshipTolerancesResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetObjectToObjectDirectionRelationshipTolerancesResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitGradientFactorRequest> __Marshaller_briosa_SetVectorGroupToVectorGroupFitGradientFactorRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitGradientFactorRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitGradientFactorResult> __Marshaller_briosa_SetVectorGroupToVectorGroupFitGradientFactorResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitGradientFactorResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.StartStopRelationshipTrappingRequest> __Marshaller_briosa_StartStopRelationshipTrappingRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.StartStopRelationshipTrappingRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.StartStopRelationshipTrappingResult> __Marshaller_briosa_StartStopRelationshipTrappingResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.StartStopRelationshipTrappingResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeDynamicCircleRelationshipRequest> __Marshaller_briosa_MakeDynamicCircleRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeDynamicCircleRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeDynamicCircleRelationshipResult> __Marshaller_briosa_MakeDynamicCircleRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeDynamicCircleRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetRelationshipAssociatedDataRequest> __Marshaller_briosa_GetRelationshipAssociatedDataRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetRelationshipAssociatedDataRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetRelationshipAssociatedDataResult> __Marshaller_briosa_GetRelationshipAssociatedDataResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetRelationshipAssociatedDataResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeDynamicPlaneRelationshipRequest> __Marshaller_briosa_MakeDynamicPlaneRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeDynamicPlaneRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeDynamicPlaneRelationshipResult> __Marshaller_briosa_MakeDynamicPlaneRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeDynamicPlaneRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakePointToPointRelationshipRequest> __Marshaller_briosa_MakePointToPointRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakePointToPointRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakePointToPointRelationshipResult> __Marshaller_briosa_MakePointToPointRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakePointToPointRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesRequest> __Marshaller_briosa_AutoFilterPointsGroupsCloudsToSurfaceFacesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesResult> __Marshaller_briosa_AutoFilterPointsGroupsCloudsToSurfaceFacesResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeGeometryFitAndCompareToNominalRelationshipRequest> __Marshaller_briosa_MakeGeometryFitAndCompareToNominalRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeGeometryFitAndCompareToNominalRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeGeometryFitAndCompareToNominalRelationshipResult> __Marshaller_briosa_MakeGeometryFitAndCompareToNominalRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeGeometryFitAndCompareToNominalRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.CreatePointsToObjectsMapRequest> __Marshaller_briosa_CreatePointsToObjectsMapRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.CreatePointsToObjectsMapRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.CreatePointsToObjectsMapResult> __Marshaller_briosa_CreatePointsToObjectsMapResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.CreatePointsToObjectsMapResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeCloudToSwatchRelationshipRequest> __Marshaller_briosa_MakeCloudToSwatchRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeCloudToSwatchRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeCloudToSwatchRelationshipResult> __Marshaller_briosa_MakeCloudToSwatchRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeCloudToSwatchRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeGeometryCompareOnlyRelationshipRequest> __Marshaller_briosa_MakeGeometryCompareOnlyRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeGeometryCompareOnlyRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeGeometryCompareOnlyRelationshipResult> __Marshaller_briosa_MakeGeometryCompareOnlyRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeGeometryCompareOnlyRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeDynamicLineRelationshipRequest> __Marshaller_briosa_MakeDynamicLineRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeDynamicLineRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeDynamicLineRelationshipResult> __Marshaller_briosa_MakeDynamicLineRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeDynamicLineRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry2DRequest> __Marshaller_briosa_AutoFilterCloudsToNominalGeometry2DRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry2DRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry2DResult> __Marshaller_briosa_AutoFilterCloudsToNominalGeometry2DResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry2DResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeDynamicPointRelationshipRequest> __Marshaller_briosa_MakeDynamicPointRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeDynamicPointRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeDynamicPointRelationshipResult> __Marshaller_briosa_MakeDynamicPointRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeDynamicPointRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeObjectToObjectDirectionRelationshipRequest> __Marshaller_briosa_MakeObjectToObjectDirectionRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeObjectToObjectDirectionRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeObjectToObjectDirectionRelationshipResult> __Marshaller_briosa_MakeObjectToObjectDirectionRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeObjectToObjectDirectionRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetPointsToPointsRelationshipAssociatedDataRequest> __Marshaller_briosa_GetPointsToPointsRelationshipAssociatedDataRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetPointsToPointsRelationshipAssociatedDataRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetPointsToPointsRelationshipAssociatedDataResult> __Marshaller_briosa_GetPointsToPointsRelationshipAssociatedDataResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetPointsToPointsRelationshipAssociatedDataResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetPointsToPointsRelationshipAssociatedDataRequest> __Marshaller_briosa_SetPointsToPointsRelationshipAssociatedDataRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetPointsToPointsRelationshipAssociatedDataRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetPointsToPointsRelationshipAssociatedDataResult> __Marshaller_briosa_SetPointsToPointsRelationshipAssociatedDataResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetPointsToPointsRelationshipAssociatedDataResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetPointToPointRelationshipStatisticsRequest> __Marshaller_briosa_GetPointToPointRelationshipStatisticsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetPointToPointRelationshipStatisticsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetPointToPointRelationshipStatisticsResult> __Marshaller_briosa_GetPointToPointRelationshipStatisticsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetPointToPointRelationshipStatisticsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeFrameToFrameRelationshipRequest> __Marshaller_briosa_MakeFrameToFrameRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeFrameToFrameRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeFrameToFrameRelationshipResult> __Marshaller_briosa_MakeFrameToFrameRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeFrameToFrameRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupRelativePolarityRequest> __Marshaller_briosa_SetVectorGroupToVectorGroupRelativePolarityRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetVectorGroupToVectorGroupRelativePolarityRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupRelativePolarityResult> __Marshaller_briosa_SetVectorGroupToVectorGroupRelativePolarityResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetVectorGroupToVectorGroupRelativePolarityResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakePointsToObjectsRelationshipRequest> __Marshaller_briosa_MakePointsToObjectsRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakePointsToObjectsRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakePointsToObjectsRelationshipResult> __Marshaller_briosa_MakePointsToObjectsRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakePointsToObjectsRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeGroupToGroupRelationshipRequest> __Marshaller_briosa_MakeGroupToGroupRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeGroupToGroupRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeGroupToGroupRelationshipResult> __Marshaller_briosa_MakeGroupToGroupRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeGroupToGroupRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.DeleteRelationshipRequest> __Marshaller_briosa_DeleteRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.DeleteRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.DeleteRelationshipResult> __Marshaller_briosa_DeleteRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.DeleteRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeAveragePointRelationshipRequest> __Marshaller_briosa_MakeAveragePointRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeAveragePointRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeAveragePointRelationshipResult> __Marshaller_briosa_MakeAveragePointRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeAveragePointRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetOptimizationPerturbationParametersRequest> __Marshaller_briosa_SetOptimizationPerturbationParametersRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetOptimizationPerturbationParametersRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetOptimizationPerturbationParametersResult> __Marshaller_briosa_SetOptimizationPerturbationParametersResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetOptimizationPerturbationParametersResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetObjectsFromPointsToObjectsMapPointListRequest> __Marshaller_briosa_GetObjectsFromPointsToObjectsMapPointListRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetObjectsFromPointsToObjectsMapPointListRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetObjectsFromPointsToObjectsMapPointListResult> __Marshaller_briosa_GetObjectsFromPointsToObjectsMapPointListResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetObjectsFromPointsToObjectsMapPointListResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetOptimizationSearchOptionsRequest> __Marshaller_briosa_SetOptimizationSearchOptionsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetOptimizationSearchOptionsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetOptimizationSearchOptionsResult> __Marshaller_briosa_SetOptimizationSearchOptionsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetOptimizationSearchOptionsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetRelationshipSigmoidalGapFitConstraintsRequest> __Marshaller_briosa_GetRelationshipSigmoidalGapFitConstraintsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetRelationshipSigmoidalGapFitConstraintsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetRelationshipSigmoidalGapFitConstraintsResult> __Marshaller_briosa_GetRelationshipSigmoidalGapFitConstraintsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetRelationshipSigmoidalGapFitConstraintsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.RelationshipWatchWindowTemplateRequest> __Marshaller_briosa_RelationshipWatchWindowTemplateRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.RelationshipWatchWindowTemplateRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.RelationshipWatchWindowTemplateResult> __Marshaller_briosa_RelationshipWatchWindowTemplateResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.RelationshipWatchWindowTemplateResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExtractGeometryFromPointCloudsRequest> __Marshaller_briosa_ExtractGeometryFromPointCloudsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExtractGeometryFromPointCloudsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ExtractGeometryFromPointCloudsResult> __Marshaller_briosa_ExtractGeometryFromPointCloudsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ExtractGeometryFromPointCloudsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeGroupsToObjectsRelationshipRequest> __Marshaller_briosa_MakeGroupsToObjectsRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeGroupsToObjectsRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeGroupsToObjectsRelationshipResult> __Marshaller_briosa_MakeGroupsToObjectsRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeGroupsToObjectsRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ComputeGeometryRelationshipUncertaintiesRequest> __Marshaller_briosa_ComputeGeometryRelationshipUncertaintiesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ComputeGeometryRelationshipUncertaintiesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ComputeGeometryRelationshipUncertaintiesResult> __Marshaller_briosa_ComputeGeometryRelationshipUncertaintiesResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ComputeGeometryRelationshipUncertaintiesResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetPointsToObjectsRelationshipStatisticsRequest> __Marshaller_briosa_GetPointsToObjectsRelationshipStatisticsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetPointsToObjectsRelationshipStatisticsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetPointsToObjectsRelationshipStatisticsResult> __Marshaller_briosa_GetPointsToObjectsRelationshipStatisticsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetPointsToObjectsRelationshipStatisticsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetRelationshipStatusRequest> __Marshaller_briosa_GetRelationshipStatusRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetRelationshipStatusRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetRelationshipStatusResult> __Marshaller_briosa_GetRelationshipStatusResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetRelationshipStatusResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.AutoFilterPointsToNominalGeometry3DRequest> __Marshaller_briosa_AutoFilterPointsToNominalGeometry3DRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.AutoFilterPointsToNominalGeometry3DRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.AutoFilterPointsToNominalGeometry3DResult> __Marshaller_briosa_AutoFilterPointsToNominalGeometry3DResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.AutoFilterPointsToNominalGeometry3DResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeGeometryFitOnlyRelationshipRequest> __Marshaller_briosa_MakeGeometryFitOnlyRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeGeometryFitOnlyRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeGeometryFitOnlyRelationshipResult> __Marshaller_briosa_MakeGeometryFitOnlyRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeGeometryFitOnlyRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakePointCloudsToObjectsRelationshipRequest> __Marshaller_briosa_MakePointCloudsToObjectsRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakePointCloudsToObjectsRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakePointCloudsToObjectsRelationshipResult> __Marshaller_briosa_MakePointCloudsToObjectsRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakePointCloudsToObjectsRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.EditGeometryRelationshipPointListRequest> __Marshaller_briosa_EditGeometryRelationshipPointListRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.EditGeometryRelationshipPointListRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.EditGeometryRelationshipPointListResult> __Marshaller_briosa_EditGeometryRelationshipPointListResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.EditGeometryRelationshipPointListResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetGeneralRelationshipStatisticsRequest> __Marshaller_briosa_GetGeneralRelationshipStatisticsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetGeneralRelationshipStatisticsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetGeneralRelationshipStatisticsResult> __Marshaller_briosa_GetGeneralRelationshipStatisticsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetGeneralRelationshipStatisticsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeGroupToNominalGroupRelationshipRequest> __Marshaller_briosa_MakeGroupToNominalGroupRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeGroupToNominalGroupRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeGroupToNominalGroupRelationshipResult> __Marshaller_briosa_MakeGroupToNominalGroupRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeGroupToNominalGroupRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GenerateGeometryRelationshipSummaryRequest> __Marshaller_briosa_GenerateGeometryRelationshipSummaryRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GenerateGeometryRelationshipSummaryRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.GenerateGeometryRelationshipSummaryResult> __Marshaller_briosa_GenerateGeometryRelationshipSummaryResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GenerateGeometryRelationshipSummaryResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MoveCollectionsByMinimizingRelationshipsRequest> __Marshaller_briosa_MoveCollectionsByMinimizingRelationshipsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MoveCollectionsByMinimizingRelationshipsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MoveCollectionsByMinimizingRelationshipsResult> __Marshaller_briosa_MoveCollectionsByMinimizingRelationshipsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MoveCollectionsByMinimizingRelationshipsResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakePointsToPointsRelationshipRequest> __Marshaller_briosa_MakePointsToPointsRelationshipRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakePointsToPointsRelationshipRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakePointsToPointsRelationshipResult> __Marshaller_briosa_MakePointsToPointsRelationshipResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakePointsToPointsRelationshipResult.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry3DRequest> __Marshaller_briosa_AutoFilterCloudsToNominalGeometry3DRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry3DRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry3DResult> __Marshaller_briosa_AutoFilterCloudsToNominalGeometry3DResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry3DResult.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Briosa.Client.Transport.EnableDisableRelationshipsForOptimizationRequest, global::Briosa.Client.Transport.EnableDisableRelationshipsForOptimizationResult> __Method_EnableDisableRelationshipsForOptimization = new grpc::Method<global::Briosa.Client.Transport.EnableDisableRelationshipsForOptimizationRequest, global::Briosa.Client.Transport.EnableDisableRelationshipsForOptimizationResult>(
@@ -705,6 +921,438 @@ namespace Briosa.Client.Transport {
         "SetRelationshipWeightsNormalized",
         __Marshaller_briosa_SetRelationshipWeightsNormalizedRequest,
         __Marshaller_briosa_SetRelationshipWeightsNormalizedResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetRelationshipAssociatedDataRequest, global::Briosa.Client.Transport.SetRelationshipAssociatedDataResult> __Method_SetRelationshipAssociatedData = new grpc::Method<global::Briosa.Client.Transport.SetRelationshipAssociatedDataRequest, global::Briosa.Client.Transport.SetRelationshipAssociatedDataResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetRelationshipAssociatedData",
+        __Marshaller_briosa_SetRelationshipAssociatedDataRequest,
+        __Marshaller_briosa_SetRelationshipAssociatedDataResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakeVectorGroupToVectorGroupRelationshipRequest, global::Briosa.Client.Transport.MakeVectorGroupToVectorGroupRelationshipResult> __Method_MakeVectorGroupToVectorGroupRelationship = new grpc::Method<global::Briosa.Client.Transport.MakeVectorGroupToVectorGroupRelationshipRequest, global::Briosa.Client.Transport.MakeVectorGroupToVectorGroupRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakeVectorGroupToVectorGroupRelationship",
+        __Marshaller_briosa_MakeVectorGroupToVectorGroupRelationshipRequest,
+        __Marshaller_briosa_MakeVectorGroupToVectorGroupRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.FilterGeometryRelationshipOutlierCloudPointsRequest, global::Briosa.Client.Transport.FilterGeometryRelationshipOutlierCloudPointsResult> __Method_FilterGeometryRelationshipOutlierCloudPoints = new grpc::Method<global::Briosa.Client.Transport.FilterGeometryRelationshipOutlierCloudPointsRequest, global::Briosa.Client.Transport.FilterGeometryRelationshipOutlierCloudPointsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "FilterGeometryRelationshipOutlierCloudPoints",
+        __Marshaller_briosa_FilterGeometryRelationshipOutlierCloudPointsRequest,
+        __Marshaller_briosa_FilterGeometryRelationshipOutlierCloudPointsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupCylindricalZoneRequest, global::Briosa.Client.Transport.SetVectorGroupToVectorGroupCylindricalZoneResult> __Method_SetVectorGroupToVectorGroupCylindricalZone = new grpc::Method<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupCylindricalZoneRequest, global::Briosa.Client.Transport.SetVectorGroupToVectorGroupCylindricalZoneResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetVectorGroupToVectorGroupCylindricalZone",
+        __Marshaller_briosa_SetVectorGroupToVectorGroupCylindricalZoneRequest,
+        __Marshaller_briosa_SetVectorGroupToVectorGroupCylindricalZoneResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.DoRelationshipFitRequest, global::Briosa.Client.Transport.DoRelationshipFitResult> __Method_DoRelationshipFit = new grpc::Method<global::Briosa.Client.Transport.DoRelationshipFitRequest, global::Briosa.Client.Transport.DoRelationshipFitResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DoRelationshipFit",
+        __Marshaller_briosa_DoRelationshipFitRequest,
+        __Marshaller_briosa_DoRelationshipFitResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetGeomRelationshipCriteriaNameListRequest, global::Briosa.Client.Transport.GetGeomRelationshipCriteriaNameListResult> __Method_GetGeomRelationshipCriteriaNameList = new grpc::Method<global::Briosa.Client.Transport.GetGeomRelationshipCriteriaNameListRequest, global::Briosa.Client.Transport.GetGeomRelationshipCriteriaNameListResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetGeomRelationshipCriteriaNameList",
+        __Marshaller_briosa_GetGeomRelationshipCriteriaNameListRequest,
+        __Marshaller_briosa_GetGeomRelationshipCriteriaNameListResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetGroupToNominalGroupViewZoomingRequest, global::Briosa.Client.Transport.SetGroupToNominalGroupViewZoomingResult> __Method_SetGroupToNominalGroupViewZooming = new grpc::Method<global::Briosa.Client.Transport.SetGroupToNominalGroupViewZoomingRequest, global::Briosa.Client.Transport.SetGroupToNominalGroupViewZoomingResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetGroupToNominalGroupViewZooming",
+        __Marshaller_briosa_SetGroupToNominalGroupViewZoomingRequest,
+        __Marshaller_briosa_SetGroupToNominalGroupViewZoomingResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitWeightsRequest, global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitWeightsResult> __Method_SetVectorGroupToVectorGroupFitWeights = new grpc::Method<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitWeightsRequest, global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitWeightsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetVectorGroupToVectorGroupFitWeights",
+        __Marshaller_briosa_SetVectorGroupToVectorGroupFitWeightsRequest,
+        __Marshaller_briosa_SetVectorGroupToVectorGroupFitWeightsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakeDynamicEllipseRelationshipRequest, global::Briosa.Client.Transport.MakeDynamicEllipseRelationshipResult> __Method_MakeDynamicEllipseRelationship = new grpc::Method<global::Briosa.Client.Transport.MakeDynamicEllipseRelationshipRequest, global::Briosa.Client.Transport.MakeDynamicEllipseRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakeDynamicEllipseRelationship",
+        __Marshaller_briosa_MakeDynamicEllipseRelationshipRequest,
+        __Marshaller_briosa_MakeDynamicEllipseRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetObjectToObjectDirectionRelationshipTolerancesRequest, global::Briosa.Client.Transport.SetObjectToObjectDirectionRelationshipTolerancesResult> __Method_SetObjectToObjectDirectionRelationshipTolerances = new grpc::Method<global::Briosa.Client.Transport.SetObjectToObjectDirectionRelationshipTolerancesRequest, global::Briosa.Client.Transport.SetObjectToObjectDirectionRelationshipTolerancesResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetObjectToObjectDirectionRelationshipTolerances",
+        __Marshaller_briosa_SetObjectToObjectDirectionRelationshipTolerancesRequest,
+        __Marshaller_briosa_SetObjectToObjectDirectionRelationshipTolerancesResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitGradientFactorRequest, global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitGradientFactorResult> __Method_SetVectorGroupToVectorGroupFitGradientFactor = new grpc::Method<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitGradientFactorRequest, global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitGradientFactorResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetVectorGroupToVectorGroupFitGradientFactor",
+        __Marshaller_briosa_SetVectorGroupToVectorGroupFitGradientFactorRequest,
+        __Marshaller_briosa_SetVectorGroupToVectorGroupFitGradientFactorResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.StartStopRelationshipTrappingRequest, global::Briosa.Client.Transport.StartStopRelationshipTrappingResult> __Method_StartStopRelationshipTrapping = new grpc::Method<global::Briosa.Client.Transport.StartStopRelationshipTrappingRequest, global::Briosa.Client.Transport.StartStopRelationshipTrappingResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "StartStopRelationshipTrapping",
+        __Marshaller_briosa_StartStopRelationshipTrappingRequest,
+        __Marshaller_briosa_StartStopRelationshipTrappingResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakeDynamicCircleRelationshipRequest, global::Briosa.Client.Transport.MakeDynamicCircleRelationshipResult> __Method_MakeDynamicCircleRelationship = new grpc::Method<global::Briosa.Client.Transport.MakeDynamicCircleRelationshipRequest, global::Briosa.Client.Transport.MakeDynamicCircleRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakeDynamicCircleRelationship",
+        __Marshaller_briosa_MakeDynamicCircleRelationshipRequest,
+        __Marshaller_briosa_MakeDynamicCircleRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetRelationshipAssociatedDataRequest, global::Briosa.Client.Transport.GetRelationshipAssociatedDataResult> __Method_GetRelationshipAssociatedData = new grpc::Method<global::Briosa.Client.Transport.GetRelationshipAssociatedDataRequest, global::Briosa.Client.Transport.GetRelationshipAssociatedDataResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetRelationshipAssociatedData",
+        __Marshaller_briosa_GetRelationshipAssociatedDataRequest,
+        __Marshaller_briosa_GetRelationshipAssociatedDataResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakeDynamicPlaneRelationshipRequest, global::Briosa.Client.Transport.MakeDynamicPlaneRelationshipResult> __Method_MakeDynamicPlaneRelationship = new grpc::Method<global::Briosa.Client.Transport.MakeDynamicPlaneRelationshipRequest, global::Briosa.Client.Transport.MakeDynamicPlaneRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakeDynamicPlaneRelationship",
+        __Marshaller_briosa_MakeDynamicPlaneRelationshipRequest,
+        __Marshaller_briosa_MakeDynamicPlaneRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakePointToPointRelationshipRequest, global::Briosa.Client.Transport.MakePointToPointRelationshipResult> __Method_MakePointToPointRelationship = new grpc::Method<global::Briosa.Client.Transport.MakePointToPointRelationshipRequest, global::Briosa.Client.Transport.MakePointToPointRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakePointToPointRelationship",
+        __Marshaller_briosa_MakePointToPointRelationshipRequest,
+        __Marshaller_briosa_MakePointToPointRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesRequest, global::Briosa.Client.Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesResult> __Method_AutoFilterPointsGroupsCloudsToSurfaceFaces = new grpc::Method<global::Briosa.Client.Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesRequest, global::Briosa.Client.Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AutoFilterPointsGroupsCloudsToSurfaceFaces",
+        __Marshaller_briosa_AutoFilterPointsGroupsCloudsToSurfaceFacesRequest,
+        __Marshaller_briosa_AutoFilterPointsGroupsCloudsToSurfaceFacesResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakeGeometryFitAndCompareToNominalRelationshipRequest, global::Briosa.Client.Transport.MakeGeometryFitAndCompareToNominalRelationshipResult> __Method_MakeGeometryFitAndCompareToNominalRelationship = new grpc::Method<global::Briosa.Client.Transport.MakeGeometryFitAndCompareToNominalRelationshipRequest, global::Briosa.Client.Transport.MakeGeometryFitAndCompareToNominalRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakeGeometryFitAndCompareToNominalRelationship",
+        __Marshaller_briosa_MakeGeometryFitAndCompareToNominalRelationshipRequest,
+        __Marshaller_briosa_MakeGeometryFitAndCompareToNominalRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.CreatePointsToObjectsMapRequest, global::Briosa.Client.Transport.CreatePointsToObjectsMapResult> __Method_CreatePointsToObjectsMap = new grpc::Method<global::Briosa.Client.Transport.CreatePointsToObjectsMapRequest, global::Briosa.Client.Transport.CreatePointsToObjectsMapResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "CreatePointsToObjectsMap",
+        __Marshaller_briosa_CreatePointsToObjectsMapRequest,
+        __Marshaller_briosa_CreatePointsToObjectsMapResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakeCloudToSwatchRelationshipRequest, global::Briosa.Client.Transport.MakeCloudToSwatchRelationshipResult> __Method_MakeCloudToSwatchRelationship = new grpc::Method<global::Briosa.Client.Transport.MakeCloudToSwatchRelationshipRequest, global::Briosa.Client.Transport.MakeCloudToSwatchRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakeCloudToSwatchRelationship",
+        __Marshaller_briosa_MakeCloudToSwatchRelationshipRequest,
+        __Marshaller_briosa_MakeCloudToSwatchRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakeGeometryCompareOnlyRelationshipRequest, global::Briosa.Client.Transport.MakeGeometryCompareOnlyRelationshipResult> __Method_MakeGeometryCompareOnlyRelationship = new grpc::Method<global::Briosa.Client.Transport.MakeGeometryCompareOnlyRelationshipRequest, global::Briosa.Client.Transport.MakeGeometryCompareOnlyRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakeGeometryCompareOnlyRelationship",
+        __Marshaller_briosa_MakeGeometryCompareOnlyRelationshipRequest,
+        __Marshaller_briosa_MakeGeometryCompareOnlyRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakeDynamicLineRelationshipRequest, global::Briosa.Client.Transport.MakeDynamicLineRelationshipResult> __Method_MakeDynamicLineRelationship = new grpc::Method<global::Briosa.Client.Transport.MakeDynamicLineRelationshipRequest, global::Briosa.Client.Transport.MakeDynamicLineRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakeDynamicLineRelationship",
+        __Marshaller_briosa_MakeDynamicLineRelationshipRequest,
+        __Marshaller_briosa_MakeDynamicLineRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry2DRequest, global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry2DResult> __Method_AutoFilterCloudsToNominalGeometry2D = new grpc::Method<global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry2DRequest, global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry2DResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AutoFilterCloudsToNominalGeometry2D",
+        __Marshaller_briosa_AutoFilterCloudsToNominalGeometry2DRequest,
+        __Marshaller_briosa_AutoFilterCloudsToNominalGeometry2DResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakeDynamicPointRelationshipRequest, global::Briosa.Client.Transport.MakeDynamicPointRelationshipResult> __Method_MakeDynamicPointRelationship = new grpc::Method<global::Briosa.Client.Transport.MakeDynamicPointRelationshipRequest, global::Briosa.Client.Transport.MakeDynamicPointRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakeDynamicPointRelationship",
+        __Marshaller_briosa_MakeDynamicPointRelationshipRequest,
+        __Marshaller_briosa_MakeDynamicPointRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakeObjectToObjectDirectionRelationshipRequest, global::Briosa.Client.Transport.MakeObjectToObjectDirectionRelationshipResult> __Method_MakeObjectToObjectDirectionRelationship = new grpc::Method<global::Briosa.Client.Transport.MakeObjectToObjectDirectionRelationshipRequest, global::Briosa.Client.Transport.MakeObjectToObjectDirectionRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakeObjectToObjectDirectionRelationship",
+        __Marshaller_briosa_MakeObjectToObjectDirectionRelationshipRequest,
+        __Marshaller_briosa_MakeObjectToObjectDirectionRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetPointsToPointsRelationshipAssociatedDataRequest, global::Briosa.Client.Transport.GetPointsToPointsRelationshipAssociatedDataResult> __Method_GetPointsToPointsRelationshipAssociatedData = new grpc::Method<global::Briosa.Client.Transport.GetPointsToPointsRelationshipAssociatedDataRequest, global::Briosa.Client.Transport.GetPointsToPointsRelationshipAssociatedDataResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetPointsToPointsRelationshipAssociatedData",
+        __Marshaller_briosa_GetPointsToPointsRelationshipAssociatedDataRequest,
+        __Marshaller_briosa_GetPointsToPointsRelationshipAssociatedDataResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetPointsToPointsRelationshipAssociatedDataRequest, global::Briosa.Client.Transport.SetPointsToPointsRelationshipAssociatedDataResult> __Method_SetPointsToPointsRelationshipAssociatedData = new grpc::Method<global::Briosa.Client.Transport.SetPointsToPointsRelationshipAssociatedDataRequest, global::Briosa.Client.Transport.SetPointsToPointsRelationshipAssociatedDataResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetPointsToPointsRelationshipAssociatedData",
+        __Marshaller_briosa_SetPointsToPointsRelationshipAssociatedDataRequest,
+        __Marshaller_briosa_SetPointsToPointsRelationshipAssociatedDataResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetPointToPointRelationshipStatisticsRequest, global::Briosa.Client.Transport.GetPointToPointRelationshipStatisticsResult> __Method_GetPointToPointRelationshipStatistics = new grpc::Method<global::Briosa.Client.Transport.GetPointToPointRelationshipStatisticsRequest, global::Briosa.Client.Transport.GetPointToPointRelationshipStatisticsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetPointToPointRelationshipStatistics",
+        __Marshaller_briosa_GetPointToPointRelationshipStatisticsRequest,
+        __Marshaller_briosa_GetPointToPointRelationshipStatisticsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakeFrameToFrameRelationshipRequest, global::Briosa.Client.Transport.MakeFrameToFrameRelationshipResult> __Method_MakeFrameToFrameRelationship = new grpc::Method<global::Briosa.Client.Transport.MakeFrameToFrameRelationshipRequest, global::Briosa.Client.Transport.MakeFrameToFrameRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakeFrameToFrameRelationship",
+        __Marshaller_briosa_MakeFrameToFrameRelationshipRequest,
+        __Marshaller_briosa_MakeFrameToFrameRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupRelativePolarityRequest, global::Briosa.Client.Transport.SetVectorGroupToVectorGroupRelativePolarityResult> __Method_SetVectorGroupToVectorGroupRelativePolarity = new grpc::Method<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupRelativePolarityRequest, global::Briosa.Client.Transport.SetVectorGroupToVectorGroupRelativePolarityResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetVectorGroupToVectorGroupRelativePolarity",
+        __Marshaller_briosa_SetVectorGroupToVectorGroupRelativePolarityRequest,
+        __Marshaller_briosa_SetVectorGroupToVectorGroupRelativePolarityResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakePointsToObjectsRelationshipRequest, global::Briosa.Client.Transport.MakePointsToObjectsRelationshipResult> __Method_MakePointsToObjectsRelationship = new grpc::Method<global::Briosa.Client.Transport.MakePointsToObjectsRelationshipRequest, global::Briosa.Client.Transport.MakePointsToObjectsRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakePointsToObjectsRelationship",
+        __Marshaller_briosa_MakePointsToObjectsRelationshipRequest,
+        __Marshaller_briosa_MakePointsToObjectsRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakeGroupToGroupRelationshipRequest, global::Briosa.Client.Transport.MakeGroupToGroupRelationshipResult> __Method_MakeGroupToGroupRelationship = new grpc::Method<global::Briosa.Client.Transport.MakeGroupToGroupRelationshipRequest, global::Briosa.Client.Transport.MakeGroupToGroupRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakeGroupToGroupRelationship",
+        __Marshaller_briosa_MakeGroupToGroupRelationshipRequest,
+        __Marshaller_briosa_MakeGroupToGroupRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.DeleteRelationshipRequest, global::Briosa.Client.Transport.DeleteRelationshipResult> __Method_DeleteRelationship = new grpc::Method<global::Briosa.Client.Transport.DeleteRelationshipRequest, global::Briosa.Client.Transport.DeleteRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DeleteRelationship",
+        __Marshaller_briosa_DeleteRelationshipRequest,
+        __Marshaller_briosa_DeleteRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakeAveragePointRelationshipRequest, global::Briosa.Client.Transport.MakeAveragePointRelationshipResult> __Method_MakeAveragePointRelationship = new grpc::Method<global::Briosa.Client.Transport.MakeAveragePointRelationshipRequest, global::Briosa.Client.Transport.MakeAveragePointRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakeAveragePointRelationship",
+        __Marshaller_briosa_MakeAveragePointRelationshipRequest,
+        __Marshaller_briosa_MakeAveragePointRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetOptimizationPerturbationParametersRequest, global::Briosa.Client.Transport.SetOptimizationPerturbationParametersResult> __Method_SetOptimizationPerturbationParameters = new grpc::Method<global::Briosa.Client.Transport.SetOptimizationPerturbationParametersRequest, global::Briosa.Client.Transport.SetOptimizationPerturbationParametersResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetOptimizationPerturbationParameters",
+        __Marshaller_briosa_SetOptimizationPerturbationParametersRequest,
+        __Marshaller_briosa_SetOptimizationPerturbationParametersResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetObjectsFromPointsToObjectsMapPointListRequest, global::Briosa.Client.Transport.GetObjectsFromPointsToObjectsMapPointListResult> __Method_GetObjectsFromPointsToObjectsMapPointList = new grpc::Method<global::Briosa.Client.Transport.GetObjectsFromPointsToObjectsMapPointListRequest, global::Briosa.Client.Transport.GetObjectsFromPointsToObjectsMapPointListResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetObjectsFromPointsToObjectsMapPointList",
+        __Marshaller_briosa_GetObjectsFromPointsToObjectsMapPointListRequest,
+        __Marshaller_briosa_GetObjectsFromPointsToObjectsMapPointListResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.SetOptimizationSearchOptionsRequest, global::Briosa.Client.Transport.SetOptimizationSearchOptionsResult> __Method_SetOptimizationSearchOptions = new grpc::Method<global::Briosa.Client.Transport.SetOptimizationSearchOptionsRequest, global::Briosa.Client.Transport.SetOptimizationSearchOptionsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetOptimizationSearchOptions",
+        __Marshaller_briosa_SetOptimizationSearchOptionsRequest,
+        __Marshaller_briosa_SetOptimizationSearchOptionsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetRelationshipSigmoidalGapFitConstraintsRequest, global::Briosa.Client.Transport.GetRelationshipSigmoidalGapFitConstraintsResult> __Method_GetRelationshipSigmoidalGapFitConstraints = new grpc::Method<global::Briosa.Client.Transport.GetRelationshipSigmoidalGapFitConstraintsRequest, global::Briosa.Client.Transport.GetRelationshipSigmoidalGapFitConstraintsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetRelationshipSigmoidalGapFitConstraints",
+        __Marshaller_briosa_GetRelationshipSigmoidalGapFitConstraintsRequest,
+        __Marshaller_briosa_GetRelationshipSigmoidalGapFitConstraintsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.RelationshipWatchWindowTemplateRequest, global::Briosa.Client.Transport.RelationshipWatchWindowTemplateResult> __Method_RelationshipWatchWindowTemplate = new grpc::Method<global::Briosa.Client.Transport.RelationshipWatchWindowTemplateRequest, global::Briosa.Client.Transport.RelationshipWatchWindowTemplateResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "RelationshipWatchWindowTemplate",
+        __Marshaller_briosa_RelationshipWatchWindowTemplateRequest,
+        __Marshaller_briosa_RelationshipWatchWindowTemplateResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ExtractGeometryFromPointCloudsRequest, global::Briosa.Client.Transport.ExtractGeometryFromPointCloudsResult> __Method_ExtractGeometryFromPointClouds = new grpc::Method<global::Briosa.Client.Transport.ExtractGeometryFromPointCloudsRequest, global::Briosa.Client.Transport.ExtractGeometryFromPointCloudsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExtractGeometryFromPointClouds",
+        __Marshaller_briosa_ExtractGeometryFromPointCloudsRequest,
+        __Marshaller_briosa_ExtractGeometryFromPointCloudsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakeGroupsToObjectsRelationshipRequest, global::Briosa.Client.Transport.MakeGroupsToObjectsRelationshipResult> __Method_MakeGroupsToObjectsRelationship = new grpc::Method<global::Briosa.Client.Transport.MakeGroupsToObjectsRelationshipRequest, global::Briosa.Client.Transport.MakeGroupsToObjectsRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakeGroupsToObjectsRelationship",
+        __Marshaller_briosa_MakeGroupsToObjectsRelationshipRequest,
+        __Marshaller_briosa_MakeGroupsToObjectsRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.ComputeGeometryRelationshipUncertaintiesRequest, global::Briosa.Client.Transport.ComputeGeometryRelationshipUncertaintiesResult> __Method_ComputeGeometryRelationshipUncertainties = new grpc::Method<global::Briosa.Client.Transport.ComputeGeometryRelationshipUncertaintiesRequest, global::Briosa.Client.Transport.ComputeGeometryRelationshipUncertaintiesResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ComputeGeometryRelationshipUncertainties",
+        __Marshaller_briosa_ComputeGeometryRelationshipUncertaintiesRequest,
+        __Marshaller_briosa_ComputeGeometryRelationshipUncertaintiesResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetPointsToObjectsRelationshipStatisticsRequest, global::Briosa.Client.Transport.GetPointsToObjectsRelationshipStatisticsResult> __Method_GetPointsToObjectsRelationshipStatistics = new grpc::Method<global::Briosa.Client.Transport.GetPointsToObjectsRelationshipStatisticsRequest, global::Briosa.Client.Transport.GetPointsToObjectsRelationshipStatisticsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetPointsToObjectsRelationshipStatistics",
+        __Marshaller_briosa_GetPointsToObjectsRelationshipStatisticsRequest,
+        __Marshaller_briosa_GetPointsToObjectsRelationshipStatisticsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetRelationshipStatusRequest, global::Briosa.Client.Transport.GetRelationshipStatusResult> __Method_GetRelationshipStatus = new grpc::Method<global::Briosa.Client.Transport.GetRelationshipStatusRequest, global::Briosa.Client.Transport.GetRelationshipStatusResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetRelationshipStatus",
+        __Marshaller_briosa_GetRelationshipStatusRequest,
+        __Marshaller_briosa_GetRelationshipStatusResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.AutoFilterPointsToNominalGeometry3DRequest, global::Briosa.Client.Transport.AutoFilterPointsToNominalGeometry3DResult> __Method_AutoFilterPointsToNominalGeometry3D = new grpc::Method<global::Briosa.Client.Transport.AutoFilterPointsToNominalGeometry3DRequest, global::Briosa.Client.Transport.AutoFilterPointsToNominalGeometry3DResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AutoFilterPointsToNominalGeometry3D",
+        __Marshaller_briosa_AutoFilterPointsToNominalGeometry3DRequest,
+        __Marshaller_briosa_AutoFilterPointsToNominalGeometry3DResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakeGeometryFitOnlyRelationshipRequest, global::Briosa.Client.Transport.MakeGeometryFitOnlyRelationshipResult> __Method_MakeGeometryFitOnlyRelationship = new grpc::Method<global::Briosa.Client.Transport.MakeGeometryFitOnlyRelationshipRequest, global::Briosa.Client.Transport.MakeGeometryFitOnlyRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakeGeometryFitOnlyRelationship",
+        __Marshaller_briosa_MakeGeometryFitOnlyRelationshipRequest,
+        __Marshaller_briosa_MakeGeometryFitOnlyRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakePointCloudsToObjectsRelationshipRequest, global::Briosa.Client.Transport.MakePointCloudsToObjectsRelationshipResult> __Method_MakePointCloudsToObjectsRelationship = new grpc::Method<global::Briosa.Client.Transport.MakePointCloudsToObjectsRelationshipRequest, global::Briosa.Client.Transport.MakePointCloudsToObjectsRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakePointCloudsToObjectsRelationship",
+        __Marshaller_briosa_MakePointCloudsToObjectsRelationshipRequest,
+        __Marshaller_briosa_MakePointCloudsToObjectsRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.EditGeometryRelationshipPointListRequest, global::Briosa.Client.Transport.EditGeometryRelationshipPointListResult> __Method_EditGeometryRelationshipPointList = new grpc::Method<global::Briosa.Client.Transport.EditGeometryRelationshipPointListRequest, global::Briosa.Client.Transport.EditGeometryRelationshipPointListResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "EditGeometryRelationshipPointList",
+        __Marshaller_briosa_EditGeometryRelationshipPointListRequest,
+        __Marshaller_briosa_EditGeometryRelationshipPointListResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GetGeneralRelationshipStatisticsRequest, global::Briosa.Client.Transport.GetGeneralRelationshipStatisticsResult> __Method_GetGeneralRelationshipStatistics = new grpc::Method<global::Briosa.Client.Transport.GetGeneralRelationshipStatisticsRequest, global::Briosa.Client.Transport.GetGeneralRelationshipStatisticsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetGeneralRelationshipStatistics",
+        __Marshaller_briosa_GetGeneralRelationshipStatisticsRequest,
+        __Marshaller_briosa_GetGeneralRelationshipStatisticsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakeGroupToNominalGroupRelationshipRequest, global::Briosa.Client.Transport.MakeGroupToNominalGroupRelationshipResult> __Method_MakeGroupToNominalGroupRelationship = new grpc::Method<global::Briosa.Client.Transport.MakeGroupToNominalGroupRelationshipRequest, global::Briosa.Client.Transport.MakeGroupToNominalGroupRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakeGroupToNominalGroupRelationship",
+        __Marshaller_briosa_MakeGroupToNominalGroupRelationshipRequest,
+        __Marshaller_briosa_MakeGroupToNominalGroupRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.GenerateGeometryRelationshipSummaryRequest, global::Briosa.Client.Transport.GenerateGeometryRelationshipSummaryResult> __Method_GenerateGeometryRelationshipSummary = new grpc::Method<global::Briosa.Client.Transport.GenerateGeometryRelationshipSummaryRequest, global::Briosa.Client.Transport.GenerateGeometryRelationshipSummaryResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GenerateGeometryRelationshipSummary",
+        __Marshaller_briosa_GenerateGeometryRelationshipSummaryRequest,
+        __Marshaller_briosa_GenerateGeometryRelationshipSummaryResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MoveCollectionsByMinimizingRelationshipsRequest, global::Briosa.Client.Transport.MoveCollectionsByMinimizingRelationshipsResult> __Method_MoveCollectionsByMinimizingRelationships = new grpc::Method<global::Briosa.Client.Transport.MoveCollectionsByMinimizingRelationshipsRequest, global::Briosa.Client.Transport.MoveCollectionsByMinimizingRelationshipsResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MoveCollectionsByMinimizingRelationships",
+        __Marshaller_briosa_MoveCollectionsByMinimizingRelationshipsRequest,
+        __Marshaller_briosa_MoveCollectionsByMinimizingRelationshipsResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.MakePointsToPointsRelationshipRequest, global::Briosa.Client.Transport.MakePointsToPointsRelationshipResult> __Method_MakePointsToPointsRelationship = new grpc::Method<global::Briosa.Client.Transport.MakePointsToPointsRelationshipRequest, global::Briosa.Client.Transport.MakePointsToPointsRelationshipResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "MakePointsToPointsRelationship",
+        __Marshaller_briosa_MakePointsToPointsRelationshipRequest,
+        __Marshaller_briosa_MakePointsToPointsRelationshipResult);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry3DRequest, global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry3DResult> __Method_AutoFilterCloudsToNominalGeometry3D = new grpc::Method<global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry3DRequest, global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry3DResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AutoFilterCloudsToNominalGeometry3D",
+        __Marshaller_briosa_AutoFilterCloudsToNominalGeometry3DRequest,
+        __Marshaller_briosa_AutoFilterCloudsToNominalGeometry3DResult);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -1838,6 +2486,1086 @@ namespace Briosa.Client.Transport {
       public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetRelationshipWeightsNormalizedResult> SetRelationshipWeightsNormalizedAsync(global::Briosa.Client.Transport.SetRelationshipWeightsNormalizedRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_SetRelationshipWeightsNormalized, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetRelationshipAssociatedDataResult SetRelationshipAssociatedData(global::Briosa.Client.Transport.SetRelationshipAssociatedDataRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetRelationshipAssociatedData(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetRelationshipAssociatedDataResult SetRelationshipAssociatedData(global::Briosa.Client.Transport.SetRelationshipAssociatedDataRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetRelationshipAssociatedData, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetRelationshipAssociatedDataResult> SetRelationshipAssociatedDataAsync(global::Briosa.Client.Transport.SetRelationshipAssociatedDataRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetRelationshipAssociatedDataAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetRelationshipAssociatedDataResult> SetRelationshipAssociatedDataAsync(global::Briosa.Client.Transport.SetRelationshipAssociatedDataRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetRelationshipAssociatedData, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeVectorGroupToVectorGroupRelationshipResult MakeVectorGroupToVectorGroupRelationship(global::Briosa.Client.Transport.MakeVectorGroupToVectorGroupRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeVectorGroupToVectorGroupRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeVectorGroupToVectorGroupRelationshipResult MakeVectorGroupToVectorGroupRelationship(global::Briosa.Client.Transport.MakeVectorGroupToVectorGroupRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakeVectorGroupToVectorGroupRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeVectorGroupToVectorGroupRelationshipResult> MakeVectorGroupToVectorGroupRelationshipAsync(global::Briosa.Client.Transport.MakeVectorGroupToVectorGroupRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeVectorGroupToVectorGroupRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeVectorGroupToVectorGroupRelationshipResult> MakeVectorGroupToVectorGroupRelationshipAsync(global::Briosa.Client.Transport.MakeVectorGroupToVectorGroupRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakeVectorGroupToVectorGroupRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.FilterGeometryRelationshipOutlierCloudPointsResult FilterGeometryRelationshipOutlierCloudPoints(global::Briosa.Client.Transport.FilterGeometryRelationshipOutlierCloudPointsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return FilterGeometryRelationshipOutlierCloudPoints(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.FilterGeometryRelationshipOutlierCloudPointsResult FilterGeometryRelationshipOutlierCloudPoints(global::Briosa.Client.Transport.FilterGeometryRelationshipOutlierCloudPointsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_FilterGeometryRelationshipOutlierCloudPoints, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.FilterGeometryRelationshipOutlierCloudPointsResult> FilterGeometryRelationshipOutlierCloudPointsAsync(global::Briosa.Client.Transport.FilterGeometryRelationshipOutlierCloudPointsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return FilterGeometryRelationshipOutlierCloudPointsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.FilterGeometryRelationshipOutlierCloudPointsResult> FilterGeometryRelationshipOutlierCloudPointsAsync(global::Briosa.Client.Transport.FilterGeometryRelationshipOutlierCloudPointsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_FilterGeometryRelationshipOutlierCloudPoints, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetVectorGroupToVectorGroupCylindricalZoneResult SetVectorGroupToVectorGroupCylindricalZone(global::Briosa.Client.Transport.SetVectorGroupToVectorGroupCylindricalZoneRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetVectorGroupToVectorGroupCylindricalZone(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetVectorGroupToVectorGroupCylindricalZoneResult SetVectorGroupToVectorGroupCylindricalZone(global::Briosa.Client.Transport.SetVectorGroupToVectorGroupCylindricalZoneRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetVectorGroupToVectorGroupCylindricalZone, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupCylindricalZoneResult> SetVectorGroupToVectorGroupCylindricalZoneAsync(global::Briosa.Client.Transport.SetVectorGroupToVectorGroupCylindricalZoneRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetVectorGroupToVectorGroupCylindricalZoneAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupCylindricalZoneResult> SetVectorGroupToVectorGroupCylindricalZoneAsync(global::Briosa.Client.Transport.SetVectorGroupToVectorGroupCylindricalZoneRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetVectorGroupToVectorGroupCylindricalZone, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.DoRelationshipFitResult DoRelationshipFit(global::Briosa.Client.Transport.DoRelationshipFitRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DoRelationshipFit(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.DoRelationshipFitResult DoRelationshipFit(global::Briosa.Client.Transport.DoRelationshipFitRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DoRelationshipFit, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.DoRelationshipFitResult> DoRelationshipFitAsync(global::Briosa.Client.Transport.DoRelationshipFitRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DoRelationshipFitAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.DoRelationshipFitResult> DoRelationshipFitAsync(global::Briosa.Client.Transport.DoRelationshipFitRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DoRelationshipFit, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetGeomRelationshipCriteriaNameListResult GetGeomRelationshipCriteriaNameList(global::Briosa.Client.Transport.GetGeomRelationshipCriteriaNameListRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetGeomRelationshipCriteriaNameList(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetGeomRelationshipCriteriaNameListResult GetGeomRelationshipCriteriaNameList(global::Briosa.Client.Transport.GetGeomRelationshipCriteriaNameListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetGeomRelationshipCriteriaNameList, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetGeomRelationshipCriteriaNameListResult> GetGeomRelationshipCriteriaNameListAsync(global::Briosa.Client.Transport.GetGeomRelationshipCriteriaNameListRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetGeomRelationshipCriteriaNameListAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetGeomRelationshipCriteriaNameListResult> GetGeomRelationshipCriteriaNameListAsync(global::Briosa.Client.Transport.GetGeomRelationshipCriteriaNameListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetGeomRelationshipCriteriaNameList, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetGroupToNominalGroupViewZoomingResult SetGroupToNominalGroupViewZooming(global::Briosa.Client.Transport.SetGroupToNominalGroupViewZoomingRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetGroupToNominalGroupViewZooming(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetGroupToNominalGroupViewZoomingResult SetGroupToNominalGroupViewZooming(global::Briosa.Client.Transport.SetGroupToNominalGroupViewZoomingRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetGroupToNominalGroupViewZooming, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetGroupToNominalGroupViewZoomingResult> SetGroupToNominalGroupViewZoomingAsync(global::Briosa.Client.Transport.SetGroupToNominalGroupViewZoomingRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetGroupToNominalGroupViewZoomingAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetGroupToNominalGroupViewZoomingResult> SetGroupToNominalGroupViewZoomingAsync(global::Briosa.Client.Transport.SetGroupToNominalGroupViewZoomingRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetGroupToNominalGroupViewZooming, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitWeightsResult SetVectorGroupToVectorGroupFitWeights(global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitWeightsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetVectorGroupToVectorGroupFitWeights(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitWeightsResult SetVectorGroupToVectorGroupFitWeights(global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitWeightsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetVectorGroupToVectorGroupFitWeights, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitWeightsResult> SetVectorGroupToVectorGroupFitWeightsAsync(global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitWeightsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetVectorGroupToVectorGroupFitWeightsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitWeightsResult> SetVectorGroupToVectorGroupFitWeightsAsync(global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitWeightsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetVectorGroupToVectorGroupFitWeights, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeDynamicEllipseRelationshipResult MakeDynamicEllipseRelationship(global::Briosa.Client.Transport.MakeDynamicEllipseRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeDynamicEllipseRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeDynamicEllipseRelationshipResult MakeDynamicEllipseRelationship(global::Briosa.Client.Transport.MakeDynamicEllipseRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakeDynamicEllipseRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeDynamicEllipseRelationshipResult> MakeDynamicEllipseRelationshipAsync(global::Briosa.Client.Transport.MakeDynamicEllipseRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeDynamicEllipseRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeDynamicEllipseRelationshipResult> MakeDynamicEllipseRelationshipAsync(global::Briosa.Client.Transport.MakeDynamicEllipseRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakeDynamicEllipseRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetObjectToObjectDirectionRelationshipTolerancesResult SetObjectToObjectDirectionRelationshipTolerances(global::Briosa.Client.Transport.SetObjectToObjectDirectionRelationshipTolerancesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetObjectToObjectDirectionRelationshipTolerances(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetObjectToObjectDirectionRelationshipTolerancesResult SetObjectToObjectDirectionRelationshipTolerances(global::Briosa.Client.Transport.SetObjectToObjectDirectionRelationshipTolerancesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetObjectToObjectDirectionRelationshipTolerances, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetObjectToObjectDirectionRelationshipTolerancesResult> SetObjectToObjectDirectionRelationshipTolerancesAsync(global::Briosa.Client.Transport.SetObjectToObjectDirectionRelationshipTolerancesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetObjectToObjectDirectionRelationshipTolerancesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetObjectToObjectDirectionRelationshipTolerancesResult> SetObjectToObjectDirectionRelationshipTolerancesAsync(global::Briosa.Client.Transport.SetObjectToObjectDirectionRelationshipTolerancesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetObjectToObjectDirectionRelationshipTolerances, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitGradientFactorResult SetVectorGroupToVectorGroupFitGradientFactor(global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitGradientFactorRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetVectorGroupToVectorGroupFitGradientFactor(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitGradientFactorResult SetVectorGroupToVectorGroupFitGradientFactor(global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitGradientFactorRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetVectorGroupToVectorGroupFitGradientFactor, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitGradientFactorResult> SetVectorGroupToVectorGroupFitGradientFactorAsync(global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitGradientFactorRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetVectorGroupToVectorGroupFitGradientFactorAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitGradientFactorResult> SetVectorGroupToVectorGroupFitGradientFactorAsync(global::Briosa.Client.Transport.SetVectorGroupToVectorGroupFitGradientFactorRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetVectorGroupToVectorGroupFitGradientFactor, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.StartStopRelationshipTrappingResult StartStopRelationshipTrapping(global::Briosa.Client.Transport.StartStopRelationshipTrappingRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return StartStopRelationshipTrapping(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.StartStopRelationshipTrappingResult StartStopRelationshipTrapping(global::Briosa.Client.Transport.StartStopRelationshipTrappingRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_StartStopRelationshipTrapping, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.StartStopRelationshipTrappingResult> StartStopRelationshipTrappingAsync(global::Briosa.Client.Transport.StartStopRelationshipTrappingRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return StartStopRelationshipTrappingAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.StartStopRelationshipTrappingResult> StartStopRelationshipTrappingAsync(global::Briosa.Client.Transport.StartStopRelationshipTrappingRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_StartStopRelationshipTrapping, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeDynamicCircleRelationshipResult MakeDynamicCircleRelationship(global::Briosa.Client.Transport.MakeDynamicCircleRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeDynamicCircleRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeDynamicCircleRelationshipResult MakeDynamicCircleRelationship(global::Briosa.Client.Transport.MakeDynamicCircleRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakeDynamicCircleRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeDynamicCircleRelationshipResult> MakeDynamicCircleRelationshipAsync(global::Briosa.Client.Transport.MakeDynamicCircleRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeDynamicCircleRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeDynamicCircleRelationshipResult> MakeDynamicCircleRelationshipAsync(global::Briosa.Client.Transport.MakeDynamicCircleRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakeDynamicCircleRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetRelationshipAssociatedDataResult GetRelationshipAssociatedData(global::Briosa.Client.Transport.GetRelationshipAssociatedDataRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetRelationshipAssociatedData(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetRelationshipAssociatedDataResult GetRelationshipAssociatedData(global::Briosa.Client.Transport.GetRelationshipAssociatedDataRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetRelationshipAssociatedData, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetRelationshipAssociatedDataResult> GetRelationshipAssociatedDataAsync(global::Briosa.Client.Transport.GetRelationshipAssociatedDataRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetRelationshipAssociatedDataAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetRelationshipAssociatedDataResult> GetRelationshipAssociatedDataAsync(global::Briosa.Client.Transport.GetRelationshipAssociatedDataRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetRelationshipAssociatedData, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeDynamicPlaneRelationshipResult MakeDynamicPlaneRelationship(global::Briosa.Client.Transport.MakeDynamicPlaneRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeDynamicPlaneRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeDynamicPlaneRelationshipResult MakeDynamicPlaneRelationship(global::Briosa.Client.Transport.MakeDynamicPlaneRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakeDynamicPlaneRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeDynamicPlaneRelationshipResult> MakeDynamicPlaneRelationshipAsync(global::Briosa.Client.Transport.MakeDynamicPlaneRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeDynamicPlaneRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeDynamicPlaneRelationshipResult> MakeDynamicPlaneRelationshipAsync(global::Briosa.Client.Transport.MakeDynamicPlaneRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakeDynamicPlaneRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakePointToPointRelationshipResult MakePointToPointRelationship(global::Briosa.Client.Transport.MakePointToPointRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakePointToPointRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakePointToPointRelationshipResult MakePointToPointRelationship(global::Briosa.Client.Transport.MakePointToPointRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakePointToPointRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakePointToPointRelationshipResult> MakePointToPointRelationshipAsync(global::Briosa.Client.Transport.MakePointToPointRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakePointToPointRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakePointToPointRelationshipResult> MakePointToPointRelationshipAsync(global::Briosa.Client.Transport.MakePointToPointRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakePointToPointRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesResult AutoFilterPointsGroupsCloudsToSurfaceFaces(global::Briosa.Client.Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AutoFilterPointsGroupsCloudsToSurfaceFaces(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesResult AutoFilterPointsGroupsCloudsToSurfaceFaces(global::Briosa.Client.Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AutoFilterPointsGroupsCloudsToSurfaceFaces, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesResult> AutoFilterPointsGroupsCloudsToSurfaceFacesAsync(global::Briosa.Client.Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AutoFilterPointsGroupsCloudsToSurfaceFacesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesResult> AutoFilterPointsGroupsCloudsToSurfaceFacesAsync(global::Briosa.Client.Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AutoFilterPointsGroupsCloudsToSurfaceFaces, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeGeometryFitAndCompareToNominalRelationshipResult MakeGeometryFitAndCompareToNominalRelationship(global::Briosa.Client.Transport.MakeGeometryFitAndCompareToNominalRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeGeometryFitAndCompareToNominalRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeGeometryFitAndCompareToNominalRelationshipResult MakeGeometryFitAndCompareToNominalRelationship(global::Briosa.Client.Transport.MakeGeometryFitAndCompareToNominalRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakeGeometryFitAndCompareToNominalRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeGeometryFitAndCompareToNominalRelationshipResult> MakeGeometryFitAndCompareToNominalRelationshipAsync(global::Briosa.Client.Transport.MakeGeometryFitAndCompareToNominalRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeGeometryFitAndCompareToNominalRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeGeometryFitAndCompareToNominalRelationshipResult> MakeGeometryFitAndCompareToNominalRelationshipAsync(global::Briosa.Client.Transport.MakeGeometryFitAndCompareToNominalRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakeGeometryFitAndCompareToNominalRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.CreatePointsToObjectsMapResult CreatePointsToObjectsMap(global::Briosa.Client.Transport.CreatePointsToObjectsMapRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CreatePointsToObjectsMap(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.CreatePointsToObjectsMapResult CreatePointsToObjectsMap(global::Briosa.Client.Transport.CreatePointsToObjectsMapRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_CreatePointsToObjectsMap, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.CreatePointsToObjectsMapResult> CreatePointsToObjectsMapAsync(global::Briosa.Client.Transport.CreatePointsToObjectsMapRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CreatePointsToObjectsMapAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.CreatePointsToObjectsMapResult> CreatePointsToObjectsMapAsync(global::Briosa.Client.Transport.CreatePointsToObjectsMapRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_CreatePointsToObjectsMap, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeCloudToSwatchRelationshipResult MakeCloudToSwatchRelationship(global::Briosa.Client.Transport.MakeCloudToSwatchRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeCloudToSwatchRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeCloudToSwatchRelationshipResult MakeCloudToSwatchRelationship(global::Briosa.Client.Transport.MakeCloudToSwatchRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakeCloudToSwatchRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeCloudToSwatchRelationshipResult> MakeCloudToSwatchRelationshipAsync(global::Briosa.Client.Transport.MakeCloudToSwatchRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeCloudToSwatchRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeCloudToSwatchRelationshipResult> MakeCloudToSwatchRelationshipAsync(global::Briosa.Client.Transport.MakeCloudToSwatchRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakeCloudToSwatchRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeGeometryCompareOnlyRelationshipResult MakeGeometryCompareOnlyRelationship(global::Briosa.Client.Transport.MakeGeometryCompareOnlyRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeGeometryCompareOnlyRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeGeometryCompareOnlyRelationshipResult MakeGeometryCompareOnlyRelationship(global::Briosa.Client.Transport.MakeGeometryCompareOnlyRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakeGeometryCompareOnlyRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeGeometryCompareOnlyRelationshipResult> MakeGeometryCompareOnlyRelationshipAsync(global::Briosa.Client.Transport.MakeGeometryCompareOnlyRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeGeometryCompareOnlyRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeGeometryCompareOnlyRelationshipResult> MakeGeometryCompareOnlyRelationshipAsync(global::Briosa.Client.Transport.MakeGeometryCompareOnlyRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakeGeometryCompareOnlyRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeDynamicLineRelationshipResult MakeDynamicLineRelationship(global::Briosa.Client.Transport.MakeDynamicLineRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeDynamicLineRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeDynamicLineRelationshipResult MakeDynamicLineRelationship(global::Briosa.Client.Transport.MakeDynamicLineRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakeDynamicLineRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeDynamicLineRelationshipResult> MakeDynamicLineRelationshipAsync(global::Briosa.Client.Transport.MakeDynamicLineRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeDynamicLineRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeDynamicLineRelationshipResult> MakeDynamicLineRelationshipAsync(global::Briosa.Client.Transport.MakeDynamicLineRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakeDynamicLineRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry2DResult AutoFilterCloudsToNominalGeometry2D(global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry2DRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AutoFilterCloudsToNominalGeometry2D(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry2DResult AutoFilterCloudsToNominalGeometry2D(global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry2DRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AutoFilterCloudsToNominalGeometry2D, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry2DResult> AutoFilterCloudsToNominalGeometry2DAsync(global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry2DRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AutoFilterCloudsToNominalGeometry2DAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry2DResult> AutoFilterCloudsToNominalGeometry2DAsync(global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry2DRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AutoFilterCloudsToNominalGeometry2D, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeDynamicPointRelationshipResult MakeDynamicPointRelationship(global::Briosa.Client.Transport.MakeDynamicPointRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeDynamicPointRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeDynamicPointRelationshipResult MakeDynamicPointRelationship(global::Briosa.Client.Transport.MakeDynamicPointRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakeDynamicPointRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeDynamicPointRelationshipResult> MakeDynamicPointRelationshipAsync(global::Briosa.Client.Transport.MakeDynamicPointRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeDynamicPointRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeDynamicPointRelationshipResult> MakeDynamicPointRelationshipAsync(global::Briosa.Client.Transport.MakeDynamicPointRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakeDynamicPointRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeObjectToObjectDirectionRelationshipResult MakeObjectToObjectDirectionRelationship(global::Briosa.Client.Transport.MakeObjectToObjectDirectionRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeObjectToObjectDirectionRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeObjectToObjectDirectionRelationshipResult MakeObjectToObjectDirectionRelationship(global::Briosa.Client.Transport.MakeObjectToObjectDirectionRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakeObjectToObjectDirectionRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeObjectToObjectDirectionRelationshipResult> MakeObjectToObjectDirectionRelationshipAsync(global::Briosa.Client.Transport.MakeObjectToObjectDirectionRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeObjectToObjectDirectionRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeObjectToObjectDirectionRelationshipResult> MakeObjectToObjectDirectionRelationshipAsync(global::Briosa.Client.Transport.MakeObjectToObjectDirectionRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakeObjectToObjectDirectionRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetPointsToPointsRelationshipAssociatedDataResult GetPointsToPointsRelationshipAssociatedData(global::Briosa.Client.Transport.GetPointsToPointsRelationshipAssociatedDataRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetPointsToPointsRelationshipAssociatedData(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetPointsToPointsRelationshipAssociatedDataResult GetPointsToPointsRelationshipAssociatedData(global::Briosa.Client.Transport.GetPointsToPointsRelationshipAssociatedDataRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetPointsToPointsRelationshipAssociatedData, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetPointsToPointsRelationshipAssociatedDataResult> GetPointsToPointsRelationshipAssociatedDataAsync(global::Briosa.Client.Transport.GetPointsToPointsRelationshipAssociatedDataRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetPointsToPointsRelationshipAssociatedDataAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetPointsToPointsRelationshipAssociatedDataResult> GetPointsToPointsRelationshipAssociatedDataAsync(global::Briosa.Client.Transport.GetPointsToPointsRelationshipAssociatedDataRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetPointsToPointsRelationshipAssociatedData, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetPointsToPointsRelationshipAssociatedDataResult SetPointsToPointsRelationshipAssociatedData(global::Briosa.Client.Transport.SetPointsToPointsRelationshipAssociatedDataRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetPointsToPointsRelationshipAssociatedData(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetPointsToPointsRelationshipAssociatedDataResult SetPointsToPointsRelationshipAssociatedData(global::Briosa.Client.Transport.SetPointsToPointsRelationshipAssociatedDataRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetPointsToPointsRelationshipAssociatedData, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetPointsToPointsRelationshipAssociatedDataResult> SetPointsToPointsRelationshipAssociatedDataAsync(global::Briosa.Client.Transport.SetPointsToPointsRelationshipAssociatedDataRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetPointsToPointsRelationshipAssociatedDataAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetPointsToPointsRelationshipAssociatedDataResult> SetPointsToPointsRelationshipAssociatedDataAsync(global::Briosa.Client.Transport.SetPointsToPointsRelationshipAssociatedDataRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetPointsToPointsRelationshipAssociatedData, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetPointToPointRelationshipStatisticsResult GetPointToPointRelationshipStatistics(global::Briosa.Client.Transport.GetPointToPointRelationshipStatisticsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetPointToPointRelationshipStatistics(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetPointToPointRelationshipStatisticsResult GetPointToPointRelationshipStatistics(global::Briosa.Client.Transport.GetPointToPointRelationshipStatisticsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetPointToPointRelationshipStatistics, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetPointToPointRelationshipStatisticsResult> GetPointToPointRelationshipStatisticsAsync(global::Briosa.Client.Transport.GetPointToPointRelationshipStatisticsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetPointToPointRelationshipStatisticsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetPointToPointRelationshipStatisticsResult> GetPointToPointRelationshipStatisticsAsync(global::Briosa.Client.Transport.GetPointToPointRelationshipStatisticsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetPointToPointRelationshipStatistics, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeFrameToFrameRelationshipResult MakeFrameToFrameRelationship(global::Briosa.Client.Transport.MakeFrameToFrameRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeFrameToFrameRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeFrameToFrameRelationshipResult MakeFrameToFrameRelationship(global::Briosa.Client.Transport.MakeFrameToFrameRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakeFrameToFrameRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeFrameToFrameRelationshipResult> MakeFrameToFrameRelationshipAsync(global::Briosa.Client.Transport.MakeFrameToFrameRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeFrameToFrameRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeFrameToFrameRelationshipResult> MakeFrameToFrameRelationshipAsync(global::Briosa.Client.Transport.MakeFrameToFrameRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakeFrameToFrameRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetVectorGroupToVectorGroupRelativePolarityResult SetVectorGroupToVectorGroupRelativePolarity(global::Briosa.Client.Transport.SetVectorGroupToVectorGroupRelativePolarityRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetVectorGroupToVectorGroupRelativePolarity(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetVectorGroupToVectorGroupRelativePolarityResult SetVectorGroupToVectorGroupRelativePolarity(global::Briosa.Client.Transport.SetVectorGroupToVectorGroupRelativePolarityRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetVectorGroupToVectorGroupRelativePolarity, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupRelativePolarityResult> SetVectorGroupToVectorGroupRelativePolarityAsync(global::Briosa.Client.Transport.SetVectorGroupToVectorGroupRelativePolarityRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetVectorGroupToVectorGroupRelativePolarityAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetVectorGroupToVectorGroupRelativePolarityResult> SetVectorGroupToVectorGroupRelativePolarityAsync(global::Briosa.Client.Transport.SetVectorGroupToVectorGroupRelativePolarityRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetVectorGroupToVectorGroupRelativePolarity, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakePointsToObjectsRelationshipResult MakePointsToObjectsRelationship(global::Briosa.Client.Transport.MakePointsToObjectsRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakePointsToObjectsRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakePointsToObjectsRelationshipResult MakePointsToObjectsRelationship(global::Briosa.Client.Transport.MakePointsToObjectsRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakePointsToObjectsRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakePointsToObjectsRelationshipResult> MakePointsToObjectsRelationshipAsync(global::Briosa.Client.Transport.MakePointsToObjectsRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakePointsToObjectsRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakePointsToObjectsRelationshipResult> MakePointsToObjectsRelationshipAsync(global::Briosa.Client.Transport.MakePointsToObjectsRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakePointsToObjectsRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeGroupToGroupRelationshipResult MakeGroupToGroupRelationship(global::Briosa.Client.Transport.MakeGroupToGroupRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeGroupToGroupRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeGroupToGroupRelationshipResult MakeGroupToGroupRelationship(global::Briosa.Client.Transport.MakeGroupToGroupRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakeGroupToGroupRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeGroupToGroupRelationshipResult> MakeGroupToGroupRelationshipAsync(global::Briosa.Client.Transport.MakeGroupToGroupRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeGroupToGroupRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeGroupToGroupRelationshipResult> MakeGroupToGroupRelationshipAsync(global::Briosa.Client.Transport.MakeGroupToGroupRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakeGroupToGroupRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.DeleteRelationshipResult DeleteRelationship(global::Briosa.Client.Transport.DeleteRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.DeleteRelationshipResult DeleteRelationship(global::Briosa.Client.Transport.DeleteRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DeleteRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.DeleteRelationshipResult> DeleteRelationshipAsync(global::Briosa.Client.Transport.DeleteRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.DeleteRelationshipResult> DeleteRelationshipAsync(global::Briosa.Client.Transport.DeleteRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DeleteRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeAveragePointRelationshipResult MakeAveragePointRelationship(global::Briosa.Client.Transport.MakeAveragePointRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeAveragePointRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeAveragePointRelationshipResult MakeAveragePointRelationship(global::Briosa.Client.Transport.MakeAveragePointRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakeAveragePointRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeAveragePointRelationshipResult> MakeAveragePointRelationshipAsync(global::Briosa.Client.Transport.MakeAveragePointRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeAveragePointRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeAveragePointRelationshipResult> MakeAveragePointRelationshipAsync(global::Briosa.Client.Transport.MakeAveragePointRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakeAveragePointRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetOptimizationPerturbationParametersResult SetOptimizationPerturbationParameters(global::Briosa.Client.Transport.SetOptimizationPerturbationParametersRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetOptimizationPerturbationParameters(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetOptimizationPerturbationParametersResult SetOptimizationPerturbationParameters(global::Briosa.Client.Transport.SetOptimizationPerturbationParametersRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetOptimizationPerturbationParameters, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetOptimizationPerturbationParametersResult> SetOptimizationPerturbationParametersAsync(global::Briosa.Client.Transport.SetOptimizationPerturbationParametersRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetOptimizationPerturbationParametersAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetOptimizationPerturbationParametersResult> SetOptimizationPerturbationParametersAsync(global::Briosa.Client.Transport.SetOptimizationPerturbationParametersRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetOptimizationPerturbationParameters, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetObjectsFromPointsToObjectsMapPointListResult GetObjectsFromPointsToObjectsMapPointList(global::Briosa.Client.Transport.GetObjectsFromPointsToObjectsMapPointListRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetObjectsFromPointsToObjectsMapPointList(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetObjectsFromPointsToObjectsMapPointListResult GetObjectsFromPointsToObjectsMapPointList(global::Briosa.Client.Transport.GetObjectsFromPointsToObjectsMapPointListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetObjectsFromPointsToObjectsMapPointList, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetObjectsFromPointsToObjectsMapPointListResult> GetObjectsFromPointsToObjectsMapPointListAsync(global::Briosa.Client.Transport.GetObjectsFromPointsToObjectsMapPointListRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetObjectsFromPointsToObjectsMapPointListAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetObjectsFromPointsToObjectsMapPointListResult> GetObjectsFromPointsToObjectsMapPointListAsync(global::Briosa.Client.Transport.GetObjectsFromPointsToObjectsMapPointListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetObjectsFromPointsToObjectsMapPointList, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetOptimizationSearchOptionsResult SetOptimizationSearchOptions(global::Briosa.Client.Transport.SetOptimizationSearchOptionsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetOptimizationSearchOptions(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.SetOptimizationSearchOptionsResult SetOptimizationSearchOptions(global::Briosa.Client.Transport.SetOptimizationSearchOptionsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetOptimizationSearchOptions, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetOptimizationSearchOptionsResult> SetOptimizationSearchOptionsAsync(global::Briosa.Client.Transport.SetOptimizationSearchOptionsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetOptimizationSearchOptionsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetOptimizationSearchOptionsResult> SetOptimizationSearchOptionsAsync(global::Briosa.Client.Transport.SetOptimizationSearchOptionsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetOptimizationSearchOptions, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetRelationshipSigmoidalGapFitConstraintsResult GetRelationshipSigmoidalGapFitConstraints(global::Briosa.Client.Transport.GetRelationshipSigmoidalGapFitConstraintsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetRelationshipSigmoidalGapFitConstraints(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetRelationshipSigmoidalGapFitConstraintsResult GetRelationshipSigmoidalGapFitConstraints(global::Briosa.Client.Transport.GetRelationshipSigmoidalGapFitConstraintsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetRelationshipSigmoidalGapFitConstraints, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetRelationshipSigmoidalGapFitConstraintsResult> GetRelationshipSigmoidalGapFitConstraintsAsync(global::Briosa.Client.Transport.GetRelationshipSigmoidalGapFitConstraintsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetRelationshipSigmoidalGapFitConstraintsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetRelationshipSigmoidalGapFitConstraintsResult> GetRelationshipSigmoidalGapFitConstraintsAsync(global::Briosa.Client.Transport.GetRelationshipSigmoidalGapFitConstraintsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetRelationshipSigmoidalGapFitConstraints, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.RelationshipWatchWindowTemplateResult RelationshipWatchWindowTemplate(global::Briosa.Client.Transport.RelationshipWatchWindowTemplateRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RelationshipWatchWindowTemplate(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.RelationshipWatchWindowTemplateResult RelationshipWatchWindowTemplate(global::Briosa.Client.Transport.RelationshipWatchWindowTemplateRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_RelationshipWatchWindowTemplate, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.RelationshipWatchWindowTemplateResult> RelationshipWatchWindowTemplateAsync(global::Briosa.Client.Transport.RelationshipWatchWindowTemplateRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RelationshipWatchWindowTemplateAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.RelationshipWatchWindowTemplateResult> RelationshipWatchWindowTemplateAsync(global::Briosa.Client.Transport.RelationshipWatchWindowTemplateRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_RelationshipWatchWindowTemplate, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExtractGeometryFromPointCloudsResult ExtractGeometryFromPointClouds(global::Briosa.Client.Transport.ExtractGeometryFromPointCloudsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExtractGeometryFromPointClouds(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ExtractGeometryFromPointCloudsResult ExtractGeometryFromPointClouds(global::Briosa.Client.Transport.ExtractGeometryFromPointCloudsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExtractGeometryFromPointClouds, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExtractGeometryFromPointCloudsResult> ExtractGeometryFromPointCloudsAsync(global::Briosa.Client.Transport.ExtractGeometryFromPointCloudsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExtractGeometryFromPointCloudsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ExtractGeometryFromPointCloudsResult> ExtractGeometryFromPointCloudsAsync(global::Briosa.Client.Transport.ExtractGeometryFromPointCloudsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExtractGeometryFromPointClouds, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeGroupsToObjectsRelationshipResult MakeGroupsToObjectsRelationship(global::Briosa.Client.Transport.MakeGroupsToObjectsRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeGroupsToObjectsRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeGroupsToObjectsRelationshipResult MakeGroupsToObjectsRelationship(global::Briosa.Client.Transport.MakeGroupsToObjectsRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakeGroupsToObjectsRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeGroupsToObjectsRelationshipResult> MakeGroupsToObjectsRelationshipAsync(global::Briosa.Client.Transport.MakeGroupsToObjectsRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeGroupsToObjectsRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeGroupsToObjectsRelationshipResult> MakeGroupsToObjectsRelationshipAsync(global::Briosa.Client.Transport.MakeGroupsToObjectsRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakeGroupsToObjectsRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ComputeGeometryRelationshipUncertaintiesResult ComputeGeometryRelationshipUncertainties(global::Briosa.Client.Transport.ComputeGeometryRelationshipUncertaintiesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ComputeGeometryRelationshipUncertainties(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.ComputeGeometryRelationshipUncertaintiesResult ComputeGeometryRelationshipUncertainties(global::Briosa.Client.Transport.ComputeGeometryRelationshipUncertaintiesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ComputeGeometryRelationshipUncertainties, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ComputeGeometryRelationshipUncertaintiesResult> ComputeGeometryRelationshipUncertaintiesAsync(global::Briosa.Client.Transport.ComputeGeometryRelationshipUncertaintiesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ComputeGeometryRelationshipUncertaintiesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ComputeGeometryRelationshipUncertaintiesResult> ComputeGeometryRelationshipUncertaintiesAsync(global::Briosa.Client.Transport.ComputeGeometryRelationshipUncertaintiesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ComputeGeometryRelationshipUncertainties, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetPointsToObjectsRelationshipStatisticsResult GetPointsToObjectsRelationshipStatistics(global::Briosa.Client.Transport.GetPointsToObjectsRelationshipStatisticsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetPointsToObjectsRelationshipStatistics(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetPointsToObjectsRelationshipStatisticsResult GetPointsToObjectsRelationshipStatistics(global::Briosa.Client.Transport.GetPointsToObjectsRelationshipStatisticsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetPointsToObjectsRelationshipStatistics, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetPointsToObjectsRelationshipStatisticsResult> GetPointsToObjectsRelationshipStatisticsAsync(global::Briosa.Client.Transport.GetPointsToObjectsRelationshipStatisticsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetPointsToObjectsRelationshipStatisticsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetPointsToObjectsRelationshipStatisticsResult> GetPointsToObjectsRelationshipStatisticsAsync(global::Briosa.Client.Transport.GetPointsToObjectsRelationshipStatisticsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetPointsToObjectsRelationshipStatistics, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetRelationshipStatusResult GetRelationshipStatus(global::Briosa.Client.Transport.GetRelationshipStatusRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetRelationshipStatus(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetRelationshipStatusResult GetRelationshipStatus(global::Briosa.Client.Transport.GetRelationshipStatusRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetRelationshipStatus, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetRelationshipStatusResult> GetRelationshipStatusAsync(global::Briosa.Client.Transport.GetRelationshipStatusRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetRelationshipStatusAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetRelationshipStatusResult> GetRelationshipStatusAsync(global::Briosa.Client.Transport.GetRelationshipStatusRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetRelationshipStatus, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.AutoFilterPointsToNominalGeometry3DResult AutoFilterPointsToNominalGeometry3D(global::Briosa.Client.Transport.AutoFilterPointsToNominalGeometry3DRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AutoFilterPointsToNominalGeometry3D(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.AutoFilterPointsToNominalGeometry3DResult AutoFilterPointsToNominalGeometry3D(global::Briosa.Client.Transport.AutoFilterPointsToNominalGeometry3DRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AutoFilterPointsToNominalGeometry3D, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.AutoFilterPointsToNominalGeometry3DResult> AutoFilterPointsToNominalGeometry3DAsync(global::Briosa.Client.Transport.AutoFilterPointsToNominalGeometry3DRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AutoFilterPointsToNominalGeometry3DAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.AutoFilterPointsToNominalGeometry3DResult> AutoFilterPointsToNominalGeometry3DAsync(global::Briosa.Client.Transport.AutoFilterPointsToNominalGeometry3DRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AutoFilterPointsToNominalGeometry3D, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeGeometryFitOnlyRelationshipResult MakeGeometryFitOnlyRelationship(global::Briosa.Client.Transport.MakeGeometryFitOnlyRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeGeometryFitOnlyRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeGeometryFitOnlyRelationshipResult MakeGeometryFitOnlyRelationship(global::Briosa.Client.Transport.MakeGeometryFitOnlyRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakeGeometryFitOnlyRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeGeometryFitOnlyRelationshipResult> MakeGeometryFitOnlyRelationshipAsync(global::Briosa.Client.Transport.MakeGeometryFitOnlyRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeGeometryFitOnlyRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeGeometryFitOnlyRelationshipResult> MakeGeometryFitOnlyRelationshipAsync(global::Briosa.Client.Transport.MakeGeometryFitOnlyRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakeGeometryFitOnlyRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakePointCloudsToObjectsRelationshipResult MakePointCloudsToObjectsRelationship(global::Briosa.Client.Transport.MakePointCloudsToObjectsRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakePointCloudsToObjectsRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakePointCloudsToObjectsRelationshipResult MakePointCloudsToObjectsRelationship(global::Briosa.Client.Transport.MakePointCloudsToObjectsRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakePointCloudsToObjectsRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakePointCloudsToObjectsRelationshipResult> MakePointCloudsToObjectsRelationshipAsync(global::Briosa.Client.Transport.MakePointCloudsToObjectsRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakePointCloudsToObjectsRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakePointCloudsToObjectsRelationshipResult> MakePointCloudsToObjectsRelationshipAsync(global::Briosa.Client.Transport.MakePointCloudsToObjectsRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakePointCloudsToObjectsRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.EditGeometryRelationshipPointListResult EditGeometryRelationshipPointList(global::Briosa.Client.Transport.EditGeometryRelationshipPointListRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return EditGeometryRelationshipPointList(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.EditGeometryRelationshipPointListResult EditGeometryRelationshipPointList(global::Briosa.Client.Transport.EditGeometryRelationshipPointListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_EditGeometryRelationshipPointList, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.EditGeometryRelationshipPointListResult> EditGeometryRelationshipPointListAsync(global::Briosa.Client.Transport.EditGeometryRelationshipPointListRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return EditGeometryRelationshipPointListAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.EditGeometryRelationshipPointListResult> EditGeometryRelationshipPointListAsync(global::Briosa.Client.Transport.EditGeometryRelationshipPointListRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_EditGeometryRelationshipPointList, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetGeneralRelationshipStatisticsResult GetGeneralRelationshipStatistics(global::Briosa.Client.Transport.GetGeneralRelationshipStatisticsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetGeneralRelationshipStatistics(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GetGeneralRelationshipStatisticsResult GetGeneralRelationshipStatistics(global::Briosa.Client.Transport.GetGeneralRelationshipStatisticsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetGeneralRelationshipStatistics, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetGeneralRelationshipStatisticsResult> GetGeneralRelationshipStatisticsAsync(global::Briosa.Client.Transport.GetGeneralRelationshipStatisticsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetGeneralRelationshipStatisticsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetGeneralRelationshipStatisticsResult> GetGeneralRelationshipStatisticsAsync(global::Briosa.Client.Transport.GetGeneralRelationshipStatisticsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetGeneralRelationshipStatistics, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeGroupToNominalGroupRelationshipResult MakeGroupToNominalGroupRelationship(global::Briosa.Client.Transport.MakeGroupToNominalGroupRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeGroupToNominalGroupRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakeGroupToNominalGroupRelationshipResult MakeGroupToNominalGroupRelationship(global::Briosa.Client.Transport.MakeGroupToNominalGroupRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakeGroupToNominalGroupRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeGroupToNominalGroupRelationshipResult> MakeGroupToNominalGroupRelationshipAsync(global::Briosa.Client.Transport.MakeGroupToNominalGroupRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakeGroupToNominalGroupRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeGroupToNominalGroupRelationshipResult> MakeGroupToNominalGroupRelationshipAsync(global::Briosa.Client.Transport.MakeGroupToNominalGroupRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakeGroupToNominalGroupRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GenerateGeometryRelationshipSummaryResult GenerateGeometryRelationshipSummary(global::Briosa.Client.Transport.GenerateGeometryRelationshipSummaryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GenerateGeometryRelationshipSummary(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.GenerateGeometryRelationshipSummaryResult GenerateGeometryRelationshipSummary(global::Briosa.Client.Transport.GenerateGeometryRelationshipSummaryRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GenerateGeometryRelationshipSummary, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GenerateGeometryRelationshipSummaryResult> GenerateGeometryRelationshipSummaryAsync(global::Briosa.Client.Transport.GenerateGeometryRelationshipSummaryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GenerateGeometryRelationshipSummaryAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GenerateGeometryRelationshipSummaryResult> GenerateGeometryRelationshipSummaryAsync(global::Briosa.Client.Transport.GenerateGeometryRelationshipSummaryRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GenerateGeometryRelationshipSummary, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MoveCollectionsByMinimizingRelationshipsResult MoveCollectionsByMinimizingRelationships(global::Briosa.Client.Transport.MoveCollectionsByMinimizingRelationshipsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MoveCollectionsByMinimizingRelationships(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MoveCollectionsByMinimizingRelationshipsResult MoveCollectionsByMinimizingRelationships(global::Briosa.Client.Transport.MoveCollectionsByMinimizingRelationshipsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MoveCollectionsByMinimizingRelationships, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MoveCollectionsByMinimizingRelationshipsResult> MoveCollectionsByMinimizingRelationshipsAsync(global::Briosa.Client.Transport.MoveCollectionsByMinimizingRelationshipsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MoveCollectionsByMinimizingRelationshipsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MoveCollectionsByMinimizingRelationshipsResult> MoveCollectionsByMinimizingRelationshipsAsync(global::Briosa.Client.Transport.MoveCollectionsByMinimizingRelationshipsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MoveCollectionsByMinimizingRelationships, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakePointsToPointsRelationshipResult MakePointsToPointsRelationship(global::Briosa.Client.Transport.MakePointsToPointsRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakePointsToPointsRelationship(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.MakePointsToPointsRelationshipResult MakePointsToPointsRelationship(global::Briosa.Client.Transport.MakePointsToPointsRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_MakePointsToPointsRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakePointsToPointsRelationshipResult> MakePointsToPointsRelationshipAsync(global::Briosa.Client.Transport.MakePointsToPointsRelationshipRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return MakePointsToPointsRelationshipAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakePointsToPointsRelationshipResult> MakePointsToPointsRelationshipAsync(global::Briosa.Client.Transport.MakePointsToPointsRelationshipRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_MakePointsToPointsRelationship, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry3DResult AutoFilterCloudsToNominalGeometry3D(global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry3DRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AutoFilterCloudsToNominalGeometry3D(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry3DResult AutoFilterCloudsToNominalGeometry3D(global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry3DRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AutoFilterCloudsToNominalGeometry3D, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry3DResult> AutoFilterCloudsToNominalGeometry3DAsync(global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry3DRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AutoFilterCloudsToNominalGeometry3DAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry3DResult> AutoFilterCloudsToNominalGeometry3DAsync(global::Briosa.Client.Transport.AutoFilterCloudsToNominalGeometry3DRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AutoFilterCloudsToNominalGeometry3D, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]

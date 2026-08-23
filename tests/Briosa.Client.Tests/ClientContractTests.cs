@@ -9,17 +9,17 @@ namespace Briosa.Client.Tests;
 public sealed class ClientContractTests
 {
     [Fact]
-    public void ProtocolIdentityMatchesMergedWaveAArtifact()
+    public void ProtocolIdentityMatchesMergedWaveBArtifact()
     {
         Assert.Equal(
-            "briosa-protocol-0.2.1-sa-2026.1.0529.7",
+            "briosa-protocol-0.3.0-sa-2026.1.0529.7",
             Transport.BriosaProtocolIdentity.ArtifactName);
         Assert.Equal("briosa", Transport.BriosaProtocolIdentity.ProtocolPackage);
         Assert.Equal(
             "standard-protobuf-grpc",
             Transport.BriosaProtocolIdentity.ClientGenerationContract);
         Assert.Equal(
-            "dc361c55e09cf2b6cdf5b058c9a2b75d52907bd5",
+            "6eca210980ff251e4d672047b8efa47f6c04ac9f",
             Transport.BriosaProtocolIdentity.SourceRevision);
         Assert.Equal(
             "2026.1.0529.7",
@@ -37,6 +37,112 @@ public sealed class ClientContractTests
         Assert.All(
             BriosaClient.WaveAOperationNames,
             operation => Assert.Contains(operation + "Async", methods));
+    }
+
+    [Fact]
+    public void WaveBContractPublishesEveryRpcInTheExtendedServices()
+    {
+        var services = new[]
+        {
+            Transport.CloudAndMeshOperations.Descriptor,
+            Transport.ConstructionOperations.Descriptor,
+            Transport.GdtOperations.Descriptor,
+            Transport.InstrumentOperations.Descriptor,
+            Transport.RelationshipOperations.Descriptor,
+            Transport.RobotCalibrationApplianceNodeOperations.Descriptor,
+            Transport.RobotOperations.Descriptor,
+        };
+        var operationNames = services
+            .SelectMany(service => service.Methods)
+            .Select(method => method.Name)
+            .ToArray();
+        var publicMethods = new[]
+        {
+            typeof(BriosaClient),
+            typeof(BriosaConstructionOperations),
+            typeof(BriosaGdtOperations),
+            typeof(BriosaInstrumentOperations),
+            typeof(BriosaRobotCalibrationApplianceNodeOperations),
+            typeof(BriosaRobotOperations),
+        }
+            .SelectMany(type => type.GetMethods())
+            .Select(method => method.Name)
+            .ToHashSet(StringComparer.Ordinal);
+
+        Assert.Equal(613, operationNames.Length);
+        Assert.Equal(613, operationNames.Distinct().Count());
+        Assert.All(operationNames, operation => Assert.Contains(operation + "Async", publicMethods));
+    }
+
+    [Fact]
+    public async Task WaveBOperationsMapDefaultsResultsAndOptionalListWrappers()
+    {
+        var transport = new FakeTransport
+        {
+            OperationResponse = new Transport.CloudDisplayControlResult(),
+        };
+        await using var client = CreateClient(new FakeServerLauncher(), transport);
+        await client.StartAsync();
+
+        Assert.NotNull(client.ConstructionOperations);
+        Assert.NotNull(client.GdtOperations);
+        Assert.NotNull(client.InstrumentOperations);
+        Assert.NotNull(client.RobotCalibrationApplianceNodeOperations);
+        Assert.NotNull(client.RobotOperations);
+
+        await client.CloudDisplayControlAsync();
+        var displayRequest = Assert.IsType<Transport.CloudDisplayControlRequest>(
+            transport.LastOperationRequest);
+        Assert.Equal(1, displayRequest.ThinDrawIncrement);
+        Assert.Equal(1, displayRequest.PointSize);
+
+        transport.OperationResponse = new Transport.GetActiveCollectionNameResult
+        {
+            CurrentlyActiveCollectionName = "Inspection",
+        };
+        Assert.Equal("Inspection", await client.GetActiveCollectionNameAsync());
+
+        transport.OperationResponse = new Transport.GetCloudPointCountResult
+        {
+            PointsCount = 42,
+            PlanarOffset = 0.1,
+            RadialOffset = 0.2,
+            ActiveClippingPlanes = 3,
+        };
+        var pointCount = await client.GetCloudPointCountAsync(new CollectionObjectName
+        {
+            CollectionName = "Clouds",
+            ObjectName = "Scan 1",
+            ObjectType = ObjectType.Cloud,
+        });
+        Assert.Equal(42, pointCount.PointsCount);
+        Assert.Equal(3, pointCount.ActiveClippingPlanes);
+
+        transport.OperationResponse =
+            new Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesResult();
+        await client.AutoFilterPointsGroupsCloudsToSurfaceFacesAsync(
+            [new CollectionObjectName
+            {
+                CollectionName = "Surfaces",
+                ObjectName = "Surface 1",
+                ObjectType = ObjectType.Surface,
+            }],
+            points:
+            [
+                new PointName
+                {
+                    CollectionName = "Points",
+                    GroupName = "Measured",
+                    TargetName = "P1",
+                },
+            ]);
+        var filterRequest =
+            Assert.IsType<Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesRequest>(
+                transport.LastOperationRequest);
+        Assert.Single(filterRequest.Points.Values);
+        Assert.Null(filterRequest.Groups);
+        Assert.Null(filterRequest.Clouds);
+        Assert.Equal("P1", filterRequest.Points.Values[0].TargetName);
     }
 
     [Fact]

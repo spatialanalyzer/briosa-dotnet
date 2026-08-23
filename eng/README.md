@@ -10,7 +10,7 @@ The current released artifact is:
 
 ```powershell
 ./eng/Import-ProtocolArtifact.ps1 `
-  -ArtifactPath C:\path\to\briosa-protocol-0.2.1-sa-2026.1.0529.7.zip `
+  -ArtifactPath C:\path\to\briosa-protocol-0.3.0-sa-2026.1.0529.7.zip `
   -Update `
   -SourceChannel github_release
 ```
