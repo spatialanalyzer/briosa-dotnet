@@ -71,6 +71,11 @@ internal static class OperationProtocolMapper
     {
         if (value is null)
         {
+            if (field.HasPresence)
+            {
+                return;
+            }
+
             throw new ArgumentNullException(field.Name);
         }
 
@@ -128,6 +133,21 @@ internal static class OperationProtocolMapper
         ValidateDomainValue(value, protocolOutput: false);
         var message = Activator.CreateInstance(descriptor.ClrType) as IMessage ??
             throw new BriosaProtocolException("operation-domain-construction-failed");
+        if (descriptor.Name is "PointNameList" or "CollectionObjectNameList" &&
+            value is IEnumerable values && value is not string)
+        {
+            var listField = descriptor.FindFieldByName("values") ??
+                throw new BriosaProtocolException("operation-list-wrapper-drift");
+            var target = listField.Accessor.GetValue(message) as IList ??
+                throw new BriosaProtocolException("operation-list-wrapper-drift");
+            foreach (var item in values)
+            {
+                target.Add(ToWireValue(listField, item));
+            }
+
+            return message;
+        }
+
         var publicType = value.GetType();
         foreach (var field in descriptor.Fields.InFieldNumberOrder())
         {
@@ -163,6 +183,7 @@ internal static class OperationProtocolMapper
         if (field.IsRepeated)
         {
             var elementType = targetType.GetElementType() ??
+                targetType.GetGenericArguments().SingleOrDefault() ??
                 throw new BriosaProtocolException("operation-result-sequence-drift");
             var source = ((IEnumerable)value).Cast<object>().ToArray();
             var result = Array.CreateInstance(elementType, source.Length);
@@ -187,6 +208,23 @@ internal static class OperationProtocolMapper
 
     private static object FromWireMessage(IMessage message, Type targetType)
     {
+        if (message.Descriptor.Name is "PointNameList" or "CollectionObjectNameList")
+        {
+            var listField = message.Descriptor.FindFieldByName("values") ??
+                throw new BriosaProtocolException("operation-list-wrapper-drift");
+            var elementType = targetType.GetElementType() ??
+                targetType.GetGenericArguments().SingleOrDefault() ??
+                throw new BriosaProtocolException("operation-result-sequence-drift");
+            var source = ((IEnumerable)listField.Accessor.GetValue(message)).Cast<object>().ToArray();
+            var wrappedResult = Array.CreateInstance(elementType, source.Length);
+            for (var index = 0; index < source.Length; index++)
+            {
+                wrappedResult.SetValue(FromWireValue(listField, source[index], elementType), index);
+            }
+
+            return wrappedResult;
+        }
+
         var result = Activator.CreateInstance(targetType) ??
             throw new BriosaProtocolException("operation-domain-construction-failed");
         foreach (var field in message.Descriptor.Fields.InFieldNumberOrder())

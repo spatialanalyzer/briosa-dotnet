@@ -239,14 +239,24 @@ public sealed record VectorName
 
 public sealed record Vector
 {
-    public required double X { get; init; }
-    public required double Y { get; init; }
-    public required double Z { get; init; }
+    public Vector() { }
+
+    public Vector(double x, double y, double z) => (X, Y, Z) = (x, y, z);
+
+    public double X { get; init; }
+    public double Y { get; init; }
+    public double Z { get; init; }
 }
 
 public sealed record Transform
 {
-    public required double[] Values { get; init; }
+    public double[] Values { get; init; } =
+    [
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1,
+    ];
 }
 
 public sealed record WorldTransform
@@ -257,9 +267,13 @@ public sealed record WorldTransform
 
 public sealed record Color
 {
-    public required uint Red { get; init; }
-    public required uint Green { get; init; }
-    public required uint Blue { get; init; }
+    public Color() { }
+
+    public Color(uint red, uint green, uint blue) => (Red, Green, Blue) = (red, green, blue);
+
+    public uint Red { get; init; }
+    public uint Green { get; init; }
+    public uint Blue { get; init; }
 }
 
 public sealed record ColorizationOptions

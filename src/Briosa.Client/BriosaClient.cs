@@ -40,7 +40,30 @@ public sealed partial class BriosaClient : IAsyncDisposable
         _options = options;
         _serverLauncher = serverLauncher;
         _transportFactory = transportFactory;
+        ConstructionOperations = new BriosaConstructionOperations(this);
+        GdtOperations = new BriosaGdtOperations(this);
+        InstrumentOperations = new BriosaInstrumentOperations(this);
+        RobotCalibrationApplianceNodeOperations =
+            new BriosaRobotCalibrationApplianceNodeOperations(this);
+        RobotOperations = new BriosaRobotOperations(this);
     }
+
+    /// <summary>Provides grouped construction MP operations.</summary>
+    public BriosaConstructionOperations ConstructionOperations { get; }
+
+    /// <summary>Provides grouped GD&amp;T MP operations.</summary>
+    public BriosaGdtOperations GdtOperations { get; }
+
+    /// <summary>Provides grouped instrument MP operations.</summary>
+    public BriosaInstrumentOperations InstrumentOperations { get; }
+
+    /// <summary>Provides grouped robot calibration appliance node MP operations.</summary>
+    public BriosaRobotCalibrationApplianceNodeOperations
+        RobotCalibrationApplianceNodeOperations
+    { get; }
+
+    /// <summary>Provides grouped robot MP operations.</summary>
+    public BriosaRobotOperations RobotOperations { get; }
 
     /// <summary>Starts the ordinary ready-for-MP local session.</summary>
     public Task StartAsync(CancellationToken cancellationToken = default) =>

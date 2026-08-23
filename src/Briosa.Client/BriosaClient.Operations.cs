@@ -5,7 +5,7 @@ namespace Briosa;
 
 public sealed partial class BriosaClient
 {
-    private async Task<TResult> InvokeOperationAsync<TResult>(
+    internal async Task<TResult> InvokeOperationAsync<TResult>(
         string service,
         string rpc,
         IMessage request,
@@ -58,7 +58,7 @@ public sealed partial class BriosaClient
         }
     }
 
-    private async Task InvokeOperationAsync(
+    internal async Task InvokeOperationAsync(
         string service,
         string rpc,
         IMessage request,
