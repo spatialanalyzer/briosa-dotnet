@@ -75,14 +75,15 @@ jobs:
           ./eng/Import-ProtocolArtifact.ps1
           -ArtifactPath "artifacts/protocol/${{ steps.protocol.outputs.artifact_file_name }}"
 
-      - name: Rebuild pinned client conformance artifact
+      - name: Download pinned client conformance artifact
         shell: pwsh
-        working-directory: briosa-source
-        run: >
-          ./targets/${{ steps.protocol.outputs.spatial_analyzer_target }}/eng/New-ClientConformancePackage.ps1
-          -Version "${{ steps.protocol.outputs.briosa_version }}"
-          -SourceRevision "${{ steps.protocol.outputs.source_revision }}"
-          -OutputDirectory "${{ github.workspace }}/artifacts/conformance"
+        run: |
+          $outputDirectory = Join-Path $env:GITHUB_WORKSPACE 'artifacts/conformance'
+          New-Item -ItemType Directory -Path $outputDirectory -Force | Out-Null
+          $releaseBase = "https://github.com/spatialanalyzer/briosa/releases/download/v${{ steps.protocol.outputs.briosa_version }}"
+          $fileName = "${{ steps.protocol.outputs.conformance_file_name }}"
+          Invoke-WebRequest "$releaseBase/$fileName" -OutFile (Join-Path $outputDirectory $fileName)
+          Invoke-WebRequest "$releaseBase/$fileName.sha256" -OutFile (Join-Path $outputDirectory "$fileName.sha256")
 
       - name: Build
         run: dotnet build Briosa.DotNet.slnx -c Release --no-restore
