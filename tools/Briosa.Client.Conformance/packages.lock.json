@@ -23,7 +23,7 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
         }
       },
-      "briosa.client": {
+      "Briosa.2026.1.0529.7": {
         "type": "Project",
         "dependencies": {
           "Google.Protobuf": "[3.31.1, )",

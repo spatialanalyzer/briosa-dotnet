@@ -114,7 +114,7 @@
           "xunit.extensibility.core": "[2.9.3]"
         }
       },
-      "briosa.client": {
+      "Briosa.2026.1.0529.7": {
         "type": "Project",
         "dependencies": {
           "Google.Protobuf": "[3.31.1, )",
