@@ -107,3 +107,7 @@ jobs:
           --no-build
           --no-restore
           -o artifacts/package
+
+      - name: Verify exact-target package identity
+        shell: pwsh
+        run: ./eng/Test-PackageIdentity.ps1 -PackageDirectory artifacts/package

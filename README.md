@@ -1,6 +1,6 @@
 # Briosa .NET client
 
-`Briosa.Client` is the asynchronous .NET client for the open-source
+`Briosa.2026.1.0529.7` is the asynchronous .NET client for the open-source
 [Briosa](https://github.com/spatialanalyzer/briosa) SpatialAnalyzer bridge.
 It provides an idiomatic lifecycle API and handwritten MP methods while keeping
 generated gRPC types private.
@@ -9,6 +9,23 @@ The package does not include SpatialAnalyzer, the SA SDK, or a license. The
 current package targets SpatialAnalyzer `2026.1.0529.7` exactly and .NET 10 on
 Windows x64. Its full protocol identity is pinned in
 [`protocol.lock.json`](protocol.lock.json).
+
+## Package Identity
+
+The NuGet package and assembly are both named `Briosa.2026.1.0529.7`. The
+package has not been published to NuGet yet. After publication, the intended
+installation command is:
+
+```powershell
+dotnet add package Briosa.2026.1.0529.7 --version 0.1.0
+```
+
+Exact SpatialAnalyzer targets use separate package and assembly identities,
+while application code continues to use the stable `Briosa` namespace. A
+future application that must reference several target packages can isolate
+their otherwise matching public names with .NET assembly aliases; there is no
+universal runtime target selector. Only the `2026.1.0529.7` target package is
+implemented today.
 
 ## Usage
 

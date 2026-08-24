@@ -9,6 +9,25 @@ namespace Briosa.Client.Tests;
 public sealed class ClientContractTests
 {
     [Fact]
+    public void PackageUsesExactTargetAssemblyIdentityAndStableNamespace()
+    {
+        Assert.Equal(
+            "Briosa.2026.1.0529.7",
+            typeof(BriosaClient).Assembly.GetName().Name);
+        Assert.Equal("Briosa", typeof(BriosaClient).Namespace);
+    }
+
+    [Theory]
+    [InlineData("2026.1.0529.7", "Briosa.2026.1.0529.7")]
+    [InlineData("2027.1.0000.0", "Briosa.2027.1.0000.0")]
+    public void ExactTargetsProduceDistinctPackageAndAssemblyIdentities(
+        string target,
+        string expectedIdentity)
+    {
+        Assert.Equal(expectedIdentity, $"Briosa.{target}");
+    }
+
+    [Fact]
     public void ProtocolIdentityMatchesMergedWaveBArtifact()
     {
         Assert.Equal(
