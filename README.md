@@ -101,3 +101,25 @@ script:
 ```
 
 Never edit `src/Briosa.Client/Generated` or `protocol.lock.json` by hand.
+## Server Logging
+
+Use the optional `BriosaStartOptions.Logging` property to override startup logging:
+
+```csharp
+await briosa.StartAsync(new BriosaStartOptions
+{
+    Logging = new BriosaLoggingOptions
+    {
+        MinimumLevel = BriosaLogLevel.Debug,
+        ConsoleEnabled = false,
+        MaxFileSizeMiB = 20,
+        RetainedFileCount = 10
+    }
+});
+```
+
+`CategoryLevels`, `FileEnabled`, `FileDirectory`, `MaxAgeDays`, and
+`MaxTotalSizeMiB` provide the remaining typed controls. Omitted settings preserve
+server configuration. Values are validated before launch; custom directories
+must be absolute. See the [shared startup contract](https://github.com/spatialanalyzer/briosa/blob/main/docs/architecture/client-library-behavioral-contract.md#server-logging-startup-controls)
+and [server observability guide](https://github.com/spatialanalyzer/briosa/blob/main/targets/2026.1.0529.7/docs/operations/server-observability.md).

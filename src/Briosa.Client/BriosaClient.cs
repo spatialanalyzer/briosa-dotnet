@@ -392,7 +392,7 @@ public sealed partial class BriosaClient : IAsyncDisposable
 
         try
         {
-            server = await _serverLauncher.LaunchAsync(token).ConfigureAwait(false);
+            server = await _serverLauncher.LaunchAsync(options.Logging, token).ConfigureAwait(false);
             transport = _transportFactory.Create(server.Address);
             var snapshot = await WaitForServerAsync(server, transport, token)
                 .ConfigureAwait(false);

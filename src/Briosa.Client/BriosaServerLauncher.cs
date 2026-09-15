@@ -7,7 +7,7 @@ namespace Briosa;
 
 internal interface IBriosaServerLauncher
 {
-    Task<IOwnedBriosaServer> LaunchAsync(CancellationToken cancellationToken);
+    Task<IOwnedBriosaServer> LaunchAsync(BriosaLoggingOptions? logging, CancellationToken cancellationToken);
 }
 
 internal interface IOwnedBriosaServer : IAsyncDisposable
@@ -20,7 +20,7 @@ internal sealed class BriosaServerLauncher : IBriosaServerLauncher
 {
     internal const string ServerPathEnvironmentVariable = "BRIOSA_SERVER_PATH";
 
-    public Task<IOwnedBriosaServer> LaunchAsync(CancellationToken cancellationToken)
+    public Task<IOwnedBriosaServer> LaunchAsync(BriosaLoggingOptions? logging, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         var executablePath = ResolveExecutablePath();
@@ -34,6 +34,8 @@ internal sealed class BriosaServerLauncher : IBriosaServerLauncher
             WindowStyle = ProcessWindowStyle.Hidden,
         };
         startInfo.ArgumentList.Add($"--Briosa:Endpoint:Port={port}");
+        foreach (var argument in logging?.ToArguments() ?? [])
+            startInfo.ArgumentList.Add(argument);
 
         try
         {
