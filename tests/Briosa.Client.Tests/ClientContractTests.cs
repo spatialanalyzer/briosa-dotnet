@@ -423,17 +423,21 @@ public sealed class ClientContractTests
     public async Task ControlPlaneOnlyStartupDoesNotCreateSdkOrApplication()
     {
         var transport = new FakeTransport();
-        await using var client = CreateClient(new FakeServerLauncher(), transport);
+        var launcher = new FakeServerLauncher();
+        await using var client = CreateClient(launcher, transport);
+        var logging = new BriosaLoggingOptions { ConsoleEnabled = false };
 
         await client.StartAsync(new BriosaStartOptions
         {
             StartSpatialAnalyzerSdk = false,
             LaunchSpatialAnalyzer = false,
             ConnectToSpatialAnalyzer = false,
+            Logging = logging,
         });
         var snapshot = await client.GetServerSnapshotAsync();
 
         Assert.False(snapshot.ReadyForMp);
+        Assert.Same(logging, launcher.Logging);
         await Assert.ThrowsAsync<BriosaLifecycleException>(
             () => client.GetWorkingDirectoryAsync());
         Assert.Equal(["snapshot", "snapshot"], transport.Calls);
@@ -557,12 +561,14 @@ public sealed class ClientContractTests
         public int LaunchCount { get; private set; }
         public FakeOwnedServer Server { get; } = new();
 
-        public Task<IOwnedBriosaServer> LaunchAsync(CancellationToken cancellationToken)
+        public Task<IOwnedBriosaServer> LaunchAsync(BriosaLoggingOptions? logging, CancellationToken cancellationToken)
         {
+            Logging = logging;
             cancellationToken.ThrowIfCancellationRequested();
             LaunchCount++;
             return Task.FromResult<IOwnedBriosaServer>(Server);
         }
+        public BriosaLoggingOptions? Logging { get; private set; }
     }
 
     private sealed class FakeOwnedServer : IOwnedBriosaServer
