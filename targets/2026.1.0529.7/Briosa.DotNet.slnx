@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Briosa.Client/Briosa.Client.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Briosa.Client.Tests/Briosa.Client.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/Briosa.Client.Conformance/Briosa.Client.Conformance.csproj" />
+  </Folder>
+</Solution>
