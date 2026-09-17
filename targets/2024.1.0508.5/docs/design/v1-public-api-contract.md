@@ -65,7 +65,7 @@ asynchronous, strongly typed, and recognizable to experienced MP developers.
 
 ### Package and namespace
 
-The first target package is `Briosa.2026.1.0529.7`. Target packages use unique
+The first target package is `Briosa.2024.1.0508.5`. Target packages use unique
 assembly identities and the stable public namespace `Briosa`.
 
 Generated protobuf and gRPC code is compiled as private transport
@@ -335,9 +335,3 @@ client epic and is consistent with this contract. Implementation work must
 resolve the relevant deferred decisions and replace bootstrap behavior through
 focused, reviewable issues. A local implementation must not silently redefine
 the central behavioral contract.
-
-## Implemented targets
-
-Independent SA `2024.1.0508.5` and `2026.1.0529.7` products live under
-`targets/`. See the [repository guide](../../README.md) for package selection;
-the target README records signature differences and validation limits.

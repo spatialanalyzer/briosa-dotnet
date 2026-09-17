@@ -10,8 +10,15 @@ permissions:
 jobs:
   build-test-package:
     name: Build, test, and package
+    strategy:
+      fail-fast: false
+      matrix:
+        sa-target: ['2024.1.0508.5', '2026.1.0529.7']
+    defaults:
+      run:
+        working-directory: targets/${{ matrix.sa-target }}
     runs-on: windows-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     env:
       DOTNET_CLI_TELEMETRY_OPTOUT: 'true'
@@ -64,10 +71,10 @@ jobs:
       - name: Rebuild pinned protocol artifact
         shell: pwsh
         run: >
-          ./briosa-source/targets/${{ steps.protocol.outputs.spatial_analyzer_target }}/eng/New-ProtocolArtifact.ps1
+          ../../briosa-source/targets/${{ steps.protocol.outputs.spatial_analyzer_target }}/eng/New-ProtocolArtifact.ps1
           -Version "${{ steps.protocol.outputs.briosa_version }}"
           -SourceRevision "${{ steps.protocol.outputs.source_revision }}"
-          -OutputDirectory "${{ github.workspace }}/artifacts/protocol"
+          -OutputDirectory "${{ github.workspace }}/targets/${{ matrix.sa-target }}/artifacts/protocol"
 
       - name: Verify protocol and generated-code drift
         shell: pwsh
@@ -78,7 +85,7 @@ jobs:
       - name: Download pinned client conformance artifact
         shell: pwsh
         run: |
-          $outputDirectory = Join-Path $env:GITHUB_WORKSPACE 'artifacts/conformance'
+          $outputDirectory = Join-Path $PWD 'artifacts/conformance'
           New-Item -ItemType Directory -Path $outputDirectory -Force | Out-Null
           $releaseBase = "https://github.com/spatialanalyzer/briosa/releases/download/v${{ steps.protocol.outputs.briosa_version }}"
           $fileName = "${{ steps.protocol.outputs.conformance_file_name }}"
@@ -111,3 +118,7 @@ jobs:
       - name: Verify exact-target package identity
         shell: pwsh
         run: ./eng/Test-PackageIdentity.ps1 -PackageDirectory artifacts/package
+
+      - name: Verify packed consumer namespace
+        shell: pwsh
+        run: ./eng/Test-PackageConsumer.ps1

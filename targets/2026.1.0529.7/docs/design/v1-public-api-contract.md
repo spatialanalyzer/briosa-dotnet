@@ -335,9 +335,3 @@ client epic and is consistent with this contract. Implementation work must
 resolve the relevant deferred decisions and replace bootstrap behavior through
 focused, reviewable issues. A local implementation must not silently redefine
 the central behavioral contract.
-
-## Implemented targets
-
-Independent SA `2024.1.0508.5` and `2026.1.0529.7` products live under
-`targets/`. See the [repository guide](../../README.md) for package selection;
-the target README records signature differences and validation limits.
