@@ -12,9 +12,7 @@ Windows x64. Its full protocol identity is pinned in
 
 ## Package Identity
 
-The NuGet package and assembly are both named `Briosa.2024.1.0508.5`. The
-package has not been published to NuGet yet. After publication, the intended
-installation command is:
+The NuGet package and assembly are both named `Briosa.2024.1.0508.5`. Install the package with:
 
 ```powershell
 dotnet add package Briosa.2024.1.0508.5 --version 0.1.0
