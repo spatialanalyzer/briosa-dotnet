@@ -15,7 +15,7 @@ Windows x64. Its full protocol identity is pinned in
 The NuGet package and assembly are both named `Briosa.2024.1.0508.5`. Install the package with:
 
 ```powershell
-dotnet add package Briosa.2024.1.0508.5 --version 0.1.0
+dotnet add package Briosa.2024.1.0508.5 --version 0.1.1
 ```
 
 Exact SpatialAnalyzer targets use separate package and assembly identities,
@@ -60,7 +60,7 @@ this package's exact API.
 
 ## Server distribution lookup
 
-Install **Briosa Server 0.6.0 for SA 2024.1.0508.5** with the Briosa Installer.
+Install **Briosa Server 0.6.1 for SA 2024.1.0508.5** with the Briosa Installer.
 Default startup searches these locations in order:
 
 1. `BRIOSA_SERVER_PATH`, pointing to `Briosa.Server.exe`.
@@ -69,7 +69,7 @@ Default startup searches these locations in order:
 4. `%PROGRAMDATA%/Briosa/Packages/products/<package-id>/payload/Briosa.Server.exe`.
 5. The legacy `%LOCALAPPDATA%/Briosa/servers/<briosa-version>/sa-<sa-target>/Briosa.Server.exe`.
 
-For this client, `<package-id>` is `briosa-0.6.0-sa-2024.1.0508.5-win-x64`.
+For this client, `<package-id>` is `briosa-0.6.1-sa-2024.1.0508.5-win-x64`.
 Managed installations must have a matching committed receipt, manifest, and required
 entry points. Missing or invalid candidates are skipped; discovery never selects a
 different server version or SA target. Runtime compatibility checks still apply.
@@ -89,7 +89,7 @@ packages independently.
 dotnet restore Briosa.DotNet.slnx --locked-mode
 dotnet build Briosa.DotNet.slnx -c Release --no-restore
 dotnet test Briosa.DotNet.slnx -c Release --no-build --no-restore
-./eng/Test-Conformance.ps1 -ArtifactPath C:\path\to\briosa-client-conformance-0.6.0-sa-2024.1.0508.5-win-x64.zip
+./eng/Test-Conformance.ps1 -ArtifactPath C:\path\to\briosa-client-conformance-0.6.1-sa-2024.1.0508.5-win-x64.zip
 dotnet pack src/Briosa.Client/Briosa.Client.csproj -c Release --no-build --no-restore -o artifacts/package
 ./eng/Test-PackageIdentity.ps1
 ./eng/Test-PackageConsumer.ps1
@@ -106,12 +106,12 @@ script:
 
 ```powershell
 ./eng/Import-ProtocolArtifact.ps1 `
-  -ArtifactPath C:\path\to\briosa-protocol-0.6.0-sa-2024.1.0508.5.zip `
+  -ArtifactPath C:\path\to\briosa-protocol-0.6.1-sa-2024.1.0508.5.zip `
   -Update `
   -SourceChannel github_release
 
 ./eng/Import-ProtocolArtifact.ps1 `
-  -ArtifactPath C:\path\to\briosa-protocol-0.6.0-sa-2024.1.0508.5.zip
+  -ArtifactPath C:\path\to\briosa-protocol-0.6.1-sa-2024.1.0508.5.zip
 ```
 
 Never edit `src/Briosa.Client/Generated` or `protocol.lock.json` by hand.
@@ -140,7 +140,7 @@ and [server observability guide](https://github.com/spatialanalyzer/briosa/blob/
 
 ## Compatibility and validation
 
-This package pins the matching Briosa v0.6.0 protocol and conformance bundles.
+This package pins the matching Briosa v0.6.1 protocol and conformance bundles.
 Startup checks the server version, source revision, protocol package, and exact
 SA target before admitting MP calls. The other SA target is not interchangeable.
 
@@ -163,7 +163,7 @@ portable results do not imply v1.0 readiness or validation on physical instrumen
 
 The facade implements the reviewed 996-operation SA 2024 surface. It omits later
 commands and the three scan operations whose SDK bindings are unavailable in
-this release. See the authoritative [compatibility record](https://github.com/spatialanalyzer/briosa/blob/v0.6.0/targets/2024.1.0508.5/docs/development/sa2024-compatibility.md)
+this release. See the authoritative [compatibility record](https://github.com/spatialanalyzer/briosa/blob/v0.6.1/targets/2024.1.0508.5/docs/development/sa2024-compatibility.md)
 for the complete command and field differences.
 
 - Run Crib Sheet, Project Objects, and Stop Projection are available. Their
