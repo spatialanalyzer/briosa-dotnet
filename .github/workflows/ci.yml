@@ -2,7 +2,13 @@ name: CI
 
 on:
   push:
+    branches: ['**']
   pull_request:
+  workflow_call:
+    inputs:
+      upload-release-artifacts:
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -122,3 +128,12 @@ jobs:
       - name: Verify packed consumer namespace
         shell: pwsh
         run: ./eng/Test-PackageConsumer.ps1
+
+      - name: Retain validated release packages
+        if: inputs.upload-release-artifacts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: packages-${{ matrix.sa-target }}
+          path: targets/${{ matrix.sa-target }}/artifacts/package/*.nupkg
+          if-no-files-found: error
+          retention-days: 30
