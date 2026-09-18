@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
-using Transport = Briosa.Client.Transport;
 
 namespace Briosa;
 
@@ -23,7 +22,7 @@ internal sealed class BriosaServerLauncher : IBriosaServerLauncher
     public Task<IOwnedBriosaServer> LaunchAsync(BriosaLoggingOptions? logging, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        var executablePath = ResolveExecutablePath();
+        var executablePath = ServerDiscovery.ResolveExecutablePath();
         var port = ReserveLoopbackPort();
         var startInfo = new ProcessStartInfo
         {
@@ -55,44 +54,6 @@ internal sealed class BriosaServerLauncher : IBriosaServerLauncher
         {
             throw new BriosaStartupException("server-process-start-failed", exception);
         }
-    }
-
-    private static string ResolveExecutablePath()
-    {
-        var configured = Environment.GetEnvironmentVariable(
-            ServerPathEnvironmentVariable);
-        var candidates = new[]
-        {
-            configured,
-            Path.Combine(AppContext.BaseDirectory, "briosa-server", "Briosa.Server.exe"),
-            Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                "Briosa",
-                "servers",
-                Transport.BriosaProtocolIdentity.BriosaVersion,
-                $"sa-{Transport.BriosaProtocolIdentity.SpatialAnalyzerTarget}",
-                "Briosa.Server.exe"),
-        };
-
-        foreach (var candidate in candidates)
-        {
-            if (string.IsNullOrWhiteSpace(candidate))
-            {
-                continue;
-            }
-
-            var fullPath = Path.GetFullPath(candidate);
-            if (string.Equals(
-                    Path.GetFileName(fullPath),
-                    "Briosa.Server.exe",
-                    StringComparison.OrdinalIgnoreCase) &&
-                File.Exists(fullPath))
-            {
-                return fullPath;
-            }
-        }
-
-        throw new BriosaStartupException("server-distribution-not-found");
     }
 
     private static int ReserveLoopbackPort()
