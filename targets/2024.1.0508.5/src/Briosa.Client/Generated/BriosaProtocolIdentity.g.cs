@@ -5,13 +5,13 @@ namespace Briosa.Client.Transport;
 internal static class BriosaProtocolIdentity
 {
     /// <summary>Gets the protocol artifact's stable name.</summary>
-    public const string ArtifactName = "briosa-protocol-0.7.0-preview.2-sa-2024.1.0508.5";
+    public const string ArtifactName = "briosa-protocol-0.7.0-sa-2024.1.0508.5";
     /// <summary>Gets the SHA-256 of the complete protocol ZIP.</summary>
-    public const string ArtifactSha256 = "da57d4404e419fd55bee5c20534222cf77563f900de9a1d2e286d9d36a55ac0c";
+    public const string ArtifactSha256 = "ed3e5cdab5718327c3c644d441b18faf18a34e95fa4407fa177ed305c75f687f";
     /// <summary>Gets the Briosa version coordinate used to build the artifact.</summary>
-    public const string BriosaVersion = "0.7.0-preview.2";
+    public const string BriosaVersion = "0.7.0";
     /// <summary>Gets the immutable Briosa source revision used to build the artifact.</summary>
-    public const string SourceRevision = "53e97e2f5fc0eeba953b99e5bfaded91ed859828";
+    public const string SourceRevision = "4303a3322074869b35a3f16f9e35484a7bd5c830";
     /// <summary>Gets the required behavioral contract major.</summary>
     public const uint CompatibilityMajor = 1;
     /// <summary>Gets the minimum behavioral contract revision.</summary>

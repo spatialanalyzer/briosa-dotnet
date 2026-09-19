@@ -48,14 +48,14 @@ public sealed partial class ClientContractTests
     public void ProtocolIdentityMatchesReviewedCompatibilityArtifact()
     {
         Assert.Equal(
-            "briosa-protocol-0.7.0-preview.2-sa-2024.1.0508.5",
+            "briosa-protocol-0.7.0-sa-2024.1.0508.5",
             Transport.BriosaProtocolIdentity.ArtifactName);
         Assert.Equal("briosa", Transport.BriosaProtocolIdentity.ProtocolPackage);
         Assert.Equal(
             "standard-protobuf-grpc",
             Transport.BriosaProtocolIdentity.ClientGenerationContract);
         Assert.Equal(
-            "53e97e2f5fc0eeba953b99e5bfaded91ed859828",
+            "4303a3322074869b35a3f16f9e35484a7bd5c830",
             Transport.BriosaProtocolIdentity.SourceRevision);
         Assert.Equal(
             "2024.1.0508.5",
