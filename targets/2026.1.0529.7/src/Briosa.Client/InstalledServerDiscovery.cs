@@ -246,21 +246,22 @@ internal static class InstalledServerDiscovery
     private static bool ProtectedInstallation(string executable)
     {
         if (!OperatingSystem.IsWindows()) return false;
-        var admins = new SecurityIdentifier(WellKnownSidType.BuiltinAdministratorsSid, null);
-        var system = new SecurityIdentifier(WellKnownSidType.LocalSystemSid, null);
-        const FileSystemRights write = FileSystemRights.Write | FileSystemRights.Delete |
-            FileSystemRights.DeleteSubdirectoriesAndFiles | FileSystemRights.ChangePermissions | FileSystemRights.TakeOwnership;
-        [SupportedOSPlatform("windows")]
-        bool Protected(FileSystemSecurity security) =>
-            (admins.Equals(security.GetOwner(typeof(SecurityIdentifier))) || system.Equals(security.GetOwner(typeof(SecurityIdentifier)))) &&
-            !security.GetAccessRules(true, true, typeof(SecurityIdentifier)).Cast<FileSystemAccessRule>().Any(rule =>
-                rule.AccessControlType == AccessControlType.Allow && (rule.FileSystemRights & write) != 0 &&
-                !admins.Equals(rule.IdentityReference) && !system.Equals(rule.IdentityReference));
         var payload = Path.GetDirectoryName(executable)!;
-        foreach (var name in RequiredFiles)
-            if (!Protected(new FileInfo(Path.Combine(payload, name)).GetAccessControl())) return false;
+        var pending = new Stack<DirectoryInfo>();
+        pending.Push(new DirectoryInfo(payload));
+        var count = 0;
+        while (pending.TryPop(out var current))
+        {
+            foreach (var item in current.EnumerateFileSystemInfos())
+            {
+                if (++count > 10000 || (item.Attributes & FileAttributes.ReparsePoint) != 0) return false;
+                var security = item is DirectoryInfo folder ? (FileSystemSecurity)folder.GetAccessControl() : ((FileInfo)item).GetAccessControl();
+                if (!InstallationProtection.Allows(security, true)) return false;
+                if (item is DirectoryInfo directory) pending.Push(directory);
+            }
+        }
         for (var directory = new DirectoryInfo(payload); directory.Parent is not null; directory = directory.Parent)
-            if (!Protected(directory.GetAccessControl())) return false;
+            if (!InstallationProtection.Allows(directory.GetAccessControl(), directory.FullName == payload)) return false;
         return true;
     }
 
