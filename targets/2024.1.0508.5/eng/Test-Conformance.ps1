@@ -3,6 +3,14 @@ param(
     [Parameter(Mandatory)]
     [string]$ArtifactPath,
 
+    [string]$LockPath = "conformance.lock.json",
+
+    [string]$EvidencePath,
+
+    [string]$FixturePath,
+
+    [hashtable]$ClientPackage,
+
     [string]$Configuration = "Release"
 )
 
@@ -15,7 +23,7 @@ if (-not $IsWindows -or -not [Environment]::Is64BitProcess) {
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $resolvedArtifact = [IO.Path]::GetFullPath($ArtifactPath, $repositoryRoot)
-$lock = Get-Content -LiteralPath (Join-Path $repositoryRoot "conformance.lock.json") -Raw |
+$lock = Get-Content -LiteralPath ([IO.Path]::GetFullPath($LockPath, $repositoryRoot)) -Raw |
     ConvertFrom-Json
 $temporaryBase = [IO.Path]::GetFullPath([IO.Path]::GetTempPath())
 $temporaryRoot = Join-Path $temporaryBase "briosa-dotnet-conformance-$([Guid]::NewGuid().ToString('N'))"
@@ -57,12 +65,48 @@ try {
 
     $runner = Join-Path $packageRoot "runner\Invoke-BriosaClientConformance.ps1"
     $fixture = Join-Path $repositoryRoot "tools\Briosa.Client.Conformance\bin\$Configuration\net10.0\Briosa.Client.Conformance.dll"
+    if ($FixturePath) { $fixture = [IO.Path]::GetFullPath($FixturePath, $repositoryRoot) }
     if (-not (Test-Path -LiteralPath $fixture -PathType Leaf)) {
         throw "Build the .NET conformance fixture before running the shared suite."
     }
     & $runner `
         -FixtureCommand "dotnet" `
         -FixtureArguments @($fixture)
+    if (-not [string]::IsNullOrWhiteSpace($EvidencePath)) {
+        $protocol = Get-Content (Join-Path $repositoryRoot "protocol.lock.json") -Raw | ConvertFrom-Json
+        $scenarios = Get-Content (Join-Path $packageRoot "contract/scenarios.json") -Raw | ConvertFrom-Json
+        $clientRoot = (Split-Path (Split-Path $repositoryRoot -Parent) -Parent).Replace('\', '/')
+        $clientRevision = [string](& git -c "safe.directory=$clientRoot" -C $clientRoot rev-parse HEAD)
+        if ($LASTEXITCODE -ne 0) { throw "Cannot identify client source for evidence." }
+        $dirty = @(& git -c "safe.directory=$clientRoot" -C $clientRoot status --porcelain).Count -ne 0
+        if ($LASTEXITCODE -ne 0) { throw "Cannot identify client worktree state." }
+        $report = [ordered]@{
+            schemaVersion = 1
+            generatedAt = [DateTimeOffset]::UtcNow.ToString("O")
+            validationKind = $(if ($ClientPackage) { "packaged-client-and-server-fake-sdk" } else { "packaged-server-fake-sdk" })
+            passed = $true
+            licensedSpatialAnalyzer = $false
+            client = @{
+                repository = "https://github.com/spatialanalyzer/briosa-dotnet"
+                version = ([xml](Get-Content (Join-Path $repositoryRoot "src/Briosa.Client/Briosa.Client.csproj") -Raw)).Project.PropertyGroup.VersionPrefix
+                sourceRevision = $clientRevision
+                uncommittedChanges = $dirty
+                package = $ClientPackage
+                protocolArtifact = $protocol.artifact
+                requiredContract = @{ major = 1; minimumRevision = 0 }
+            }
+            server = $lock.artifact
+            target = $lock.target
+            scenarioContract = $lock.contract
+            scenarios = @($scenarios.scenarios.id)
+        }
+        $destination = [IO.Path]::GetFullPath($EvidencePath, $repositoryRoot)
+        [IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($destination)) | Out-Null
+        $json = ($report | ConvertTo-Json -Depth 12) + [Environment]::NewLine
+        $stream = [IO.File]::Open($destination, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write)
+        try { $bytes = [Text.UTF8Encoding]::new($false).GetBytes($json); $stream.Write($bytes) }
+        finally { $stream.Dispose() }
+    }
 }
 finally {
     [Environment]::SetEnvironmentVariable("Briosa__Desktop__Mode", $previousDesktopMode)

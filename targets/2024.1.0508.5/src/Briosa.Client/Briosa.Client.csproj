@@ -5,7 +5,7 @@
     <PackageId>Briosa.2024.1.0508.5</PackageId>
     <AssemblyName>Briosa.2024.1.0508.5</AssemblyName>
     <RootNamespace>Briosa</RootNamespace>
-    <VersionPrefix>0.1.1</VersionPrefix>
+    <VersionPrefix>0.2.0</VersionPrefix>
     <Title>Briosa Client for SpatialAnalyzer 2024.1.0508.5</Title>
     <Authors>SpatialAnalyzer community contributors</Authors>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>

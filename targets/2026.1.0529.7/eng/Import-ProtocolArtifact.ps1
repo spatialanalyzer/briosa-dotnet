@@ -105,7 +105,17 @@ try {
     $bundleRoot = $bundleDirectories[0].FullName
     $manifestPath = Join-Path $bundleRoot "manifest.json"
     $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
-    Assert-Equal $manifest.schema_version 2 "Unsupported protocol manifest schema."
+    Assert-Equal $manifest.schema_version 3 "Unsupported protocol manifest schema."
+    foreach ($coordinate in @($manifest.compatibility.major, $manifest.compatibility.revision)) {
+        if (($coordinate -isnot [int] -and $coordinate -isnot [long]) -or $coordinate -lt 0 -or $coordinate -gt [uint32]::MaxValue) {
+            throw "Invalid behavioral compatibility coordinate."
+        }
+    }
+    if ($manifest.compatibility.major -eq 0) { throw "Compatibility major must be positive." }
+    $contract = Get-Content (Join-Path $bundleRoot "compatibility/contract.json") -Raw | ConvertFrom-Json
+    Assert-Equal $contract.schemaVersion 1 "Unsupported behavioral declaration schema."
+    Assert-Equal $contract.major $manifest.compatibility.major "Compatibility major differs from declaration."
+    Assert-Equal $contract.revision $manifest.compatibility.revision "Compatibility revision differs from declaration."
     Assert-Equal $manifest.artifact_kind "briosa_protocol" "Unexpected artifact kind."
     Assert-Equal $manifest.client_generation_contract "standard-protobuf-grpc" "Unsupported client generation contract."
     Assert-Equal ([IO.Path]::GetFileNameWithoutExtension($resolvedArtifact)) $manifest.artifact_name "The protocol artifact file name does not match its manifest."
@@ -233,6 +243,10 @@ internal static class BriosaProtocolIdentity
     public const string BriosaVersion = "$($manifest.briosa_version)";
     /// <summary>Gets the immutable Briosa source revision used to build the artifact.</summary>
     public const string SourceRevision = "$($manifest.source_revision)";
+    /// <summary>Gets the required behavioral contract major.</summary>
+    public const uint CompatibilityMajor = $($manifest.compatibility.major);
+    /// <summary>Gets the minimum behavioral contract revision.</summary>
+    public const uint CompatibilityRevision = $($manifest.compatibility.revision);
     /// <summary>Gets the aggregate canonical protobuf-source fingerprint.</summary>
     public const string ProtocolSchemaSha256 = "$($manifest.protocol_schema_sha256)";
     /// <summary>Gets the pure protobuf descriptor-set fingerprint.</summary>
@@ -248,6 +262,7 @@ internal static class BriosaProtocolIdentity
     Write-Utf8File -Path (Join-Path $generatedIdentityRoot "BriosaProtocolIdentity.g.cs") -Content $identity
 
     if ($Update) {
+        Write-Utf8File -Path (Join-Path $repositoryRoot "tests/Briosa.Client.Tests/Fixtures/selection-cases.json") -Content (Get-Content (Join-Path $bundleRoot "compatibility/selection-cases.json") -Raw)
         $lock = [ordered]@{
             schema_version = 2
             artifact = [ordered]@{
@@ -285,6 +300,9 @@ internal static class BriosaProtocolIdentity
         Write-Host "Updated generated protocol code and protocol.lock.json."
     }
     else {
+        $expectedFixture = Get-FileHash (Join-Path $bundleRoot "compatibility/selection-cases.json")
+        $actualFixture = Get-FileHash (Join-Path $repositoryRoot "tests/Briosa.Client.Tests/Fixtures/selection-cases.json")
+        if ($expectedFixture.Hash -cne $actualFixture.Hash) { throw "Shared installation fixtures drifted." }
         Compare-FileTrees -Expected $generatedIdentityRoot -Actual $generatedRoot
         Write-Host "Verified protocol artifact identity and generated-code drift."
     }

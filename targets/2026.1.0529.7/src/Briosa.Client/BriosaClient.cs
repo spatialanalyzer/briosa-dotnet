@@ -78,6 +78,7 @@ public sealed partial class BriosaClient : IAsyncDisposable
         options.Validate();
 
         Task startTask;
+        options = options with { ServerSelection = options.ServerSelection.Snapshot() };
         await _gate.WaitAsync(cancellationToken).ConfigureAwait(false);
         try
         {
@@ -392,7 +393,7 @@ public sealed partial class BriosaClient : IAsyncDisposable
 
         try
         {
-            server = await _serverLauncher.LaunchAsync(options.Logging, token).ConfigureAwait(false);
+            server = await _serverLauncher.LaunchAsync(options, token).ConfigureAwait(false);
             transport = _transportFactory.Create(server.Address);
             var snapshot = await WaitForServerAsync(server, transport, token)
                 .ConfigureAwait(false);
@@ -506,6 +507,7 @@ public sealed partial class BriosaClient : IAsyncDisposable
             {
                 var response = await transport.GetServerSnapshotAsync(cancellationToken)
                     .ConfigureAwait(false);
+                BriosaProtocolCompatibility.ValidateInstallation(response.ServerInfo, server.Installation);
                 return ProtocolMapping.MapSnapshot(
                     response.ServerInfo,
                     response.Capabilities);

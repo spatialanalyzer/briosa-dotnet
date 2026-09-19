@@ -69,6 +69,8 @@ public sealed record SpatialAnalyzerLaunchOptions
 /// <summary>Selects the phases performed by one client-owned server startup.</summary>
 public sealed record BriosaStartOptions
 {
+    /// <summary>Gets per-startup installation selection and SA location constraints.</summary>
+    public BriosaServerSelection ServerSelection { get; init; } = new();
     /// <summary>Gets startup-only server logging overrides; null preserves server configuration.</summary>
     public BriosaLoggingOptions? Logging { get; init; }
     /// <summary>Gets whether startup creates a disconnected SDK generation.</summary>
@@ -92,6 +94,8 @@ public sealed record BriosaStartOptions
     internal void Validate()
     {
         _ = Logging?.ToArguments();
+        ArgumentNullException.ThrowIfNull(ServerSelection);
+        ServerSelection.Validate();
         if (StartupTimeout <= TimeSpan.Zero)
         {
             throw new ArgumentOutOfRangeException(

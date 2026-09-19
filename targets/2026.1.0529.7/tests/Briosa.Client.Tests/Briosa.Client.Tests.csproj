@@ -17,5 +17,6 @@
 
   <ItemGroup>
     <Using Include="Xunit" />
+    <None Update="Fixtures/selection-cases.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>
