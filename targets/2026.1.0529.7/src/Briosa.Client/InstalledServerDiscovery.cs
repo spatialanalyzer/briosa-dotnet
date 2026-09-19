@@ -212,7 +212,8 @@ internal static class InstalledServerDiscovery
                     try
                     {
                         using var key = root.OpenSubKey(id);
-                        if (key?.GetValue("Registration", null, RegistryValueOptions.DoNotExpandEnvironmentNames) is not string json ||
+                        if (key is null || key.GetValueKind("Registration") != RegistryValueKind.String ||
+                            key.GetValue("Registration", null, RegistryValueOptions.DoNotExpandEnvironmentNames) is not string json ||
                             json.Length > 32768) continue;
                         using var document = Parse(Encoding.UTF8.GetBytes(json));
                         var value = document.RootElement;
