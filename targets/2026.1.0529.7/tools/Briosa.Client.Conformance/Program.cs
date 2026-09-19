@@ -52,6 +52,15 @@ static async Task RunScenarioAsync(string scenario)
             _ => BriosaStartOptions.Default,
         };
 
+        startOptions = startOptions with
+        {
+            ServerSelection = new BriosaServerSelection
+            {
+                ExecutablePath = Environment.GetEnvironmentVariable("BRIOSA_SERVER_PATH"),
+                AllowPrerelease = true,
+            },
+        };
+
         if (scenario == "identity-mismatch")
         {
             await RequireThrowsAsync<BriosaCompatibilityException>(

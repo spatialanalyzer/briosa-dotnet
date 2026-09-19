@@ -45,17 +45,17 @@ public sealed partial class ClientContractTests
     }
 
     [Fact]
-    public void ProtocolIdentityMatchesMergedWaveBArtifact()
+    public void ProtocolIdentityMatchesReviewedCompatibilityArtifact()
     {
         Assert.Equal(
-            "briosa-protocol-0.6.1-sa-2024.1.0508.5",
+            "briosa-protocol-0.7.0-preview.2-sa-2024.1.0508.5",
             Transport.BriosaProtocolIdentity.ArtifactName);
         Assert.Equal("briosa", Transport.BriosaProtocolIdentity.ProtocolPackage);
         Assert.Equal(
             "standard-protobuf-grpc",
             Transport.BriosaProtocolIdentity.ClientGenerationContract);
         Assert.Equal(
-            "32a3b56ba4ae31ea5ec6ec3b2aa051eb61c866aa",
+            "53e97e2f5fc0eeba953b99e5bfaded91ed859828",
             Transport.BriosaProtocolIdentity.SourceRevision);
         Assert.Equal(
             "2024.1.0508.5",
@@ -802,6 +802,7 @@ public sealed partial class ClientContractTests
                     : Transport.SpatialAnalyzerExecutionReadinessState.Unverified,
                 ReadyForMp = ready,
                 TargetIsolationMode = Transport.TargetIsolationMode.SingleTenant,
+                Compatibility = new Transport.CompatibilityContract { Major = 1 },
             };
             var capabilities = new Transport.ListCapabilitiesResponse
             {

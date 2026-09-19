@@ -26,7 +26,7 @@ namespace Briosa.Client.Transport {
           string.Concat(
             "ChZicmlvc2EvZGlzY292ZXJ5LnByb3RvEgZicmlvc2EaH2JyaW9zYS9vcGVy",
             "YXRpb25fb3V0Y29tZXMucHJvdG8aIGJyaW9zYS92ZXJzaW9uX2Nvb3JkaW5h",
-            "dGVzLnByb3RvIhYKFEdldFNlcnZlckluZm9SZXF1ZXN0IsYFChVHZXRTZXJ2",
+            "dGVzLnByb3RvIhYKFEdldFNlcnZlckluZm9SZXF1ZXN0IvwFChVHZXRTZXJ2",
             "ZXJJbmZvUmVzcG9uc2USKwoHdmVyc2lvbhgBIAEoCzIaLmJyaW9zYS5WZXJz",
             "aW9uQ29vcmRpbmF0ZXMSMAoMd29ya2VyX3N0YXRlGAIgASgOMhouYnJpb3Nh",
             "LldvcmtlclJ1bnRpbWVTdGF0ZRJRCiFzcGF0aWFsX2FuYWx5emVyX2Nvbm5l",
@@ -41,87 +41,90 @@ namespace Briosa.Client.Transport {
             "aW9zYS5UYXJnZXRJc29sYXRpb25Nb2RlEj8KFmFjdGl2YXRlZF9zZGtfaWRl",
             "bnRpdHkYCSABKAsyHy5icmlvc2EuUnVudGltZUlkZW50aXR5RXZpZGVuY2US",
             "TAojY29ubmVjdGVkX3NwYXRpYWxfYW5hbHl6ZXJfaWRlbnRpdHkYCiABKAsy",
-            "Hy5icmlvc2EuUnVudGltZUlkZW50aXR5RXZpZGVuY2VCJQojX2Nvbm5lY3Rl",
-            "ZF9zcGF0aWFsX2FuYWx5emVyX3ZlcnNpb24iqgEKF1J1bnRpbWVJZGVudGl0",
-            "eUV2aWRlbmNlEhQKB3ZlcnNpb24YASABKAlIAIgBARI1CgZzb3VyY2UYAiAB",
-            "KA4yJS5icmlvc2EuUnVudGltZUlkZW50aXR5RXZpZGVuY2VTb3VyY2USNgoL",
-            "bWF0Y2hfc3RhdGUYAyABKA4yIS5icmlvc2EuUnVudGltZUlkZW50aXR5TWF0",
-            "Y2hTdGF0ZUIKCghfdmVyc2lvbiIZChdMaXN0Q2FwYWJpbGl0aWVzUmVxdWVz",
-            "dCLJAQoYTGlzdENhcGFiaWxpdGllc1Jlc3BvbnNlEh8KF3NwYXRpYWxfYW5h",
-            "bHl6ZXJfdGFyZ2V0GAMgASgJEhgKEHByb3RvY29sX3BhY2thZ2UYBCABKAkS",
-            "LwoKb3BlcmF0aW9ucxgFIAMoCzIbLmJyaW9zYS5PcGVyYXRpb25DYXBhYmls",
-            "aXR5SgQIARACSgQIAhADUgpjYXRhbG9nX2lkUhBjYXRhbG9nX3JldmlzaW9u",
-            "Uhd0YXJnZXRfcHJvdG9jb2xfcGFja2FnZSL+AQoTT3BlcmF0aW9uQ2FwYWJp",
-            "bGl0eRIUCgxvcGVyYXRpb25faWQYASABKAkSFAoMZ3JwY19zZXJ2aWNlGAIg",
-            "ASgJEgsKA3JwYxgDIAEoCRIeChZmdWxseV9xdWFsaWZpZWRfbWV0aG9kGAQg",
-            "ASgJEicKBmVmZmVjdBgFIAEoDjIXLmJyaW9zYS5PcGVyYXRpb25FZmZlY3QS",
-            "KwoNcmVwbGF5X3NhZmV0eRgGIAEoDjIULmJyaW9zYS5SZXBsYXlTYWZldHkS",
-            "OAoPZXhlY3V0aW9uX3Njb3BlGAcgASgOMh8uYnJpb3NhLk9wZXJhdGlvbkV4",
-            "ZWN1dGlvblNjb3BlKvkBCh1SdW50aW1lSWRlbnRpdHlFdmlkZW5jZVNvdXJj",
-            "ZRIwCixSVU5USU1FX0lERU5USVRZX0VWSURFTkNFX1NPVVJDRV9VTlNQRUNJ",
-            "RklFRBAAEjAKLFJVTlRJTUVfSURFTlRJVFlfRVZJREVOQ0VfU09VUkNFX1VO",
-            "QVZBSUxBQkxFEAESOQo1UlVOVElNRV9JREVOVElUWV9FVklERU5DRV9TT1VS",
-            "Q0VfUlVOVElNRV9WRVJJRklDQVRJT04QAhI5CjVSVU5USU1FX0lERU5USVRZ",
-            "X0VWSURFTkNFX1NPVVJDRV9PUEVSQVRPUl9BVFRFU1RBVElPThADKtABChlS",
-            "dW50aW1lSWRlbnRpdHlNYXRjaFN0YXRlEiwKKFJVTlRJTUVfSURFTlRJVFlf",
-            "TUFUQ0hfU1RBVEVfVU5TUEVDSUZJRUQQABIsCihSVU5USU1FX0lERU5USVRZ",
-            "X01BVENIX1NUQVRFX1VOQVZBSUxBQkxFEAESLAooUlVOVElNRV9JREVOVElU",
-            "WV9NQVRDSF9TVEFURV9FWEFDVF9NQVRDSBACEikKJVJVTlRJTUVfSURFTlRJ",
-            "VFlfTUFUQ0hfU1RBVEVfTUlTTUFUQ0gQAyqPAQoTVGFyZ2V0SXNvbGF0aW9u",
-            "TW9kZRIlCiFUQVJHRVRfSVNPTEFUSU9OX01PREVfVU5TUEVDSUZJRUQQABIn",
-            "CiNUQVJHRVRfSVNPTEFUSU9OX01PREVfU0lOR0xFX1RFTkFOVBABEigKJFRB",
-            "UkdFVF9JU09MQVRJT05fTU9ERV9MRUFTRV9JU09MQVRFRBACKsIBChJXb3Jr",
-            "ZXJSdW50aW1lU3RhdGUSJAogV09SS0VSX1JVTlRJTUVfU1RBVEVfVU5TUEVD",
-            "SUZJRUQQABIgChxXT1JLRVJfUlVOVElNRV9TVEFURV9TVE9QUEVEEAESIQod",
-            "V09SS0VSX1JVTlRJTUVfU1RBVEVfU1RBUlRJTkcQAhIeChpXT1JLRVJfUlVO",
-            "VElNRV9TVEFURV9SRUFEWRADEiEKHVdPUktFUl9SVU5USU1FX1NUQVRFX0RF",
-            "R1JBREVEEAQqyQIKHlNwYXRpYWxBbmFseXplckNvbm5lY3Rpb25TdGF0ZRIx",
-            "Ci1TUEFUSUFMX0FOQUxZWkVSX0NPTk5FQ1RJT05fU1RBVEVfVU5TUEVDSUZJ",
-            "RUQQABIyCi5TUEFUSUFMX0FOQUxZWkVSX0NPTk5FQ1RJT05fU1RBVEVfRElT",
-            "Q09OTkVDVEVEEAESMAosU1BBVElBTF9BTkFMWVpFUl9DT05ORUNUSU9OX1NU",
-            "QVRFX0NPTk5FQ1RJTkcQAhIvCitTUEFUSUFMX0FOQUxZWkVSX0NPTk5FQ1RJ",
-            "T05fU1RBVEVfQ09OTkVDVEVEEAMSLQopU1BBVElBTF9BTkFMWVpFUl9DT05O",
-            "RUNUSU9OX1NUQVRFX0ZBVUxURUQQBBIuCipTUEFUSUFMX0FOQUxZWkVSX0NP",
-            "Tk5FQ1RJT05fU1RBVEVfU1RPUFBJTkcQBSqvAwomU3BhdGlhbEFuYWx5emVy",
-            "RXhlY3V0aW9uUmVhZGluZXNzU3RhdGUSOgo2U1BBVElBTF9BTkFMWVpFUl9F",
-            "WEVDVVRJT05fUkVBRElORVNTX1NUQVRFX1VOU1BFQ0lGSUVEEAASOQo1U1BB",
-            "VElBTF9BTkFMWVpFUl9FWEVDVVRJT05fUkVBRElORVNTX1NUQVRFX1VOVkVS",
-            "SUZJRUQQARI4CjRTUEFUSUFMX0FOQUxZWkVSX0VYRUNVVElPTl9SRUFESU5F",
-            "U1NfU1RBVEVfVkVSSUZZSU5HEAISPgo6U1BBVElBTF9BTkFMWVpFUl9FWEVD",
-            "VVRJT05fUkVBRElORVNTX1NUQVRFX0VYRUNVVElPTl9SRUFEWRADEkkKRVNQ",
-            "QVRJQUxfQU5BTFlaRVJfRVhFQ1VUSU9OX1JFQURJTkVTU19TVEFURV9DT01Q",
-            "RVRJTkdfQ0xJRU5UX1NVU1BFQ1RFRBAEEkkKRVNQQVRJQUxfQU5BTFlaRVJf",
-            "RVhFQ1VUSU9OX1JFQURJTkVTU19TVEFURV9PUEVSQVRPUl9SRUNPVkVSWV9S",
-            "RVFVSVJFRBAFKqYDCiRDb25uZWN0ZWRTcGF0aWFsQW5hbHl6ZXJWZXJzaW9u",
-            "U3RhdGUSOAo0Q09OTkVDVEVEX1NQQVRJQUxfQU5BTFlaRVJfVkVSU0lPTl9T",
-            "VEFURV9VTlNQRUNJRklFRBAAEjgKNENPTk5FQ1RFRF9TUEFUSUFMX0FOQUxZ",
-            "WkVSX1ZFUlNJT05fU1RBVEVfVU5BVkFJTEFCTEUQARI7CjdDT05ORUNURURf",
-            "U1BBVElBTF9BTkFMWVpFUl9WRVJTSU9OX1NUQVRFX1ZFUklGSUVEX01BVENI",
-            "EAISPgo6Q09OTkVDVEVEX1NQQVRJQUxfQU5BTFlaRVJfVkVSU0lPTl9TVEFU",
-            "RV9WRVJJRklFRF9NSVNNQVRDSBADEkQKQENPTk5FQ1RFRF9TUEFUSUFMX0FO",
-            "QUxZWkVSX1ZFUlNJT05fU1RBVEVfT1BFUkFUT1JfQVRURVNURURfTUFUQ0gQ",
-            "BBJHCkNDT05ORUNURURfU1BBVElBTF9BTkFMWVpFUl9WRVJTSU9OX1NUQVRF",
-            "X09QRVJBVE9SX0FUVEVTVEVEX01JU01BVENIEAUqsQIKF09wZXJhdGlvbkV4",
-            "ZWN1dGlvblNjb3BlEikKJU9QRVJBVElPTl9FWEVDVVRJT05fU0NPUEVfVU5T",
-            "UEVDSUZJRUQQABIsCihPUEVSQVRJT05fRVhFQ1VUSU9OX1NDT1BFX1NFTEZf",
-            "Q09OVEFJTkVEEAESLworT1BFUkFUSU9OX0VYRUNVVElPTl9TQ09QRV9HTE9C",
-            "QUxfU1RBVEVfUkVBRBACEjMKL09QRVJBVElPTl9FWEVDVVRJT05fU0NPUEVf",
-            "R0xPQkFMX1NUQVRFX01VVEFUSU9OEAMSMAosT1BFUkFUSU9OX0VYRUNVVElP",
-            "Tl9TQ09QRV9FWENMVVNJVkVfV09SS0ZMT1cQBBIlCiFPUEVSQVRJT05fRVhF",
-            "Q1VUSU9OX1NDT1BFX1VOS05PV04QBSqQAQoPT3BlcmF0aW9uRWZmZWN0EiAK",
-            "HE9QRVJBVElPTl9FRkZFQ1RfVU5TUEVDSUZJRUQQABIeChpPUEVSQVRJT05f",
-            "RUZGRUNUX1JFQURfT05MWRABEh0KGU9QRVJBVElPTl9FRkZFQ1RfTVVUQVRJ",
-            "TkcQAhIcChhPUEVSQVRJT05fRUZGRUNUX1VOS05PV04QAzK3AQoQRGlzY292",
-            "ZXJ5U2VydmljZRJMCg1HZXRTZXJ2ZXJJbmZvEhwuYnJpb3NhLkdldFNlcnZl",
-            "ckluZm9SZXF1ZXN0Gh0uYnJpb3NhLkdldFNlcnZlckluZm9SZXNwb25zZRJV",
-            "ChBMaXN0Q2FwYWJpbGl0aWVzEh8uYnJpb3NhLkxpc3RDYXBhYmlsaXRpZXNS",
-            "ZXF1ZXN0GiAuYnJpb3NhLkxpc3RDYXBhYmlsaXRpZXNSZXNwb25zZUIJqgIG",
-            "QnJpb3NhYgZwcm90bzM="));
+            "Hy5icmlvc2EuUnVudGltZUlkZW50aXR5RXZpZGVuY2USNAoNY29tcGF0aWJp",
+            "bGl0eRgLIAEoCzIdLmJyaW9zYS5Db21wYXRpYmlsaXR5Q29udHJhY3RCJQoj",
+            "X2Nvbm5lY3RlZF9zcGF0aWFsX2FuYWx5emVyX3ZlcnNpb24iOAoVQ29tcGF0",
+            "aWJpbGl0eUNvbnRyYWN0Eg0KBW1ham9yGAEgASgNEhAKCHJldmlzaW9uGAIg",
+            "ASgNIqoBChdSdW50aW1lSWRlbnRpdHlFdmlkZW5jZRIUCgd2ZXJzaW9uGAEg",
+            "ASgJSACIAQESNQoGc291cmNlGAIgASgOMiUuYnJpb3NhLlJ1bnRpbWVJZGVu",
+            "dGl0eUV2aWRlbmNlU291cmNlEjYKC21hdGNoX3N0YXRlGAMgASgOMiEuYnJp",
+            "b3NhLlJ1bnRpbWVJZGVudGl0eU1hdGNoU3RhdGVCCgoIX3ZlcnNpb24iGQoX",
+            "TGlzdENhcGFiaWxpdGllc1JlcXVlc3QiyQEKGExpc3RDYXBhYmlsaXRpZXNS",
+            "ZXNwb25zZRIfChdzcGF0aWFsX2FuYWx5emVyX3RhcmdldBgDIAEoCRIYChBw",
+            "cm90b2NvbF9wYWNrYWdlGAQgASgJEi8KCm9wZXJhdGlvbnMYBSADKAsyGy5i",
+            "cmlvc2EuT3BlcmF0aW9uQ2FwYWJpbGl0eUoECAEQAkoECAIQA1IKY2F0YWxv",
+            "Z19pZFIQY2F0YWxvZ19yZXZpc2lvblIXdGFyZ2V0X3Byb3RvY29sX3BhY2th",
+            "Z2Ui/gEKE09wZXJhdGlvbkNhcGFiaWxpdHkSFAoMb3BlcmF0aW9uX2lkGAEg",
+            "ASgJEhQKDGdycGNfc2VydmljZRgCIAEoCRILCgNycGMYAyABKAkSHgoWZnVs",
+            "bHlfcXVhbGlmaWVkX21ldGhvZBgEIAEoCRInCgZlZmZlY3QYBSABKA4yFy5i",
+            "cmlvc2EuT3BlcmF0aW9uRWZmZWN0EisKDXJlcGxheV9zYWZldHkYBiABKA4y",
+            "FC5icmlvc2EuUmVwbGF5U2FmZXR5EjgKD2V4ZWN1dGlvbl9zY29wZRgHIAEo",
+            "DjIfLmJyaW9zYS5PcGVyYXRpb25FeGVjdXRpb25TY29wZSr5AQodUnVudGlt",
+            "ZUlkZW50aXR5RXZpZGVuY2VTb3VyY2USMAosUlVOVElNRV9JREVOVElUWV9F",
+            "VklERU5DRV9TT1VSQ0VfVU5TUEVDSUZJRUQQABIwCixSVU5USU1FX0lERU5U",
+            "SVRZX0VWSURFTkNFX1NPVVJDRV9VTkFWQUlMQUJMRRABEjkKNVJVTlRJTUVf",
+            "SURFTlRJVFlfRVZJREVOQ0VfU09VUkNFX1JVTlRJTUVfVkVSSUZJQ0FUSU9O",
+            "EAISOQo1UlVOVElNRV9JREVOVElUWV9FVklERU5DRV9TT1VSQ0VfT1BFUkFU",
+            "T1JfQVRURVNUQVRJT04QAyrQAQoZUnVudGltZUlkZW50aXR5TWF0Y2hTdGF0",
+            "ZRIsCihSVU5USU1FX0lERU5USVRZX01BVENIX1NUQVRFX1VOU1BFQ0lGSUVE",
+            "EAASLAooUlVOVElNRV9JREVOVElUWV9NQVRDSF9TVEFURV9VTkFWQUlMQUJM",
+            "RRABEiwKKFJVTlRJTUVfSURFTlRJVFlfTUFUQ0hfU1RBVEVfRVhBQ1RfTUFU",
+            "Q0gQAhIpCiVSVU5USU1FX0lERU5USVRZX01BVENIX1NUQVRFX01JU01BVENI",
+            "EAMqjwEKE1RhcmdldElzb2xhdGlvbk1vZGUSJQohVEFSR0VUX0lTT0xBVElP",
+            "Tl9NT0RFX1VOU1BFQ0lGSUVEEAASJwojVEFSR0VUX0lTT0xBVElPTl9NT0RF",
+            "X1NJTkdMRV9URU5BTlQQARIoCiRUQVJHRVRfSVNPTEFUSU9OX01PREVfTEVB",
+            "U0VfSVNPTEFURUQQAirCAQoSV29ya2VyUnVudGltZVN0YXRlEiQKIFdPUktF",
+            "Ul9SVU5USU1FX1NUQVRFX1VOU1BFQ0lGSUVEEAASIAocV09SS0VSX1JVTlRJ",
+            "TUVfU1RBVEVfU1RPUFBFRBABEiEKHVdPUktFUl9SVU5USU1FX1NUQVRFX1NU",
+            "QVJUSU5HEAISHgoaV09SS0VSX1JVTlRJTUVfU1RBVEVfUkVBRFkQAxIhCh1X",
+            "T1JLRVJfUlVOVElNRV9TVEFURV9ERUdSQURFRBAEKskCCh5TcGF0aWFsQW5h",
+            "bHl6ZXJDb25uZWN0aW9uU3RhdGUSMQotU1BBVElBTF9BTkFMWVpFUl9DT05O",
+            "RUNUSU9OX1NUQVRFX1VOU1BFQ0lGSUVEEAASMgouU1BBVElBTF9BTkFMWVpF",
+            "Ul9DT05ORUNUSU9OX1NUQVRFX0RJU0NPTk5FQ1RFRBABEjAKLFNQQVRJQUxf",
+            "QU5BTFlaRVJfQ09OTkVDVElPTl9TVEFURV9DT05ORUNUSU5HEAISLworU1BB",
+            "VElBTF9BTkFMWVpFUl9DT05ORUNUSU9OX1NUQVRFX0NPTk5FQ1RFRBADEi0K",
+            "KVNQQVRJQUxfQU5BTFlaRVJfQ09OTkVDVElPTl9TVEFURV9GQVVMVEVEEAQS",
+            "LgoqU1BBVElBTF9BTkFMWVpFUl9DT05ORUNUSU9OX1NUQVRFX1NUT1BQSU5H",
+            "EAUqrwMKJlNwYXRpYWxBbmFseXplckV4ZWN1dGlvblJlYWRpbmVzc1N0YXRl",
+            "EjoKNlNQQVRJQUxfQU5BTFlaRVJfRVhFQ1VUSU9OX1JFQURJTkVTU19TVEFU",
+            "RV9VTlNQRUNJRklFRBAAEjkKNVNQQVRJQUxfQU5BTFlaRVJfRVhFQ1VUSU9O",
+            "X1JFQURJTkVTU19TVEFURV9VTlZFUklGSUVEEAESOAo0U1BBVElBTF9BTkFM",
+            "WVpFUl9FWEVDVVRJT05fUkVBRElORVNTX1NUQVRFX1ZFUklGWUlORxACEj4K",
+            "OlNQQVRJQUxfQU5BTFlaRVJfRVhFQ1VUSU9OX1JFQURJTkVTU19TVEFURV9F",
+            "WEVDVVRJT05fUkVBRFkQAxJJCkVTUEFUSUFMX0FOQUxZWkVSX0VYRUNVVElP",
+            "Tl9SRUFESU5FU1NfU1RBVEVfQ09NUEVUSU5HX0NMSUVOVF9TVVNQRUNURUQQ",
+            "BBJJCkVTUEFUSUFMX0FOQUxZWkVSX0VYRUNVVElPTl9SRUFESU5FU1NfU1RB",
+            "VEVfT1BFUkFUT1JfUkVDT1ZFUllfUkVRVUlSRUQQBSqmAwokQ29ubmVjdGVk",
+            "U3BhdGlhbEFuYWx5emVyVmVyc2lvblN0YXRlEjgKNENPTk5FQ1RFRF9TUEFU",
+            "SUFMX0FOQUxZWkVSX1ZFUlNJT05fU1RBVEVfVU5TUEVDSUZJRUQQABI4CjRD",
+            "T05ORUNURURfU1BBVElBTF9BTkFMWVpFUl9WRVJTSU9OX1NUQVRFX1VOQVZB",
+            "SUxBQkxFEAESOwo3Q09OTkVDVEVEX1NQQVRJQUxfQU5BTFlaRVJfVkVSU0lP",
+            "Tl9TVEFURV9WRVJJRklFRF9NQVRDSBACEj4KOkNPTk5FQ1RFRF9TUEFUSUFM",
+            "X0FOQUxZWkVSX1ZFUlNJT05fU1RBVEVfVkVSSUZJRURfTUlTTUFUQ0gQAxJE",
+            "CkBDT05ORUNURURfU1BBVElBTF9BTkFMWVpFUl9WRVJTSU9OX1NUQVRFX09Q",
+            "RVJBVE9SX0FUVEVTVEVEX01BVENIEAQSRwpDQ09OTkVDVEVEX1NQQVRJQUxf",
+            "QU5BTFlaRVJfVkVSU0lPTl9TVEFURV9PUEVSQVRPUl9BVFRFU1RFRF9NSVNN",
+            "QVRDSBAFKrECChdPcGVyYXRpb25FeGVjdXRpb25TY29wZRIpCiVPUEVSQVRJ",
+            "T05fRVhFQ1VUSU9OX1NDT1BFX1VOU1BFQ0lGSUVEEAASLAooT1BFUkFUSU9O",
+            "X0VYRUNVVElPTl9TQ09QRV9TRUxGX0NPTlRBSU5FRBABEi8KK09QRVJBVElP",
+            "Tl9FWEVDVVRJT05fU0NPUEVfR0xPQkFMX1NUQVRFX1JFQUQQAhIzCi9PUEVS",
+            "QVRJT05fRVhFQ1VUSU9OX1NDT1BFX0dMT0JBTF9TVEFURV9NVVRBVElPThAD",
+            "EjAKLE9QRVJBVElPTl9FWEVDVVRJT05fU0NPUEVfRVhDTFVTSVZFX1dPUktG",
+            "TE9XEAQSJQohT1BFUkFUSU9OX0VYRUNVVElPTl9TQ09QRV9VTktOT1dOEAUq",
+            "kAEKD09wZXJhdGlvbkVmZmVjdBIgChxPUEVSQVRJT05fRUZGRUNUX1VOU1BF",
+            "Q0lGSUVEEAASHgoaT1BFUkFUSU9OX0VGRkVDVF9SRUFEX09OTFkQARIdChlP",
+            "UEVSQVRJT05fRUZGRUNUX01VVEFUSU5HEAISHAoYT1BFUkFUSU9OX0VGRkVD",
+            "VF9VTktOT1dOEAMytwEKEERpc2NvdmVyeVNlcnZpY2USTAoNR2V0U2VydmVy",
+            "SW5mbxIcLmJyaW9zYS5HZXRTZXJ2ZXJJbmZvUmVxdWVzdBodLmJyaW9zYS5H",
+            "ZXRTZXJ2ZXJJbmZvUmVzcG9uc2USVQoQTGlzdENhcGFiaWxpdGllcxIfLmJy",
+            "aW9zYS5MaXN0Q2FwYWJpbGl0aWVzUmVxdWVzdBogLmJyaW9zYS5MaXN0Q2Fw",
+            "YWJpbGl0aWVzUmVzcG9uc2VCCaoCBkJyaW9zYWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Briosa.Client.Transport.OperationOutcomesReflection.Descriptor, global::Briosa.Client.Transport.VersionCoordinatesReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Briosa.Client.Transport.RuntimeIdentityEvidenceSource), typeof(global::Briosa.Client.Transport.RuntimeIdentityMatchState), typeof(global::Briosa.Client.Transport.TargetIsolationMode), typeof(global::Briosa.Client.Transport.WorkerRuntimeState), typeof(global::Briosa.Client.Transport.SpatialAnalyzerConnectionState), typeof(global::Briosa.Client.Transport.SpatialAnalyzerExecutionReadinessState), typeof(global::Briosa.Client.Transport.ConnectedSpatialAnalyzerVersionState), typeof(global::Briosa.Client.Transport.OperationExecutionScope), typeof(global::Briosa.Client.Transport.OperationEffect), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.GetServerInfoRequest), global::Briosa.Client.Transport.GetServerInfoRequest.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.GetServerInfoResponse), global::Briosa.Client.Transport.GetServerInfoResponse.Parser, new[]{ "Version", "WorkerState", "SpatialAnalyzerConnectionState", "ReadyForMp", "ConnectedSpatialAnalyzerVersion", "ConnectedSpatialAnalyzerVersionState", "SpatialAnalyzerExecutionReadinessState", "TargetIsolationMode", "ActivatedSdkIdentity", "ConnectedSpatialAnalyzerIdentity" }, new[]{ "ConnectedSpatialAnalyzerVersion" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.GetServerInfoResponse), global::Briosa.Client.Transport.GetServerInfoResponse.Parser, new[]{ "Version", "WorkerState", "SpatialAnalyzerConnectionState", "ReadyForMp", "ConnectedSpatialAnalyzerVersion", "ConnectedSpatialAnalyzerVersionState", "SpatialAnalyzerExecutionReadinessState", "TargetIsolationMode", "ActivatedSdkIdentity", "ConnectedSpatialAnalyzerIdentity", "Compatibility" }, new[]{ "ConnectedSpatialAnalyzerVersion" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.CompatibilityContract), global::Briosa.Client.Transport.CompatibilityContract.Parser, new[]{ "Major", "Revision" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.RuntimeIdentityEvidence), global::Briosa.Client.Transport.RuntimeIdentityEvidence.Parser, new[]{ "Version", "Source", "MatchState" }, new[]{ "Version" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.ListCapabilitiesRequest), global::Briosa.Client.Transport.ListCapabilitiesRequest.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.ListCapabilitiesResponse), global::Briosa.Client.Transport.ListCapabilitiesResponse.Parser, new[]{ "SpatialAnalyzerTarget", "ProtocolPackage", "Operations" }, null, null, null, null),
@@ -424,6 +427,7 @@ namespace Briosa.Client.Transport {
       targetIsolationMode_ = other.targetIsolationMode_;
       activatedSdkIdentity_ = other.activatedSdkIdentity_ != null ? other.activatedSdkIdentity_.Clone() : null;
       connectedSpatialAnalyzerIdentity_ = other.connectedSpatialAnalyzerIdentity_ != null ? other.connectedSpatialAnalyzerIdentity_.Clone() : null;
+      compatibility_ = other.compatibility_ != null ? other.compatibility_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -570,6 +574,21 @@ namespace Briosa.Client.Transport {
       }
     }
 
+    /// <summary>Field number for the "compatibility" field.</summary>
+    public const int CompatibilityFieldNumber = 11;
+    private global::Briosa.Client.Transport.CompatibilityContract compatibility_;
+    /// <summary>
+    /// Behavioral promise, independent of release and source identity.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Briosa.Client.Transport.CompatibilityContract Compatibility {
+      get { return compatibility_; }
+      set {
+        compatibility_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -595,6 +614,7 @@ namespace Briosa.Client.Transport {
       if (TargetIsolationMode != other.TargetIsolationMode) return false;
       if (!object.Equals(ActivatedSdkIdentity, other.ActivatedSdkIdentity)) return false;
       if (!object.Equals(ConnectedSpatialAnalyzerIdentity, other.ConnectedSpatialAnalyzerIdentity)) return false;
+      if (!object.Equals(Compatibility, other.Compatibility)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -612,6 +632,7 @@ namespace Briosa.Client.Transport {
       if (TargetIsolationMode != global::Briosa.Client.Transport.TargetIsolationMode.Unspecified) hash ^= TargetIsolationMode.GetHashCode();
       if (activatedSdkIdentity_ != null) hash ^= ActivatedSdkIdentity.GetHashCode();
       if (connectedSpatialAnalyzerIdentity_ != null) hash ^= ConnectedSpatialAnalyzerIdentity.GetHashCode();
+      if (compatibility_ != null) hash ^= Compatibility.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -670,6 +691,10 @@ namespace Briosa.Client.Transport {
         output.WriteRawTag(82);
         output.WriteMessage(ConnectedSpatialAnalyzerIdentity);
       }
+      if (compatibility_ != null) {
+        output.WriteRawTag(90);
+        output.WriteMessage(Compatibility);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -720,6 +745,10 @@ namespace Briosa.Client.Transport {
         output.WriteRawTag(82);
         output.WriteMessage(ConnectedSpatialAnalyzerIdentity);
       }
+      if (compatibility_ != null) {
+        output.WriteRawTag(90);
+        output.WriteMessage(Compatibility);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -759,6 +788,9 @@ namespace Briosa.Client.Transport {
       }
       if (connectedSpatialAnalyzerIdentity_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(ConnectedSpatialAnalyzerIdentity);
+      }
+      if (compatibility_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Compatibility);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -810,6 +842,12 @@ namespace Briosa.Client.Transport {
           ConnectedSpatialAnalyzerIdentity = new global::Briosa.Client.Transport.RuntimeIdentityEvidence();
         }
         ConnectedSpatialAnalyzerIdentity.MergeFrom(other.ConnectedSpatialAnalyzerIdentity);
+      }
+      if (other.compatibility_ != null) {
+        if (compatibility_ == null) {
+          Compatibility = new global::Briosa.Client.Transport.CompatibilityContract();
+        }
+        Compatibility.MergeFrom(other.Compatibility);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -877,6 +915,13 @@ namespace Briosa.Client.Transport {
               ConnectedSpatialAnalyzerIdentity = new global::Briosa.Client.Transport.RuntimeIdentityEvidence();
             }
             input.ReadMessage(ConnectedSpatialAnalyzerIdentity);
+            break;
+          }
+          case 90: {
+            if (compatibility_ == null) {
+              Compatibility = new global::Briosa.Client.Transport.CompatibilityContract();
+            }
+            input.ReadMessage(Compatibility);
             break;
           }
         }
@@ -947,6 +992,251 @@ namespace Briosa.Client.Transport {
             input.ReadMessage(ConnectedSpatialAnalyzerIdentity);
             break;
           }
+          case 90: {
+            if (compatibility_ == null) {
+              Compatibility = new global::Briosa.Client.Transport.CompatibilityContract();
+            }
+            input.ReadMessage(Compatibility);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  /// Scoped to the exact SA target. Revisions preserve earlier behavior.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class CompatibilityContract : pb::IMessage<CompatibilityContract>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<CompatibilityContract> _parser = new pb::MessageParser<CompatibilityContract>(() => new CompatibilityContract());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<CompatibilityContract> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Briosa.Client.Transport.DiscoveryReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CompatibilityContract() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CompatibilityContract(CompatibilityContract other) : this() {
+      major_ = other.major_;
+      revision_ = other.revision_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CompatibilityContract Clone() {
+      return new CompatibilityContract(this);
+    }
+
+    /// <summary>Field number for the "major" field.</summary>
+    public const int MajorFieldNumber = 1;
+    private uint major_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint Major {
+      get { return major_; }
+      set {
+        major_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "revision" field.</summary>
+    public const int RevisionFieldNumber = 2;
+    private uint revision_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint Revision {
+      get { return revision_; }
+      set {
+        revision_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as CompatibilityContract);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(CompatibilityContract other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Major != other.Major) return false;
+      if (Revision != other.Revision) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Major != 0) hash ^= Major.GetHashCode();
+      if (Revision != 0) hash ^= Revision.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Major != 0) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(Major);
+      }
+      if (Revision != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(Revision);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Major != 0) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(Major);
+      }
+      if (Revision != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(Revision);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Major != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Major);
+      }
+      if (Revision != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Revision);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(CompatibilityContract other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Major != 0) {
+        Major = other.Major;
+      }
+      if (other.Revision != 0) {
+        Revision = other.Revision;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Major = input.ReadUInt32();
+            break;
+          }
+          case 16: {
+            Revision = input.ReadUInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Major = input.ReadUInt32();
+            break;
+          }
+          case 16: {
+            Revision = input.ReadUInt32();
+            break;
+          }
         }
       }
     }
@@ -969,7 +1259,7 @@ namespace Briosa.Client.Transport {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Briosa.Client.Transport.DiscoveryReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Briosa.Client.Transport.DiscoveryReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1259,7 +1549,7 @@ namespace Briosa.Client.Transport {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Briosa.Client.Transport.DiscoveryReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Briosa.Client.Transport.DiscoveryReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1420,7 +1710,7 @@ namespace Briosa.Client.Transport {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Briosa.Client.Transport.DiscoveryReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Briosa.Client.Transport.DiscoveryReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1681,7 +1971,7 @@ namespace Briosa.Client.Transport {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Briosa.Client.Transport.DiscoveryReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Briosa.Client.Transport.DiscoveryReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

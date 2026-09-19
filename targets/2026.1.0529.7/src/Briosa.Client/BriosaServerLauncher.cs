@@ -7,12 +7,15 @@ namespace Briosa;
 internal interface IBriosaServerLauncher
 {
     Task<IOwnedBriosaServer> LaunchAsync(BriosaLoggingOptions? logging, CancellationToken cancellationToken);
+    Task<IOwnedBriosaServer> LaunchAsync(BriosaStartOptions options, CancellationToken cancellationToken) =>
+        LaunchAsync(options.Logging, cancellationToken);
 }
 
 internal interface IOwnedBriosaServer : IAsyncDisposable
 {
     Uri Address { get; }
     bool HasExited { get; }
+    BriosaInstallation? Installation => null;
 }
 
 internal sealed class BriosaServerLauncher : IBriosaServerLauncher
@@ -20,9 +23,15 @@ internal sealed class BriosaServerLauncher : IBriosaServerLauncher
     internal const string ServerPathEnvironmentVariable = "BRIOSA_SERVER_PATH";
 
     public Task<IOwnedBriosaServer> LaunchAsync(BriosaLoggingOptions? logging, CancellationToken cancellationToken)
+        => LaunchAsync(new BriosaStartOptions { Logging = logging }, cancellationToken);
+
+    public Task<IOwnedBriosaServer> LaunchAsync(BriosaStartOptions options, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        var executablePath = ServerDiscovery.ResolveExecutablePath();
+        var installation = BriosaInstallations.Resolve(options.ServerSelection);
+        var verified = InstalledServerDiscovery.ReadExecutable(installation.ExecutablePath, installation.Scope);
+        if (verified != installation) throw new BriosaStartupException("server-installation-changed");
+        var executablePath = installation.ExecutablePath;
         var port = ReserveLoopbackPort();
         var startInfo = new ProcessStartInfo
         {
@@ -33,7 +42,9 @@ internal sealed class BriosaServerLauncher : IBriosaServerLauncher
             WindowStyle = ProcessWindowStyle.Hidden,
         };
         startInfo.ArgumentList.Add($"--Briosa:Endpoint:Port={port}");
-        foreach (var argument in logging?.ToArguments() ?? [])
+        if (options.ServerSelection.SpatialAnalyzerExecutablePath is { } saPath)
+            startInfo.ArgumentList.Add("--Briosa:SpatialAnalyzer:ExecutablePath=" + saPath);
+        foreach (var argument in options.Logging?.ToArguments() ?? [])
             startInfo.ArgumentList.Add(argument);
 
         try
@@ -42,7 +53,7 @@ internal sealed class BriosaServerLauncher : IBriosaServerLauncher
                 throw new BriosaStartupException("server-process-not-created");
             return Task.FromResult<IOwnedBriosaServer>(new OwnedBriosaServer(
                 process,
-                new Uri($"http://127.0.0.1:{port}", UriKind.Absolute)));
+                new Uri($"http://127.0.0.1:{port}", UriKind.Absolute), installation));
         }
         catch (BriosaException)
         {
@@ -71,12 +82,13 @@ internal sealed class BriosaServerLauncher : IBriosaServerLauncher
     }
 }
 
-internal sealed class OwnedBriosaServer(Process process, Uri address)
+internal sealed class OwnedBriosaServer(Process process, Uri address, BriosaInstallation? installation = null)
     : IOwnedBriosaServer
 {
     private readonly Process _process = process;
 
     public Uri Address { get; } = address;
+    public BriosaInstallation? Installation { get; } = installation;
 
     public bool HasExited => _process.HasExited;
 
