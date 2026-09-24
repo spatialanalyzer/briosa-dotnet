@@ -2083,12 +2083,15 @@ public sealed class BriosaConstructionOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>thetaShift</c>: Angle in degrees.<br/>
+    /// </remarks>
     public Task ConstructPointsCylindricallyShiftedAsync(
         CollectionObjectName referenceObjectName,
         IEnumerable<PointName> originalPoints,
         CollectionObjectName groupForNewPoints,
         double radialShift = 0.0,
-        double thetaShiftDegrees = 0.0,
+        double thetaShift = 0.0,
         double planarShift = 0.0,
         CancellationToken cancellationToken = default)
     {
@@ -2100,7 +2103,7 @@ public sealed class BriosaConstructionOperations
                 ["original_points"] = originalPoints,
                 ["group_for_new_points"] = groupForNewPoints,
                 ["radial_shift"] = radialShift,
-                ["theta_shift_degrees"] = thetaShiftDegrees,
+                ["theta_shift"] = thetaShift,
                 ["planar_shift"] = planarShift,
             });
         return _client.InvokeOperationAsync(
@@ -2397,9 +2400,12 @@ public sealed class BriosaConstructionOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>sphereCenter</c>: Expressed in working coordinates.<br/>
+    /// </remarks>
     public Task ConstructSphereAsync(
         CollectionObjectName sphereName,
-        Vector sphereCenterInWorkingCoordinates,
+        Vector sphereCenter,
         double sphereRadius,
         CancellationToken cancellationToken = default)
     {
@@ -2408,7 +2414,7 @@ public sealed class BriosaConstructionOperations
             new Dictionary<string, object?>
             {
                 ["sphere_name"] = sphereName,
-                ["sphere_center_in_working_coordinates"] = sphereCenterInWorkingCoordinates,
+                ["sphere_center"] = sphereCenter,
                 ["sphere_radius"] = sphereRadius,
             });
         return _client.InvokeOperationAsync(
@@ -2944,10 +2950,14 @@ public sealed class BriosaConstructionOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>aToBDistance</c>: MP qualifier: Target to Target.<br/>
+    /// <c>aToCDistance</c>: MP qualifier: Target to Tip.<br/>
+    /// </remarks>
     public Task<int> CreateHiddenPointRodAsync(
         string hiddenPointRodName,
-        double targetToTargetDistance = 0.0,
-        double targetToTipDistance = 0.0,
+        double aToBDistance = 0.0,
+        double aToCDistance = 0.0,
         double interPointTolerance = 0.0,
         CancellationToken cancellationToken = default)
     {
@@ -2956,8 +2966,8 @@ public sealed class BriosaConstructionOperations
             new Dictionary<string, object?>
             {
                 ["hidden_point_rod_name"] = hiddenPointRodName,
-                ["target_to_target_distance"] = targetToTargetDistance,
-                ["target_to_tip_distance"] = targetToTipDistance,
+                ["a_to_b_distance"] = aToBDistance,
+                ["a_to_c_distance"] = aToCDistance,
                 ["inter_point_tolerance"] = interPointTolerance,
             });
         return _client.InvokeOperationAsync<int>(
@@ -3054,6 +3064,14 @@ public sealed class BriosaConstructionOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>showX</c>: MP qualifier: R.<br/>
+    /// <c>showY</c>: MP qualifier: Theta.<br/>
+    /// <c>showZ</c>: MP qualifier: Phi.<br/>
+    /// <c>showUx</c>: MP qualifier: Ur.<br/>
+    /// <c>showUy</c>: MP qualifier: Utheta.<br/>
+    /// <c>showUz</c>: MP qualifier: Uphi.<br/>
+    /// </remarks>
     public Task CreatePointCalloutAsync(
         CollectionItemName destinationCalloutView,
         PointName point,
@@ -3086,13 +3104,13 @@ public sealed class BriosaConstructionOperations
                 ["show_point_collection"] = showPointCollection,
                 ["show_point_group"] = showPointGroup,
                 ["show_point_target"] = showPointTarget,
-                ["show_x_r"] = showX,
-                ["show_y_theta"] = showY,
-                ["show_z_phi"] = showZ,
+                ["show_x"] = showX,
+                ["show_y"] = showY,
+                ["show_z"] = showZ,
                 ["show_units"] = showUnits,
-                ["show_ux_ur"] = showUx,
-                ["show_uy_utheta"] = showUy,
-                ["show_uz_uphi"] = showUz,
+                ["show_ux"] = showUx,
+                ["show_uy"] = showUy,
+                ["show_uz"] = showUz,
                 ["show_umag"] = showUMag,
                 ["desired_coordinate_system"] = desiredCoordinateSystem,
                 ["notes"] = notes,
@@ -4440,9 +4458,12 @@ public sealed class BriosaConstructionOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>surfaceEdge</c>: MP qualifier: B-Spline.<br/>
+    /// </remarks>
     public Task<ProjectedPointGradient> GetGradientAtProjectedPointOnSurfaceEdgeAsync(
         PointName pointToProject,
-        CollectionObjectName surfaceEdgeBSpline,
+        CollectionObjectName surfaceEdge,
         CollectionObjectName surfaceName,
         Vector? edgeOffsetDirection = null,
         double edgeOffsetDistance = 0.01,
@@ -4454,7 +4475,7 @@ public sealed class BriosaConstructionOperations
             new Dictionary<string, object?>
             {
                 ["point_to_project"] = pointToProject,
-                ["surface_edge_b_spline"] = surfaceEdgeBSpline,
+                ["surface_edge"] = surfaceEdge,
                 ["surface_name"] = surfaceName,
                 ["edge_offset_direction"] = edgeOffsetDirection,
                 ["edge_offset_distance"] = edgeOffsetDistance,
@@ -5110,6 +5131,10 @@ public sealed class BriosaGdtOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>perUnitLengthDistance</c>: MP qualifier: area.<br/>
+    /// <c>perUnitLengthStepOverPercent</c>: MP qualifier: area.<br/>
+    /// </remarks>
     public Task MakeGdtFeatureCheckAnnotationAsync(
         MakeGdtFeatureCheckAnnotationOptions options,
         CancellationToken cancellationToken = default)
@@ -5133,8 +5158,8 @@ public sealed class BriosaGdtOperations
                 ["is_slot"] = options.IsSlot,
                 ["per_unit_length_or_area"] = options.PerUnitLengthOrArea,
                 ["circular_area"] = options.CircularArea,
-                ["per_unit_area_length_distance"] = options.PerUnitAreaLengthDistance,
-                ["per_unit_area_length_step_over_percent"] = options.PerUnitAreaLengthStepOverPercent,
+                ["per_unit_length_distance"] = options.PerUnitLengthDistance,
+                ["per_unit_length_step_over_percent"] = options.PerUnitLengthStepOverPercent,
                 ["per_unit_area_width_distance"] = options.PerUnitAreaWidthDistance,
                 ["per_unit_area_width_step_over_percent"] = options.PerUnitAreaWidthStepOverPercent,
                 ["per_unit_area_circle_diameter"] = options.PerUnitAreaCircleDiameter,
@@ -5943,19 +5968,24 @@ public sealed class BriosaInstrumentOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>materialCte</c>: Coefficient per degree Fahrenheit.<br/>
+    /// <c>initialTemperature</c>: Temperature in degrees Fahrenheit.<br/>
+    /// <c>finalTemperature</c>: Temperature in degrees Fahrenheit.<br/>
+    /// </remarks>
     public Task<double> ComputeCteScaleFactorAsync(
-        double materialCtePerDegreeFahrenheit = 0.0,
-        double initialTemperatureFahrenheit = 0.0,
-        double finalTemperatureFahrenheit = 0.0,
+        double materialCte = 0.0,
+        double initialTemperature = 0.0,
+        double finalTemperature = 0.0,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
             new Transport.ComputeCteScaleFactorRequest(),
             new Dictionary<string, object?>
             {
-                ["material_cte_per_degree_fahrenheit"] = materialCtePerDegreeFahrenheit,
-                ["initial_temperature_fahrenheit"] = initialTemperatureFahrenheit,
-                ["final_temperature_fahrenheit"] = finalTemperatureFahrenheit,
+                ["material_cte"] = materialCte,
+                ["initial_temperature"] = initialTemperature,
+                ["final_temperature"] = finalTemperature,
             });
         return _client.InvokeOperationAsync<double>(
             "briosa.InstrumentOperations",
@@ -5965,6 +5995,9 @@ public sealed class BriosaInstrumentOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>timeout</c>: Time in seconds.<br/>
+    /// </remarks>
     public Task ConfigureAndMeasureAsync(
         CollectionInstrumentId instrument,
         PointName target,
@@ -6121,6 +6154,11 @@ public sealed class BriosaInstrumentOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>component1Weight</c>: MP qualifier: Azimuth.<br/>
+    /// <c>component2Weight</c>: MP qualifier: Elevation.<br/>
+    /// <c>component3Weight</c>: MP qualifier: Distance.<br/>
+    /// </remarks>
     public Task CreateTemplatedInstrumentUsmnAsync(
         CollectionObjectName instrumentTemplateName,
         CollectionInstrumentId instrument,
@@ -6134,9 +6172,9 @@ public sealed class BriosaInstrumentOperations
         bool enableRz = true,
         bool enableScale = false,
         bool enableComponentWeights = true,
-        double azimuthWeight = 1.0,
-        double elevationWeight = 1.0,
-        double distanceWeight = 1.0,
+        double component1Weight = 1.0,
+        double component2Weight = 1.0,
+        double component3Weight = 1.0,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6155,9 +6193,9 @@ public sealed class BriosaInstrumentOperations
                 ["enable_rz"] = enableRz,
                 ["enable_scale"] = enableScale,
                 ["enable_component_weights"] = enableComponentWeights,
-                ["azimuth_weight"] = azimuthWeight,
-                ["elevation_weight"] = elevationWeight,
-                ["distance_weight"] = distanceWeight,
+                ["component_1_weight"] = component1Weight,
+                ["component_2_weight"] = component2Weight,
+                ["component_3_weight"] = component3Weight,
             });
         return _client.InvokeOperationAsync(
             "briosa.InstrumentOperations",
@@ -7204,6 +7242,9 @@ public sealed class BriosaInstrumentOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>analysisTimeLimit</c>: Time in minutes; 0 disables the time limit.<br/>
+    /// </remarks>
     public Task<FitErrorResult> LocateInstrumentsUsmnAsync(
         IEnumerable<CollectionInstrumentId> instruments,
         CollectionObjectName outputGroup,
@@ -7217,7 +7258,7 @@ public sealed class BriosaInstrumentOperations
         bool excludeSingleInstrumentPoints = false,
         bool runUncertaintyFieldAnalysis = false,
         int analysisSamples = 300,
-        double analysisTimeLimitMinutes = 4.0,
+        double analysisTimeLimit = 4.0,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7236,7 +7277,7 @@ public sealed class BriosaInstrumentOperations
                 ["exclude_single_instrument_points"] = excludeSingleInstrumentPoints,
                 ["run_uncertainty_field_analysis"] = runUncertaintyFieldAnalysis,
                 ["analysis_samples"] = analysisSamples,
-                ["analysis_time_limit_minutes"] = analysisTimeLimitMinutes,
+                ["analysis_time_limit"] = analysisTimeLimit,
             });
         return _client.InvokeOperationAsync<FitErrorResult>(
             "briosa.InstrumentOperations",
@@ -8047,9 +8088,12 @@ public sealed class BriosaInstrumentOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>timeout</c>: Time in seconds.<br/>
+    /// </remarks>
     public Task SetInstrumentInterfaceResponseTimeoutAsync(
         CollectionInstrumentId instrument,
-        double timeoutSeconds = 0.0,
+        double timeout = 0.0,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8057,7 +8101,7 @@ public sealed class BriosaInstrumentOperations
             new Dictionary<string, object?>
             {
                 ["instrument"] = instrument,
-                ["timeout_seconds"] = timeoutSeconds,
+                ["timeout"] = timeout,
             });
         return _client.InvokeOperationAsync(
             "briosa.InstrumentOperations",
@@ -8131,11 +8175,16 @@ public sealed class BriosaInstrumentOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>temperature</c>: Temperature in degrees Fahrenheit.<br/>
+    /// <c>pressure</c>: Pressure in millimeters of mercury.<br/>
+    /// <c>relativeHumidity</c>: Relative humidity in percent.<br/>
+    /// </remarks>
     public Task SetInstrumentWeatherSettingAsync(
         CollectionInstrumentId instrument,
-        double temperatureFahrenheit = 0.0,
-        double pressureMmHg = 0.0,
-        double relativeHumidityPercent = 0.0,
+        double temperature = 0.0,
+        double pressure = 0.0,
+        double relativeHumidity = 0.0,
         bool setAutomatically = false,
         CancellationToken cancellationToken = default)
     {
@@ -8144,9 +8193,9 @@ public sealed class BriosaInstrumentOperations
             new Dictionary<string, object?>
             {
                 ["instrument"] = instrument,
-                ["temperature_fahrenheit"] = temperatureFahrenheit,
-                ["pressure_mmhg"] = pressureMmHg,
-                ["relative_humidity_percent"] = relativeHumidityPercent,
+                ["temperature"] = temperature,
+                ["pressure"] = pressure,
+                ["relative_humidity"] = relativeHumidity,
                 ["set_automatically"] = setAutomatically,
             });
         return _client.InvokeOperationAsync(
@@ -8369,13 +8418,18 @@ public sealed class BriosaInstrumentOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>thetaDispersion</c>: Angle in arcseconds.<br/>
+    /// <c>phiDispersion</c>: Angle in arcseconds.<br/>
+    /// <c>distance</c>: Value in parts per million.<br/>
+    /// </remarks>
     public Task SetTrackerEdmTheodoliteUncertaintiesAsync(
         CollectionInstrumentId instrument,
-        double thetaDispersionArcseconds = 1.0,
+        double thetaDispersion = 1.0,
         double thetaThreshold = 0.001,
-        double phiDispersionArcseconds = 1.0,
+        double phiDispersion = 1.0,
         double phiThreshold = 0.001,
-        double distancePpm = 2.5,
+        double distance = 2.5,
         double distanceThreshold = 0.0003,
         CancellationToken cancellationToken = default)
     {
@@ -8384,11 +8438,11 @@ public sealed class BriosaInstrumentOperations
             new Dictionary<string, object?>
             {
                 ["instrument"] = instrument,
-                ["theta_dispersion_arcseconds"] = thetaDispersionArcseconds,
+                ["theta_dispersion"] = thetaDispersion,
                 ["theta_threshold"] = thetaThreshold,
-                ["phi_dispersion_arcseconds"] = phiDispersionArcseconds,
+                ["phi_dispersion"] = phiDispersion,
                 ["phi_threshold"] = phiThreshold,
-                ["distance_ppm"] = distancePpm,
+                ["distance"] = distance,
                 ["distance_threshold"] = distanceThreshold,
             });
         return _client.InvokeOperationAsync(
@@ -9229,9 +9283,12 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>measurementDwellTime</c>: Time in seconds.<br/>
+    /// </remarks>
     public Task SetCalibrationApplianceNodeInstrumentDwellTimeAsync(
         CollectionObjectName calibrationApplianceNode,
-        double measurementDwellTimeSeconds = 0.0,
+        double measurementDwellTime = 0.0,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9239,7 +9296,7 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             new Dictionary<string, object?>
             {
                 ["calibration_appliance_node"] = calibrationApplianceNode,
-                ["measurement_dwell_time_seconds"] = measurementDwellTimeSeconds,
+                ["measurement_dwell_time"] = measurementDwellTime,
             });
         return _client.InvokeOperationAsync(
             "briosa.RobotCalibrationApplianceNodeOperations",
@@ -10019,6 +10076,9 @@ public sealed class BriosaRobotOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>measurementFrame</c>: MP qualifier: relative to tool.<br/>
+    /// </remarks>
     public Task SetRobotCalibrationMeasurementOffsetInToolFrameAsync(
         CollectionMachineId machineId,
         string calibrationName = "",
@@ -10030,7 +10090,7 @@ public sealed class BriosaRobotOperations
             {
                 ["machine_id"] = machineId,
                 ["calibration_name"] = calibrationName,
-                ["measurement_frame_relative_to_tool"] = new Transform(),
+                ["measurement_frame"] = new Transform(),
             });
         return _client.InvokeOperationAsync(
             "briosa.RobotOperations",
@@ -10040,10 +10100,13 @@ public sealed class BriosaRobotOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>measurementFrame</c>: MP qualifier: relative to tool.<br/>
+    /// </remarks>
     public Task SetRobotCalibrationMeasurementOffsetInToolFrameAsync(
         CollectionMachineId machineId,
         string calibrationName,
-        Transform measurementFrameRelativeToTool,
+        Transform measurementFrame,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -10052,7 +10115,7 @@ public sealed class BriosaRobotOperations
             {
                 ["machine_id"] = machineId,
                 ["calibration_name"] = calibrationName,
-                ["measurement_frame_relative_to_tool"] = measurementFrameRelativeToTool,
+                ["measurement_frame"] = measurementFrame,
             });
         return _client.InvokeOperationAsync(
             "briosa.RobotOperations",
@@ -10062,6 +10125,9 @@ public sealed class BriosaRobotOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>toolFrame</c>: MP qualifier: relative to flange.<br/>
+    /// </remarks>
     public Task SetRobotCalibrationToolFrameAsync(
         CollectionMachineId machineId,
         string calibrationName = "",
@@ -10073,7 +10139,7 @@ public sealed class BriosaRobotOperations
             {
                 ["machine_id"] = machineId,
                 ["calibration_name"] = calibrationName,
-                ["tool_frame_relative_to_flange"] = new Transform(),
+                ["tool_frame"] = new Transform(),
             });
         return _client.InvokeOperationAsync(
             "briosa.RobotOperations",
@@ -10083,10 +10149,13 @@ public sealed class BriosaRobotOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>toolFrame</c>: MP qualifier: relative to flange.<br/>
+    /// </remarks>
     public Task SetRobotCalibrationToolFrameAsync(
         CollectionMachineId machineId,
         string calibrationName,
-        Transform toolFrameRelativeToFlange,
+        Transform toolFrame,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -10095,7 +10164,7 @@ public sealed class BriosaRobotOperations
             {
                 ["machine_id"] = machineId,
                 ["calibration_name"] = calibrationName,
-                ["tool_frame_relative_to_flange"] = toolFrameRelativeToFlange,
+                ["tool_frame"] = toolFrame,
             });
         return _client.InvokeOperationAsync(
             "briosa.RobotOperations",

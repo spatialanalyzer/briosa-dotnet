@@ -48,14 +48,14 @@ public sealed class ClientContractTests
     public void ProtocolIdentityMatchesReviewedCompatibilityArtifact()
     {
         Assert.Equal(
-            "briosa-protocol-0.7.0-sa-2026.1.0529.7",
+            "briosa-protocol-0.8.0-sa-2026.1.0529.7",
             Transport.BriosaProtocolIdentity.ArtifactName);
         Assert.Equal("briosa", Transport.BriosaProtocolIdentity.ProtocolPackage);
         Assert.Equal(
             "standard-protobuf-grpc",
             Transport.BriosaProtocolIdentity.ClientGenerationContract);
         Assert.Equal(
-            "4303a3322074869b35a3f16f9e35484a7bd5c830",
+            "e986a3ba91cb501416126eb5f3ecaeb7f9d97c05",
             Transport.BriosaProtocolIdentity.SourceRevision);
         Assert.Equal(
             "2026.1.0529.7",
@@ -129,7 +129,7 @@ public sealed class ClientContractTests
         await client.CloudDisplayControlAsync();
         var displayRequest = Assert.IsType<Transport.CloudDisplayControlRequest>(
             transport.LastOperationRequest);
-        Assert.Equal(1, displayRequest.ThinDrawIncrement);
+        Assert.Equal(1, displayRequest.Thin);
         Assert.Equal(1, displayRequest.PointSize);
 
         transport.OperationResponse = new Transport.GetActiveCollectionNameResult
@@ -206,7 +206,7 @@ public sealed class ClientContractTests
                 CollectionName = "C",
                 ObjectName = "P",
                 ObjectType = ObjectType.Plane,
-            });
+            }, angleTolerance: 0.0);
 
         Assert.Equal(12.5, angle);
         Assert.Equal("briosa.AnalysisOperations", transport.LastOperationService);
@@ -216,6 +216,8 @@ public sealed class ClientContractTests
         Assert.Equal("L", request.SelectedLine.ObjectName);
         Assert.Equal(Transport.ObjectType.Line, request.SelectedLine.ObjectType);
         Assert.Equal("P", request.SelectedPlane.ObjectName);
+        Assert.True(request.HasAngleTolerance);
+        Assert.Equal(0.0, request.AngleTolerance);
     }
 
     [Fact]

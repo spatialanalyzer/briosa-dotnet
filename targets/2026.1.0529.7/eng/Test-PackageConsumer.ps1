@@ -24,6 +24,9 @@ try {
 using Briosa;
 await using var client = new BriosaClient();
 if (typeof(BriosaClient).Assembly.GetName().Name != "$id") throw new System.Exception("Wrong target assembly");
+var method = typeof(BriosaClient).GetMethod("AngleBetweenLineAndPlaneAsync");
+if (method is null || !System.Array.Exists(method.GetParameters(), p => p.Name == "angleTolerance")) throw new System.Exception("Missing clean tolerance parameter");
+if (System.Array.Exists(method.GetParameters(), p => p.Name == "angleTolerance00ForNone")) throw new System.Exception("Stale tolerance parameter");
 System.Console.WriteLine("Verified using Briosa from $id");
 "@ | Set-Content (Join-Path $consumer "Program.cs")
     dotnet run --project (Join-Path $consumer "Consumer.csproj") --configuration Release

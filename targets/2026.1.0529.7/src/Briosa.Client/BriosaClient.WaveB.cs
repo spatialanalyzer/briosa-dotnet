@@ -9,8 +9,11 @@ namespace Briosa;
 
 public sealed partial class BriosaClient
 {
+    /// <remarks>
+    /// <c>thin</c>: MP qualifier: Draw Increment.<br/>
+    /// </remarks>
     public Task CloudDisplayControlAsync(
-        int thinDrawIncrement = 1,
+        int thin = 1,
         int pointSize = 1,
         CancellationToken cancellationToken = default)
     {
@@ -18,7 +21,7 @@ public sealed partial class BriosaClient
             new Transport.CloudDisplayControlRequest(),
             new Dictionary<string, object?>
             {
-                ["thin_draw_increment"] = thinDrawIncrement,
+                ["thin"] = thin,
                 ["point_size"] = pointSize,
             });
         return InvokeOperationAsync(
@@ -2031,6 +2034,11 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>showDeviationX</c>: MP qualifier: Rx.<br/>
+    /// <c>showDeviationY</c>: MP qualifier: Ry.<br/>
+    /// <c>showDeviationZ</c>: MP qualifier: Rz.<br/>
+    /// </remarks>
     public Task RelationshipWatchWindowTemplateAsync(
         CancellationToken cancellationToken = default)
     {
@@ -2045,9 +2053,9 @@ public sealed partial class BriosaClient
                 ["text_color"] = new Color(),
                 ["background_color"] = new Color(),
                 ["highlight_color"] = new Color(),
-                ["show_deviation_x_rx"] = true,
-                ["show_deviation_y_ry"] = true,
-                ["show_deviation_z_rz"] = true,
+                ["show_deviation_x"] = true,
+                ["show_deviation_y"] = true,
+                ["show_deviation_z"] = true,
                 ["show_deviation_magnitude"] = true,
                 ["udp_network_transmit_settings"] = new RelationshipWatchWindowUdpSettings(),
                 ["transparent_background"] = false,
@@ -2061,6 +2069,11 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>showDeviationX</c>: MP qualifier: Rx.<br/>
+    /// <c>showDeviationY</c>: MP qualifier: Ry.<br/>
+    /// <c>showDeviationZ</c>: MP qualifier: Rz.<br/>
+    /// </remarks>
     public Task RelationshipWatchWindowTemplateAsync(
         CollectionObjectName? watchWindowTemplateName,
         RelationshipWatchWindowTemplateOptions? options = null,
@@ -2078,9 +2091,9 @@ public sealed partial class BriosaClient
                 ["text_color"] = options.TextColor,
                 ["background_color"] = options.BackgroundColor,
                 ["highlight_color"] = options.HighlightColor,
-                ["show_deviation_x_rx"] = options.ShowDeviationXRx,
-                ["show_deviation_y_ry"] = options.ShowDeviationYRy,
-                ["show_deviation_z_rz"] = options.ShowDeviationZRz,
+                ["show_deviation_x"] = options.ShowDeviationX,
+                ["show_deviation_y"] = options.ShowDeviationY,
+                ["show_deviation_z"] = options.ShowDeviationZ,
                 ["show_deviation_magnitude"] = options.ShowDeviationMagnitude,
                 ["udp_network_transmit_settings"] = options.UdpNetworkTransmitSettings,
                 ["transparent_background"] = options.TransparentBackground,

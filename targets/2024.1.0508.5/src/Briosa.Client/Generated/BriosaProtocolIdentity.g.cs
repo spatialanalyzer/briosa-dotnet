@@ -5,21 +5,21 @@ namespace Briosa.Client.Transport;
 internal static class BriosaProtocolIdentity
 {
     /// <summary>Gets the protocol artifact's stable name.</summary>
-    public const string ArtifactName = "briosa-protocol-0.7.0-sa-2024.1.0508.5";
+    public const string ArtifactName = "briosa-protocol-0.8.0-sa-2024.1.0508.5";
     /// <summary>Gets the SHA-256 of the complete protocol ZIP.</summary>
-    public const string ArtifactSha256 = "ed3e5cdab5718327c3c644d441b18faf18a34e95fa4407fa177ed305c75f687f";
+    public const string ArtifactSha256 = "5606a3eda4ba04704371620672e5b8db10b616ed00c2731185f1c3a453defb22";
     /// <summary>Gets the Briosa version coordinate used to build the artifact.</summary>
-    public const string BriosaVersion = "0.7.0";
+    public const string BriosaVersion = "0.8.0";
     /// <summary>Gets the immutable Briosa source revision used to build the artifact.</summary>
-    public const string SourceRevision = "4303a3322074869b35a3f16f9e35484a7bd5c830";
+    public const string SourceRevision = "e986a3ba91cb501416126eb5f3ecaeb7f9d97c05";
     /// <summary>Gets the required behavioral contract major.</summary>
     public const uint CompatibilityMajor = 1;
     /// <summary>Gets the minimum behavioral contract revision.</summary>
     public const uint CompatibilityRevision = 0;
     /// <summary>Gets the aggregate canonical protobuf-source fingerprint.</summary>
-    public const string ProtocolSchemaSha256 = "dca41837d62bb8f815cfa8952f417a63a9b0b2505b2931ccf0131c4ef4577895";
+    public const string ProtocolSchemaSha256 = "27cef6f91a70e5cd3fc5513b09a9bb190d00f6c541fb0e6b1a2813c5b015a0c1";
     /// <summary>Gets the pure protobuf descriptor-set fingerprint.</summary>
-    public const string DescriptorSetSha256 = "6330a979da8a1790dd098179bde8718798ea630eb55ef9099c5f23347ace42f9";
+    public const string DescriptorSetSha256 = "e09358d4fae8ce29e271de3b604b9af482f39e579a86e5c180799df7c74f6a25";
     /// <summary>Gets the stable public protobuf package.</summary>
     public const string ProtocolPackage = "briosa";
     /// <summary>Gets the standard client-generation contract.</summary>

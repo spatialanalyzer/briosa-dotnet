@@ -65,52 +65,48 @@ namespace Briosa.Client.Transport {
             "d25WZXJzaW9uUmVzdWx0EhMKBmFuc3dlchgBIAEoCUgAiAEBEhkKDGFuc3dl",
             "cl9pbmRleBgCIAEoBUgBiAEBEi4KCWV4ZWN1dGlvbhjoByABKAsyGi5icmlv",
             "c2EuTXBFeGVjdXRpb25EZXRhaWxzQgkKB19hbnN3ZXJCDwoNX2Fuc3dlcl9p",
-            "bmRleCLkAgoiQXNrRm9yVXNlckRlY2lzaW9uRnJvbUltYWdlUmVxdWVzdBIu",
+            "bmRleCK8AgoiQXNrRm9yVXNlckRlY2lzaW9uRnJvbUltYWdlUmVxdWVzdBIu",
             "CgppbWFnZV9maWxlGAEgASgLMhUuYnJpb3NhLkZpbGVSZWZlcmVuY2VIAIgB",
             "ARI2ChJpbWFnZV9tYXBfeG1sX2ZpbGUYAiABKAsyFS5icmlvc2EuRmlsZVJl",
-            "ZmVyZW5jZUgBiAEBEhsKDndpbmRvd19jYXB0aW9uGAMgASgJSAKIAQESIwoW",
-            "d2luZG93X3dpZHRoXzBfZGVmYXVsdBgEIAEoBUgDiAEBEiQKF3dpbmRvd19o",
-            "ZWlnaHRfMF9kZWZhdWx0GAUgASgFSASIAQFCDQoLX2ltYWdlX2ZpbGVCFQoT",
-            "X2ltYWdlX21hcF94bWxfZmlsZUIRCg9fd2luZG93X2NhcHRpb25CGQoXX3dp",
-            "bmRvd193aWR0aF8wX2RlZmF1bHRCGgoYX3dpbmRvd19oZWlnaHRfMF9kZWZh",
-            "dWx0In0KIUFza0ZvclVzZXJEZWNpc2lvbkZyb21JbWFnZVJlc3VsdBIYCgt1",
-            "c2VyX2Nob2ljZRgBIAEoCUgAiAEBEi4KCWV4ZWN1dGlvbhjoByABKAsyGi5i",
-            "cmlvc2EuTXBFeGVjdXRpb25EZXRhaWxzQg4KDF91c2VyX2Nob2ljZSLxAgok",
-            "QXNrRm9yVXNlckRlY2lzaW9uRnJvbVN0cmluZ3NSZXF1ZXN0Eh0KFXF1ZXN0",
-            "aW9uX29yX3N0YXRlbWVudBgBIAMoCRIfCgRmb250GAIgASgLMgwuYnJpb3Nh",
-            "LkZvbnRIAIgBARIuCiFidXR0b24xX3RleHRfZW1wdHlfdG9faGlkZV9idXR0",
-            "b24YAyABKAlIAYgBARIuCiFidXR0b24yX3RleHRfZW1wdHlfdG9faGlkZV9i",
-            "dXR0b24YBCABKAlIAogBARIuCiFidXR0b24zX3RleHRfZW1wdHlfdG9faGlk",
-            "ZV9idXR0b24YBSABKAlIA4gBAUIHCgVfZm9udEIkCiJfYnV0dG9uMV90ZXh0",
-            "X2VtcHR5X3RvX2hpZGVfYnV0dG9uQiQKIl9idXR0b24yX3RleHRfZW1wdHlf",
-            "dG9faGlkZV9idXR0b25CJAoiX2J1dHRvbjNfdGV4dF9lbXB0eV90b19oaWRl",
-            "X2J1dHRvbiJ1CiNBc2tGb3JVc2VyRGVjaXNpb25Gcm9tU3RyaW5nc1Jlc3Vs",
-            "dBITCgZhbnN3ZXIYASABKAlIAIgBARIuCglleGVjdXRpb24Y6AcgASgLMhou",
-            "YnJpb3NhLk1wRXhlY3V0aW9uRGV0YWlsc0IJCgdfYW5zd2VyIm0KI09iamVj",
-            "dEV4aXN0ZW5jZVRlc3RDaGVja09ubHlSZXF1ZXN0EjYKC29iamVjdF9uYW1l",
-            "GAEgASgLMhwuYnJpb3NhLkNvbGxlY3Rpb25PYmplY3ROYW1lSACIAQFCDgoM",
-            "X29iamVjdF9uYW1lInQKIk9iamVjdEV4aXN0ZW5jZVRlc3RDaGVja09ubHlS",
-            "ZXN1bHQSEwoGZXhpc3RzGAEgASgISACIAQESLgoJZXhlY3V0aW9uGOgHIAEo",
-            "CzIaLmJyaW9zYS5NcEV4ZWN1dGlvbkRldGFpbHNCCQoHX2V4aXN0czKoBgoV",
-            "UHJvY2Vzc0Zsb3dPcGVyYXRpb25zEkcKDEFza0ZvckRvdWJsZRIbLmJyaW9z",
-            "YS5Bc2tGb3JEb3VibGVSZXF1ZXN0GhouYnJpb3NhLkFza0ZvckRvdWJsZVJl",
-            "c3VsdBJKCg1Bc2tGb3JJbnRlZ2VyEhwuYnJpb3NhLkFza0ZvckludGVnZXJS",
-            "ZXF1ZXN0GhsuYnJpb3NhLkFza0ZvckludGVnZXJSZXN1bHQSUAoPQXNrRm9y",
-            "UG9pbnROYW1lEh4uYnJpb3NhLkFza0ZvclBvaW50TmFtZVJlcXVlc3QaHS5i",
-            "cmlvc2EuQXNrRm9yUG9pbnROYW1lUmVzdWx0EkcKDEFza0ZvclN0cmluZxIb",
-            "LmJyaW9zYS5Bc2tGb3JTdHJpbmdSZXF1ZXN0GhouYnJpb3NhLkFza0ZvclN0",
-            "cmluZ1Jlc3VsdBJ0ChtBc2tGb3JTdHJpbmdQdWxsRG93blZlcnNpb24SKi5i",
-            "cmlvc2EuQXNrRm9yU3RyaW5nUHVsbERvd25WZXJzaW9uUmVxdWVzdBopLmJy",
-            "aW9zYS5Bc2tGb3JTdHJpbmdQdWxsRG93blZlcnNpb25SZXN1bHQSdAobQXNr",
-            "Rm9yVXNlckRlY2lzaW9uRnJvbUltYWdlEiouYnJpb3NhLkFza0ZvclVzZXJE",
-            "ZWNpc2lvbkZyb21JbWFnZVJlcXVlc3QaKS5icmlvc2EuQXNrRm9yVXNlckRl",
-            "Y2lzaW9uRnJvbUltYWdlUmVzdWx0EnoKHUFza0ZvclVzZXJEZWNpc2lvbkZy",
-            "b21TdHJpbmdzEiwuYnJpb3NhLkFza0ZvclVzZXJEZWNpc2lvbkZyb21TdHJp",
-            "bmdzUmVxdWVzdBorLmJyaW9zYS5Bc2tGb3JVc2VyRGVjaXNpb25Gcm9tU3Ry",
-            "aW5nc1Jlc3VsdBJ3ChxPYmplY3RFeGlzdGVuY2VUZXN0Q2hlY2tPbmx5Eisu",
-            "YnJpb3NhLk9iamVjdEV4aXN0ZW5jZVRlc3RDaGVja09ubHlSZXF1ZXN0Giou",
-            "YnJpb3NhLk9iamVjdEV4aXN0ZW5jZVRlc3RDaGVja09ubHlSZXN1bHRCCaoC",
-            "BkJyaW9zYWIGcHJvdG8z"));
+            "ZmVyZW5jZUgBiAEBEhsKDndpbmRvd19jYXB0aW9uGAMgASgJSAKIAQESGQoM",
+            "d2luZG93X3dpZHRoGAQgASgFSAOIAQESGgoNd2luZG93X2hlaWdodBgFIAEo",
+            "BUgEiAEBQg0KC19pbWFnZV9maWxlQhUKE19pbWFnZV9tYXBfeG1sX2ZpbGVC",
+            "EQoPX3dpbmRvd19jYXB0aW9uQg8KDV93aW5kb3dfd2lkdGhCEAoOX3dpbmRv",
+            "d19oZWlnaHQifQohQXNrRm9yVXNlckRlY2lzaW9uRnJvbUltYWdlUmVzdWx0",
+            "EhgKC3VzZXJfY2hvaWNlGAEgASgJSACIAQESLgoJZXhlY3V0aW9uGOgHIAEo",
+            "CzIaLmJyaW9zYS5NcEV4ZWN1dGlvbkRldGFpbHNCDgoMX3VzZXJfY2hvaWNl",
+            "IvMBCiRBc2tGb3JVc2VyRGVjaXNpb25Gcm9tU3RyaW5nc1JlcXVlc3QSHQoV",
+            "cXVlc3Rpb25fb3Jfc3RhdGVtZW50GAEgAygJEh8KBGZvbnQYAiABKAsyDC5i",
+            "cmlvc2EuRm9udEgAiAEBEhkKDGJ1dHRvbjFfdGV4dBgDIAEoCUgBiAEBEhkK",
+            "DGJ1dHRvbjJfdGV4dBgEIAEoCUgCiAEBEhkKDGJ1dHRvbjNfdGV4dBgFIAEo",
+            "CUgDiAEBQgcKBV9mb250Qg8KDV9idXR0b24xX3RleHRCDwoNX2J1dHRvbjJf",
+            "dGV4dEIPCg1fYnV0dG9uM190ZXh0InUKI0Fza0ZvclVzZXJEZWNpc2lvbkZy",
+            "b21TdHJpbmdzUmVzdWx0EhMKBmFuc3dlchgBIAEoCUgAiAEBEi4KCWV4ZWN1",
+            "dGlvbhjoByABKAsyGi5icmlvc2EuTXBFeGVjdXRpb25EZXRhaWxzQgkKB19h",
+            "bnN3ZXIibQojT2JqZWN0RXhpc3RlbmNlVGVzdENoZWNrT25seVJlcXVlc3QS",
+            "NgoLb2JqZWN0X25hbWUYASABKAsyHC5icmlvc2EuQ29sbGVjdGlvbk9iamVj",
+            "dE5hbWVIAIgBAUIOCgxfb2JqZWN0X25hbWUidAoiT2JqZWN0RXhpc3RlbmNl",
+            "VGVzdENoZWNrT25seVJlc3VsdBITCgZleGlzdHMYASABKAhIAIgBARIuCgll",
+            "eGVjdXRpb24Y6AcgASgLMhouYnJpb3NhLk1wRXhlY3V0aW9uRGV0YWlsc0IJ",
+            "CgdfZXhpc3RzMqgGChVQcm9jZXNzRmxvd09wZXJhdGlvbnMSRwoMQXNrRm9y",
+            "RG91YmxlEhsuYnJpb3NhLkFza0ZvckRvdWJsZVJlcXVlc3QaGi5icmlvc2Eu",
+            "QXNrRm9yRG91YmxlUmVzdWx0EkoKDUFza0ZvckludGVnZXISHC5icmlvc2Eu",
+            "QXNrRm9ySW50ZWdlclJlcXVlc3QaGy5icmlvc2EuQXNrRm9ySW50ZWdlclJl",
+            "c3VsdBJQCg9Bc2tGb3JQb2ludE5hbWUSHi5icmlvc2EuQXNrRm9yUG9pbnRO",
+            "YW1lUmVxdWVzdBodLmJyaW9zYS5Bc2tGb3JQb2ludE5hbWVSZXN1bHQSRwoM",
+            "QXNrRm9yU3RyaW5nEhsuYnJpb3NhLkFza0ZvclN0cmluZ1JlcXVlc3QaGi5i",
+            "cmlvc2EuQXNrRm9yU3RyaW5nUmVzdWx0EnQKG0Fza0ZvclN0cmluZ1B1bGxE",
+            "b3duVmVyc2lvbhIqLmJyaW9zYS5Bc2tGb3JTdHJpbmdQdWxsRG93blZlcnNp",
+            "b25SZXF1ZXN0GikuYnJpb3NhLkFza0ZvclN0cmluZ1B1bGxEb3duVmVyc2lv",
+            "blJlc3VsdBJ0ChtBc2tGb3JVc2VyRGVjaXNpb25Gcm9tSW1hZ2USKi5icmlv",
+            "c2EuQXNrRm9yVXNlckRlY2lzaW9uRnJvbUltYWdlUmVxdWVzdBopLmJyaW9z",
+            "YS5Bc2tGb3JVc2VyRGVjaXNpb25Gcm9tSW1hZ2VSZXN1bHQSegodQXNrRm9y",
+            "VXNlckRlY2lzaW9uRnJvbVN0cmluZ3MSLC5icmlvc2EuQXNrRm9yVXNlckRl",
+            "Y2lzaW9uRnJvbVN0cmluZ3NSZXF1ZXN0GisuYnJpb3NhLkFza0ZvclVzZXJE",
+            "ZWNpc2lvbkZyb21TdHJpbmdzUmVzdWx0EncKHE9iamVjdEV4aXN0ZW5jZVRl",
+            "c3RDaGVja09ubHkSKy5icmlvc2EuT2JqZWN0RXhpc3RlbmNlVGVzdENoZWNr",
+            "T25seVJlcXVlc3QaKi5icmlvc2EuT2JqZWN0RXhpc3RlbmNlVGVzdENoZWNr",
+            "T25seVJlc3VsdEIJqgIGQnJpb3NhYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Briosa.Client.Transport.OperationOutcomesReflection.Descriptor, global::Briosa.Client.Transport.SpatialAnalyzerValuesReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -124,9 +120,9 @@ namespace Briosa.Client.Transport {
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.AskForStringResult), global::Briosa.Client.Transport.AskForStringResult.Parser, new[]{ "Answer", "Execution" }, new[]{ "Answer" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.AskForStringPullDownVersionRequest), global::Briosa.Client.Transport.AskForStringPullDownVersionRequest.Parser, new[]{ "QuestionOrStatement", "PossibleAnswers", "Font" }, new[]{ "Font" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.AskForStringPullDownVersionResult), global::Briosa.Client.Transport.AskForStringPullDownVersionResult.Parser, new[]{ "Answer", "AnswerIndex", "Execution" }, new[]{ "Answer", "AnswerIndex" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.AskForUserDecisionFromImageRequest), global::Briosa.Client.Transport.AskForUserDecisionFromImageRequest.Parser, new[]{ "ImageFile", "ImageMapXmlFile", "WindowCaption", "WindowWidth0Default", "WindowHeight0Default" }, new[]{ "ImageFile", "ImageMapXmlFile", "WindowCaption", "WindowWidth0Default", "WindowHeight0Default" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.AskForUserDecisionFromImageRequest), global::Briosa.Client.Transport.AskForUserDecisionFromImageRequest.Parser, new[]{ "ImageFile", "ImageMapXmlFile", "WindowCaption", "WindowWidth", "WindowHeight" }, new[]{ "ImageFile", "ImageMapXmlFile", "WindowCaption", "WindowWidth", "WindowHeight" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.AskForUserDecisionFromImageResult), global::Briosa.Client.Transport.AskForUserDecisionFromImageResult.Parser, new[]{ "UserChoice", "Execution" }, new[]{ "UserChoice" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.AskForUserDecisionFromStringsRequest), global::Briosa.Client.Transport.AskForUserDecisionFromStringsRequest.Parser, new[]{ "QuestionOrStatement", "Font", "Button1TextEmptyToHideButton", "Button2TextEmptyToHideButton", "Button3TextEmptyToHideButton" }, new[]{ "Font", "Button1TextEmptyToHideButton", "Button2TextEmptyToHideButton", "Button3TextEmptyToHideButton" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.AskForUserDecisionFromStringsRequest), global::Briosa.Client.Transport.AskForUserDecisionFromStringsRequest.Parser, new[]{ "QuestionOrStatement", "Font", "Button1Text", "Button2Text", "Button3Text" }, new[]{ "Font", "Button1Text", "Button2Text", "Button3Text" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.AskForUserDecisionFromStringsResult), global::Briosa.Client.Transport.AskForUserDecisionFromStringsResult.Parser, new[]{ "Answer", "Execution" }, new[]{ "Answer" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.ObjectExistenceTestCheckOnlyRequest), global::Briosa.Client.Transport.ObjectExistenceTestCheckOnlyRequest.Parser, new[]{ "ObjectName" }, new[]{ "ObjectName" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.ObjectExistenceTestCheckOnlyResult), global::Briosa.Client.Transport.ObjectExistenceTestCheckOnlyResult.Parser, new[]{ "Exists", "Execution" }, new[]{ "Exists" }, null, null, null)
@@ -3383,8 +3379,8 @@ namespace Briosa.Client.Transport {
       imageFile_ = other.imageFile_ != null ? other.imageFile_.Clone() : null;
       imageMapXmlFile_ = other.imageMapXmlFile_ != null ? other.imageMapXmlFile_.Clone() : null;
       windowCaption_ = other.windowCaption_;
-      windowWidth0Default_ = other.windowWidth0Default_;
-      windowHeight0Default_ = other.windowHeight0Default_;
+      windowWidth_ = other.windowWidth_;
+      windowHeight_ = other.windowHeight_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3444,57 +3440,63 @@ namespace Briosa.Client.Transport {
       windowCaption_ = null;
     }
 
-    /// <summary>Field number for the "window_width_0_default" field.</summary>
-    public const int WindowWidth0DefaultFieldNumber = 4;
-    private readonly static int WindowWidth0DefaultDefaultValue = 0;
+    /// <summary>Field number for the "window_width" field.</summary>
+    public const int WindowWidthFieldNumber = 4;
+    private readonly static int WindowWidthDefaultValue = 0;
 
-    private int windowWidth0Default_;
+    private int windowWidth_;
+    /// <summary>
+    /// 0 uses the default window dimension.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int WindowWidth0Default {
-      get { if ((_hasBits0 & 1) != 0) { return windowWidth0Default_; } else { return WindowWidth0DefaultDefaultValue; } }
+    public int WindowWidth {
+      get { if ((_hasBits0 & 1) != 0) { return windowWidth_; } else { return WindowWidthDefaultValue; } }
       set {
         _hasBits0 |= 1;
-        windowWidth0Default_ = value;
+        windowWidth_ = value;
       }
     }
-    /// <summary>Gets whether the "window_width_0_default" field is set</summary>
+    /// <summary>Gets whether the "window_width" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasWindowWidth0Default {
+    public bool HasWindowWidth {
       get { return (_hasBits0 & 1) != 0; }
     }
-    /// <summary>Clears the value of the "window_width_0_default" field</summary>
+    /// <summary>Clears the value of the "window_width" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearWindowWidth0Default() {
+    public void ClearWindowWidth() {
       _hasBits0 &= ~1;
     }
 
-    /// <summary>Field number for the "window_height_0_default" field.</summary>
-    public const int WindowHeight0DefaultFieldNumber = 5;
-    private readonly static int WindowHeight0DefaultDefaultValue = 0;
+    /// <summary>Field number for the "window_height" field.</summary>
+    public const int WindowHeightFieldNumber = 5;
+    private readonly static int WindowHeightDefaultValue = 0;
 
-    private int windowHeight0Default_;
+    private int windowHeight_;
+    /// <summary>
+    /// 0 uses the default window dimension.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int WindowHeight0Default {
-      get { if ((_hasBits0 & 2) != 0) { return windowHeight0Default_; } else { return WindowHeight0DefaultDefaultValue; } }
+    public int WindowHeight {
+      get { if ((_hasBits0 & 2) != 0) { return windowHeight_; } else { return WindowHeightDefaultValue; } }
       set {
         _hasBits0 |= 2;
-        windowHeight0Default_ = value;
+        windowHeight_ = value;
       }
     }
-    /// <summary>Gets whether the "window_height_0_default" field is set</summary>
+    /// <summary>Gets whether the "window_height" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasWindowHeight0Default {
+    public bool HasWindowHeight {
       get { return (_hasBits0 & 2) != 0; }
     }
-    /// <summary>Clears the value of the "window_height_0_default" field</summary>
+    /// <summary>Clears the value of the "window_height" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearWindowHeight0Default() {
+    public void ClearWindowHeight() {
       _hasBits0 &= ~2;
     }
 
@@ -3516,8 +3518,8 @@ namespace Briosa.Client.Transport {
       if (!object.Equals(ImageFile, other.ImageFile)) return false;
       if (!object.Equals(ImageMapXmlFile, other.ImageMapXmlFile)) return false;
       if (WindowCaption != other.WindowCaption) return false;
-      if (WindowWidth0Default != other.WindowWidth0Default) return false;
-      if (WindowHeight0Default != other.WindowHeight0Default) return false;
+      if (WindowWidth != other.WindowWidth) return false;
+      if (WindowHeight != other.WindowHeight) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3528,8 +3530,8 @@ namespace Briosa.Client.Transport {
       if (imageFile_ != null) hash ^= ImageFile.GetHashCode();
       if (imageMapXmlFile_ != null) hash ^= ImageMapXmlFile.GetHashCode();
       if (HasWindowCaption) hash ^= WindowCaption.GetHashCode();
-      if (HasWindowWidth0Default) hash ^= WindowWidth0Default.GetHashCode();
-      if (HasWindowHeight0Default) hash ^= WindowHeight0Default.GetHashCode();
+      if (HasWindowWidth) hash ^= WindowWidth.GetHashCode();
+      if (HasWindowHeight) hash ^= WindowHeight.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3560,13 +3562,13 @@ namespace Briosa.Client.Transport {
         output.WriteRawTag(26);
         output.WriteString(WindowCaption);
       }
-      if (HasWindowWidth0Default) {
+      if (HasWindowWidth) {
         output.WriteRawTag(32);
-        output.WriteInt32(WindowWidth0Default);
+        output.WriteInt32(WindowWidth);
       }
-      if (HasWindowHeight0Default) {
+      if (HasWindowHeight) {
         output.WriteRawTag(40);
-        output.WriteInt32(WindowHeight0Default);
+        output.WriteInt32(WindowHeight);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -3590,13 +3592,13 @@ namespace Briosa.Client.Transport {
         output.WriteRawTag(26);
         output.WriteString(WindowCaption);
       }
-      if (HasWindowWidth0Default) {
+      if (HasWindowWidth) {
         output.WriteRawTag(32);
-        output.WriteInt32(WindowWidth0Default);
+        output.WriteInt32(WindowWidth);
       }
-      if (HasWindowHeight0Default) {
+      if (HasWindowHeight) {
         output.WriteRawTag(40);
-        output.WriteInt32(WindowHeight0Default);
+        output.WriteInt32(WindowHeight);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -3617,11 +3619,11 @@ namespace Briosa.Client.Transport {
       if (HasWindowCaption) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(WindowCaption);
       }
-      if (HasWindowWidth0Default) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(WindowWidth0Default);
+      if (HasWindowWidth) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(WindowWidth);
       }
-      if (HasWindowHeight0Default) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(WindowHeight0Default);
+      if (HasWindowHeight) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(WindowHeight);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3650,11 +3652,11 @@ namespace Briosa.Client.Transport {
       if (other.HasWindowCaption) {
         WindowCaption = other.WindowCaption;
       }
-      if (other.HasWindowWidth0Default) {
-        WindowWidth0Default = other.WindowWidth0Default;
+      if (other.HasWindowWidth) {
+        WindowWidth = other.WindowWidth;
       }
-      if (other.HasWindowHeight0Default) {
-        WindowHeight0Default = other.WindowHeight0Default;
+      if (other.HasWindowHeight) {
+        WindowHeight = other.WindowHeight;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3694,11 +3696,11 @@ namespace Briosa.Client.Transport {
             break;
           }
           case 32: {
-            WindowWidth0Default = input.ReadInt32();
+            WindowWidth = input.ReadInt32();
             break;
           }
           case 40: {
-            WindowHeight0Default = input.ReadInt32();
+            WindowHeight = input.ReadInt32();
             break;
           }
         }
@@ -3739,11 +3741,11 @@ namespace Briosa.Client.Transport {
             break;
           }
           case 32: {
-            WindowWidth0Default = input.ReadInt32();
+            WindowWidth = input.ReadInt32();
             break;
           }
           case 40: {
-            WindowHeight0Default = input.ReadInt32();
+            WindowHeight = input.ReadInt32();
             break;
           }
         }
@@ -4048,9 +4050,9 @@ namespace Briosa.Client.Transport {
     public AskForUserDecisionFromStringsRequest(AskForUserDecisionFromStringsRequest other) : this() {
       questionOrStatement_ = other.questionOrStatement_.Clone();
       font_ = other.font_ != null ? other.font_.Clone() : null;
-      button1TextEmptyToHideButton_ = other.button1TextEmptyToHideButton_;
-      button2TextEmptyToHideButton_ = other.button2TextEmptyToHideButton_;
-      button3TextEmptyToHideButton_ = other.button3TextEmptyToHideButton_;
+      button1Text_ = other.button1Text_;
+      button2Text_ = other.button2Text_;
+      button3Text_ = other.button3Text_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -4083,82 +4085,91 @@ namespace Briosa.Client.Transport {
       }
     }
 
-    /// <summary>Field number for the "button1_text_empty_to_hide_button" field.</summary>
-    public const int Button1TextEmptyToHideButtonFieldNumber = 3;
-    private readonly static string Button1TextEmptyToHideButtonDefaultValue = "";
+    /// <summary>Field number for the "button1_text" field.</summary>
+    public const int Button1TextFieldNumber = 3;
+    private readonly static string Button1TextDefaultValue = "";
 
-    private string button1TextEmptyToHideButton_;
+    private string button1Text_;
+    /// <summary>
+    /// An empty string hides the button.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Button1TextEmptyToHideButton {
-      get { return button1TextEmptyToHideButton_ ?? Button1TextEmptyToHideButtonDefaultValue; }
+    public string Button1Text {
+      get { return button1Text_ ?? Button1TextDefaultValue; }
       set {
-        button1TextEmptyToHideButton_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        button1Text_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
-    /// <summary>Gets whether the "button1_text_empty_to_hide_button" field is set</summary>
+    /// <summary>Gets whether the "button1_text" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasButton1TextEmptyToHideButton {
-      get { return button1TextEmptyToHideButton_ != null; }
+    public bool HasButton1Text {
+      get { return button1Text_ != null; }
     }
-    /// <summary>Clears the value of the "button1_text_empty_to_hide_button" field</summary>
+    /// <summary>Clears the value of the "button1_text" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearButton1TextEmptyToHideButton() {
-      button1TextEmptyToHideButton_ = null;
+    public void ClearButton1Text() {
+      button1Text_ = null;
     }
 
-    /// <summary>Field number for the "button2_text_empty_to_hide_button" field.</summary>
-    public const int Button2TextEmptyToHideButtonFieldNumber = 4;
-    private readonly static string Button2TextEmptyToHideButtonDefaultValue = "";
+    /// <summary>Field number for the "button2_text" field.</summary>
+    public const int Button2TextFieldNumber = 4;
+    private readonly static string Button2TextDefaultValue = "";
 
-    private string button2TextEmptyToHideButton_;
+    private string button2Text_;
+    /// <summary>
+    /// An empty string hides the button.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Button2TextEmptyToHideButton {
-      get { return button2TextEmptyToHideButton_ ?? Button2TextEmptyToHideButtonDefaultValue; }
+    public string Button2Text {
+      get { return button2Text_ ?? Button2TextDefaultValue; }
       set {
-        button2TextEmptyToHideButton_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        button2Text_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
-    /// <summary>Gets whether the "button2_text_empty_to_hide_button" field is set</summary>
+    /// <summary>Gets whether the "button2_text" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasButton2TextEmptyToHideButton {
-      get { return button2TextEmptyToHideButton_ != null; }
+    public bool HasButton2Text {
+      get { return button2Text_ != null; }
     }
-    /// <summary>Clears the value of the "button2_text_empty_to_hide_button" field</summary>
+    /// <summary>Clears the value of the "button2_text" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearButton2TextEmptyToHideButton() {
-      button2TextEmptyToHideButton_ = null;
+    public void ClearButton2Text() {
+      button2Text_ = null;
     }
 
-    /// <summary>Field number for the "button3_text_empty_to_hide_button" field.</summary>
-    public const int Button3TextEmptyToHideButtonFieldNumber = 5;
-    private readonly static string Button3TextEmptyToHideButtonDefaultValue = "";
+    /// <summary>Field number for the "button3_text" field.</summary>
+    public const int Button3TextFieldNumber = 5;
+    private readonly static string Button3TextDefaultValue = "";
 
-    private string button3TextEmptyToHideButton_;
+    private string button3Text_;
+    /// <summary>
+    /// An empty string hides the button.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Button3TextEmptyToHideButton {
-      get { return button3TextEmptyToHideButton_ ?? Button3TextEmptyToHideButtonDefaultValue; }
+    public string Button3Text {
+      get { return button3Text_ ?? Button3TextDefaultValue; }
       set {
-        button3TextEmptyToHideButton_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        button3Text_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
-    /// <summary>Gets whether the "button3_text_empty_to_hide_button" field is set</summary>
+    /// <summary>Gets whether the "button3_text" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasButton3TextEmptyToHideButton {
-      get { return button3TextEmptyToHideButton_ != null; }
+    public bool HasButton3Text {
+      get { return button3Text_ != null; }
     }
-    /// <summary>Clears the value of the "button3_text_empty_to_hide_button" field</summary>
+    /// <summary>Clears the value of the "button3_text" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearButton3TextEmptyToHideButton() {
-      button3TextEmptyToHideButton_ = null;
+    public void ClearButton3Text() {
+      button3Text_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4178,9 +4189,9 @@ namespace Briosa.Client.Transport {
       }
       if(!questionOrStatement_.Equals(other.questionOrStatement_)) return false;
       if (!object.Equals(Font, other.Font)) return false;
-      if (Button1TextEmptyToHideButton != other.Button1TextEmptyToHideButton) return false;
-      if (Button2TextEmptyToHideButton != other.Button2TextEmptyToHideButton) return false;
-      if (Button3TextEmptyToHideButton != other.Button3TextEmptyToHideButton) return false;
+      if (Button1Text != other.Button1Text) return false;
+      if (Button2Text != other.Button2Text) return false;
+      if (Button3Text != other.Button3Text) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -4190,9 +4201,9 @@ namespace Briosa.Client.Transport {
       int hash = 1;
       hash ^= questionOrStatement_.GetHashCode();
       if (font_ != null) hash ^= Font.GetHashCode();
-      if (HasButton1TextEmptyToHideButton) hash ^= Button1TextEmptyToHideButton.GetHashCode();
-      if (HasButton2TextEmptyToHideButton) hash ^= Button2TextEmptyToHideButton.GetHashCode();
-      if (HasButton3TextEmptyToHideButton) hash ^= Button3TextEmptyToHideButton.GetHashCode();
+      if (HasButton1Text) hash ^= Button1Text.GetHashCode();
+      if (HasButton2Text) hash ^= Button2Text.GetHashCode();
+      if (HasButton3Text) hash ^= Button3Text.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -4216,17 +4227,17 @@ namespace Briosa.Client.Transport {
         output.WriteRawTag(18);
         output.WriteMessage(Font);
       }
-      if (HasButton1TextEmptyToHideButton) {
+      if (HasButton1Text) {
         output.WriteRawTag(26);
-        output.WriteString(Button1TextEmptyToHideButton);
+        output.WriteString(Button1Text);
       }
-      if (HasButton2TextEmptyToHideButton) {
+      if (HasButton2Text) {
         output.WriteRawTag(34);
-        output.WriteString(Button2TextEmptyToHideButton);
+        output.WriteString(Button2Text);
       }
-      if (HasButton3TextEmptyToHideButton) {
+      if (HasButton3Text) {
         output.WriteRawTag(42);
-        output.WriteString(Button3TextEmptyToHideButton);
+        output.WriteString(Button3Text);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -4243,17 +4254,17 @@ namespace Briosa.Client.Transport {
         output.WriteRawTag(18);
         output.WriteMessage(Font);
       }
-      if (HasButton1TextEmptyToHideButton) {
+      if (HasButton1Text) {
         output.WriteRawTag(26);
-        output.WriteString(Button1TextEmptyToHideButton);
+        output.WriteString(Button1Text);
       }
-      if (HasButton2TextEmptyToHideButton) {
+      if (HasButton2Text) {
         output.WriteRawTag(34);
-        output.WriteString(Button2TextEmptyToHideButton);
+        output.WriteString(Button2Text);
       }
-      if (HasButton3TextEmptyToHideButton) {
+      if (HasButton3Text) {
         output.WriteRawTag(42);
-        output.WriteString(Button3TextEmptyToHideButton);
+        output.WriteString(Button3Text);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -4269,14 +4280,14 @@ namespace Briosa.Client.Transport {
       if (font_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Font);
       }
-      if (HasButton1TextEmptyToHideButton) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Button1TextEmptyToHideButton);
+      if (HasButton1Text) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Button1Text);
       }
-      if (HasButton2TextEmptyToHideButton) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Button2TextEmptyToHideButton);
+      if (HasButton2Text) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Button2Text);
       }
-      if (HasButton3TextEmptyToHideButton) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Button3TextEmptyToHideButton);
+      if (HasButton3Text) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Button3Text);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -4297,14 +4308,14 @@ namespace Briosa.Client.Transport {
         }
         Font.MergeFrom(other.Font);
       }
-      if (other.HasButton1TextEmptyToHideButton) {
-        Button1TextEmptyToHideButton = other.Button1TextEmptyToHideButton;
+      if (other.HasButton1Text) {
+        Button1Text = other.Button1Text;
       }
-      if (other.HasButton2TextEmptyToHideButton) {
-        Button2TextEmptyToHideButton = other.Button2TextEmptyToHideButton;
+      if (other.HasButton2Text) {
+        Button2Text = other.Button2Text;
       }
-      if (other.HasButton3TextEmptyToHideButton) {
-        Button3TextEmptyToHideButton = other.Button3TextEmptyToHideButton;
+      if (other.HasButton3Text) {
+        Button3Text = other.Button3Text;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -4337,15 +4348,15 @@ namespace Briosa.Client.Transport {
             break;
           }
           case 26: {
-            Button1TextEmptyToHideButton = input.ReadString();
+            Button1Text = input.ReadString();
             break;
           }
           case 34: {
-            Button2TextEmptyToHideButton = input.ReadString();
+            Button2Text = input.ReadString();
             break;
           }
           case 42: {
-            Button3TextEmptyToHideButton = input.ReadString();
+            Button3Text = input.ReadString();
             break;
           }
         }
@@ -4379,15 +4390,15 @@ namespace Briosa.Client.Transport {
             break;
           }
           case 26: {
-            Button1TextEmptyToHideButton = input.ReadString();
+            Button1Text = input.ReadString();
             break;
           }
           case 34: {
-            Button2TextEmptyToHideButton = input.ReadString();
+            Button2Text = input.ReadString();
             break;
           }
           case 42: {
-            Button3TextEmptyToHideButton = input.ReadString();
+            Button3Text = input.ReadString();
             break;
           }
         }

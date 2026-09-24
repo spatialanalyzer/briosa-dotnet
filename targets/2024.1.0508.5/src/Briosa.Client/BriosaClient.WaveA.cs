@@ -7,11 +7,14 @@ namespace Briosa;
 
 public sealed partial class BriosaClient
 {
+    /// <remarks>
+    /// <c>angleTolerance</c>: 0.0 disables this tolerance.<br/>
+    /// </remarks>
     public Task<double> AngleBetweenLineAndPlaneAsync(
         CollectionObjectName selectedLine,
         CollectionObjectName selectedPlane,
         double nominalAngle = 0.000000,
-        double angleTolerance00ForNone = 0.000000,
+        double angleTolerance = 0.000000,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -21,7 +24,7 @@ public sealed partial class BriosaClient
                 ["selected_line"] = selectedLine,
                 ["selected_plane"] = selectedPlane,
                 ["nominal_angle"] = nominalAngle,
-                ["angle_tolerance_0_0_for_none"] = angleTolerance00ForNone,
+                ["angle_tolerance"] = angleTolerance,
             });
         return InvokeOperationAsync<double>(
             "briosa.AnalysisOperations",
@@ -31,11 +34,14 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>angleTolerance</c>: 0.0 disables this tolerance.<br/>
+    /// </remarks>
     public Task<double> AngleBetweenTwoLinesAsync(
         CollectionObjectName line1,
         CollectionObjectName line2,
         double nominalAngle = 0.000000,
-        double angleTolerance00ForNone = 0.000000,
+        double angleTolerance = 0.000000,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -45,7 +51,7 @@ public sealed partial class BriosaClient
                 ["line_1"] = line1,
                 ["line_2"] = line2,
                 ["nominal_angle"] = nominalAngle,
-                ["angle_tolerance_0_0_for_none"] = angleTolerance00ForNone,
+                ["angle_tolerance"] = angleTolerance,
             });
         return InvokeOperationAsync<double>(
             "briosa.AnalysisOperations",
@@ -55,11 +61,14 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>angleTolerance</c>: 0.0 disables this tolerance.<br/>
+    /// </remarks>
     public Task<double> AngleBetweenTwoPlanesNormalsAsync(
         CollectionObjectName planeA,
         CollectionObjectName planeB,
         double nominalAngle = 0.000000,
-        double angleTolerance00ForNone = 0.000000,
+        double angleTolerance = 0.000000,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -69,7 +78,7 @@ public sealed partial class BriosaClient
                 ["plane_a"] = planeA,
                 ["plane_b"] = planeB,
                 ["nominal_angle"] = nominalAngle,
-                ["angle_tolerance_0_0_for_none"] = angleTolerance00ForNone,
+                ["angle_tolerance"] = angleTolerance,
             });
         return InvokeOperationAsync<double>(
             "briosa.AnalysisOperations",
@@ -79,12 +88,17 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>rmsTolerance</c>: 0.0 disables this tolerance.<br/>
+    /// <c>maximumAbsoluteTolerance</c>: 0.0 disables this tolerance.<br/>
+    /// <c>filePathForCsvTextReport</c>: Requires Show Interface to be true.<br/>
+    /// </remarks>
     public Task<BestFitTransformationGroupToGroupResult> BestFitTransformationGroupToGroupAsync(
         CollectionObjectName referenceGroup,
         CollectionObjectName correspondingGroup,
         bool showInterface,
-        double rmsTolerance00ForNone,
-        double maximumAbsoluteTolerance00ForNone,
+        double rmsTolerance,
+        double maximumAbsoluteTolerance,
         bool allowScale,
         bool allowX,
         bool allowY,
@@ -94,7 +108,7 @@ public sealed partial class BriosaClient
         bool allowRz,
         bool lockDegreesOfFreedom,
         bool generateEvent,
-        FileReference filePathForCsvTextReportRequiresShowInterfaceTrue,
+        FileReference filePathForCsvTextReport,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -104,8 +118,8 @@ public sealed partial class BriosaClient
                 ["reference_group"] = referenceGroup,
                 ["corresponding_group"] = correspondingGroup,
                 ["show_interface"] = showInterface,
-                ["rms_tolerance_0_0_for_none"] = rmsTolerance00ForNone,
-                ["maximum_absolute_tolerance_0_0_for_none"] = maximumAbsoluteTolerance00ForNone,
+                ["rms_tolerance"] = rmsTolerance,
+                ["maximum_absolute_tolerance"] = maximumAbsoluteTolerance,
                 ["allow_scale"] = allowScale,
                 ["allow_x"] = allowX,
                 ["allow_y"] = allowY,
@@ -115,7 +129,7 @@ public sealed partial class BriosaClient
                 ["allow_rz"] = allowRz,
                 ["lock_degrees_of_freedom"] = lockDegreesOfFreedom,
                 ["generate_event"] = generateEvent,
-                ["file_path_for_csv_text_report_requires_show_interface_true"] = filePathForCsvTextReportRequiresShowInterfaceTrue,
+                ["file_path_for_csv_text_report"] = filePathForCsvTextReport,
             });
         return InvokeOperationAsync<BestFitTransformationGroupToGroupResult>(
             "briosa.AnalysisOperations",
@@ -191,15 +205,19 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>fitInterfaceTolerance</c>: -1.0 uses the profile tolerance.<br/>
+    /// <c>startingConditionGeometry</c>: Optional in the MP editor; the existing API presence and omission behavior is unchanged.<br/>
+    /// </remarks>
     public Task FitGeometryToPointGroupAsync(
         GeometryType geometryType,
         CollectionObjectName groupToFit,
         CollectionObjectName resultingObjectName,
         string fitProfileName,
         bool reportDeviations,
-        double fitInterfaceTolerance10UseProfile,
+        double fitInterfaceTolerance,
         bool ignoreOutOfTolerancePoints,
-        CollectionObjectName startingConditionGeometryOptional,
+        CollectionObjectName startingConditionGeometry,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -211,9 +229,9 @@ public sealed partial class BriosaClient
                 ["resulting_object_name"] = resultingObjectName,
                 ["fit_profile_name"] = fitProfileName,
                 ["report_deviations"] = reportDeviations,
-                ["fit_interface_tolerance_1_0_use_profile"] = fitInterfaceTolerance10UseProfile,
+                ["fit_interface_tolerance"] = fitInterfaceTolerance,
                 ["ignore_out_of_tolerance_points"] = ignoreOutOfTolerancePoints,
-                ["starting_condition_geometry_optional"] = startingConditionGeometryOptional,
+                ["starting_condition_geometry"] = startingConditionGeometry,
             });
         return InvokeOperationAsync(
             "briosa.AnalysisOperations",
@@ -223,6 +241,10 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>fitInterfaceTolerance</c>: -1.0 uses the profile tolerance.<br/>
+    /// <c>startingConditionGeometry</c>: Optional in the MP editor; the existing API presence and omission behavior is unchanged.<br/>
+    /// </remarks>
     public Task FitGeometryToPointGroupProjectedToPlaneAsync(
         GeometryType geometryType,
         CollectionObjectName groupToFit,
@@ -230,9 +252,9 @@ public sealed partial class BriosaClient
         CollectionObjectName resultingObjectName,
         string fitProfileName,
         bool reportDeviations,
-        double fitInterfaceTolerance10UseProfile,
+        double fitInterfaceTolerance,
         bool ignoreOutOfTolerancePoints,
-        CollectionObjectName startingConditionGeometryOptional,
+        CollectionObjectName startingConditionGeometry,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -245,9 +267,9 @@ public sealed partial class BriosaClient
                 ["resulting_object_name"] = resultingObjectName,
                 ["fit_profile_name"] = fitProfileName,
                 ["report_deviations"] = reportDeviations,
-                ["fit_interface_tolerance_1_0_use_profile"] = fitInterfaceTolerance10UseProfile,
+                ["fit_interface_tolerance"] = fitInterfaceTolerance,
                 ["ignore_out_of_tolerance_points"] = ignoreOutOfTolerancePoints,
-                ["starting_condition_geometry_optional"] = startingConditionGeometryOptional,
+                ["starting_condition_geometry"] = startingConditionGeometry,
             });
         return InvokeOperationAsync(
             "briosa.AnalysisOperations",
@@ -257,15 +279,19 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>fitInterfaceTolerance</c>: -1.0 uses the profile tolerance.<br/>
+    /// <c>startingConditionGeometry</c>: Optional in the MP editor; the existing API presence and omission behavior is unchanged.<br/>
+    /// </remarks>
     public Task FitGeometryToPointsAsync(
         GeometryType geometryType,
         IEnumerable<PointName> pointsToFit,
         CollectionObjectName resultingObjectName,
         string fitProfileName,
         bool reportDeviations,
-        double fitInterfaceTolerance10UseProfile,
+        double fitInterfaceTolerance,
         bool ignoreOutOfTolerancePoints,
-        CollectionObjectName startingConditionGeometryOptional,
+        CollectionObjectName startingConditionGeometry,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -277,9 +303,9 @@ public sealed partial class BriosaClient
                 ["resulting_object_name"] = resultingObjectName,
                 ["fit_profile_name"] = fitProfileName,
                 ["report_deviations"] = reportDeviations,
-                ["fit_interface_tolerance_1_0_use_profile"] = fitInterfaceTolerance10UseProfile,
+                ["fit_interface_tolerance"] = fitInterfaceTolerance,
                 ["ignore_out_of_tolerance_points"] = ignoreOutOfTolerancePoints,
-                ["starting_condition_geometry_optional"] = startingConditionGeometryOptional,
+                ["starting_condition_geometry"] = startingConditionGeometry,
             });
         return InvokeOperationAsync(
             "briosa.AnalysisOperations",
@@ -916,12 +942,16 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>rmsTolerance</c>: 0.0 disables this tolerance.<br/>
+    /// <c>maximumAbsoluteTolerance</c>: 0.0 disables this tolerance.<br/>
+    /// </remarks>
     public Task<GroupToSurfaceFitResult> GroupToSurfaceFitAsync(
         CollectionObjectName groupToFit,
         CollectionObjectName surface,
         bool doConventionalFit = false,
-        double rmsTolerance00ForNone = 0.000000,
-        double maximumAbsoluteTolerance00ForNone = 0.000000,
+        double rmsTolerance = 0.000000,
+        double maximumAbsoluteTolerance = 0.000000,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -931,8 +961,8 @@ public sealed partial class BriosaClient
                 ["group_to_fit"] = groupToFit,
                 ["surface"] = surface,
                 ["do_conventional_fit"] = doConventionalFit,
-                ["rms_tolerance_0_0_for_none"] = rmsTolerance00ForNone,
-                ["maximum_absolute_tolerance_0_0_for_none"] = maximumAbsoluteTolerance00ForNone,
+                ["rms_tolerance"] = rmsTolerance,
+                ["maximum_absolute_tolerance"] = maximumAbsoluteTolerance,
             });
         return InvokeOperationAsync<GroupToSurfaceFitResult>(
             "briosa.AnalysisOperations",
@@ -982,14 +1012,19 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>overrideRadialOffset</c>: -1.0 uses the current offset.<br/>
+    /// <c>overridePlanarOffset</c>: -1.0 uses the current offset.<br/>
+    /// <c>lockRadius</c>: -1.0 leaves this dimension unlocked.<br/>
+    /// </remarks>
     public Task MakeCircleFitProfileAsync(
         string fitProfileName,
         MeasuredSideForRadialOffset measuredSideForRadialOffset,
-        double overrideRadialOffset10UseCurrent,
+        double overrideRadialOffset,
         MeasuredSideForPlanarOffset measuredSideForPlanarOffset,
-        double overridePlanarOffset10UseCurrent,
+        double overridePlanarOffset,
         NormalDirection planarOffsetDirection,
-        double lockRadius10DoNotLock,
+        double lockRadius,
         CompTechnique circleComputationTechnique,
         bool reverseNormalVectorAfterFit = false,
         bool makeCardinalPoints = true,
@@ -1003,11 +1038,11 @@ public sealed partial class BriosaClient
             {
                 ["fit_profile_name"] = fitProfileName,
                 ["measured_side_for_radial_offset"] = measuredSideForRadialOffset,
-                ["override_radial_offset_1_0_use_current"] = overrideRadialOffset10UseCurrent,
+                ["override_radial_offset"] = overrideRadialOffset,
                 ["measured_side_for_planar_offset"] = measuredSideForPlanarOffset,
-                ["override_planar_offset_1_0_use_current"] = overridePlanarOffset10UseCurrent,
+                ["override_planar_offset"] = overridePlanarOffset,
                 ["planar_offset_direction"] = planarOffsetDirection,
-                ["lock_radius_1_0_do_not_lock"] = lockRadius10DoNotLock,
+                ["lock_radius"] = lockRadius,
                 ["circle_computation_technique"] = circleComputationTechnique,
                 ["reverse_normal_vector_after_fit"] = reverseNormalVectorAfterFit,
                 ["make_cardinal_points"] = makeCardinalPoints,
@@ -1022,11 +1057,15 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>overrideRadialOffset</c>: -1.0 uses the current offset.<br/>
+    /// <c>lockAngleInDegrees</c>: -1.0 leaves this dimension unlocked.<br/>
+    /// </remarks>
     public Task MakeConeFitProfileAsync(
         string fitProfileName,
         MeasuredSideForRadialOffset measuredSideForRadialOffset,
-        double overrideRadialOffset10UseCurrent = -1.000000,
-        double lockAngleInDegrees10DoNotLock = -1.000000,
+        double overrideRadialOffset = -1.000000,
+        double lockAngleInDegrees = -1.000000,
         bool useExhaustiveSearch = true,
         bool makeCardinalPoints = true,
         bool cardinalPt1Vertex = true,
@@ -1040,8 +1079,8 @@ public sealed partial class BriosaClient
             {
                 ["fit_profile_name"] = fitProfileName,
                 ["measured_side_for_radial_offset"] = measuredSideForRadialOffset,
-                ["override_radial_offset_1_0_use_current"] = overrideRadialOffset10UseCurrent,
-                ["lock_angle_in_degrees_1_0_do_not_lock"] = lockAngleInDegrees10DoNotLock,
+                ["override_radial_offset"] = overrideRadialOffset,
+                ["lock_angle_in_degrees"] = lockAngleInDegrees,
                 ["use_exhaustive_search"] = useExhaustiveSearch,
                 ["make_cardinal_points"] = makeCardinalPoints,
                 ["cardinal_pt_1_vertex"] = cardinalPt1Vertex,
@@ -1056,11 +1095,15 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>overrideRadialOffset</c>: -1.0 uses the current offset.<br/>
+    /// <c>lockRadius</c>: -1.0 leaves this dimension unlocked.<br/>
+    /// </remarks>
     public Task MakeCylinderFitProfileAsync(
         string fitProfileName,
         MeasuredSideForRadialOffset measuredSideForRadialOffset,
-        double overrideRadialOffset10UseCurrent,
-        double lockRadius10DoNotLock,
+        double overrideRadialOffset,
+        double lockRadius,
         FitMethod lockedRadiusFitMethod,
         CompTechnique cylinderComputationTechnique,
         bool useExhaustiveSearch = false,
@@ -1076,8 +1119,8 @@ public sealed partial class BriosaClient
             {
                 ["fit_profile_name"] = fitProfileName,
                 ["measured_side_for_radial_offset"] = measuredSideForRadialOffset,
-                ["override_radial_offset_1_0_use_current"] = overrideRadialOffset10UseCurrent,
-                ["lock_radius_1_0_do_not_lock"] = lockRadius10DoNotLock,
+                ["override_radial_offset"] = overrideRadialOffset,
+                ["lock_radius"] = lockRadius,
                 ["locked_radius_fit_method"] = lockedRadiusFitMethod,
                 ["cylinder_computation_technique"] = cylinderComputationTechnique,
                 ["use_exhaustive_search"] = useExhaustiveSearch,
@@ -1094,12 +1137,16 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>overrideRadialOffset</c>: -1.0 uses the current offset.<br/>
+    /// <c>overridePlanarOffset</c>: -1.0 uses the current offset.<br/>
+    /// </remarks>
     public Task MakeEllipseFitProfileAsync(
         string fitProfileName,
         MeasuredSideForRadialOffset measuredSideForRadialOffset,
-        double overrideRadialOffset10UseCurrent,
+        double overrideRadialOffset,
         MeasuredSideForPlanarOffset measuredSideForPlanarOffset,
-        double overridePlanarOffset10UseCurrent,
+        double overridePlanarOffset,
         NormalDirection planarOffsetDirection,
         bool reverseNormalVectorAfterFit = false,
         bool makeCardinalPoints = true,
@@ -1115,9 +1162,9 @@ public sealed partial class BriosaClient
             {
                 ["fit_profile_name"] = fitProfileName,
                 ["measured_side_for_radial_offset"] = measuredSideForRadialOffset,
-                ["override_radial_offset_1_0_use_current"] = overrideRadialOffset10UseCurrent,
+                ["override_radial_offset"] = overrideRadialOffset,
                 ["measured_side_for_planar_offset"] = measuredSideForPlanarOffset,
-                ["override_planar_offset_1_0_use_current"] = overridePlanarOffset10UseCurrent,
+                ["override_planar_offset"] = overridePlanarOffset,
                 ["planar_offset_direction"] = planarOffsetDirection,
                 ["reverse_normal_vector_after_fit"] = reverseNormalVectorAfterFit,
                 ["make_cardinal_points"] = makeCardinalPoints,
@@ -1162,11 +1209,15 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>overrideRadialOffset</c>: -1.0 uses the current offset.<br/>
+    /// <c>lockFocalLength</c>: -1.0 leaves this dimension unlocked.<br/>
+    /// </remarks>
     public Task MakeParaboloidFitProfileAsync(
         string fitProfileName,
         MeasuredSideForRadialOffset measuredSideForRadialOffset,
-        double overrideRadialOffset10UseCurrent,
-        double lockFocalLength10DoNotLock,
+        double overrideRadialOffset,
+        double lockFocalLength,
         DegreeOfFreedom degreeOfFreedom,
         bool makeCardinalPoints = true,
         bool cardinalPt1Vertex = true,
@@ -1179,8 +1230,8 @@ public sealed partial class BriosaClient
             {
                 ["fit_profile_name"] = fitProfileName,
                 ["measured_side_for_radial_offset"] = measuredSideForRadialOffset,
-                ["override_radial_offset_1_0_use_current"] = overrideRadialOffset10UseCurrent,
-                ["lock_focal_length_1_0_do_not_lock"] = lockFocalLength10DoNotLock,
+                ["override_radial_offset"] = overrideRadialOffset,
+                ["lock_focal_length"] = lockFocalLength,
                 ["degree_of_freedom"] = degreeOfFreedom,
                 ["make_cardinal_points"] = makeCardinalPoints,
                 ["cardinal_pt_1_vertex"] = cardinalPt1Vertex,
@@ -1194,10 +1245,13 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>overridePlanarOffset</c>: -1.0 uses the current offset.<br/>
+    /// </remarks>
     public Task MakePlaneFitProfileAsync(
         string fitProfileName,
         MeasuredSideForPlanarOffset measuredSideForPlanarOffset,
-        double overridePlanarOffset10UseCurrent,
+        double overridePlanarOffset,
         NormalDirection planarOffsetDirection,
         bool reverseNormalVectorAfterFit = false,
         bool makeCardinalPoints = true,
@@ -1211,7 +1265,7 @@ public sealed partial class BriosaClient
             {
                 ["fit_profile_name"] = fitProfileName,
                 ["measured_side_for_planar_offset"] = measuredSideForPlanarOffset,
-                ["override_planar_offset_1_0_use_current"] = overridePlanarOffset10UseCurrent,
+                ["override_planar_offset"] = overridePlanarOffset,
                 ["planar_offset_direction"] = planarOffsetDirection,
                 ["reverse_normal_vector_after_fit"] = reverseNormalVectorAfterFit,
                 ["make_cardinal_points"] = makeCardinalPoints,
@@ -1226,12 +1280,16 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>overrideRadialOffset</c>: -1.0 uses the current offset.<br/>
+    /// <c>overridePlanarOffset</c>: -1.0 uses the current offset.<br/>
+    /// </remarks>
     public Task MakeSlotFitProfileAsync(
         string fitProfileName,
         MeasuredSideForRadialOffset measuredSideForRadialOffset,
-        double overrideRadialOffset10UseCurrent,
+        double overrideRadialOffset,
         MeasuredSideForPlanarOffset measuredSideForPlanarOffset,
-        double overridePlanarOffset10UseCurrent,
+        double overridePlanarOffset,
         NormalDirection planarOffsetDirection,
         SlotType slotType,
         CompTechnique slotComputationTechnique,
@@ -1249,9 +1307,9 @@ public sealed partial class BriosaClient
             {
                 ["fit_profile_name"] = fitProfileName,
                 ["measured_side_for_radial_offset"] = measuredSideForRadialOffset,
-                ["override_radial_offset_1_0_use_current"] = overrideRadialOffset10UseCurrent,
+                ["override_radial_offset"] = overrideRadialOffset,
                 ["measured_side_for_planar_offset"] = measuredSideForPlanarOffset,
-                ["override_planar_offset_1_0_use_current"] = overridePlanarOffset10UseCurrent,
+                ["override_planar_offset"] = overridePlanarOffset,
                 ["planar_offset_direction"] = planarOffsetDirection,
                 ["slot_type"] = slotType,
                 ["slot_computation_technique"] = slotComputationTechnique,
@@ -1270,11 +1328,15 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>overrideRadialOffset</c>: -1.0 uses the current offset.<br/>
+    /// <c>lockRadius</c>: -1.0 leaves this dimension unlocked.<br/>
+    /// </remarks>
     public Task MakeSphereFitProfileAsync(
         string fitProfileName,
         MeasuredSideForRadialOffset measuredSideForRadialOffset,
-        double overrideRadialOffset10UseCurrent,
-        double lockRadius10DoNotLock,
+        double overrideRadialOffset,
+        double lockRadius,
         bool makeCardinalPoints,
         bool cardinalPt1Center,
         SphereFitComputationMode computationMethod,
@@ -1286,8 +1348,8 @@ public sealed partial class BriosaClient
             {
                 ["fit_profile_name"] = fitProfileName,
                 ["measured_side_for_radial_offset"] = measuredSideForRadialOffset,
-                ["override_radial_offset_1_0_use_current"] = overrideRadialOffset10UseCurrent,
-                ["lock_radius_1_0_do_not_lock"] = lockRadius10DoNotLock,
+                ["override_radial_offset"] = overrideRadialOffset,
+                ["lock_radius"] = lockRadius,
                 ["make_cardinal_points"] = makeCardinalPoints,
                 ["cardinal_pt_1_center"] = cardinalPt1Center,
                 ["computation_method"] = computationMethod,
@@ -1374,6 +1436,10 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>rmsTolerance</c>: 0.0 disables this tolerance.<br/>
+    /// <c>maximumAbsoluteTolerance</c>: 0.0 disables this tolerance.<br/>
+    /// </remarks>
     public Task<QueryCloudsToObjectsResult> QueryCloudsToObjectsAsync(
         IEnumerable<CollectionObjectName> cloudNames,
         IEnumerable<CollectionObjectName> objectNames,
@@ -1381,8 +1447,8 @@ public sealed partial class BriosaClient
         ProjectionOptions projectionOptions,
         double proximity = 0.000000,
         int skipFactor = 0,
-        double rmsTolerance00ForNone = 0.000000,
-        double maximumAbsoluteTolerance00ForNone = 0.000000,
+        double rmsTolerance = 0.000000,
+        double maximumAbsoluteTolerance = 0.000000,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1395,8 +1461,8 @@ public sealed partial class BriosaClient
                 ["projection_options"] = projectionOptions,
                 ["proximity"] = proximity,
                 ["skip_factor"] = skipFactor,
-                ["rms_tolerance_0_0_for_none"] = rmsTolerance00ForNone,
-                ["maximum_absolute_tolerance_0_0_for_none"] = maximumAbsoluteTolerance00ForNone,
+                ["rms_tolerance"] = rmsTolerance,
+                ["maximum_absolute_tolerance"] = maximumAbsoluteTolerance,
             });
         return InvokeOperationAsync<QueryCloudsToObjectsResult>(
             "briosa.AnalysisOperations",
@@ -1406,6 +1472,10 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>rmsTolerance</c>: 0.0 disables this tolerance.<br/>
+    /// <c>maximumAbsoluteTolerance</c>: 0.0 disables this tolerance.<br/>
+    /// </remarks>
     public Task<QueryCloudsToSurfaceResult> QueryCloudsToSurfaceAsync(
         IEnumerable<CollectionObjectName> cloudNames,
         CollectionObjectName filterSurfaceName,
@@ -1413,8 +1483,8 @@ public sealed partial class BriosaClient
         ProjectionOptions projectionOptions,
         double proximity = 0.000000,
         int skipFactor = 0,
-        double rmsTolerance00ForNone = 0.000000,
-        double maximumAbsoluteTolerance00ForNone = 0.000000,
+        double rmsTolerance = 0.000000,
+        double maximumAbsoluteTolerance = 0.000000,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1427,8 +1497,8 @@ public sealed partial class BriosaClient
                 ["projection_options"] = projectionOptions,
                 ["proximity"] = proximity,
                 ["skip_factor"] = skipFactor,
-                ["rms_tolerance_0_0_for_none"] = rmsTolerance00ForNone,
-                ["maximum_absolute_tolerance_0_0_for_none"] = maximumAbsoluteTolerance00ForNone,
+                ["rms_tolerance"] = rmsTolerance,
+                ["maximum_absolute_tolerance"] = maximumAbsoluteTolerance,
             });
         return InvokeOperationAsync<QueryCloudsToSurfaceResult>(
             "briosa.AnalysisOperations",
@@ -1458,13 +1528,19 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>groupNameList</c>: MP qualifier: Groups to Project.<br/>
+    /// <c>objectNameList</c>: MP qualifier: Objects to Project to.<br/>
+    /// <c>rmsTolerance</c>: 0.0 disables this tolerance.<br/>
+    /// <c>maximumAbsoluteTolerance</c>: 0.0 disables this tolerance.<br/>
+    /// </remarks>
     public Task<QueryGroupsToObjectsResult> QueryGroupsToObjectsAsync(
-        IEnumerable<CollectionObjectName> groupNameListGroupsToProject,
-        IEnumerable<CollectionObjectName> objectNameListObjectsToProjectTo,
+        IEnumerable<CollectionObjectName> groupNameList,
+        IEnumerable<CollectionObjectName> objectNameList,
         CollectionObjectName resultingObjectName,
         ProjectionOptions projectionOptions,
-        double rmsTolerance00ForNone = 0.000000,
-        double maximumAbsoluteTolerance00ForNone = 0.000000,
+        double rmsTolerance = 0.000000,
+        double maximumAbsoluteTolerance = 0.000000,
         bool showResultsDialog = false,
         CancellationToken cancellationToken = default)
     {
@@ -1472,12 +1548,12 @@ public sealed partial class BriosaClient
             new Transport.QueryGroupsToObjectsRequest(),
             new Dictionary<string, object?>
             {
-                ["group_name_list_groups_to_project"] = groupNameListGroupsToProject,
-                ["object_name_list_objects_to_project_to"] = objectNameListObjectsToProjectTo,
+                ["group_name_list"] = groupNameList,
+                ["object_name_list"] = objectNameList,
                 ["resulting_object_name"] = resultingObjectName,
                 ["projection_options"] = projectionOptions,
-                ["rms_tolerance_0_0_for_none"] = rmsTolerance00ForNone,
-                ["maximum_absolute_tolerance_0_0_for_none"] = maximumAbsoluteTolerance00ForNone,
+                ["rms_tolerance"] = rmsTolerance,
+                ["maximum_absolute_tolerance"] = maximumAbsoluteTolerance,
                 ["show_results_dialog"] = showResultsDialog,
             });
         return InvokeOperationAsync<QueryGroupsToObjectsResult>(
@@ -1562,13 +1638,18 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>objectNameList</c>: MP qualifier: Objects to Project to.<br/>
+    /// <c>rmsTolerance</c>: 0.0 disables this tolerance.<br/>
+    /// <c>maximumAbsoluteTolerance</c>: 0.0 disables this tolerance.<br/>
+    /// </remarks>
     public Task<QueryPointsToObjectsResult> QueryPointsToObjectsAsync(
         IEnumerable<PointName> pointNames,
-        IEnumerable<CollectionObjectName> objectNameListObjectsToProjectTo,
+        IEnumerable<CollectionObjectName> objectNameList,
         CollectionObjectName resultingObjectName,
         ProjectionOptions projectionOptions,
-        double rmsTolerance00ForNone = 0.000000,
-        double maximumAbsoluteTolerance00ForNone = 0.000000,
+        double rmsTolerance = 0.000000,
+        double maximumAbsoluteTolerance = 0.000000,
         bool showResultsDialog = false,
         CancellationToken cancellationToken = default)
     {
@@ -1577,11 +1658,11 @@ public sealed partial class BriosaClient
             new Dictionary<string, object?>
             {
                 ["point_names"] = pointNames,
-                ["object_name_list_objects_to_project_to"] = objectNameListObjectsToProjectTo,
+                ["object_name_list"] = objectNameList,
                 ["resulting_object_name"] = resultingObjectName,
                 ["projection_options"] = projectionOptions,
-                ["rms_tolerance_0_0_for_none"] = rmsTolerance00ForNone,
-                ["maximum_absolute_tolerance_0_0_for_none"] = maximumAbsoluteTolerance00ForNone,
+                ["rms_tolerance"] = rmsTolerance,
+                ["maximum_absolute_tolerance"] = maximumAbsoluteTolerance,
                 ["show_results_dialog"] = showResultsDialog,
             });
         return InvokeOperationAsync<QueryPointsToObjectsResult>(
@@ -1989,12 +2070,18 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>scalingOrigin</c>: MP qualifier: coordinate frame.<br/>
+    /// <c>materialCte</c>: Coefficient per degree Fahrenheit.<br/>
+    /// <c>initialTemperature</c>: Temperature in degrees Fahrenheit.<br/>
+    /// <c>finalTemperature</c>: Temperature in degrees Fahrenheit.<br/>
+    /// </remarks>
     public Task TemperatureCompensateAGroupAsync(
         CollectionObjectName originalGroup,
-        FrameName scalingOriginCoordinateFrame,
-        double materialCte1DegF,
-        double initialTemperatureF,
-        double finalTemperatureF,
+        FrameName scalingOrigin,
+        double materialCte,
+        double initialTemperature,
+        double finalTemperature,
         CollectionObjectName scaledGroupName,
         CancellationToken cancellationToken = default)
     {
@@ -2003,10 +2090,10 @@ public sealed partial class BriosaClient
             new Dictionary<string, object?>
             {
                 ["original_group"] = originalGroup,
-                ["scaling_origin_coordinate_frame"] = scalingOriginCoordinateFrame,
-                ["material_cte_1_deg_f"] = materialCte1DegF,
-                ["initial_temperature_f"] = initialTemperatureF,
-                ["final_temperature_f"] = finalTemperatureF,
+                ["scaling_origin"] = scalingOrigin,
+                ["material_cte"] = materialCte,
+                ["initial_temperature"] = initialTemperature,
+                ["final_temperature"] = finalTemperature,
                 ["scaled_group_name"] = scaledGroupName,
             });
         return InvokeOperationAsync(
@@ -2324,6 +2411,10 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>surfaceNormalsMode</c>: MP qualifier: 1 or 2.<br/>
+    /// <c>cadFileUnits</c>: An empty value uses the units specified in the file.<br/>
+    /// </remarks>
     public Task<DirectCadAccessResult> DirectCadAccessAsync(
         FileReference cadFileName,
         bool surfaceCompatibilityMode,
@@ -2349,11 +2440,11 @@ public sealed partial class BriosaClient
         bool centerViewOnImportedObjects = true,
         bool importIntoFoldersMatchingCadFileHierarchy = false,
         bool removeEmptyFolders = true,
-        int surfaceNormalsMode1Or2 = 1,
+        int surfaceNormalsMode = 1,
         bool promptOnMissingComponents = true,
         bool selectiveImport = false,
         bool explodeSurfaces = false,
-        string cadFileUnitsLeaveBlankToUseTheUnitsSpecifiedInTheFile = "",
+        string cadFileUnits = "",
         bool buildCalloutViews = true,
         CancellationToken cancellationToken = default)
     {
@@ -2384,12 +2475,12 @@ public sealed partial class BriosaClient
                 ["center_view_on_imported_objects"] = centerViewOnImportedObjects,
                 ["import_into_folders_matching_cad_file_hierarchy"] = importIntoFoldersMatchingCadFileHierarchy,
                 ["remove_empty_folders"] = removeEmptyFolders,
-                ["surface_normals_mode_1_or_2"] = surfaceNormalsMode1Or2,
+                ["surface_normals_mode"] = surfaceNormalsMode,
                 ["prompt_on_missing_components"] = promptOnMissingComponents,
                 ["selective_import"] = selectiveImport,
                 ["surface_compatibility_mode"] = surfaceCompatibilityMode,
                 ["explode_surfaces"] = explodeSurfaces,
-                ["cad_file_units_leave_blank_to_use_the_units_specified_in_the_file"] = cadFileUnitsLeaveBlankToUseTheUnitsSpecifiedInTheFile,
+                ["cad_file_units"] = cadFileUnits,
                 ["build_callout_views"] = buildCalloutViews,
             });
         return InvokeOperationAsync<DirectCadAccessResult>(
@@ -2480,6 +2571,9 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>maximumPrecision</c>: MP qualifier: Scientific Notation.<br/>
+    /// </remarks>
     public Task ExportAsciiPointSetAsync(
         FileReference asciiFilePath,
         CollectionObjectName pointSetContainer,
@@ -2491,7 +2585,7 @@ public sealed partial class BriosaClient
         bool includeSaVersionAndFrameComments = false,
         bool includeAxisComments = false,
         bool includeExportFormatInfo = false,
-        bool maximumPrecisionScientificNotation = false,
+        bool maximumPrecision = false,
         int decimalPrecision = 6,
         bool append = false,
         CancellationToken cancellationToken = default)
@@ -2510,7 +2604,7 @@ public sealed partial class BriosaClient
                 ["include_sa_version_and_frame_comments"] = includeSaVersionAndFrameComments,
                 ["include_axis_comments"] = includeAxisComments,
                 ["include_export_format_info"] = includeExportFormatInfo,
-                ["maximum_precision_scientific_notation"] = maximumPrecisionScientificNotation,
+                ["maximum_precision"] = maximumPrecision,
                 ["decimal_precision"] = decimalPrecision,
                 ["append"] = append,
             });
@@ -2522,6 +2616,9 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>maximumPrecision</c>: MP qualifier: Scientific Notation.<br/>
+    /// </remarks>
     public Task ExportAsciiPointsAsync(
         FileReference asciiFilePath,
         IEnumerable<CollectionGroupName> groupNamesToExport,
@@ -2538,7 +2635,7 @@ public sealed partial class BriosaClient
         bool includeExportFormatInfo = false,
         bool includeWeights = false,
         bool includeMeasurementDetails = false,
-        bool maximumPrecisionScientificNotation = false,
+        bool maximumPrecision = false,
         int decimalPrecision = 6,
         bool append = false,
         CancellationToken cancellationToken = default)
@@ -2562,7 +2659,7 @@ public sealed partial class BriosaClient
                 ["include_export_format_info"] = includeExportFormatInfo,
                 ["include_weights"] = includeWeights,
                 ["include_measurement_details"] = includeMeasurementDetails,
-                ["maximum_precision_scientific_notation"] = maximumPrecisionScientificNotation,
+                ["maximum_precision"] = maximumPrecision,
                 ["decimal_precision"] = decimalPrecision,
                 ["append"] = append,
             });
@@ -2868,11 +2965,15 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>overwriteExistingFile</c>: False appends to the existing file.<br/>
+    /// <c>useFullPrecision</c>: MP qualifier: Scientific Notation.<br/>
+    /// </remarks>
     public Task ExportVectorContainerToAsciiFileAsync(
         FileReference asciiFilePath,
         IEnumerable<CollectionVectorGroupName> vectorGroupsToExport,
-        bool overwriteExistingFileFalseAppend,
-        bool useFullPrecisionScientificNotation,
+        bool overwriteExistingFile,
+        bool useFullPrecision,
         ExportVectorNameFormat vectorNameFormat,
         bool includeVectorLength = true,
         CancellationToken cancellationToken = default)
@@ -2883,8 +2984,8 @@ public sealed partial class BriosaClient
             {
                 ["ascii_file_path"] = asciiFilePath,
                 ["vector_groups_to_export"] = vectorGroupsToExport,
-                ["overwrite_existing_file_false_append"] = overwriteExistingFileFalseAppend,
-                ["use_full_precision_scientific_notation"] = useFullPrecisionScientificNotation,
+                ["overwrite_existing_file"] = overwriteExistingFile,
+                ["use_full_precision"] = useFullPrecision,
                 ["vector_name_format"] = vectorNameFormat,
                 ["include_vector_length"] = includeVectorLength,
             });
@@ -3364,10 +3465,13 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>selectedCollections</c>: Optional in the MP editor; the existing API presence and omission behavior is unchanged.<br/>
+    /// </remarks>
     public Task ImportSaFileAsync(
         FileReference saFileName,
         bool allowOperatorSelections,
-        IEnumerable<string> selectedCollectionsOptional,
+        IEnumerable<string> selectedCollections,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3376,7 +3480,7 @@ public sealed partial class BriosaClient
             {
                 ["sa_file_name"] = saFileName,
                 ["allow_operator_selections"] = allowOperatorSelections,
-                ["selected_collections_optional"] = selectedCollectionsOptional,
+                ["selected_collections"] = selectedCollections,
             });
         return InvokeOperationAsync(
             "briosa.FileOperations",
@@ -4346,12 +4450,16 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>windowWidth</c>: 0 uses the default window dimension.<br/>
+    /// <c>windowHeight</c>: 0 uses the default window dimension.<br/>
+    /// </remarks>
     public Task<string> AskForUserDecisionFromImageAsync(
         FileReference imageFile,
         FileReference imageMapXmlFile,
         string windowCaption = "",
-        int windowWidth0Default = 0,
-        int windowHeight0Default = 0,
+        int windowWidth = 0,
+        int windowHeight = 0,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4361,8 +4469,8 @@ public sealed partial class BriosaClient
                 ["image_file"] = imageFile,
                 ["image_map_xml_file"] = imageMapXmlFile,
                 ["window_caption"] = windowCaption,
-                ["window_width_0_default"] = windowWidth0Default,
-                ["window_height_0_default"] = windowHeight0Default,
+                ["window_width"] = windowWidth,
+                ["window_height"] = windowHeight,
             });
         return InvokeOperationAsync<string>(
             "briosa.ProcessFlowOperations",
@@ -4372,12 +4480,17 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>button1Text</c>: An empty string hides the button.<br/>
+    /// <c>button2Text</c>: An empty string hides the button.<br/>
+    /// <c>button3Text</c>: An empty string hides the button.<br/>
+    /// </remarks>
     public Task<string> AskForUserDecisionFromStringsAsync(
         IEnumerable<string> questionOrStatement,
         Font font,
-        string button1TextEmptyToHideButton = "",
-        string button2TextEmptyToHideButton = "",
-        string button3TextEmptyToHideButton = "",
+        string button1Text = "",
+        string button2Text = "",
+        string button3Text = "",
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4386,9 +4499,9 @@ public sealed partial class BriosaClient
             {
                 ["question_or_statement"] = questionOrStatement,
                 ["font"] = font,
-                ["button1_text_empty_to_hide_button"] = button1TextEmptyToHideButton,
-                ["button2_text_empty_to_hide_button"] = button2TextEmptyToHideButton,
-                ["button3_text_empty_to_hide_button"] = button3TextEmptyToHideButton,
+                ["button1_text"] = button1Text,
+                ["button2_text"] = button2Text,
+                ["button3_text"] = button3Text,
             });
         return InvokeOperationAsync<string>(
             "briosa.ProcessFlowOperations",
@@ -5427,12 +5540,16 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>voxelSize</c>: -1.0 selects automatic detection.<br/>
+    /// <c>voxelRenderingDiameter</c>: -1.0 selects fast rendering.<br/>
+    /// </remarks>
     public Task SetRelationshipVoxelCloudDisplayAsync(
         CollectionObjectName relationshipName,
         bool enableVoxelCloudDisplay,
-        double voxelSize10Autodetect,
+        double voxelSize,
         int minPtsCountPerVoxel,
-        double voxelRenderingDiameter10Fast,
+        double voxelRenderingDiameter,
         SurfaceAnalysisMode surfaceAnalysisMode,
         ColorizationOptions colorizationOptions,
         bool showColorBarInView = false,
@@ -5444,9 +5561,9 @@ public sealed partial class BriosaClient
             {
                 ["relationship_name"] = relationshipName,
                 ["enable_voxel_cloud_display"] = enableVoxelCloudDisplay,
-                ["voxel_size_1_0_autodetect"] = voxelSize10Autodetect,
+                ["voxel_size"] = voxelSize,
                 ["min_pts_count_per_voxel"] = minPtsCountPerVoxel,
-                ["voxel_rendering_diameter_1_0_fast"] = voxelRenderingDiameter10Fast,
+                ["voxel_rendering_diameter"] = voxelRenderingDiameter,
                 ["surface_analysis_mode"] = surfaceAnalysisMode,
                 ["colorization_options"] = colorizationOptions,
                 ["show_color_bar_in_view"] = showColorBarInView,
@@ -5839,13 +5956,16 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>templateChartName</c>: Optional in the MP editor; the existing API presence and omission behavior is unchanged.<br/>
+    /// </remarks>
     public Task CreateChartFromVectorGroupAsync(
         ChartName newChartName,
         CollectionObjectName vectorGroupName,
         ChartType chartType,
         DatasetType dataSetToChart,
         DatasetType auxDataSetToChart,
-        ChartName templateChartNameOptional,
+        ChartName templateChartName,
         bool showInterface = false,
         CancellationToken cancellationToken = default)
     {
@@ -5858,7 +5978,7 @@ public sealed partial class BriosaClient
                 ["chart_type"] = chartType,
                 ["data_set_to_chart"] = dataSetToChart,
                 ["aux_data_set_to_chart"] = auxDataSetToChart,
-                ["template_chart_name_optional"] = templateChartNameOptional,
+                ["template_chart_name"] = templateChartName,
                 ["show_interface"] = showInterface,
             });
         return InvokeOperationAsync(
@@ -5869,6 +5989,9 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>reportPageSettings</c>: MP qualifier: SA Report only.<br/>
+    /// </remarks>
     public Task DefineReportTemplateAsync(
         CollectionObjectName reportTemplateName,
         IEnumerable<string> title,
@@ -5877,7 +6000,7 @@ public sealed partial class BriosaClient
         IEnumerable<CollectionItemName> relationshipsToReport,
         IEnumerable<CollectionItemName> eventsToReport,
         ReportOutputOptions reportOutputOptions,
-        ReportPageSettings reportPageSettingsSaReportOnly,
+        ReportPageSettings reportPageSettings,
         bool generateNow = false,
         bool showGeneratedReport = false,
         CancellationToken cancellationToken = default)
@@ -5893,7 +6016,7 @@ public sealed partial class BriosaClient
                 ["relationships_to_report"] = relationshipsToReport,
                 ["events_to_report"] = eventsToReport,
                 ["report_output_options"] = reportOutputOptions,
-                ["report_page_settings_sa_report_only"] = reportPageSettingsSaReportOnly,
+                ["report_page_settings"] = reportPageSettings,
                 ["generate_now"] = generateNow,
                 ["show_generated_report"] = showGeneratedReport,
             });
@@ -6188,9 +6311,12 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>saReportTemplate</c>: Optional in the MP editor; the existing API presence and omission behavior is unchanged.<br/>
+    /// </remarks>
     public Task MakeNewSaReportAsync(
         CollectionObjectName newSaReportName,
-        CollectionObjectName saReportTemplateOptional,
+        CollectionObjectName saReportTemplate,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6198,7 +6324,7 @@ public sealed partial class BriosaClient
             new Dictionary<string, object?>
             {
                 ["new_sa_report_name"] = newSaReportName,
-                ["sa_report_template_optional"] = saReportTemplateOptional,
+                ["sa_report_template"] = saReportTemplate,
             });
         return InvokeOperationAsync(
             "briosa.ReportingOperations",
@@ -6374,9 +6500,12 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>reportName</c>: Optional in the MP editor; the existing API presence and omission behavior is unchanged.<br/>
+    /// </remarks>
     public Task QuickReportAsync(
         CollectionObjectName itemName,
-        string reportNameOptional = "",
+        string reportName = "",
         bool openReport = false,
         CancellationToken cancellationToken = default)
     {
@@ -6385,7 +6514,7 @@ public sealed partial class BriosaClient
             new Dictionary<string, object?>
             {
                 ["item_name"] = itemName,
-                ["report_name_optional"] = reportNameOptional,
+                ["report_name"] = reportName,
                 ["open_report"] = openReport,
             });
         return InvokeOperationAsync(
@@ -6489,9 +6618,12 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>renderScaleFactor</c>: 1.0 uses the window size.<br/>
+    /// </remarks>
     public Task SaveCurrentViewBmpJpgPngGifTiffAsync(
         FileReference fileToSaveTo,
-        double renderScaleFactor10UsesWindowSize = 1.000000,
+        double renderScaleFactor = 1.000000,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6499,7 +6631,7 @@ public sealed partial class BriosaClient
             new Dictionary<string, object?>
             {
                 ["file_to_save_to"] = fileToSaveTo,
-                ["render_scale_factor_1_0_uses_window_size"] = renderScaleFactor10UsesWindowSize,
+                ["render_scale_factor"] = renderScaleFactor,
             });
         return InvokeOperationAsync(
             "briosa.ReportingOperations",
@@ -6919,12 +7051,16 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>currentTemperature</c>: Temperature in degrees Fahrenheit.<br/>
+    /// <c>materialCte</c>: Coefficient in parts per million per degree Fahrenheit.<br/>
+    /// </remarks>
     public Task<double> ScaleBarCheckAsync(
         PointName scaleBarPointA,
         PointName scaleBarPointB,
-        double currentTemperatureF = 0.000000,
+        double currentTemperature = 0.000000,
         double lengthOfBarAt68F = 0.000000,
-        double materialCtePpmF = 0.000000,
+        double materialCte = 0.000000,
         double tolerance = 0.000000,
         CancellationToken cancellationToken = default)
     {
@@ -6934,9 +7070,9 @@ public sealed partial class BriosaClient
             {
                 ["scale_bar_point_a"] = scaleBarPointA,
                 ["scale_bar_point_b"] = scaleBarPointB,
-                ["current_temperature_f"] = currentTemperatureF,
+                ["current_temperature"] = currentTemperature,
                 ["length_of_bar_at_68f"] = lengthOfBarAt68F,
-                ["material_cte_ppm_f"] = materialCtePpmF,
+                ["material_cte"] = materialCte,
                 ["tolerance"] = tolerance,
             });
         return InvokeOperationAsync<double>(
@@ -7245,15 +7381,18 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>display</c>: -1 selects the primary display.<br/>
+    /// </remarks>
     public Task<GetScreenResolutionResult> GetScreenResolutionAsync(
-        int display1Primary = -1,
+        int display = -1,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
             new Transport.GetScreenResolutionRequest(),
             new Dictionary<string, object?>
             {
-                ["display_1_primary"] = display1Primary,
+                ["display"] = display,
             });
         return InvokeOperationAsync<GetScreenResolutionResult>(
             "briosa.UtilityOperations",
@@ -7506,15 +7645,19 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>value0360</c>: False selects the +/-180 angular representation.<br/>
+    /// <c>value0360</c>: False selects the +/-180 angular representation.<br/>
+    /// </remarks>
     public Task SetAngularRepresentationAsync(
-        bool value0360False180 = false,
+        bool value0360 = false,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
             new Transport.SetAngularRepresentationRequest(),
             new Dictionary<string, object?>
             {
-                ["value_0_360_false_180"] = value0360False180,
+                ["value_0_360"] = value0360,
             });
         return InvokeOperationAsync(
             "briosa.UtilityOperations",
@@ -7580,10 +7723,13 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>append</c>: False overwrites existing notes.<br/>
+    /// </remarks>
     public Task SetCollectionNotesAsync(
         CollectionName collection,
         IEnumerable<string> notes,
-        bool appendFalseOverwrite = true,
+        bool append = true,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7592,7 +7738,7 @@ public sealed partial class BriosaClient
             {
                 ["collection"] = collection,
                 ["notes"] = notes,
-                ["append_false_overwrite"] = appendFalseOverwrite,
+                ["append"] = append,
             });
         return InvokeOperationAsync(
             "briosa.UtilityOperations",
@@ -7628,10 +7774,13 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>append</c>: False overwrites existing notes.<br/>
+    /// </remarks>
     public Task SetFolderNotesAsync(
         string folderPath,
         IEnumerable<string> notes,
-        bool appendFalseOverwrite = true,
+        bool append = true,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7640,7 +7789,7 @@ public sealed partial class BriosaClient
             {
                 ["folder_path"] = folderPath,
                 ["notes"] = notes,
-                ["append_false_overwrite"] = appendFalseOverwrite,
+                ["append"] = append,
             });
         return InvokeOperationAsync(
             "briosa.UtilityOperations",
@@ -7708,10 +7857,13 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>append</c>: False overwrites existing notes.<br/>
+    /// </remarks>
     public Task SetObjectNotesAsync(
         CollectionObjectName @object,
         IEnumerable<string> notes,
-        bool appendFalseOverwrite = true,
+        bool append = true,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7720,7 +7872,7 @@ public sealed partial class BriosaClient
             {
                 ["object"] = @object,
                 ["notes"] = notes,
-                ["append_false_overwrite"] = appendFalseOverwrite,
+                ["append"] = append,
             });
         return InvokeOperationAsync(
             "briosa.UtilityOperations",
@@ -7790,10 +7942,13 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>append</c>: False overwrites existing notes.<br/>
+    /// </remarks>
     public Task SetPointNotesAsync(
         PointName point,
         IEnumerable<string> notes,
-        bool appendFalseOverwrite = true,
+        bool append = true,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7802,7 +7957,7 @@ public sealed partial class BriosaClient
             {
                 ["point"] = point,
                 ["notes"] = notes,
-                ["append_false_overwrite"] = appendFalseOverwrite,
+                ["append"] = append,
             });
         return InvokeOperationAsync(
             "briosa.UtilityOperations",
@@ -7812,9 +7967,12 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>profileFileName</c>: Optional in the MP editor; the existing API presence and omission behavior is unchanged.<br/>
+    /// </remarks>
     public Task SetUserInterfaceProfileAsync(
         string profileName,
-        FileReference profileFileNameOptional,
+        FileReference profileFileName,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7822,7 +7980,7 @@ public sealed partial class BriosaClient
             new Dictionary<string, object?>
             {
                 ["profile_name"] = profileName,
-                ["profile_file_name_optional"] = profileFileNameOptional,
+                ["profile_file_name"] = profileFileName,
             });
         return InvokeOperationAsync(
             "briosa.UtilityOperations",
@@ -8654,9 +8812,12 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>colorizationOptions</c>: MP qualifier: Uses Mode Only.<br/>
+    /// </remarks>
     public Task AutoRangeAndSetVectorGroupColorizationAllAsync(
         bool treatIndividually,
-        ColorizationOptions colorizationOptionsUsesModeOnly,
+        ColorizationOptions colorizationOptions,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8664,7 +8825,7 @@ public sealed partial class BriosaClient
             new Dictionary<string, object?>
             {
                 ["treat_individually"] = treatIndividually,
-                ["colorization_options_uses_mode_only"] = colorizationOptionsUsesModeOnly,
+                ["colorization_options"] = colorizationOptions,
             });
         return InvokeOperationAsync(
             "briosa.VectorOperations",
@@ -8674,10 +8835,13 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>colorizationOptions</c>: MP qualifier: Uses Mode Only.<br/>
+    /// </remarks>
     public Task AutoRangeAndSetVectorGroupColorizationSelectedAsync(
         IEnumerable<CollectionVectorGroupName> vectorGroupsToBeSet,
         bool treatIndividually,
-        ColorizationOptions colorizationOptionsUsesModeOnly,
+        ColorizationOptions colorizationOptions,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8686,7 +8850,7 @@ public sealed partial class BriosaClient
             {
                 ["vector_groups_to_be_set"] = vectorGroupsToBeSet,
                 ["treat_individually"] = treatIndividually,
-                ["colorization_options_uses_mode_only"] = colorizationOptionsUsesModeOnly,
+                ["colorization_options"] = colorizationOptions,
             });
         return InvokeOperationAsync(
             "briosa.VectorOperations",
@@ -9099,8 +9263,11 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>objectNames</c>: An empty selection clears all highlights.<br/>
+    /// </remarks>
     public Task HighlightObjectsAsync(
-        IEnumerable<CollectionObjectName> objectNamesEmptyToClearAll,
+        IEnumerable<CollectionObjectName> objectNames,
         bool highLightObjects = false,
         CancellationToken cancellationToken = default)
     {
@@ -9108,7 +9275,7 @@ public sealed partial class BriosaClient
             new Transport.HighlightObjectsRequest(),
             new Dictionary<string, object?>
             {
-                ["object_names_empty_to_clear_all"] = objectNamesEmptyToClearAll,
+                ["object_names"] = objectNames,
                 ["high_light_objects"] = highLightObjects,
             });
         return InvokeOperationAsync(
@@ -9119,8 +9286,11 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>pointName</c>: An empty selection clears all highlights.<br/>
+    /// </remarks>
     public Task HighlightPointAsync(
-        PointName pointNameEmptyToClearAll,
+        PointName pointName,
         bool showPoint = false,
         CancellationToken cancellationToken = default)
     {
@@ -9128,7 +9298,7 @@ public sealed partial class BriosaClient
             new Transport.HighlightPointRequest(),
             new Dictionary<string, object?>
             {
-                ["point_name_empty_to_clear_all"] = pointNameEmptyToClearAll,
+                ["point_name"] = pointName,
                 ["show_point"] = showPoint,
             });
         return InvokeOperationAsync(
@@ -9139,8 +9309,11 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>relationships</c>: An empty selection clears all highlights.<br/>
+    /// </remarks>
     public Task HighlightRelationshipsAsync(
-        IEnumerable<CollectionItemName> relationshipsEmptyToClearAll,
+        IEnumerable<CollectionItemName> relationships,
         bool highLightRelationships = false,
         CancellationToken cancellationToken = default)
     {
@@ -9148,7 +9321,7 @@ public sealed partial class BriosaClient
             new Transport.HighlightRelationshipsRequest(),
             new Dictionary<string, object?>
             {
-                ["relationships_empty_to_clear_all"] = relationshipsEmptyToClearAll,
+                ["relationships"] = relationships,
                 ["high_light_relationships"] = highLightRelationships,
             });
         return InvokeOperationAsync(
@@ -9557,11 +9730,14 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>hide</c>: False shows the objects.<br/>
+    /// </remarks>
     public Task ShowHideByObjectTypeAsync(
         bool allCollections,
         CollectionName specificCollection,
         ObjectType objectTypeToShowHide,
-        bool hideShowFalse = true,
+        bool hide = true,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9571,7 +9747,7 @@ public sealed partial class BriosaClient
                 ["all_collections"] = allCollections,
                 ["specific_collection"] = specificCollection,
                 ["object_type_to_show_hide"] = objectTypeToShowHide,
-                ["hide_show_false"] = hideShowFalse,
+                ["hide"] = hide,
             });
         return InvokeOperationAsync(
             "briosa.ViewControl",
@@ -9621,9 +9797,12 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>show</c>: False hides the points.<br/>
+    /// </remarks>
     public Task ShowHidePointsAsync(
         IEnumerable<PointName> pointNames,
-        bool showHideFalse = false,
+        bool show = false,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9631,7 +9810,7 @@ public sealed partial class BriosaClient
             new Dictionary<string, object?>
             {
                 ["point_names"] = pointNames,
-                ["show_hide_false"] = showHideFalse,
+                ["show"] = show,
             });
         return InvokeOperationAsync(
             "briosa.ViewControl",

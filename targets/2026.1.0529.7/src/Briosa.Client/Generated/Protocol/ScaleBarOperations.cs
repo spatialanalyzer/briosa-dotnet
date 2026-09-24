@@ -37,32 +37,32 @@ namespace Briosa.Client.Transport {
             "EhoKDWFjdHVhbF9sZW5ndGgYAiABKAFIAYgBARIWCglkZXZpYXRpb24YAyAB",
             "KAFIAogBARIuCglleGVjdXRpb24Y6AcgASgLMhouYnJpb3NhLk1wRXhlY3V0",
             "aW9uRGV0YWlsc0IRCg9fbm9taW5hbF9sZW5ndGhCEAoOX2FjdHVhbF9sZW5n",
-            "dGhCDAoKX2RldmlhdGlvbiKAAwoUU2NhbGVCYXJDaGVja1JlcXVlc3QSMQoR",
+            "dGhCDAoKX2RldmlhdGlvbiLwAgoUU2NhbGVCYXJDaGVja1JlcXVlc3QSMQoR",
             "c2NhbGVfYmFyX3BvaW50X2EYASABKAsyES5icmlvc2EuUG9pbnROYW1lSACI",
             "AQESMQoRc2NhbGVfYmFyX3BvaW50X2IYAiABKAsyES5icmlvc2EuUG9pbnRO",
-            "YW1lSAGIAQESIgoVY3VycmVudF90ZW1wZXJhdHVyZV9mGAMgASgBSAKIAQES",
-            "IQoUbGVuZ3RoX29mX2Jhcl9hdF82OGYYBCABKAFIA4gBARIfChJtYXRlcmlh",
-            "bF9jdGVfcHBtX2YYBSABKAFIBIgBARIWCgl0b2xlcmFuY2UYBiABKAFIBYgB",
-            "AUIUChJfc2NhbGVfYmFyX3BvaW50X2FCFAoSX3NjYWxlX2Jhcl9wb2ludF9i",
-            "QhgKFl9jdXJyZW50X3RlbXBlcmF0dXJlX2ZCFwoVX2xlbmd0aF9vZl9iYXJf",
-            "YXRfNjhmQhUKE19tYXRlcmlhbF9jdGVfcHBtX2ZCDAoKX3RvbGVyYW5jZSJ5",
-            "ChNTY2FsZUJhckNoZWNrUmVzdWx0Eh0KEGRldmlhdGlvbl9hdF82OGYYASAB",
-            "KAFIAIgBARIuCglleGVjdXRpb24Y6AcgASgLMhouYnJpb3NhLk1wRXhlY3V0",
-            "aW9uRGV0YWlsc0ITChFfZGV2aWF0aW9uX2F0XzY4ZiKaAQoeU2V0SW53YXJk",
-            "UG9zaXRpdmVOb3JtYWxSZXF1ZXN0EjYKC29iamVjdF9uYW1lGAEgASgLMhwu",
-            "YnJpb3NhLkNvbGxlY3Rpb25PYmplY3ROYW1lSACIAQESHAoPaW53YXJkX3Bv",
-            "c2l0aXZlGAIgASgISAGIAQFCDgoMX29iamVjdF9uYW1lQhIKEF9pbndhcmRf",
-            "cG9zaXRpdmUiTwodU2V0SW53YXJkUG9zaXRpdmVOb3JtYWxSZXN1bHQSLgoJ",
-            "ZXhlY3V0aW9uGOgHIAEoCzIaLmJyaW9zYS5NcEV4ZWN1dGlvbkRldGFpbHMy",
-            "7gIKElNjYWxlQmFyT3BlcmF0aW9ucxJNCg5EZWxldGVTY2FsZUJhchIdLmJy",
-            "aW9zYS5EZWxldGVTY2FsZUJhclJlcXVlc3QaHC5icmlvc2EuRGVsZXRlU2Nh",
-            "bGVCYXJSZXN1bHQSUwoQR2V0U2NhbGVCYXJTdGF0cxIfLmJyaW9zYS5HZXRT",
-            "Y2FsZUJhclN0YXRzUmVxdWVzdBoeLmJyaW9zYS5HZXRTY2FsZUJhclN0YXRz",
-            "UmVzdWx0EkoKDVNjYWxlQmFyQ2hlY2sSHC5icmlvc2EuU2NhbGVCYXJDaGVj",
-            "a1JlcXVlc3QaGy5icmlvc2EuU2NhbGVCYXJDaGVja1Jlc3VsdBJoChdTZXRJ",
-            "bndhcmRQb3NpdGl2ZU5vcm1hbBImLmJyaW9zYS5TZXRJbndhcmRQb3NpdGl2",
-            "ZU5vcm1hbFJlcXVlc3QaJS5icmlvc2EuU2V0SW53YXJkUG9zaXRpdmVOb3Jt",
-            "YWxSZXN1bHRCCaoCBkJyaW9zYWIGcHJvdG8z"));
+            "YW1lSAGIAQESIAoTY3VycmVudF90ZW1wZXJhdHVyZRgDIAEoAUgCiAEBEiEK",
+            "FGxlbmd0aF9vZl9iYXJfYXRfNjhmGAQgASgBSAOIAQESGQoMbWF0ZXJpYWxf",
+            "Y3RlGAUgASgBSASIAQESFgoJdG9sZXJhbmNlGAYgASgBSAWIAQFCFAoSX3Nj",
+            "YWxlX2Jhcl9wb2ludF9hQhQKEl9zY2FsZV9iYXJfcG9pbnRfYkIWChRfY3Vy",
+            "cmVudF90ZW1wZXJhdHVyZUIXChVfbGVuZ3RoX29mX2Jhcl9hdF82OGZCDwoN",
+            "X21hdGVyaWFsX2N0ZUIMCgpfdG9sZXJhbmNlInkKE1NjYWxlQmFyQ2hlY2tS",
+            "ZXN1bHQSHQoQZGV2aWF0aW9uX2F0XzY4ZhgBIAEoAUgAiAEBEi4KCWV4ZWN1",
+            "dGlvbhjoByABKAsyGi5icmlvc2EuTXBFeGVjdXRpb25EZXRhaWxzQhMKEV9k",
+            "ZXZpYXRpb25fYXRfNjhmIpoBCh5TZXRJbndhcmRQb3NpdGl2ZU5vcm1hbFJl",
+            "cXVlc3QSNgoLb2JqZWN0X25hbWUYASABKAsyHC5icmlvc2EuQ29sbGVjdGlv",
+            "bk9iamVjdE5hbWVIAIgBARIcCg9pbndhcmRfcG9zaXRpdmUYAiABKAhIAYgB",
+            "AUIOCgxfb2JqZWN0X25hbWVCEgoQX2lud2FyZF9wb3NpdGl2ZSJPCh1TZXRJ",
+            "bndhcmRQb3NpdGl2ZU5vcm1hbFJlc3VsdBIuCglleGVjdXRpb24Y6AcgASgL",
+            "MhouYnJpb3NhLk1wRXhlY3V0aW9uRGV0YWlsczLuAgoSU2NhbGVCYXJPcGVy",
+            "YXRpb25zEk0KDkRlbGV0ZVNjYWxlQmFyEh0uYnJpb3NhLkRlbGV0ZVNjYWxl",
+            "QmFyUmVxdWVzdBocLmJyaW9zYS5EZWxldGVTY2FsZUJhclJlc3VsdBJTChBH",
+            "ZXRTY2FsZUJhclN0YXRzEh8uYnJpb3NhLkdldFNjYWxlQmFyU3RhdHNSZXF1",
+            "ZXN0Gh4uYnJpb3NhLkdldFNjYWxlQmFyU3RhdHNSZXN1bHQSSgoNU2NhbGVC",
+            "YXJDaGVjaxIcLmJyaW9zYS5TY2FsZUJhckNoZWNrUmVxdWVzdBobLmJyaW9z",
+            "YS5TY2FsZUJhckNoZWNrUmVzdWx0EmgKF1NldElud2FyZFBvc2l0aXZlTm9y",
+            "bWFsEiYuYnJpb3NhLlNldElud2FyZFBvc2l0aXZlTm9ybWFsUmVxdWVzdBol",
+            "LmJyaW9zYS5TZXRJbndhcmRQb3NpdGl2ZU5vcm1hbFJlc3VsdEIJqgIGQnJp",
+            "b3NhYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Briosa.Client.Transport.OperationOutcomesReflection.Descriptor, global::Briosa.Client.Transport.SpatialAnalyzerValuesReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -70,7 +70,7 @@ namespace Briosa.Client.Transport {
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.DeleteScaleBarResult), global::Briosa.Client.Transport.DeleteScaleBarResult.Parser, new[]{ "Execution" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.GetScaleBarStatsRequest), global::Briosa.Client.Transport.GetScaleBarStatsRequest.Parser, new[]{ "ScaleBarName" }, new[]{ "ScaleBarName" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.GetScaleBarStatsResult), global::Briosa.Client.Transport.GetScaleBarStatsResult.Parser, new[]{ "NominalLength", "ActualLength", "Deviation", "Execution" }, new[]{ "NominalLength", "ActualLength", "Deviation" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.ScaleBarCheckRequest), global::Briosa.Client.Transport.ScaleBarCheckRequest.Parser, new[]{ "ScaleBarPointA", "ScaleBarPointB", "CurrentTemperatureF", "LengthOfBarAt68F", "MaterialCtePpmF", "Tolerance" }, new[]{ "ScaleBarPointA", "ScaleBarPointB", "CurrentTemperatureF", "LengthOfBarAt68F", "MaterialCtePpmF", "Tolerance" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.ScaleBarCheckRequest), global::Briosa.Client.Transport.ScaleBarCheckRequest.Parser, new[]{ "ScaleBarPointA", "ScaleBarPointB", "CurrentTemperature", "LengthOfBarAt68F", "MaterialCte", "Tolerance" }, new[]{ "ScaleBarPointA", "ScaleBarPointB", "CurrentTemperature", "LengthOfBarAt68F", "MaterialCte", "Tolerance" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.ScaleBarCheckResult), global::Briosa.Client.Transport.ScaleBarCheckResult.Parser, new[]{ "DeviationAt68F", "Execution" }, new[]{ "DeviationAt68F" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.SetInwardPositiveNormalRequest), global::Briosa.Client.Transport.SetInwardPositiveNormalRequest.Parser, new[]{ "ObjectName", "InwardPositive" }, new[]{ "ObjectName", "InwardPositive" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.SetInwardPositiveNormalResult), global::Briosa.Client.Transport.SetInwardPositiveNormalResult.Parser, new[]{ "Execution" }, null, null, null, null)
@@ -1105,9 +1105,9 @@ namespace Briosa.Client.Transport {
       _hasBits0 = other._hasBits0;
       scaleBarPointA_ = other.scaleBarPointA_ != null ? other.scaleBarPointA_.Clone() : null;
       scaleBarPointB_ = other.scaleBarPointB_ != null ? other.scaleBarPointB_.Clone() : null;
-      currentTemperatureF_ = other.currentTemperatureF_;
+      currentTemperature_ = other.currentTemperature_;
       lengthOfBarAt68F_ = other.lengthOfBarAt68F_;
-      materialCtePpmF_ = other.materialCtePpmF_;
+      materialCte_ = other.materialCte_;
       tolerance_ = other.tolerance_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -1142,30 +1142,33 @@ namespace Briosa.Client.Transport {
       }
     }
 
-    /// <summary>Field number for the "current_temperature_f" field.</summary>
-    public const int CurrentTemperatureFFieldNumber = 3;
-    private readonly static double CurrentTemperatureFDefaultValue = 0D;
+    /// <summary>Field number for the "current_temperature" field.</summary>
+    public const int CurrentTemperatureFieldNumber = 3;
+    private readonly static double CurrentTemperatureDefaultValue = 0D;
 
-    private double currentTemperatureF_;
+    private double currentTemperature_;
+    /// <summary>
+    /// Temperature in degrees Fahrenheit.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double CurrentTemperatureF {
-      get { if ((_hasBits0 & 1) != 0) { return currentTemperatureF_; } else { return CurrentTemperatureFDefaultValue; } }
+    public double CurrentTemperature {
+      get { if ((_hasBits0 & 1) != 0) { return currentTemperature_; } else { return CurrentTemperatureDefaultValue; } }
       set {
         _hasBits0 |= 1;
-        currentTemperatureF_ = value;
+        currentTemperature_ = value;
       }
     }
-    /// <summary>Gets whether the "current_temperature_f" field is set</summary>
+    /// <summary>Gets whether the "current_temperature" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasCurrentTemperatureF {
+    public bool HasCurrentTemperature {
       get { return (_hasBits0 & 1) != 0; }
     }
-    /// <summary>Clears the value of the "current_temperature_f" field</summary>
+    /// <summary>Clears the value of the "current_temperature" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearCurrentTemperatureF() {
+    public void ClearCurrentTemperature() {
       _hasBits0 &= ~1;
     }
 
@@ -1196,30 +1199,33 @@ namespace Briosa.Client.Transport {
       _hasBits0 &= ~2;
     }
 
-    /// <summary>Field number for the "material_cte_ppm_f" field.</summary>
-    public const int MaterialCtePpmFFieldNumber = 5;
-    private readonly static double MaterialCtePpmFDefaultValue = 0D;
+    /// <summary>Field number for the "material_cte" field.</summary>
+    public const int MaterialCteFieldNumber = 5;
+    private readonly static double MaterialCteDefaultValue = 0D;
 
-    private double materialCtePpmF_;
+    private double materialCte_;
+    /// <summary>
+    /// Coefficient in parts per million per degree Fahrenheit.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double MaterialCtePpmF {
-      get { if ((_hasBits0 & 4) != 0) { return materialCtePpmF_; } else { return MaterialCtePpmFDefaultValue; } }
+    public double MaterialCte {
+      get { if ((_hasBits0 & 4) != 0) { return materialCte_; } else { return MaterialCteDefaultValue; } }
       set {
         _hasBits0 |= 4;
-        materialCtePpmF_ = value;
+        materialCte_ = value;
       }
     }
-    /// <summary>Gets whether the "material_cte_ppm_f" field is set</summary>
+    /// <summary>Gets whether the "material_cte" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasMaterialCtePpmF {
+    public bool HasMaterialCte {
       get { return (_hasBits0 & 4) != 0; }
     }
-    /// <summary>Clears the value of the "material_cte_ppm_f" field</summary>
+    /// <summary>Clears the value of the "material_cte" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearMaterialCtePpmF() {
+    public void ClearMaterialCte() {
       _hasBits0 &= ~4;
     }
 
@@ -1267,9 +1273,9 @@ namespace Briosa.Client.Transport {
       }
       if (!object.Equals(ScaleBarPointA, other.ScaleBarPointA)) return false;
       if (!object.Equals(ScaleBarPointB, other.ScaleBarPointB)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(CurrentTemperatureF, other.CurrentTemperatureF)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(CurrentTemperature, other.CurrentTemperature)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(LengthOfBarAt68F, other.LengthOfBarAt68F)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(MaterialCtePpmF, other.MaterialCtePpmF)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(MaterialCte, other.MaterialCte)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Tolerance, other.Tolerance)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -1280,9 +1286,9 @@ namespace Briosa.Client.Transport {
       int hash = 1;
       if (scaleBarPointA_ != null) hash ^= ScaleBarPointA.GetHashCode();
       if (scaleBarPointB_ != null) hash ^= ScaleBarPointB.GetHashCode();
-      if (HasCurrentTemperatureF) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(CurrentTemperatureF);
+      if (HasCurrentTemperature) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(CurrentTemperature);
       if (HasLengthOfBarAt68F) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(LengthOfBarAt68F);
-      if (HasMaterialCtePpmF) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(MaterialCtePpmF);
+      if (HasMaterialCte) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(MaterialCte);
       if (HasTolerance) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Tolerance);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1310,17 +1316,17 @@ namespace Briosa.Client.Transport {
         output.WriteRawTag(18);
         output.WriteMessage(ScaleBarPointB);
       }
-      if (HasCurrentTemperatureF) {
+      if (HasCurrentTemperature) {
         output.WriteRawTag(25);
-        output.WriteDouble(CurrentTemperatureF);
+        output.WriteDouble(CurrentTemperature);
       }
       if (HasLengthOfBarAt68F) {
         output.WriteRawTag(33);
         output.WriteDouble(LengthOfBarAt68F);
       }
-      if (HasMaterialCtePpmF) {
+      if (HasMaterialCte) {
         output.WriteRawTag(41);
-        output.WriteDouble(MaterialCtePpmF);
+        output.WriteDouble(MaterialCte);
       }
       if (HasTolerance) {
         output.WriteRawTag(49);
@@ -1344,17 +1350,17 @@ namespace Briosa.Client.Transport {
         output.WriteRawTag(18);
         output.WriteMessage(ScaleBarPointB);
       }
-      if (HasCurrentTemperatureF) {
+      if (HasCurrentTemperature) {
         output.WriteRawTag(25);
-        output.WriteDouble(CurrentTemperatureF);
+        output.WriteDouble(CurrentTemperature);
       }
       if (HasLengthOfBarAt68F) {
         output.WriteRawTag(33);
         output.WriteDouble(LengthOfBarAt68F);
       }
-      if (HasMaterialCtePpmF) {
+      if (HasMaterialCte) {
         output.WriteRawTag(41);
-        output.WriteDouble(MaterialCtePpmF);
+        output.WriteDouble(MaterialCte);
       }
       if (HasTolerance) {
         output.WriteRawTag(49);
@@ -1376,13 +1382,13 @@ namespace Briosa.Client.Transport {
       if (scaleBarPointB_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(ScaleBarPointB);
       }
-      if (HasCurrentTemperatureF) {
+      if (HasCurrentTemperature) {
         size += 1 + 8;
       }
       if (HasLengthOfBarAt68F) {
         size += 1 + 8;
       }
-      if (HasMaterialCtePpmF) {
+      if (HasMaterialCte) {
         size += 1 + 8;
       }
       if (HasTolerance) {
@@ -1412,14 +1418,14 @@ namespace Briosa.Client.Transport {
         }
         ScaleBarPointB.MergeFrom(other.ScaleBarPointB);
       }
-      if (other.HasCurrentTemperatureF) {
-        CurrentTemperatureF = other.CurrentTemperatureF;
+      if (other.HasCurrentTemperature) {
+        CurrentTemperature = other.CurrentTemperature;
       }
       if (other.HasLengthOfBarAt68F) {
         LengthOfBarAt68F = other.LengthOfBarAt68F;
       }
-      if (other.HasMaterialCtePpmF) {
-        MaterialCtePpmF = other.MaterialCtePpmF;
+      if (other.HasMaterialCte) {
+        MaterialCte = other.MaterialCte;
       }
       if (other.HasTolerance) {
         Tolerance = other.Tolerance;
@@ -1458,7 +1464,7 @@ namespace Briosa.Client.Transport {
             break;
           }
           case 25: {
-            CurrentTemperatureF = input.ReadDouble();
+            CurrentTemperature = input.ReadDouble();
             break;
           }
           case 33: {
@@ -1466,7 +1472,7 @@ namespace Briosa.Client.Transport {
             break;
           }
           case 41: {
-            MaterialCtePpmF = input.ReadDouble();
+            MaterialCte = input.ReadDouble();
             break;
           }
           case 49: {
@@ -1507,7 +1513,7 @@ namespace Briosa.Client.Transport {
             break;
           }
           case 25: {
-            CurrentTemperatureF = input.ReadDouble();
+            CurrentTemperature = input.ReadDouble();
             break;
           }
           case 33: {
@@ -1515,7 +1521,7 @@ namespace Briosa.Client.Transport {
             break;
           }
           case 41: {
-            MaterialCtePpmF = input.ReadDouble();
+            MaterialCte = input.ReadDouble();
             break;
           }
           case 49: {
