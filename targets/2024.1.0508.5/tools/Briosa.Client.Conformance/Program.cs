@@ -153,6 +153,8 @@ static async Task AssertDefaultReadyAsync(BriosaClient briosa)
     Require(application.Ownership == SpatialAnalyzerOwnership.ServerLaunched,
         "Default startup did not launch an owned application.");
     _ = await briosa.GetWorkingDirectoryAsync();
+    // Positional arguments exercise old and new packaged parameter names.
+    await briosa.CloudDisplayControlAsync(3, 2);
 }
 
 static async Task AssertAttachExistingAsync(BriosaClient briosa)

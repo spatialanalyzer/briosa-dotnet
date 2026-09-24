@@ -9,6 +9,7 @@ public sealed record ActiveUnits
 
     public required string Angular { get; init; }
 
+    /// <summary>Temperature in degrees Fahrenheit.</summary>
     public required string Temperature { get; init; }
 }
 
@@ -38,10 +39,13 @@ public sealed record BestFitTransformationGroupToGroupResult
 
 public sealed record ComputeGroupToGroupOrientationRxRyRzResult
 {
+    /// <summary>MP qualifier: Roll.</summary>
     public required double Rx { get; init; }
 
+    /// <summary>MP qualifier: Pitch.</summary>
     public required double Ry { get; init; }
 
+    /// <summary>MP qualifier: Yaw.</summary>
     public required double Rz { get; init; }
 }
 
@@ -91,6 +95,7 @@ public sealed record GetCirclePropertiesResult
 {
     public required Vector CenterCoordinate { get; init; }
 
+    /// <summary>Expressed in working coordinates.</summary>
     public required Vector NormalDirection { get; init; }
 
     public required double Radius { get; init; }
@@ -100,9 +105,11 @@ public sealed record GetCirclePropertiesResult
 
 public sealed record GetConePropertiesResult
 {
-    public required Vector ConeEndPointInWorkingCoordinates { get; init; }
+    /// <summary>Expressed in working coordinates.</summary>
+    public required Vector ConeEndPoint { get; init; }
 
-    public required Vector ConeAxisInWorkingCoordinates { get; init; }
+    /// <summary>Expressed in working coordinates.</summary>
+    public required Vector ConeAxis { get; init; }
 
     public required double ConeLength { get; init; }
 
@@ -167,6 +174,7 @@ public sealed record GetEllipsePropertiesResult
 {
     public required Vector CenterCoordinate { get; init; }
 
+    /// <summary>Expressed in working coordinates.</summary>
     public required Vector NormalDirection { get; init; }
 
     public required double MajorAxisRadius { get; init; }
@@ -210,13 +218,17 @@ public sealed record GetEulerParametersForIthFrameInFrameSetResult
 
 public sealed record GetGeomRelationshipAutoVectorsResult
 {
-    public required bool AutoVectorsNominalAvnEnabled { get; init; }
+    /// <summary>MP qualifier: AVN.</summary>
+    public required bool AutoVectorsNominalEnabled { get; init; }
 
-    public required CollectionObjectName AutoVectorsNominalAvnName { get; init; }
+    /// <summary>MP qualifier: AVN.</summary>
+    public required CollectionObjectName AutoVectorsNominalName { get; init; }
 
-    public required bool AutoVectorsFitAvfEnabled { get; init; }
+    /// <summary>MP qualifier: AVF.</summary>
+    public required bool AutoVectorsFitEnabled { get; init; }
 
-    public required CollectionObjectName AutoVectorsFitAvfName { get; init; }
+    /// <summary>MP qualifier: AVF.</summary>
+    public required CollectionObjectName AutoVectorsFitName { get; init; }
 
     public required string PointsType { get; init; }
 }
@@ -320,11 +332,14 @@ public sealed record GetMeasurementAuxiliaryDataResult
 
 public sealed record GetMeasurementWeatherDataResult
 {
-    public required double TemperatureDegF { get; init; }
+    /// <summary>Temperature in degrees Fahrenheit.</summary>
+    public required double Temperature { get; init; }
 
-    public required double PressureInHg { get; init; }
+    /// <summary>Pressure in inches of mercury.</summary>
+    public required double Pressure { get; init; }
 
-    public required double HumidityRh { get; init; }
+    /// <summary>Relative humidity in percent.</summary>
+    public required double Humidity { get; init; }
 }
 
 public sealed record GetNamedDoubleListVariableMinMaxResult
@@ -389,6 +404,7 @@ public sealed record GetPipeRelationshipWeightsResult
 
 public sealed record GetPlanePropertiesResult
 {
+    /// <summary>Expressed in working coordinates.</summary>
     public required Vector NormalDirection { get; init; }
 
     public required Vector PointOnPlane { get; init; }
@@ -659,11 +675,14 @@ public sealed record GetScreenResolutionResult
 
 public sealed record GetSlotPropertiesResult
 {
-    public required Transform SlotTransformInWorkingCoordinates { get; init; }
+    /// <summary>Expressed in working coordinates.</summary>
+    public required Transform SlotTransform { get; init; }
 
-    public required Vector CenterInWorkingCoordinates { get; init; }
+    /// <summary>Expressed in working coordinates.</summary>
+    public required Vector Center { get; init; }
 
-    public required Vector NormalDirectionInWorkingCoordinates { get; init; }
+    /// <summary>Expressed in working coordinates.</summary>
+    public required Vector NormalDirection { get; init; }
 
     public required double SlotLength { get; init; }
 
@@ -671,9 +690,11 @@ public sealed record GetSlotPropertiesResult
 
     public required bool RoundSlotType { get; init; }
 
-    public required Vector CenterlinePt1InWorkingCoordinates { get; init; }
+    /// <summary>Expressed in working coordinates.</summary>
+    public required Vector CenterlinePt1 { get; init; }
 
-    public required Vector CenterlinePt2InWorkingCoordinates { get; init; }
+    /// <summary>Expressed in working coordinates.</summary>
+    public required Vector CenterlinePt2 { get; init; }
 }
 
 public sealed record GetSpherePropertiesResult
@@ -696,6 +717,7 @@ public sealed record GetTorusPropertiesResult
 {
     public required Vector CenterCoordinate { get; init; }
 
+    /// <summary>Expressed in working coordinates.</summary>
     public required Vector NormalDirection { get; init; }
 
     public required double MajorRadius { get; init; }
@@ -791,11 +813,14 @@ public sealed record QueryFrameToFrameResult
 
     public required double Z { get; init; }
 
-    public required double RxRoll { get; init; }
+    /// <summary>MP qualifier: Roll.</summary>
+    public required double Rx { get; init; }
 
-    public required double RyPitch { get; init; }
+    /// <summary>MP qualifier: Pitch.</summary>
+    public required double Ry { get; init; }
 
-    public required double RzYaw { get; init; }
+    /// <summary>MP qualifier: Yaw.</summary>
+    public required double Rz { get; init; }
 }
 
 public sealed record QueryGroupsToObjectsResult

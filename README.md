@@ -23,3 +23,5 @@ SpatialAnalyzer, its SDK, and a license are required separately for real work.
 Portable checks do not establish licensed runtime validation. Broader licensed
 runtime CI and enterprise Artifactory verification remain outstanding before v1.0
 promotion.
+
+The upcoming API naming cleanup is described in the [MP argument migration guide](docs/mp-argument-name-migration.md).

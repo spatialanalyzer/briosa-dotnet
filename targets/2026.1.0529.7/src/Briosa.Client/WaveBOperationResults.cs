@@ -215,10 +215,14 @@ public sealed record InstrumentModelResult
 public sealed record InstrumentPositionUpdate
 {
     public required double XOrR { get; init; }
-    public required double YOrThetaDegrees { get; init; }
-    public required double ZOrPhiDegrees { get; init; }
-    public required double TimeSinceUpdateSeconds { get; init; }
-    public required string TimestampApproximate { get; init; }
+    /// <summary>Angle in degrees.</summary>
+    public required double YOrTheta { get; init; }
+    /// <summary>Angle in degrees.</summary>
+    public required double ZOrPhi { get; init; }
+    /// <summary>Time in seconds.</summary>
+    public required double TimeSinceUpdate { get; init; }
+    /// <summary>MP qualifier: Approximate.</summary>
+    public required string Timestamp { get; init; }
 }
 
 public sealed record InstrumentTargetsAndModeProfiles
@@ -229,9 +233,12 @@ public sealed record InstrumentTargetsAndModeProfiles
 
 public sealed record InstrumentWeatherSetting
 {
-    public required double TemperatureFahrenheit { get; init; }
-    public required double PressureMmHg { get; init; }
-    public required double RelativeHumidityPercent { get; init; }
+    /// <summary>Temperature in degrees Fahrenheit.</summary>
+    public required double Temperature { get; init; }
+    /// <summary>Pressure in millimeters of mercury.</summary>
+    public required double Pressure { get; init; }
+    /// <summary>Relative humidity in percent.</summary>
+    public required double RelativeHumidity { get; init; }
     public required bool SetAutomatically { get; init; }
 }
 
@@ -250,11 +257,14 @@ public sealed record LastInstrumentIndexResult
 
 public sealed record LrSelfTestResult
 {
-    public required double ReferenceArmLengthInches { get; init; }
+    /// <summary>Length in inches.</summary>
+    public required double ReferenceArmLength { get; init; }
     public required double ReferenceArmQuality { get; init; }
     public required int MirrorMeasurementCount { get; init; }
-    public required double MirrorMeasurementRangeMeanInches { get; init; }
-    public required double MirrorMeasurementRangeStandardDeviationInches { get; init; }
+    /// <summary>Length in inches.</summary>
+    public required double MirrorMeasurementRangeMean { get; init; }
+    /// <summary>Length in inches.</summary>
+    public required double MirrorMeasurementRangeStandardDeviation { get; init; }
     public required double MirrorMeasurementQualityMean { get; init; }
     public required double MirrorMeasurementQualityStandardDeviation { get; init; }
     public required bool PassedReferenceArmQualityThreshold { get; init; }
@@ -345,11 +355,14 @@ public sealed record RobotModelLinkParameters
 
 public sealed record TrackerEdmTheodoliteUncertainties
 {
-    public required double ThetaDispersionArcseconds { get; init; }
+    /// <summary>Angle in arcseconds.</summary>
+    public required double ThetaDispersion { get; init; }
     public required double ThetaThreshold { get; init; }
-    public required double PhiDispersionArcseconds { get; init; }
+    /// <summary>Angle in arcseconds.</summary>
+    public required double PhiDispersion { get; init; }
     public required double PhiThreshold { get; init; }
-    public required double DistancePpm { get; init; }
+    /// <summary>Value in parts per million.</summary>
+    public required double Distance { get; init; }
     public required double DistanceThreshold { get; init; }
 }
 

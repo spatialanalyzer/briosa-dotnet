@@ -528,31 +528,46 @@ public sealed record InstrumentTypeName
 
 public sealed record LrFlipTestResult
 {
-    public required double FrontRangeInches { get; init; }
-    public required double FrontAzimuthDegrees { get; init; }
-    public required double FrontElevationDegrees { get; init; }
+    /// <summary>Length in inches.</summary>
+    public required double FrontRange { get; init; }
+    /// <summary>Angle in degrees.</summary>
+    public required double FrontAzimuth { get; init; }
+    /// <summary>Angle in degrees.</summary>
+    public required double FrontElevation { get; init; }
     public required double FrontQuality { get; init; }
-    public required double BackRangeInches { get; init; }
-    public required double BackAzimuthDegrees { get; init; }
-    public required double BackElevationDegrees { get; init; }
+    /// <summary>Length in inches.</summary>
+    public required double BackRange { get; init; }
+    /// <summary>Angle in degrees.</summary>
+    public required double BackAzimuth { get; init; }
+    /// <summary>Angle in degrees.</summary>
+    public required double BackElevation { get; init; }
     public required double BackQuality { get; init; }
-    public required double FrontBackDifferenceRangeInches { get; init; }
-    public required double FrontBackDifferenceAzimuthDegrees { get; init; }
-    public required double FrontBackDifferenceElevationDegrees { get; init; }
+    /// <summary>Length in inches.</summary>
+    public required double FrontBackDifferenceRange { get; init; }
+    /// <summary>Angle in degrees.</summary>
+    public required double FrontBackDifferenceAzimuth { get; init; }
+    /// <summary>Angle in degrees.</summary>
+    public required double FrontBackDifferenceElevation { get; init; }
 }
 
 public sealed record LrLoSeparationTestResult
 {
-    public required int PrimaryLoIndex { get; init; }
-    public required int SecondaryLoIndex { get; init; }
+    /// <summary>Indexing starts at 1.</summary>
+    public required int PrimaryLo { get; init; }
+    /// <summary>Indexing starts at 1.</summary>
+    public required int SecondaryLo { get; init; }
     public required int PrimaryLoMeasurementCount { get; init; }
-    public required double PrimaryLoRangeMeanInches { get; init; }
-    public required double PrimaryLoRangeStandardDeviationInches { get; init; }
+    /// <summary>Length in inches.</summary>
+    public required double PrimaryLoRangeMean { get; init; }
+    /// <summary>Length in inches.</summary>
+    public required double PrimaryLoRangeStandardDeviation { get; init; }
     public required double PrimaryLoQualityMean { get; init; }
     public required double PrimaryLoQualityStandardDeviation { get; init; }
     public required int SecondaryLoMeasurementCount { get; init; }
-    public required double SecondaryLoRangeMeanInches { get; init; }
-    public required double SecondaryLoRangeStandardDeviationInches { get; init; }
+    /// <summary>Length in inches.</summary>
+    public required double SecondaryLoRangeMean { get; init; }
+    /// <summary>Length in inches.</summary>
+    public required double SecondaryLoRangeStandardDeviation { get; init; }
     public required double SecondaryLoQualityMean { get; init; }
     public required double SecondaryLoQualityStandardDeviation { get; init; }
 }
@@ -562,8 +577,10 @@ public sealed record LrSnrInfo
     public required double Snr { get; init; }
     public required int SizeOfDataArray { get; init; }
     public required int PeakValueIndex { get; init; }
-    public required double PeakValueDb { get; init; }
-    public required double MeasuredRangeMeters { get; init; }
+    /// <summary>Value in decibels.</summary>
+    public required double PeakValue { get; init; }
+    /// <summary>Range in meters.</summary>
+    public required double MeasuredRange { get; init; }
 }
 
 public sealed record ObjectOriginResult
@@ -581,9 +598,12 @@ public sealed record ObservationInfo
     public required bool Active { get; init; }
     public required string Timestamp { get; init; }
     public required double RmsError { get; init; }
-    public required double TemperatureFahrenheit { get; init; }
-    public required double PressureInHg { get; init; }
-    public required double RelativeHumidityPercent { get; init; }
+    /// <summary>Temperature in degrees Fahrenheit.</summary>
+    public required double Temperature { get; init; }
+    /// <summary>Pressure in inches of mercury.</summary>
+    public required double Pressure { get; init; }
+    /// <summary>Relative humidity in percent.</summary>
+    public required double RelativeHumidity { get; init; }
     public required string InfoData { get; init; }
 }
 
@@ -725,8 +745,8 @@ public sealed record MakeGdtFeatureCheckAnnotationOptions
     public bool IsSlot { get; init; }
     public bool PerUnitLengthOrArea { get; init; }
     public bool CircularArea { get; init; }
-    public double PerUnitAreaLengthDistance { get; init; }
-    public double PerUnitAreaLengthStepOverPercent { get; init; } = 50.0;
+    public double PerUnitLengthDistance { get; init; }
+    public double PerUnitLengthStepOverPercent { get; init; } = 50.0;
     public double PerUnitAreaWidthDistance { get; init; }
     public double PerUnitAreaWidthStepOverPercent { get; init; } = 50.0;
     public double PerUnitAreaCircleDiameter { get; init; }
@@ -751,9 +771,9 @@ public sealed record RelationshipWatchWindowTemplateOptions
     public Color TextColor { get; init; } = new(0, 0, 255);
     public Color BackgroundColor { get; init; } = new(255, 255, 255);
     public Color HighlightColor { get; init; } = new(255, 0, 0);
-    public bool ShowDeviationXRx { get; init; } = true;
-    public bool ShowDeviationYRy { get; init; } = true;
-    public bool ShowDeviationZRz { get; init; } = true;
+    public bool ShowDeviationX { get; init; } = true;
+    public bool ShowDeviationY { get; init; } = true;
+    public bool ShowDeviationZ { get; init; } = true;
     public bool ShowDeviationMagnitude { get; init; } = true;
     public RelationshipWatchWindowUdpSettings UdpNetworkTransmitSettings { get; init; } = new();
     public bool TransparentBackground { get; init; }
