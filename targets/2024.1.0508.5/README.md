@@ -15,7 +15,7 @@ Windows x64. Its full protocol identity is pinned in
 The NuGet package and assembly are both named `Briosa.2024.1.0508.5`. Install the package with:
 
 ```powershell
-dotnet add package Briosa.2024.1.0508.5 --version 0.2.0
+dotnet add package Briosa.2024.1.0508.5 --version 0.3.0
 ```
 
 Exact SpatialAnalyzer targets use separate package and assembly identities,
