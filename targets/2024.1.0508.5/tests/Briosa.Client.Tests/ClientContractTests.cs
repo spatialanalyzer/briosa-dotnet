@@ -9,6 +9,31 @@ namespace Briosa.Client.Tests;
 public sealed partial class ClientContractTests
 {
     [Fact]
+    public async Task RobotInterfaceMethodsPreserveInstrumentIdentity()
+    {
+        var transport = new FakeTransport();
+        await using var client = CreateClient(new FakeServerLauncher(), transport);
+        await client.StartAsync();
+        var machine = new CollectionInstrumentId { CollectionName = "Inspection", InstrumentId = 7 };
+
+        transport.OperationResponse = new Transport.GetRobotMachineParameterResult { ParameterValue = 1.5 };
+        Assert.Equal(1.5, await client.RobotOperations.GetRobotMachineParameterAsync(machine, "Speed"));
+        var get = Assert.IsType<Transport.GetRobotMachineParameterRequest>(transport.LastOperationRequest);
+        Assert.Equal(7, get.MachineId.InstrumentId);
+        Assert.Equal("Inspection", get.MachineId.CollectionName);
+
+        transport.OperationResponse = null;
+        await client.RobotOperations.StartRobotMachineInterfaceAsync(machine, runInSimulation: true);
+        var start = Assert.IsType<Transport.StartRobotMachineInterfaceRequest>(transport.LastOperationRequest);
+        Assert.Equal(get.MachineId, start.MachineId);
+        Assert.True(start.RunInSimulation);
+
+        await client.RobotOperations.StopRobotMachineInterfaceAsync(machine);
+        var stop = Assert.IsType<Transport.StopRobotMachineInterfaceRequest>(transport.LastOperationRequest);
+        Assert.Equal(get.MachineId, stop.MachineId);
+    }
+
+    [Fact]
     public async Task RelationshipInputsUseItemNames()
     {
         var transport = new FakeTransport();
@@ -48,14 +73,14 @@ public sealed partial class ClientContractTests
     public void ProtocolIdentityMatchesReviewedCompatibilityArtifact()
     {
         Assert.Equal(
-            "briosa-protocol-0.8.0-sa-2024.1.0508.5",
+            "briosa-protocol-0.9.0-dev.1-sa-2024.1.0508.5",
             Transport.BriosaProtocolIdentity.ArtifactName);
         Assert.Equal("briosa", Transport.BriosaProtocolIdentity.ProtocolPackage);
         Assert.Equal(
             "standard-protobuf-grpc",
             Transport.BriosaProtocolIdentity.ClientGenerationContract);
         Assert.Equal(
-            "e986a3ba91cb501416126eb5f3ecaeb7f9d97c05",
+            "d0613d6120f4f6d738a729e47c0eb775577bd8c0",
             Transport.BriosaProtocolIdentity.SourceRevision);
         Assert.Equal(
             "2024.1.0508.5",
@@ -804,7 +829,7 @@ public sealed partial class ClientContractTests
                     : Transport.SpatialAnalyzerExecutionReadinessState.Unverified,
                 ReadyForMp = ready,
                 TargetIsolationMode = Transport.TargetIsolationMode.SingleTenant,
-                Compatibility = new Transport.CompatibilityContract { Major = 1 },
+                Compatibility = new Transport.CompatibilityContract { Major = 2 },
             };
             var capabilities = new Transport.ListCapabilitiesResponse
             {

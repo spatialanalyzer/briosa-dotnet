@@ -7,6 +7,9 @@ param(
     [Parameter(Mandatory)][string]$LockPath,
     [Parameter(Mandatory)][string]$EvidencePath,
     [string]$PublishedPackageUrl,
+    [ValidatePattern('^[0-9a-f]{40}$')][string]$ClientSourceRevision,
+    [switch]$ExpectIncompatible,
+    [ValidateRange(1, 1000)][int]$RequiredContractMajor = 2,
     [string]$FixtureExecutable = 'dotnet'
 )
 Set-StrictMode -Version Latest
@@ -61,11 +64,14 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Published .NET consumer build failed.' }
     $fixture = Join-Path $consumer 'bin/Release/net10.0/Consumer.dll'
     $arguments = @{
+        ExpectIncompatible = $ExpectIncompatible
+        RequiredContractMajor = $RequiredContractMajor
         ArtifactPath = $ArtifactPath; LockPath = $LockPath; EvidencePath = $EvidencePath
         FixturePath = $fixture
         ClientPackage = @{
             name = $expectedName; version = $ClientVersion; sha256 = $ClientPackageSha256
             publishedUrl = $PublishedPackageUrl
+            sourceRevision = $ClientSourceRevision
         }
     }
 
@@ -79,4 +85,3 @@ finally {
     }
     if (Test-Path -LiteralPath $resolved) { Remove-Item -LiteralPath $resolved -Recurse -Force }
 }
-

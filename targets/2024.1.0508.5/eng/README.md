@@ -10,9 +10,9 @@ The contract-aware generation artifact is:
 
 ```powershell
 ./eng/Import-ProtocolArtifact.ps1 `
-  -ArtifactPath C:\path\to\briosa-protocol-0.7.0-sa-2024.1.0508.5.zip `
+  -ArtifactPath C:\path\to\briosa-protocol-0.9.0-dev.1-sa-2024.1.0508.5.zip `
   -Update `
-  -SourceChannel github_release
+  -SourceChannel source_commit_bootstrap
 ```
 
 `Test-Conformance.ps1` verifies the immutable package named by
@@ -33,7 +33,7 @@ The importer also copies the server-owned installation selection fixtures.
 Runtime compatibility is independent of the generation artifact build.
 `Test-Conformance.ps1 -LockPath <lock> -EvidencePath <new-report.json>` runs
 another exact, hash-verified server fixture and retains portable evidence.
-The default lock retains Server 0.6.1 for backward-compatibility coverage.
+The default lock retains Server 0.6.1 for rejection coverage. Use -ExpectIncompatible with that lock; a contract-major mismatch must fail before launch.
 
 `Test-CurrentServerConformance.ps1` builds the exact generation source and writes
 its own conformance lock; the legacy lock remains independently pinned to 0.6.1.

@@ -12,10 +12,13 @@ Windows x64. Its full protocol identity is pinned in
 
 ## Package Identity
 
+The next version is not published yet. Build the candidate locally and use its
+package path or feed in the installation command below.
+
 The NuGet package and assembly are both named `Briosa.2026.1.0529.7`. Install the package with:
 
 ```powershell
-dotnet add package Briosa.2026.1.0529.7 --version 0.3.0
+dotnet add package Briosa.2026.1.0529.7 --version 0.4.0 --source C:\path\to\artifacts\package
 ```
 
 Exact SpatialAnalyzer targets use separate package and assembly identities,
@@ -66,11 +69,22 @@ canonical stores, explicit search roots, and supported local layouts. It validat
 receipts and manifests, filters the exact SA target and compatibility contract,
 and selects the highest compatible stable release. No internet access is needed.
 
-This client requires behavioral contract **1.0** (major 1, revision at least 0).
-The exact published Server 0.6.1 identity is also supported through a tested
-legacy exception. Other servers without contract metadata are rejected. Protocol
-and source pins remain exact build inputs; startup verifies the running server
-against its selected installation instead of requiring the generation build.
+This development checkout prepares client 0.4.0 for behavioral contract **2.0**
+(major 2, revision at least 0). It is not a published compatibility claim.
+Major-1 servers and servers without contract metadata, including Server 0.6.1,
+are rejected before launch. Protocol and source pins remain exact build inputs;
+startup verifies the running server against its selected installation.
+
+The three robot methods Get Robot Machine Parameter, Start Robot Machine
+Interface, and Stop Robot Machine Interface now take a collection/instrument
+identity for the MP argument named Machine ID. Supply an instrument ID rather
+than a machine ID; other robot methods retain their existing types.
+
+A full server queue returns an overload error with NotStarted, no recovery
+action, and MayReplay guidance. The client preserves these separate facts and
+never retries automatically. The 64 KiB inbound limit may also produce a
+transport size error without typed detail. See the
+[authoritative migration guide](https://github.com/spatialanalyzer/briosa/blob/main/docs/development/runtime-redesign-migration.md).
 
 A missing or incompatible explicit choice fails without selecting another
 installation. The choice is fixed for the session, including worker recovery.
@@ -103,7 +117,7 @@ owns these rules and the [compatibility matrix](https://github.com/spatialanalyz
 distinguishes tested pairs from declared forward compatibility.
 
 ```csharp
-var selection = new BriosaServerSelection { Version = "0.6.1" };
+var selection = new BriosaServerSelection { Version = "0.9.0-dev.1", AllowPrerelease = true };
 var report = BriosaInstallations.Discover(selection); // no process launch
 await briosa.StartAsync(new BriosaStartOptions { ServerSelection = selection });
 
@@ -122,7 +136,7 @@ packages independently.
 dotnet restore Briosa.DotNet.slnx --locked-mode
 dotnet build Briosa.DotNet.slnx -c Release --no-restore
 dotnet test Briosa.DotNet.slnx -c Release --no-build --no-restore
-./eng/Test-Conformance.ps1 -ArtifactPath C:\path\to\briosa-client-conformance-0.6.1-sa-2026.1.0529.7-win-x64.zip
+./eng/Test-Conformance.ps1 -ArtifactPath C:\path\to\briosa-client-conformance-0.6.1-sa-2026.1.0529.7-win-x64.zip -ExpectIncompatible
 dotnet pack src/Briosa.Client/Briosa.Client.csproj -c Release --no-build --no-restore -o artifacts/package
 ./eng/Test-PackageIdentity.ps1
 ./eng/Test-PackageConsumer.ps1
@@ -139,12 +153,12 @@ script:
 
 ```powershell
 ./eng/Import-ProtocolArtifact.ps1 `
-  -ArtifactPath C:\path\to\briosa-protocol-0.7.0-sa-2026.1.0529.7.zip `
+  -ArtifactPath C:\path\to\briosa-protocol-0.9.0-dev.1-sa-2026.1.0529.7.zip `
   -Update `
-  -SourceChannel github_release
+  -SourceChannel source_commit_bootstrap
 
 ./eng/Import-ProtocolArtifact.ps1 `
-  -ArtifactPath C:\path\to\briosa-protocol-0.7.0-sa-2026.1.0529.7.zip
+  -ArtifactPath C:\path\to\briosa-protocol-0.9.0-dev.1-sa-2026.1.0529.7.zip
 ```
 
 Never edit `src/Briosa.Client/Generated` or `protocol.lock.json` by hand.
@@ -174,7 +188,7 @@ and [server observability guide](https://github.com/spatialanalyzer/briosa/blob/
 ## Compatibility and validation
 
 This package pins its generation artifact and tests the declared compatibility
-contract against packaged servers, including the retained 0.6.1 baseline.
+contract against packaged servers. The retained 0.6.1 baseline must be rejected.
 Exact SA target, runtime identity, capabilities, and readiness still gate MP calls.
 
 Portable conformance covers lifecycle, identity mismatch, denied capabilities,

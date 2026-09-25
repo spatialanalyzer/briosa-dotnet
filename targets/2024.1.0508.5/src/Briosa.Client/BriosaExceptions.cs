@@ -126,6 +126,7 @@ public enum OperationFailureKind
     PolicyDenied,
     MpResultRetrievalFailure,
     SdkArgumentRejected,
+    Overloaded,
 }
 
 public enum RecoveryGuidance
