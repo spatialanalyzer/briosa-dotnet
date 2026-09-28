@@ -7,11 +7,11 @@ internal static class BriosaProtocolIdentity
     /// <summary>Gets the protocol artifact's stable name.</summary>
     public const string ArtifactName = "briosa-protocol-0.9.0-dev.1-sa-2024.1.0508.5";
     /// <summary>Gets the SHA-256 of the complete protocol ZIP.</summary>
-    public const string ArtifactSha256 = "2c0c5ebc6c2b6b5f11a3dbaf3f7cd8796a572befb45a8ff6999a2d7d1c39a2e7";
+    public const string ArtifactSha256 = "026d60d0576d1529d1dd86c5a833e373145445c700bf1837f7e0d5441a5dfe2e";
     /// <summary>Gets the Briosa version coordinate used to build the artifact.</summary>
     public const string BriosaVersion = "0.9.0-dev.1";
     /// <summary>Gets the immutable Briosa source revision used to build the artifact.</summary>
-    public const string SourceRevision = "d0613d6120f4f6d738a729e47c0eb775577bd8c0";
+    public const string SourceRevision = "89b59aa0ddd05ea868d94c4e4a4f89ee0fbcbccb";
     /// <summary>Gets the required behavioral contract major.</summary>
     public const uint CompatibilityMajor = 2;
     /// <summary>Gets the minimum behavioral contract revision.</summary>
