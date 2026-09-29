@@ -11,6 +11,10 @@ param(
 
     [hashtable]$ClientPackage,
 
+    [switch]$ExpectIncompatible,
+
+    [ValidateRange(1, 1000)][int]$RequiredContractMajor = 2,
+
     [string]$Configuration = "Release"
 )
 
@@ -43,6 +47,9 @@ if ($externalChecksum -ne "$artifactHash  $([IO.Path]::GetFileName($resolvedArti
 [IO.Directory]::CreateDirectory($temporaryRoot) | Out-Null
 # Portable conformance owns fake processes and must not launch a desktop monitor.
 $previousDesktopMode = [Environment]::GetEnvironmentVariable("Briosa__Desktop__Mode")
+$previousExpectation = [Environment]::GetEnvironmentVariable("BRIOSA_CONFORMANCE_EXPECT_INCOMPATIBLE")
+$env:BRIOSA_CONFORMANCE_EXPECT_INCOMPATIBLE = $(if ($ExpectIncompatible) { '1' } else { '0' })
+$selectedScenarios = $(if ($ExpectIncompatible) { @('control-plane-only') } else { @() })
 $env:Briosa__Desktop__Mode = "Disabled"
 try {
     Expand-Archive -LiteralPath $resolvedArtifact -DestinationPath $temporaryRoot
@@ -70,6 +77,7 @@ try {
         throw "Build the .NET conformance fixture before running the shared suite."
     }
     & $runner `
+        -Scenario $selectedScenarios `
         -FixtureCommand "dotnet" `
         -FixtureArguments @($fixture)
     if (-not [string]::IsNullOrWhiteSpace($EvidencePath)) {
@@ -83,22 +91,26 @@ try {
         $report = [ordered]@{
             schemaVersion = 1
             generatedAt = [DateTimeOffset]::UtcNow.ToString("O")
-            validationKind = $(if ($ClientPackage) { "packaged-client-and-server-fake-sdk" } else { "packaged-server-fake-sdk" })
+            validationKind = $(if ($ExpectIncompatible) { "client-server-compatibility-rejection" } elseif ($ClientPackage) { "packaged-client-and-server-fake-sdk" } else { "packaged-server-fake-sdk" })
+            expectedCompatibility = $(if ($ExpectIncompatible) { "rejected" } else { "accepted" })
             passed = $true
             licensedSpatialAnalyzer = $false
             client = @{
                 repository = "https://github.com/spatialanalyzer/briosa-dotnet"
                 version = ([xml](Get-Content (Join-Path $repositoryRoot "src/Briosa.Client/Briosa.Client.csproj") -Raw)).Project.PropertyGroup.VersionPrefix
-                sourceRevision = $clientRevision
-                uncommittedChanges = $dirty
+                sourceRevision = $(if ($ClientPackage) { $ClientPackage.sourceRevision } else { $clientRevision })
+                uncommittedChanges = $(if (-not $ClientPackage) { $dirty } else { $null })
+                fixtureSourceRevision = $clientRevision
+                fixtureUncommittedChanges = $dirty
                 package = $ClientPackage
-                protocolArtifact = $protocol.artifact
-                requiredContract = @{ major = 1; minimumRevision = 0 }
+                protocolArtifact = $(if (-not $ClientPackage) { $protocol.artifact } else { $null })
+                fixtureProtocolArtifact = $protocol.artifact
+                requiredContract = @{ major = $RequiredContractMajor; minimumRevision = 0 }
             }
             server = $lock.artifact
             target = $lock.target
             scenarioContract = $lock.contract
-            scenarios = @($scenarios.scenarios.id)
+            scenarios = $(if ($ExpectIncompatible) { @('installation-contract-rejected') } else { @($scenarios.scenarios.id) })
         }
         $destination = [IO.Path]::GetFullPath($EvidencePath, $repositoryRoot)
         [IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($destination)) | Out-Null
@@ -109,6 +121,7 @@ try {
     }
 }
 finally {
+    [Environment]::SetEnvironmentVariable("BRIOSA_CONFORMANCE_EXPECT_INCOMPATIBLE", $previousExpectation)
     [Environment]::SetEnvironmentVariable("Briosa__Desktop__Mode", $previousDesktopMode)
     $resolvedTemporaryRoot = [IO.Path]::GetFullPath($temporaryRoot)
     if ($resolvedTemporaryRoot.StartsWith($temporaryBase, [StringComparison]::OrdinalIgnoreCase) -and

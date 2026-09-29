@@ -10136,7 +10136,7 @@ public sealed class BriosaRobotOperations
     }
 
     public Task<double> GetRobotMachineParameterAsync(
-        CollectionMachineId machineId,
+        CollectionInstrumentId machineId,
         string parameterName = "",
         CancellationToken cancellationToken = default)
     {
@@ -10729,7 +10729,7 @@ public sealed class BriosaRobotOperations
     }
 
     public Task StartRobotMachineInterfaceAsync(
-        CollectionMachineId machineId,
+        CollectionInstrumentId machineId,
         int interfaceType = 0,
         bool runInSimulation = false,
         CancellationToken cancellationToken = default)
@@ -10798,7 +10798,7 @@ public sealed class BriosaRobotOperations
     }
 
     public Task StopRobotMachineInterfaceAsync(
-        CollectionMachineId machineId,
+        CollectionInstrumentId machineId,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(

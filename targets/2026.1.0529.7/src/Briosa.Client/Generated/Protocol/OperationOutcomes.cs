@@ -67,7 +67,7 @@ namespace Briosa.Client.Transport {
             "QU5DRV9SRUNPTkNJTEVfQkVGT1JFX1JFUExBWRADKnoKDFJlcGxheVNhZmV0",
             "eRIdChlSRVBMQVlfU0FGRVRZX1VOU1BFQ0lGSUVEEAASFgoSUkVQTEFZX1NB",
             "RkVUWV9TQUZFEAESGAoUUkVQTEFZX1NBRkVUWV9VTlNBRkUQAhIZChVSRVBM",
-            "QVlfU0FGRVRZX1VOS05PV04QAyr9BQoUT3BlcmF0aW9uRmFpbHVyZUtpbmQS",
+            "QVlfU0FGRVRZX1VOS05PV04QAyqkBgoUT3BlcmF0aW9uRmFpbHVyZUtpbmQS",
             "JgoiT1BFUkFUSU9OX0ZBSUxVUkVfS0lORF9VTlNQRUNJRklFRBAAEiUKIU9Q",
             "RVJBVElPTl9GQUlMVVJFX0tJTkRfVkFMSURBVElPThABEiYKIk9QRVJBVElP",
             "Tl9GQUlMVVJFX0tJTkRfVU5TVVBQT1JURUQQAhI3CjNPUEVSQVRJT05fRkFJ",
@@ -84,7 +84,8 @@ namespace Briosa.Client.Transport {
             "TlRFUk5BTBAMEigKJE9QRVJBVElPTl9GQUlMVVJFX0tJTkRfUE9MSUNZX0RF",
             "TklFRBANEjYKMk9QRVJBVElPTl9GQUlMVVJFX0tJTkRfTVBfUkVTVUxUX1JF",
             "VFJJRVZBTF9GQUlMVVJFEA4SMAosT1BFUkFUSU9OX0ZBSUxVUkVfS0lORF9T",
-            "REtfQVJHVU1FTlRfUkVKRUNURUQQD0IJqgIGQnJpb3NhYgZwcm90bzM="));
+            "REtfQVJHVU1FTlRfUkVKRUNURUQQDxIlCiFPUEVSQVRJT05fRkFJTFVSRV9L",
+            "SU5EX09WRVJMT0FERUQQEEIJqgIGQnJpb3NhYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Briosa.Client.Transport.MpExecutionState), typeof(global::Briosa.Client.Transport.OutputRetrievalState), typeof(global::Briosa.Client.Transport.ExecutionDisposition), typeof(global::Briosa.Client.Transport.RecoveryGuidance), typeof(global::Briosa.Client.Transport.ReplayGuidance), typeof(global::Briosa.Client.Transport.ReplaySafety), typeof(global::Briosa.Client.Transport.OperationFailureKind), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -180,6 +181,10 @@ namespace Briosa.Client.Transport {
     [pbr::OriginalName("OPERATION_FAILURE_KIND_POLICY_DENIED")] PolicyDenied = 13,
     [pbr::OriginalName("OPERATION_FAILURE_KIND_MP_RESULT_RETRIEVAL_FAILURE")] MpResultRetrievalFailure = 14,
     [pbr::OriginalName("OPERATION_FAILURE_KIND_SDK_ARGUMENT_REJECTED")] SdkArgumentRejected = 15,
+    /// <summary>
+    /// Admission rejected the request before mapping or dispatch. No automatic retry.
+    /// </summary>
+    [pbr::OriginalName("OPERATION_FAILURE_KIND_OVERLOADED")] Overloaded = 16,
   }
 
   #endregion

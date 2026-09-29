@@ -38,6 +38,7 @@ public enum WorkerRuntimeState
     Starting,
     Ready,
     Degraded,
+    Stopping,
 }
 
 public enum TargetIsolationMode

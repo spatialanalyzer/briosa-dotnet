@@ -26,6 +26,35 @@ await Console.Out.WriteLineAsync(JsonSerializer.Serialize(new
 
 static async Task RunScenarioAsync(string scenario)
 {
+    if (Environment.GetEnvironmentVariable("BRIOSA_CONFORMANCE_EXPECT_INCOMPATIBLE") == "1")
+    {
+        Require(scenario == "control-plane-only", "Rejection must run without SDK or application startup.");
+        var selection = new BriosaServerSelection
+        {
+            ExecutablePath = Environment.GetEnvironmentVariable("BRIOSA_SERVER_PATH"),
+            AllowPrerelease = true,
+        };
+        var report = BriosaInstallations.Discover(selection);
+        Require(report.Selected is null && report.DiagnosticCode == "server-installation-incompatible",
+            "The packaged server was not rejected for contract incompatibility.");
+        await using var rejected = new BriosaClient();
+        try
+        {
+            await rejected.StartAsync(new BriosaStartOptions
+            {
+                ServerSelection = selection,
+                StartSpatialAnalyzerSdk = false,
+                LaunchSpatialAnalyzer = false,
+                ConnectToSpatialAnalyzer = false,
+            });
+            throw new InvalidOperationException("Startup unexpectedly accepted an incompatible server.");
+        }
+        catch (BriosaStartupException error) when (error.DiagnosticCode == "server-installation-incompatible")
+        {
+            return;
+        }
+    }
+
     var commandTimeout = scenario == "deadline"
         ? TimeSpan.FromMilliseconds(250)
         : (TimeSpan?)null;
