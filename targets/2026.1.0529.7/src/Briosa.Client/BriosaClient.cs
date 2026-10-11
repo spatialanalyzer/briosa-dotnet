@@ -452,6 +452,12 @@ public sealed partial class BriosaClient : IAsyncDisposable
 
             session.PublishStartup();
         }
+        catch (RpcException exception) when (startupCts.IsCancellationRequested)
+        {
+            // gRPC reports the expired budget as a cancelled call. Only the budget
+            // cancels this token; a caller's own cancellation stops StartAsync waiting.
+            throw new BriosaStartupException("startup-timeout", exception);
+        }
         catch (RpcException exception) when (session is not null)
         {
             throw ProtocolMapping.MapRpcException(

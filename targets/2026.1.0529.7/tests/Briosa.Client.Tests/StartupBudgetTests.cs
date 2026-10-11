@@ -1,13 +1,15 @@
 #pragma warning disable CA2000 // Test doubles are disposed through the client session under test.
 
 using Google.Protobuf;
+using Grpc.Core;
 using Transport = Briosa.Client.Transport;
 
 namespace Briosa.Client.Tests;
 
 /// <summary>
 /// Pins the client startup budget against the server's default lifecycle bounds
-/// (spatialanalyzer/briosa main 0c7ff7a; #298 and #315), and pins that lifecycle
+/// (spatialanalyzer/briosa main 0c7ff7a; #298 and #315), pins that budget expiry is
+/// reported as startup-timeout whichever phase it interrupts, and pins that lifecycle
 /// calls carry no client-imposed per-call deadline.
 /// </summary>
 public sealed class StartupBudgetTests
@@ -68,6 +70,42 @@ public sealed class StartupBudgetTests
         var budget = transport.Calls[0].Token;
         Assert.True(budget.CanBeCanceled);
         Assert.All(transport.Calls, call => Assert.Equal(budget, call.Token));
+    }
+
+    [Theory]
+    [InlineData("snapshot")]
+    [InlineData("start-sdk")]
+    [InlineData("launch-sa")]
+    [InlineData("connect-sdk")]
+    public async Task BudgetExpiryDuringAnyStartupRpcIsAStartupTimeout(string phase)
+    {
+        var transport = new RecordingTransport { HangAt = phase };
+        await using var client = CreateClient(new BriosaClientOptions(), transport);
+
+        var exception = await Assert.ThrowsAsync<BriosaStartupException>(
+            () => client.StartAsync(new BriosaStartOptions
+            {
+                StartupTimeout = TimeSpan.FromMilliseconds(100),
+            }));
+
+        Assert.Equal("startup-timeout", exception.DiagnosticCode);
+        Assert.Equal(phase, transport.Calls[^1].Name);
+    }
+
+    [Fact]
+    public async Task CallerCancellationDuringStartupStaysCancellation()
+    {
+        var transport = new RecordingTransport { HangAt = "connect-sdk" };
+        await using var client = CreateClient(new BriosaClientOptions(), transport);
+        using var caller = new CancellationTokenSource(TimeSpan.FromMilliseconds(50));
+
+        var exception = await Assert.ThrowsAnyAsync<OperationCanceledException>(
+            () => client.StartAsync(
+                new BriosaStartOptions { StartupTimeout = TimeSpan.FromSeconds(1) },
+                caller.Token));
+
+        Assert.IsNotType<BriosaStartupException>(exception);
+        Assert.Equal(caller.Token, exception.CancellationToken);
     }
 
     [Fact]
@@ -135,80 +173,102 @@ public sealed class StartupBudgetTests
 
         public List<RecordedCall> Calls { get; } = [];
 
-        public Task<(Transport.GetServerInfoResponse, Transport.ListCapabilitiesResponse)>
+        // The RPC that never answers. Like Grpc.Net.Client, it then fails with
+        // StatusCode.Cancelled once its token is cancelled.
+        public string? HangAt { get; init; }
+
+        private async Task RecordAsync(string name, CancellationToken cancellationToken)
+        {
+            Calls.Add(new(name, cancellationToken));
+            if (name != HangAt)
+            {
+                return;
+            }
+
+            try
+            {
+                await Task.Delay(Timeout.Infinite, cancellationToken).ConfigureAwait(false);
+            }
+            catch (OperationCanceledException)
+            {
+                throw new RpcException(new Status(StatusCode.Cancelled, "Call canceled by the client."));
+            }
+        }
+
+        public async Task<(Transport.GetServerInfoResponse, Transport.ListCapabilitiesResponse)>
             GetServerSnapshotAsync(CancellationToken cancellationToken)
         {
-            Calls.Add(new("snapshot", cancellationToken));
-            return Task.FromResult(Snapshot(_connected));
+            await RecordAsync("snapshot", cancellationToken).ConfigureAwait(false);
+            return Snapshot(_connected);
         }
 
-        public Task<Transport.SpatialAnalyzerLifecycleState> GetApplicationStateAsync(
+        public async Task<Transport.SpatialAnalyzerLifecycleState> GetApplicationStateAsync(
             CancellationToken cancellationToken)
         {
-            Calls.Add(new("get-sa-state", cancellationToken));
-            return Task.FromResult(Application(running: true));
+            await RecordAsync("get-sa-state", cancellationToken).ConfigureAwait(false);
+            return Application(running: true);
         }
 
-        public Task<Transport.SpatialAnalyzerLifecycleState> LaunchApplicationAsync(
+        public async Task<Transport.SpatialAnalyzerLifecycleState> LaunchApplicationAsync(
             SpatialAnalyzerLaunchOptions options,
             CancellationToken cancellationToken)
         {
-            Calls.Add(new("launch-sa", cancellationToken));
-            return Task.FromResult(Application(running: true));
+            await RecordAsync("launch-sa", cancellationToken).ConfigureAwait(false);
+            return Application(running: true);
         }
 
-        public Task<Transport.SpatialAnalyzerLifecycleState> CloseApplicationAsync(
+        public async Task<Transport.SpatialAnalyzerLifecycleState> CloseApplicationAsync(
             int expectedGeneration,
             CancellationToken cancellationToken)
         {
-            Calls.Add(new("close-sa", cancellationToken));
-            return Task.FromResult(Application(running: false));
+            await RecordAsync("close-sa", cancellationToken).ConfigureAwait(false);
+            return Application(running: false);
         }
 
-        public Task<Transport.SpatialAnalyzerSdkLifecycleState> GetSdkStateAsync(
+        public async Task<Transport.SpatialAnalyzerSdkLifecycleState> GetSdkStateAsync(
             CancellationToken cancellationToken)
         {
-            Calls.Add(new("get-sdk-state", cancellationToken));
-            return Task.FromResult(Sdk());
+            await RecordAsync("get-sdk-state", cancellationToken).ConfigureAwait(false);
+            return Sdk();
         }
 
-        public Task<Transport.SpatialAnalyzerSdkLifecycleState> StartSdkAsync(
+        public async Task<Transport.SpatialAnalyzerSdkLifecycleState> StartSdkAsync(
             CancellationToken cancellationToken)
         {
-            Calls.Add(new("start-sdk", cancellationToken));
+            await RecordAsync("start-sdk", cancellationToken).ConfigureAwait(false);
             _sdkGeneration++;
             _connected = false;
-            return Task.FromResult(Sdk());
+            return Sdk();
         }
 
-        public Task<Transport.SpatialAnalyzerSdkLifecycleState> ConnectSdkAsync(
+        public async Task<Transport.SpatialAnalyzerSdkLifecycleState> ConnectSdkAsync(
             int expectedGeneration,
             bool reconnect,
             CancellationToken cancellationToken)
         {
-            Calls.Add(new(reconnect ? "reconnect-sdk" : "connect-sdk", cancellationToken));
+            await RecordAsync(reconnect ? "reconnect-sdk" : "connect-sdk", cancellationToken).ConfigureAwait(false);
             _connected = true;
-            return Task.FromResult(Sdk());
+            return Sdk();
         }
 
-        public Task<Transport.SpatialAnalyzerSdkLifecycleState> StopSdkAsync(
+        public async Task<Transport.SpatialAnalyzerSdkLifecycleState> StopSdkAsync(
             int expectedGeneration,
             CancellationToken cancellationToken)
         {
-            Calls.Add(new("stop-sdk", cancellationToken));
+            await RecordAsync("stop-sdk", cancellationToken).ConfigureAwait(false);
             _sdkGeneration = 0;
             _connected = false;
-            return Task.FromResult(Sdk());
+            return Sdk();
         }
 
-        public Task<Transport.SpatialAnalyzerSdkLifecycleState> RecoverSdkAsync(
+        public async Task<Transport.SpatialAnalyzerSdkLifecycleState> RecoverSdkAsync(
             int expectedGeneration,
             CancellationToken cancellationToken)
         {
-            Calls.Add(new("recover-sdk", cancellationToken));
+            await RecordAsync("recover-sdk", cancellationToken).ConfigureAwait(false);
             _sdkGeneration++;
             _connected = false;
-            return Task.FromResult(Sdk());
+            return Sdk();
         }
 
         public Task<string> GetWorkingDirectoryAsync(

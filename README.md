@@ -29,3 +29,5 @@ The 0.3.0 API naming changes are described in the [MP argument migration guide](
 Unreleased: the default `BriosaStartOptions.StartupTimeout` is two minutes instead
 of 30 seconds in both products. It is sized from the server's default lifecycle
 bounds; see [startup and lifecycle time budgets](docs/design/v1-public-api-contract.md#startup-and-lifecycle-time-budgets).
+A budget that expires during an RPC now raises `BriosaStartupException`
+(`startup-timeout`) instead of `OperationCanceledException`.

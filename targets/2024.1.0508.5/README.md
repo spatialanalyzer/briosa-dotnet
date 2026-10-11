@@ -59,8 +59,11 @@ the server's `Briosa:Worker:StartupTimeout`, `Briosa:Worker:ReadinessProbeTimeou
 or `Briosa:SpatialAnalyzer:ApplicationStartupTimeout`, raise the client budget
 too; the [public API contract](docs/design/v1-public-api-contract.md#startup-and-lifecycle-time-budgets)
 shows how to size it. Lifecycle methods add no deadline of their own. If the
-budget expires while the server is starting or connecting the SDK, the server
-finishes that step, so read the SDK state before retrying.
+budget expires while the server is starting or connecting the SDK, read the SDK
+state before retrying: a server that includes
+[spatialanalyzer/briosa#315](https://github.com/spatialanalyzer/briosa/pull/315)
+finishes that step, while released 0.9 servers cancel it, which can leave the
+SDK stopped or faulted.
 
 The client retains lifecycle generations and supplies RPC guards automatically.
 Typed lifecycle failures, compatibility failures, ambiguous MP completion, and
