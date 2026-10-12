@@ -85,8 +85,24 @@ public sealed record BriosaStartOptions
     /// <summary>Gets controlled SpatialAnalyzer launch inputs.</summary>
     public SpatialAnalyzerLaunchOptions LaunchOptions { get; init; } = new();
 
-    /// <summary>Gets the overall client startup timeout.</summary>
-    public TimeSpan StartupTimeout { get; init; } = TimeSpan.FromSeconds(30);
+    /// <summary>
+    /// Gets the overall client startup budget: one bound for the whole
+    /// <see cref="BriosaClient.StartAsync(BriosaStartOptions, CancellationToken)"/>,
+    /// whichever phases are selected. Expiry raises <see cref="BriosaStartupException"/>
+    /// with diagnostic <c>startup-timeout</c>.
+    /// </summary>
+    /// <remarks>
+    /// The default of two minutes covers the server's default worst case of 100 seconds
+    /// (SDK start 10 s, SpatialAnalyzer launch 30 s, Connect with readiness probe and
+    /// application association 60 s) plus 20 seconds for server host startup, process
+    /// observation, and round trips. Raise it when the server's lifecycle bounds are
+    /// raised. Expiry during an in-flight RPC is reported the same way; cancelling the
+    /// caller's token only stops that caller from waiting. A server that includes
+    /// spatialanalyzer/briosa#315 finishes an SDK start or connection it has accepted
+    /// after the client stops waiting; older servers, including released 0.9 builds,
+    /// cancel it, which can leave the SDK stopped or faulted.
+    /// </remarks>
+    public TimeSpan StartupTimeout { get; init; } = TimeSpan.FromMinutes(2);
 
     /// <summary>Gets the ordinary ready-for-MP startup procedure.</summary>
     public static BriosaStartOptions Default { get; } = new();
