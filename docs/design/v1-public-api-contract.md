@@ -202,6 +202,12 @@ The implementation materializes the enumerable once before starting the RPC.
 The canonical input shape is not `List<T>`, a `params` array, or
 `IAsyncEnumerable<T>`.
 
+An optional collection input is `IEnumerable<T>?` and defaults to `null`. If
+its request field is a list wrapper message, `null` leaves the field unset. If
+it is a plain repeated field, which has no absent form other than an empty
+list, `null` is sent as an empty list. Either way the server, not the client,
+decides whether the input may be omitted.
+
 Collection outputs use fresh detached `T[]` values. A required empty output is
 `Array.Empty<T>()`; nullable arrays are used only when the semantic contract
 distinguishes absence from present-but-empty. Generated repeated fields and

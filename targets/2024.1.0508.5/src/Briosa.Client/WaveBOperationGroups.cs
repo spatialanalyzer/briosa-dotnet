@@ -3113,7 +3113,7 @@ public sealed class BriosaConstructionOperations
                 ["show_uz"] = showUz,
                 ["show_umag"] = showUMag,
                 ["desired_coordinate_system"] = desiredCoordinateSystem,
-                ["notes"] = notes,
+                ["notes"] = notes ?? [],
                 ["use_default_placement"] = useDefaultPlacement,
             });
         return _client.InvokeOperationAsync(
@@ -3173,7 +3173,7 @@ public sealed class BriosaConstructionOperations
                 ["additional_x_comments"] = additionalXComments,
                 ["additional_y_comments"] = additionalYComments,
                 ["additional_z_comments"] = additionalZComments,
-                ["additional_notes"] = additionalNotes,
+                ["additional_notes"] = additionalNotes ?? [],
                 ["use_default_placement"] = useDefaultPlacement,
             });
         return _client.InvokeOperationAsync(
@@ -3200,7 +3200,7 @@ public sealed class BriosaConstructionOperations
                 ["relationship_name"] = relationshipName,
                 ["view_x_position"] = viewXPosition,
                 ["view_y_position"] = viewYPosition,
-                ["additional_notes"] = additionalNotes,
+                ["additional_notes"] = additionalNotes ?? [],
             });
         return _client.InvokeOperationAsync(
             "briosa.ConstructionOperations",
@@ -3284,7 +3284,7 @@ public sealed class BriosaConstructionOperations
                 ["show_start_point"] = showStartPoint,
                 ["show_end_point"] = showEndPoint,
                 ["show_units"] = showUnits,
-                ["additional_notes"] = additionalNotes,
+                ["additional_notes"] = additionalNotes ?? [],
                 ["attach_callout_to_end_point"] = attachCalloutToEndPoint,
                 ["use_default_placement"] = useDefaultPlacement,
             });
@@ -4861,16 +4861,16 @@ public sealed class BriosaGdtOperations
             new Transport.FeatureInspectionAutoFilterRequest(),
             new Dictionary<string, object?>
             {
-                ["point_names"] = pointNames,
-                ["group_names"] = groupNames,
-                ["cloud_names"] = cloudNames,
+                ["point_names"] = pointNames ?? [],
+                ["group_names"] = groupNames ?? [],
+                ["cloud_names"] = cloudNames ?? [],
                 ["surface_offset"] = surfaceOffset,
                 ["edge_offset"] = edgeOffset,
                 ["offset_direction"] = offsetDirection,
                 ["include_points_within_cylinder_axis_proximity"] = includePointsWithinCylinderAxisProximity,
                 ["enforce_max_points_per_face_in_output"] = enforceMaxPointsPerFaceInOutput,
                 ["max_points_per_face"] = maxPointsPerFace,
-                ["feature_check_name_list"] = featureCheckNameList,
+                ["feature_check_name_list"] = featureCheckNameList ?? [],
                 ["include_datums"] = includeDatums,
                 ["create_cloud_for_each_datum_or_check"] = createCloudForEachDatumOrCheck,
             });
@@ -7204,7 +7204,7 @@ public sealed class BriosaInstrumentOperations
                 ["measured_group"] = measuredGroup,
                 ["surface_points_group"] = surfacePointsGroup,
                 ["surface_to_fit"] = surfaceToFit,
-                ["other_objects_to_transform"] = otherObjectsToTransform,
+                ["other_objects_to_transform"] = otherObjectsToTransform ?? [],
                 ["rms_tolerance"] = rmsTolerance,
                 ["maximum_absolute_tolerance"] = maximumAbsoluteTolerance,
             });
@@ -7273,7 +7273,7 @@ public sealed class BriosaInstrumentOperations
                 ["show_usmn_dialog"] = showUsmnDialog,
                 ["maximum_acceptable_rms_error"] = maximumAcceptableRmsError,
                 ["maximum_acceptable_error"] = maximumAcceptableError,
-                ["excluded_groups"] = excludedGroups,
+                ["excluded_groups"] = excludedGroups ?? [],
                 ["exclude_single_instrument_points"] = excludeSingleInstrumentPoints,
                 ["run_uncertainty_field_analysis"] = runUncertaintyFieldAnalysis,
                 ["analysis_samples"] = analysisSamples,
@@ -7847,8 +7847,8 @@ public sealed class BriosaInstrumentOperations
             {
                 ["instruments"] = instruments,
                 ["objects"] = objects,
-                ["nominal_points"] = nominalPoints,
-                ["nominal_point_of_view_names"] = nominalPointOfViewNames,
+                ["nominal_points"] = nominalPoints ?? [],
+                ["nominal_point_of_view_names"] = nominalPointOfViewNames ?? [],
                 ["align_to_individual_faces_only"] = alignToIndividualFacesOnly,
             });
         return _client.InvokeOperationAsync(
