@@ -31,3 +31,9 @@ of 30 seconds in both products. It is sized from the server's default lifecycle
 bounds; see [startup and lifecycle time budgets](docs/design/v1-public-api-contract.md#startup-and-lifecycle-time-budgets).
 A budget that expires during an RPC now raises `BriosaStartupException`
 (`startup-timeout`) instead of `OperationCanceledException`.
+
+Unreleased: twelve optional list arguments in eight methods, such as
+`excludedGroups` of `LocateInstrumentsUsmnAsync`, threw `ArgumentNullException`
+before sending anything when left at their `null` default. Both products now
+send them as empty lists, and the server decides whether an empty list is
+accepted; see [collections](docs/design/v1-public-api-contract.md#collections).
