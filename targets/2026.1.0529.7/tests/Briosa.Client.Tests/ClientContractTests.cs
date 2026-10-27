@@ -6,7 +6,7 @@ using Transport = Briosa.Client.Transport;
 
 namespace Briosa.Client.Tests;
 
-public sealed class ClientContractTests
+public sealed partial class ClientContractTests
 {
     [Fact]
     public async Task RobotInterfaceMethodsPreserveInstrumentIdentity()
