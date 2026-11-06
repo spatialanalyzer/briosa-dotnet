@@ -1,8 +1,10 @@
 #pragma warning disable CA2000 // Test doubles are disposed through the client session under test.
 
+using System.Collections;
 using System.Globalization;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using Google.Protobuf;
 using Transport = Briosa.Client.Transport;
 
 namespace Briosa.Client.Tests;
@@ -65,31 +67,17 @@ public sealed partial class ClientContractTests
 
         foreach (var (target, method) in OperationMethods(client))
         {
-            var parameters = method.GetParameters();
-            if (!parameters.Any(DefaultsToNull))
+            if (!method.GetParameters().Any(DefaultsToNull))
             {
                 continue;
             }
 
-            // Supply only the required arguments, so every null default is used.
-            var arguments = parameters
-                .Select(parameter => parameter.HasDefaultValue
-                    ? Type.Missing
-                    : SampleArgument(parameter.ParameterType))
-                .ToArray();
-            var callsBefore = transport.Calls.Count;
-            var exception = await Record.ExceptionAsync(
-                () => (Task)method.Invoke(target, arguments)!);
+            var (request, failure) = await SendAsync(transport, target, method);
             invoked.Add(method.Name);
-
-            // A failure after dispatch comes from mapping the fake's empty response,
-            // which this test does not cover. Only a call that never reached the
-            // transport failed while building its request.
-            if (transport.Calls.Count == callsBefore)
+            if (request is null)
             {
-                var cause = (exception as TargetInvocationException)?.InnerException ?? exception;
                 failures.Add(
-                    $"{method.DeclaringType!.Name}.{method.Name}: {cause?.GetType().Name} {cause?.Message}");
+                    $"{method.DeclaringType!.Name}.{method.Name}: {failure?.GetType().Name} {failure?.Message}");
             }
         }
 
@@ -98,6 +86,103 @@ public sealed partial class ClientContractTests
         {
             Assert.Fail(string.Join(Environment.NewLine, failures));
         }
+    }
+
+    [Fact]
+    public async Task EveryOptionalListIsSentOnlyWhenSupplied()
+    {
+        var transport = new FakeTransport();
+        await using var client = CreateClient(new FakeServerLauncher(), transport);
+        await client.StartAsync();
+        var checkedLists = new List<string>();
+        var failures = new List<string>();
+
+        foreach (var (target, method) in OperationMethods(client))
+        {
+            var lists = method.GetParameters()
+                .Where(IsOptionalList)
+                .Select(parameter => parameter.Name!)
+                .ToArray();
+            if (lists.Length == 0)
+            {
+                continue;
+            }
+
+            // Supply no list, then each list alone, so a list that is dropped or sent
+            // in another list's field is caught.
+            foreach (var supplied in lists.Cast<string?>().Prepend(null))
+            {
+                var (request, failure) = await SendAsync(transport, target, method, supplied);
+                if (request is null)
+                {
+                    failures.Add($"{method.Name} with {supplied ?? "no list"}: {failure?.Message}");
+                    continue;
+                }
+
+                foreach (var list in lists)
+                {
+                    var sent = ListItems(request, list);
+                    var isExpected = list == supplied
+                        ? sent.Length == 1 && sent[0].Contains("Sample", StringComparison.Ordinal)
+                        : sent.Length == 0;
+                    if (!isExpected)
+                    {
+                        failures.Add(
+                            $"{method.Name} with {supplied ?? "no list"}: {list} sent [{string.Join(", ", sent)}]");
+                    }
+                }
+            }
+
+            checkedLists.AddRange(lists.Select(list => $"{method.Name}.{list}"));
+        }
+
+        Assert.Contains($"{nameof(BriosaInstrumentOperations.QuickAlignAsync)}.nominalPoints", checkedLists);
+        Assert.Contains($"{nameof(BriosaClient.CreatePointsToObjectsMapAsync)}.points", checkedLists);
+        if (failures.Count > 0)
+        {
+            Assert.Fail(string.Join(Environment.NewLine, failures));
+        }
+    }
+
+    // Calls an operation with only its required arguments and, if named, one optional
+    // argument, so every other default is used. A failure after dispatch comes from
+    // mapping the fake's empty response, which these tests do not cover. Only a call
+    // that never reached the transport failed while building its request, so only
+    // that call returns a failure in place of the request.
+    private static async Task<(IMessage? Request, Exception? Failure)> SendAsync(
+        FakeTransport transport,
+        object target,
+        MethodInfo method,
+        string? suppliedArgument = null)
+    {
+        var arguments = method.GetParameters()
+            .Select(parameter => parameter.HasDefaultValue && parameter.Name != suppliedArgument
+                ? Type.Missing
+                : SampleArgument(parameter.ParameterType))
+            .ToArray();
+        var callsBefore = transport.Calls.Count;
+        var exception = await Record.ExceptionAsync(
+            () => (Task)method.Invoke(target, arguments)!).ConfigureAwait(false);
+        return transport.Calls.Count > callsBefore
+            ? (transport.LastOperationRequest, null)
+            : (null, (exception as TargetInvocationException)?.InnerException ?? exception);
+    }
+
+    // What a request carries for a list argument, whether its field is repeated or a
+    // list wrapper message, which stays unset when the argument is omitted.
+    private static string[] ListItems(IMessage request, string argument)
+    {
+        var field = request.Descriptor.Fields.InDeclarationOrder()
+            .Single(candidate => candidate.JsonName == argument);
+        var value = field.Accessor.GetValue(request);
+        if (value is IMessage wrapper)
+        {
+            value = wrapper.Descriptor.FindFieldByName("values").Accessor.GetValue(wrapper);
+        }
+
+        return value is IEnumerable items
+            ? items.Cast<object>().Select(item => item.ToString()!).ToArray()
+            : [];
     }
 
     private static (object Target, MethodInfo Method)[] OperationMethods(BriosaClient client)
@@ -139,6 +224,11 @@ public sealed partial class ClientContractTests
         parameter.DefaultValue is null &&
         (!parameter.ParameterType.IsValueType ||
             Nullable.GetUnderlyingType(parameter.ParameterType) is not null);
+
+    private static bool IsOptionalList(ParameterInfo parameter) =>
+        DefaultsToNull(parameter) &&
+        parameter.ParameterType.IsGenericType &&
+        parameter.ParameterType.GetGenericTypeDefinition() == typeof(IEnumerable<>);
 
     // A valid value for a required argument: non-zero enum choices, one-element
     // sequences, and domain values with every required member set.
