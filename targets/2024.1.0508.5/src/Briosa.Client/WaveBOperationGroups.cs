@@ -4842,6 +4842,12 @@ public sealed class BriosaGdtOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>pointNames</c>: Released 0.9 servers require at least one point.<br/>
+    /// <c>groupNames</c>: Released 0.9 servers require at least one group.<br/>
+    /// <c>cloudNames</c>: Released 0.9 servers require at least one cloud.<br/>
+    /// <c>featureCheckNameList</c>: Released 0.9 servers require at least one feature check.<br/>
+    /// </remarks>
     public Task FeatureInspectionAutoFilterAsync(
         IEnumerable<PointName>? pointNames = null,
         IEnumerable<CollectionObjectName>? groupNames = null,
@@ -7186,6 +7192,9 @@ public sealed class BriosaInstrumentOperations
             cancellationToken);
     }
 
+    /// <remarks>
+    /// <c>otherObjectsToTransform</c>: Released 0.9 servers require at least one object.<br/>
+    /// </remarks>
     public Task<FitErrorResult> LocateInstrumentGroupToSurfaceQuickFitAsync(
         CollectionInstrumentId instrument,
         CollectionObjectName measuredGroup,
@@ -7243,6 +7252,8 @@ public sealed class BriosaInstrumentOperations
     }
 
     /// <remarks>
+    /// <c>nominalsGroup</c>: Released 0.9 servers require a non-blank group name.<br/>
+    /// <c>excludedGroups</c>: Released 0.9 servers require at least one group.<br/>
     /// <c>analysisTimeLimit</c>: Time in minutes; 0 disables the time limit.<br/>
     /// </remarks>
     public Task<FitErrorResult> LocateInstrumentsUsmnAsync(
