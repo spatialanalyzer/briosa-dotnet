@@ -74,6 +74,20 @@ See the [Briosa documentation](https://spatialanalyzer.github.io/briosa-docs/api
 for the client API overview. The target-specific source and locked protocol define
 this package's exact API.
 
+### Optional arguments that servers require
+
+Some arguments are optional in the method signature but required by released 0.9
+servers. Leaving an optional list out sends an empty list, and the server decides
+whether to accept it. Supply these inputs, or the call fails with a
+`BriosaOperationException` whose `Kind` is `Validation` and whose
+`ExecutionDisposition` is `NotStarted`, so nothing runs in SpatialAnalyzer:
+
+| Method | Inputs to supply |
+| --- | --- |
+| `LocateInstrumentsUsmnAsync` | `nominalsGroup` with a non-blank name, and at least one group in `excludedGroups` |
+| `LocateInstrumentGroupToSurfaceQuickFitAsync` | At least one object in `otherObjectsToTransform` |
+| `FeatureInspectionAutoFilterAsync` | At least one entry in each of `pointNames`, `groupNames`, `cloudNames`, and `featureCheckNameList` |
+
 ## Server selection
 
 Applications select a server independently of their protocol generation pin.

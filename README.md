@@ -31,3 +31,13 @@ of 30 seconds in both products. It is sized from the server's default lifecycle
 bounds; see [startup and lifecycle time budgets](docs/design/v1-public-api-contract.md#startup-and-lifecycle-time-budgets).
 A budget that expires during an RPC now raises `BriosaStartupException`
 (`startup-timeout`) instead of `OperationCanceledException`.
+
+Unreleased: twelve optional list arguments in eight methods threw
+`ArgumentNullException` before sending anything when left at their `null`
+default. Both products now send them as empty lists, and the server decides
+whether an empty list is accepted; see [collections](docs/design/v1-public-api-contract.md#collections).
+Released 0.9 servers accept empty callout notes and `QuickAlignAsync` lists. They
+reject the other six lists when empty, and `LocateInstrumentsUsmnAsync` also
+needs `nominalsGroup`. Each product guide lists the inputs to supply:
+[SA 2024](targets/2024.1.0508.5/README.md#optional-arguments-that-servers-require),
+[SA 2026](targets/2026.1.0529.7/README.md#optional-arguments-that-servers-require).
