@@ -165,7 +165,8 @@ public sealed class BriosaOperationException : BriosaException
         RecoveryGuidance recoveryGuidance,
         ReplayGuidance replayGuidance,
         ReplaySafety replaySafety,
-        Exception innerException)
+        Exception innerException,
+        MpExecutionDetails? mpExecution = null)
         : base($"Briosa operation '{operationId}' failed ({diagnosticCode}).", innerException)
     {
         OperationId = operationId;
@@ -175,6 +176,7 @@ public sealed class BriosaOperationException : BriosaException
         RecoveryGuidance = recoveryGuidance;
         ReplayGuidance = replayGuidance;
         ReplaySafety = replaySafety;
+        MpExecution = mpExecution;
     }
 
     public string OperationId { get; }
@@ -184,6 +186,13 @@ public sealed class BriosaOperationException : BriosaException
     public RecoveryGuidance RecoveryGuidance { get; }
     public ReplayGuidance ReplayGuidance { get; }
     public ReplaySafety ReplaySafety { get; }
+
+    /// <summary>
+    /// Gets the MP execution details, when the failure relates to the MP command:
+    /// its state and result code, and the retrieval of each output. A partial
+    /// success (MP code 4) stays <see cref="MpExecutionState.PartialSuccess"/> here.
+    /// </summary>
+    public MpExecutionDetails? MpExecution { get; }
 }
 
 [SuppressMessage("Design", "CA1032:Implement standard exception constructors", Justification = "A stable diagnostic code is required.")]
