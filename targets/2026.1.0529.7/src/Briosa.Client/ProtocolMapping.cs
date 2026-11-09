@@ -178,8 +178,11 @@ internal static class ProtocolMapping
             exception);
     }
 
-    // Every successful MP result carries its execution details. A success is
-    // Succeeded or PartialSuccess (MP code 4); anything else is protocol drift.
+    // Every successful MP result carries its execution details, checked on every
+    // call whether or not the caller observes them. A success is Succeeded with
+    // MP code 2 or PartialSuccess with MP code 4: the worker reports success only
+    // after it reads one of those codes, and the server copies it. Anything else
+    // is protocol drift.
     public static MpCompletion MapMpCompletion(IMessage response)
     {
         ArgumentNullException.ThrowIfNull(response);
@@ -195,10 +198,16 @@ internal static class ProtocolMapping
             throw new BriosaProtocolException("mp-execution-state");
         }
 
+        var expectedCode = state == MpExecutionState.Succeeded ? 2 : 4;
+        if (!execution.HasMpResultCode || execution.MpResultCode != expectedCode)
+        {
+            throw new BriosaProtocolException("mp-execution-result-code");
+        }
+
         return new MpCompletion
         {
             State = state,
-            MpResultCode = execution.HasMpResultCode ? execution.MpResultCode : null,
+            MpResultCode = execution.MpResultCode,
         };
     }
 

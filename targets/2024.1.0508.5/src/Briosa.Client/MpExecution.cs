@@ -63,18 +63,19 @@ public sealed record OutputRetrieval
 /// <c>onMpCompletion</c> observer to an MP method to receive it.
 /// </summary>
 /// <remarks>
-/// <see cref="State"/> is <see cref="MpExecutionState.Succeeded"/>, or <see
-/// cref="MpExecutionState.PartialSuccess"/> when SpatialAnalyzer returned MP code 4:
-/// the command did its work and the call returned its outputs, but the command
-/// did not have its full intended effect.
+/// <see cref="State"/> is <see cref="MpExecutionState.Succeeded"/> with MP code 2,
+/// or <see cref="MpExecutionState.PartialSuccess"/> with MP code 4: the command did
+/// its work and the call returned its outputs, but the command did not have its
+/// full intended effect. The client checks that pairing on every success, so a
+/// completion always carries its code.
 /// </remarks>
 public sealed record MpCompletion
 {
     /// <summary>Gets how the MP command completed.</summary>
     public required MpExecutionState State { get; init; }
 
-    /// <summary>Gets the MP result code, when SpatialAnalyzer returned one.</summary>
-    public int? MpResultCode { get; init; }
+    /// <summary>Gets the MP result code: 2 for Succeeded, 4 for PartialSuccess.</summary>
+    public required int MpResultCode { get; init; }
 }
 
 /// <summary>
