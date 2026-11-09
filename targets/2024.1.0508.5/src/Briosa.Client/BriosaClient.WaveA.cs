@@ -221,7 +221,7 @@ public sealed partial class BriosaClient
 
     /// <remarks>
     /// <c>fitInterfaceTolerance</c>: -1.0 uses the profile tolerance.<br/>
-    /// <c>startingConditionGeometry</c>: Optional in the MP editor; the existing API presence and omission behavior is unchanged.<br/>
+    /// <c>startingConditionGeometry</c>: Optional: omitted when absent, so SpatialAnalyzer fits without a starting geometry. An empty name is rejected.<br/>
     /// </remarks>
     public Task FitGeometryToPointGroupAsync(
         GeometryType geometryType,
@@ -231,7 +231,7 @@ public sealed partial class BriosaClient
         bool reportDeviations,
         double fitInterfaceTolerance,
         bool ignoreOutOfTolerancePoints,
-        CollectionObjectName startingConditionGeometry,
+        CollectionObjectName? startingConditionGeometry = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -259,7 +259,7 @@ public sealed partial class BriosaClient
 
     /// <remarks>
     /// <c>fitInterfaceTolerance</c>: -1.0 uses the profile tolerance.<br/>
-    /// <c>startingConditionGeometry</c>: Optional in the MP editor; the existing API presence and omission behavior is unchanged.<br/>
+    /// <c>startingConditionGeometry</c>: Optional: omitted when absent, so SpatialAnalyzer fits without a starting geometry. An empty name is rejected.<br/>
     /// </remarks>
     public Task FitGeometryToPointGroupProjectedToPlaneAsync(
         GeometryType geometryType,
@@ -270,7 +270,7 @@ public sealed partial class BriosaClient
         bool reportDeviations,
         double fitInterfaceTolerance,
         bool ignoreOutOfTolerancePoints,
-        CollectionObjectName startingConditionGeometry,
+        CollectionObjectName? startingConditionGeometry = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -299,7 +299,7 @@ public sealed partial class BriosaClient
 
     /// <remarks>
     /// <c>fitInterfaceTolerance</c>: -1.0 uses the profile tolerance.<br/>
-    /// <c>startingConditionGeometry</c>: Optional in the MP editor; the existing API presence and omission behavior is unchanged.<br/>
+    /// <c>startingConditionGeometry</c>: Optional: omitted when absent, so SpatialAnalyzer fits without a starting geometry. An empty name is rejected.<br/>
     /// </remarks>
     public Task FitGeometryToPointsAsync(
         GeometryType geometryType,
@@ -309,7 +309,7 @@ public sealed partial class BriosaClient
         bool reportDeviations,
         double fitInterfaceTolerance,
         bool ignoreOutOfTolerancePoints,
-        CollectionObjectName startingConditionGeometry,
+        CollectionObjectName? startingConditionGeometry = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -2641,7 +2641,7 @@ public sealed partial class BriosaClient
         bool importIntoFoldersMatchingCadFileHierarchy = false,
         bool removeEmptyFolders = true,
         int surfaceNormalsMode = 1,
-        bool promptOnMissingComponents = true,
+        bool promptOnMissingComponents = false,
         bool selectiveImport = false,
         bool explodeSurfaces = false,
         string cadFileUnits = "",
@@ -6477,7 +6477,7 @@ public sealed partial class BriosaClient
     }
 
     /// <remarks>
-    /// <c>templateChartName</c>: Optional in the MP editor; the existing API presence and omission behavior is unchanged.<br/>
+    /// <c>templateChartName</c>: Optional: omitted when absent. An empty name is rejected, and a name that matches no chart can open a blocking SpatialAnalyzer dialog.<br/>
     /// </remarks>
     public Task CreateChartFromVectorGroupAsync(
         ChartName newChartName,
@@ -6485,7 +6485,7 @@ public sealed partial class BriosaClient
         ChartType chartType,
         DatasetType dataSetToChart,
         DatasetType auxDataSetToChart,
-        ChartName templateChartName,
+        ChartName? templateChartName = null,
         bool showInterface = false,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -7135,7 +7135,7 @@ public sealed partial class BriosaClient
     }
 
     public Task RemoveReportTagAsync(
-        string tagName = "",
+        string tagName,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -7745,7 +7745,7 @@ public sealed partial class BriosaClient
     }
 
     public Task DeleteFolderAsync(
-        string folderPath = "",
+        string folderPath,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -8255,7 +8255,7 @@ public sealed partial class BriosaClient
 
     public Task ScaleObjectsAsync(
         IEnumerable<CollectionObjectName> objects,
-        double scaleFactor = 0.000000,
+        double scaleFactor,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -8680,11 +8680,11 @@ public sealed partial class BriosaClient
     }
 
     /// <remarks>
-    /// <c>profileFileName</c>: Optional in the MP editor; the existing API presence and omission behavior is unchanged.<br/>
+    /// <c>profileFileName</c>: Optional: omitted when absent. An empty path is rejected.<br/>
     /// </remarks>
     public Task SetUserInterfaceProfileAsync(
         string profileName,
-        FileReference profileFileName,
+        FileReference? profileFileName = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -8877,7 +8877,7 @@ public sealed partial class BriosaClient
     }
 
     public Task DeleteVariableAsync(
-        string name = "",
+        string name,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -8897,7 +8897,7 @@ public sealed partial class BriosaClient
     }
 
     public Task DeleteVariablesWildcardMatchAsync(
-        string variableWildcardCriteria = "",
+        string variableWildcardCriteria,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -9096,7 +9096,7 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
-    public Task<CollectionObjectName[]> GetRelationshipRefListVariableAsync(
+    public Task<CollectionItemName[]> GetRelationshipRefListVariableAsync(
         string name = "",
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -9107,7 +9107,7 @@ public sealed partial class BriosaClient
             {
                 ["name"] = name,
             });
-        return InvokeOperationAsync<CollectionObjectName[]>(
+        return InvokeOperationAsync<CollectionItemName[]>(
             "briosa.Variables",
             "GetRelationshipRefListVariable",
             request,
@@ -9116,7 +9116,7 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
-    public Task<CollectionObjectName[]> GetReportItemsReferenceListVariableAsync(
+    public Task<CollectionItemName[]> GetReportItemsReferenceListVariableAsync(
         string name = "",
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -9127,7 +9127,7 @@ public sealed partial class BriosaClient
             {
                 ["name"] = name,
             });
-        return InvokeOperationAsync<CollectionObjectName[]>(
+        return InvokeOperationAsync<CollectionItemName[]>(
             "briosa.Variables",
             "GetReportItemsReferenceListVariable",
             request,
@@ -9666,7 +9666,7 @@ public sealed partial class BriosaClient
 
     public Task DeleteIthVectorFromVectorGroupAsync(
         CollectionObjectName vectorGroupName,
-        int vectorIndex = 0,
+        int vectorIndex,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -9688,7 +9688,7 @@ public sealed partial class BriosaClient
 
     public Task DeleteVectorByNameAsync(
         CollectionObjectName vectorGroupName,
-        string vectorName = "",
+        string vectorName,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {

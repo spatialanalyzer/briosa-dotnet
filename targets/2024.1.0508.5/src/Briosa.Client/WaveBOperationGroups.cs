@@ -5076,22 +5076,19 @@ public sealed class BriosaGdtOperations
     }
 
     /// <remarks>
-    /// <c>pointNames</c>: Released 0.9 servers require at least one point.<br/>
-    /// <c>groupNames</c>: Released 0.9 servers require at least one group.<br/>
-    /// <c>cloudNames</c>: Released 0.9 servers require at least one cloud.<br/>
-    /// <c>featureCheckNameList</c>: Released 0.9 servers require at least one feature check.<br/>
+    /// <c>pointNames</c>, <c>groupNames</c>, <c>cloudNames</c> and <c>featureCheckNameList</c>: Required. The server rejects an empty list.<br/>
     /// </remarks>
     public Task FeatureInspectionAutoFilterAsync(
-        IEnumerable<PointName>? pointNames = null,
-        IEnumerable<CollectionObjectName>? groupNames = null,
-        IEnumerable<CollectionObjectName>? cloudNames = null,
+        IEnumerable<PointName> pointNames,
+        IEnumerable<CollectionObjectName> groupNames,
+        IEnumerable<CollectionObjectName> cloudNames,
+        IEnumerable<CollectionItemName> featureCheckNameList,
         double surfaceOffset = 0.1,
         double edgeOffset = 0.1,
         OffsetDirectionType offsetDirection = OffsetDirectionType.Both,
         bool includePointsWithinCylinderAxisProximity = false,
         bool enforceMaxPointsPerFaceInOutput = false,
         int maxPointsPerFace = 0,
-        IEnumerable<CollectionItemName>? featureCheckNameList = null,
         bool includeDatums = true,
         bool createCloudForEachDatumOrCheck = false,
         Action<MpCompletion>? onMpCompletion = null,
@@ -5101,16 +5098,16 @@ public sealed class BriosaGdtOperations
             new Transport.FeatureInspectionAutoFilterRequest(),
             new Dictionary<string, object?>
             {
-                ["point_names"] = pointNames ?? [],
-                ["group_names"] = groupNames ?? [],
-                ["cloud_names"] = cloudNames ?? [],
+                ["point_names"] = pointNames,
+                ["group_names"] = groupNames,
+                ["cloud_names"] = cloudNames,
                 ["surface_offset"] = surfaceOffset,
                 ["edge_offset"] = edgeOffset,
                 ["offset_direction"] = offsetDirection,
                 ["include_points_within_cylinder_axis_proximity"] = includePointsWithinCylinderAxisProximity,
                 ["enforce_max_points_per_face_in_output"] = enforceMaxPointsPerFaceInOutput,
                 ["max_points_per_face"] = maxPointsPerFace,
-                ["feature_check_name_list"] = featureCheckNameList ?? [],
+                ["feature_check_name_list"] = featureCheckNameList,
                 ["include_datums"] = includeDatums,
                 ["create_cloud_for_each_datum_or_check"] = createCloudForEachDatumOrCheck,
             });
@@ -6040,7 +6037,7 @@ public sealed class BriosaInstrumentOperations
         bool forceExistingGroup = false,
         bool showCompleteDialog = false,
         bool waitForCompletion = true,
-        bool autoStart = false,
+        bool autoStart = true,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -6069,7 +6066,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         CollectionObjectName geometry,
         string modeProfile,
-        bool waitForComplete = false,
+        bool waitForComplete = true,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -6339,7 +6336,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         PointName target,
         string measurementMode,
-        bool measureImmediately = false,
+        bool measureImmediately = true,
         bool waitForCompletion = true,
         double timeoutSeconds = 0.0,
         Action<MpCompletion>? onMpCompletion = null,
@@ -6584,7 +6581,7 @@ public sealed class BriosaInstrumentOperations
 
     public Task DeleteMeasurementObservationAsync(
         PointName pointName,
-        int observationIndex = 0,
+        int observationIndex,
         bool deletePointIfNoMeasurementsRemain = false,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -7632,14 +7629,14 @@ public sealed class BriosaInstrumentOperations
     }
 
     /// <remarks>
-    /// <c>otherObjectsToTransform</c>: Released 0.9 servers require at least one object.<br/>
+    /// <c>otherObjectsToTransform</c>: Required. The server rejects an empty list.<br/>
     /// </remarks>
     public Task<FitErrorResult> LocateInstrumentGroupToSurfaceQuickFitAsync(
         CollectionInstrumentId instrument,
         CollectionObjectName measuredGroup,
         CollectionObjectName surfacePointsGroup,
         CollectionObjectName surfaceToFit,
-        IEnumerable<CollectionObjectName>? otherObjectsToTransform = null,
+        IEnumerable<CollectionObjectName> otherObjectsToTransform,
         double rmsTolerance = 0.0,
         double maximumAbsoluteTolerance = 0.0,
         Action<MpCompletion>? onMpCompletion = null,
@@ -7653,17 +7650,17 @@ public sealed class BriosaInstrumentOperations
                 ["measured_group"] = measuredGroup,
                 ["surface_points_group"] = surfacePointsGroup,
                 ["surface_to_fit"] = surfaceToFit,
-                ["other_objects_to_transform"] = otherObjectsToTransform ?? [],
+                ["other_objects_to_transform"] = otherObjectsToTransform,
                 ["rms_tolerance"] = rmsTolerance,
                 ["maximum_absolute_tolerance"] = maximumAbsoluteTolerance,
             });
-        return _client.InvokeOperationAsync<FitErrorResult>(
+        return MapQuickFitAsync(_client.InvokeOperationAsync<QuickFitErrors>(
             "briosa.InstrumentOperations",
             "LocateInstrumentGroupToSurfaceQuickFit",
             request,
             Transport.LocateInstrumentGroupToSurfaceQuickFitResult.Parser,
             onMpCompletion,
-            cancellationToken);
+            cancellationToken));
     }
 
     public Task LocateInstrumentRefTieInAsync(
@@ -7695,8 +7692,8 @@ public sealed class BriosaInstrumentOperations
     }
 
     /// <remarks>
-    /// <c>nominalsGroup</c>: Released 0.9 servers require a non-blank group name.<br/>
-    /// <c>excludedGroups</c>: Released 0.9 servers require at least one group.<br/>
+    /// <c>nominalsGroup</c>: Optional: omitted when absent. An empty name is sent blank, which SpatialAnalyzer documents as no nominals group.<br/>
+    /// <c>excludedGroups</c>: Optional: an omitted or empty list is sent empty, and the server then skips the setter.<br/>
     /// <c>analysisTimeLimit</c>: Time in minutes; 0 disables the time limit.<br/>
     /// </remarks>
     public Task<FitErrorResult> LocateInstrumentsUsmnAsync(
@@ -8067,7 +8064,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         PointName existingTargetId,
         CollectionObjectName groupNameForNewPoint,
-        bool measureImmediately = false,
+        bool measureImmediately = true,
         FileReference? htmlPromptFile = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -8095,7 +8092,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         PointName existingTargetId,
         CollectionObjectName groupNameForNewPoint,
-        bool measureImmediately = false,
+        bool measureImmediately = true,
         FileReference? htmlPromptFile = null,
         double tolerance = 0.0,
         Action<MpCompletion>? onMpCompletion = null,
@@ -8125,7 +8122,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         PointName existingTargetId,
         CollectionObjectName groupNameForNewPoint,
-        bool measureImmediately = false,
+        bool measureImmediately = true,
         FileReference? htmlPromptFile = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -8176,7 +8173,7 @@ public sealed class BriosaInstrumentOperations
     public Task MeasureSinglePointHereAsync(
         CollectionInstrumentId instrument,
         PointName targetId,
-        bool measureImmediately = false,
+        bool measureImmediately = true,
         FileReference? htmlPromptFile = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -8224,7 +8221,7 @@ public sealed class BriosaInstrumentOperations
     public Task MoveMeasurementObservationAsync(
         PointName sourcePointName,
         PointName destinationPointName,
-        int observationIndex = 0,
+        int observationIndex,
         bool deletePointIfNoMeasurementsRemain = false,
         bool forceObservationActive = true,
         Action<MpCompletion>? onMpCompletion = null,
@@ -8463,7 +8460,7 @@ public sealed class BriosaInstrumentOperations
 
     public Task SetAbsoluteInstrumentScaleFactorAsync(
         CollectionInstrumentId instrument,
-        double scaleFactor = 0.0,
+        double scaleFactor,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -8716,16 +8713,17 @@ public sealed class BriosaInstrumentOperations
     }
 
     /// <remarks>
+    /// <c>setAutomatically</c>: Required. When it is false the server requires temperature, pressure and relative humidity; when it is true SpatialAnalyzer ignores them.<br/>
     /// <c>temperature</c>: Temperature in degrees Fahrenheit.<br/>
     /// <c>pressure</c>: Pressure in millimeters of mercury.<br/>
     /// <c>relativeHumidity</c>: Relative humidity in percent.<br/>
     /// </remarks>
     public Task SetInstrumentWeatherSettingAsync(
         CollectionInstrumentId instrument,
-        double temperature = 0.0,
-        double pressure = 0.0,
-        double relativeHumidity = 0.0,
-        bool setAutomatically = false,
+        bool setAutomatically,
+        double? temperature = null,
+        double? pressure = null,
+        double? relativeHumidity = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -8756,7 +8754,7 @@ public sealed class BriosaInstrumentOperations
 
     public Task SetMultiplyInstrumentScaleFactorAsync(
         CollectionInstrumentId instrument,
-        double scaleFactor = 0.0,
+        double scaleFactor,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -9632,6 +9630,18 @@ public sealed class BriosaInstrumentOperations
             onMpCompletion,
             cancellationToken);
     }
+
+    // The quick fit's wire result names its maximum maximum_absolute_error; the
+    // facade keeps the shared FitErrorResult shape, as briosa-js does (#45).
+    private static async Task<FitErrorResult> MapQuickFitAsync(Task<QuickFitErrors> errors)
+    {
+        var value = await errors.ConfigureAwait(false);
+        return new FitErrorResult
+        {
+            RmsError = value.RmsError,
+            MaximumError = value.MaximumAbsoluteError,
+        };
+    }
 }
 
 public sealed class BriosaRobotCalibrationApplianceNodeOperations
@@ -10324,7 +10334,7 @@ public sealed class BriosaRobotOperations
 
     public Task DeleteRobotCalibrationAsync(
         CollectionMachineId machineId,
-        string calibrationName = "",
+        string calibrationName,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -10437,13 +10447,13 @@ public sealed class BriosaRobotOperations
                 ["machine_id"] = machineId,
                 ["link_name"] = linkName,
             });
-        return _client.InvokeOperationAsync<RobotModelLinkParameters>(
+        return MapModelLinkParametersAsync(_client.InvokeOperationAsync<RobotModelLinkParameterValues>(
             "briosa.RobotOperations",
             "GetRobotMachineModelLinkParameters",
             request,
             Transport.GetRobotMachineModelLinkParametersResult.Parser,
             onMpCompletion,
-            cancellationToken);
+            cancellationToken));
     }
 
     public Task<double> GetRobotMachineParameterAsync(
@@ -10602,7 +10612,7 @@ public sealed class BriosaRobotOperations
         CollectionMachineId machineId,
         CollectionObjectName destinationFrame,
         bool useSaKinematics = false,
-        bool acknowledgeArrival = false,
+        bool acknowledgeArrival = true,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -10626,12 +10636,12 @@ public sealed class BriosaRobotOperations
 
     public Task MoveRobotMachineToJointPoseSixDofAsync(
         CollectionMachineId machineId,
-        double joint1 = 0.0,
-        double joint2 = 0.0,
-        double joint3 = 0.0,
-        double joint4 = 0.0,
-        double joint5 = 0.0,
-        double joint6 = 0.0,
+        double joint1,
+        double joint2,
+        double joint3,
+        double joint4,
+        double joint5,
+        double joint6,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -10659,7 +10669,7 @@ public sealed class BriosaRobotOperations
     public Task<Transform> MoveRobotMachineToNamedDestinationAsync(
         CollectionMachineId machineId,
         string destinationName = "",
-        bool acknowledgeArrival = false,
+        bool acknowledgeArrival = true,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -10943,53 +10953,6 @@ public sealed class BriosaRobotOperations
 
     public Task SetRobotMachineModelLinkParametersAsync(
         CollectionMachineId machineId,
-        string linkName = "",
-        Action<MpCompletion>? onMpCompletion = null,
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.SetRobotMachineModelLinkParametersRequest(),
-            new Dictionary<string, object?>
-            {
-                ["machine_id"] = machineId,
-                ["link_name"] = linkName,
-                ["link_type"] = RobotModelLinkType.Dh,
-                ["dh_alpha_component"] = 0.000000,
-                ["dh_a_component"] = 0.000000,
-                ["dh_d_component"] = 0.000000,
-                ["dh_theta_component"] = 0.000000,
-                ["dh_x_axis_deflection_factor"] = 0.000000,
-                ["dh_y_axis_deflection_factor"] = 0.000000,
-                ["dh_z_axis_deflection_factor"] = 0.000000,
-                ["six_dof_x_component"] = 0.000000,
-                ["six_dof_y_component"] = 0.000000,
-                ["six_dof_z_component"] = 0.000000,
-                ["six_dof_rx_component"] = 0.000000,
-                ["six_dof_ry_component"] = 0.000000,
-                ["six_dof_rz_component"] = 0.000000,
-                ["active_joint_component"] = RobotActiveJointComponent.None,
-                ["encoder_offset_value"] = 0.000000,
-                ["minimum_encoder_limit"] = 0.000000,
-                ["maximum_encoder_limit"] = 0.000000,
-                ["encoder_sense_negative"] = false,
-                ["include_additional_encoder"] = false,
-                ["additional_encoder_index_offset"] = 0,
-                ["additional_encoder_sense_negative"] = false,
-                ["segment_origin_mass_kg"] = 0.000000,
-                ["segment_cg_mass_kg"] = 0.000000,
-                ["segment_cg_in_segment"] = new Vector(),
-            });
-        return _client.InvokeOperationAsync(
-            "briosa.RobotOperations",
-            "SetRobotMachineModelLinkParameters",
-            request,
-            Transport.SetRobotMachineModelLinkParametersResult.Parser,
-            onMpCompletion,
-            cancellationToken);
-    }
-
-    public Task SetRobotMachineModelLinkParametersAsync(
-        CollectionMachineId machineId,
         string linkName,
         RobotModelLinkConfiguration configuration,
         Action<MpCompletion>? onMpCompletion = null,
@@ -11039,8 +11002,8 @@ public sealed class BriosaRobotOperations
 
     public Task SetRobotMachineParameterAsync(
         CollectionMachineId machineId,
-        string parameterName = "",
-        double parameterValue = 0.0,
+        string parameterName,
+        double parameterValue,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -11300,5 +11263,45 @@ public sealed class BriosaRobotOperations
             Transport.SetCalibrationApplianceDataResult.Parser,
             onMpCompletion,
             cancellationToken);
+    }
+
+    // The wire result is flat; the facade nests the settable values in the same
+    // configuration that SetRobotMachineModelLinkParametersAsync takes.
+    private static async Task<RobotModelLinkParameters> MapModelLinkParametersAsync(
+        Task<RobotModelLinkParameterValues> values)
+    {
+        var value = await values.ConfigureAwait(false);
+        return new RobotModelLinkParameters
+        {
+            Configuration = new RobotModelLinkConfiguration
+            {
+                LinkType = value.LinkType,
+                DhAlphaComponent = value.DhAlphaComponent,
+                DhAComponent = value.DhAComponent,
+                DhDComponent = value.DhDComponent,
+                DhThetaComponent = value.DhThetaComponent,
+                DhXAxisDeflectionFactor = value.DhXAxisDeflectionFactor,
+                DhYAxisDeflectionFactor = value.DhYAxisDeflectionFactor,
+                DhZAxisDeflectionFactor = value.DhZAxisDeflectionFactor,
+                SixDofXComponent = value.SixDofXComponent,
+                SixDofYComponent = value.SixDofYComponent,
+                SixDofZComponent = value.SixDofZComponent,
+                SixDofRxComponent = value.SixDofRxComponent,
+                SixDofRyComponent = value.SixDofRyComponent,
+                SixDofRzComponent = value.SixDofRzComponent,
+                ActiveJointComponent = value.ActiveJointComponent,
+                EncoderOffsetValue = value.EncoderOffsetValue,
+                MinimumEncoderLimit = value.MinimumEncoderLimit,
+                MaximumEncoderLimit = value.MaximumEncoderLimit,
+                EncoderSenseNegative = value.EncoderSenseNegative,
+                IncludeAdditionalEncoder = value.IncludeAdditionalEncoder,
+                AdditionalEncoderIndexOffset = value.AdditionalEncoderIndexOffset,
+                AdditionalEncoderSenseNegative = value.AdditionalEncoderSenseNegative,
+                SegmentOriginMassKg = value.SegmentOriginMassKg,
+                SegmentCgMassKg = value.SegmentCgMassKg,
+                SegmentCgInSegment = value.SegmentCgInSegment,
+            },
+            EncoderValue = value.EncoderValue,
+        };
     }
 }

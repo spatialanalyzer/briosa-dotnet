@@ -765,32 +765,36 @@ public sealed record RelationshipWatchWindowTemplateOptions
     public bool HideUnits { get; init; }
 }
 
+/// <summary>
+/// Every parameter of one robot model link. All members are required, so the
+/// client fills nothing in: the server rejects a request that omits one of the
+/// 22 scalar parameters instead of overwriting it with 0 or false.
+/// </summary>
 public sealed record RobotModelLinkConfiguration
 {
-    public RobotModelLinkType LinkType { get; init; } = RobotModelLinkType.Dh;
-    public double DhAlphaComponent { get; init; }
-    public double DhAComponent { get; init; }
-    public double DhDComponent { get; init; }
-    public double DhThetaComponent { get; init; }
-    public double DhXAxisDeflectionFactor { get; init; }
-    public double DhYAxisDeflectionFactor { get; init; }
-    public double DhZAxisDeflectionFactor { get; init; }
-    public double SixDofXComponent { get; init; }
-    public double SixDofYComponent { get; init; }
-    public double SixDofZComponent { get; init; }
-    public double SixDofRxComponent { get; init; }
-    public double SixDofRyComponent { get; init; }
-    public double SixDofRzComponent { get; init; }
-    public RobotActiveJointComponent ActiveJointComponent { get; init; }
-        = RobotActiveJointComponent.None;
-    public double EncoderOffsetValue { get; init; }
-    public double MinimumEncoderLimit { get; init; }
-    public double MaximumEncoderLimit { get; init; }
-    public bool EncoderSenseNegative { get; init; }
-    public bool IncludeAdditionalEncoder { get; init; }
-    public int AdditionalEncoderIndexOffset { get; init; }
-    public bool AdditionalEncoderSenseNegative { get; init; }
-    public double SegmentOriginMassKg { get; init; }
-    public double SegmentCgMassKg { get; init; }
-    public Vector SegmentCgInSegment { get; init; } = new(0.0, 0.0, 0.0);
+    public required RobotModelLinkType LinkType { get; init; }
+    public required double DhAlphaComponent { get; init; }
+    public required double DhAComponent { get; init; }
+    public required double DhDComponent { get; init; }
+    public required double DhThetaComponent { get; init; }
+    public required double DhXAxisDeflectionFactor { get; init; }
+    public required double DhYAxisDeflectionFactor { get; init; }
+    public required double DhZAxisDeflectionFactor { get; init; }
+    public required double SixDofXComponent { get; init; }
+    public required double SixDofYComponent { get; init; }
+    public required double SixDofZComponent { get; init; }
+    public required double SixDofRxComponent { get; init; }
+    public required double SixDofRyComponent { get; init; }
+    public required double SixDofRzComponent { get; init; }
+    public required RobotActiveJointComponent ActiveJointComponent { get; init; }
+    public required double EncoderOffsetValue { get; init; }
+    public required double MinimumEncoderLimit { get; init; }
+    public required double MaximumEncoderLimit { get; init; }
+    public required bool EncoderSenseNegative { get; init; }
+    public required bool IncludeAdditionalEncoder { get; init; }
+    public required int AdditionalEncoderIndexOffset { get; init; }
+    public required bool AdditionalEncoderSenseNegative { get; init; }
+    public required double SegmentOriginMassKg { get; init; }
+    public required double SegmentCgMassKg { get; init; }
+    public required Vector SegmentCgInSegment { get; init; }
 }

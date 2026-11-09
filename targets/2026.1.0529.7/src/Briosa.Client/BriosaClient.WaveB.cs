@@ -1846,9 +1846,9 @@ public sealed partial class BriosaClient
         CollectionItemName relationshipName,
         CollectionObjectName firstGroupName,
         CollectionObjectName secondGroupName,
+        ToleranceVectorOptions tolerance,
+        ToleranceVectorOptions constraint,
         bool autoUpdateAVectorGroup = false,
-        ToleranceVectorOptions? tolerance = null,
-        ToleranceVectorOptions? constraint = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -1876,14 +1876,14 @@ public sealed partial class BriosaClient
         CollectionItemName relationshipName,
         CollectionObjectName nominalGroupName,
         CollectionObjectName measuredGroupName,
+        ToleranceVectorOptions tolerance,
+        ToleranceVectorOptions constraint,
         bool autoUpdateAVectorGroup = false,
         bool useClosestPoint = true,
         bool displayClosestPointWatchWindow = false,
         bool useViewZoomingWithProximity = false,
         bool ignorePointsBeyondThreshold = false,
         double proximityThreshold = 0.01,
-        ToleranceVectorOptions? tolerance = null,
-        ToleranceVectorOptions? constraint = null,
         double fitWeight = 1.0,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -2000,8 +2000,8 @@ public sealed partial class BriosaClient
         CollectionItemName relationshipName,
         PointName firstPointName,
         PointName secondPointName,
-        ToleranceVectorOptions? tolerance = null,
-        ToleranceVectorOptions? constraint = null,
+        ToleranceVectorOptions tolerance,
+        ToleranceVectorOptions constraint,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -2056,9 +2056,9 @@ public sealed partial class BriosaClient
         CollectionItemName relationshipName,
         IEnumerable<PointName> nominalPoints,
         IEnumerable<PointName> measuredPoints,
+        ToleranceVectorOptions tolerance,
+        ToleranceVectorOptions constraint,
         bool autoUpdateAVectorGroup = false,
-        ToleranceVectorOptions? tolerance = null,
-        ToleranceVectorOptions? constraint = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
