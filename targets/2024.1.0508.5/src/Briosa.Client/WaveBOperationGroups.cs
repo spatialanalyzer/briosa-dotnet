@@ -20,6 +20,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName meshServingAsProjectionTarget,
         double surfaceOffsetRange = 10,
         bool biDirectionalProjection = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -39,11 +40,13 @@ public sealed class BriosaConstructionOperations
             "AddSurfaceToMeshOffsetAlongReferenceDirection",
             request,
             Transport.AddSurfaceToMeshOffsetAlongReferenceDirectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task AutoArrangeCalloutViewAsync(
         CollectionItemName calloutView,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -57,10 +60,12 @@ public sealed class BriosaConstructionOperations
             "AutoArrangeCalloutView",
             request,
             Transport.AutoArrangeCalloutViewResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ClearHiddenPointBarDatabaseAsync(
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -73,6 +78,7 @@ public sealed class BriosaConstructionOperations
             "ClearHiddenPointBarDatabase",
             request,
             Transport.ClearHiddenPointBarDatabaseResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -81,6 +87,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName planeName,
         CollectionObjectName surfaceName,
         double approximationTolerance = 0.0001,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -97,6 +104,7 @@ public sealed class BriosaConstructionOperations
             "ConstructBSplineFromIntersectionOfPlaneAndSurface",
             request,
             Transport.ConstructBSplineFromIntersectionOfPlaneAndSurfaceResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -105,6 +113,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName firstSurfaceName,
         CollectionObjectName secondSurfaceName,
         double approximationTolerance = 0.0001,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -121,12 +130,14 @@ public sealed class BriosaConstructionOperations
             "ConstructBSplineFromIntersectionOfSurfaces",
             request,
             Transport.ConstructBSplineFromIntersectionOfSurfacesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructBSplineFromPointSetAsync(
         CollectionObjectName resultingBSplineName,
         CollectionObjectName pointSetContainer,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -142,6 +153,7 @@ public sealed class BriosaConstructionOperations
             "ConstructBSplineFromPointSet",
             request,
             Transport.ConstructBSplineFromPointSetResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -149,6 +161,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName resultingBSplineName,
         BSplineFitOptions bSplineFitOptions,
         CollectionObjectName pointSetContainer,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -164,12 +177,14 @@ public sealed class BriosaConstructionOperations
             "ConstructBSplineFromPointSet",
             request,
             Transport.ConstructBSplineFromPointSetResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructBSplineFromPointsAsync(
         CollectionObjectName resultingBSplineName,
         IEnumerable<PointName> pointList,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -185,6 +200,7 @@ public sealed class BriosaConstructionOperations
             "ConstructBSplineFromPoints",
             request,
             Transport.ConstructBSplineFromPointsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -192,6 +208,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName resultingBSplineName,
         BSplineFitOptions bSplineFitOptions,
         IEnumerable<PointName> pointList,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -207,6 +224,7 @@ public sealed class BriosaConstructionOperations
             "ConstructBSplineFromPoints",
             request,
             Transport.ConstructBSplineFromPointsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -214,6 +232,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName resultingBSplineName,
         IEnumerable<CollectionObjectName> bSplineList,
         bool closeResultingBSpline = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -229,6 +248,7 @@ public sealed class BriosaConstructionOperations
             "ConstructBSplineFromSeveralBSplines",
             request,
             Transport.ConstructBSplineFromSeveralBSplinesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -239,6 +259,7 @@ public sealed class BriosaConstructionOperations
         int closedLineSegmentLimit = 3,
         int unclosedLineSegmentLimit = 3,
         bool createIntersectionPoints = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -257,12 +278,14 @@ public sealed class BriosaConstructionOperations
             "ConstructBSplinesFromIntersectionOfPlaneAndMesh",
             request,
             Transport.ConstructBSplinesFromIntersectionOfPlaneAndMeshResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionObjectName>> ConstructBSplinesFromLinesAsync(
         IEnumerable<CollectionObjectName> lineList,
         string? resultingBSplineNamePrefix = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -277,12 +300,14 @@ public sealed class BriosaConstructionOperations
             "ConstructBSplinesFromLines",
             request,
             Transport.ConstructBSplinesFromLinesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionObjectName>> ConstructBSplinesFromSurfacesAsync(
         IEnumerable<CollectionObjectName> surfaceList,
         string? resultingBSplineNamePrefix = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -297,12 +322,14 @@ public sealed class BriosaConstructionOperations
             "ConstructBSplinesFromSurfaces",
             request,
             Transport.ConstructBSplinesFromSurfacesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructBoundaryPointsFromCloudAsync(
         CollectionObjectName sourceCloudName,
         CollectionObjectName destinationCloudName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -317,6 +344,7 @@ public sealed class BriosaConstructionOperations
             "ConstructBoundaryPointsFromCloud",
             request,
             Transport.ConstructBoundaryPointsFromCloudResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -325,6 +353,7 @@ public sealed class BriosaConstructionOperations
         Vector circleCenter,
         Vector circleNormal,
         double circleRadius,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -341,10 +370,12 @@ public sealed class BriosaConstructionOperations
             "ConstructCircle",
             request,
             Transport.ConstructCircleResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructCirclesFromSurfaceFacesRuntimeSelectAsync(
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -357,6 +388,7 @@ public sealed class BriosaConstructionOperations
             "ConstructCirclesFromSurfaceFacesRuntimeSelect",
             request,
             Transport.ConstructCirclesFromSurfaceFacesRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -364,6 +396,7 @@ public sealed class BriosaConstructionOperations
         CollectionName collectionName,
         string folderPath = "",
         bool makeDefaultCollection = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -379,6 +412,7 @@ public sealed class BriosaConstructionOperations
             "ConstructCollection",
             request,
             Transport.ConstructCollectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -390,6 +424,7 @@ public sealed class BriosaConstructionOperations
         double coneThetaStart,
         double coneThetaSpan,
         double coneIncludedAngle,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -409,10 +444,12 @@ public sealed class BriosaConstructionOperations
             "ConstructCone",
             request,
             Transport.ConstructConeResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructConesFromSurfaceFacesRuntimeSelectAsync(
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -425,6 +462,7 @@ public sealed class BriosaConstructionOperations
             "ConstructConesFromSurfaceFacesRuntimeSelect",
             request,
             Transport.ConstructConesFromSurfaceFacesRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -442,6 +480,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName? referenceObject = null,
         CloudThinningOptions? cloudThinningSettings = null,
         bool updateExistingCloud = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -467,6 +506,7 @@ public sealed class BriosaConstructionOperations
             "ConstructCrossSectionCloud",
             request,
             Transport.ConstructCrossSectionCloudResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -480,6 +520,7 @@ public sealed class BriosaConstructionOperations
         bool projectToReferenceSurface = false,
         CloudThinningOptions? cloudThinningSettings = null,
         bool updateExistingCloud = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -501,6 +542,7 @@ public sealed class BriosaConstructionOperations
             "ConstructCrossSectionCloudUserSelect",
             request,
             Transport.ConstructCrossSectionCloudUserSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -510,6 +552,7 @@ public sealed class BriosaConstructionOperations
         Vector cylinderAxis,
         double cylinderDiameter,
         double cylinderLength,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -527,6 +570,7 @@ public sealed class BriosaConstructionOperations
             "ConstructCylinder",
             request,
             Transport.ConstructCylinderResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -535,6 +579,7 @@ public sealed class BriosaConstructionOperations
         Vector cylinderEndPointA,
         Vector cylinderEndPointB,
         double cylinderDiameter,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -551,10 +596,12 @@ public sealed class BriosaConstructionOperations
             "ConstructCylinderFromEndPoints",
             request,
             Transport.ConstructCylinderFromEndPointsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructCylindersFromSurfaceFacesRuntimeSelectAsync(
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -567,6 +614,7 @@ public sealed class BriosaConstructionOperations
             "ConstructCylindersFromSurfaceFacesRuntimeSelect",
             request,
             Transport.ConstructCylindersFromSurfaceFacesRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -580,6 +628,7 @@ public sealed class BriosaConstructionOperations
         bool uncertaintyEllipsoid = false,
         Transform? transformInWorkingCoordinates = null,
         Color? ellipseColor = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -600,11 +649,13 @@ public sealed class BriosaConstructionOperations
             "ConstructEllipsoid",
             request,
             Transport.ConstructEllipsoidResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructFoldersAsync(
         string folderPath,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -618,11 +669,13 @@ public sealed class BriosaConstructionOperations
             "ConstructFolders",
             request,
             Transport.ConstructFoldersResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructFrameAsync(
         CollectionObjectName newFrameName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -637,12 +690,14 @@ public sealed class BriosaConstructionOperations
             "ConstructFrame",
             request,
             Transport.ConstructFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructFrameAsync(
         CollectionObjectName newFrameName,
         Transform transformInWorkingCoordinates,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -657,6 +712,7 @@ public sealed class BriosaConstructionOperations
             "ConstructFrame",
             request,
             Transport.ConstructFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -665,6 +721,7 @@ public sealed class BriosaConstructionOperations
         AxisIdentifier clockedAxis,
         PointName clockingPoint,
         string? frameName = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -681,6 +738,7 @@ public sealed class BriosaConstructionOperations
             "ConstructFrameAtPointWithWorkingZAndClockedAxis",
             request,
             Transport.ConstructFrameAtPointWithWorkingZAndClockedAxisResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -688,6 +746,7 @@ public sealed class BriosaConstructionOperations
         CollectionMachineId machineId,
         string linkName,
         CollectionObjectName resultingFrame,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -703,12 +762,14 @@ public sealed class BriosaConstructionOperations
             "ConstructFrameAtRobotLink",
             request,
             Transport.ConstructFrameAtRobotLinkResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructFrameAverageOfOtherObjectFramesAsync(
         IEnumerable<CollectionObjectName> objects,
         CollectionObjectName? frameName = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -723,6 +784,7 @@ public sealed class BriosaConstructionOperations
             "ConstructFrameAverageOfOtherObjectFrames",
             request,
             Transport.ConstructFrameAverageOfOtherObjectFramesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -730,6 +792,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName referenceFrame,
         FrameAxis axisToReverse,
         CollectionObjectName? frameName = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -745,12 +808,14 @@ public sealed class BriosaConstructionOperations
             "ConstructFrameCopyAndMakeLeftHanded",
             request,
             Transport.ConstructFrameCopyAndMakeLeftHandedResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructFrameFromPointMeasurementProbingFramesAsync(
         IEnumerable<PointName> pointList,
         bool showFrame = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -765,11 +830,13 @@ public sealed class BriosaConstructionOperations
             "ConstructFrameFromPointMeasurementProbingFrames",
             request,
             Transport.ConstructFrameFromPointMeasurementProbingFramesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructFrameFromTransformInWorldAsync(
         CollectionObjectName newFrameName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -784,12 +851,14 @@ public sealed class BriosaConstructionOperations
             "ConstructFrameFromTransformInWorld",
             request,
             Transport.ConstructFrameFromTransformInWorldResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructFrameFromTransformInWorldAsync(
         CollectionObjectName newFrameName,
         Transform transformInWorldCoordinates,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -804,6 +873,7 @@ public sealed class BriosaConstructionOperations
             "ConstructFrameFromTransformInWorld",
             request,
             Transport.ConstructFrameFromTransformInWorldResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -815,6 +885,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName secondaryAxisObject,
         AxisIdentifier secondaryAxisDefinesWhichAxis,
         CollectionObjectName? frameName = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -834,12 +905,14 @@ public sealed class BriosaConstructionOperations
             "ConstructFrameKnownOriginObjectDirectionObjectDirection",
             request,
             Transport.ConstructFrameKnownOriginObjectDirectionObjectDirectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructFrameOnInstrumentBaseAsync(
         CollectionInstrumentId instrumentId,
         string? frameName = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -854,12 +927,14 @@ public sealed class BriosaConstructionOperations
             "ConstructFrameOnInstrumentBase",
             request,
             Transport.ConstructFrameOnInstrumentBaseResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructFrameOnObjectAsync(
         CollectionObjectName referenceObject,
         CollectionObjectName? frameName = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -874,6 +949,7 @@ public sealed class BriosaConstructionOperations
             "ConstructFrameOnObject",
             request,
             Transport.ConstructFrameOnObjectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -881,6 +957,7 @@ public sealed class BriosaConstructionOperations
         PointName originPoint,
         PointName pointOnXAxis,
         string? frameName = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -896,6 +973,7 @@ public sealed class BriosaConstructionOperations
             "ConstructFramePickOriginAndPointOnXAxisClockZAlongWorkingZ",
             request,
             Transport.ConstructFramePickOriginAndPointOnXAxisClockZAlongWorkingZResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -907,6 +985,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName zPlane,
         double zValueOnPlane,
         CollectionObjectName? frameName = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -926,6 +1005,7 @@ public sealed class BriosaConstructionOperations
             "ConstructFrameThreePlanes",
             request,
             Transport.ConstructFrameThreePlanesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -935,6 +1015,7 @@ public sealed class BriosaConstructionOperations
         PointName primaryAxisPoint,
         PointName secondaryAxisPoint,
         string? frameName = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -952,12 +1033,14 @@ public sealed class BriosaConstructionOperations
             "ConstructFrameThreePoints",
             request,
             Transport.ConstructFrameThreePointsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructFrameWithWizardAsync(
         CollectionObjectName newFrameName,
         bool waitForCompletion = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -972,6 +1055,7 @@ public sealed class BriosaConstructionOperations
             "ConstructFrameWithWizard",
             request,
             Transport.ConstructFrameWithWizardResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -980,6 +1064,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName baseNameForProjectedFrames,
         CollectionObjectName meshServingAsProjectionTarget,
         bool biDirectionalProjection = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -996,6 +1081,7 @@ public sealed class BriosaConstructionOperations
             "ConstructFramesByProjectingFramesOnMeshAlongFrameDirection",
             request,
             Transport.ConstructFramesByProjectingFramesOnMeshAlongFrameDirectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1005,6 +1091,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName objectProvidingDirectionReference,
         CollectionObjectName meshServingAsProjectionTarget,
         bool biDirectionalProjection = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1022,12 +1109,14 @@ public sealed class BriosaConstructionOperations
             "ConstructFramesByProjectingFramesOnMeshAlongReferenceDirection",
             request,
             Transport.ConstructFramesByProjectingFramesOnMeshAlongReferenceDirectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructLineCenterOfSlotAsync(
         CollectionObjectName lineName,
         CollectionObjectName slotName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1042,6 +1131,7 @@ public sealed class BriosaConstructionOperations
             "ConstructLineCenterOfSlot",
             request,
             Transport.ConstructLineCenterOfSlotResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1049,6 +1139,7 @@ public sealed class BriosaConstructionOperations
         PointName pointName,
         CollectionObjectName lineName,
         int observationIndex = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1064,6 +1155,7 @@ public sealed class BriosaConstructionOperations
             "ConstructLineFromInstrumentShot",
             request,
             Transport.ConstructLineFromInstrumentShotResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1071,6 +1163,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName lineName,
         CollectionObjectName @object,
         double lineLength = 1,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1086,6 +1179,7 @@ public sealed class BriosaConstructionOperations
             "ConstructLineNormalToObject",
             request,
             Transport.ConstructLineNormalToObjectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1093,6 +1187,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName lineToCreate,
         CollectionObjectName objectName,
         PointName pointName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1108,6 +1203,7 @@ public sealed class BriosaConstructionOperations
             "ConstructLineNormalToObjectThroughPoint",
             request,
             Transport.ConstructLineNormalToObjectThroughPointResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1115,6 +1211,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName lineToCreate,
         CollectionObjectName lineToProject,
         CollectionObjectName objectToProjectTo,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1130,6 +1227,7 @@ public sealed class BriosaConstructionOperations
             "ConstructLineProjectLineToObjectReferencePlane",
             request,
             Transport.ConstructLineProjectLineToObjectReferencePlaneResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1137,6 +1235,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName lineName,
         CollectionObjectName firstPlane,
         CollectionObjectName secondPlane,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1152,6 +1251,7 @@ public sealed class BriosaConstructionOperations
             "ConstructLineTwoPlaneIntersection",
             request,
             Transport.ConstructLineTwoPlaneIntersectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1159,6 +1259,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName lineName,
         PointName firstPoint,
         PointName secondPoint,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1174,6 +1275,7 @@ public sealed class BriosaConstructionOperations
             "ConstructLineTwoPoints",
             request,
             Transport.ConstructLineTwoPointsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1181,6 +1283,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName lineName,
         Vector firstVector,
         Vector secondVector,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1196,10 +1299,12 @@ public sealed class BriosaConstructionOperations
             "ConstructLineTwoPointsVectorNotation",
             request,
             Transport.ConstructLineTwoPointsVectorNotationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructLinesFromSurfaceFacesRuntimeSelectAsync(
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1212,6 +1317,7 @@ public sealed class BriosaConstructionOperations
             "ConstructLinesFromSurfaceFacesRuntimeSelect",
             request,
             Transport.ConstructLinesFromSurfaceFacesRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1220,6 +1326,7 @@ public sealed class BriosaConstructionOperations
         PointName pointName,
         bool useCurrentMeasurementsMarkedAsMirrorShots = true,
         double nominalCubeFaceAngle = 90,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1236,6 +1343,7 @@ public sealed class BriosaConstructionOperations
             "ConstructMirrorCubeFrame",
             request,
             Transport.ConstructMirrorCubeFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1243,6 +1351,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName resultingPerimeterName,
         IEnumerable<PointName> pointList,
         bool openPerimeter = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1258,6 +1367,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPerimeterFromPoints",
             request,
             Transport.ConstructPerimeterFromPointsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1266,6 +1376,7 @@ public sealed class BriosaConstructionOperations
         Vector planeCenter,
         Vector planeNormal,
         double planeEdgeDimension = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1282,6 +1393,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPlane",
             request,
             Transport.ConstructPlaneResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1290,6 +1402,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName normalToObjectName,
         PointName throughPointName,
         double planeEdgeDimension = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1306,6 +1419,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPlaneNormalToObjectThroughPoint",
             request,
             Transport.ConstructPlaneNormalToObjectThroughPointResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1313,6 +1427,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName resultantPlaneName,
         CollectionObjectName firstPlane,
         CollectionObjectName secondPlane,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1328,6 +1443,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPlanesBisectTwoPlanes",
             request,
             Transport.ConstructPlanesBisectTwoPlanesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1338,6 +1454,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName? resultingLowPlaneName = null,
         bool overrideTargetPointOffsets = false,
         double offsetValue = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1356,10 +1473,12 @@ public sealed class BriosaConstructionOperations
             "ConstructPlanesBoundingPointGroup",
             request,
             Transport.ConstructPlanesBoundingPointGroupResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructPlanesFromSurfaceFacesRuntimeSelectAsync(
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1372,12 +1491,14 @@ public sealed class BriosaConstructionOperations
             "ConstructPlanesFromSurfaceFacesRuntimeSelect",
             request,
             Transport.ConstructPlanesFromSurfaceFacesRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructPointAtCircleCenterAsync(
         CollectionObjectName circleName,
         PointName pointName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1392,6 +1513,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointAtCircleCenter",
             request,
             Transport.ConstructPointAtCircleCenterResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1400,6 +1522,7 @@ public sealed class BriosaConstructionOperations
         IEnumerable<CollectionObjectName> surfaceList,
         PointName pointName,
         double approximationTolerance = 0.001,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1416,6 +1539,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointAtIntersectionOfBSplineAndSurfaces",
             request,
             Transport.ConstructPointAtIntersectionOfBSplineAndSurfacesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1423,6 +1547,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName planeName,
         CollectionObjectName lineName,
         PointName resultingPointName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1438,6 +1563,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointAtIntersectionOfPlaneAndLine",
             request,
             Transport.ConstructPointAtIntersectionOfPlaneAndLineResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1446,6 +1572,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName plane2Name,
         CollectionObjectName plane3Name,
         PointName pointName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1462,6 +1589,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointAtIntersectionOfPlanes",
             request,
             Transport.ConstructPointAtIntersectionOfPlanesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1469,6 +1597,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName firstBSplineName,
         CollectionObjectName secondBSplineName,
         PointName pointName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1484,6 +1613,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointAtIntersectionOfTwoBSplines",
             request,
             Transport.ConstructPointAtIntersectionOfTwoBSplinesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1491,6 +1621,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName firstLineName,
         CollectionObjectName secondLineName,
         PointName resultingPointName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1506,12 +1637,14 @@ public sealed class BriosaConstructionOperations
             "ConstructPointAtIntersectionOfTwoLines",
             request,
             Transport.ConstructPointAtIntersectionOfTwoLinesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructPointAtLineMidpointAsync(
         CollectionObjectName lineName,
         PointName pointName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1526,6 +1659,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointAtLineMidpoint",
             request,
             Transport.ConstructPointAtLineMidpointResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1533,6 +1667,7 @@ public sealed class BriosaConstructionOperations
         PointName pointToProject,
         CollectionObjectName objectName,
         PointName resultingPointName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1548,6 +1683,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointAtProjectionOfPointOntoObject",
             request,
             Transport.ConstructPointAtProjectionOfPointOntoObjectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1556,6 +1692,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName newCloudName,
         CloudThinningOptions? cloudThinningSettings = null,
         bool hideOriginalPointClouds = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1572,12 +1709,14 @@ public sealed class BriosaConstructionOperations
             "ConstructPointCloudFromExistingClouds",
             request,
             Transport.ConstructPointCloudFromExistingCloudsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructPointCloudFromVisibleCloudPointsAsync(
         IEnumerable<CollectionObjectName> sourceClouds,
         CollectionObjectName destinationCloudName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1592,6 +1731,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointCloudFromVisibleCloudPoints",
             request,
             Transport.ConstructPointCloudFromVisibleCloudPointsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1601,6 +1741,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName destinationCloudName,
         double acceptanceAngle = 30.0,
         bool hideSourceCloud = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1618,11 +1759,13 @@ public sealed class BriosaConstructionOperations
             "ConstructPointCloudLimitingProbingDirections",
             request,
             Transport.ConstructPointCloudLimitingProbingDirectionsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructPointCloudsFromExistingCloudPointsRuntimeSelectAsync(
         CollectionObjectName cloudName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1636,6 +1779,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointCloudsFromExistingCloudPointsRuntimeSelect",
             request,
             Transport.ConstructPointCloudsFromExistingCloudPointsRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1645,6 +1789,7 @@ public sealed class BriosaConstructionOperations
         double desiredPointSpacing = 0.02,
         int minimumPointsPerOutputPoint = 3,
         bool hideOriginalPointClouds = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1662,12 +1807,14 @@ public sealed class BriosaConstructionOperations
             "ConstructPointCloudsFromExistingCloudsUniformSpacing",
             request,
             Transport.ConstructPointCloudsFromExistingCloudsUniformSpacingResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructPointCloudsFromExistingPointGroupAsync(
         CollectionObjectName pointGroupName,
         CollectionObjectName cloudName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1682,12 +1829,14 @@ public sealed class BriosaConstructionOperations
             "ConstructPointCloudsFromExistingPointGroup",
             request,
             Transport.ConstructPointCloudsFromExistingPointGroupResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructPointFitToPointsAsync(
         IEnumerable<PointName> pointNames,
         PointName resultingPointName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1702,6 +1851,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointFitToPoints",
             request,
             Transport.ConstructPointFitToPointsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1709,6 +1859,7 @@ public sealed class BriosaConstructionOperations
         string selectionPrompt = "Select cloud point",
         bool constructPoint = false,
         PointName? constructedPointName = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1724,6 +1875,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointFromCloudPointRuntimeSelect",
             request,
             Transport.ConstructPointFromCloudPointRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1733,6 +1885,7 @@ public sealed class BriosaConstructionOperations
         PointName resultCenterPointName,
         SurveyTargetType surveyTargetType = SurveyTargetType.Triangle,
         double searchDiameter = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1750,6 +1903,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointFromSurveyTargetCenter",
             request,
             Transport.ConstructPointFromSurveyTargetCenterResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1762,6 +1916,7 @@ public sealed class BriosaConstructionOperations
         bool subSampling = false,
         double subSamplingDistance = 0.5,
         bool showProgress = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1782,12 +1937,14 @@ public sealed class BriosaConstructionOperations
             "ConstructPointGroupFromPointCloud",
             request,
             Transport.ConstructPointGroupFromPointCloudResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructPointGroupFromPointNameRefListAsync(
         IEnumerable<PointName> pointNameList,
         CollectionObjectName groupName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1802,6 +1959,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointGroupFromPointNameRefList",
             request,
             Transport.ConstructPointGroupFromPointNameRefListResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1810,6 +1968,7 @@ public sealed class BriosaConstructionOperations
         string optionalGroupNameSuffix = "",
         bool makeVectorBeginPoints = false,
         bool makeVectorEndPoints = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1826,12 +1985,14 @@ public sealed class BriosaConstructionOperations
             "ConstructPointGroupsFromVectorGroups",
             request,
             Transport.ConstructPointGroupsFromVectorGroupsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructPointInWorkingCoordinatesAsync(
         PointName pointName,
         Vector workingCoordinates,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1846,6 +2007,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointInWorkingCoordinates",
             request,
             Transport.ConstructPointInWorkingCoordinatesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1853,6 +2015,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName circleName,
         CollectionObjectName lineName,
         PointName basePointNameForResults,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1868,6 +2031,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsAtIntersectionOfCircleAndLine",
             request,
             Transport.ConstructPointsAtIntersectionOfCircleAndLineResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1876,6 +2040,7 @@ public sealed class BriosaConstructionOperations
         IEnumerable<CollectionObjectName> surfaceList,
         CollectionObjectName resultantGroupName,
         string pointSuffix = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1892,6 +2057,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsAtIntersectionOfPrincipalObjectAxesAndSurfaces",
             request,
             Transport.ConstructPointsAtIntersectionOfPrincipalObjectAxesAndSurfacesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1902,6 +2068,7 @@ public sealed class BriosaConstructionOperations
         string groupNameToContainNewPoints = "",
         string pointNamePrefix = "",
         string pointNameSuffix = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1920,6 +2087,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsAtProjectionOnSurfacesParallelToWcfAxis",
             request,
             Transport.ConstructPointsAtProjectionOnSurfacesParallelToWcfAxisResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1930,6 +2098,7 @@ public sealed class BriosaConstructionOperations
         string groupNameToContainNewPoints = "",
         string pointNamePrefix = "",
         string pointNameSuffix = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1948,6 +2117,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsAtProjectionOnSurfacesRadialFromWcfAxis",
             request,
             Transport.ConstructPointsAtProjectionOnSurfacesRadialFromWcfAxisResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1957,6 +2127,7 @@ public sealed class BriosaConstructionOperations
         string groupNameToContainNewPoints = "",
         string pointNamePrefix = "",
         string pointNameSuffix = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1974,6 +2145,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsAtProjectionOnSurfacesSphericalFromWcfOrigin",
             request,
             Transport.ConstructPointsAtProjectionOnSurfacesSphericalFromWcfOriginResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -1982,6 +2154,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName groupToBeCopied,
         CollectionObjectName groupToContainMatchedPoints,
         double samePointTolerance = 0.1,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -1998,6 +2171,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsAutoCorrespondTwoGroupsInterPointDistance",
             request,
             Transport.ConstructPointsAutoCorrespondTwoGroupsInterPointDistanceResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2006,6 +2180,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName groupToBeCopied,
         CollectionObjectName groupToContainMatchedPoints,
         double samePointTolerance = 0.25,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2022,6 +2197,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsAutoCorrespondTwoGroupsProximity",
             request,
             Transport.ConstructPointsAutoCorrespondTwoGroupsProximityResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2031,6 +2207,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName objectProvidingDirectionReference,
         CollectionObjectName meshServingAsProjectionTarget,
         bool biDirectionalProjection = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2048,6 +2225,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsByProjectingPointsOnMeshAlongDirection",
             request,
             Transport.ConstructPointsByProjectingPointsOnMeshAlongDirectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2061,6 +2239,7 @@ public sealed class BriosaConstructionOperations
         double radialShift = 0.0,
         double thetaShift = 0.0,
         double planarShift = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2079,12 +2258,14 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsCylindricallyShifted",
             request,
             Transport.ConstructPointsCylindricallyShiftedResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructPointsFromCylinderAsync(
         CollectionObjectName cylinderName,
         CollectionObjectName groupName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2099,10 +2280,12 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsFromCylinder",
             request,
             Transport.ConstructPointsFromCylinderResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructPointsFromSurfaceFacesRuntimeSelectAsync(
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2115,6 +2298,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsFromSurfaceFacesRuntimeSelect",
             request,
             Transport.ConstructPointsFromSurfaceFacesRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2125,6 +2309,7 @@ public sealed class BriosaConstructionOperations
         int numberOfUGrids = 5,
         int numberOfVGrids = 5,
         EdgePointMode edgePointMode = EdgePointMode.IncludeEdges,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2143,6 +2328,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsFromSurfacesOnUvGrid",
             request,
             Transport.ConstructPointsFromSurfacesOnUvGridResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2158,6 +2344,7 @@ public sealed class BriosaConstructionOperations
         double zMin = 0.0,
         double zMax = 0.0,
         int zCount = 1,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2181,6 +2368,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsLayoutOnGrid",
             request,
             Transport.ConstructPointsLayoutOnGridResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2189,6 +2377,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName resultantGroupName,
         int numberOfEvenlySpacedPoints = 10,
         string resultantPointNamePrefix = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2205,6 +2394,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsNSpacedOnCurves",
             request,
             Transport.ConstructPointsNSpacedOnCurvesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2215,6 +2405,7 @@ public sealed class BriosaConstructionOperations
         double maximumTrimEdgeAngle = 15.0,
         double maximumChordLength = 0.0,
         string resultantPointNamePrefix = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2233,12 +2424,14 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsOnCurvesUsingMaxChordalDeviation",
             request,
             Transport.ConstructPointsOnCurvesUsingMaxChordalDeviationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructPointsOnObjectVerticesAsync(
         IEnumerable<CollectionObjectName> objectNameList,
         CollectionObjectName resultantGroupName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2253,12 +2446,14 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsOnObjectVertices",
             request,
             Transport.ConstructPointsOnObjectVerticesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructPointsOnSurfacesByClickingAsync(
         CollectionObjectName groupNameForPoints,
         string firstPointName = "p0",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2273,6 +2468,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsOnSurfacesByClicking",
             request,
             Transport.ConstructPointsOnSurfacesByClickingResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2280,6 +2476,7 @@ public sealed class BriosaConstructionOperations
         IEnumerable<PointName> originalPoints,
         CollectionObjectName groupForNewPoints,
         Vector? shiftVector = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2295,6 +2492,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsShiftedInWorkingFrame",
             request,
             Transport.ConstructPointsShiftedInWorkingFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2303,6 +2501,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName resultantGroupName,
         double distanceBetweenPoints = 0.5,
         string resultantPointNamePrefix = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2319,6 +2518,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsSpacedAtDistanceOnCurves",
             request,
             Transport.ConstructPointsSpacedAtDistanceOnCurvesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2326,6 +2526,7 @@ public sealed class BriosaConstructionOperations
         IEnumerable<PointName> pointsToSubsample,
         int subsetSize = 10,
         CollectionObjectName? groupForSubset = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2341,6 +2542,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsSubsetWithGreatestSpacing",
             request,
             Transport.ConstructPointsSubsetWithGreatestSpacingResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2349,6 +2551,7 @@ public sealed class BriosaConstructionOperations
         PointName wildcardSelectionNames,
         CollectionObjectName groupForNewPoints,
         bool includePriorCompleteName = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2365,6 +2568,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointsWildcardSelection",
             request,
             Transport.ConstructPointsWildcardSelectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2375,6 +2579,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName sphereName,
         Vector sphereCenter,
         double sphereRadius,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2390,10 +2595,12 @@ public sealed class BriosaConstructionOperations
             "ConstructSphere",
             request,
             Transport.ConstructSphereResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructSpheresFromSurfaceFacesRuntimeSelectAsync(
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2406,11 +2613,13 @@ public sealed class BriosaConstructionOperations
             "ConstructSpheresFromSurfaceFacesRuntimeSelect",
             request,
             Transport.ConstructSpheresFromSurfaceFacesRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionObjectName>> ConstructSurfaceByDissectingSurfacesAsync(
         SurfaceDissectionMode dissectionMode,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2424,6 +2633,7 @@ public sealed class BriosaConstructionOperations
             "ConstructSurfaceByDissectingSurfaces",
             request,
             Transport.ConstructSurfaceByDissectingSurfacesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2431,6 +2641,7 @@ public sealed class BriosaConstructionOperations
         IEnumerable<CollectionObjectName> referenceSurface,
         double surfaceOffset = 0.0,
         bool hideOriginalSurface = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2446,6 +2657,7 @@ public sealed class BriosaConstructionOperations
             "ConstructSurfaceByOffsettingSurface",
             request,
             Transport.ConstructSurfaceByOffsettingSurfaceResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2453,6 +2665,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName nominalSurface,
         IEnumerable<PointName> actualDataPointList,
         CollectionObjectName resultingSurfaceName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2468,12 +2681,14 @@ public sealed class BriosaConstructionOperations
             "ConstructSurfaceFitFromNominalSurfacesAndActualData",
             request,
             Transport.ConstructSurfaceFitFromNominalSurfacesAndActualDataResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructSurfaceFromAnnotationLinksAsync(
         IEnumerable<CollectionObjectName> annotationList,
         CollectionObjectName resultingSurfaceName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2488,12 +2703,14 @@ public sealed class BriosaConstructionOperations
             "ConstructSurfaceFromAnnotationLinks",
             request,
             Transport.ConstructSurfaceFromAnnotationLinksResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructSurfaceFromBSplinesAsync(
         CollectionObjectName resultingSurfaceName,
         IEnumerable<CollectionObjectName> bSplineList,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2508,6 +2725,7 @@ public sealed class BriosaConstructionOperations
             "ConstructSurfaceFromBSplines",
             request,
             Transport.ConstructSurfaceFromBSplinesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2518,6 +2736,7 @@ public sealed class BriosaConstructionOperations
         bool deleteOriginalSurfaces = false,
         bool enableSewingTolerance = false,
         double sewingTolerance = -1.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2536,12 +2755,14 @@ public sealed class BriosaConstructionOperations
             "ConstructSurfaceFromCollectionOfSurfaces",
             request,
             Transport.ConstructSurfaceFromCollectionOfSurfacesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructSurfaceFromConeAsync(
         CollectionObjectName resultingSurfaceName,
         CollectionObjectName coneName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2556,6 +2777,7 @@ public sealed class BriosaConstructionOperations
             "ConstructSurfaceFromCone",
             request,
             Transport.ConstructSurfaceFromConeResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2564,6 +2786,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName cylinderName,
         bool internalCylinder = true,
         bool useThetaExtentMode = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2580,12 +2803,14 @@ public sealed class BriosaConstructionOperations
             "ConstructSurfaceFromCylinder",
             request,
             Transport.ConstructSurfaceFromCylinderResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructSurfaceFromPlaneAsync(
         CollectionObjectName resultingSurfaceName,
         CollectionObjectName planeName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2600,12 +2825,14 @@ public sealed class BriosaConstructionOperations
             "ConstructSurfaceFromPlane",
             request,
             Transport.ConstructSurfaceFromPlaneResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructSurfaceFromPointGroupsAsync(
         IEnumerable<CollectionObjectName> groupNameList,
         CollectionObjectName resultingSurfaceName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2621,6 +2848,7 @@ public sealed class BriosaConstructionOperations
             "ConstructSurfaceFromPointGroups",
             request,
             Transport.ConstructSurfaceFromPointGroupsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2628,6 +2856,7 @@ public sealed class BriosaConstructionOperations
         IEnumerable<CollectionObjectName> groupNameList,
         BSplineFitOptions bSplineFitOptions,
         CollectionObjectName resultingSurfaceName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2643,12 +2872,14 @@ public sealed class BriosaConstructionOperations
             "ConstructSurfaceFromPointGroups",
             request,
             Transport.ConstructSurfaceFromPointGroupsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructSurfaceFromSphereAsync(
         CollectionObjectName resultingSurfaceName,
         CollectionObjectName sphereName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2663,11 +2894,13 @@ public sealed class BriosaConstructionOperations
             "ConstructSurfaceFromSphere",
             request,
             Transport.ConstructSurfaceFromSphereResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionObjectName>> ConstructSurfacesByDissectingSurfacesFromRefListAsync(
         IEnumerable<CollectionObjectName> surfacesToDissect,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2681,6 +2914,7 @@ public sealed class BriosaConstructionOperations
             "ConstructSurfacesByDissectingSurfacesFromRefList",
             request,
             Transport.ConstructSurfacesByDissectingSurfacesFromRefListResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2688,6 +2922,7 @@ public sealed class BriosaConstructionOperations
         IEnumerable<CollectionObjectName> projectionTargetNameList,
         IEnumerable<PointName> pointList,
         CollectionObjectName resultingSurfaceName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2703,11 +2938,13 @@ public sealed class BriosaConstructionOperations
             "ConstructSurfacesByProjectingPoints",
             request,
             Transport.ConstructSurfacesByProjectingPointsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructSurfacesFromObjectsAsync(
         IEnumerable<CollectionObjectName> objects,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2721,6 +2958,7 @@ public sealed class BriosaConstructionOperations
             "ConstructSurfacesFromObjects",
             request,
             Transport.ConstructSurfacesFromObjectsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2730,6 +2968,7 @@ public sealed class BriosaConstructionOperations
         CollectionVectorGroupName resultantVectorGroupName,
         double areaRadius = 0.0,
         double areaTolerance = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2747,12 +2986,14 @@ public sealed class BriosaConstructionOperations
             "ConstructVectorGroupAreaProfileCheck",
             request,
             Transport.ConstructVectorGroupAreaProfileCheckResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructVectorGroupFromRelationshipAsync(
         CollectionObjectName relationshipName,
         CollectionVectorGroupName vectorGroupName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2767,12 +3008,14 @@ public sealed class BriosaConstructionOperations
             "ConstructVectorGroupFromRelationship",
             request,
             Transport.ConstructVectorGroupFromRelationshipResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructVectorGroupFromVectorNameRefListAsync(
         IEnumerable<VectorName> vectorNameList,
         CollectionVectorGroupName resultantVectorGroupName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2787,6 +3030,7 @@ public sealed class BriosaConstructionOperations
             "ConstructVectorGroupFromVectorNameRefList",
             request,
             Transport.ConstructVectorGroupFromVectorNameRefListResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2797,6 +3041,7 @@ public sealed class BriosaConstructionOperations
         double rmsDeviationTolerance = 0.0,
         double maxAbsoluteDeviationTolerance = 0.0,
         double averageDeviationTolerance = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2815,6 +3060,7 @@ public sealed class BriosaConstructionOperations
             "ConstructVectorGroupGroupToGroupCompare",
             request,
             Transport.ConstructVectorGroupGroupToGroupCompareResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2824,6 +3070,7 @@ public sealed class BriosaConstructionOperations
         Vector beginInWorkingCoordinates,
         Vector deltaInWorkingCoordinates,
         bool isMagnitudeNegative = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2841,6 +3088,7 @@ public sealed class BriosaConstructionOperations
             "ConstructVectorInWorkingCoordinatesBeginDelta",
             request,
             Transport.ConstructVectorInWorkingCoordinatesBeginDeltaResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2850,6 +3098,7 @@ public sealed class BriosaConstructionOperations
         Vector beginInWorkingCoordinates,
         Vector directionInWorkingCoordinates,
         double signedMagnitude = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2867,6 +3116,7 @@ public sealed class BriosaConstructionOperations
             "ConstructVectorInWorkingCoordinatesBeginDirectionMagnitude",
             request,
             Transport.ConstructVectorInWorkingCoordinatesBeginDirectionMagnitudeResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2874,6 +3124,7 @@ public sealed class BriosaConstructionOperations
         CollectionInstrumentId instrumentId,
         IEnumerable<CollectionObjectName> groupNames,
         CollectionName newCollectionName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2889,6 +3140,7 @@ public sealed class BriosaConstructionOperations
             "CopyGroupsExcludingObscuredPoints",
             request,
             Transport.CopyGroupsExcludingObscuredPointsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2898,6 +3150,7 @@ public sealed class BriosaConstructionOperations
         PointName pointNameToCreate,
         int hiddenPointRodIndex = 0,
         bool overwriteExistingPoint = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2915,6 +3168,7 @@ public sealed class BriosaConstructionOperations
             "CreateHiddenPoint",
             request,
             Transport.CreateHiddenPointResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2927,6 +3181,7 @@ public sealed class BriosaConstructionOperations
         double aToBDistance = 0.0,
         double aToCDistance = 0.0,
         double interPointTolerance = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -2943,6 +3198,7 @@ public sealed class BriosaConstructionOperations
             "CreateHiddenPointRod",
             request,
             Transport.CreateHiddenPointRodResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -2968,6 +3224,7 @@ public sealed class BriosaConstructionOperations
         bool showUnits = false,
         bool attachCalloutToEndPoint = true,
         bool useDefaultPlacement = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3001,6 +3258,7 @@ public sealed class BriosaConstructionOperations
             "CreateMinMaxVectorGroupCallout",
             request,
             Transport.CreateMinMaxVectorGroupCalloutResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -3011,6 +3269,7 @@ public sealed class BriosaConstructionOperations
         double viewYPosition = 0.6,
         int scaleImagePercent = 100,
         CollectionItemName? objectForCalloutAnchorPoint = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3029,6 +3288,7 @@ public sealed class BriosaConstructionOperations
             "CreatePictureCallout",
             request,
             Transport.CreatePictureCalloutResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -3059,6 +3319,7 @@ public sealed class BriosaConstructionOperations
         CoordinateSystemType desiredCoordinateSystem = CoordinateSystemType.Cartesian,
         IEnumerable<string>? notes = null,
         bool useDefaultPlacement = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3089,6 +3350,7 @@ public sealed class BriosaConstructionOperations
             "CreatePointCallout",
             request,
             Transport.CreatePointCalloutResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -3115,6 +3377,7 @@ public sealed class BriosaConstructionOperations
         string? additionalZComments = null,
         IEnumerable<string>? additionalNotes = null,
         bool useDefaultPlacement = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3149,6 +3412,7 @@ public sealed class BriosaConstructionOperations
             "CreatePointComparisonCallout",
             request,
             Transport.CreatePointComparisonCalloutResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -3158,6 +3422,7 @@ public sealed class BriosaConstructionOperations
         double viewXPosition = 0.0,
         double viewYPosition = 0.0,
         IEnumerable<string>? additionalNotes = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3175,6 +3440,7 @@ public sealed class BriosaConstructionOperations
             "CreateRelationshipCallout",
             request,
             Transport.CreateRelationshipCalloutResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -3184,6 +3450,7 @@ public sealed class BriosaConstructionOperations
         double viewXPosition = 0.4,
         double viewYPosition = 0.6,
         PointName? calloutAnchorPoint = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3201,6 +3468,7 @@ public sealed class BriosaConstructionOperations
             "CreateTextCallout",
             request,
             Transport.CreateTextCalloutResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -3227,6 +3495,7 @@ public sealed class BriosaConstructionOperations
         IEnumerable<string>? additionalNotes = null,
         bool attachCalloutToEndPoint = false,
         bool useDefaultPlacement = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3261,11 +3530,13 @@ public sealed class BriosaConstructionOperations
             "CreateVectorCallout",
             request,
             Transport.CreateVectorCalloutResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<EulerXyzTransformComponents> DecomposeTransformIntoDoublesEulerXyzAsync(
         Transform inputTransform,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3279,11 +3550,13 @@ public sealed class BriosaConstructionOperations
             "DecomposeTransformIntoDoublesEulerXyz",
             request,
             Transport.DecomposeTransformIntoDoublesEulerXyzResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<EulerZxzTransformComponents> DecomposeTransformIntoDoublesEulerZxzAsync(
         Transform inputTransform,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3297,11 +3570,13 @@ public sealed class BriosaConstructionOperations
             "DecomposeTransformIntoDoublesEulerZxz",
             request,
             Transport.DecomposeTransformIntoDoublesEulerZxzResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<EulerZyxTransformComponents> DecomposeTransformIntoDoublesEulerZyxAsync(
         Transform inputTransform,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3315,11 +3590,13 @@ public sealed class BriosaConstructionOperations
             "DecomposeTransformIntoDoublesEulerZyx",
             request,
             Transport.DecomposeTransformIntoDoublesEulerZyxResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<EulerZyzTransformComponents> DecomposeTransformIntoDoublesEulerZyzAsync(
         Transform inputTransform,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3333,11 +3610,13 @@ public sealed class BriosaConstructionOperations
             "DecomposeTransformIntoDoublesEulerZyz",
             request,
             Transport.DecomposeTransformIntoDoublesEulerZyzResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<FixedXyzTransformComponents> DecomposeTransformIntoDoublesFixedXyzAsync(
         Transform inputTransform,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3351,11 +3630,13 @@ public sealed class BriosaConstructionOperations
             "DecomposeTransformIntoDoublesFixedXyz",
             request,
             Transport.DecomposeTransformIntoDoublesFixedXyzResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<FixedXyzTransformVectors> DecomposeTransformIntoVectorsFixedXyzAsync(
         Transform inputTransform,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3369,11 +3650,13 @@ public sealed class BriosaConstructionOperations
             "DecomposeTransformIntoVectorsFixedXyz",
             request,
             Transport.DecomposeTransformIntoVectorsFixedXyzResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<TransformAxes> DecomposeTransformIntoVectorsOriginAndAxesAsync(
         Transform transform,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3387,11 +3670,13 @@ public sealed class BriosaConstructionOperations
             "DecomposeTransformIntoVectorsOriginAndAxes",
             request,
             Transport.DecomposeTransformIntoVectorsOriginAndAxesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<WorldFixedXyzTransformComponents> DecomposeWorldTransformOperatorIntoDoublesFixedXyzInWorldAsync(
         WorldTransform inputWorldTransformOperator,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3405,11 +3690,13 @@ public sealed class BriosaConstructionOperations
             "DecomposeWorldTransformOperatorIntoDoublesFixedXyzInWorld",
             request,
             Transport.DecomposeWorldTransformOperatorIntoDoublesFixedXyzInWorldResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<WorldFixedXyzTransformVectors> DecomposeWorldTransformOperatorIntoVectorsFixedXyzInWorldAsync(
         WorldTransform inputWorldTransformOperator,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3423,11 +3710,13 @@ public sealed class BriosaConstructionOperations
             "DecomposeWorldTransformOperatorIntoVectorsFixedXyzInWorld",
             request,
             Transport.DecomposeWorldTransformOperatorIntoVectorsFixedXyzInWorldResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task DeleteCalloutViewAsync(
         CollectionItemName calloutView,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3441,11 +3730,13 @@ public sealed class BriosaConstructionOperations
             "DeleteCalloutView",
             request,
             Transport.DeleteCalloutViewResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task DeleteCollectionAsync(
         CollectionName collectionName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3459,6 +3750,7 @@ public sealed class BriosaConstructionOperations
             "DeleteCollection",
             request,
             Transport.DeleteCollectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -3466,6 +3758,7 @@ public sealed class BriosaConstructionOperations
         string searchString,
         bool caseSensitiveSearch = true,
         bool allowDeletingAllCollections = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3481,6 +3774,7 @@ public sealed class BriosaConstructionOperations
             "DeleteCollectionsByWildcard",
             request,
             Transport.DeleteCollectionsByWildcardResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -3488,6 +3782,7 @@ public sealed class BriosaConstructionOperations
         string searchString,
         bool caseSensitiveSearch = true,
         bool allowDeletingAllFolders = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3503,11 +3798,13 @@ public sealed class BriosaConstructionOperations
             "DeleteFoldersByWildcard",
             request,
             Transport.DeleteFoldersByWildcardResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task DeleteHiddenPointRodAsync(
         int hiddenPointRodIndex = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3521,6 +3818,7 @@ public sealed class BriosaConstructionOperations
             "DeleteHiddenPointRod",
             request,
             Transport.DeleteHiddenPointRodResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -3532,6 +3830,7 @@ public sealed class BriosaConstructionOperations
         int minimumPointCount = 50,
         bool performFinalFit = true,
         double finalFitConeAngle = 120.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3551,11 +3850,13 @@ public sealed class BriosaConstructionOperations
             "ExtractSphereCentersFromPointCloud",
             request,
             Transport.ExtractSphereCentersFromPointCloudResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionInstrumentId>> GetCollectionInstrumentRefListVariableAsync(
         string name,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3569,11 +3870,13 @@ public sealed class BriosaConstructionOperations
             "GetCollectionInstrumentRefListVariable",
             request,
             Transport.GetCollectionInstrumentRefListVariableResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<int> GetHiddenPointRodIndexByNameAsync(
         string hiddenPointRodName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3587,12 +3890,14 @@ public sealed class BriosaConstructionOperations
             "GetHiddenPointRodIndexByName",
             request,
             Transport.GetHiddenPointRodIndexByNameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<CalloutPosition> GetIthCalloutPositionInCalloutViewAsync(
         CollectionItemName calloutView,
         int calloutViewIndex,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3607,11 +3912,13 @@ public sealed class BriosaConstructionOperations
             "GetIthCalloutPositionInCalloutView",
             request,
             Transport.GetIthCalloutPositionInCalloutViewResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<int> GetNumberOfCalloutsInCalloutViewAsync(
         CollectionItemName calloutView,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3625,11 +3932,13 @@ public sealed class BriosaConstructionOperations
             "GetNumberOfCalloutsInCalloutView",
             request,
             Transport.GetNumberOfCalloutsInCalloutViewResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<Transform> GetWorkingTransformOfObjectFixedXyzAsync(
         CollectionObjectName objectName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3643,11 +3952,13 @@ public sealed class BriosaConstructionOperations
             "GetWorkingTransformOfObjectFixedXyz",
             request,
             Transport.GetWorkingTransformOfObjectFixedXyzResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<Transform> InvertTransformAsync(
         Transform transform,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3661,11 +3972,13 @@ public sealed class BriosaConstructionOperations
             "InvertTransform",
             request,
             Transport.InvertTransformResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<CollectionInstrumentId> MakeCollectionInstrumentIdRuntimeSelectAsync(
         string userPrompt = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3679,11 +3992,13 @@ public sealed class BriosaConstructionOperations
             "MakeCollectionInstrumentIdRuntimeSelect",
             request,
             Transport.MakeCollectionInstrumentIdRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionInstrumentId>> MakeCollectionInstrumentRefListRuntimeSelectAsync(
         string userPrompt = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3697,6 +4012,7 @@ public sealed class BriosaConstructionOperations
             "MakeCollectionInstrumentRefListRuntimeSelect",
             request,
             Transport.MakeCollectionInstrumentRefListRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -3704,6 +4020,7 @@ public sealed class BriosaConstructionOperations
         string collectionWildcardCriteria = "*",
         string itemWildcardCriteria = "*",
         ItemType itemType = ItemType.Any,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3719,11 +4036,13 @@ public sealed class BriosaConstructionOperations
             "MakeCollectionItemNameRefListWildcardSelection",
             request,
             Transport.MakeCollectionItemNameRefListWildcardSelectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<CollectionName> MakeCollectionNameRuntimeSelectAsync(
         string userPrompt = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3737,12 +4056,14 @@ public sealed class BriosaConstructionOperations
             "MakeCollectionNameRuntimeSelect",
             request,
             Transport.MakeCollectionNameRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionObjectName>> MakeCollectionObjectNameRefListByTypeAsync(
         string collection,
         ObjectType objectType = ObjectType.Any,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3757,6 +4078,7 @@ public sealed class BriosaConstructionOperations
             "MakeCollectionObjectNameRefListByType",
             request,
             Transport.MakeCollectionObjectNameRefListByTypeResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -3764,6 +4086,7 @@ public sealed class BriosaConstructionOperations
         string collection,
         ObjectType objectType = ObjectType.Any,
         Color? objectColor = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3779,11 +4102,13 @@ public sealed class BriosaConstructionOperations
             "MakeCollectionObjectNameRefListByTypeAndColor",
             request,
             Transport.MakeCollectionObjectNameRefListByTypeAndColorResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionObjectName>> MakeCollectionObjectNameRefListFromAllGroupsInCollectionAsync(
         CollectionName collectionName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3797,12 +4122,14 @@ public sealed class BriosaConstructionOperations
             "MakeCollectionObjectNameRefListFromAllGroupsInCollection",
             request,
             Transport.MakeCollectionObjectNameRefListFromAllGroupsInCollectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionObjectName>> MakeCollectionObjectNameRefListRuntimeSelectAsync(
         string userPrompt = "",
         ObjectType objectType = ObjectType.Any,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3817,6 +4144,7 @@ public sealed class BriosaConstructionOperations
             "MakeCollectionObjectNameRefListRuntimeSelect",
             request,
             Transport.MakeCollectionObjectNameRefListRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -3824,6 +4152,7 @@ public sealed class BriosaConstructionOperations
         string collectionWildcardCriteria = "*",
         string objectWildcardCriteria = "*",
         ObjectType objectType = ObjectType.Any,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3839,12 +4168,14 @@ public sealed class BriosaConstructionOperations
             "MakeCollectionObjectNameRefListWildcardSelection",
             request,
             Transport.MakeCollectionObjectNameRefListWildcardSelectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<CollectionObjectName> MakeCollectionObjectNameRuntimeSelectAsync(
         string userPrompt = "",
         ObjectType objectType = ObjectType.Any,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3859,12 +4190,14 @@ public sealed class BriosaConstructionOperations
             "MakeCollectionObjectNameRuntimeSelect",
             request,
             Transport.MakeCollectionObjectNameRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionItemName>> MakeEventRefListWildcardSelectionAsync(
         string collectionWildcardCriteria = "*",
         string eventWildcardCriteria = "*",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3879,11 +4212,13 @@ public sealed class BriosaConstructionOperations
             "MakeEventRefListWildcardSelection",
             request,
             Transport.MakeEventRefListWildcardSelectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionItemName>> MakePictureNameRefListRuntimeSelectAsync(
         string userPrompt = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3897,11 +4232,13 @@ public sealed class BriosaConstructionOperations
             "MakePictureNameRefListRuntimeSelect",
             request,
             Transport.MakePictureNameRefListRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<PointName>> MakePointNameRefListFromGroupAsync(
         CollectionObjectName groupName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3915,11 +4252,13 @@ public sealed class BriosaConstructionOperations
             "MakePointNameRefListFromGroup",
             request,
             Transport.MakePointNameRefListFromGroupResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<PointName>> MakePointNameRefListRuntimeSelectAsync(
         string userPrompt = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3933,6 +4272,7 @@ public sealed class BriosaConstructionOperations
             "MakePointNameRefListRuntimeSelect",
             request,
             Transport.MakePointNameRefListRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -3940,6 +4280,7 @@ public sealed class BriosaConstructionOperations
         string collectionWildcardCriteria = "*",
         string groupNameWildcardCriteria = "*",
         string pointNameWildcardCriteria = "*",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3955,11 +4296,13 @@ public sealed class BriosaConstructionOperations
             "MakePointNameRefListWildcardSelect",
             request,
             Transport.MakePointNameRefListWildcardSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<PointName> MakePointNameRuntimeSelectAsync(
         string userPrompt = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3973,11 +4316,13 @@ public sealed class BriosaConstructionOperations
             "MakePointNameRuntimeSelect",
             request,
             Transport.MakePointNameRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionItemName>> MakeReportRefListFromCollectionAsync(
         CollectionName collectionName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -3991,11 +4336,13 @@ public sealed class BriosaConstructionOperations
             "MakeReportRefListFromCollection",
             request,
             Transport.MakeReportRefListFromCollectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionItemName>> MakeReportRefListRuntimeSelectAsync(
         string userPrompt = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4009,12 +4356,14 @@ public sealed class BriosaConstructionOperations
             "MakeReportRefListRuntimeSelect",
             request,
             Transport.MakeReportRefListRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<string> MakeSystemStringAsync(
         SystemString stringContent,
         string? formatString = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4029,6 +4378,7 @@ public sealed class BriosaConstructionOperations
             "MakeSystemString",
             request,
             Transport.MakeSystemStringResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -4040,6 +4390,7 @@ public sealed class BriosaConstructionOperations
         double e2 = 0,
         double e3 = 0,
         double e4 = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4059,6 +4410,7 @@ public sealed class BriosaConstructionOperations
             "MakeTransformFromDoublesEulerParameters",
             request,
             Transport.MakeTransformFromDoublesEulerParametersResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -4069,6 +4421,7 @@ public sealed class BriosaConstructionOperations
         double rx = 0,
         double ry = 0,
         double rz = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4087,11 +4440,13 @@ public sealed class BriosaConstructionOperations
             "MakeTransformFromDoublesFixedXyz",
             request,
             Transport.MakeTransformFromDoublesFixedXyzResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<VectorName>> MakeVectorNameRefListFromVectorGroupAsync(
         CollectionObjectName vectorGroupName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4105,11 +4460,13 @@ public sealed class BriosaConstructionOperations
             "MakeVectorNameRefListFromVectorGroup",
             request,
             Transport.MakeVectorNameRefListFromVectorGroupResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task MakeVectorNamesUniqueInVectorGroupAsync(
         CollectionObjectName vectorGroupName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4123,6 +4480,7 @@ public sealed class BriosaConstructionOperations
             "MakeVectorNamesUniqueInVectorGroup",
             request,
             Transport.MakeVectorNamesUniqueInVectorGroupResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -4130,6 +4488,7 @@ public sealed class BriosaConstructionOperations
         CollectionItemName originalCalloutViewName,
         CollectionItemName newCalloutViewName,
         bool overwriteIfExists = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4145,12 +4504,14 @@ public sealed class BriosaConstructionOperations
             "RenameCalloutView",
             request,
             Transport.RenameCalloutViewResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCollectionInstrumentRefListVariableAsync(
         string name,
         IEnumerable<CollectionInstrumentId> value,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4165,6 +4526,7 @@ public sealed class BriosaConstructionOperations
             "SetCollectionInstrumentRefListVariable",
             request,
             Transport.SetCollectionInstrumentRefListVariableResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -4173,6 +4535,7 @@ public sealed class BriosaConstructionOperations
         int calloutViewIndex,
         int xPosition,
         int yPosition,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4189,11 +4552,13 @@ public sealed class BriosaConstructionOperations
             "SetIthCalloutPositionInCalloutView",
             request,
             Transport.SetIthCalloutPositionInCalloutViewResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetOrConstructDefaultCollectionAsync(
         CollectionName collectionName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4207,12 +4572,14 @@ public sealed class BriosaConstructionOperations
             "SetOrConstructDefaultCollection",
             request,
             Transport.SetOrConstructDefaultCollectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetPointPositionInWorkingCoordinatesAsync(
         PointName pointName,
         Vector positionInWorkingCoordinates,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4227,6 +4594,7 @@ public sealed class BriosaConstructionOperations
             "SetPointPositionInWorkingCoordinates",
             request,
             Transport.SetPointPositionInWorkingCoordinatesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -4234,6 +4602,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName plane,
         double shiftAlongNormal = 0.0,
         double growBoundsByFactor = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4249,12 +4618,14 @@ public sealed class BriosaConstructionOperations
             "ShiftPlane",
             request,
             Transport.ShiftPlaneResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task TransformPointsByDeltaAboutWorkingFrameAsync(
         IEnumerable<PointName> pointNameList,
         Vector deltaInWorkingCoordinates,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4269,6 +4640,7 @@ public sealed class BriosaConstructionOperations
             "TransformPointsByDeltaAboutWorkingFrame",
             request,
             Transport.TransformPointsByDeltaAboutWorkingFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -4278,6 +4650,7 @@ public sealed class BriosaConstructionOperations
         double rmsTolerance = 0.0,
         double maximumAbsoluteTolerance = 0.0,
         double maximumAverageTolerance = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4295,6 +4668,7 @@ public sealed class BriosaConstructionOperations
             "AverageSetOfGroups",
             request,
             Transport.AverageSetOfGroupsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -4305,6 +4679,7 @@ public sealed class BriosaConstructionOperations
         CollectionObjectName? referenceFrame = null,
         CollectionName? destinationCollectionName = null,
         string baseName = "Geometry Object",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4323,12 +4698,14 @@ public sealed class BriosaConstructionOperations
             "ConstructGeometryFromSurfaces",
             request,
             Transport.ConstructGeometryFromSurfacesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<ObjectOriginResult> ConstructPointAtObjectOriginAsync(
         CollectionObjectName objectName,
         PointName resultantPointName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4343,6 +4720,7 @@ public sealed class BriosaConstructionOperations
             "ConstructPointAtObjectOrigin",
             request,
             Transport.ConstructPointAtObjectOriginResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -4350,6 +4728,7 @@ public sealed class BriosaConstructionOperations
         PointName pointToProject,
         CollectionObjectName surfaceName,
         bool generateOutputVectorLines = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4365,6 +4744,7 @@ public sealed class BriosaConstructionOperations
             "GetGradientAtProjectedPointOnSurface",
             request,
             Transport.GetGradientAtProjectedPointOnSurfaceResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -4378,6 +4758,7 @@ public sealed class BriosaConstructionOperations
         Vector? edgeOffsetDirection = null,
         double edgeOffsetDistance = 0.01,
         bool generateOutputVectorLines = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4396,12 +4777,14 @@ public sealed class BriosaConstructionOperations
             "GetGradientAtProjectedPointOnSurfaceEdge",
             request,
             Transport.GetGradientAtProjectedPointOnSurfaceEdgeResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<CollectionObjectName> MakeCollectionObjectNameEnsureUniqueAsync(
         CollectionObjectName collectionObjectName,
         bool useNumberSuffix = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4416,12 +4799,14 @@ public sealed class BriosaConstructionOperations
             "MakeCollectionObjectNameEnsureUnique",
             request,
             Transport.MakeCollectionObjectNameEnsureUniqueResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<PointName> MakePointNameEnsureUniqueAsync(
         PointName pointName,
         bool useNumberSuffix = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4436,11 +4821,13 @@ public sealed class BriosaConstructionOperations
             "MakePointNameEnsureUnique",
             request,
             Transport.MakePointNameEnsureUniqueResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionItemName>> MakeRelationshipRefListRuntimeSelectAsync(
         string userPrompt = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4454,12 +4841,14 @@ public sealed class BriosaConstructionOperations
             "MakeRelationshipRefListRuntimeSelect",
             request,
             Transport.MakeRelationshipRefListRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionItemName>> MakeRelationshipRefListWildcardSelectionAsync(
         string collectionWildcardCriteria = "*",
         string relationshipWildcardCriteria = "*",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4474,10 +4863,12 @@ public sealed class BriosaConstructionOperations
             "MakeRelationshipRefListWildcardSelection",
             request,
             Transport.MakeRelationshipRefListWildcardSelectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetDefaultCalloutViewPropertiesAsync(
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4492,12 +4883,14 @@ public sealed class BriosaConstructionOperations
             "SetDefaultCalloutViewProperties",
             request,
             Transport.SetDefaultCalloutViewPropertiesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetDefaultCalloutViewPropertiesAsync(
         string defaultCalloutViewName,
         CalloutViewProperties properties,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4512,6 +4905,7 @@ public sealed class BriosaConstructionOperations
             "SetDefaultCalloutViewProperties",
             request,
             Transport.SetDefaultCalloutViewPropertiesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -4526,6 +4920,7 @@ public sealed class BriosaConstructionOperations
         bool useLowTolerances = false,
         double highTolerance = 0.0,
         double lowTolerance = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4548,6 +4943,7 @@ public sealed class BriosaConstructionOperations
             "ConstructScaleBar",
             request,
             Transport.ConstructScaleBarResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 }
@@ -4562,6 +4958,7 @@ public sealed class BriosaGdtOperations
         IEnumerable<CollectionObjectName> objectsToMove,
         IEnumerable<CollectionInstrumentId> instrumentsToMove,
         bool applyFeatureCheckTransform = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4578,11 +4975,13 @@ public sealed class BriosaGdtOperations
             "DatumAlignment",
             request,
             Transport.DatumAlignmentResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task DeleteFeatureChecksAsync(
         IEnumerable<CollectionItemName> featureChecks,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4596,6 +4995,7 @@ public sealed class BriosaGdtOperations
             "DeleteFeatureChecks",
             request,
             Transport.DeleteFeatureChecksResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -4605,6 +5005,7 @@ public sealed class BriosaGdtOperations
         bool enableCustomInitialAlignment = false,
         bool enableInitialDatumAlignment = true,
         CollectionItemName? alignment = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4622,6 +5023,7 @@ public sealed class BriosaGdtOperations
             "EnableDisableDatumAlignmentForFeatureCheck",
             request,
             Transport.EnableDisableDatumAlignmentForFeatureCheckResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -4629,6 +5031,7 @@ public sealed class BriosaGdtOperations
         CollectionItemName featureCheck,
         bool performEvaluation = true,
         bool simultaneousEvaluation = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4644,6 +5047,7 @@ public sealed class BriosaGdtOperations
             "EvaluateFeatureCheck",
             request,
             Transport.EvaluateFeatureCheckResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -4651,6 +5055,7 @@ public sealed class BriosaGdtOperations
         IEnumerable<CollectionItemName> featureCheckList,
         bool simultaneousEvaluation = false,
         bool restrictEvaluationsToListedChecks = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4666,6 +5071,7 @@ public sealed class BriosaGdtOperations
             "EvaluateFeatureChecks",
             request,
             Transport.EvaluateFeatureChecksResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -4688,6 +5094,7 @@ public sealed class BriosaGdtOperations
         IEnumerable<CollectionItemName>? featureCheckNameList = null,
         bool includeDatums = true,
         bool createCloudForEachDatumOrCheck = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4712,12 +5119,14 @@ public sealed class BriosaGdtOperations
             "FeatureInspectionAutoFilter",
             request,
             Transport.FeatureInspectionAutoFilterResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task GenerateFeatureCheckSummaryAsync(
         IEnumerable<CollectionItemName> featureCheckList,
         string summaryTableName = "GDT Feature Check Summary",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4732,11 +5141,13 @@ public sealed class BriosaGdtOperations
             "GenerateFeatureCheckSummary",
             request,
             Transport.GenerateFeatureCheckSummaryResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<GdtMeasurements> GetDatumMeasurementsAsync(
         CollectionItemName datum,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4750,11 +5161,13 @@ public sealed class BriosaGdtOperations
             "GetDatumMeasurements",
             request,
             Transport.GetDatumMeasurementsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<FeatureCheckCylinderEvalOptions> GetFeatureCheckCylinderEvalOptionsAsync(
         CollectionItemName featureCheck,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4768,11 +5181,13 @@ public sealed class BriosaGdtOperations
             "GetFeatureCheckCylinderEvalOptions",
             request,
             Transport.GetFeatureCheckCylinderEvalOptionsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<FeatureCheckDatumReferencesResult> GetFeatureCheckDatumReferencesAsync(
         CollectionItemName featureCheck,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4786,11 +5201,13 @@ public sealed class BriosaGdtOperations
             "GetFeatureCheckDatumReferences",
             request,
             Transport.GetFeatureCheckDatumReferencesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<GdtMeasurements> GetFeatureCheckMeasurementsAsync(
         CollectionItemName featureCheck,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4804,11 +5221,13 @@ public sealed class BriosaGdtOperations
             "GetFeatureCheckMeasurements",
             request,
             Transport.GetFeatureCheckMeasurementsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<CollectionObjectName> GetFeatureCheckReportingFrameAsync(
         CollectionItemName featureCheck,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4822,12 +5241,14 @@ public sealed class BriosaGdtOperations
             "GetFeatureCheckReportingFrame",
             request,
             Transport.GetFeatureCheckReportingFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
 
     public Task<IReadOnlyList<CollectionItemName>> MakeAnnotationRefListFromCollectionAsync(
         CollectionName collection,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4841,12 +5262,14 @@ public sealed class BriosaGdtOperations
             "MakeAnnotationRefListFromCollection",
             request,
             Transport.MakeAnnotationRefListFromCollectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionItemName>> MakeAnnotationRefListWildcardSelectionAsync(
         string collectionWildcardCriteria = "*",
         string annotationWildcardCriteria = "*",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4861,11 +5284,13 @@ public sealed class BriosaGdtOperations
             "MakeAnnotationRefListWildcardSelection",
             request,
             Transport.MakeAnnotationRefListWildcardSelectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionObjectName>> MakeDatumRefListFromCollectionAsync(
         CollectionName collection,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4879,11 +5304,13 @@ public sealed class BriosaGdtOperations
             "MakeDatumRefListFromCollection",
             request,
             Transport.MakeDatumRefListFromCollectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionItemName>> MakeFeatureCheckRefListFromCollectionAsync(
         CollectionName collection,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4897,12 +5324,14 @@ public sealed class BriosaGdtOperations
             "MakeFeatureCheckRefListFromCollection",
             request,
             Transport.MakeFeatureCheckRefListFromCollectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionItemName>> MakeFeatureCheckReferenceListWildcardSelectionAsync(
         string collectionWildcardCriteria = "*",
         string featureCheckWildcardCriteria = "*",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4917,11 +5346,13 @@ public sealed class BriosaGdtOperations
             "MakeFeatureCheckReferenceListWildcardSelection",
             request,
             Transport.MakeFeatureCheckReferenceListWildcardSelectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task MakeFeatureChecksAsync(
         CollectionName collection,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -4935,11 +5366,13 @@ public sealed class BriosaGdtOperations
             "MakeFeatureChecks",
             request,
             Transport.MakeFeatureChecksResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task MakeGdtDatumAnnotationAsync(
         MakeGdtDatumAnnotationOptions options,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(options);
@@ -4961,6 +5394,7 @@ public sealed class BriosaGdtOperations
             "MakeGdtDatumAnnotation",
             request,
             Transport.MakeGdtDatumAnnotationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -4970,6 +5404,7 @@ public sealed class BriosaGdtOperations
     /// </remarks>
     public Task MakeGdtFeatureCheckAnnotationAsync(
         MakeGdtFeatureCheckAnnotationOptions options,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(options);
@@ -5013,11 +5448,13 @@ public sealed class BriosaGdtOperations
             "MakeGdtFeatureCheckAnnotation",
             request,
             Transport.MakeGdtFeatureCheckAnnotationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<SurfaceFaceList> MakeSurfaceFaceListFromSurfaceAsync(
         CollectionObjectName surface,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5031,10 +5468,12 @@ public sealed class BriosaGdtOperations
             "MakeSurfaceFaceListFromSurface",
             request,
             Transport.MakeSurfaceFaceListFromSurfaceResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<SurfaceFaceList> MakeSurfaceFaceListRuntimeSelectAsync(
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5047,11 +5486,13 @@ public sealed class BriosaGdtOperations
             "MakeSurfaceFaceListRuntimeSelect",
             request,
             Transport.MakeSurfaceFaceListRuntimeSelectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task RefreshDatumsFeatureChecksFromAnnotationsAsync(
         CollectionName collection,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5065,6 +5506,7 @@ public sealed class BriosaGdtOperations
             "RefreshDatumsFeatureChecksFromAnnotations",
             request,
             Transport.RefreshDatumsFeatureChecksFromAnnotationsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5073,6 +5515,7 @@ public sealed class BriosaGdtOperations
         IEnumerable<PointName> pointNames,
         IEnumerable<CollectionObjectName> cloudNames,
         bool replaceExistingMeasurements = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5089,6 +5532,7 @@ public sealed class BriosaGdtOperations
             "SetDatumMeasurements",
             request,
             Transport.SetDatumMeasurementsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5096,6 +5540,7 @@ public sealed class BriosaGdtOperations
         CollectionItemName featureCheck,
         bool enableActualDiameterOverride = false,
         double actualDiameterOverride = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5111,6 +5556,7 @@ public sealed class BriosaGdtOperations
             "SetFeatureCheckCylinderEvalOptions",
             request,
             Transport.SetFeatureCheckCylinderEvalOptionsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5119,6 +5565,7 @@ public sealed class BriosaGdtOperations
         IEnumerable<PointName> pointNames,
         IEnumerable<CollectionObjectName> cloudNames,
         bool replaceExistingMeasurements = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5135,12 +5582,14 @@ public sealed class BriosaGdtOperations
             "SetFeatureCheckMeasurements",
             request,
             Transport.SetFeatureCheckMeasurementsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetFeatureCheckReportingFrameAsync(
         CollectionItemName featureCheck,
         CollectionObjectName reportingFrame,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5155,6 +5604,7 @@ public sealed class BriosaGdtOperations
             "SetFeatureCheckReportingFrame",
             request,
             Transport.SetFeatureCheckReportingFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5169,6 +5619,7 @@ public sealed class BriosaGdtOperations
         bool createSolvedPoints = false,
         double crossSectionCriteria = 0.039370,
         bool enableAutoFeatureDetection = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5190,11 +5641,13 @@ public sealed class BriosaGdtOperations
             "SetGdtOptions",
             request,
             Transport.SetGdtOptionsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetGlobalForceSimultaneousEvaluationAsync(
         bool globalSimultaneousEvaluation = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5208,6 +5661,7 @@ public sealed class BriosaGdtOperations
             "SetGlobalForceSimultaneousEvaluation",
             request,
             Transport.SetGlobalForceSimultaneousEvaluationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5215,6 +5669,7 @@ public sealed class BriosaGdtOperations
         CollectionItemName featureCheck,
         CollectionInstrumentId instrumentId,
         bool startTrapping = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5230,11 +5685,13 @@ public sealed class BriosaGdtOperations
             "StartStopFeatureCheckTrapping",
             request,
             Transport.StartStopFeatureCheckTrappingResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<FeatureCheckReportingOptions> GetFeatureCheckReportingOptionsAsync(
         CollectionItemName featureCheck,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5248,10 +5705,12 @@ public sealed class BriosaGdtOperations
             "GetFeatureCheckReportingOptions",
             request,
             Transport.GetFeatureCheckReportingOptionsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<GdtOptions> GetGdtOptionsAsync(
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5264,6 +5723,7 @@ public sealed class BriosaGdtOperations
             "GetGdtOptions",
             request,
             Transport.GetGdtOptionsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5275,6 +5735,7 @@ public sealed class BriosaGdtOperations
         bool showFeatureSummary = false,
         bool showPointDetailsSummary = false,
         bool showLowerTierTables = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5294,6 +5755,7 @@ public sealed class BriosaGdtOperations
             "SetFeatureCheckReportingOptions",
             request,
             Transport.SetFeatureCheckReportingOptionsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 }
@@ -5306,6 +5768,7 @@ public sealed class BriosaInstrumentOperations
     public Task ActivateDeactivateInstrumentToolbarAsync(
         CollectionInstrumentId instrument,
         bool deactivateToolbar = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5320,11 +5783,13 @@ public sealed class BriosaInstrumentOperations
             "ActivateDeactivateInstrumentToolbar",
             request,
             Transport.ActivateDeactivateInstrumentToolbarResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<CollectionInstrumentId> AddNewInstrumentAsync(
         InstrumentTypeName instrumentType,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5338,6 +5803,7 @@ public sealed class BriosaInstrumentOperations
             "AddNewInstrument",
             request,
             Transport.AddNewInstrumentResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5351,6 +5817,7 @@ public sealed class BriosaInstrumentOperations
         double covarXy = 0.0,
         double covarXz = 0.0,
         double covarYz = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5372,6 +5839,7 @@ public sealed class BriosaInstrumentOperations
             "AddNominalPointToTcpFixture",
             request,
             Transport.AddNominalPointToTcpFixtureResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5381,6 +5849,7 @@ public sealed class BriosaInstrumentOperations
         double maximumCoarseCadMeshEdgeLength = 0.0,
         bool useFineCadMesh = false,
         bool executeAlignment = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5398,12 +5867,14 @@ public sealed class BriosaInstrumentOperations
             "AlignCloudToCad",
             request,
             Transport.AlignCloudToCadResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task AlignLaserProjectorAsync(
         CollectionInstrumentId instrument,
         CollectionObjectName group,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5418,6 +5889,7 @@ public sealed class BriosaInstrumentOperations
             "AlignLaserProjector",
             request,
             Transport.AlignLaserProjectorResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5427,6 +5899,7 @@ public sealed class BriosaInstrumentOperations
         PointName secondPointOnAxis,
         CollectionObjectName initialMeasuredGroup,
         ToleranceVectorOptions? rotationalTolerance = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5444,12 +5917,14 @@ public sealed class BriosaInstrumentOperations
             "AlignTwoTargetsWithAxisWcfX",
             request,
             Transport.AlignTwoTargetsWithAxisWcfXResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task AssociateObjectsWithInstrumentAsync(
         CollectionInstrumentId instrument,
         IEnumerable<CollectionObjectName> objects,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5464,6 +5939,7 @@ public sealed class BriosaInstrumentOperations
             "AssociateObjectsWithInstrument",
             request,
             Transport.AssociateObjectsWithInstrumentResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5472,6 +5948,7 @@ public sealed class BriosaInstrumentOperations
         CollectionObjectName referenceGroup,
         CollectionObjectName actualsGroup,
         bool waitForCompletion = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5488,6 +5965,7 @@ public sealed class BriosaInstrumentOperations
             "AutoCorrespondClosestPoint",
             request,
             Transport.AutoCorrespondClosestPointResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5503,6 +5981,7 @@ public sealed class BriosaInstrumentOperations
         string? deviationVectorGroupName = null,
         bool makeUnmeasuredGroup = false,
         bool measureEachPointOnlyOnce = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5526,6 +6005,7 @@ public sealed class BriosaInstrumentOperations
             "AutoCorrespondWithProximityTrigger",
             request,
             Transport.AutoCorrespondWithProximityTriggerResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5533,6 +6013,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         IEnumerable<CollectionItemName> features,
         bool waitForComplete = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5548,6 +6029,7 @@ public sealed class BriosaInstrumentOperations
             "AutoMeasureBatchOfFeatures",
             request,
             Transport.AutoMeasureBatchOfFeaturesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5559,6 +6041,7 @@ public sealed class BriosaInstrumentOperations
         bool showCompleteDialog = false,
         bool waitForCompletion = true,
         bool autoStart = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5578,6 +6061,7 @@ public sealed class BriosaInstrumentOperations
             "AutoMeasurePoints",
             request,
             Transport.AutoMeasurePointsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5586,6 +6070,7 @@ public sealed class BriosaInstrumentOperations
         CollectionObjectName geometry,
         string modeProfile,
         bool waitForComplete = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5602,6 +6087,7 @@ public sealed class BriosaInstrumentOperations
             "AutoMeasureSpecifiedGeometry",
             request,
             Transport.AutoMeasureSpecifiedGeometryResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5610,6 +6096,7 @@ public sealed class BriosaInstrumentOperations
         CollectionObjectName vectorGroup,
         CollectionObjectName resultantGroup,
         bool waitForComplete = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5626,6 +6113,7 @@ public sealed class BriosaInstrumentOperations
             "AutoMeasureSurfaceVectorIntersections",
             request,
             Transport.AutoMeasureSurfaceVectorIntersectionsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5637,6 +6125,7 @@ public sealed class BriosaInstrumentOperations
         double angleTolerance = 0.0,
         double highTolerance = 0.0,
         double lowTolerance = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5656,6 +6145,7 @@ public sealed class BriosaInstrumentOperations
             "AutoMeasureVectors",
             request,
             Transport.AutoMeasureVectorsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5665,6 +6155,7 @@ public sealed class BriosaInstrumentOperations
         PointName nominalPoint,
         ToleranceVectorOptions? tolerance = null,
         FileReference? htmlPromptFile = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5682,6 +6173,7 @@ public sealed class BriosaInstrumentOperations
             "BuildTarget",
             request,
             Transport.BuildTargetResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5689,6 +6181,7 @@ public sealed class BriosaInstrumentOperations
         CollectionObjectName tcpFixture,
         IEnumerable<PointName> tcpMeasurements,
         Transform? tcpInWorking = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5704,11 +6197,13 @@ public sealed class BriosaInstrumentOperations
             "CalculateTcpFixtureUncertainties",
             request,
             Transport.CalculateTcpFixtureUncertaintiesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ClearCloudViewerAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5722,11 +6217,13 @@ public sealed class BriosaInstrumentOperations
             "ClearCloudViewer",
             request,
             Transport.ClearCloudViewerResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task CloseAutoCorrespondClosestPointDialogAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5740,6 +6237,7 @@ public sealed class BriosaInstrumentOperations
             "CloseAutoCorrespondClosestPointDialog",
             request,
             Transport.CloseAutoCorrespondClosestPointDialogResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5755,6 +6253,7 @@ public sealed class BriosaInstrumentOperations
         PointName? scalePoint2 = null,
         PointName? notMeasuredByMovingInstrument = null,
         PointName? asMeasuredByMovingInstrument = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5778,12 +6277,14 @@ public sealed class BriosaInstrumentOperations
             "Collimation",
             request,
             Transport.CollimationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task CombinePointGroupsAsync(
         IEnumerable<CollectionObjectName> groupsToCombine,
         CollectionObjectName combinedPointGroup,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5798,6 +6299,7 @@ public sealed class BriosaInstrumentOperations
             "CombinePointGroups",
             request,
             Transport.CombinePointGroupsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5810,6 +6312,7 @@ public sealed class BriosaInstrumentOperations
         double materialCte = 0.0,
         double initialTemperature = 0.0,
         double finalTemperature = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5825,6 +6328,7 @@ public sealed class BriosaInstrumentOperations
             "ComputeCteScaleFactor",
             request,
             Transport.ComputeCteScaleFactorResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5838,6 +6342,7 @@ public sealed class BriosaInstrumentOperations
         bool measureImmediately = false,
         bool waitForCompletion = true,
         double timeoutSeconds = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5856,11 +6361,13 @@ public sealed class BriosaInstrumentOperations
             "ConfigureAndMeasure",
             request,
             Transport.ConfigureAndMeasureResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConstructMeasuredPointUncertaintyEllipsoidsAsync(
         IEnumerable<PointName> measurements,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5874,6 +6381,7 @@ public sealed class BriosaInstrumentOperations
             "ConstructMeasuredPointUncertaintyEllipsoids",
             request,
             Transport.ConstructMeasuredPointUncertaintyEllipsoidsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5881,6 +6389,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         string mirrorName,
         CollectionObjectName plane,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5896,6 +6405,7 @@ public sealed class BriosaInstrumentOperations
             "ConstructMirrorFromPlane",
             request,
             Transport.ConstructMirrorFromPlaneResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5905,6 +6415,7 @@ public sealed class BriosaInstrumentOperations
         PointName pointMeasuredDirectly,
         PointName pointMeasuredThroughMirror,
         bool sendMirrorToInstrument = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5922,11 +6433,13 @@ public sealed class BriosaInstrumentOperations
             "ConstructMirrorFromTwoPoints",
             request,
             Transport.ConstructMirrorFromTwoPointsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<PerimeterLists> ConstructPerimetersFromSurfaceFaceListAsync(
         SurfaceFaceList surfaceFaces,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5940,6 +6453,7 @@ public sealed class BriosaInstrumentOperations
             "ConstructPerimetersFromSurfaceFaceList",
             request,
             Transport.ConstructPerimetersFromSurfaceFaceListResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5947,6 +6461,7 @@ public sealed class BriosaInstrumentOperations
         CollectionObjectName requestedTcpFixture,
         double pointMatchThreshold = 0.0,
         bool replaceExistingTcpFixture = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5962,6 +6477,7 @@ public sealed class BriosaInstrumentOperations
             "ConstructTcpFixture",
             request,
             Transport.ConstructTcpFixtureResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -5969,6 +6485,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         IEnumerable<PointName> pointsDefiningDynamicReference,
         string dynamicReferenceName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -5984,6 +6501,7 @@ public sealed class BriosaInstrumentOperations
             "CreateNewDynamicReference",
             request,
             Transport.CreateNewDynamicReferenceResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -6008,6 +6526,7 @@ public sealed class BriosaInstrumentOperations
         double component1Weight = 1.0,
         double component2Weight = 1.0,
         double component3Weight = 1.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6035,6 +6554,7 @@ public sealed class BriosaInstrumentOperations
             "CreateTemplatedInstrumentUsmn",
             request,
             Transport.CreateTemplatedInstrumentUsmnResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -6042,6 +6562,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         bool promptUserToConfirm = false,
         bool keepResultingPoints = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6057,6 +6578,7 @@ public sealed class BriosaInstrumentOperations
             "DeleteInstrument",
             request,
             Transport.DeleteInstrumentResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -6064,6 +6586,7 @@ public sealed class BriosaInstrumentOperations
         PointName pointName,
         int observationIndex = 0,
         bool deletePointIfNoMeasurementsRemain = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6079,6 +6602,7 @@ public sealed class BriosaInstrumentOperations
             "DeleteMeasurementObservation",
             request,
             Transport.DeleteMeasurementObservationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -6086,6 +6610,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         PointName pointName,
         bool deletePointIfNoMeasurementsRemain = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6101,11 +6626,13 @@ public sealed class BriosaInstrumentOperations
             "DeleteMeasurements",
             request,
             Transport.DeleteMeasurementsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task DisassociateObjectsFromInstrumentAsync(
         IEnumerable<CollectionObjectName> objects,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6119,12 +6646,14 @@ public sealed class BriosaInstrumentOperations
             "DisassociateObjectsFromInstrument",
             request,
             Transport.DisassociateObjectsFromInstrumentResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task DissectPointGroupAsync(
         CollectionObjectName groupToDissect,
         string baseNameForDissectedGroups,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6139,12 +6668,14 @@ public sealed class BriosaInstrumentOperations
             "DissectPointGroup",
             request,
             Transport.DissectPointGroupResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task DockInstrumentInterfaceAsync(
         CollectionInstrumentId instrument,
         bool dockInterface = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6159,6 +6690,7 @@ public sealed class BriosaInstrumentOperations
             "DockInstrumentInterface",
             request,
             Transport.DockInstrumentInterfaceResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -6169,6 +6701,7 @@ public sealed class BriosaInstrumentOperations
         double tolerance = 0.0,
         int minimumPointCount = 0,
         bool useClosestReferencePoint = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6187,6 +6720,7 @@ public sealed class BriosaInstrumentOperations
             "DriftCheck",
             request,
             Transport.DriftCheckResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -6197,6 +6731,7 @@ public sealed class BriosaInstrumentOperations
         string parameterSetName,
         CollectionObjectName pointGroup,
         string targetName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6215,12 +6750,14 @@ public sealed class BriosaInstrumentOperations
             "EdgeScanMeasurement",
             request,
             Transport.EdgeScanMeasurementResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
 
     public Task EnableDisableFrameSetScanModeAllInstrumentsAsync(
         bool enableFrameSetScanMode = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6234,12 +6771,14 @@ public sealed class BriosaInstrumentOperations
             "EnableDisableFrameSetScanModeAllInstruments",
             request,
             Transport.EnableDisableFrameSetScanModeAllInstrumentsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task EnableDisableFrameSetScanModeByInstrumentAsync(
         CollectionInstrumentId instrument,
         bool enableFrameSetScanMode = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6254,12 +6793,14 @@ public sealed class BriosaInstrumentOperations
             "EnableDisableFrameSetScanModeByInstrument",
             request,
             Transport.EnableDisableFrameSetScanModeByInstrumentResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task EnableDisablePointSetScanModeAsync(
         CollectionInstrumentId instrument,
         bool enablePointSetScanMode = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6274,12 +6815,14 @@ public sealed class BriosaInstrumentOperations
             "EnableDisablePointSetScanMode",
             request,
             Transport.EnableDisablePointSetScanModeResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ExportInstrumentHistoryToXmlFileAsync(
         CollectionInstrumentId instrument,
         FileReference filePath,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6294,6 +6837,7 @@ public sealed class BriosaInstrumentOperations
             "ExportInstrumentHistoryToXmlFile",
             request,
             Transport.ExportInstrumentHistoryToXmlFileResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -6304,6 +6848,7 @@ public sealed class BriosaInstrumentOperations
         bool limitDistance = false,
         double minimumDistance = 0.0,
         double maximumDistance = 1000000.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6322,6 +6867,7 @@ public sealed class BriosaInstrumentOperations
             "FabricateObservations",
             request,
             Transport.FabricateObservationsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -6329,6 +6875,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         InstrumentPositionReportingFrame reportingFrame = InstrumentPositionReportingFrame.InstrumentBase,
         bool polarCoordinates = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6344,10 +6891,12 @@ public sealed class BriosaInstrumentOperations
             "GetCurrentInstrumentPositionUpdate",
             request,
             Transport.GetCurrentInstrumentPositionUpdateResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<CurrentTrappingStatus> GetCurrentTrappingStatusAsync(
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6360,12 +6909,14 @@ public sealed class BriosaInstrumentOperations
             "GetCurrentTrappingStatus",
             request,
             Transport.GetCurrentTrappingStatusResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<double> GetEstimatedScanTimeAsync(
         CollectionInstrumentId instrument,
         string profileName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6380,12 +6931,14 @@ public sealed class BriosaInstrumentOperations
             "GetEstimatedScanTime",
             request,
             Transport.GetEstimatedScanTimeResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
 
     public Task<UncertaintyCovarianceMatrix> GetInstrumentBaseUncertaintyCovarianceMatrixWrtWorldAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6399,12 +6952,14 @@ public sealed class BriosaInstrumentOperations
             "GetInstrumentBaseUncertaintyCovarianceMatrixWrtWorld",
             request,
             Transport.GetInstrumentBaseUncertaintyCovarianceMatrixWrtWorldResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
 
     public Task<CollectionInstrumentId> GetInstrumentIdFromNameAsync(
         string name,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6418,11 +6973,13 @@ public sealed class BriosaInstrumentOperations
             "GetInstrumentIdFromName",
             request,
             Transport.GetInstrumentIdFromNameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<double> GetInstrumentInterfaceResponseTimeoutAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6436,12 +6993,14 @@ public sealed class BriosaInstrumentOperations
             "GetInstrumentInterfaceResponseTimeout",
             request,
             Transport.GetInstrumentInterfaceResponseTimeoutResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
 
     public Task<InstrumentModelResult> GetInstrumentModelAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6455,11 +7014,13 @@ public sealed class BriosaInstrumentOperations
             "GetInstrumentModel",
             request,
             Transport.GetInstrumentModelResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<double> GetInstrumentPartTemperatureAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6473,11 +7034,13 @@ public sealed class BriosaInstrumentOperations
             "GetInstrumentPartTemperature",
             request,
             Transport.GetInstrumentPartTemperatureResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<double> GetInstrumentScaleFactorAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6491,11 +7054,13 @@ public sealed class BriosaInstrumentOperations
             "GetInstrumentScaleFactor",
             request,
             Transport.GetInstrumentScaleFactorResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<InstrumentTargetStatus> GetInstrumentTargetStatusAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6509,12 +7074,14 @@ public sealed class BriosaInstrumentOperations
             "GetInstrumentTargetStatus",
             request,
             Transport.GetInstrumentTargetStatusResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
 
     public Task<InstrumentTargetsAndModeProfiles> GetInstrumentTargetsAndModeProfilesAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6528,12 +7095,14 @@ public sealed class BriosaInstrumentOperations
             "GetInstrumentTargetsAndModeProfiles",
             request,
             Transport.GetInstrumentTargetsAndModeProfilesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<Transform> GetInstrumentTransformAsync(
         CollectionInstrumentId instrument,
         CollectionObjectName referenceFrame,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6548,11 +7117,13 @@ public sealed class BriosaInstrumentOperations
             "GetInstrumentTransform",
             request,
             Transport.GetInstrumentTransformResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<InstrumentWeatherSetting> GetInstrumentWeatherSettingAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6566,11 +7137,13 @@ public sealed class BriosaInstrumentOperations
             "GetInstrumentWeatherSetting",
             request,
             Transport.GetInstrumentWeatherSettingResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionInstrumentId>> GetInstrumentsWithObservationsOnTargetAsync(
         PointName point,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6584,10 +7157,12 @@ public sealed class BriosaInstrumentOperations
             "GetInstrumentsWithObservationsOnTarget",
             request,
             Transport.GetInstrumentsWithObservationsOnTargetResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<LastInstrumentIndexResult> GetLastInstrumentIndexAsync(
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6600,11 +7175,13 @@ public sealed class BriosaInstrumentOperations
             "GetLastInstrumentIndex",
             request,
             Transport.GetLastInstrumentIndexResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<UncertaintyCovarianceMatrix> GetLastSolvedTcpFixtureUncertaintyCovarianceMatrixAsync(
         CollectionObjectName tcpFixture,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6618,11 +7195,13 @@ public sealed class BriosaInstrumentOperations
             "GetLastSolvedTcpFixtureUncertaintyCovarianceMatrix",
             request,
             Transport.GetLastSolvedTcpFixtureUncertaintyCovarianceMatrixResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<int> GetNumberOfObservationsOnTargetAsync(
         PointName point,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6636,6 +7215,7 @@ public sealed class BriosaInstrumentOperations
             "GetNumberOfObservationsOnTarget",
             request,
             Transport.GetNumberOfObservationsOnTargetResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -6643,6 +7223,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         IEnumerable<PointName> candidatePoints,
         bool showObscuredShots = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6658,12 +7239,14 @@ public sealed class BriosaInstrumentOperations
             "GetObscuredPointsFromInstrument",
             request,
             Transport.GetObscuredPointsFromInstrumentResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<ObservationInfo> GetObservationInfoAsync(
         PointName point,
         int observationIndex = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6678,11 +7261,13 @@ public sealed class BriosaInstrumentOperations
             "GetObservationInfo",
             request,
             Transport.GetObservationInfoResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<InstrumentXyzUncertainties> GetPcmmInstrumentXyzUncertaintiesAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6696,11 +7281,13 @@ public sealed class BriosaInstrumentOperations
             "GetPcmmInstrumentXyzUncertainties",
             request,
             Transport.GetPcmmInstrumentXyzUncertaintiesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<PointName>> GetTargetsMeasuredByInstrumentAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6714,11 +7301,13 @@ public sealed class BriosaInstrumentOperations
             "GetTargetsMeasuredByInstrument",
             request,
             Transport.GetTargetsMeasuredByInstrumentResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<TrackerEdmTheodoliteUncertainties> GetTrackerEdmTheodoliteUncertaintiesAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6732,11 +7321,13 @@ public sealed class BriosaInstrumentOperations
             "GetTrackerEdmTheodoliteUncertainties",
             request,
             Transport.GetTrackerEdmTheodoliteUncertaintiesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<WrtlChannelStatus> GetWrtlChannelAndStatusAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6750,11 +7341,13 @@ public sealed class BriosaInstrumentOperations
             "GetWrtlChannelAndStatus",
             request,
             Transport.GetWrtlChannelAndStatusResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<InstrumentXyzUncertainties> GetXyzInstrumentUncertaintiesAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6768,6 +7361,7 @@ public sealed class BriosaInstrumentOperations
             "GetXyzInstrumentUncertainties",
             request,
             Transport.GetXyzInstrumentUncertaintiesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -6779,6 +7373,7 @@ public sealed class BriosaInstrumentOperations
         CollectionObjectName? initialSurveyGroup = null,
         ToleranceVectorOptions? positionalTolerance = null,
         ToleranceVectorOptions? rotationalTolerance = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6798,6 +7393,7 @@ public sealed class BriosaInstrumentOperations
             "GuideObjectsIn6dBasedOnPointMeasurements",
             request,
             Transport.GuideObjectsIn6dBasedOnPointMeasurementsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -6807,6 +7403,7 @@ public sealed class BriosaInstrumentOperations
         string groupNameSuffix = "",
         string targetNameSuffix = "",
         double tolerance = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6824,12 +7421,14 @@ public sealed class BriosaInstrumentOperations
             "InitiateServoGuide",
             request,
             Transport.InitiateServoGuideResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task InstrumentOperationalCheckAsync(
         CollectionInstrumentId instrument,
         string checkType,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6844,12 +7443,14 @@ public sealed class BriosaInstrumentOperations
             "InstrumentOperationalCheck",
             request,
             Transport.InstrumentOperationalCheckResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task IssueInstrumentActuatorCommandAsync(
         CollectionInstrumentId instrument,
         string command,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6864,12 +7465,14 @@ public sealed class BriosaInstrumentOperations
             "IssueInstrumentActuatorCommand",
             request,
             Transport.IssueInstrumentActuatorCommandResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task JumpInstrumentToNewLocationAsync(
         CollectionInstrumentId liveInstrument,
         bool hidePreviousInstrument = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6884,12 +7487,14 @@ public sealed class BriosaInstrumentOperations
             "JumpInstrumentToNewLocation",
             request,
             Transport.JumpInstrumentToNewLocationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task LoadCloudViewerPointCloudFileAsync(
         CollectionInstrumentId instrument,
         string filePath,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6904,12 +7509,14 @@ public sealed class BriosaInstrumentOperations
             "LoadCloudViewerPointCloudFile",
             request,
             Transport.LoadCloudViewerPointCloudFileResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task LoadInstrumentConfigurationAsync(
         CollectionInstrumentId instrument,
         FileReference configurationFile,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6924,6 +7531,7 @@ public sealed class BriosaInstrumentOperations
             "LoadInstrumentConfiguration",
             request,
             Transport.LoadInstrumentConfigurationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -6943,6 +7551,7 @@ public sealed class BriosaInstrumentOperations
         bool lockDegreesOfFreedom = false,
         bool generateEvent = false,
         FileReference? csvReport = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -6970,6 +7579,7 @@ public sealed class BriosaInstrumentOperations
             "LocateInstrumentBestFitGroupToGroup",
             request,
             Transport.LocateInstrumentBestFitGroupToGroupResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -6989,6 +7599,7 @@ public sealed class BriosaInstrumentOperations
         bool lockDegreesOfFreedom = false,
         bool generateEvent = false,
         FileReference? csvReport = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7016,6 +7627,7 @@ public sealed class BriosaInstrumentOperations
             "LocateInstrumentBestFitNominalGeometry",
             request,
             Transport.LocateInstrumentBestFitNominalGeometryResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7030,6 +7642,7 @@ public sealed class BriosaInstrumentOperations
         IEnumerable<CollectionObjectName>? otherObjectsToTransform = null,
         double rmsTolerance = 0.0,
         double maximumAbsoluteTolerance = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7049,6 +7662,7 @@ public sealed class BriosaInstrumentOperations
             "LocateInstrumentGroupToSurfaceQuickFit",
             request,
             Transport.LocateInstrumentGroupToSurfaceQuickFitResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7058,6 +7672,7 @@ public sealed class BriosaInstrumentOperations
         CollectionObjectName actualsGroup,
         double tolerance = 0.0,
         bool autoSurvey = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7075,6 +7690,7 @@ public sealed class BriosaInstrumentOperations
             "LocateInstrumentRefTieIn",
             request,
             Transport.LocateInstrumentRefTieInResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7097,6 +7713,7 @@ public sealed class BriosaInstrumentOperations
         bool runUncertaintyFieldAnalysis = false,
         int analysisSamples = 300,
         double analysisTimeLimit = 4.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7122,6 +7739,7 @@ public sealed class BriosaInstrumentOperations
             "LocateInstrumentsUsmn",
             request,
             Transport.LocateInstrumentsUsmnResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7129,6 +7747,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         string calibrationName = "",
         int calibrationId = -1,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7144,11 +7763,13 @@ public sealed class BriosaInstrumentOperations
             "LrApdisActivateMcmCalibration",
             request,
             Transport.LrApdisActivateMcmCalibrationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<string> LrApdisGetActiveMcmCalibrationAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7162,6 +7783,7 @@ public sealed class BriosaInstrumentOperations
             "LrApdisGetActiveMcmCalibration",
             request,
             Transport.LrApdisGetActiveMcmCalibrationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7170,6 +7792,7 @@ public sealed class BriosaInstrumentOperations
         CollectionObjectName nominalGroup,
         bool useMatteToolingBall = true,
         string newCalibrationName = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7186,11 +7809,13 @@ public sealed class BriosaInstrumentOperations
             "LrApdisPerformMcmCalibration",
             request,
             Transport.LrApdisPerformMcmCalibrationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<LrSnrInfo> LrGetMostRecentSnrInfoAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7204,6 +7829,7 @@ public sealed class BriosaInstrumentOperations
             "LrGetMostRecentSnrInfo",
             request,
             Transport.LrGetMostRecentSnrInfoResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7211,6 +7837,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         string host,
         int port,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7226,11 +7853,13 @@ public sealed class BriosaInstrumentOperations
             "LrHardwareConnect",
             request,
             Transport.LrHardwareConnectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task LrHardwareDisconnectAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7244,11 +7873,13 @@ public sealed class BriosaInstrumentOperations
             "LrHardwareDisconnect",
             request,
             Transport.LrHardwareDisconnectResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<LrSelfTestResult> LrSelfTestAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7262,11 +7893,13 @@ public sealed class BriosaInstrumentOperations
             "LrSelfTest",
             request,
             Transport.LrSelfTestResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<LrFlipTestResult> LrSelfTestFlipTestAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7280,11 +7913,13 @@ public sealed class BriosaInstrumentOperations
             "LrSelfTestFlipTest",
             request,
             Transport.LrSelfTestFlipTestResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<double> LrSelfTestLinearizationAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7298,6 +7933,7 @@ public sealed class BriosaInstrumentOperations
             "LrSelfTestLinearization",
             request,
             Transport.LrSelfTestLinearizationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7305,6 +7941,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         int region = 0,
         int numRangeMeasurements = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7320,12 +7957,14 @@ public sealed class BriosaInstrumentOperations
             "LrSelfTestLoSep",
             request,
             Transport.LrSelfTestLoSepResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task LrSetRedLaserIntensityAsync(
         CollectionInstrumentId instrument,
         int intensity = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7340,11 +7979,13 @@ public sealed class BriosaInstrumentOperations
             "LrSetRedLaserIntensity",
             request,
             Transport.LrSetRedLaserIntensityResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<bool> LrVerifyHardwareConnectionAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7358,11 +7999,13 @@ public sealed class BriosaInstrumentOperations
             "LrVerifyHardwareConnection",
             request,
             Transport.LrVerifyHardwareConnectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<IReadOnlyList<CollectionObjectName>> MakeCollectionObjectNameRefListFromObjectsAssociatedWithInstrumentsAsync(
         IEnumerable<CollectionInstrumentId> instruments,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7376,11 +8019,13 @@ public sealed class BriosaInstrumentOperations
             "MakeCollectionObjectNameRefListFromObjectsAssociatedWithInstruments",
             request,
             Transport.MakeCollectionObjectNameRefListFromObjectsAssociatedWithInstrumentsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<SurfaceFaceList> MakeSurfaceFaceListFromPointProximityAsync(
         IReadOnlyList<PointName> measuredPoints,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7394,11 +8039,13 @@ public sealed class BriosaInstrumentOperations
             "MakeSurfaceFaceListFromPointProximity",
             request,
             Transport.MakeSurfaceFaceListFromPointProximityResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task MeasureAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7412,6 +8059,7 @@ public sealed class BriosaInstrumentOperations
             "Measure",
             request,
             Transport.MeasureResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7421,6 +8069,7 @@ public sealed class BriosaInstrumentOperations
         CollectionObjectName groupNameForNewPoint,
         bool measureImmediately = false,
         FileReference? htmlPromptFile = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7438,6 +8087,7 @@ public sealed class BriosaInstrumentOperations
             "MeasureExistingSinglePoint",
             request,
             Transport.MeasureExistingSinglePointResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7448,6 +8098,7 @@ public sealed class BriosaInstrumentOperations
         bool measureImmediately = false,
         FileReference? htmlPromptFile = null,
         double tolerance = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7466,6 +8117,7 @@ public sealed class BriosaInstrumentOperations
             "MeasureExistingSinglePointAndCompare",
             request,
             Transport.MeasureExistingSinglePointAndCompareResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7475,6 +8127,7 @@ public sealed class BriosaInstrumentOperations
         CollectionObjectName groupNameForNewPoint,
         bool measureImmediately = false,
         FileReference? htmlPromptFile = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7492,6 +8145,7 @@ public sealed class BriosaInstrumentOperations
             "MeasureExistingSinglePointManualGuide",
             request,
             Transport.MeasureExistingSinglePointManualGuideResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7499,6 +8153,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         CollectionObjectName feature,
         PointName resultingPoint,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7514,6 +8169,7 @@ public sealed class BriosaInstrumentOperations
             "MeasureNominalFeature",
             request,
             Transport.MeasureNominalFeatureResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7522,6 +8178,7 @@ public sealed class BriosaInstrumentOperations
         PointName targetId,
         bool measureImmediately = false,
         FileReference? htmlPromptFile = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7538,12 +8195,14 @@ public sealed class BriosaInstrumentOperations
             "MeasureSinglePointHere",
             request,
             Transport.MeasureSinglePointHereResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task MoveInstrumentToAnotherCollectionAsync(
         CollectionInstrumentId instrument,
         CollectionName collectionName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7558,6 +8217,7 @@ public sealed class BriosaInstrumentOperations
             "MoveInstrumentToAnotherCollection",
             request,
             Transport.MoveInstrumentToAnotherCollectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7567,6 +8227,7 @@ public sealed class BriosaInstrumentOperations
         int observationIndex = 0,
         bool deletePointIfNoMeasurementsRemain = false,
         bool forceObservationActive = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7584,6 +8245,7 @@ public sealed class BriosaInstrumentOperations
             "MoveMeasurementObservation",
             request,
             Transport.MoveMeasurementObservationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7591,6 +8253,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         IEnumerable<CollectionObjectName> objectsToMove,
         string measurementMode,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7606,6 +8269,7 @@ public sealed class BriosaInstrumentOperations
             "MoveObjectsIn6dUsingInstrumentUpdates",
             request,
             Transport.MoveObjectsIn6dUsingInstrumentUpdatesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7613,6 +8277,7 @@ public sealed class BriosaInstrumentOperations
         IEnumerable<CollectionInstrumentId> instruments,
         string measurementMode,
         bool waitForCompletion = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7628,11 +8293,13 @@ public sealed class BriosaInstrumentOperations
             "MultiMeasurementInitiate",
             request,
             Transport.MultiMeasurementInitiateResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task MultiMeasurementStopAsync(
         IEnumerable<CollectionInstrumentId> instruments,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7646,6 +8313,7 @@ public sealed class BriosaInstrumentOperations
             "MultiMeasurementStop",
             request,
             Transport.MultiMeasurementStopResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7653,6 +8321,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         PointName targetId,
         FileReference? htmlPromptFile = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7668,6 +8337,7 @@ public sealed class BriosaInstrumentOperations
             "PointAtTarget",
             request,
             Transport.PointAtTargetResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7677,6 +8347,7 @@ public sealed class BriosaInstrumentOperations
         IEnumerable<PointName>? nominalPoints = null,
         IEnumerable<string>? nominalPointOfViewNames = null,
         bool alignToIndividualFacesOnly = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7694,12 +8365,14 @@ public sealed class BriosaInstrumentOperations
             "QuickAlign",
             request,
             Transport.QuickAlignResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task RenameInstrumentAsync(
         CollectionInstrumentId instrument,
         string newName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7714,6 +8387,7 @@ public sealed class BriosaInstrumentOperations
             "RenameInstrument",
             request,
             Transport.RenameInstrumentResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7721,6 +8395,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         string filePath,
         bool saveAsAscii = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7736,12 +8411,14 @@ public sealed class BriosaInstrumentOperations
             "SaveCloudViewerPointCloudFile",
             request,
             Transport.SaveCloudViewerPointCloudFileResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SaveInstrumentConfigurationAsync(
         CollectionInstrumentId instrument,
         FileReference configurationFile,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7756,6 +8433,7 @@ public sealed class BriosaInstrumentOperations
             "SaveInstrumentConfiguration",
             request,
             Transport.SaveInstrumentConfigurationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7764,6 +8442,7 @@ public sealed class BriosaInstrumentOperations
     public Task SendCloudToSaAsync(
         CollectionInstrumentId instrument,
         string cloudName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7778,12 +8457,14 @@ public sealed class BriosaInstrumentOperations
             "SendCloudToSa",
             request,
             Transport.SendCloudToSaResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetAbsoluteInstrumentScaleFactorAsync(
         CollectionInstrumentId instrument,
         double scaleFactor = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7798,6 +8479,7 @@ public sealed class BriosaInstrumentOperations
             "SetAbsoluteInstrumentScaleFactor",
             request,
             Transport.SetAbsoluteInstrumentScaleFactorResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7805,6 +8487,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         string projectorProfile,
         string userPrompt = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7820,12 +8503,14 @@ public sealed class BriosaInstrumentOperations
             "SetAlignmentProjector",
             request,
             Transport.SetAlignmentProjectorResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCloudViewerFilterAsync(
         CollectionInstrumentId instrument,
         int filterValue = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7840,6 +8525,7 @@ public sealed class BriosaInstrumentOperations
             "SetCloudViewerFilter",
             request,
             Transport.SetCloudViewerFilterResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7848,6 +8534,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrumentToAdjust,
         IEnumerable<double> axisValues,
         int numberOfSteps = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7863,12 +8550,14 @@ public sealed class BriosaInstrumentOperations
             "SetInstrumentAxes",
             request,
             Transport.SetInstrumentAxesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetInstrumentBaseUncertaintyCovarianceMatrixWrtBaseAsync(
         CollectionInstrumentId instrument,
         UncertaintyCovarianceMatrix covarianceMatrix,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7883,12 +8572,14 @@ public sealed class BriosaInstrumentOperations
             "SetInstrumentBaseUncertaintyCovarianceMatrixWrtBase",
             request,
             Transport.SetInstrumentBaseUncertaintyCovarianceMatrixWrtBaseResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetInstrumentBaseUncertaintyCovarianceMatrixWrtWorldAsync(
         CollectionInstrumentId instrument,
         UncertaintyCovarianceMatrix covarianceMatrix,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7903,12 +8594,14 @@ public sealed class BriosaInstrumentOperations
             "SetInstrumentBaseUncertaintyCovarianceMatrixWrtWorld",
             request,
             Transport.SetInstrumentBaseUncertaintyCovarianceMatrixWrtWorldResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetInstrumentGroupAndTargetAsync(
         CollectionInstrumentId instrument,
         PointName point,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7923,6 +8616,7 @@ public sealed class BriosaInstrumentOperations
             "SetInstrumentGroupAndTarget",
             request,
             Transport.SetInstrumentGroupAndTargetResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7932,6 +8626,7 @@ public sealed class BriosaInstrumentOperations
     public Task SetInstrumentInterfaceResponseTimeoutAsync(
         CollectionInstrumentId instrument,
         double timeout = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7946,12 +8641,14 @@ public sealed class BriosaInstrumentOperations
             "SetInstrumentInterfaceResponseTimeout",
             request,
             Transport.SetInstrumentInterfaceResponseTimeoutResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetInstrumentMeasurementModeProfileAsync(
         CollectionInstrumentId instrument,
         string modeProfile,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7966,12 +8663,14 @@ public sealed class BriosaInstrumentOperations
             "SetInstrumentMeasurementModeProfile",
             request,
             Transport.SetInstrumentMeasurementModeProfileResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetInstrumentTargetingAsync(
         CollectionInstrumentId instrument,
         string targetingName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -7986,6 +8685,7 @@ public sealed class BriosaInstrumentOperations
             "SetInstrumentTargeting",
             request,
             Transport.SetInstrumentTargetingResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -7994,6 +8694,7 @@ public sealed class BriosaInstrumentOperations
         Transform destinationTransform,
         CollectionObjectName referenceFrame,
         int numberOfSteps = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8010,6 +8711,7 @@ public sealed class BriosaInstrumentOperations
             "SetInstrumentTransform",
             request,
             Transport.SetInstrumentTransformResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8024,6 +8726,7 @@ public sealed class BriosaInstrumentOperations
         double pressure = 0.0,
         double relativeHumidity = 0.0,
         bool setAutomatically = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8041,6 +8744,7 @@ public sealed class BriosaInstrumentOperations
             "SetInstrumentWeatherSetting",
             request,
             Transport.SetInstrumentWeatherSettingResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8053,6 +8757,7 @@ public sealed class BriosaInstrumentOperations
     public Task SetMultiplyInstrumentScaleFactorAsync(
         CollectionInstrumentId instrument,
         double scaleFactor = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8067,6 +8772,7 @@ public sealed class BriosaInstrumentOperations
             "SetMultiplyInstrumentScaleFactor",
             request,
             Transport.SetMultiplyInstrumentScaleFactorResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8075,6 +8781,7 @@ public sealed class BriosaInstrumentOperations
         int observationIndex = 0,
         bool isCollimationShot = false,
         CollectionInstrumentId? targetedInstrument = null,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8091,6 +8798,7 @@ public sealed class BriosaInstrumentOperations
             "SetObservationCollimationShotOptions",
             request,
             Transport.SetObservationCollimationShotOptionsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8099,6 +8807,7 @@ public sealed class BriosaInstrumentOperations
         int observationIndex = 0,
         bool isMirrorCubeShot = false,
         int mirrorCubeShotFace = 1,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8115,6 +8824,7 @@ public sealed class BriosaInstrumentOperations
             "SetObservationMirrorCubeShotFace",
             request,
             Transport.SetObservationMirrorCubeShotFaceResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8122,6 +8832,7 @@ public sealed class BriosaInstrumentOperations
         PointName point,
         int observationIndex = 0,
         bool active = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8137,6 +8848,7 @@ public sealed class BriosaInstrumentOperations
             "SetObservationStatus",
             request,
             Transport.SetObservationStatusResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8145,6 +8857,7 @@ public sealed class BriosaInstrumentOperations
         double xUncertainty = 0.001,
         double yUncertainty = 0.001,
         double zUncertainty = 0.001,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8161,6 +8874,7 @@ public sealed class BriosaInstrumentOperations
             "SetPcmmInstrumentXyzUncertainties",
             request,
             Transport.SetPcmmInstrumentXyzUncertaintiesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8170,6 +8884,7 @@ public sealed class BriosaInstrumentOperations
         CollectionObjectName rawMeasuredFrame,
         CollectionObjectName offsetFrame,
         int faceId = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8187,6 +8902,7 @@ public sealed class BriosaInstrumentOperations
             "SetProbeOffsetFrameOffline",
             request,
             Transport.SetProbeOffsetFrameOfflineResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8197,6 +8913,7 @@ public sealed class BriosaInstrumentOperations
         int faceId = 0,
         string measureProfileName = "",
         double timeoutSeconds = 15.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8215,11 +8932,13 @@ public sealed class BriosaInstrumentOperations
             "SetProbeOffsetFrameOnline",
             request,
             Transport.SetProbeOffsetFrameOnlineResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetRemeasureFailedChecksOnlyAsync(
         CollectionName collection,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8233,12 +8952,14 @@ public sealed class BriosaInstrumentOperations
             "SetRemeasureFailedChecksOnly",
             request,
             Transport.SetRemeasureFailedChecksOnlyResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetTargetComputationOptionsAsync(
         TargetComputationMethod computationMethod = TargetComputationMethod.UseMostRecentShotFromEachFace,
         bool ignoreDistanceMeasurements = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8253,6 +8974,7 @@ public sealed class BriosaInstrumentOperations
             "SetTargetComputationOptions",
             request,
             Transport.SetTargetComputationOptionsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8269,6 +8991,7 @@ public sealed class BriosaInstrumentOperations
         double phiThreshold = 0.001,
         double distance = 2.5,
         double distanceThreshold = 0.0003,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8288,12 +9011,14 @@ public sealed class BriosaInstrumentOperations
             "SetTrackerEdmTheodoliteUncertainties",
             request,
             Transport.SetTrackerEdmTheodoliteUncertaintiesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetWrtlChannelAsync(
         CollectionInstrumentId instrument,
         int channel = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8308,6 +9033,7 @@ public sealed class BriosaInstrumentOperations
             "SetWrtlChannel",
             request,
             Transport.SetWrtlChannelResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8316,6 +9042,7 @@ public sealed class BriosaInstrumentOperations
         double xUncertainty = 0.0005,
         double yUncertainty = 0.0005,
         double zUncertainty = 0.0005,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8332,12 +9059,14 @@ public sealed class BriosaInstrumentOperations
             "SetXyzInstrumentUncertainties",
             request,
             Transport.SetXyzInstrumentUncertaintiesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetXyzReferenceFrameInstrumentBaseAnchorFrameAsync(
         CollectionInstrumentId instrument,
         CollectionObjectName anchorFrame,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8352,6 +9081,7 @@ public sealed class BriosaInstrumentOperations
             "SetXyzReferenceFrameInstrumentBaseAnchorFrame",
             request,
             Transport.SetXyzReferenceFrameInstrumentBaseAnchorFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8359,6 +9089,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         CollectionName collection,
         InspectionFilter filter = InspectionFilter.All,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8374,12 +9105,14 @@ public sealed class BriosaInstrumentOperations
             "StartGdtInspection",
             request,
             Transport.StartGdtInspectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task StartGdtInspectionDesignAsync(
         CollectionName collection,
         InspectionFilter filter = InspectionFilter.All,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8394,12 +9127,14 @@ public sealed class BriosaInstrumentOperations
             "StartGdtInspectionDesign",
             request,
             Transport.StartGdtInspectionDesignResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task StartGdtInspectionRehearseAsync(
         CollectionName collection,
         InspectionFilter filter = InspectionFilter.All,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8414,6 +9149,7 @@ public sealed class BriosaInstrumentOperations
             "StartGdtInspectionRehearse",
             request,
             Transport.StartGdtInspectionRehearseResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8424,6 +9160,7 @@ public sealed class BriosaInstrumentOperations
         int interfaceType = 0,
         bool runInSimulation = false,
         bool allowStartWithoutInitializationRequirements = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8442,6 +9179,7 @@ public sealed class BriosaInstrumentOperations
             "StartInstrumentInterface",
             request,
             Transport.StartInstrumentInterfaceResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8451,6 +9189,7 @@ public sealed class BriosaInstrumentOperations
         int commPort = 0,
         string? deviceIpAddress = null,
         bool simulation = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8468,11 +9207,13 @@ public sealed class BriosaInstrumentOperations
             "StartTheodoliteInterface",
             request,
             Transport.StartTheodoliteInterfaceResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task StopActiveMeasurementModeAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8486,11 +9227,13 @@ public sealed class BriosaInstrumentOperations
             "StopActiveMeasurementMode",
             request,
             Transport.StopActiveMeasurementModeResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task StopInstrumentInterfaceAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8504,6 +9247,7 @@ public sealed class BriosaInstrumentOperations
             "StopInstrumentInterface",
             request,
             Transport.StopInstrumentInterfaceResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8514,6 +9258,7 @@ public sealed class BriosaInstrumentOperations
         bool locateOneOfTheInstruments = true,
         bool locateMaster = false,
         bool waitForCompletion = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8532,6 +9277,7 @@ public sealed class BriosaInstrumentOperations
             "SynchronizedMeasurementMasterSlave",
             request,
             Transport.SynchronizedMeasurementMasterSlaveResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8544,6 +9290,7 @@ public sealed class BriosaInstrumentOperations
         string parameterSetName,
         CollectionObjectName pointGroup,
         string initialTargetName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8564,6 +9311,7 @@ public sealed class BriosaInstrumentOperations
             "TrackTapeMeasurement",
             request,
             Transport.TrackTapeMeasurementResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8571,6 +9319,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         WorldTransform deltaTransform,
         bool applyScaleToInstrument = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8586,6 +9335,7 @@ public sealed class BriosaInstrumentOperations
             "TransformInstrumentByDelta",
             request,
             Transport.TransformInstrumentByDeltaResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8594,6 +9344,7 @@ public sealed class BriosaInstrumentOperations
         CollectionObjectName initialFrame,
         CollectionObjectName destinationFrame,
         int numberOfSteps = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8610,6 +9361,7 @@ public sealed class BriosaInstrumentOperations
             "TransformInstrumentFrameToFrame",
             request,
             Transport.TransformInstrumentFrameToFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8617,6 +9369,7 @@ public sealed class BriosaInstrumentOperations
         IEnumerable<CollectionInstrumentId> instruments,
         WorldTransform deltaTransform,
         bool applyScaleToInstruments = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8632,11 +9385,13 @@ public sealed class BriosaInstrumentOperations
             "TransformMultipleInstrumentsByDelta",
             request,
             Transport.TransformMultipleInstrumentsByDeltaResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<bool> VerifyInstrumentConnectionAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8650,10 +9405,12 @@ public sealed class BriosaInstrumentOperations
             "VerifyInstrumentConnection",
             request,
             Transport.VerifyInstrumentConnectionResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task WaitForTrappingToCompleteAsync(
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8666,6 +9423,7 @@ public sealed class BriosaInstrumentOperations
             "WaitForTrappingToComplete",
             request,
             Transport.WaitForTrappingToCompleteResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8679,6 +9437,7 @@ public sealed class BriosaInstrumentOperations
         int windowTopLeftY = 0,
         int windowWidth = 0,
         int windowHeight = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8700,6 +9459,7 @@ public sealed class BriosaInstrumentOperations
             "WatchClosestPoint",
             request,
             Transport.WatchClosestPointResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8711,6 +9471,7 @@ public sealed class BriosaInstrumentOperations
         int windowTopLeftY = 0,
         int windowWidth = 0,
         int windowHeight = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8730,6 +9491,7 @@ public sealed class BriosaInstrumentOperations
             "WatchInstrument",
             request,
             Transport.WatchInstrumentResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8745,6 +9507,7 @@ public sealed class BriosaInstrumentOperations
         int windowTopLeftY = 0,
         int windowWidth = 0,
         int windowHeight = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8768,6 +9531,7 @@ public sealed class BriosaInstrumentOperations
             "WatchPointToEdge",
             request,
             Transport.WatchPointToEdgeResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8782,6 +9546,7 @@ public sealed class BriosaInstrumentOperations
         int windowTopLeftY = 0,
         int windowWidth = 0,
         int windowHeight = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8804,6 +9569,7 @@ public sealed class BriosaInstrumentOperations
             "WatchPointToObjects",
             request,
             Transport.WatchPointToObjectsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8817,6 +9583,7 @@ public sealed class BriosaInstrumentOperations
         int windowTopLeftY = 0,
         int windowWidth = 0,
         int windowHeight = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8838,6 +9605,7 @@ public sealed class BriosaInstrumentOperations
             "WatchPointToPoint",
             request,
             Transport.WatchPointToPointResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -8845,6 +9613,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         PointName referencePoint,
         bool update = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8860,6 +9629,7 @@ public sealed class BriosaInstrumentOperations
             "WatchPointToPointWithViewZooming",
             request,
             Transport.WatchPointToPointWithViewZoomingResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 }
@@ -8871,6 +9641,7 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
 
     public Task AddCalibrationApplianceNodeAsync(
         CollectionObjectName calibrationApplianceNodeToAdd,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8884,11 +9655,13 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "AddCalibrationApplianceNode",
             request,
             Transport.AddCalibrationApplianceNodeResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ClearCalibrationApplianceNodeTrapManagerRequestsAsync(
         CollectionObjectName calibrationApplianceNode,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8902,12 +9675,14 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "ClearCalibrationApplianceNodeTrapManagerRequests",
             request,
             Transport.ClearCalibrationApplianceNodeTrapManagerRequestsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task ConnectDisconnectCalibrationApplianceNodeAsync(
         CollectionObjectName calibrationApplianceNode,
         bool connect = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8922,11 +9697,13 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "ConnectDisconnectCalibrationApplianceNode",
             request,
             Transport.ConnectDisconnectCalibrationApplianceNodeResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task DeleteCalibrationApplianceNodeAsync(
         CollectionObjectName calibrationApplianceNodeToDelete,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8940,12 +9717,14 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "DeleteCalibrationApplianceNode",
             request,
             Transport.DeleteCalibrationApplianceNodeResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task EnableDisableCalibrationApplianceNodeInstrumentAutoPointAsync(
         CollectionObjectName calibrationApplianceNode,
         bool enableInstrumentAutoPoint = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8960,12 +9739,14 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "EnableDisableCalibrationApplianceNodeInstrumentAutoPoint",
             request,
             Transport.EnableDisableCalibrationApplianceNodeInstrumentAutoPointResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task EnableDisableCalibrationApplianceNodeTrapManagerAsync(
         CollectionObjectName calibrationApplianceNode,
         bool enable = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -8980,12 +9761,14 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "EnableDisableCalibrationApplianceNodeTrapManager",
             request,
             Transport.EnableDisableCalibrationApplianceNodeTrapManagerResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<double[]> GetCalibrationApplianceNodeDataAsync(
         CollectionObjectName calibrationApplianceNode,
         int realValueCount,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9000,12 +9783,14 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "GetCalibrationApplianceNodeData",
             request,
             Transport.GetCalibrationApplianceNodeDataResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<int> GetCalibrationApplianceNodeIntegerValueAsync(
         CollectionObjectName calibrationApplianceNode,
         int indexOffset = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9020,12 +9805,14 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "GetCalibrationApplianceNodeIntegerValue",
             request,
             Transport.GetCalibrationApplianceNodeIntegerValueResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<double> GetCalibrationApplianceNodeRealValueAsync(
         CollectionObjectName calibrationApplianceNode,
         int indexOffset = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9040,11 +9827,13 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "GetCalibrationApplianceNodeRealValue",
             request,
             Transport.GetCalibrationApplianceNodeRealValueResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<CalibrationApplianceNodeStatus> GetCalibrationApplianceNodeStatusAsync(
         CollectionObjectName calibrationApplianceNode,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9058,12 +9847,14 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "GetCalibrationApplianceNodeStatus",
             request,
             Transport.GetCalibrationApplianceNodeStatusResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCalibrationApplianceNodeCalibrationApplianceIpAddressAsync(
         CollectionObjectName calibrationApplianceNode,
         string calibrationApplianceIpAddress = "0.0.0.0",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9078,12 +9869,14 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "SetCalibrationApplianceNodeCalibrationApplianceIpAddress",
             request,
             Transport.SetCalibrationApplianceNodeCalibrationApplianceIpAddressResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCalibrationApplianceNodeDisplayRobotAsync(
         CollectionObjectName calibrationApplianceNode,
         CollectionMachineId machineId,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9098,12 +9891,14 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "SetCalibrationApplianceNodeDisplayRobot",
             request,
             Transport.SetCalibrationApplianceNodeDisplayRobotResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCalibrationApplianceNodeInstrumentAsync(
         CollectionObjectName calibrationApplianceNode,
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9118,6 +9913,7 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "SetCalibrationApplianceNodeInstrument",
             request,
             Transport.SetCalibrationApplianceNodeInstrumentResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -9127,6 +9923,7 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
     public Task SetCalibrationApplianceNodeInstrumentDwellTimeAsync(
         CollectionObjectName calibrationApplianceNode,
         double measurementDwellTime = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9141,6 +9938,7 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "SetCalibrationApplianceNodeInstrumentDwellTime",
             request,
             Transport.SetCalibrationApplianceNodeInstrumentDwellTimeResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -9148,6 +9946,7 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
         CollectionObjectName calibrationApplianceNode,
         int indexOffset = 0,
         int integerValue = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9163,12 +9962,14 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "SetCalibrationApplianceNodeIntegerValue",
             request,
             Transport.SetCalibrationApplianceNodeIntegerValueResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCalibrationApplianceNodeMeasurementFrameAsync(
         CollectionObjectName calibrationApplianceNode,
         CollectionObjectName measurementReferenceFrame,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9183,11 +9984,13 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "SetCalibrationApplianceNodeMeasurementFrame",
             request,
             Transport.SetCalibrationApplianceNodeMeasurementFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCalibrationApplianceNodeMeasurementOffsetTransformAsync(
         CollectionObjectName calibrationApplianceNode,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9202,12 +10005,14 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "SetCalibrationApplianceNodeMeasurementOffsetTransform",
             request,
             Transport.SetCalibrationApplianceNodeMeasurementOffsetTransformResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCalibrationApplianceNodeMeasurementOffsetTransformAsync(
         CollectionObjectName calibrationApplianceNode,
         Transform measurementOffsetTransform,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9222,12 +10027,14 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "SetCalibrationApplianceNodeMeasurementOffsetTransform",
             request,
             Transport.SetCalibrationApplianceNodeMeasurementOffsetTransformResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCalibrationApplianceNodeMeasurementPointGroupAsync(
         CollectionObjectName calibrationApplianceNode,
         CollectionObjectName pointGroupName,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9242,12 +10049,14 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "SetCalibrationApplianceNodeMeasurementPointGroup",
             request,
             Transport.SetCalibrationApplianceNodeMeasurementPointGroupResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCalibrationApplianceNodeMeasurementProfileAsync(
         CollectionObjectName calibrationApplianceNode,
         string measurementProfile = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9262,12 +10071,14 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "SetCalibrationApplianceNodeMeasurementProfile",
             request,
             Transport.SetCalibrationApplianceNodeMeasurementProfileResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCalibrationApplianceNodeMeasurementTargetAsync(
         CollectionObjectName calibrationApplianceNode,
         string measurementTarget = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9282,6 +10093,7 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "SetCalibrationApplianceNodeMeasurementTarget",
             request,
             Transport.SetCalibrationApplianceNodeMeasurementTargetResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -9289,6 +10101,7 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
         CollectionObjectName calibrationApplianceNode,
         int indexOffset = 0,
         double realValue = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9304,12 +10117,14 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "SetCalibrationApplianceNodeRealValue",
             request,
             Transport.SetCalibrationApplianceNodeRealValueResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCalibrationApplianceNodeTrappingNodeIdAsync(
         CollectionObjectName calibrationApplianceNode,
         int trappingNodeId = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9324,11 +10139,13 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "SetCalibrationApplianceNodeTrappingNodeId",
             request,
             Transport.SetCalibrationApplianceNodeTrappingNodeIdResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SkipCalibrationApplianceNodeMeasurementAsync(
         CollectionObjectName calibrationApplianceNode,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9342,12 +10159,14 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "SkipCalibrationApplianceNodeMeasurement",
             request,
             Transport.SkipCalibrationApplianceNodeMeasurementResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task UpdateCalibrationApplianceNodeDisplayRobotJointsAsync(
         CollectionObjectName calibrationApplianceNode,
         bool enableDisplayRobotJointUpdates = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9362,11 +10181,13 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "UpdateCalibrationApplianceNodeDisplayRobotJoints",
             request,
             Transport.UpdateCalibrationApplianceNodeDisplayRobotJointsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCalibrationApplianceNodeDataAsync(
         CollectionObjectName calibrationApplianceNode,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9381,12 +10202,14 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "SetCalibrationApplianceNodeData",
             request,
             Transport.SetCalibrationApplianceNodeDataResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCalibrationApplianceNodeDataAsync(
         CollectionObjectName calibrationApplianceNode,
         IEnumerable<double> realValues,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9401,6 +10224,7 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
             "SetCalibrationApplianceNodeData",
             request,
             Transport.SetCalibrationApplianceNodeDataResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 }
@@ -9412,6 +10236,7 @@ public sealed class BriosaRobotOperations
 
     public Task AddRobotMachineManipKinAsync(
         FileReference manipKinFile,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9425,11 +10250,13 @@ public sealed class BriosaRobotOperations
             "AddRobotMachineManipKin",
             request,
             Transport.AddRobotMachineManipKinResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task AddRobotMachineSaMachineAsync(
         FileReference saMachineFile,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9443,6 +10270,7 @@ public sealed class BriosaRobotOperations
             "AddRobotMachineSaMachine",
             request,
             Transport.AddRobotMachineSaMachineResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -9451,6 +10279,7 @@ public sealed class BriosaRobotOperations
         CollectionObjectName lastAdjustedGoalFrame,
         CollectionObjectName actualMeasuredFrame,
         CollectionObjectName modifiedGoalFrame,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9467,12 +10296,14 @@ public sealed class BriosaRobotOperations
             "ComputeRobotMachineAdjustedGoalFrame",
             request,
             Transport.ComputeRobotMachineAdjustedGoalFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task CreateRobotCalibrationAsync(
         CollectionMachineId machineId,
         string calibrationName = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9487,12 +10318,14 @@ public sealed class BriosaRobotOperations
             "CreateRobotCalibration",
             request,
             Transport.CreateRobotCalibrationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task DeleteRobotCalibrationAsync(
         CollectionMachineId machineId,
         string calibrationName = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9507,11 +10340,13 @@ public sealed class BriosaRobotOperations
             "DeleteRobotCalibration",
             request,
             Transport.DeleteRobotCalibrationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task DeleteRobotMachineAsync(
         CollectionMachineId machineId,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9525,11 +10360,13 @@ public sealed class BriosaRobotOperations
             "DeleteRobotMachine",
             request,
             Transport.DeleteRobotMachineResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<double[]> GetCalibrationApplianceDataAsync(
         int realValueCount,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9543,11 +10380,13 @@ public sealed class BriosaRobotOperations
             "GetCalibrationApplianceData",
             request,
             Transport.GetCalibrationApplianceDataResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<int> GetCalibrationApplianceIntegerValueAsync(
         int indexOffset = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9561,11 +10400,13 @@ public sealed class BriosaRobotOperations
             "GetCalibrationApplianceIntegerValue",
             request,
             Transport.GetCalibrationApplianceIntegerValueResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<double> GetCalibrationApplianceRealValueAsync(
         int indexOffset = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9579,12 +10420,14 @@ public sealed class BriosaRobotOperations
             "GetCalibrationApplianceRealValue",
             request,
             Transport.GetCalibrationApplianceRealValueResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<RobotModelLinkParameters> GetRobotMachineModelLinkParametersAsync(
         CollectionMachineId machineId,
         string linkName = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9599,12 +10442,14 @@ public sealed class BriosaRobotOperations
             "GetRobotMachineModelLinkParameters",
             request,
             Transport.GetRobotMachineModelLinkParametersResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task<double> GetRobotMachineParameterAsync(
         CollectionInstrumentId machineId,
         string parameterName = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9619,6 +10464,7 @@ public sealed class BriosaRobotOperations
             "GetRobotMachineParameter",
             request,
             Transport.GetRobotMachineParameterResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -9626,6 +10472,7 @@ public sealed class BriosaRobotOperations
         CollectionMachineId machineId,
         IEnumerable<CollectionObjectName> frameNames,
         FileReference csvJointSetFile,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9642,6 +10489,7 @@ public sealed class BriosaRobotOperations
             "ImportPosesMatchToFrames",
             request,
             Transport.ImportPosesMatchToFramesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -9650,6 +10498,7 @@ public sealed class BriosaRobotOperations
         string calibrationName,
         IEnumerable<CollectionObjectName> frameNames,
         FileReference csvJointSetFile,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9666,6 +10515,7 @@ public sealed class BriosaRobotOperations
             "ImportPosesMatchToFrames",
             request,
             Transport.ImportPosesMatchToFramesResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -9673,6 +10523,7 @@ public sealed class BriosaRobotOperations
         CollectionMachineId machineId,
         IEnumerable<PointName> pointNames,
         FileReference csvJointSetFile,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9689,6 +10540,7 @@ public sealed class BriosaRobotOperations
             "ImportPosesMatchToMeasurements",
             request,
             Transport.ImportPosesMatchToMeasurementsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -9697,6 +10549,7 @@ public sealed class BriosaRobotOperations
         string calibrationName,
         IEnumerable<PointName> pointNames,
         FileReference csvJointSetFile,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9713,6 +10566,7 @@ public sealed class BriosaRobotOperations
             "ImportPosesMatchToMeasurements",
             request,
             Transport.ImportPosesMatchToMeasurementsResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -9722,6 +10576,7 @@ public sealed class BriosaRobotOperations
         bool useSaKinematics = true,
         bool linearSegments = false,
         bool acknowledgeArrival = true,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9739,6 +10594,7 @@ public sealed class BriosaRobotOperations
             "MoveRobotMachineThroughPath",
             request,
             Transport.MoveRobotMachineThroughPathResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -9747,6 +10603,7 @@ public sealed class BriosaRobotOperations
         CollectionObjectName destinationFrame,
         bool useSaKinematics = false,
         bool acknowledgeArrival = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9763,6 +10620,7 @@ public sealed class BriosaRobotOperations
             "MoveRobotMachineToFrame",
             request,
             Transport.MoveRobotMachineToFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -9774,6 +10632,7 @@ public sealed class BriosaRobotOperations
         double joint4 = 0.0,
         double joint5 = 0.0,
         double joint6 = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9793,6 +10652,7 @@ public sealed class BriosaRobotOperations
             "MoveRobotMachineToJointPoseSixDof",
             request,
             Transport.MoveRobotMachineToJointPoseSixDofResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -9800,6 +10660,7 @@ public sealed class BriosaRobotOperations
         CollectionMachineId machineId,
         string destinationName = "",
         bool acknowledgeArrival = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9815,6 +10676,7 @@ public sealed class BriosaRobotOperations
             "MoveRobotMachineToNamedDestination",
             request,
             Transport.MoveRobotMachineToNamedDestinationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -9829,6 +10691,7 @@ public sealed class BriosaRobotOperations
         int allowedOutlierRejectionCount = 0,
         double allowableMaximumError = 0.0,
         double allowableAverageError = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9851,12 +10714,14 @@ public sealed class BriosaRobotOperations
             "PerformRobotCalibrationAlternate",
             request,
             Transport.PerformRobotCalibrationAlternateResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetActiveRobotCalibrationAsync(
         CollectionMachineId machineId,
         string calibrationName = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9871,12 +10736,14 @@ public sealed class BriosaRobotOperations
             "SetActiveRobotCalibration",
             request,
             Transport.SetActiveRobotCalibrationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCalibrationApplianceIntegerValueAsync(
         int indexOffset = 0,
         int integerValue = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9891,12 +10758,14 @@ public sealed class BriosaRobotOperations
             "SetCalibrationApplianceIntegerValue",
             request,
             Transport.SetCalibrationApplianceIntegerValueResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCalibrationApplianceRealValueAsync(
         int indexOffset = 0,
         double realValue = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9911,6 +10780,7 @@ public sealed class BriosaRobotOperations
             "SetCalibrationApplianceRealValue",
             request,
             Transport.SetCalibrationApplianceRealValueResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -9920,6 +10790,7 @@ public sealed class BriosaRobotOperations
     public Task SetRobotCalibrationMeasurementOffsetInToolFrameAsync(
         CollectionMachineId machineId,
         string calibrationName = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9935,6 +10806,7 @@ public sealed class BriosaRobotOperations
             "SetRobotCalibrationMeasurementOffsetInToolFrame",
             request,
             Transport.SetRobotCalibrationMeasurementOffsetInToolFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -9945,6 +10817,7 @@ public sealed class BriosaRobotOperations
         CollectionMachineId machineId,
         string calibrationName,
         Transform measurementFrame,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9960,6 +10833,7 @@ public sealed class BriosaRobotOperations
             "SetRobotCalibrationMeasurementOffsetInToolFrame",
             request,
             Transport.SetRobotCalibrationMeasurementOffsetInToolFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -9969,6 +10843,7 @@ public sealed class BriosaRobotOperations
     public Task SetRobotCalibrationToolFrameAsync(
         CollectionMachineId machineId,
         string calibrationName = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -9984,6 +10859,7 @@ public sealed class BriosaRobotOperations
             "SetRobotCalibrationToolFrame",
             request,
             Transport.SetRobotCalibrationToolFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -9994,6 +10870,7 @@ public sealed class BriosaRobotOperations
         CollectionMachineId machineId,
         string calibrationName,
         Transform toolFrame,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -10009,6 +10886,7 @@ public sealed class BriosaRobotOperations
             "SetRobotCalibrationToolFrame",
             request,
             Transport.SetRobotCalibrationToolFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -10016,6 +10894,7 @@ public sealed class BriosaRobotOperations
         CollectionMachineId machineId,
         CollectionObjectName referenceFrame,
         int numberOfSteps = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -10032,6 +10911,7 @@ public sealed class BriosaRobotOperations
             "SetRobotMachineBaseTransform",
             request,
             Transport.SetRobotMachineBaseTransformResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -10040,6 +10920,7 @@ public sealed class BriosaRobotOperations
         Transform destinationTransform,
         CollectionObjectName referenceFrame,
         int numberOfSteps = 0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -10056,12 +10937,14 @@ public sealed class BriosaRobotOperations
             "SetRobotMachineBaseTransform",
             request,
             Transport.SetRobotMachineBaseTransformResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetRobotMachineModelLinkParametersAsync(
         CollectionMachineId machineId,
         string linkName = "",
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -10101,6 +10984,7 @@ public sealed class BriosaRobotOperations
             "SetRobotMachineModelLinkParameters",
             request,
             Transport.SetRobotMachineModelLinkParametersResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -10108,6 +10992,7 @@ public sealed class BriosaRobotOperations
         CollectionMachineId machineId,
         string linkName,
         RobotModelLinkConfiguration configuration,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(configuration);
@@ -10148,6 +11033,7 @@ public sealed class BriosaRobotOperations
             "SetRobotMachineModelLinkParameters",
             request,
             Transport.SetRobotMachineModelLinkParametersResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -10155,6 +11041,7 @@ public sealed class BriosaRobotOperations
         CollectionMachineId machineId,
         string parameterName = "",
         double parameterValue = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -10170,6 +11057,7 @@ public sealed class BriosaRobotOperations
             "SetRobotMachineParameter",
             request,
             Transport.SetRobotMachineParameterResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -10177,6 +11065,7 @@ public sealed class BriosaRobotOperations
         CollectionMachineId machineId,
         IEnumerable<CollectionObjectName> pathFrames,
         FileReference outputCsvFile,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -10192,6 +11081,7 @@ public sealed class BriosaRobotOperations
             "SimulateRobotMachinePathOutputCsvFile",
             request,
             Transport.SimulateRobotMachinePathOutputCsvFileResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -10199,6 +11089,7 @@ public sealed class BriosaRobotOperations
         CollectionInstrumentId machineId,
         int interfaceType = 0,
         bool runInSimulation = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -10214,6 +11105,7 @@ public sealed class BriosaRobotOperations
             "StartRobotMachineInterface",
             request,
             Transport.StartRobotMachineInterfaceResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -10221,6 +11113,7 @@ public sealed class BriosaRobotOperations
         CollectionMachineId machineId,
         CollectionInstrumentId instrumentId,
         bool startTrapping = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -10237,6 +11130,7 @@ public sealed class BriosaRobotOperations
             "StartStopRobotCalibrationTrapping",
             request,
             Transport.StartStopRobotCalibrationTrappingResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -10245,6 +11139,7 @@ public sealed class BriosaRobotOperations
         string calibrationName,
         CollectionInstrumentId instrumentId,
         bool startTrapping = false,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -10261,11 +11156,13 @@ public sealed class BriosaRobotOperations
             "StartStopRobotCalibrationTrapping",
             request,
             Transport.StartStopRobotCalibrationTrappingResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task StopRobotMachineInterfaceAsync(
         CollectionInstrumentId machineId,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -10279,6 +11176,7 @@ public sealed class BriosaRobotOperations
             "StopRobotMachineInterface",
             request,
             Transport.StopRobotMachineInterfaceResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -10286,6 +11184,7 @@ public sealed class BriosaRobotOperations
         CollectionMachineId machineId,
         CollectionObjectName goalFrame,
         int goalPoseCount,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -10302,6 +11201,7 @@ public sealed class BriosaRobotOperations
             "GetRobotPoseForAFrame",
             request,
             Transport.GetRobotPoseForAFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -10310,6 +11210,7 @@ public sealed class BriosaRobotOperations
         CollectionObjectName goalFrame,
         IEnumerable<double> referencePose,
         int goalPoseCount,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -10326,6 +11227,7 @@ public sealed class BriosaRobotOperations
             "GetRobotPoseForAFrame",
             request,
             Transport.GetRobotPoseForAFrameResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
@@ -10337,6 +11239,7 @@ public sealed class BriosaRobotOperations
         int allowedOutlierRejectionCount = 0,
         double allowableMaximumError = 0.0,
         double allowableAverageError = 0.0,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -10356,10 +11259,12 @@ public sealed class BriosaRobotOperations
             "PerformRobotCalibration",
             request,
             Transport.PerformRobotCalibrationResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCalibrationApplianceDataAsync(
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -10373,11 +11278,13 @@ public sealed class BriosaRobotOperations
             "SetCalibrationApplianceData",
             request,
             Transport.SetCalibrationApplianceDataResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 
     public Task SetCalibrationApplianceDataAsync(
         IEnumerable<double> realValues,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -10391,6 +11298,7 @@ public sealed class BriosaRobotOperations
             "SetCalibrationApplianceData",
             request,
             Transport.SetCalibrationApplianceDataResult.Parser,
+            onMpCompletion,
             cancellationToken);
     }
 }

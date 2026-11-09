@@ -10,6 +10,7 @@ public sealed partial class BriosaClient
         string rpc,
         IMessage request,
         MessageParser responseParser,
+        Action<MpCompletion>? onMpCompletion,
         CancellationToken cancellationToken)
     {
         ClientSession session;
@@ -63,6 +64,7 @@ public sealed partial class BriosaClient
         string rpc,
         IMessage request,
         MessageParser responseParser,
+        Action<MpCompletion>? onMpCompletion,
         CancellationToken cancellationToken)
     {
         _ = await InvokeOperationAsync<NoOperationResult>(
@@ -70,6 +72,7 @@ public sealed partial class BriosaClient
                 rpc,
                 request,
                 responseParser,
+                onMpCompletion,
                 cancellationToken)
             .ConfigureAwait(false);
     }

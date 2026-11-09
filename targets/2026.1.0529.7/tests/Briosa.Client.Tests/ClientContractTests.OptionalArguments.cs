@@ -219,7 +219,10 @@ public sealed partial class ClientContractTests
             .ToArray();
     }
 
+    // An MP argument that defaults to null. The onMpCompletion observer is a call
+    // control, not an MP argument.
     private static bool DefaultsToNull(ParameterInfo parameter) =>
+        parameter.ParameterType != typeof(Action<MpCompletion>) &&
         parameter.HasDefaultValue &&
         parameter.DefaultValue is null &&
         (!parameter.ParameterType.IsValueType ||

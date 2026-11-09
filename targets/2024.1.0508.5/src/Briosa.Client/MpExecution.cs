@@ -59,6 +59,25 @@ public sealed record OutputRetrieval
 }
 
 /// <summary>
+/// How the MP command of one successful call completed. Pass an
+/// <c>onMpCompletion</c> observer to an MP method to receive it.
+/// </summary>
+/// <remarks>
+/// <see cref="State"/> is <see cref="MpExecutionState.Succeeded"/>, or <see
+/// cref="MpExecutionState.PartialSuccess"/> when SpatialAnalyzer returned MP code 4:
+/// the command did its work and the call returned its outputs, but the command
+/// did not have its full intended effect.
+/// </remarks>
+public sealed record MpCompletion
+{
+    /// <summary>Gets how the MP command completed.</summary>
+    public required MpExecutionState State { get; init; }
+
+    /// <summary>Gets the MP result code, when SpatialAnalyzer returned one.</summary>
+    public int? MpResultCode { get; init; }
+}
+
+/// <summary>
 /// The MP execution details that accompany a typed operation failure that is
 /// related to the MP command.
 /// </summary>

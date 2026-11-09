@@ -247,7 +247,7 @@ static async Task AssertCancellationAsync(BriosaClient briosa)
 {
     using var cancellation = new CancellationTokenSource(TimeSpan.FromMilliseconds(50));
     await RequireThrowsAsync<OperationCanceledException>(
-        () => briosa.GetWorkingDirectoryAsync(cancellation.Token));
+        () => briosa.GetWorkingDirectoryAsync(cancellationToken: cancellation.Token));
     _ = await briosa.GetWorkingDirectoryAsync();
 }
 

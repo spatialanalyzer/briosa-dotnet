@@ -297,7 +297,10 @@ public sealed partial class BriosaClient : IAsyncDisposable
             cancellationToken);
 
     /// <summary>Executes Get Working Directory once. The client never retries it.</summary>
+    /// <param name="onMpCompletion">Receives how the MP command completed when the call succeeds.</param>
+    /// <param name="cancellationToken">Cancels the client wait for the operation.</param>
     public async Task<string> GetWorkingDirectoryAsync(
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         ClientSession session;

@@ -649,6 +649,11 @@ public sealed partial class ClientContractTests
         public int CloseApplicationCount { get; private set; }
         public RpcException? LaunchFailure { get; init; }
         public bool PublishReadySnapshot { get; init; } = true;
+
+        // A real server sends MP execution details with every success. Unless a
+        // test opts out, a response without them gets a plain success.
+        public bool FillMissingExecution { get; init; } = true;
+        public Transport.MpExecutionDetails? WorkingDirectoryExecution { get; set; }
         public IMessage? OperationResponse { get; set; }
         public IMessage? LastOperationRequest { get; private set; }
         public string? LastOperationService { get; private set; }
@@ -760,9 +765,19 @@ public sealed partial class ClientContractTests
             LastOperationService = service;
             LastOperationRpc = rpc;
             LastOperationRequest = request;
-            return Task.FromResult(
-                OperationResponse ?? responseParser.ParseFrom(Array.Empty<byte>()));
+            var response = OperationResponse ?? responseParser.ParseFrom(Array.Empty<byte>());
+            if (FillMissingExecution &&
+                response.Descriptor.FindFieldByName("execution") is { } execution &&
+                execution.Accessor.GetValue(response) is null)
+            {
+                execution.Accessor.SetValue(response, SucceededExecution());
+            }
+
+            return Task.FromResult(response);
         }
+
+        public static Transport.MpExecutionDetails SucceededExecution() =>
+            new() { State = Transport.MpExecutionState.Succeeded, MpResultCode = 2 };
 
         public ValueTask DisposeAsync() => ValueTask.CompletedTask;
 
