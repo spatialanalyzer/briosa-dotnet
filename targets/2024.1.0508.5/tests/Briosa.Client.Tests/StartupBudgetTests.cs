@@ -271,6 +271,11 @@ public sealed class StartupBudgetTests
             return Sdk();
         }
 
+        public Task<Transport.ListCapabilitiesResponse> ListCapabilitiesAsync(
+            bool includeDenied,
+            CancellationToken cancellationToken) =>
+            throw new NotSupportedException();
+
         public Task<Transport.GetWorkingDirectoryResult> GetWorkingDirectoryAsync(
             TimeSpan? timeout,
             CancellationToken cancellationToken) =>

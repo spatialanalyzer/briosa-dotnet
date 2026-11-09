@@ -19,14 +19,20 @@ internal static class BriosaProtocolCompatibility
             throw new BriosaCompatibilityException("server-source-revision-invalid");
         Require(version.ProtocolPackage, Transport.BriosaProtocolIdentity.ProtocolPackage, "server-protocol-package-mismatch");
         Require(version.SpatialAnalyzerTarget, Transport.BriosaProtocolIdentity.SpatialAnalyzerTarget, "server-sa-target-mismatch");
-        Require(capabilities.ProtocolPackage, Transport.BriosaProtocolIdentity.ProtocolPackage, "capability-protocol-package-mismatch");
-        Require(capabilities.SpatialAnalyzerTarget, Transport.BriosaProtocolIdentity.SpatialAnalyzerTarget, "capability-sa-target-mismatch");
+        ValidateCapabilities(capabilities);
         var contract = serverInfo.Compatibility;
         if (contract is { Major: 0 } || !ServerSelectionPolicy.Compatible(
             contract?.Major ?? 0, contract?.Revision ?? 0, version.BriosaVersion, version.SourceRevision))
             throw new BriosaCompatibilityException("server-contract-incompatible");
         if (serverInfo.TargetIsolationMode != Transport.TargetIsolationMode.SingleTenant)
             throw new BriosaCompatibilityException("target-isolation-mode-mismatch");
+    }
+
+    internal static void ValidateCapabilities(Transport.ListCapabilitiesResponse capabilities)
+    {
+        ArgumentNullException.ThrowIfNull(capabilities);
+        Require(capabilities.ProtocolPackage, Transport.BriosaProtocolIdentity.ProtocolPackage, "capability-protocol-package-mismatch");
+        Require(capabilities.SpatialAnalyzerTarget, Transport.BriosaProtocolIdentity.SpatialAnalyzerTarget, "capability-sa-target-mismatch");
     }
 
     internal static void ValidateInstallation(Transport.GetServerInfoResponse serverInfo, BriosaInstallation? installation)

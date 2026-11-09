@@ -30,15 +30,32 @@ internal static class ProtocolMapping
             ConnectionState = ConvertEnum<SpatialAnalyzerConnectionState>(serverInfo.SpatialAnalyzerConnectionState, "connection-state"),
             ExecutionReadinessState = ConvertEnum<SpatialAnalyzerExecutionReadinessState>(serverInfo.SpatialAnalyzerExecutionReadinessState, "execution-readiness-state"),
             TargetIsolationMode = ConvertEnum<TargetIsolationMode>(serverInfo.TargetIsolationMode, "target-isolation-mode"),
-            Operations = capabilities.Operations.Select(item => new BriosaOperationCapability
-            {
-                OperationId = item.OperationId,
-                GrpcService = item.GrpcService,
-                Rpc = item.Rpc,
-                FullyQualifiedMethod = item.FullyQualifiedMethod,
-            }).ToArray(),
+            AdmissionProfile = capabilities.AdmissionProfile,
+            PolicyFingerprint = capabilities.PolicyFingerprint,
+            Operations = capabilities.Operations.Select(MapCapability).ToArray(),
         };
     }
+
+    // The include_denied listing, already validated for identity: only the
+    // entries whose server-reported admission is not Admitted.
+    public static IReadOnlyList<BriosaOperationCapability> MapDeniedCapabilities(
+        Transport.ListCapabilitiesResponse capabilities) =>
+        capabilities.Operations
+            .Select(MapCapability)
+            .Where(item => item.Admission != OperationAdmission.Admitted)
+            .ToArray();
+
+    private static BriosaOperationCapability MapCapability(Transport.OperationCapability item) => new()
+    {
+        OperationId = item.OperationId,
+        GrpcService = item.GrpcService,
+        Rpc = item.Rpc,
+        FullyQualifiedMethod = item.FullyQualifiedMethod,
+        RiskFlags = item.RiskFlags.Select(flag => ConvertOrUnknown<OperationRiskFlag>(flag)).Distinct().ToArray(),
+        DurationClass = ConvertOrUnknown<OperationDurationClass>(item.DurationClass),
+        ValidationStatus = ConvertOrUnknown<OperationValidationStatus>(item.ValidationStatus),
+        Admission = ConvertOrUnknown<OperationAdmission>(item.Admission),
+    };
 
     public static SpatialAnalyzerLifecycleState MapApplicationState(
         Transport.SpatialAnalyzerLifecycleState state)
@@ -231,6 +248,19 @@ internal static class ProtocolMapping
         }
 
         return converted;
+    }
+
+    // Discovery classification enums gain values in later revisions. An unknown
+    // value maps to the enum's Unknown member (-1) instead of failing discovery.
+    private static TPublic ConvertOrUnknown<TPublic>(Enum value)
+        where TPublic : struct, Enum
+    {
+        const int Unknown = -1;
+        var number = Convert.ToInt32(value, CultureInfo.InvariantCulture);
+        var converted = (TPublic)Enum.ToObject(typeof(TPublic), number);
+        return number != Unknown && Enum.IsDefined(converted)
+            ? converted
+            : (TPublic)Enum.ToObject(typeof(TPublic), Unknown);
     }
 
     private static bool TryParseTrailer<T>(

@@ -10,6 +10,10 @@ internal interface IClientTransport : IAsyncDisposable
     Task<(Transport.GetServerInfoResponse ServerInfo, Transport.ListCapabilitiesResponse Capabilities)>
         GetServerSnapshotAsync(CancellationToken cancellationToken);
 
+    Task<Transport.ListCapabilitiesResponse> ListCapabilitiesAsync(
+        bool includeDenied,
+        CancellationToken cancellationToken);
+
     Task<Transport.SpatialAnalyzerLifecycleState> GetApplicationStateAsync(
         CancellationToken cancellationToken);
 
@@ -89,12 +93,18 @@ internal sealed class GrpcClientTransport : IClientTransport
                 new Transport.GetServerInfoRequest(),
                 cancellationToken: cancellationToken)
             .ResponseAsync.ConfigureAwait(false);
-        var capabilities = await _discovery.ListCapabilitiesAsync(
-                new Transport.ListCapabilitiesRequest(),
-                cancellationToken: cancellationToken)
-            .ResponseAsync.ConfigureAwait(false);
+        var capabilities = await ListCapabilitiesAsync(includeDenied: false, cancellationToken)
+            .ConfigureAwait(false);
         return (serverInfo, capabilities);
     }
+
+    public async Task<Transport.ListCapabilitiesResponse> ListCapabilitiesAsync(
+        bool includeDenied,
+        CancellationToken cancellationToken) =>
+        await _discovery.ListCapabilitiesAsync(
+                new Transport.ListCapabilitiesRequest { IncludeDenied = includeDenied },
+                cancellationToken: cancellationToken)
+            .ResponseAsync.ConfigureAwait(false);
 
     public async Task<Transport.SpatialAnalyzerLifecycleState> GetApplicationStateAsync(
         CancellationToken cancellationToken) =>

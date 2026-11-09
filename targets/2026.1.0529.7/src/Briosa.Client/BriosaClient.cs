@@ -152,7 +152,23 @@ public sealed partial class BriosaClient : IAsyncDisposable
     /// </summary>
     public Task<IReadOnlyList<BriosaOperationCapability>> GetDeniedOperationsAsync(
         CancellationToken cancellationToken = default) =>
-        throw new NotImplementedException("The denied-operation listing is not implemented yet.");
+        RunLifecycleAsync(
+            async (session, token) =>
+            {
+                try
+                {
+                    var capabilities = await session.Transport
+                        .ListCapabilitiesAsync(includeDenied: true, token)
+                        .ConfigureAwait(false);
+                    BriosaProtocolCompatibility.ValidateCapabilities(capabilities);
+                    return ProtocolMapping.MapDeniedCapabilities(capabilities);
+                }
+                catch (RpcException exception)
+                {
+                    throw ProtocolMapping.MapRpcException(exception, token);
+                }
+            },
+            cancellationToken);
 
     /// <summary>Reads current SpatialAnalyzer application and ownership state.</summary>
     public Task<SpatialAnalyzerLifecycleState> GetSpatialAnalyzerStateAsync(
