@@ -269,6 +269,66 @@ public sealed partial class ClientContractTests
     public void WatchWindowTemplateOptionsDoNotFillInTheUdpSettings() =>
         Assert.Null(typeof(RelationshipWatchWindowTemplateOptions).GetProperty("UdpNetworkTransmitSettings"));
 
+    // C3: report output options name exactly one destination, as the server
+    // requires whenever they are given. The client rejects neither, as it already
+    // rejects both, before any call.
+    [Theory]
+    [InlineData(false, false, "report-output-destination-missing")]
+    [InlineData(true, true, "report-output-destination-conflict")]
+    public async Task ReportOutputOptionsWithoutExactlyOneDestinationFailBeforeAnyCall(
+        bool externalPath,
+        bool embeddedFile,
+        string diagnosticCode)
+    {
+        var transport = new FakeTransport();
+        await using var client = CreateClient(new FakeServerLauncher(), transport);
+        await client.StartAsync();
+        var (target, method) = Facade(client, nameof(BriosaClient.GenerateQuickReportFromTabOrderAsync));
+        var calls = transport.Calls.Count;
+
+        var failure = await Record.ExceptionAsync(() => InvokeAsync(
+            transport,
+            target,
+            method,
+            ("reportOutputOptions", ReportOptions(externalPath, embeddedFile))));
+
+        var argument = Assert.IsType<ArgumentException>(failure);
+        Assert.StartsWith(diagnosticCode, argument.Message, StringComparison.Ordinal);
+        Assert.Equal(calls, transport.Calls.Count);
+    }
+
+    [Theory]
+    [InlineData(true, Transport.ReportOutputOptions.DestinationOneofCase.ExternalPath)]
+    [InlineData(false, Transport.ReportOutputOptions.DestinationOneofCase.EmbeddedFile)]
+    public async Task ReportOutputOptionsWithOneDestinationAreSentAsGiven(
+        bool externalPath,
+        Transport.ReportOutputOptions.DestinationOneofCase expected)
+    {
+        var transport = new FakeTransport();
+        await using var client = CreateClient(new FakeServerLauncher(), transport);
+        await client.StartAsync();
+        var (target, method) = Facade(client, nameof(BriosaClient.GenerateQuickReportFromTabOrderAsync));
+
+        var sent = await InvokeAsync(
+            transport,
+            target,
+            method,
+            ("reportOutputOptions", ReportOptions(externalPath, !externalPath)));
+
+        var options = Assert.IsType<Transport.GenerateQuickReportFromTabOrderRequest>(sent).ReportOutputOptions;
+        Assert.Equal(expected, options.DestinationCase);
+        Assert.Equal(Transport.ReportOutputType.SaReport, options.OutputType);
+    }
+
+    private static ReportOutputOptions ReportOptions(bool externalPath, bool embeddedFile) => new()
+    {
+        OutputType = ReportOutputType.SaReport,
+        ExternalPath = externalPath ? "C:\\Reports\\Inspection.pdf" : null,
+        EmbeddedFile = embeddedFile
+            ? new EmbeddedReportFile { CollectionName = "Inspection", FileName = "Report" }
+            : null,
+    };
+
     // C3: an identity transform is sent only when the caller passes one. Each read
     // returns a fresh value, so no caller can change another's identity.
     [Fact]
