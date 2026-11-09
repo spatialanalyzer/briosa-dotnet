@@ -176,8 +176,14 @@ these, which are now required (both targets unless noted):
   `Transform.Identity` where you mean the identity. Each read returns a fresh
   value.
 - These input members are `required` too:
-  - `FilterProximitySettings.SurfaceProximityMode`, `PlanarProximityMode` and
-    `RadialProximityMode`;
+  - every member of `FilterProximitySettings`: the three proximity modes, the
+    six distances (`SurfaceInclusionProximity`, `EdgeExclusionProximity`,
+    `PlanarInclusionProximity`, `PlanarExclusionProximity`,
+    `RadialInclusionProximity` and `GeometryExtractionTolerance`) and the two
+    Booleans (`ProjectToPlane` and `AssertPlaneBoundaries`). The server sends
+    each one to SpatialAnalyzer as given, and the distances are in the job's
+    units. 0.4.0 filled in 0.1, 0.1, 0.5, 0.1, 0.1, 0.01, `true` and `false`.
+    Treat those values as an example only, and choose your own for the job;
   - `ReportOutputOptions.OutputType`;
   - `Objects`, `GeometryRelationships`, `AuxiliaryObject` and
     `AuxiliaryGeometryRelationship` of both `MakeGdtDatumAnnotationOptions` and

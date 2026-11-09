@@ -432,19 +432,24 @@ public sealed record FeatureCheckReportingOptions
     public required bool ShowLowerTierTables { get; init; }
 }
 
+/// <summary>
+/// The proximity settings of an Auto Filter operation. Every member is required:
+/// the server sends each one to SpatialAnalyzer as given, and the distances are in
+/// the job's units, so the client assumes no value.
+/// </summary>
 public sealed record FilterProximitySettings
 {
-    public double SurfaceInclusionProximity { get; init; } = 0.1;
-    public double EdgeExclusionProximity { get; init; } = 0.1;
-    public double PlanarInclusionProximity { get; init; } = 0.5;
-    public double PlanarExclusionProximity { get; init; } = 0.1;
-    public double RadialInclusionProximity { get; init; } = 0.1;
-    public double GeometryExtractionTolerance { get; init; } = 0.01;
+    public required double SurfaceInclusionProximity { get; init; }
+    public required double EdgeExclusionProximity { get; init; }
+    public required double PlanarInclusionProximity { get; init; }
+    public required double PlanarExclusionProximity { get; init; }
+    public required double RadialInclusionProximity { get; init; }
+    public required double GeometryExtractionTolerance { get; init; }
     public required OffsetDirectionType SurfaceProximityMode { get; init; }
     public required OffsetDirectionType PlanarProximityMode { get; init; }
     public required OffsetDirectionType RadialProximityMode { get; init; }
-    public bool ProjectToPlane { get; init; } = true;
-    public bool AssertPlaneBoundaries { get; init; } = false;
+    public required bool ProjectToPlane { get; init; }
+    public required bool AssertPlaneBoundaries { get; init; }
 }
 
 public sealed record FitDofOptions
