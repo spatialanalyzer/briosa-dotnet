@@ -40,6 +40,30 @@ public sealed record BriosaServerSnapshot
             StringComparison.Ordinal));
 }
 
+/// <summary>
+/// The diagnostic listing of the operations the server's active policy denies,
+/// with the policy it was taken under. Denied entries never become callable and
+/// never change the admitted operations of a <see cref="BriosaServerSnapshot"/>.
+/// </summary>
+public sealed record BriosaDeniedOperationListing
+{
+    /// <summary>Gets the resolved named admission profile the listing was taken under.</summary>
+    public required string AdmissionProfile { get; init; }
+
+    /// <summary>
+    /// Gets the opaque fingerprint of the policy the listing was taken under.
+    /// Compare it only for equality, for example with
+    /// <see cref="BriosaServerSnapshot.PolicyFingerprint"/>.
+    /// </summary>
+    public required string PolicyFingerprint { get; init; }
+
+    /// <summary>
+    /// Gets each denied operation, with the precedence step that denied it in
+    /// <see cref="BriosaOperationCapability.Admission"/>.
+    /// </summary>
+    public required IReadOnlyList<BriosaOperationCapability> Operations { get; init; }
+}
+
 /// <summary>One operation's reviewed capability row, as the server reports it.</summary>
 public sealed record BriosaOperationCapability
 {

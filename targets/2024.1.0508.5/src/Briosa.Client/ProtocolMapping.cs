@@ -38,12 +38,16 @@ internal static class ProtocolMapping
 
     // The include_denied listing, already validated for identity: only the
     // entries whose server-reported admission is not Admitted.
-    public static IReadOnlyList<BriosaOperationCapability> MapDeniedCapabilities(
-        Transport.ListCapabilitiesResponse capabilities) =>
-        capabilities.Operations
-            .Select(MapCapability)
-            .Where(item => item.Admission != OperationAdmission.Admitted)
-            .ToArray();
+    public static BriosaDeniedOperationListing MapDeniedCapabilities(
+        Transport.ListCapabilitiesResponse capabilities) => new()
+        {
+            AdmissionProfile = capabilities.AdmissionProfile,
+            PolicyFingerprint = capabilities.PolicyFingerprint,
+            Operations = capabilities.Operations
+                .Select(MapCapability)
+                .Where(item => item.Admission != OperationAdmission.Admitted)
+                .ToArray(),
+        };
 
     private static BriosaOperationCapability MapCapability(Transport.OperationCapability item) => new()
     {

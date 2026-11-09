@@ -223,11 +223,14 @@ static async Task AssertCapabilityDeniedAsync(BriosaClient briosa)
             operation.ValidationStatus is not (OperationValidationStatus.Unspecified or OperationValidationStatus.Unknown)),
         "An admitted capability lacks its reviewed classification.");
     var denied = await briosa.GetDeniedOperationsAsync();
-    var workingDirectory = denied.SingleOrDefault(
+    Require(denied.AdmissionProfile == snapshot.AdmissionProfile &&
+            denied.PolicyFingerprint == snapshot.PolicyFingerprint,
+        "The denied listing did not report the policy it was taken under.");
+    var workingDirectory = denied.Operations.SingleOrDefault(
         operation => operation.FullyQualifiedMethod == WorkingDirectoryMethod);
     Require(workingDirectory?.Admission == OperationAdmission.DeniedOverride,
         "The denied listing did not report the override that denies the operation.");
-    Require(denied.All(operation => operation.Admission != OperationAdmission.Admitted),
+    Require(denied.Operations.All(operation => operation.Admission != OperationAdmission.Admitted),
         "The denied listing reported an admitted operation.");
     var refreshed = await briosa.GetServerSnapshotAsync();
     Require(!refreshed.Supports(WorkingDirectoryMethod) &&

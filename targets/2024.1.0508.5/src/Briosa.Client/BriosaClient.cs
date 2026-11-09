@@ -146,11 +146,13 @@ public sealed partial class BriosaClient : IAsyncDisposable
 
     /// <summary>
     /// Lists the operations that the server's active policy denies, each with the
-    /// precedence step that denied it. This is a diagnostic listing: it never
-    /// changes the admitted operations of <see cref="GetServerSnapshotAsync"/>,
-    /// and a denied operation stays denied by the server when called.
+    /// precedence step that denied it, together with the admission profile and
+    /// the policy fingerprint the listing was taken under. This is a diagnostic
+    /// listing: it never changes the admitted operations of
+    /// <see cref="GetServerSnapshotAsync"/>, and a denied operation stays denied
+    /// by the server when called.
     /// </summary>
-    public Task<IReadOnlyList<BriosaOperationCapability>> GetDeniedOperationsAsync(
+    public Task<BriosaDeniedOperationListing> GetDeniedOperationsAsync(
         CancellationToken cancellationToken = default) =>
         RunLifecycleAsync(
             async (session, token) =>
