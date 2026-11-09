@@ -127,6 +127,15 @@ public enum OperationFailureKind
     MpResultRetrievalFailure,
     SdkArgumentRejected,
     Overloaded,
+
+    /// <summary>
+    /// An SDK call threw during the MP sequence. <see
+    /// cref="BriosaOperationException.ExecutionDisposition"/> carries the proven
+    /// phase: NotStarted before ExecuteStep, StartedOutcomeUnknown during
+    /// ExecuteStep or MP result retrieval, and Completed when an output getter
+    /// threw after MP success. The client never retries it.
+    /// </summary>
+    SdkCallFaulted,
 }
 
 public enum RecoveryGuidance

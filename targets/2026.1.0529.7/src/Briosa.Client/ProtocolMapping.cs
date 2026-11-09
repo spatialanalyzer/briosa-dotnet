@@ -150,13 +150,28 @@ internal static class ProtocolMapping
                 ConvertEnum<RecoveryGuidance>(operationError.RecoveryGuidance, "recovery-guidance"),
                 ConvertEnum<ReplayGuidance>(operationError.ReplayGuidance, "replay-guidance"),
                 ConvertEnum<ReplaySafety>(operationError.ReplaySafety, "replay-safety"),
-                exception);
+                exception,
+                operationError.MpExecution is null
+                    ? null
+                    : MapMpExecution(operationError.MpExecution));
         }
 
         return new BriosaTransportException(
             $"grpc-{exception.StatusCode}",
             exception);
     }
+
+    private static MpExecutionDetails MapMpExecution(Transport.MpExecutionDetails execution) => new()
+    {
+        State = ConvertEnum<MpExecutionState>(execution.State, "mp-execution-state"),
+        MpResultCode = execution.HasMpResultCode ? execution.MpResultCode : null,
+        OutputRetrievals = execution.OutputRetrievals.Select(item => new OutputRetrieval
+        {
+            FieldName = item.FieldName,
+            State = ConvertEnum<OutputRetrievalState>(item.State, "output-retrieval-state"),
+            DiagnosticCode = item.HasDiagnosticCode ? item.DiagnosticCode : null,
+        }).ToArray(),
+    };
 
     private static SpatialAnalyzerSdkIncident MapIncident(
         Transport.SpatialAnalyzerSdkIncident incident) => new()

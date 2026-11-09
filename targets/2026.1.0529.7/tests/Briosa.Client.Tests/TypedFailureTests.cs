@@ -202,8 +202,9 @@ public sealed class TypedFailureTests
             },
         }, StatusCode.FailedPrecondition);
 
-        var mapped = Assert.IsType<BriosaProtocolException>(
-            ProtocolMapping.MapRpcException(failure, CancellationToken.None));
+        // As for the other enums in a failure detail, the mapper fails closed.
+        var mapped = Assert.Throws<BriosaProtocolException>(
+            () => ProtocolMapping.MapRpcException(failure, CancellationToken.None));
 
         Assert.Equal("mp-execution-state", mapped.DiagnosticCode);
     }
