@@ -186,6 +186,10 @@ if (completion?.State == MpExecutionState.PartialSuccess)
   `SetProbeOffsetFrameOfflineAsync`) need the `device` or `full` profile or an
   override. Operations that open or block on operator UI need the explicit
   interactive opt-in.
+- The facades of denied operations stay. The multi-call device, trapping,
+  watch, robot-interface and appliance session workflows are exclusive, and
+  every profile, flag and override denies them for now: a call fails with
+  `PolicyDenied` and `NotStarted`.
 
 ## Lifecycle
 
@@ -199,6 +203,10 @@ if (completion?.State == MpExecutionState.PartialSuccess)
 - After a timeout while launching SpatialAnalyzer, refresh application state
   before launching again; treat `application-lifecycle-transition-in-progress`
   the same way.
+- An external application can briefly report diagnostic
+  `external-spatial-analyzer-unconfirmed`: the server could not confirm it was
+  still running, so it stays `Running` with the same generation. It needs no
+  client change.
 
 ## Result mapping fixes
 
