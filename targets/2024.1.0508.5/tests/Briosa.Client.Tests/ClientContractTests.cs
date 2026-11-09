@@ -73,15 +73,18 @@ public sealed partial class ClientContractTests
     public void ProtocolIdentityMatchesReviewedCompatibilityArtifact()
     {
         Assert.Equal(
-            "briosa-protocol-0.9.0-dev.1-sa-2024.1.0508.5",
+            "briosa-protocol-0.10.0-dev.1-sa-2024.1.0508.5",
             Transport.BriosaProtocolIdentity.ArtifactName);
+        Assert.Equal("0.10.0-dev.1", Transport.BriosaProtocolIdentity.BriosaVersion);
         Assert.Equal("briosa", Transport.BriosaProtocolIdentity.ProtocolPackage);
         Assert.Equal(
             "standard-protobuf-grpc",
             Transport.BriosaProtocolIdentity.ClientGenerationContract);
         Assert.Equal(
-            "89b59aa0ddd05ea868d94c4e4a4f89ee0fbcbccb",
+            "2960705eb3152646513dca2b5d2043cd7cfffb75",
             Transport.BriosaProtocolIdentity.SourceRevision);
+        Assert.Equal(3U, Transport.BriosaProtocolIdentity.CompatibilityMajor);
+        Assert.Equal(0U, Transport.BriosaProtocolIdentity.CompatibilityRevision);
         Assert.Equal(
             "2024.1.0508.5",
             Transport.BriosaProtocolIdentity.SpatialAnalyzerTarget);
@@ -130,8 +133,8 @@ public sealed partial class ClientContractTests
             .Select(method => method.Name)
             .ToHashSet(StringComparer.Ordinal);
 
-        Assert.Equal(586, operationNames.Length);
-        Assert.Equal(586, operationNames.Distinct().Count());
+        Assert.Equal(577, operationNames.Length);
+        Assert.Equal(577, operationNames.Distinct().Count());
         Assert.All(operationNames, operation => Assert.Contains(operation + "Async", publicMethods));
     }
 
@@ -829,7 +832,7 @@ public sealed partial class ClientContractTests
                     : Transport.SpatialAnalyzerExecutionReadinessState.Unverified,
                 ReadyForMp = ready,
                 TargetIsolationMode = Transport.TargetIsolationMode.SingleTenant,
-                Compatibility = new Transport.CompatibilityContract { Major = 2 },
+                Compatibility = new Transport.CompatibilityContract { Major = 3 },
             };
             var capabilities = new Transport.ListCapabilitiesResponse
             {

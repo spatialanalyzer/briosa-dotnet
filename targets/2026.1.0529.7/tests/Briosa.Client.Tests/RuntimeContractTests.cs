@@ -36,13 +36,14 @@ public sealed class RuntimeContractTests
 
     [Theory]
     [InlineData(1u, false)]
-    [InlineData(2u, true)]
-    [InlineData(3u, false)]
+    [InlineData(2u, false)]
+    [InlineData(3u, true)]
+    [InlineData(4u, false)]
     public void SelectionRequiresCurrentContractMajor(uint major, bool expected) =>
-        Assert.Equal(expected, ServerSelectionPolicy.Compatible(major, 0, "0.9.0", "source"));
+        Assert.Equal(expected, ServerSelectionPolicy.Compatible(major, 0, "0.10.0", "source"));
 
     [Fact]
-    public void LegacyBootstrapDoesNotBypassMajorTwo() =>
+    public void LegacyBootstrapDoesNotBypassMajorThree() =>
         Assert.False(ServerSelectionPolicy.Compatible(
             0, 0, ServerSelectionPolicy.LegacyVersion, ServerSelectionPolicy.LegacyRevision));
 
@@ -58,7 +59,7 @@ public sealed class RuntimeContractTests
                 ProtocolPackage = Transport.BriosaProtocolIdentity.ProtocolPackage,
                 SpatialAnalyzerTarget = Transport.BriosaProtocolIdentity.SpatialAnalyzerTarget,
             },
-            Compatibility = new Transport.CompatibilityContract { Major = 2 },
+            Compatibility = new Transport.CompatibilityContract { Major = 3 },
             WorkerState = Transport.WorkerRuntimeState.Stopping,
             TargetIsolationMode = Transport.TargetIsolationMode.SingleTenant,
         };
@@ -68,7 +69,7 @@ public sealed class RuntimeContractTests
             SpatialAnalyzerTarget = Transport.BriosaProtocolIdentity.SpatialAnalyzerTarget,
         };
         Assert.Equal(WorkerRuntimeState.Stopping, ProtocolMapping.MapSnapshot(server, capabilities).WorkerState);
-        server.Compatibility.Major = 1;
+        server.Compatibility.Major = 2;
         Assert.Throws<BriosaCompatibilityException>(() => ProtocolMapping.MapSnapshot(server, capabilities));
     }
 }

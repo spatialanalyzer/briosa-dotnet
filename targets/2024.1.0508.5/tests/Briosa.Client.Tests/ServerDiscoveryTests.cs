@@ -71,12 +71,12 @@ public sealed class ServerDiscoveryTests : IDisposable
         var (server, capabilities) = Snapshot();
         BriosaProtocolCompatibility.Validate(server, capabilities);
         var installation = new BriosaInstallation("id", "path", server.Version.BriosaVersion,
-            server.Version.SourceRevision, Identity.SpatialAnalyzerTarget, "win-x64", 2, 0, "hash", "user");
+            server.Version.SourceRevision, Identity.SpatialAnalyzerTarget, "win-x64", 3, 0, "hash", "user");
         BriosaProtocolCompatibility.ValidateInstallation(server, installation);
         server.Version.SourceRevision = new string('b', 40);
         BriosaProtocolCompatibility.Validate(server, capabilities);
         Assert.Throws<BriosaCompatibilityException>(() => BriosaProtocolCompatibility.ValidateInstallation(server, installation));
-        server.Compatibility.Major = 1;
+        server.Compatibility.Major = 2;
         Assert.Throws<BriosaCompatibilityException>(() => BriosaProtocolCompatibility.Validate(server, capabilities));
     }
 
@@ -98,12 +98,12 @@ public sealed class ServerDiscoveryTests : IDisposable
         {
             Version = new Transport.VersionCoordinates
             {
-                BriosaVersion = "0.9.0",
+                BriosaVersion = "0.10.0",
                 SourceRevision = new string('a', 40),
                 ProtocolPackage = "briosa",
                 SpatialAnalyzerTarget = Identity.SpatialAnalyzerTarget
             },
-            Compatibility = new Transport.CompatibilityContract { Major = 2 },
+            Compatibility = new Transport.CompatibilityContract { Major = 3 },
             TargetIsolationMode = Transport.TargetIsolationMode.SingleTenant
         }, new Transport.ListCapabilitiesResponse { ProtocolPackage = "briosa", SpatialAnalyzerTarget = Identity.SpatialAnalyzerTarget });
 

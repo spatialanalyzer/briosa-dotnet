@@ -355,7 +355,7 @@ public sealed class StartupBudgetTests
                     : Transport.SpatialAnalyzerExecutionReadinessState.Unverified,
                 ReadyForMp = ready,
                 TargetIsolationMode = Transport.TargetIsolationMode.SingleTenant,
-                Compatibility = new Transport.CompatibilityContract { Major = 2 },
+                Compatibility = new Transport.CompatibilityContract { Major = 3 },
             };
             var capabilities = new Transport.ListCapabilitiesResponse
             {
