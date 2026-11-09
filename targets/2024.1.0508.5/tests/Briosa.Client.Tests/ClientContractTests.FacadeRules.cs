@@ -240,6 +240,16 @@ public sealed partial class ClientContractTests
     [InlineData(typeof(FilterProximitySettings), nameof(FilterProximitySettings.SurfaceProximityMode))]
     [InlineData(typeof(FilterProximitySettings), nameof(FilterProximitySettings.PlanarProximityMode))]
     [InlineData(typeof(FilterProximitySettings), nameof(FilterProximitySettings.RadialProximityMode))]
+    // Decided by the maintainer (2026-11-09): the server reads these eight
+    // without checking presence, so none of them has a client default either.
+    [InlineData(typeof(FilterProximitySettings), nameof(FilterProximitySettings.SurfaceInclusionProximity))]
+    [InlineData(typeof(FilterProximitySettings), nameof(FilterProximitySettings.EdgeExclusionProximity))]
+    [InlineData(typeof(FilterProximitySettings), nameof(FilterProximitySettings.PlanarInclusionProximity))]
+    [InlineData(typeof(FilterProximitySettings), nameof(FilterProximitySettings.PlanarExclusionProximity))]
+    [InlineData(typeof(FilterProximitySettings), nameof(FilterProximitySettings.RadialInclusionProximity))]
+    [InlineData(typeof(FilterProximitySettings), nameof(FilterProximitySettings.GeometryExtractionTolerance))]
+    [InlineData(typeof(FilterProximitySettings), nameof(FilterProximitySettings.ProjectToPlane))]
+    [InlineData(typeof(FilterProximitySettings), nameof(FilterProximitySettings.AssertPlaneBoundaries))]
     [InlineData(typeof(ReportOutputOptions), nameof(ReportOutputOptions.OutputType))]
     [InlineData(typeof(Transform), nameof(Transform.Values))]
     [InlineData(typeof(MakeGdtDatumAnnotationOptions), nameof(MakeGdtDatumAnnotationOptions.Objects))]
