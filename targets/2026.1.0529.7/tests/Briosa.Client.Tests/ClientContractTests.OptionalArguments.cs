@@ -243,6 +243,11 @@ public sealed partial class ClientContractTests
             return "Sample";
         }
 
+        if (type == typeof(Transform))
+        {
+            return new Transform { Values = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1] };
+        }
+
         if (type.IsEnum)
         {
             return Enum.GetValues(type)

@@ -117,19 +117,185 @@ public sealed partial class ClientContractTests
     [InlineData(nameof(BriosaGdtOperations.FeatureInspectionAutoFilterAsync), "cloudNames")]
     [InlineData(nameof(BriosaGdtOperations.FeatureInspectionAutoFilterAsync), "featureCheckNameList")]
     [InlineData(nameof(BriosaInstrumentOperations.LocateInstrumentGroupToSurfaceQuickFitAsync), "otherObjectsToTransform")]
+    // C3 (spatialanalyzer/briosa#363): every input the server requires.
+    [InlineData(nameof(BriosaInstrumentOperations.AutoCorrespondWithProximityTriggerAsync), "deviationVectorGroupName")]
+    [InlineData(nameof(BriosaClient.AutoFilterCloudsToNominalGeometry2DAsync), "filterProximitySettings2D")]
+    [InlineData(nameof(BriosaClient.AutoFilterCloudsToNominalGeometry3DAsync), "filterProximitySettings3D")]
+    [InlineData(nameof(BriosaClient.AutoFilterPointsGroupsCloudsToSurfaceFacesAsync), "clouds")]
+    [InlineData(nameof(BriosaClient.AutoFilterPointsGroupsCloudsToSurfaceFacesAsync), "groups")]
+    [InlineData(nameof(BriosaClient.AutoFilterPointsGroupsCloudsToSurfaceFacesAsync), "offsetDirection")]
+    [InlineData(nameof(BriosaClient.AutoFilterPointsGroupsCloudsToSurfaceFacesAsync), "points")]
+    [InlineData(nameof(BriosaClient.AutoFilterPointsToNominalGeometry3DAsync), "filterProximitySettings3D")]
+    [InlineData(nameof(BriosaInstrumentOperations.BuildTargetAsync), "tolerance")]
+    [InlineData(nameof(BriosaInstrumentOperations.CalculateTcpFixtureUncertaintiesAsync), "tcpInWorking")]
+    [InlineData(nameof(BriosaInstrumentOperations.CollimationAsync), "asMeasuredByMovingInstrument")]
+    [InlineData(nameof(BriosaInstrumentOperations.CollimationAsync), "baselineMethod")]
+    [InlineData(nameof(BriosaInstrumentOperations.CollimationAsync), "notMeasuredByMovingInstrument")]
+    [InlineData(nameof(BriosaInstrumentOperations.CollimationAsync), "scalePoint1")]
+    [InlineData(nameof(BriosaInstrumentOperations.CollimationAsync), "scalePoint2")]
+    [InlineData(nameof(BriosaInstrumentOperations.CollimationAsync), "tiltMode")]
+    [InlineData(nameof(BriosaConstructionOperations.ConstructCrossSectionCloudAsync), "referenceObject")]
+    [InlineData(nameof(BriosaConstructionOperations.ConstructEllipsoidAsync), "transformInWorkingCoordinates")]
+    [InlineData(nameof(BriosaConstructionOperations.ConstructPointFromCloudPointRuntimeSelectAsync), "constructedPointName")]
+    [InlineData(nameof(BriosaConstructionOperations.ConstructPointsFromSurfacesOnUvGridAsync), "edgePointMode")]
+    [InlineData(nameof(BriosaConstructionOperations.ConstructPointsShiftedInWorkingFrameAsync), "shiftVector")]
+    [InlineData(nameof(BriosaConstructionOperations.ConstructPointsSubsetWithGreatestSpacingAsync), "groupForSubset")]
+    [InlineData(nameof(BriosaConstructionOperations.CreatePointCalloutAsync), "desiredCoordinateSystem")]
+    [InlineData(nameof(BriosaClient.CreatePointsToObjectsMapAsync), "groups")]
+    [InlineData(nameof(BriosaClient.CreatePointsToObjectsMapAsync), "points")]
+    [InlineData(nameof(BriosaClient.DoRelationshipFitAsync), "motionToAllow")]
+    [InlineData(nameof(BriosaGdtOperations.EnableDisableDatumAlignmentForFeatureCheckAsync), "alignment")]
+    [InlineData(nameof(BriosaGdtOperations.FeatureInspectionAutoFilterAsync), "offsetDirection")]
+    [InlineData(nameof(BriosaConstructionOperations.GetGradientAtProjectedPointOnSurfaceEdgeAsync), "edgeOffsetDirection")]
+    [InlineData(nameof(BriosaInstrumentOperations.LocateInstrumentsUsmnAsync), "showUsmnDialog")]
+    [InlineData(nameof(BriosaConstructionOperations.MakeCollectionItemNameRefListWildcardSelectionAsync), "itemType")]
+    [InlineData(nameof(BriosaConstructionOperations.MakeCollectionObjectNameRefListByTypeAndColorAsync), "objectType")]
+    [InlineData(nameof(BriosaConstructionOperations.MakeCollectionObjectNameRefListByTypeAsync), "objectType")]
+    [InlineData(nameof(BriosaConstructionOperations.MakeCollectionObjectNameRefListRuntimeSelectAsync), "objectType")]
+    [InlineData(nameof(BriosaConstructionOperations.MakeCollectionObjectNameRefListWildcardSelectionAsync), "objectType")]
+    [InlineData(nameof(BriosaConstructionOperations.MakeCollectionObjectNameRuntimeSelectAsync), "objectType")]
+    [InlineData(nameof(BriosaClient.MakeDynamicCircleRelationshipAsync), "constructionMode")]
+    [InlineData(nameof(BriosaClient.MakeDynamicEllipseRelationshipAsync), "constructionMode")]
+    [InlineData(nameof(BriosaClient.MakeDynamicLineRelationshipAsync), "constructionMode")]
+    [InlineData(nameof(BriosaClient.MakeDynamicPlaneRelationshipAsync), "constructionMode")]
+    [InlineData(nameof(BriosaClient.MakeDynamicPointRelationshipAsync), "constructionMode")]
+    [InlineData(nameof(BriosaClient.MakeDynamicPointRelationshipAsync), "thirdReferenceGeometry")]
+    [InlineData(nameof(BriosaClient.MakeFrameToFrameRelationshipAsync), "orientationTolerance")]
+    [InlineData(nameof(BriosaClient.MakeFrameToFrameRelationshipAsync), "positionTolerance")]
+    [InlineData(nameof(BriosaClient.MakeGroupsToObjectsRelationshipAsync), "projectionOptions")]
+    [InlineData(nameof(BriosaClient.MakePointCloudsToObjectsRelationshipAsync), "projectionOptions")]
+    [InlineData(nameof(BriosaClient.MakePointsToObjectsRelationshipAsync), "projectionOptions")]
+    [InlineData(nameof(BriosaClient.MoveCollectionsByMinimizingRelationshipsAsync), "motionToAllow")]
+    [InlineData(nameof(BriosaClient.RelationshipWatchWindowTemplateAsync), "udpNetworkTransmitSettings")]
+    [InlineData(nameof(BriosaClient.RelationshipWatchWindowTemplateAsync), "watchWindowTemplateName")]
+    [InlineData(nameof(BriosaGdtOperations.SetGdtOptionsAsync), "distanceBetweenMode")]
+    [InlineData(nameof(BriosaGdtOperations.SetGdtOptionsAsync), "evaluationMethod")]
+    [InlineData(nameof(BriosaClient.SetObjectToObjectDirectionRelationshipTolerancesAsync), "angleBetweenVectorsTolerances")]
+    [InlineData(nameof(BriosaClient.SetObjectToObjectDirectionRelationshipTolerancesAsync), "mutualPerpendicularLengthTolerances")]
+    [InlineData(nameof(BriosaInstrumentOperations.SetObservationCollimationShotOptionsAsync), "targetedInstrument")]
+    [InlineData(nameof(BriosaClient.SetPointsToPointsRelationshipAssociatedDataAsync), "actualPoints")]
+    [InlineData(nameof(BriosaClient.SetPointsToPointsRelationshipAssociatedDataAsync), "nominalPoints")]
+    [InlineData(nameof(BriosaClient.SetRelationshipAssociatedDataAsync), "individualPoints")]
+    [InlineData(nameof(BriosaClient.SetRelationshipAssociatedDataAsync), "objects")]
+    [InlineData(nameof(BriosaClient.SetRelationshipAssociatedDataAsync), "pointClouds")]
+    [InlineData(nameof(BriosaClient.SetRelationshipAssociatedDataAsync), "pointGroups")]
+    [InlineData(nameof(BriosaInstrumentOperations.SetTargetComputationOptionsAsync), "computationMethod")]
     public async Task RequiredArgumentsHaveNoDefaultAndAreSentAsGiven(string methodName, string parameterName)
     {
         var transport = new FakeTransport();
         await using var client = CreateClient(new FakeServerLauncher(), transport);
         await client.StartAsync();
         var (target, method) = Facade(client, methodName);
+
+        await AssertRequiredAndSentAsync(transport, target, method, parameterName);
+    }
+
+    // C3 rows for an operation that only one target's SpatialAnalyzer offers.
+    [Theory]
+    [InlineData("2026.1.0529.7", "ExtractGeometryFromPointCloudsAsync", "geometryType")]
+    [InlineData("2026.1.0529.7", "ExtractGeometryFromPointCloudsAsync", "boundingPoints")]
+    public async Task TargetOnlyRequiredArgumentsHaveNoDefaultAndAreSentAsGiven(
+        string spatialAnalyzerTarget,
+        string methodName,
+        string parameterName)
+    {
+        var transport = new FakeTransport();
+        await using var client = CreateClient(new FakeServerLauncher(), transport);
+        await client.StartAsync();
+        var facades = FacadeTargets(client).Where(item => item.Method.Name == methodName).ToArray();
+        if (Transport.BriosaProtocolIdentity.SpatialAnalyzerTarget != spatialAnalyzerTarget)
+        {
+            Assert.Empty(facades);
+            return;
+        }
+
+        var (target, method) = Assert.Single(facades);
+        await AssertRequiredAndSentAsync(transport, target, method, parameterName);
+    }
+
+    // C3: no overload fills in an input the server requires, such as the
+    // identity transform or a watch window without its template.
+    [Theory]
+    [InlineData(nameof(BriosaConstructionOperations.ConstructFrameAsync), "transformInWorkingCoordinates")]
+    [InlineData(nameof(BriosaConstructionOperations.ConstructFrameFromTransformInWorldAsync), "transformInWorldCoordinates")]
+    [InlineData(nameof(BriosaRobotCalibrationApplianceNodeOperations.SetCalibrationApplianceNodeMeasurementOffsetTransformAsync), "measurementOffsetTransform")]
+    [InlineData(nameof(BriosaRobotOperations.SetRobotCalibrationMeasurementOffsetInToolFrameAsync), "measurementFrame")]
+    [InlineData(nameof(BriosaRobotOperations.SetRobotCalibrationToolFrameAsync), "toolFrame")]
+    [InlineData(nameof(BriosaRobotOperations.SetRobotMachineBaseTransformAsync), "destinationTransform")]
+    [InlineData(nameof(BriosaClient.RelationshipWatchWindowTemplateAsync), "watchWindowTemplateName")]
+    public void NoOverloadFillsInAServerRequiredInput(string methodName, string parameterName)
+    {
+        var overloads = FacadeTypes()
+            .SelectMany(type => type.GetMethods(
+                BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+            .Where(method => method.Name == methodName)
+            .ToArray();
+
+        var method = Assert.Single(overloads);
+        Assert.Contains(method.GetParameters(), item => item.Name == parameterName && !item.HasDefaultValue);
+    }
+
+    // C3: members of input values that the server requires have no default.
+    [Theory]
+    [InlineData(typeof(FilterProximitySettings), nameof(FilterProximitySettings.SurfaceProximityMode))]
+    [InlineData(typeof(FilterProximitySettings), nameof(FilterProximitySettings.PlanarProximityMode))]
+    [InlineData(typeof(FilterProximitySettings), nameof(FilterProximitySettings.RadialProximityMode))]
+    [InlineData(typeof(ReportOutputOptions), nameof(ReportOutputOptions.OutputType))]
+    [InlineData(typeof(Transform), nameof(Transform.Values))]
+    [InlineData(typeof(MakeGdtDatumAnnotationOptions), nameof(MakeGdtDatumAnnotationOptions.Objects))]
+    [InlineData(typeof(MakeGdtDatumAnnotationOptions), nameof(MakeGdtDatumAnnotationOptions.GeometryRelationships))]
+    [InlineData(typeof(MakeGdtDatumAnnotationOptions), nameof(MakeGdtDatumAnnotationOptions.AuxiliaryObject))]
+    [InlineData(typeof(MakeGdtDatumAnnotationOptions), nameof(MakeGdtDatumAnnotationOptions.AuxiliaryGeometryRelationship))]
+    [InlineData(typeof(MakeGdtFeatureCheckAnnotationOptions), nameof(MakeGdtFeatureCheckAnnotationOptions.Objects))]
+    [InlineData(typeof(MakeGdtFeatureCheckAnnotationOptions), nameof(MakeGdtFeatureCheckAnnotationOptions.GeometryRelationships))]
+    [InlineData(typeof(MakeGdtFeatureCheckAnnotationOptions), nameof(MakeGdtFeatureCheckAnnotationOptions.AuxiliaryObject))]
+    [InlineData(typeof(MakeGdtFeatureCheckAnnotationOptions), nameof(MakeGdtFeatureCheckAnnotationOptions.AuxiliaryGeometryRelationship))]
+    public void ServerRequiredMembersAreRequired(Type type, string memberName)
+    {
+        ArgumentNullException.ThrowIfNull(type);
+        var property = type.GetProperty(memberName)!;
+
+        Assert.True(
+            property.IsDefined(typeof(RequiredMemberAttribute)),
+            $"{type.Name}.{memberName} is not required.");
+        Assert.Equal(
+            NullabilityState.NotNull,
+            new NullabilityInfoContext().Create(property).WriteState);
+    }
+
+    // C3: the watch window's UDP settings are a required facade argument, so the
+    // options value no longer fills them in.
+    [Fact]
+    public void WatchWindowTemplateOptionsDoNotFillInTheUdpSettings() =>
+        Assert.Null(typeof(RelationshipWatchWindowTemplateOptions).GetProperty("UdpNetworkTransmitSettings"));
+
+    // C3: an identity transform is sent only when the caller passes one. Each read
+    // returns a fresh value, so no caller can change another's identity.
+    [Fact]
+    public void TransformIdentityIsAnExplicitFreshValue()
+    {
+        var property = typeof(Transform).GetProperty("Identity", BindingFlags.Public | BindingFlags.Static);
+
+        Assert.NotNull(property);
+        var first = Assert.IsType<Transform>(property.GetValue(null));
+        var second = Assert.IsType<Transform>(property.GetValue(null));
+        Assert.Equal([1d, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1], first.Values);
+        Assert.NotSame(first.Values, second.Values);
+    }
+
+    private static async Task AssertRequiredAndSentAsync(
+        FakeTransport transport,
+        object target,
+        MethodInfo method,
+        string parameterName)
+    {
         var parameter = Assert.Single(method.GetParameters(), item => item.Name == parameterName);
-        Assert.False(parameter.HasDefaultValue, $"{methodName}.{parameterName} has a default.");
+        Assert.False(parameter.HasDefaultValue, $"{method.Name}.{parameterName} has a default.");
         Assert.Equal(
             NullabilityState.NotNull,
             new NullabilityInfoContext().Create(parameter).WriteState);
 
-        var sent = await InvokeAsync(transport, target, method);
+        var sent = await InvokeAsync(transport, target, method).ConfigureAwait(false);
         Assert.True(HasField(sent, parameterName));
     }
 
@@ -393,7 +559,8 @@ public sealed partial class ClientContractTests
     }
 
     private static FieldDescriptor RequestField(IMessage request, string argument) =>
-        request.Descriptor.Fields.InDeclarationOrder().Single(field => field.JsonName == argument);
+        request.Descriptor.Fields.InDeclarationOrder().Single(field =>
+            string.Equals(field.JsonName, argument, StringComparison.OrdinalIgnoreCase));
 
     private static object? FieldValue(IMessage request, string argument) =>
         RequestField(request, argument).Accessor.GetValue(request);
