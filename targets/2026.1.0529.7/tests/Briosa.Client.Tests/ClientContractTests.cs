@@ -654,6 +654,9 @@ public sealed partial class ClientContractTests
         // test opts out, a response without them gets a plain success.
         public bool FillMissingExecution { get; init; } = true;
         public Transport.MpExecutionDetails? WorkingDirectoryExecution { get; set; }
+        public List<Transport.OperationCapability> DeniedOperations { get; } = [];
+        public string DeniedListingTarget { get; init; } =
+            Transport.BriosaProtocolIdentity.SpatialAnalyzerTarget;
         public IMessage? OperationResponse { get; set; }
         public IMessage? LastOperationRequest { get; private set; }
         public string? LastOperationService { get; private set; }
@@ -665,6 +668,21 @@ public sealed partial class ClientContractTests
             Calls.Add("snapshot");
             return Task.FromResult(MatchingSnapshot(
                 _connected && PublishReadySnapshot));
+        }
+
+        public Task<Transport.ListCapabilitiesResponse> ListCapabilitiesAsync(
+            bool includeDenied,
+            CancellationToken cancellationToken)
+        {
+            Calls.Add(includeDenied ? "list-capabilities:include-denied" : "list-capabilities");
+            var (_, capabilities) = MatchingSnapshot(_connected && PublishReadySnapshot);
+            capabilities.SpatialAnalyzerTarget = DeniedListingTarget;
+            if (includeDenied)
+            {
+                capabilities.Operations.Add(DeniedOperations);
+            }
+
+            return Task.FromResult(capabilities);
         }
 
         public Task<Transport.SpatialAnalyzerLifecycleState> GetApplicationStateAsync(
@@ -857,6 +875,8 @@ public sealed partial class ClientContractTests
             {
                 ProtocolPackage = Transport.BriosaProtocolIdentity.ProtocolPackage,
                 SpatialAnalyzerTarget = Transport.BriosaProtocolIdentity.SpatialAnalyzerTarget,
+                AdmissionProfile = "standard",
+                PolicyFingerprint = "sha256:" + new string('c', 64),
             };
             capabilities.Operations.Add(new Transport.OperationCapability
             {
@@ -864,6 +884,9 @@ public sealed partial class ClientContractTests
                 GrpcService = "briosa.FileOperations",
                 Rpc = "GetWorkingDirectory",
                 FullyQualifiedMethod = "/briosa.FileOperations/GetWorkingDirectory",
+                DurationClass = Transport.OperationDurationClass.Quick,
+                ValidationStatus = Transport.OperationValidationStatus.NoRecordedGap,
+                Admission = Transport.OperationAdmission.Admitted,
             });
             return (server, capabilities);
         }

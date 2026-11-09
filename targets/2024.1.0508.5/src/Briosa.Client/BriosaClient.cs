@@ -144,6 +144,16 @@ public sealed partial class BriosaClient : IAsyncDisposable
             },
             cancellationToken);
 
+    /// <summary>
+    /// Lists the operations that the server's active policy denies, each with the
+    /// precedence step that denied it. This is a diagnostic listing: it never
+    /// changes the admitted operations of <see cref="GetServerSnapshotAsync"/>,
+    /// and a denied operation stays denied by the server when called.
+    /// </summary>
+    public Task<IReadOnlyList<BriosaOperationCapability>> GetDeniedOperationsAsync(
+        CancellationToken cancellationToken = default) =>
+        throw new NotImplementedException("The denied-operation listing is not implemented yet.");
+
     /// <summary>Reads current SpatialAnalyzer application and ownership state.</summary>
     public Task<SpatialAnalyzerLifecycleState> GetSpatialAnalyzerStateAsync(
         CancellationToken cancellationToken = default) =>
