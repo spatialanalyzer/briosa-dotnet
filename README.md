@@ -38,15 +38,19 @@ for each change:
   removed;
 - ten request defaults now wait, for example `measureImmediately` defaults to
   `true`;
-- no default fills in a risky value, and the arguments the server requires are
-  required parameters;
+- no default or overload fills in an input the server requires: each one is a
+  required parameter or a `required` member, with `Transform.Identity` for an
+  explicit identity;
 - every MP method takes an optional `onMpCompletion` observer before its
   `CancellationToken`, which reports a partial success (MP code 4) without
   changing the return type;
 - typed failures add `SdkCallFaulted`, MP execution details, and the lifecycle
-  caller kinds;
+  caller kinds, and a transport failure without a typed trailer reports
+  `transport-<status>` (such as `transport-deadline-exceeded`) instead of
+  `grpc-<Status>`;
 - discovery reports the admission profile, each operation's classification,
-  and a listing of denied operations;
+  and a listing of denied operations with the profile and policy fingerprint it
+  was taken under;
 - four result mappings that failed on every real response are fixed, including
   the quick fit ([#45](https://github.com/spatialanalyzer/briosa-dotnet/issues/45)).
 
@@ -62,5 +66,5 @@ It also includes two changes made since 0.4.0:
   [collections](docs/design/v1-public-api-contract.md#collections). The lists the
   server rejects when empty are required parameters in 0.5.0; each product guide
   lists them:
-  [SA 2024](targets/2024.1.0508.5/README.md#lists-the-server-requires),
-  [SA 2026](targets/2026.1.0529.7/README.md#lists-the-server-requires).
+  [SA 2024](targets/2024.1.0508.5/README.md#inputs-the-server-requires),
+  [SA 2026](targets/2026.1.0529.7/README.md#inputs-the-server-requires).

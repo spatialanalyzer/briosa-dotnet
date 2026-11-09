@@ -115,6 +115,80 @@ required parameter, so omitting it is a compile error:
   empty list is sent empty, and the server then runs USMN without that setting,
   as licensed probe 33 showed SpatialAnalyzer does correctly.
 
+### Every other input the server requires
+
+The client never fills in an input the server requires: no identity transform,
+no default choice or settings value, and no empty list. An audit of every
+optional parameter and input member against the server's request checks found
+these, which are now required (both targets unless noted):
+
+| Kind | Method | Parameters |
+| --- | --- | --- |
+| Lists | `AutoFilterPointsGroupsCloudsToSurfaceFacesAsync` | `points`, `groups`, `clouds` |
+| | `CreatePointsToObjectsMapAsync` | `points`, `groups` |
+| | `SetPointsToPointsRelationshipAssociatedDataAsync` | `nominalPoints`, `actualPoints` |
+| | `SetRelationshipAssociatedDataAsync` | `individualPoints`, `pointGroups`, `pointClouds`, `objects` |
+| | `ExtractGeometryFromPointCloudsAsync` (2026 only) | `boundingPoints` |
+| Choices that had a default | `AutoFilterPointsGroupsCloudsToSurfaceFacesAsync`, `FeatureInspectionAutoFilterAsync` | `offsetDirection` |
+| | `MakeDynamicCircleRelationshipAsync`, `…EllipseRelationshipAsync`, `…LineRelationshipAsync`, `…PlaneRelationshipAsync`, `…PointRelationshipAsync` | `constructionMode` |
+| | `MakeCollectionObjectNameRefListByTypeAsync`, `…ByTypeAndColorAsync`, `…RuntimeSelectAsync`, `…WildcardSelectionAsync`, `MakeCollectionObjectNameRuntimeSelectAsync` | `objectType` |
+| | `MakeCollectionItemNameRefListWildcardSelectionAsync` | `itemType` |
+| | `ExtractGeometryFromPointCloudsAsync` (2026 only) | `geometryType` |
+| | `SetGdtOptionsAsync` | `distanceBetweenMode`, `evaluationMethod` |
+| | `CollimationAsync` | `tiltMode`, `baselineMethod` |
+| | `LocateInstrumentsUsmnAsync` | `showUsmnDialog` |
+| | `SetTargetComputationOptionsAsync` | `computationMethod` |
+| | `CreatePointCalloutAsync` | `desiredCoordinateSystem` |
+| | `ConstructPointsFromSurfacesOnUvGridAsync` | `edgePointMode` |
+| Settings | `AutoFilterCloudsToNominalGeometry2DAsync`, `AutoFilterCloudsToNominalGeometry3DAsync`, `AutoFilterPointsToNominalGeometry3DAsync` | `filterProximitySettings2D` or `filterProximitySettings3D` |
+| | `DoRelationshipFitAsync`, `MoveCollectionsByMinimizingRelationshipsAsync` | `motionToAllow` |
+| | `MakeGroupsToObjectsRelationshipAsync`, `MakePointCloudsToObjectsRelationshipAsync`, `MakePointsToObjectsRelationshipAsync` | `projectionOptions` |
+| | `MakeFrameToFrameRelationshipAsync` | `orientationTolerance`, `positionTolerance` |
+| | `SetObjectToObjectDirectionRelationshipTolerancesAsync` | `angleBetweenVectorsTolerances`, `mutualPerpendicularLengthTolerances` |
+| | `BuildTargetAsync` | `tolerance` |
+| | `RelationshipWatchWindowTemplateAsync` | `udpNetworkTransmitSettings`, new: it was a member of the options |
+| Names | `MakeDynamicPointRelationshipAsync` | `thirdReferenceGeometry` |
+| | `ConstructCrossSectionCloudAsync` | `referenceObject` |
+| | `ConstructPointFromCloudPointRuntimeSelectAsync` | `constructedPointName` |
+| | `ConstructPointsSubsetWithGreatestSpacingAsync` | `groupForSubset` |
+| | `EnableDisableDatumAlignmentForFeatureCheckAsync` | `alignment` |
+| | `AutoCorrespondWithProximityTriggerAsync` | `deviationVectorGroupName` |
+| | `CollimationAsync` | `scalePoint1`, `scalePoint2`, `notMeasuredByMovingInstrument`, `asMeasuredByMovingInstrument` |
+| | `SetObservationCollimationShotOptionsAsync` | `targetedInstrument` |
+| | `RelationshipWatchWindowTemplateAsync` | `watchWindowTemplateName`, no longer nullable |
+| Transforms and vectors | `ConstructEllipsoidAsync` | `transformInWorkingCoordinates` |
+| | `CalculateTcpFixtureUncertaintiesAsync` | `tcpInWorking` |
+| | `ConstructPointsShiftedInWorkingFrameAsync` | `shiftVector` |
+| | `GetGradientAtProjectedPointOnSurfaceEdgeAsync` | `edgeOffsetDirection` |
+
+- Most of these moved ahead of the optional parameters. Check the argument
+  order of positional calls, or name the arguments.
+- These overloads are gone, because each one filled in a required input:
+  - the overloads without a transform of `ConstructFrameAsync`,
+    `ConstructFrameFromTransformInWorldAsync`,
+    `SetCalibrationApplianceNodeMeasurementOffsetTransformAsync`,
+    `SetRobotCalibrationMeasurementOffsetInToolFrameAsync`,
+    `SetRobotCalibrationToolFrameAsync` and `SetRobotMachineBaseTransformAsync`,
+    which sent the identity;
+  - `RelationshipWatchWindowTemplateAsync()` with no arguments, which sent no
+    template name and default UDP settings.
+- `Transform.Values` is `required`, so `new Transform()` no longer compiles. Pass
+  `Transform.Identity` where you mean the identity. Each read returns a fresh
+  value.
+- These input members are `required` too:
+  - `FilterProximitySettings.SurfaceProximityMode`, `PlanarProximityMode` and
+    `RadialProximityMode`;
+  - `ReportOutputOptions.OutputType`;
+  - `Objects`, `GeometryRelationships`, `AuxiliaryObject` and
+    `AuxiliaryGeometryRelationship` of both `MakeGdtDatumAnnotationOptions` and
+    `MakeGdtFeatureCheckAnnotationOptions`.
+- `RelationshipWatchWindowTemplateOptions` no longer has
+  `UdpNetworkTransmitSettings`. Pass the settings to
+  `RelationshipWatchWindowTemplateAsync`, where `new
+  RelationshipWatchWindowUdpSettings()` sends the server's defaults.
+- An input the server checks only when you pass it stays optional, as do the D2
+  omissions above.
+
 ## Partial success and the MP completion of a call
 
 MP code 4 (PARTIAL SUCCESS) means the command did its work but not its full
@@ -137,8 +211,9 @@ if (completion?.State == MpExecutionState.PartialSuccess)
 ```
 
 - The client calls the observer once, synchronously, before the returned task
-  completes, and only for a successful call. State is `Succeeded` or
-  `PartialSuccess`, with the MP result code.
+  completes, and only for a successful call. State is `Succeeded` with MP code 2
+  or `PartialSuccess` with MP code 4, and `MpCompletion.MpResultCode` is an
+  `int`.
 - A call that passed its token positionally must now name it:
   `GetWorkingDirectoryAsync(cancellationToken: token)`.
 - Four operations report code 4 as an ordinary `MpFailure` with code 4, because
@@ -147,8 +222,16 @@ if (completion?.State == MpExecutionState.PartialSuccess)
   `OpenTemplateFileAsync` and `SetReportOptionsForObjectAsync`.
 - A typed failure keeps its MP details in `BriosaOperationException.MpExecution`.
   A partial success whose output could not be read stays `PartialSuccess` there.
-- Every success response must carry its MP execution details; a server that
-  omits them is reported as a protocol error.
+- The client checks every success, whether or not you observe it. A success is
+  a protocol error, `BriosaProtocolException`, in three cases:
+  - it has no MP execution details (`mp-execution-missing`);
+  - its state is neither of the two above (`mp-execution-state`);
+  - its MP code is missing or doesn't match its state
+    (`mp-execution-result-code`).
+
+  The observer runs after that check and before the outputs are mapped, so it
+  still reports the completion when output mapping then fails. Adding or removing
+  an observer never changes a call's outcome.
 
 ## Typed failures
 
@@ -167,6 +250,32 @@ if (completion?.State == MpExecutionState.PartialSuccess)
   for unattended stations) controls whether SpatialAnalyzer shows such dialogs.
   SpatialAnalyzer keeps the mode across restarts and has no getter for it, and
   clients don't set it.
+- A transport failure without a typed trailer is still a
+  `BriosaTransportException`. Its `DiagnosticCode` is now `transport-` plus the
+  gRPC status name in lower kebab case, the format of the JavaScript and Python
+  clients. Every such code is renamed:
+
+  | 0.4.0 | 0.5.0 |
+  | --- | --- |
+  | `grpc-OK` | `transport-ok` |
+  | `grpc-Unknown` | `transport-unknown` |
+  | `grpc-InvalidArgument` | `transport-invalid-argument` |
+  | `grpc-DeadlineExceeded` | `transport-deadline-exceeded` |
+  | `grpc-NotFound` | `transport-not-found` |
+  | `grpc-AlreadyExists` | `transport-already-exists` |
+  | `grpc-PermissionDenied` | `transport-permission-denied` |
+  | `grpc-ResourceExhausted` | `transport-resource-exhausted` |
+  | `grpc-FailedPrecondition` | `transport-failed-precondition` |
+  | `grpc-Aborted` | `transport-aborted` |
+  | `grpc-OutOfRange` | `transport-out-of-range` |
+  | `grpc-Unimplemented` | `transport-unimplemented` |
+  | `grpc-Internal` | `transport-internal` |
+  | `grpc-Unavailable` | `transport-unavailable` |
+  | `grpc-DataLoss` | `transport-data-loss` |
+  | `grpc-Unauthenticated` | `transport-unauthenticated` |
+  | `grpc-` plus a number, for a status gRPC doesn't define | `transport-failure` |
+
+  A cancelled call is still `OperationCanceledException`.
 
 ## Discovery and admission
 
@@ -175,9 +284,11 @@ if (completion?.State == MpExecutionState.PartialSuccess)
 - Each `BriosaOperationCapability` reports its reviewed `RiskFlags`,
   `DurationClass`, `ValidationStatus` and `Admission`, exactly as the server
   sends them. A value from a later server revision maps to `Unknown`.
-- `GetDeniedOperationsAsync` lists the operations the active policy denies,
-  each with the precedence step that denied it. It is diagnostic only: denied
-  operations stay out of the snapshot and stay denied when called.
+- `GetDeniedOperationsAsync` returns a `BriosaDeniedOperationListing`: the
+  admission profile and the policy fingerprint the listing was taken under, and
+  the operations the active policy denies, each with the precedence step that
+  denied it. It is diagnostic only: denied operations stay out of the snapshot
+  and stay denied when called.
 - The server's default `standard` profile is narrower than before. The seven
   device-configuration setters (the two instrument scale factors,
   `SetRobotMachineModelLinkParametersAsync`, `SetActiveRobotCalibrationAsync`,

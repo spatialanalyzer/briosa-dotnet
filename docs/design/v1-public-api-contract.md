@@ -199,9 +199,11 @@ its work but not its full intended effect. The server reports it as a success,
 so the method returns its outputs, never throws for it, and never retries it.
 A caller that needs to know passes the optional `onMpCompletion` observer. The
 client calls it once, synchronously, before the returned task completes, and
-only for a successful call. Its `MpCompletion` value has the state,
-`Succeeded` or `PartialSuccess`, and the MP result code. The observer belongs
-to that one call, so concurrent calls stay distinguishable.
+only for a successful call. Its `MpCompletion` value has the state and the MP
+result code: `Succeeded` with 2 or `PartialSuccess` with 4. The client checks
+that pairing on every success, observed or not, before the observer runs and
+before it maps the outputs. The observer belongs to that one call, so concurrent
+calls stay distinguishable.
 
 ~~~csharp
 MpCompletion? completion = null;
@@ -215,7 +217,8 @@ await briosa.SetPointNotesAsync(
 Four operations report code 4 as an ordinary `MpFailure`, because their target
 documentation says the work was not done: Construct Point From Survey Target
 Center, Open SA File, Open Template File, and Set Report Options For Object. A
-success response without MP execution details is a protocol error.
+success response without MP execution details, with another state, or whose MP
+code is missing or doesn't match its state is a protocol error.
 
 ### Collections
 
@@ -274,7 +277,9 @@ The handwritten .NET exception boundary uses:
 
 - `BriosaOperationException` for a valid typed Briosa operation failure;
 - `BriosaTransportException` for a transport failure without a valid typed
-  operation error;
+  operation error, whose `DiagnosticCode` is `transport-` plus the gRPC status
+  name in lower kebab case, such as `transport-deadline-exceeded`, as in the
+  JavaScript and Python clients;
 - conventional `ArgumentException` subclasses for invalid local input;
 - `OperationCanceledException` semantics for caller cancellation; and
 - dedicated lifecycle, startup, and compatibility exceptions for failures
@@ -407,8 +412,10 @@ empty when no risk applies), duration class, validation status, and admission,
 exactly as the server reports them. A value from a later revision maps to the
 enum's `Unknown` member instead of failing discovery. The client never
 recomputes admission and never pre-validates request options.
-`GetDeniedOperationsAsync` is a diagnostic listing of the denied operations
-and their denial reasons; it never adds them to the snapshot.
+`GetDeniedOperationsAsync` returns one diagnostic listing,
+`BriosaDeniedOperationListing`: the admission profile and policy fingerprint it
+was taken under, and the denied operations with their denial reasons. It never
+adds them to the snapshot.
 
 ### Public API verification
 

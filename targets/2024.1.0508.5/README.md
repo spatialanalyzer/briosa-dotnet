@@ -76,28 +76,41 @@ phase in `ExecutionDisposition`.
 
 `GetServerSnapshotAsync()` reports the server's admission profile and policy
 fingerprint, and each admitted operation's risk flags, duration class,
-validation status, and admission. `GetDeniedOperationsAsync()` lists the
-operations the policy denies, with the reason; it never makes them callable.
+validation status, and admission. `GetDeniedOperationsAsync()` returns the
+operations the policy denies, with the reason, and the admission profile and
+policy fingerprint the listing was taken under; it never makes them callable.
 
 See the [Briosa documentation](https://spatialanalyzer.github.io/briosa-docs/api/dotnet/)
 for the client API overview. The target-specific source and locked protocol define
 this package's exact API.
 
-### Lists the server requires
+### Inputs the server requires
+
+Every input the server requires is a required parameter, or a `required` member
+of its input value, so omitting one is a compile error. No default, overload or
+empty value fills one in. Where you want the identity transform, pass
+`Transform.Identity`. The
+[contract major 3 migration](../../docs/contract-major-3-migration.md) lists every
+input that became required in 0.5.0.
 
 Leaving an optional list argument out sends an empty list. The server rejects
-some lists when they are empty, and 0.5.0 makes those required parameters, so
-an omitted one is a compile error and `null` throws `ArgumentNullException`
-before any call:
+these lists when they are empty or absent, so they are required:
 
 | Method | Required lists |
 | --- | --- |
 | `LocateInstrumentGroupToSurfaceQuickFitAsync` | `otherObjectsToTransform` |
 | `FeatureInspectionAutoFilterAsync` | `pointNames`, `groupNames`, `cloudNames`, and `featureCheckNameList` |
+| `AutoFilterPointsGroupsCloudsToSurfaceFacesAsync` | `points`, `groups`, and `clouds` |
+| `CreatePointsToObjectsMapAsync` | `points` and `groups` |
+| `SetPointsToPointsRelationshipAssociatedDataAsync` | `nominalPoints` and `actualPoints` |
+| `SetRelationshipAssociatedDataAsync` | `individualPoints`, `pointGroups`, `pointClouds`, and `objects` |
 
 An empty required list is still sent, and the server rejects it with a
 `BriosaOperationException` whose `Kind` is `Validation` and whose
-`ExecutionDisposition` is `NotStarted`, so nothing runs in SpatialAnalyzer.
+`ExecutionDisposition` is `NotStarted`, so nothing runs in SpatialAnalyzer. A
+`null` list is never sent as an empty one: the client either throws
+`ArgumentNullException` before any call or leaves the list out, which the server
+rejects in the same way.
 
 `LocateInstrumentsUsmnAsync` keeps both of its optional inputs. An omitted or
 empty `excludedGroups` list is sent empty, and the server then runs USMN without
