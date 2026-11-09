@@ -622,38 +622,6 @@ public sealed partial class BriosaClient
             cancellationToken);
     }
 
-    public Task DeleteCloudPointsByXYZRangeAsync(
-        IEnumerable<CollectionObjectName> cloudNames,
-        double? xMin = null,
-        double? xMax = null,
-        double? yMin = null,
-        double? yMax = null,
-        double? zMin = null,
-        double? zMax = null,
-        bool deleteInside = false,
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.DeleteCloudPointsByXYZRangeRequest(),
-            new Dictionary<string, object?>
-            {
-                ["cloud_names"] = cloudNames,
-                ["x_min"] = xMin,
-                ["x_max"] = xMax,
-                ["y_min"] = yMin,
-                ["y_max"] = yMax,
-                ["z_min"] = zMin,
-                ["z_max"] = zMax,
-                ["delete_inside"] = deleteInside,
-            });
-        return InvokeOperationAsync(
-            "briosa.CloudAndMeshOperations",
-            "DeleteCloudPointsByXYZRange",
-            request,
-            Transport.DeleteCloudPointsByXYZRangeResult.Parser,
-            cancellationToken);
-    }
-
     public Task GenerateGeneralMeshAsync(
         CollectionObjectName outputMeshName,
         IEnumerable<CollectionObjectName> cloudsToMesh,
@@ -849,30 +817,6 @@ public sealed partial class BriosaClient
             "DeletePointsWildcardSelection",
             request,
             Transport.DeletePointsWildcardSelectionResult.Parser,
-            cancellationToken);
-    }
-
-    public Task MirrorObjectsAsync(
-        IEnumerable<CollectionObjectName> objects,
-        CollectionObjectName frameName,
-        MirrorFramePlane framePlaneToMirrorAround,
-        bool copy = true,
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.MirrorObjectsRequest(),
-            new Dictionary<string, object?>
-            {
-                ["objects"] = objects,
-                ["frame_name"] = frameName,
-                ["frame_plane_to_mirror_around"] = framePlaneToMirrorAround,
-                ["copy"] = copy,
-            });
-        return InvokeOperationAsync(
-            "briosa.ConstructionOperations",
-            "MirrorObjects",
-            request,
-            Transport.MirrorObjectsResult.Parser,
             cancellationToken);
     }
 

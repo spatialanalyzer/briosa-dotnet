@@ -293,133 +293,121 @@ namespace Briosa.Client.Transport {
             "bGV0ZV9pbnNpZGUYBCABKAhIAYgBAUIJCgdfcmFkaXVzQhAKDl9kZWxldGVf",
             "aW5zaWRlImMKMURlbGV0ZUNsb3VkUG9pbnRzQnlSYWRpYWxEaXN0YW5jZUZy",
             "b21Qb2ludHNSZXN1bHQSLgoJZXhlY3V0aW9uGOgHIAEoCzIaLmJyaW9zYS5N",
-            "cEV4ZWN1dGlvbkRldGFpbHMiuQIKIkRlbGV0ZUNsb3VkUG9pbnRzQnlYWVpS",
-            "YW5nZVJlcXVlc3QSMQoLY2xvdWRfbmFtZXMYASADKAsyHC5icmlvc2EuQ29s",
-            "bGVjdGlvbk9iamVjdE5hbWUSEgoFeF9taW4YAiABKAFIAIgBARISCgV4X21h",
-            "eBgDIAEoAUgBiAEBEhIKBXlfbWluGAQgASgBSAKIAQESEgoFeV9tYXgYBSAB",
-            "KAFIA4gBARISCgV6X21pbhgGIAEoAUgEiAEBEhIKBXpfbWF4GAcgASgBSAWI",
-            "AQESGgoNZGVsZXRlX2luc2lkZRgIIAEoCEgGiAEBQggKBl94X21pbkIICgZf",
-            "eF9tYXhCCAoGX3lfbWluQggKBl95X21heEIICgZfel9taW5CCAoGX3pfbWF4",
-            "QhAKDl9kZWxldGVfaW5zaWRlIlMKIURlbGV0ZUNsb3VkUG9pbnRzQnlYWVpS",
-            "YW5nZVJlc3VsdBIuCglleGVjdXRpb24Y6AcgASgLMhouYnJpb3NhLk1wRXhl",
-            "Y3V0aW9uRGV0YWlscyLdAwoaR2VuZXJhdGVHZW5lcmFsTWVzaFJlcXVlc3QS",
-            "OwoQb3V0cHV0X21lc2hfbmFtZRgBIAEoCzIcLmJyaW9zYS5Db2xsZWN0aW9u",
-            "T2JqZWN0TmFtZUgAiAEBEjQKDmNsb3Vkc190b19tZXNoGAIgAygLMhwuYnJp",
-            "b3NhLkNvbGxlY3Rpb25PYmplY3ROYW1lEiIKFW1heGltdW1fdHJpYW5nbGVf",
-            "c2l6ZRgDIAEoAUgBiAEBEiMKFnNtYWxsZXN0X2hvbGVfZGlhbWV0ZXIYBCAB",
-            "KAFIAogBARIVCghmaW5hbGl6ZRgFIAEoCEgDiAEBEjAKI3VzZV9zY2FuX2Rp",
-            "cmVjdGlvbl9mb3JfcG9pbnRfbm9ybWFsGAYgASgISASIAQESLQoJanNvbl9m",
-            "aWxlGAcgASgLMhUuYnJpb3NhLkZpbGVSZWZlcmVuY2VIBYgBAUITChFfb3V0",
-            "cHV0X21lc2hfbmFtZUIYChZfbWF4aW11bV90cmlhbmdsZV9zaXplQhkKF19z",
-            "bWFsbGVzdF9ob2xlX2RpYW1ldGVyQgsKCV9maW5hbGl6ZUImCiRfdXNlX3Nj",
-            "YW5fZGlyZWN0aW9uX2Zvcl9wb2ludF9ub3JtYWxCDAoKX2pzb25fZmlsZSJL",
-            "ChlHZW5lcmF0ZUdlbmVyYWxNZXNoUmVzdWx0Ei4KCWV4ZWN1dGlvbhjoByAB",
-            "KAsyGi5icmlvc2EuTXBFeGVjdXRpb25EZXRhaWxzIlIKFkNvbnNvbGlkYXRl",
-            "TWVzaFJlcXVlc3QSLwoEbWVzaBgBIAEoCzIcLmJyaW9zYS5Db2xsZWN0aW9u",
-            "T2JqZWN0TmFtZUgAiAEBQgcKBV9tZXNoIkcKFUNvbnNvbGlkYXRlTWVzaFJl",
-            "c3VsdBIuCglleGVjdXRpb24Y6AcgASgLMhouYnJpb3NhLk1wRXhlY3V0aW9u",
-            "RGV0YWlscyKJAQoRTWVzaFZvbHVtZVJlcXVlc3QSLwoEbWVzaBgBIAEoCzIc",
-            "LmJyaW9zYS5Db2xsZWN0aW9uT2JqZWN0TmFtZUgAiAEBEjAKBXBsYW5lGAIg",
-            "ASgLMhwuYnJpb3NhLkNvbGxlY3Rpb25PYmplY3ROYW1lSAGIAQFCBwoFX21l",
-            "c2hCCAoGX3BsYW5lIn4KEE1lc2hWb2x1bWVSZXN1bHQSEgoFYWJvdmUYASAB",
-            "KAFIAIgBARISCgViZWxvdxgCIAEoAUgBiAEBEi4KCWV4ZWN1dGlvbhjoByAB",
-            "KAsyGi5icmlvc2EuTXBFeGVjdXRpb25EZXRhaWxzQggKBl9hYm92ZUIICgZf",
-            "YmVsb3ciogIKFE1lc2hGaWxsSG9sZXNSZXF1ZXN0Ei8KBG1lc2gYASABKAsy",
-            "HC5icmlvc2EuQ29sbGVjdGlvbk9iamVjdE5hbWVIAIgBARIkChdtYXhpbXVt",
-            "X3RyaWFuZ2xlX2xlbmd0aBgCIAEoAUgBiAEBEhQKB3RlbnNpb24YAyABKAFI",
-            "AogBARIiChV1bmNvbmRpdGlvbmFsX2ZpbGxpbmcYBCABKAhIA4gBARIbCg5m",
-            "aWxsX2FsbF9ob2xlcxgFIAEoCEgEiAEBQgcKBV9tZXNoQhoKGF9tYXhpbXVt",
-            "X3RyaWFuZ2xlX2xlbmd0aEIKCghfdGVuc2lvbkIYChZfdW5jb25kaXRpb25h",
-            "bF9maWxsaW5nQhEKD19maWxsX2FsbF9ob2xlcyJFChNNZXNoRmlsbEhvbGVz",
-            "UmVzdWx0Ei4KCWV4ZWN1dGlvbhjoByABKAsyGi5icmlvc2EuTXBFeGVjdXRp",
-            "b25EZXRhaWxzKvEBCgxDbG91ZEJveFR5cGUSHgoaQ0xPVURfQk9YX1RZUEVf",
-            "VU5TUEVDSUZJRUQQABIpCiVDTE9VRF9CT1hfVFlQRV9XT1JMRF9BWElTX0FM",
-            "SUdORURfQk9YEAESKAokQ0xPVURfQk9YX1RZUEVfV09SS19BWElTX0FMSUdO",
-            "RURfQk9YEAISNQoxQ0xPVURfQk9YX1RZUEVfTUlOSU1VTV9PUklFTlRFRF9C",
-            "T1hfVU5DT05ESVRJT05BTBADEjUKMUNMT1VEX0JPWF9UWVBFX01JTklNVU1f",
-            "T1JJRU5URURfQk9YX1ZFUklGWV9WT0xVTUUQBCp2Cg9Qb2ludE91dHB1dFR5",
-            "cGUSIQodUE9JTlRfT1VUUFVUX1RZUEVfVU5TUEVDSUZJRUQQABIcChhQT0lO",
-            "VF9PVVRQVVRfVFlQRV9QT0lOVFMQARIiCh5QT0lOVF9PVVRQVVRfVFlQRV9D",
-            "TE9VRF9QT0lOVFMQAirZAQoSUkdCRmlsdGVyT3BlcmF0aW9uEiQKIFJHQl9G",
-            "SUxURVJfT1BFUkFUSU9OX1VOU1BFQ0lGSUVEEAASMwovUkdCX0ZJTFRFUl9P",
-            "UEVSQVRJT05fSU5DUkVNRU5UQUxMWV9BUFBMWV9GSUxURVIQARIvCitSR0Jf",
-            "RklMVEVSX09QRVJBVElPTl9SRVNFVF9BTkRfQVBQTFlfRklMVEVSEAISNwoz",
-            "UkdCX0ZJTFRFUl9PUEVSQVRJT05fUkVTRVRfQUxMX0NMT1VEX1BPSU5UU19W",
-            "SVNJQkxFEAMqqQEKD1JHQkNvbG9yQ2hhbm5lbBIhCh1SR0JfQ09MT1JfQ0hB",
-            "Tk5FTF9VTlNQRUNJRklFRBAAEhkKFVJHQl9DT0xPUl9DSEFOTkVMX1JFRBAB",
-            "EhsKF1JHQl9DT0xPUl9DSEFOTkVMX0dSRUVOEAISGgoWUkdCX0NPTE9SX0NI",
-            "QU5ORUxfQkxVRRADEh8KG1JHQl9DT0xPUl9DSEFOTkVMX0lOVEVOU0lUWRAE",
-            "MsgYChZDbG91ZEFuZE1lc2hPcGVyYXRpb25zElwKE0Nsb3VkRGlzcGxheUNv",
-            "bnRyb2wSIi5icmlvc2EuQ2xvdWREaXNwbGF5Q29udHJvbFJlcXVlc3QaIS5i",
-            "cmlvc2EuQ2xvdWREaXNwbGF5Q29udHJvbFJlc3VsdBJiChVSZXNldENsb3Vk",
-            "Qm91bmRpbmdCb3gSJC5icmlvc2EuUmVzZXRDbG91ZEJvdW5kaW5nQm94UmVx",
-            "dWVzdBojLmJyaW9zYS5SZXNldENsb3VkQm91bmRpbmdCb3hSZXN1bHQSWQoS",
-            "R2V0Q2xvdWRQb2ludENvdW50EiEuYnJpb3NhLkdldENsb3VkUG9pbnRDb3Vu",
-            "dFJlcXVlc3QaIC5icmlvc2EuR2V0Q2xvdWRQb2ludENvdW50UmVzdWx0EncK",
-            "HFNldENsb3VkRGVmYXVsdENsaXBwaW5nUGxhbmUSKy5icmlvc2EuU2V0Q2xv",
-            "dWREZWZhdWx0Q2xpcHBpbmdQbGFuZVJlcXVlc3QaKi5icmlvc2EuU2V0Q2xv",
-            "dWREZWZhdWx0Q2xpcHBpbmdQbGFuZVJlc3VsdBJrChhSYXN0ZXJTY2FuRWRn",
-            "ZUluc3BlY3Rpb24SJy5icmlvc2EuUmFzdGVyU2NhbkVkZ2VJbnNwZWN0aW9u",
-            "UmVxdWVzdBomLmJyaW9zYS5SYXN0ZXJTY2FuRWRnZUluc3BlY3Rpb25SZXN1",
-            "bHQSdAobTmV3UmFzdGVyU2NhbkVkZ2VJbnNwZWN0aW9uEiouYnJpb3NhLk5l",
-            "d1Jhc3RlclNjYW5FZGdlSW5zcGVjdGlvblJlcXVlc3QaKS5icmlvc2EuTmV3",
-            "UmFzdGVyU2NhbkVkZ2VJbnNwZWN0aW9uUmVzdWx0Em4KGUNsZWFyQ2xvdWRQ",
-            "b2ludERldmlhdGlvbnMSKC5icmlvc2EuQ2xlYXJDbG91ZFBvaW50RGV2aWF0",
-            "aW9uc1JlcXVlc3QaJy5icmlvc2EuQ2xlYXJDbG91ZFBvaW50RGV2aWF0aW9u",
-            "c1Jlc3VsdBJ0ChtFbmFibGVBbGxDbG91ZENyb3NzU2VjdGlvbnMSKi5icmlv",
-            "c2EuRW5hYmxlQWxsQ2xvdWRDcm9zc1NlY3Rpb25zUmVxdWVzdBopLmJyaW9z",
-            "YS5FbmFibGVBbGxDbG91ZENyb3NzU2VjdGlvbnNSZXN1bHQSgAEKH0VuYWJs",
-            "ZURpc2FibGVDbG91ZENyb3NzU2VjdGlvbnMSLi5icmlvc2EuRW5hYmxlRGlz",
-            "YWJsZUNsb3VkQ3Jvc3NTZWN0aW9uc1JlcXVlc3QaLS5icmlvc2EuRW5hYmxl",
-            "RGlzYWJsZUNsb3VkQ3Jvc3NTZWN0aW9uc1Jlc3VsdBJ6Ch1FbmFibGVTaW5n",
-            "bGVDbG91ZENyb3NzU2VjdGlvbhIsLmJyaW9zYS5FbmFibGVTaW5nbGVDbG91",
-            "ZENyb3NzU2VjdGlvblJlcXVlc3QaKy5icmlvc2EuRW5hYmxlU2luZ2xlQ2xv",
-            "dWRDcm9zc1NlY3Rpb25SZXN1bHQSpAEKK0dldE51bWJlck9mQ3Jvc3NTZWN0",
-            "aW9uc0luQ3Jvc3NTZWN0aW9uQ2xvdWQSOi5icmlvc2EuR2V0TnVtYmVyT2ZD",
-            "cm9zc1NlY3Rpb25zSW5Dcm9zc1NlY3Rpb25DbG91ZFJlcXVlc3QaOS5icmlv",
-            "c2EuR2V0TnVtYmVyT2ZDcm9zc1NlY3Rpb25zSW5Dcm9zc1NlY3Rpb25DbG91",
-            "ZFJlc3VsdBJcChNGaWx0ZXJDbG91ZHNUb1BsYW5lEiIuYnJpb3NhLkZpbHRl",
-            "ckNsb3Vkc1RvUGxhbmVSZXF1ZXN0GiEuYnJpb3NhLkZpbHRlckNsb3Vkc1Rv",
-            "UGxhbmVSZXN1bHQSXAoTRmlsdGVyQ2xvdWRzVG9Hcm91cBIiLmJyaW9zYS5G",
-            "aWx0ZXJDbG91ZHNUb0dyb3VwUmVxdWVzdBohLmJyaW9zYS5GaWx0ZXJDbG91",
-            "ZHNUb0dyb3VwUmVzdWx0EmIKFUZpbHRlckNsb3Vkc1RvU3VyZmFjZRIkLmJy",
-            "aW9zYS5GaWx0ZXJDbG91ZHNUb1N1cmZhY2VSZXF1ZXN0GiMuYnJpb3NhLkZp",
-            "bHRlckNsb3Vkc1RvU3VyZmFjZVJlc3VsdBJlChZGaWx0ZXJDbG91ZHNUb0JT",
-            "cGxpbmVzEiUuYnJpb3NhLkZpbHRlckNsb3Vkc1RvQlNwbGluZXNSZXF1ZXN0",
-            "GiQuYnJpb3NhLkZpbHRlckNsb3Vkc1RvQlNwbGluZXNSZXN1bHQSbgoZRmls",
-            "dGVyQ2xvdWRzVG9MaW5lU2VnbWVudBIoLmJyaW9zYS5GaWx0ZXJDbG91ZHNU",
-            "b0xpbmVTZWdtZW50UmVxdWVzdBonLmJyaW9zYS5GaWx0ZXJDbG91ZHNUb0xp",
-            "bmVTZWdtZW50UmVzdWx0EpgBCidGaWx0ZXJDbG91ZHNUb1ZlY3Rvckdyb3Vw",
-            "c1Jlc29sdmVQb2ludHMSNi5icmlvc2EuRmlsdGVyQ2xvdWRzVG9WZWN0b3JH",
-            "cm91cHNSZXNvbHZlUG9pbnRzUmVxdWVzdBo1LmJyaW9zYS5GaWx0ZXJDbG91",
-            "ZHNUb1ZlY3Rvckdyb3Vwc1Jlc29sdmVQb2ludHNSZXN1bHQSmAEKJ0ZpbHRl",
-            "ckNsb3Vkc1RvVmVjdG9yR3JvdXBzUmVzb2x2ZUNsb3VkcxI2LmJyaW9zYS5G",
-            "aWx0ZXJDbG91ZHNUb1ZlY3Rvckdyb3Vwc1Jlc29sdmVDbG91ZHNSZXF1ZXN0",
-            "GjUuYnJpb3NhLkZpbHRlckNsb3Vkc1RvVmVjdG9yR3JvdXBzUmVzb2x2ZUNs",
-            "b3Vkc1Jlc3VsdBJcChNSR0JDbG91ZFBvaW50RmlsdGVyEiIuYnJpb3NhLlJH",
-            "QkNsb3VkUG9pbnRGaWx0ZXJSZXF1ZXN0GiEuYnJpb3NhLlJHQkNsb3VkUG9p",
-            "bnRGaWx0ZXJSZXN1bHQSVgoRR2V0Q2xvdWRSR0JWYWx1ZXMSIC5icmlvc2Eu",
-            "R2V0Q2xvdWRSR0JWYWx1ZXNSZXF1ZXN0Gh8uYnJpb3NhLkdldENsb3VkUkdC",
-            "VmFsdWVzUmVzdWx0EnEKGkdldENsb3VkUkdCVmFsdWVzTmVhclBvaW50Eiku",
-            "YnJpb3NhLkdldENsb3VkUkdCVmFsdWVzTmVhclBvaW50UmVxdWVzdBooLmJy",
-            "aW9zYS5HZXRDbG91ZFJHQlZhbHVlc05lYXJQb2ludFJlc3VsdBJ3ChxTdWJk",
-            "aXZpZGVDbG91ZEJ5UG9pbnRTcGFjaW5nEisuYnJpb3NhLlN1YmRpdmlkZUNs",
-            "b3VkQnlQb2ludFNwYWNpbmdSZXF1ZXN0GiouYnJpb3NhLlN1YmRpdmlkZUNs",
-            "b3VkQnlQb2ludFNwYWNpbmdSZXN1bHQSpAEKK0RlbGV0ZUNsb3VkUG9pbnRz",
-            "QnlSYWRpYWxEaXN0YW5jZUZyb21Qb2ludHMSOi5icmlvc2EuRGVsZXRlQ2xv",
-            "dWRQb2ludHNCeVJhZGlhbERpc3RhbmNlRnJvbVBvaW50c1JlcXVlc3QaOS5i",
-            "cmlvc2EuRGVsZXRlQ2xvdWRQb2ludHNCeVJhZGlhbERpc3RhbmNlRnJvbVBv",
-            "aW50c1Jlc3VsdBJ0ChtEZWxldGVDbG91ZFBvaW50c0J5WFlaUmFuZ2USKi5i",
-            "cmlvc2EuRGVsZXRlQ2xvdWRQb2ludHNCeVhZWlJhbmdlUmVxdWVzdBopLmJy",
-            "aW9zYS5EZWxldGVDbG91ZFBvaW50c0J5WFlaUmFuZ2VSZXN1bHQSXAoTR2Vu",
-            "ZXJhdGVHZW5lcmFsTWVzaBIiLmJyaW9zYS5HZW5lcmF0ZUdlbmVyYWxNZXNo",
-            "UmVxdWVzdBohLmJyaW9zYS5HZW5lcmF0ZUdlbmVyYWxNZXNoUmVzdWx0ElAK",
-            "D0NvbnNvbGlkYXRlTWVzaBIeLmJyaW9zYS5Db25zb2xpZGF0ZU1lc2hSZXF1",
-            "ZXN0Gh0uYnJpb3NhLkNvbnNvbGlkYXRlTWVzaFJlc3VsdBJBCgpNZXNoVm9s",
-            "dW1lEhkuYnJpb3NhLk1lc2hWb2x1bWVSZXF1ZXN0GhguYnJpb3NhLk1lc2hW",
-            "b2x1bWVSZXN1bHQSSgoNTWVzaEZpbGxIb2xlcxIcLmJyaW9zYS5NZXNoRmls",
-            "bEhvbGVzUmVxdWVzdBobLmJyaW9zYS5NZXNoRmlsbEhvbGVzUmVzdWx0Qgmq",
-            "AgZCcmlvc2FiBnByb3RvMw=="));
+            "cEV4ZWN1dGlvbkRldGFpbHMi3QMKGkdlbmVyYXRlR2VuZXJhbE1lc2hSZXF1",
+            "ZXN0EjsKEG91dHB1dF9tZXNoX25hbWUYASABKAsyHC5icmlvc2EuQ29sbGVj",
+            "dGlvbk9iamVjdE5hbWVIAIgBARI0Cg5jbG91ZHNfdG9fbWVzaBgCIAMoCzIc",
+            "LmJyaW9zYS5Db2xsZWN0aW9uT2JqZWN0TmFtZRIiChVtYXhpbXVtX3RyaWFu",
+            "Z2xlX3NpemUYAyABKAFIAYgBARIjChZzbWFsbGVzdF9ob2xlX2RpYW1ldGVy",
+            "GAQgASgBSAKIAQESFQoIZmluYWxpemUYBSABKAhIA4gBARIwCiN1c2Vfc2Nh",
+            "bl9kaXJlY3Rpb25fZm9yX3BvaW50X25vcm1hbBgGIAEoCEgEiAEBEi0KCWpz",
+            "b25fZmlsZRgHIAEoCzIVLmJyaW9zYS5GaWxlUmVmZXJlbmNlSAWIAQFCEwoR",
+            "X291dHB1dF9tZXNoX25hbWVCGAoWX21heGltdW1fdHJpYW5nbGVfc2l6ZUIZ",
+            "Chdfc21hbGxlc3RfaG9sZV9kaWFtZXRlckILCglfZmluYWxpemVCJgokX3Vz",
+            "ZV9zY2FuX2RpcmVjdGlvbl9mb3JfcG9pbnRfbm9ybWFsQgwKCl9qc29uX2Zp",
+            "bGUiSwoZR2VuZXJhdGVHZW5lcmFsTWVzaFJlc3VsdBIuCglleGVjdXRpb24Y",
+            "6AcgASgLMhouYnJpb3NhLk1wRXhlY3V0aW9uRGV0YWlscyJSChZDb25zb2xp",
+            "ZGF0ZU1lc2hSZXF1ZXN0Ei8KBG1lc2gYASABKAsyHC5icmlvc2EuQ29sbGVj",
+            "dGlvbk9iamVjdE5hbWVIAIgBAUIHCgVfbWVzaCJHChVDb25zb2xpZGF0ZU1l",
+            "c2hSZXN1bHQSLgoJZXhlY3V0aW9uGOgHIAEoCzIaLmJyaW9zYS5NcEV4ZWN1",
+            "dGlvbkRldGFpbHMiiQEKEU1lc2hWb2x1bWVSZXF1ZXN0Ei8KBG1lc2gYASAB",
+            "KAsyHC5icmlvc2EuQ29sbGVjdGlvbk9iamVjdE5hbWVIAIgBARIwCgVwbGFu",
+            "ZRgCIAEoCzIcLmJyaW9zYS5Db2xsZWN0aW9uT2JqZWN0TmFtZUgBiAEBQgcK",
+            "BV9tZXNoQggKBl9wbGFuZSJ+ChBNZXNoVm9sdW1lUmVzdWx0EhIKBWFib3Zl",
+            "GAEgASgBSACIAQESEgoFYmVsb3cYAiABKAFIAYgBARIuCglleGVjdXRpb24Y",
+            "6AcgASgLMhouYnJpb3NhLk1wRXhlY3V0aW9uRGV0YWlsc0IICgZfYWJvdmVC",
+            "CAoGX2JlbG93IqICChRNZXNoRmlsbEhvbGVzUmVxdWVzdBIvCgRtZXNoGAEg",
+            "ASgLMhwuYnJpb3NhLkNvbGxlY3Rpb25PYmplY3ROYW1lSACIAQESJAoXbWF4",
+            "aW11bV90cmlhbmdsZV9sZW5ndGgYAiABKAFIAYgBARIUCgd0ZW5zaW9uGAMg",
+            "ASgBSAKIAQESIgoVdW5jb25kaXRpb25hbF9maWxsaW5nGAQgASgISAOIAQES",
+            "GwoOZmlsbF9hbGxfaG9sZXMYBSABKAhIBIgBAUIHCgVfbWVzaEIaChhfbWF4",
+            "aW11bV90cmlhbmdsZV9sZW5ndGhCCgoIX3RlbnNpb25CGAoWX3VuY29uZGl0",
+            "aW9uYWxfZmlsbGluZ0IRCg9fZmlsbF9hbGxfaG9sZXMiRQoTTWVzaEZpbGxI",
+            "b2xlc1Jlc3VsdBIuCglleGVjdXRpb24Y6AcgASgLMhouYnJpb3NhLk1wRXhl",
+            "Y3V0aW9uRGV0YWlscyrxAQoMQ2xvdWRCb3hUeXBlEh4KGkNMT1VEX0JPWF9U",
+            "WVBFX1VOU1BFQ0lGSUVEEAASKQolQ0xPVURfQk9YX1RZUEVfV09STERfQVhJ",
+            "U19BTElHTkVEX0JPWBABEigKJENMT1VEX0JPWF9UWVBFX1dPUktfQVhJU19B",
+            "TElHTkVEX0JPWBACEjUKMUNMT1VEX0JPWF9UWVBFX01JTklNVU1fT1JJRU5U",
+            "RURfQk9YX1VOQ09ORElUSU9OQUwQAxI1CjFDTE9VRF9CT1hfVFlQRV9NSU5J",
+            "TVVNX09SSUVOVEVEX0JPWF9WRVJJRllfVk9MVU1FEAQqdgoPUG9pbnRPdXRw",
+            "dXRUeXBlEiEKHVBPSU5UX09VVFBVVF9UWVBFX1VOU1BFQ0lGSUVEEAASHAoY",
+            "UE9JTlRfT1VUUFVUX1RZUEVfUE9JTlRTEAESIgoeUE9JTlRfT1VUUFVUX1RZ",
+            "UEVfQ0xPVURfUE9JTlRTEAIq2QEKElJHQkZpbHRlck9wZXJhdGlvbhIkCiBS",
+            "R0JfRklMVEVSX09QRVJBVElPTl9VTlNQRUNJRklFRBAAEjMKL1JHQl9GSUxU",
+            "RVJfT1BFUkFUSU9OX0lOQ1JFTUVOVEFMTFlfQVBQTFlfRklMVEVSEAESLwor",
+            "UkdCX0ZJTFRFUl9PUEVSQVRJT05fUkVTRVRfQU5EX0FQUExZX0ZJTFRFUhAC",
+            "EjcKM1JHQl9GSUxURVJfT1BFUkFUSU9OX1JFU0VUX0FMTF9DTE9VRF9QT0lO",
+            "VFNfVklTSUJMRRADKqkBCg9SR0JDb2xvckNoYW5uZWwSIQodUkdCX0NPTE9S",
+            "X0NIQU5ORUxfVU5TUEVDSUZJRUQQABIZChVSR0JfQ09MT1JfQ0hBTk5FTF9S",
+            "RUQQARIbChdSR0JfQ09MT1JfQ0hBTk5FTF9HUkVFThACEhoKFlJHQl9DT0xP",
+            "Ul9DSEFOTkVMX0JMVUUQAxIfChtSR0JfQ09MT1JfQ0hBTk5FTF9JTlRFTlNJ",
+            "VFkQBDLSFwoWQ2xvdWRBbmRNZXNoT3BlcmF0aW9ucxJcChNDbG91ZERpc3Bs",
+            "YXlDb250cm9sEiIuYnJpb3NhLkNsb3VkRGlzcGxheUNvbnRyb2xSZXF1ZXN0",
+            "GiEuYnJpb3NhLkNsb3VkRGlzcGxheUNvbnRyb2xSZXN1bHQSYgoVUmVzZXRD",
+            "bG91ZEJvdW5kaW5nQm94EiQuYnJpb3NhLlJlc2V0Q2xvdWRCb3VuZGluZ0Jv",
+            "eFJlcXVlc3QaIy5icmlvc2EuUmVzZXRDbG91ZEJvdW5kaW5nQm94UmVzdWx0",
+            "ElkKEkdldENsb3VkUG9pbnRDb3VudBIhLmJyaW9zYS5HZXRDbG91ZFBvaW50",
+            "Q291bnRSZXF1ZXN0GiAuYnJpb3NhLkdldENsb3VkUG9pbnRDb3VudFJlc3Vs",
+            "dBJ3ChxTZXRDbG91ZERlZmF1bHRDbGlwcGluZ1BsYW5lEisuYnJpb3NhLlNl",
+            "dENsb3VkRGVmYXVsdENsaXBwaW5nUGxhbmVSZXF1ZXN0GiouYnJpb3NhLlNl",
+            "dENsb3VkRGVmYXVsdENsaXBwaW5nUGxhbmVSZXN1bHQSawoYUmFzdGVyU2Nh",
+            "bkVkZ2VJbnNwZWN0aW9uEicuYnJpb3NhLlJhc3RlclNjYW5FZGdlSW5zcGVj",
+            "dGlvblJlcXVlc3QaJi5icmlvc2EuUmFzdGVyU2NhbkVkZ2VJbnNwZWN0aW9u",
+            "UmVzdWx0EnQKG05ld1Jhc3RlclNjYW5FZGdlSW5zcGVjdGlvbhIqLmJyaW9z",
+            "YS5OZXdSYXN0ZXJTY2FuRWRnZUluc3BlY3Rpb25SZXF1ZXN0GikuYnJpb3Nh",
+            "Lk5ld1Jhc3RlclNjYW5FZGdlSW5zcGVjdGlvblJlc3VsdBJuChlDbGVhckNs",
+            "b3VkUG9pbnREZXZpYXRpb25zEiguYnJpb3NhLkNsZWFyQ2xvdWRQb2ludERl",
+            "dmlhdGlvbnNSZXF1ZXN0GicuYnJpb3NhLkNsZWFyQ2xvdWRQb2ludERldmlh",
+            "dGlvbnNSZXN1bHQSdAobRW5hYmxlQWxsQ2xvdWRDcm9zc1NlY3Rpb25zEiou",
+            "YnJpb3NhLkVuYWJsZUFsbENsb3VkQ3Jvc3NTZWN0aW9uc1JlcXVlc3QaKS5i",
+            "cmlvc2EuRW5hYmxlQWxsQ2xvdWRDcm9zc1NlY3Rpb25zUmVzdWx0EoABCh9F",
+            "bmFibGVEaXNhYmxlQ2xvdWRDcm9zc1NlY3Rpb25zEi4uYnJpb3NhLkVuYWJs",
+            "ZURpc2FibGVDbG91ZENyb3NzU2VjdGlvbnNSZXF1ZXN0Gi0uYnJpb3NhLkVu",
+            "YWJsZURpc2FibGVDbG91ZENyb3NzU2VjdGlvbnNSZXN1bHQSegodRW5hYmxl",
+            "U2luZ2xlQ2xvdWRDcm9zc1NlY3Rpb24SLC5icmlvc2EuRW5hYmxlU2luZ2xl",
+            "Q2xvdWRDcm9zc1NlY3Rpb25SZXF1ZXN0GisuYnJpb3NhLkVuYWJsZVNpbmds",
+            "ZUNsb3VkQ3Jvc3NTZWN0aW9uUmVzdWx0EqQBCitHZXROdW1iZXJPZkNyb3Nz",
+            "U2VjdGlvbnNJbkNyb3NzU2VjdGlvbkNsb3VkEjouYnJpb3NhLkdldE51bWJl",
+            "ck9mQ3Jvc3NTZWN0aW9uc0luQ3Jvc3NTZWN0aW9uQ2xvdWRSZXF1ZXN0Gjku",
+            "YnJpb3NhLkdldE51bWJlck9mQ3Jvc3NTZWN0aW9uc0luQ3Jvc3NTZWN0aW9u",
+            "Q2xvdWRSZXN1bHQSXAoTRmlsdGVyQ2xvdWRzVG9QbGFuZRIiLmJyaW9zYS5G",
+            "aWx0ZXJDbG91ZHNUb1BsYW5lUmVxdWVzdBohLmJyaW9zYS5GaWx0ZXJDbG91",
+            "ZHNUb1BsYW5lUmVzdWx0ElwKE0ZpbHRlckNsb3Vkc1RvR3JvdXASIi5icmlv",
+            "c2EuRmlsdGVyQ2xvdWRzVG9Hcm91cFJlcXVlc3QaIS5icmlvc2EuRmlsdGVy",
+            "Q2xvdWRzVG9Hcm91cFJlc3VsdBJiChVGaWx0ZXJDbG91ZHNUb1N1cmZhY2US",
+            "JC5icmlvc2EuRmlsdGVyQ2xvdWRzVG9TdXJmYWNlUmVxdWVzdBojLmJyaW9z",
+            "YS5GaWx0ZXJDbG91ZHNUb1N1cmZhY2VSZXN1bHQSZQoWRmlsdGVyQ2xvdWRz",
+            "VG9CU3BsaW5lcxIlLmJyaW9zYS5GaWx0ZXJDbG91ZHNUb0JTcGxpbmVzUmVx",
+            "dWVzdBokLmJyaW9zYS5GaWx0ZXJDbG91ZHNUb0JTcGxpbmVzUmVzdWx0Em4K",
+            "GUZpbHRlckNsb3Vkc1RvTGluZVNlZ21lbnQSKC5icmlvc2EuRmlsdGVyQ2xv",
+            "dWRzVG9MaW5lU2VnbWVudFJlcXVlc3QaJy5icmlvc2EuRmlsdGVyQ2xvdWRz",
+            "VG9MaW5lU2VnbWVudFJlc3VsdBKYAQonRmlsdGVyQ2xvdWRzVG9WZWN0b3JH",
+            "cm91cHNSZXNvbHZlUG9pbnRzEjYuYnJpb3NhLkZpbHRlckNsb3Vkc1RvVmVj",
+            "dG9yR3JvdXBzUmVzb2x2ZVBvaW50c1JlcXVlc3QaNS5icmlvc2EuRmlsdGVy",
+            "Q2xvdWRzVG9WZWN0b3JHcm91cHNSZXNvbHZlUG9pbnRzUmVzdWx0EpgBCidG",
+            "aWx0ZXJDbG91ZHNUb1ZlY3Rvckdyb3Vwc1Jlc29sdmVDbG91ZHMSNi5icmlv",
+            "c2EuRmlsdGVyQ2xvdWRzVG9WZWN0b3JHcm91cHNSZXNvbHZlQ2xvdWRzUmVx",
+            "dWVzdBo1LmJyaW9zYS5GaWx0ZXJDbG91ZHNUb1ZlY3Rvckdyb3Vwc1Jlc29s",
+            "dmVDbG91ZHNSZXN1bHQSXAoTUkdCQ2xvdWRQb2ludEZpbHRlchIiLmJyaW9z",
+            "YS5SR0JDbG91ZFBvaW50RmlsdGVyUmVxdWVzdBohLmJyaW9zYS5SR0JDbG91",
+            "ZFBvaW50RmlsdGVyUmVzdWx0ElYKEUdldENsb3VkUkdCVmFsdWVzEiAuYnJp",
+            "b3NhLkdldENsb3VkUkdCVmFsdWVzUmVxdWVzdBofLmJyaW9zYS5HZXRDbG91",
+            "ZFJHQlZhbHVlc1Jlc3VsdBJxChpHZXRDbG91ZFJHQlZhbHVlc05lYXJQb2lu",
+            "dBIpLmJyaW9zYS5HZXRDbG91ZFJHQlZhbHVlc05lYXJQb2ludFJlcXVlc3Qa",
+            "KC5icmlvc2EuR2V0Q2xvdWRSR0JWYWx1ZXNOZWFyUG9pbnRSZXN1bHQSdwoc",
+            "U3ViZGl2aWRlQ2xvdWRCeVBvaW50U3BhY2luZxIrLmJyaW9zYS5TdWJkaXZp",
+            "ZGVDbG91ZEJ5UG9pbnRTcGFjaW5nUmVxdWVzdBoqLmJyaW9zYS5TdWJkaXZp",
+            "ZGVDbG91ZEJ5UG9pbnRTcGFjaW5nUmVzdWx0EqQBCitEZWxldGVDbG91ZFBv",
+            "aW50c0J5UmFkaWFsRGlzdGFuY2VGcm9tUG9pbnRzEjouYnJpb3NhLkRlbGV0",
+            "ZUNsb3VkUG9pbnRzQnlSYWRpYWxEaXN0YW5jZUZyb21Qb2ludHNSZXF1ZXN0",
+            "GjkuYnJpb3NhLkRlbGV0ZUNsb3VkUG9pbnRzQnlSYWRpYWxEaXN0YW5jZUZy",
+            "b21Qb2ludHNSZXN1bHQSXAoTR2VuZXJhdGVHZW5lcmFsTWVzaBIiLmJyaW9z",
+            "YS5HZW5lcmF0ZUdlbmVyYWxNZXNoUmVxdWVzdBohLmJyaW9zYS5HZW5lcmF0",
+            "ZUdlbmVyYWxNZXNoUmVzdWx0ElAKD0NvbnNvbGlkYXRlTWVzaBIeLmJyaW9z",
+            "YS5Db25zb2xpZGF0ZU1lc2hSZXF1ZXN0Gh0uYnJpb3NhLkNvbnNvbGlkYXRl",
+            "TWVzaFJlc3VsdBJBCgpNZXNoVm9sdW1lEhkuYnJpb3NhLk1lc2hWb2x1bWVS",
+            "ZXF1ZXN0GhguYnJpb3NhLk1lc2hWb2x1bWVSZXN1bHQSSgoNTWVzaEZpbGxI",
+            "b2xlcxIcLmJyaW9zYS5NZXNoRmlsbEhvbGVzUmVxdWVzdBobLmJyaW9zYS5N",
+            "ZXNoRmlsbEhvbGVzUmVzdWx0QgmqAgZCcmlvc2FiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Briosa.Client.Transport.OperationOutcomesReflection.Descriptor, global::Briosa.Client.Transport.SpatialAnalyzerValuesReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Briosa.Client.Transport.CloudBoxType), typeof(global::Briosa.Client.Transport.PointOutputType), typeof(global::Briosa.Client.Transport.RGBFilterOperation), typeof(global::Briosa.Client.Transport.RGBColorChannel), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -469,8 +457,6 @@ namespace Briosa.Client.Transport {
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.SubdivideCloudByPointSpacingResult), global::Briosa.Client.Transport.SubdivideCloudByPointSpacingResult.Parser, new[]{ "Execution" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.DeleteCloudPointsByRadialDistanceFromPointsRequest), global::Briosa.Client.Transport.DeleteCloudPointsByRadialDistanceFromPointsRequest.Parser, new[]{ "CloudNames", "Points", "Radius", "DeleteInside" }, new[]{ "Radius", "DeleteInside" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.DeleteCloudPointsByRadialDistanceFromPointsResult), global::Briosa.Client.Transport.DeleteCloudPointsByRadialDistanceFromPointsResult.Parser, new[]{ "Execution" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeRequest), global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeRequest.Parser, new[]{ "CloudNames", "XMin", "XMax", "YMin", "YMax", "ZMin", "ZMax", "DeleteInside" }, new[]{ "XMin", "XMax", "YMin", "YMax", "ZMin", "ZMax", "DeleteInside" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeResult), global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeResult.Parser, new[]{ "Execution" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.GenerateGeneralMeshRequest), global::Briosa.Client.Transport.GenerateGeneralMeshRequest.Parser, new[]{ "OutputMeshName", "CloudsToMesh", "MaximumTriangleSize", "SmallestHoleDiameter", "Finalize", "UseScanDirectionForPointNormal", "JsonFile" }, new[]{ "OutputMeshName", "MaximumTriangleSize", "SmallestHoleDiameter", "Finalize", "UseScanDirectionForPointNormal", "JsonFile" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.GenerateGeneralMeshResult), global::Briosa.Client.Transport.GenerateGeneralMeshResult.Parser, new[]{ "Execution" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.ConsolidateMeshRequest), global::Briosa.Client.Transport.ConsolidateMeshRequest.Parser, new[]{ "Mesh" }, new[]{ "Mesh" }, null, null, null),
@@ -16015,766 +16001,6 @@ namespace Briosa.Client.Transport {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class DeleteCloudPointsByXYZRangeRequest : pb::IMessage<DeleteCloudPointsByXYZRangeRequest>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<DeleteCloudPointsByXYZRangeRequest> _parser = new pb::MessageParser<DeleteCloudPointsByXYZRangeRequest>(() => new DeleteCloudPointsByXYZRangeRequest());
-    private pb::UnknownFieldSet _unknownFields;
-    private int _hasBits0;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<DeleteCloudPointsByXYZRangeRequest> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[46]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public DeleteCloudPointsByXYZRangeRequest() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public DeleteCloudPointsByXYZRangeRequest(DeleteCloudPointsByXYZRangeRequest other) : this() {
-      _hasBits0 = other._hasBits0;
-      cloudNames_ = other.cloudNames_.Clone();
-      xMin_ = other.xMin_;
-      xMax_ = other.xMax_;
-      yMin_ = other.yMin_;
-      yMax_ = other.yMax_;
-      zMin_ = other.zMin_;
-      zMax_ = other.zMax_;
-      deleteInside_ = other.deleteInside_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public DeleteCloudPointsByXYZRangeRequest Clone() {
-      return new DeleteCloudPointsByXYZRangeRequest(this);
-    }
-
-    /// <summary>Field number for the "cloud_names" field.</summary>
-    public const int CloudNamesFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::Briosa.Client.Transport.CollectionObjectName> _repeated_cloudNames_codec
-        = pb::FieldCodec.ForMessage(10, global::Briosa.Client.Transport.CollectionObjectName.Parser);
-    private readonly pbc::RepeatedField<global::Briosa.Client.Transport.CollectionObjectName> cloudNames_ = new pbc::RepeatedField<global::Briosa.Client.Transport.CollectionObjectName>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::Briosa.Client.Transport.CollectionObjectName> CloudNames {
-      get { return cloudNames_; }
-    }
-
-    /// <summary>Field number for the "x_min" field.</summary>
-    public const int XMinFieldNumber = 2;
-    private readonly static double XMinDefaultValue = 0D;
-
-    private double xMin_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double XMin {
-      get { if ((_hasBits0 & 1) != 0) { return xMin_; } else { return XMinDefaultValue; } }
-      set {
-        _hasBits0 |= 1;
-        xMin_ = value;
-      }
-    }
-    /// <summary>Gets whether the "x_min" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasXMin {
-      get { return (_hasBits0 & 1) != 0; }
-    }
-    /// <summary>Clears the value of the "x_min" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearXMin() {
-      _hasBits0 &= ~1;
-    }
-
-    /// <summary>Field number for the "x_max" field.</summary>
-    public const int XMaxFieldNumber = 3;
-    private readonly static double XMaxDefaultValue = 0D;
-
-    private double xMax_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double XMax {
-      get { if ((_hasBits0 & 2) != 0) { return xMax_; } else { return XMaxDefaultValue; } }
-      set {
-        _hasBits0 |= 2;
-        xMax_ = value;
-      }
-    }
-    /// <summary>Gets whether the "x_max" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasXMax {
-      get { return (_hasBits0 & 2) != 0; }
-    }
-    /// <summary>Clears the value of the "x_max" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearXMax() {
-      _hasBits0 &= ~2;
-    }
-
-    /// <summary>Field number for the "y_min" field.</summary>
-    public const int YMinFieldNumber = 4;
-    private readonly static double YMinDefaultValue = 0D;
-
-    private double yMin_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double YMin {
-      get { if ((_hasBits0 & 4) != 0) { return yMin_; } else { return YMinDefaultValue; } }
-      set {
-        _hasBits0 |= 4;
-        yMin_ = value;
-      }
-    }
-    /// <summary>Gets whether the "y_min" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasYMin {
-      get { return (_hasBits0 & 4) != 0; }
-    }
-    /// <summary>Clears the value of the "y_min" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearYMin() {
-      _hasBits0 &= ~4;
-    }
-
-    /// <summary>Field number for the "y_max" field.</summary>
-    public const int YMaxFieldNumber = 5;
-    private readonly static double YMaxDefaultValue = 0D;
-
-    private double yMax_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double YMax {
-      get { if ((_hasBits0 & 8) != 0) { return yMax_; } else { return YMaxDefaultValue; } }
-      set {
-        _hasBits0 |= 8;
-        yMax_ = value;
-      }
-    }
-    /// <summary>Gets whether the "y_max" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasYMax {
-      get { return (_hasBits0 & 8) != 0; }
-    }
-    /// <summary>Clears the value of the "y_max" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearYMax() {
-      _hasBits0 &= ~8;
-    }
-
-    /// <summary>Field number for the "z_min" field.</summary>
-    public const int ZMinFieldNumber = 6;
-    private readonly static double ZMinDefaultValue = 0D;
-
-    private double zMin_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double ZMin {
-      get { if ((_hasBits0 & 16) != 0) { return zMin_; } else { return ZMinDefaultValue; } }
-      set {
-        _hasBits0 |= 16;
-        zMin_ = value;
-      }
-    }
-    /// <summary>Gets whether the "z_min" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasZMin {
-      get { return (_hasBits0 & 16) != 0; }
-    }
-    /// <summary>Clears the value of the "z_min" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearZMin() {
-      _hasBits0 &= ~16;
-    }
-
-    /// <summary>Field number for the "z_max" field.</summary>
-    public const int ZMaxFieldNumber = 7;
-    private readonly static double ZMaxDefaultValue = 0D;
-
-    private double zMax_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double ZMax {
-      get { if ((_hasBits0 & 32) != 0) { return zMax_; } else { return ZMaxDefaultValue; } }
-      set {
-        _hasBits0 |= 32;
-        zMax_ = value;
-      }
-    }
-    /// <summary>Gets whether the "z_max" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasZMax {
-      get { return (_hasBits0 & 32) != 0; }
-    }
-    /// <summary>Clears the value of the "z_max" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearZMax() {
-      _hasBits0 &= ~32;
-    }
-
-    /// <summary>Field number for the "delete_inside" field.</summary>
-    public const int DeleteInsideFieldNumber = 8;
-    private readonly static bool DeleteInsideDefaultValue = false;
-
-    private bool deleteInside_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool DeleteInside {
-      get { if ((_hasBits0 & 64) != 0) { return deleteInside_; } else { return DeleteInsideDefaultValue; } }
-      set {
-        _hasBits0 |= 64;
-        deleteInside_ = value;
-      }
-    }
-    /// <summary>Gets whether the "delete_inside" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasDeleteInside {
-      get { return (_hasBits0 & 64) != 0; }
-    }
-    /// <summary>Clears the value of the "delete_inside" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearDeleteInside() {
-      _hasBits0 &= ~64;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as DeleteCloudPointsByXYZRangeRequest);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(DeleteCloudPointsByXYZRangeRequest other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if(!cloudNames_.Equals(other.cloudNames_)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(XMin, other.XMin)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(XMax, other.XMax)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(YMin, other.YMin)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(YMax, other.YMax)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(ZMin, other.ZMin)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(ZMax, other.ZMax)) return false;
-      if (DeleteInside != other.DeleteInside) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      hash ^= cloudNames_.GetHashCode();
-      if (HasXMin) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(XMin);
-      if (HasXMax) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(XMax);
-      if (HasYMin) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(YMin);
-      if (HasYMax) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(YMax);
-      if (HasZMin) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(ZMin);
-      if (HasZMax) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(ZMax);
-      if (HasDeleteInside) hash ^= DeleteInside.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      cloudNames_.WriteTo(output, _repeated_cloudNames_codec);
-      if (HasXMin) {
-        output.WriteRawTag(17);
-        output.WriteDouble(XMin);
-      }
-      if (HasXMax) {
-        output.WriteRawTag(25);
-        output.WriteDouble(XMax);
-      }
-      if (HasYMin) {
-        output.WriteRawTag(33);
-        output.WriteDouble(YMin);
-      }
-      if (HasYMax) {
-        output.WriteRawTag(41);
-        output.WriteDouble(YMax);
-      }
-      if (HasZMin) {
-        output.WriteRawTag(49);
-        output.WriteDouble(ZMin);
-      }
-      if (HasZMax) {
-        output.WriteRawTag(57);
-        output.WriteDouble(ZMax);
-      }
-      if (HasDeleteInside) {
-        output.WriteRawTag(64);
-        output.WriteBool(DeleteInside);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      cloudNames_.WriteTo(ref output, _repeated_cloudNames_codec);
-      if (HasXMin) {
-        output.WriteRawTag(17);
-        output.WriteDouble(XMin);
-      }
-      if (HasXMax) {
-        output.WriteRawTag(25);
-        output.WriteDouble(XMax);
-      }
-      if (HasYMin) {
-        output.WriteRawTag(33);
-        output.WriteDouble(YMin);
-      }
-      if (HasYMax) {
-        output.WriteRawTag(41);
-        output.WriteDouble(YMax);
-      }
-      if (HasZMin) {
-        output.WriteRawTag(49);
-        output.WriteDouble(ZMin);
-      }
-      if (HasZMax) {
-        output.WriteRawTag(57);
-        output.WriteDouble(ZMax);
-      }
-      if (HasDeleteInside) {
-        output.WriteRawTag(64);
-        output.WriteBool(DeleteInside);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      size += cloudNames_.CalculateSize(_repeated_cloudNames_codec);
-      if (HasXMin) {
-        size += 1 + 8;
-      }
-      if (HasXMax) {
-        size += 1 + 8;
-      }
-      if (HasYMin) {
-        size += 1 + 8;
-      }
-      if (HasYMax) {
-        size += 1 + 8;
-      }
-      if (HasZMin) {
-        size += 1 + 8;
-      }
-      if (HasZMax) {
-        size += 1 + 8;
-      }
-      if (HasDeleteInside) {
-        size += 1 + 1;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(DeleteCloudPointsByXYZRangeRequest other) {
-      if (other == null) {
-        return;
-      }
-      cloudNames_.Add(other.cloudNames_);
-      if (other.HasXMin) {
-        XMin = other.XMin;
-      }
-      if (other.HasXMax) {
-        XMax = other.XMax;
-      }
-      if (other.HasYMin) {
-        YMin = other.YMin;
-      }
-      if (other.HasYMax) {
-        YMax = other.YMax;
-      }
-      if (other.HasZMin) {
-        ZMin = other.ZMin;
-      }
-      if (other.HasZMax) {
-        ZMax = other.ZMax;
-      }
-      if (other.HasDeleteInside) {
-        DeleteInside = other.DeleteInside;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            cloudNames_.AddEntriesFrom(input, _repeated_cloudNames_codec);
-            break;
-          }
-          case 17: {
-            XMin = input.ReadDouble();
-            break;
-          }
-          case 25: {
-            XMax = input.ReadDouble();
-            break;
-          }
-          case 33: {
-            YMin = input.ReadDouble();
-            break;
-          }
-          case 41: {
-            YMax = input.ReadDouble();
-            break;
-          }
-          case 49: {
-            ZMin = input.ReadDouble();
-            break;
-          }
-          case 57: {
-            ZMax = input.ReadDouble();
-            break;
-          }
-          case 64: {
-            DeleteInside = input.ReadBool();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            cloudNames_.AddEntriesFrom(ref input, _repeated_cloudNames_codec);
-            break;
-          }
-          case 17: {
-            XMin = input.ReadDouble();
-            break;
-          }
-          case 25: {
-            XMax = input.ReadDouble();
-            break;
-          }
-          case 33: {
-            YMin = input.ReadDouble();
-            break;
-          }
-          case 41: {
-            YMax = input.ReadDouble();
-            break;
-          }
-          case 49: {
-            ZMin = input.ReadDouble();
-            break;
-          }
-          case 57: {
-            ZMax = input.ReadDouble();
-            break;
-          }
-          case 64: {
-            DeleteInside = input.ReadBool();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class DeleteCloudPointsByXYZRangeResult : pb::IMessage<DeleteCloudPointsByXYZRangeResult>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<DeleteCloudPointsByXYZRangeResult> _parser = new pb::MessageParser<DeleteCloudPointsByXYZRangeResult>(() => new DeleteCloudPointsByXYZRangeResult());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<DeleteCloudPointsByXYZRangeResult> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[47]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public DeleteCloudPointsByXYZRangeResult() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public DeleteCloudPointsByXYZRangeResult(DeleteCloudPointsByXYZRangeResult other) : this() {
-      execution_ = other.execution_ != null ? other.execution_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public DeleteCloudPointsByXYZRangeResult Clone() {
-      return new DeleteCloudPointsByXYZRangeResult(this);
-    }
-
-    /// <summary>Field number for the "execution" field.</summary>
-    public const int ExecutionFieldNumber = 1000;
-    private global::Briosa.Client.Transport.MpExecutionDetails execution_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Briosa.Client.Transport.MpExecutionDetails Execution {
-      get { return execution_; }
-      set {
-        execution_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as DeleteCloudPointsByXYZRangeResult);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(DeleteCloudPointsByXYZRangeResult other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Execution, other.Execution)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (execution_ != null) hash ^= Execution.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (execution_ != null) {
-        output.WriteRawTag(194, 62);
-        output.WriteMessage(Execution);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (execution_ != null) {
-        output.WriteRawTag(194, 62);
-        output.WriteMessage(Execution);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (execution_ != null) {
-        size += 2 + pb::CodedOutputStream.ComputeMessageSize(Execution);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(DeleteCloudPointsByXYZRangeResult other) {
-      if (other == null) {
-        return;
-      }
-      if (other.execution_ != null) {
-        if (execution_ == null) {
-          Execution = new global::Briosa.Client.Transport.MpExecutionDetails();
-        }
-        Execution.MergeFrom(other.Execution);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8002: {
-            if (execution_ == null) {
-              Execution = new global::Briosa.Client.Transport.MpExecutionDetails();
-            }
-            input.ReadMessage(Execution);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 8002: {
-            if (execution_ == null) {
-              Execution = new global::Briosa.Client.Transport.MpExecutionDetails();
-            }
-            input.ReadMessage(Execution);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class GenerateGeneralMeshRequest : pb::IMessage<GenerateGeneralMeshRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -16790,7 +16016,7 @@ namespace Briosa.Client.Transport {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[48]; }
+      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[46]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -17278,7 +16504,7 @@ namespace Briosa.Client.Transport {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[49]; }
+      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[47]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -17485,7 +16711,7 @@ namespace Briosa.Client.Transport {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[50]; }
+      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[48]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -17692,7 +16918,7 @@ namespace Briosa.Client.Transport {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[51]; }
+      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[49]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -17899,7 +17125,7 @@ namespace Briosa.Client.Transport {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[52]; }
+      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[50]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18153,7 +17379,7 @@ namespace Briosa.Client.Transport {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[53]; }
+      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[51]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18466,7 +17692,7 @@ namespace Briosa.Client.Transport {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[54]; }
+      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[52]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18882,7 +18108,7 @@ namespace Briosa.Client.Transport {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[55]; }
+      get { return global::Briosa.Client.Transport.CloudAndMeshOperationsReflection.Descriptor.MessageTypes[53]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

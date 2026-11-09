@@ -8648,7 +8648,8 @@ namespace Briosa.Client.Transport {
     public const int TemplateChartNameFieldNumber = 6;
     private global::Briosa.Client.Transport.ChartName templateChartName_;
     /// <summary>
-    /// Optional in the MP editor; the existing API presence and omission behavior is unchanged.
+    /// Optional (major 3): omitted when absent; an empty name is rejected. A name that
+    /// matches no chart opens a blocking SpatialAnalyzer dialog.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -22641,6 +22642,10 @@ namespace Briosa.Client.Transport {
     private readonly static string TagNameDefaultValue = "";
 
     private string tagName_;
+    /// <summary>
+    /// Required and not empty (major 3): an omitted, empty or whitespace-only value is
+    /// rejected before dispatch.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string TagName {

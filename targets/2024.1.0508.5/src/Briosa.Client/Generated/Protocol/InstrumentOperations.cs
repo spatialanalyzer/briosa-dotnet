@@ -20598,6 +20598,9 @@ namespace Briosa.Client.Transport {
     private readonly static int ObservationIndexDefaultValue = 0;
 
     private int observationIndex_;
+    /// <summary>
+    /// Required (major 3): an omitted value is rejected before dispatch instead of being sent as 0.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int ObservationIndex {
@@ -47839,6 +47842,10 @@ namespace Briosa.Client.Transport {
     /// <summary>Field number for the "nominals_group" field.</summary>
     public const int NominalsGroupFieldNumber = 2;
     private global::Briosa.Client.Transport.CollectionObjectName nominalsGroup_;
+    /// <summary>
+    /// Optional (major 3): omitted when absent. An empty object name is sent blank,
+    /// which SpatialAnalyzer documents as no nominals group.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Briosa.Client.Transport.CollectionObjectName NominalsGroup {
@@ -58508,6 +58515,9 @@ namespace Briosa.Client.Transport {
     private readonly static bool MeasureImmediatelyDefaultValue = false;
 
     private bool measureImmediately_;
+    /// <summary>
+    /// Defaults to true (major 3), as for the other measure operations.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool MeasureImmediately {
@@ -61728,6 +61738,9 @@ namespace Briosa.Client.Transport {
     private readonly static int ObservationIndexDefaultValue = 0;
 
     private int observationIndex_;
+    /// <summary>
+    /// Required (major 3): an omitted value is rejected before dispatch instead of being sent as 0.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int ObservationIndex {
@@ -68611,6 +68624,9 @@ namespace Briosa.Client.Transport {
     private readonly static double ScaleFactorDefaultValue = 0D;
 
     private double scaleFactor_;
+    /// <summary>
+    /// Required (major 3): an omitted value is rejected before dispatch instead of being sent as 0.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double ScaleFactor {
@@ -73904,6 +73920,9 @@ namespace Briosa.Client.Transport {
 
     private double temperature_;
     /// <summary>
+    /// Temperature, pressure and relative humidity are required (major 3) when
+    /// set_automatically is false. When it is true SpatialAnalyzer ignores them, and an
+    /// omitted value is sent as 0.
     /// Temperature in degrees Fahrenheit.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -73993,6 +74012,9 @@ namespace Briosa.Client.Transport {
     private readonly static bool SetAutomaticallyDefaultValue = false;
 
     private bool setAutomatically_;
+    /// <summary>
+    /// Required (major 3).
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool SetAutomatically {
@@ -74533,6 +74555,9 @@ namespace Briosa.Client.Transport {
     private readonly static double ScaleFactorDefaultValue = 0D;
 
     private double scaleFactor_;
+    /// <summary>
+    /// Required (major 3): an omitted value is rejected before dispatch instead of being sent as 0.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double ScaleFactor {

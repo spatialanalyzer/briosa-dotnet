@@ -6,12 +6,13 @@ Independent exact-target clients for the [Briosa SpatialAnalyzer bridge](https:/
 
 | SpatialAnalyzer target | Product and development guide | Client version |
 | --- | --- | --- |
-| 2024.1.0508.5 | [SA 2024](targets/2024.1.0508.5/README.md) | 0.3.0 |
-| 2026.1.0529.7 | [SA 2026](targets/2026.1.0529.7/README.md) | 0.3.0 |
+| 2024.1.0508.5 | [SA 2024](targets/2024.1.0508.5/README.md) | 0.5.0 |
+| 2026.1.0529.7 | [SA 2026](targets/2026.1.0529.7/README.md) | 0.5.0 |
 
 Choose the package for your exact SA installation. Each product pins its own
-generation artifact and retains Server 0.6.1 as a tested conformance baseline.
-The 0.3 client line selects side-by-side servers using behavioral contract 1.0. Client package versions
+generation artifact and retains Server 0.9.2, the previous contract major, as a
+tested rejection baseline. The 0.5 client line selects side-by-side servers
+using behavioral contract 3.0. Client package versions
 are independent of the Briosa server version. See [Releasing](RELEASING.md) for
 registry publishing and validation.
 

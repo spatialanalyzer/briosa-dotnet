@@ -360,38 +360,6 @@ public sealed class BriosaConstructionOperations
             cancellationToken);
     }
 
-    public Task<IReadOnlyList<CollectionObjectName>> ConstructCirclesLinesFromSurfacesAsync(
-        IEnumerable<CollectionObjectName> surfaces,
-        CircleLineMode circleLineMode,
-        double minimumDiameter = 0.0,
-        double maximumDiameter = 0.0,
-        double tolerance = 0.02,
-        bool singleSurface = false,
-        CollectionName? destinationCollectionName = null,
-        string baseName = "Geometry Object",
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.ConstructCirclesLinesFromSurfacesRequest(),
-            new Dictionary<string, object?>
-            {
-                ["surfaces"] = surfaces,
-                ["minimum_diameter"] = minimumDiameter,
-                ["maximum_diameter"] = maximumDiameter,
-                ["tolerance"] = tolerance,
-                ["single_surface"] = singleSurface,
-                ["circle_line_mode"] = circleLineMode,
-                ["destination_collection_name"] = destinationCollectionName,
-                ["base_name"] = baseName,
-            });
-        return _client.InvokeOperationAsync<IReadOnlyList<CollectionObjectName>>(
-            "briosa.ConstructionOperations",
-            "ConstructCirclesLinesFromSurfaces",
-            request,
-            Transport.ConstructCirclesLinesFromSurfacesResult.Parser,
-            cancellationToken);
-    }
-
     public Task ConstructCollectionAsync(
         CollectionName collectionName,
         string folderPath = "",
@@ -3894,24 +3862,6 @@ public sealed class BriosaConstructionOperations
             cancellationToken);
     }
 
-    public Task<IReadOnlyList<CollectionVectorGroupName>> MakeCollectionVectorGroupNameRefListRuntimeSelectAsync(
-        string userPrompt = "",
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectRequest(),
-            new Dictionary<string, object?>
-            {
-                ["user_prompt"] = userPrompt,
-            });
-        return _client.InvokeOperationAsync<IReadOnlyList<CollectionVectorGroupName>>(
-            "briosa.ConstructionOperations",
-            "MakeCollectionVectorGroupNameRefListRuntimeSelect",
-            request,
-            Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectResult.Parser,
-            cancellationToken);
-    }
-
     public Task<IReadOnlyList<CollectionItemName>> MakeEventRefListWildcardSelectionAsync(
         string collectionWildcardCriteria = "*",
         string eventWildcardCriteria = "*",
@@ -4158,24 +4108,6 @@ public sealed class BriosaConstructionOperations
             cancellationToken);
     }
 
-    public Task<IReadOnlyList<VectorName>> MakeVectorNameRefListRuntimeSelectAsync(
-        string userPrompt = " Select Vectors (ENTER when done) ",
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.MakeVectorNameRefListRuntimeSelectRequest(),
-            new Dictionary<string, object?>
-            {
-                ["user_prompt"] = userPrompt,
-            });
-        return _client.InvokeOperationAsync<IReadOnlyList<VectorName>>(
-            "briosa.ConstructionOperations",
-            "MakeVectorNameRefListRuntimeSelect",
-            request,
-            Transport.MakeVectorNameRefListRuntimeSelectResult.Parser,
-            cancellationToken);
-    }
-
     public Task MakeVectorNamesUniqueInVectorGroupAsync(
         CollectionObjectName vectorGroupName,
         CancellationToken cancellationToken = default)
@@ -4340,28 +4272,6 @@ public sealed class BriosaConstructionOperations
             cancellationToken);
     }
 
-    public Task<IReadOnlyList<CollectionInstrumentId>> AddCollectionInstrumentsToRefListWildcardSelectionAsync(
-        IEnumerable<CollectionInstrumentId> collectionInstrumentRefList,
-        string collectionWildcardCriteria = "*",
-        string instrumentWildcardCriteria = "*",
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.AddCollectionInstrumentsToRefListWildcardSelectionRequest(),
-            new Dictionary<string, object?>
-            {
-                ["collection_instrument_ref_list"] = collectionInstrumentRefList,
-                ["collection_wildcard_criteria"] = collectionWildcardCriteria,
-                ["instrument_wildcard_criteria"] = instrumentWildcardCriteria,
-            });
-        return _client.InvokeOperationAsync<IReadOnlyList<CollectionInstrumentId>>(
-            "briosa.ConstructionOperations",
-            "AddCollectionInstrumentsToRefListWildcardSelection",
-            request,
-            Transport.AddCollectionInstrumentsToRefListWildcardSelectionResult.Parser,
-            cancellationToken);
-    }
-
     public Task<GroupAverageResult> AverageSetOfGroupsAsync(
         IEnumerable<CollectionObjectName> groupNames,
         CollectionObjectName resultingGroupName,
@@ -4489,26 +4399,6 @@ public sealed class BriosaConstructionOperations
             cancellationToken);
     }
 
-    public Task<IReadOnlyList<CollectionItemName>> MakeCalloutViewRefListWildcardSelectionAsync(
-        string collectionWildcardCriteria = "*",
-        string calloutViewWildcardCriteria = "*",
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.MakeCalloutViewRefListWildcardSelectionRequest(),
-            new Dictionary<string, object?>
-            {
-                ["collection_wildcard_criteria"] = collectionWildcardCriteria,
-                ["callout_view_wildcard_criteria"] = calloutViewWildcardCriteria,
-            });
-        return _client.InvokeOperationAsync<IReadOnlyList<CollectionItemName>>(
-            "briosa.ConstructionOperations",
-            "MakeCalloutViewRefListWildcardSelection",
-            request,
-            Transport.MakeCalloutViewRefListWildcardSelectionResult.Parser,
-            cancellationToken);
-    }
-
     public Task<CollectionObjectName> MakeCollectionObjectNameEnsureUniqueAsync(
         CollectionObjectName collectionObjectName,
         bool useNumberSuffix = false,
@@ -4622,69 +4512,6 @@ public sealed class BriosaConstructionOperations
             "SetDefaultCalloutViewProperties",
             request,
             Transport.SetDefaultCalloutViewPropertiesResult.Parser,
-            cancellationToken);
-    }
-
-    public Task SetCalloutViewPropertiesAsync(
-        IEnumerable<CollectionItemName> calloutViews,
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.SetCalloutViewPropertiesRequest(),
-            new Dictionary<string, object?>
-            {
-                ["callout_views"] = calloutViews,
-                ["properties"] = new CalloutViewProperties(),
-            });
-        return _client.InvokeOperationAsync(
-            "briosa.ConstructionOperations",
-            "SetCalloutViewProperties",
-            request,
-            Transport.SetCalloutViewPropertiesResult.Parser,
-            cancellationToken);
-    }
-
-    public Task SetCalloutViewPropertiesAsync(
-        IEnumerable<CollectionItemName> calloutViews,
-        CalloutViewProperties properties,
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.SetCalloutViewPropertiesRequest(),
-            new Dictionary<string, object?>
-            {
-                ["callout_views"] = calloutViews,
-                ["properties"] = properties,
-            });
-        return _client.InvokeOperationAsync(
-            "briosa.ConstructionOperations",
-            "SetCalloutViewProperties",
-            request,
-            Transport.SetCalloutViewPropertiesResult.Parser,
-            cancellationToken);
-    }
-
-    public Task ConstructPolygonizedSurfaceFromPointCloudsAsync(
-        IEnumerable<CollectionObjectName> pointCloudList,
-        MeshOrientationType meshOrientation,
-        CollectionObjectName polygonizedSurfaceName,
-        double gridResolution = 0.0,
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.ConstructPolygonizedSurfaceFromPointCloudsRequest(),
-            new Dictionary<string, object?>
-            {
-                ["point_cloud_list"] = pointCloudList,
-                ["mesh_orientation"] = meshOrientation,
-                ["grid_resolution"] = gridResolution,
-                ["polygonized_surface_name"] = polygonizedSurfaceName,
-            });
-        return _client.InvokeOperationAsync(
-            "briosa.ConstructionOperations",
-            "ConstructPolygonizedSurfaceFromPointClouds",
-            request,
-            Transport.ConstructPolygonizedSurfaceFromPointCloudsResult.Parser,
             cancellationToken);
     }
 

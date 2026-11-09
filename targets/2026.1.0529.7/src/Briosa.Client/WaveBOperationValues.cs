@@ -24,12 +24,6 @@ public enum BSplinePointSortMode
     ClosestNeighborsInCurveDirection = 3,
 }
 
-public enum CircleLineMode
-{
-    Circle = 1,
-    Line = 2,
-}
-
 public enum CloudBoxType
 {
     WorldAxisAlignedBox = 1,
@@ -233,19 +227,6 @@ public enum InstrumentPositionReportingFrame
     InstrumentBase = 1,
     World = 2,
     Working = 3,
-}
-
-public enum MeshOrientationType
-{
-    UseCurrentPointOfView = 1,
-    UseCurrentWorkingFrame = 2,
-}
-
-public enum MirrorFramePlane
-{
-    XY = 1,
-    XZ = 2,
-    YZ = 3,
 }
 
 public enum OffsetDirectionType

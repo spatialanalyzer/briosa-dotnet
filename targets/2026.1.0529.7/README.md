@@ -18,7 +18,7 @@ package path or feed in the installation command below.
 The NuGet package and assembly are both named `Briosa.2026.1.0529.7`. Install the package with:
 
 ```powershell
-dotnet add package Briosa.2026.1.0529.7 --version 0.4.0 --source C:\path\to\artifacts\package
+dotnet add package Briosa.2026.1.0529.7 --version 0.5.0 --source C:\path\to\artifacts\package
 ```
 
 Exact SpatialAnalyzer targets use separate package and assembly identities,
@@ -96,10 +96,11 @@ canonical stores, explicit search roots, and supported local layouts. It validat
 receipts and manifests, filters the exact SA target and compatibility contract,
 and selects the highest compatible stable release. No internet access is needed.
 
-This development checkout prepares client 0.4.0 for behavioral contract **2.0**
-(major 2, revision at least 0). It is not a published compatibility claim.
-Major-1 servers and servers without contract metadata, including Server 0.6.1,
-are rejected before launch. Protocol and source pins remain exact build inputs;
+This development checkout prepares client 0.5.0 for behavioral contract **3.0**
+(major 3, revision at least 0). It is not a published compatibility claim.
+Servers of other contract majors, including the major-2 Server 0.9 releases,
+and servers without contract metadata, including Server 0.6.1, are rejected
+before launch. Protocol and source pins remain exact build inputs;
 startup verifies the running server against its selected installation.
 
 The three robot methods Get Robot Machine Parameter, Start Robot Machine
@@ -144,7 +145,7 @@ owns these rules and the [compatibility matrix](https://github.com/spatialanalyz
 distinguishes tested pairs from declared forward compatibility.
 
 ```csharp
-var selection = new BriosaServerSelection { Version = "0.9.0-dev.1", AllowPrerelease = true };
+var selection = new BriosaServerSelection { Version = "0.10.0-dev.1", AllowPrerelease = true };
 var report = BriosaInstallations.Discover(selection); // no process launch
 await briosa.StartAsync(new BriosaStartOptions { ServerSelection = selection });
 
@@ -163,7 +164,7 @@ packages independently.
 dotnet restore Briosa.DotNet.slnx --locked-mode
 dotnet build Briosa.DotNet.slnx -c Release --no-restore
 dotnet test Briosa.DotNet.slnx -c Release --no-build --no-restore
-./eng/Test-Conformance.ps1 -ArtifactPath C:\path\to\briosa-client-conformance-0.6.1-sa-2026.1.0529.7-win-x64.zip -ExpectIncompatible
+./eng/Test-Conformance.ps1 -ArtifactPath C:\path\to\briosa-client-conformance-0.9.2-sa-2026.1.0529.7-win-x64.zip -ExpectIncompatible
 dotnet pack src/Briosa.Client/Briosa.Client.csproj -c Release --no-build --no-restore -o artifacts/package
 ./eng/Test-PackageIdentity.ps1
 ./eng/Test-PackageConsumer.ps1
@@ -180,12 +181,12 @@ script:
 
 ```powershell
 ./eng/Import-ProtocolArtifact.ps1 `
-  -ArtifactPath C:\path\to\briosa-protocol-0.9.0-dev.1-sa-2026.1.0529.7.zip `
+  -ArtifactPath C:\path\to\briosa-protocol-0.10.0-dev.1-sa-2026.1.0529.7.zip `
   -Update `
   -SourceChannel source_commit_bootstrap
 
 ./eng/Import-ProtocolArtifact.ps1 `
-  -ArtifactPath C:\path\to\briosa-protocol-0.9.0-dev.1-sa-2026.1.0529.7.zip
+  -ArtifactPath C:\path\to\briosa-protocol-0.10.0-dev.1-sa-2026.1.0529.7.zip
 ```
 
 Never edit `src/Briosa.Client/Generated` or `protocol.lock.json` by hand.
@@ -215,7 +216,8 @@ and [server observability guide](https://github.com/spatialanalyzer/briosa/blob/
 ## Compatibility and validation
 
 This package pins its generation artifact and tests the declared compatibility
-contract against packaged servers. The retained 0.6.1 baseline must be rejected.
+contract against packaged servers. The retained Server 0.9.2 baseline, the
+previous contract major, must be rejected.
 Exact SA target, runtime identity, capabilities, and readiness still gate MP calls.
 
 Portable conformance covers lifecycle, identity mismatch, denied capabilities,
