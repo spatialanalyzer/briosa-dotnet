@@ -326,10 +326,15 @@ public sealed partial class BriosaClient : IAsyncDisposable
 
         try
         {
-            return await session.Transport.GetWorkingDirectoryAsync(
+            var response = await session.Transport.GetWorkingDirectoryAsync(
                     _options.CommandTimeout,
                     cancellationToken)
                 .ConfigureAwait(false);
+            var completion = ProtocolMapping.MapMpCompletion(response);
+            onMpCompletion?.Invoke(completion);
+            return response.HasDirectory
+                ? response.Directory
+                : throw new BriosaProtocolException("working-directory-missing");
         }
         catch (RpcException exception)
         {

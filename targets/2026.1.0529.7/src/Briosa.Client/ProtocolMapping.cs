@@ -161,6 +161,30 @@ internal static class ProtocolMapping
             exception);
     }
 
+    // Every successful MP result carries its execution details. A success is
+    // Succeeded or PartialSuccess (MP code 4); anything else is protocol drift.
+    public static MpCompletion MapMpCompletion(IMessage response)
+    {
+        ArgumentNullException.ThrowIfNull(response);
+        if (response.Descriptor.FindFieldByName("execution")?.Accessor.GetValue(response)
+            is not Transport.MpExecutionDetails execution)
+        {
+            throw new BriosaProtocolException("mp-execution-missing");
+        }
+
+        var state = ConvertEnum<MpExecutionState>(execution.State, "mp-execution-state");
+        if (state is not (MpExecutionState.Succeeded or MpExecutionState.PartialSuccess))
+        {
+            throw new BriosaProtocolException("mp-execution-state");
+        }
+
+        return new MpCompletion
+        {
+            State = state,
+            MpResultCode = execution.HasMpResultCode ? execution.MpResultCode : null,
+        };
+    }
+
     private static MpExecutionDetails MapMpExecution(Transport.MpExecutionDetails execution) => new()
     {
         State = ConvertEnum<MpExecutionState>(execution.State, "mp-execution-state"),

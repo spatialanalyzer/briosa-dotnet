@@ -745,12 +745,16 @@ public sealed partial class ClientContractTests
             return Task.FromResult(SdkState());
         }
 
-        public Task<string> GetWorkingDirectoryAsync(
+        public Task<Transport.GetWorkingDirectoryResult> GetWorkingDirectoryAsync(
             TimeSpan? timeout,
             CancellationToken cancellationToken)
         {
             Calls.Add("get-working-directory");
-            return Task.FromResult("C:\\Working");
+            return Task.FromResult(new Transport.GetWorkingDirectoryResult
+            {
+                Directory = "C:\\Working",
+                Execution = WorkingDirectoryExecution ?? SucceededExecution(),
+            });
         }
 
         public Task<IMessage> InvokeOperationAsync(

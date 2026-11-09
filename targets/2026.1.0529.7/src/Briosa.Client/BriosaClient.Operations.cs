@@ -44,6 +44,11 @@ public sealed partial class BriosaClient
                     _options.CommandTimeout,
                     cancellationToken)
                 .ConfigureAwait(false);
+            // Validated for every call. The observer runs once, before the outputs
+            // are mapped, so a caller learns how the MP command completed even if
+            // mapping then fails.
+            var completion = ProtocolMapping.MapMpCompletion(response);
+            onMpCompletion?.Invoke(completion);
             return OperationProtocolMapper.MapResponse<TResult>(response);
         }
         catch (RpcException exception)
