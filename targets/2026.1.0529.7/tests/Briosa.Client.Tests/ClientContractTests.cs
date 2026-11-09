@@ -657,6 +657,8 @@ public sealed partial class ClientContractTests
         public List<Transport.OperationCapability> DeniedOperations { get; } = [];
         public string DeniedListingTarget { get; init; } =
             Transport.BriosaProtocolIdentity.SpatialAnalyzerTarget;
+        public string? DeniedListingProfile { get; init; }
+        public string? DeniedListingFingerprint { get; init; }
         public IMessage? OperationResponse { get; set; }
         public IMessage? LastOperationRequest { get; private set; }
         public string? LastOperationService { get; private set; }
@@ -680,6 +682,8 @@ public sealed partial class ClientContractTests
             if (includeDenied)
             {
                 capabilities.Operations.Add(DeniedOperations);
+                capabilities.AdmissionProfile = DeniedListingProfile ?? capabilities.AdmissionProfile;
+                capabilities.PolicyFingerprint = DeniedListingFingerprint ?? capabilities.PolicyFingerprint;
             }
 
             return Task.FromResult(capabilities);

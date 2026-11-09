@@ -75,10 +75,17 @@ public sealed partial class ClientContractTests
         Assert.Equal(OperationAdmission.Unknown, capability.Admission);
     }
 
+    // C4 (spatialanalyzer/briosa#363): the listing is one value carrying the
+    // admission profile and the policy fingerprint it was taken under, and each
+    // denied operation with its denial reason.
     [Fact]
     public async Task DeniedOperationsComeOnlyFromTheDiagnosticListing()
     {
-        var transport = new FakeTransport();
+        var transport = new FakeTransport
+        {
+            DeniedListingProfile = "device",
+            DeniedListingFingerprint = "sha256:" + new string('d', 64),
+        };
         transport.DeniedOperations.Add(Capability(
             "utility_operations.delete_folder",
             Transport.OperationAdmission.DeniedProfile,
@@ -86,9 +93,11 @@ public sealed partial class ClientContractTests
         await using var client = CreateClient(new FakeServerLauncher(), transport);
         await client.StartAsync();
 
-        var denied = await client.GetDeniedOperationsAsync();
+        var listing = await client.GetDeniedOperationsAsync();
 
-        var entry = Assert.Single(denied);
+        Assert.Equal("device", listing.AdmissionProfile);
+        Assert.Equal("sha256:" + new string('d', 64), listing.PolicyFingerprint);
+        var entry = Assert.Single(listing.Operations);
         Assert.Equal("utility_operations.delete_folder", entry.OperationId);
         Assert.Equal(OperationAdmission.DeniedProfile, entry.Admission);
         Assert.Equal([OperationRiskFlag.FilesystemDelete], entry.RiskFlags);
