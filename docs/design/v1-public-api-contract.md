@@ -1,7 +1,7 @@
 # Briosa .NET v1 public API contract
 
 - Status: Accepted .NET design direction
-- Last reviewed: 2026-08-12
+- Last reviewed: 2026-11-09
 - Scope: The target-specific Briosa .NET client packages
 - Implementation status: Lifecycle foundation conforming; MP surface expanding
 
@@ -52,7 +52,8 @@ public sealed class MainViewModel
     public Task<WorkingFrameProperties> GetWorkingFramePropertiesAsync(
         CancellationToken cancellationToken)
     {
-        return _briosa.GetWorkingFramePropertiesAsync(cancellationToken);
+        return _briosa.GetWorkingFramePropertiesAsync(
+            cancellationToken: cancellationToken);
     }
 }
 ~~~
@@ -96,15 +97,19 @@ await briosa.SetPointNotesAsync(
     pointName,
     notes,
     append: true,
-    cancellationToken);
+    cancellationToken: cancellationToken);
 ~~~
 
-Every MP method has one optional final `CancellationToken`. It exposes no
-per-call gRPC `Metadata`, `CallOptions`, generated call object, or custom
-transport option bag.
+Every MP method has one optional final `CancellationToken`, preceded by one
+optional `onMpCompletion` observer (see [MP completion](#mp-completion-and-partial-success)).
+Both are call controls, not MP inputs. A method exposes no per-call gRPC
+`Metadata`, `CallOptions`, generated call object, or custom transport option
+bag. Because the observer comes first, pass the token by name when you leave
+the observer out.
 
 ~~~csharp
 public Task<string> GetWorkingDirectoryAsync(
+    Action<MpCompletion>? onMpCompletion = null,
     CancellationToken cancellationToken = default);
 ~~~
 
@@ -187,6 +192,31 @@ contract. Required-on-success values are non-nullable and required immutable
 properties use `required`. An explicitly optional success value uses the
 appropriate nullable or domain-specific representation.
 
+### MP completion and partial success
+
+From contract major 3, an MP command that returns code 4 (PARTIAL SUCCESS) did
+its work but not its full intended effect. The server reports it as a success,
+so the method returns its outputs, never throws for it, and never retries it.
+A caller that needs to know passes the optional `onMpCompletion` observer. The
+client calls it once, synchronously, before the returned task completes, and
+only for a successful call. Its `MpCompletion` value has the state,
+`Succeeded` or `PartialSuccess`, and the MP result code. The observer belongs
+to that one call, so concurrent calls stay distinguishable.
+
+~~~csharp
+MpCompletion? completion = null;
+await briosa.SetPointNotesAsync(
+    pointName,
+    notes,
+    onMpCompletion: value => completion = value,
+    cancellationToken: cancellationToken);
+~~~
+
+Four operations report code 4 as an ordinary `MpFailure`, because their target
+documentation says the work was not done: Construct Point From Survey Target
+Center, Open SA File, Open Template File, and Set Report Options For Object. A
+success response without MP execution details is a protocol error.
+
 ### Collections
 
 Ordinary collection inputs use `IEnumerable<T>` with a handwritten element
@@ -231,6 +261,13 @@ A reviewed non-constant fixed value is exposed as a named immutable value of
 the same MP-native type, such as `ProjectionOptions.Default`. Option-like
 values may support nondestructive mutation with C# `with` expressions.
 
+No default fills in a value the server requires. Such a parameter is required
+and has no default, so omitting it is a compile error, and the client never
+sends an empty value, `0`, or `false` for an argument the caller left out. A
+named value can still make an explicit choice easy: `ToleranceVectorOptions.NoLimits`
+disables every limit when a caller passes it as a required relationship
+tolerance or constraint.
+
 ### Exceptions
 
 The handwritten .NET exception boundary uses:
@@ -242,6 +279,15 @@ The handwritten .NET exception boundary uses:
 - `OperationCanceledException` semantics for caller cancellation; and
 - dedicated lifecycle, startup, and compatibility exceptions for failures
   before MP submission.
+
+`BriosaOperationException` preserves every server failure dimension:
+`Kind`, `ExecutionDisposition`, `RecoveryGuidance`, `ReplayGuidance`,
+`ReplaySafety`, and, when the failure relates to the MP command, `MpExecution`
+with the MP state, the result code, and each output's retrieval. Every
+`OperationFailureKind` is a distinct member: `SdkCallFaulted` reports an SDK call
+that threw, with its phase in `ExecutionDisposition`. The lifecycle exceptions'
+kinds include `CallerCancelled` and `CallerDeadlineExceeded`, but a cancelled
+call surfaces as `OperationCanceledException`, never as a state conflict.
 
 Generated error messages and gRPC exceptions remain private implementation
 details. An underlying diagnostic may be retained as `InnerException` without
@@ -305,10 +351,6 @@ observation further until
 [spatialanalyzer/briosa#317](https://github.com/spatialanalyzer/briosa/issues/317)
 lands.
 
-Released 0.9 servers and the pinned protocol build `89b59aa` have no larger
-defaults: their startup bound is a fixed 10 s, and their readiness probe uses the
-quick execution budget (30 s by default), so the default covers them too.
-
 When the server's lifecycle bounds are raised, size the client budget to at
 least three times `StartupTimeout`, plus `ReadinessProbeTimeout`, plus
 `ApplicationStartupTimeout` when launching, plus 10 s, plus a margin. For
@@ -319,23 +361,21 @@ with the default 30 s application startup need at least 90 + 60 + 30 + 10 =
 Lifecycle methods take only a `CancellationToken`. The client adds no per-call
 lifecycle deadline, and `CommandTimeout` applies only to MP commands.
 
-What happens on the server when a caller stops waiting during an SDK start,
-connection, or recovery depends on the server build:
+When a caller stops waiting during an SDK start, connection, or recovery, a
+contract-major-3 server
+([spatialanalyzer/briosa#315](https://github.com/spatialanalyzer/briosa/pull/315))
+finishes an exchange it has already accepted under its own bounds, whether the
+caller stopped waiting through the startup budget or a cancellation. A request
+cancelled before acceptance changes nothing. A second call meanwhile fails with
+`sdk-lifecycle-transition-in-progress`; refresh state and retry later, and stop
+a generation you own only after the accepted transition has ended. After a
+SpatialAnalyzer launch times out, refresh application state before launching
+again. The shared `lifecycle-cancellation` conformance scenario checks this for
+Connect.
 
-- Builds that contain
-  [spatialanalyzer/briosa#315](https://github.com/spatialanalyzer/briosa/pull/315)
-  (briosa main from `0c7ff7a`, planned for the contract-major-3 release) finish
-  an exchange they have accepted under their own bounds, whether the caller
-  stopped waiting through the startup budget or a cancellation.
-- Older supported builds, including every released 0.9 server and the pinned
-  protocol build `89b59aa`, cancel the exchange with the caller. A cancelled SDK
-  start, or the replacement start inside a recovery, terminates the new worker
-  and leaves the SDK stopped (`worker-startup-cancelled`). A cancelled ConnectEx
-  retires the generation, which then needs recovery (`connect-ex-cancelled`). A
-  cancelled readiness probe quarantines the generation and requires operator
-  recovery (`execution-readiness-probe-cancelled`).
-
-Either way, refresh SDK state before deciding what to do next.
+Refresh SDK state before deciding what to do next. Before MP work, refresh the
+server snapshot too: MP admission needs both the snapshot and the SDK to report
+readiness.
 
 A per-call deadline shorter than the server's worst case for that call can stop
 the caller waiting before the server's typed failure, lifecycle state, and
@@ -356,10 +396,19 @@ observation. Allow more on a heavily loaded machine.
 When the server's bounds are raised, add the increase: `StartupTimeout` counts
 once for Start and Recover and twice for Connect, `ReadinessProbeTimeout` once
 for Connect, and the application startup and shutdown bounds once for Launch and
-Close. Released 0.9 servers and the pinned build `89b59aa` have the same or
-shorter worst cases, with one exception: they associate the application after
-Connect reports readiness, so Connect can also wait behind an MP command that
-another client submits in between.
+Close.
+
+### Discovery and admission
+
+`BriosaServerSnapshot` reports the server's admission profile and opaque policy
+fingerprint, which callers compare only for equality. Each
+`BriosaOperationCapability` carries its reviewed risk flags (an ordered list,
+empty when no risk applies), duration class, validation status, and admission,
+exactly as the server reports them. A value from a later revision maps to the
+enum's `Unknown` member instead of failing discovery. The client never
+recomputes admission and never pre-validates request options.
+`GetDeniedOperationsAsync` is a diagnostic listing of the denied operations
+and their denial reasons; it never adds them to the snapshot.
 
 ### Public API verification
 

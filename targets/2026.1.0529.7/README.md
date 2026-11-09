@@ -59,34 +59,68 @@ the server's `Briosa:Worker:StartupTimeout`, `Briosa:Worker:ReadinessProbeTimeou
 or `Briosa:SpatialAnalyzer:ApplicationStartupTimeout`, raise the client budget
 too; the [public API contract](docs/design/v1-public-api-contract.md#startup-and-lifecycle-time-budgets)
 shows how to size it. Lifecycle methods add no deadline of their own. If the
-budget expires while the server is starting or connecting the SDK, read the SDK
-state before retrying: a server that includes
-[spatialanalyzer/briosa#315](https://github.com/spatialanalyzer/briosa/pull/315)
-finishes that step, while released 0.9 servers cancel it, which can leave the
-SDK stopped or faulted.
+budget expires or you cancel while the server is starting or connecting the
+SDK, read the SDK state before retrying: the server finishes a step it has
+already accepted, so the SDK can still become ready
+([spatialanalyzer/briosa#315](https://github.com/spatialanalyzer/briosa/pull/315)).
+A second lifecycle call meanwhile fails with
+`sdk-lifecycle-transition-in-progress`: refresh state and retry later.
 
 The client retains lifecycle generations and supplies RPC guards automatically.
 Typed lifecycle failures, compatibility failures, ambiguous MP completion, and
 replay guidance remain distinct. The client never automatically replays an MP
-operation.
+operation. `BriosaOperationException.MpExecution` carries the MP state, result
+code, and output retrievals of a failure that relates to the MP command, and
+`OperationFailureKind.SdkCallFaulted` reports an SDK call that threw, with its
+phase in `ExecutionDisposition`.
+
+`GetServerSnapshotAsync()` reports the server's admission profile and policy
+fingerprint, and each admitted operation's risk flags, duration class,
+validation status, and admission. `GetDeniedOperationsAsync()` lists the
+operations the policy denies, with the reason; it never makes them callable.
 
 See the [Briosa documentation](https://spatialanalyzer.github.io/briosa-docs/api/dotnet/)
 for the client API overview. The target-specific source and locked protocol define
 this package's exact API.
 
-### Optional arguments that servers require
+### Lists the server requires
 
-Some arguments are optional in the method signature but required by released 0.9
-servers. Leaving an optional list out sends an empty list, and the server decides
-whether to accept it. Supply these inputs, or the call fails with a
-`BriosaOperationException` whose `Kind` is `Validation` and whose
-`ExecutionDisposition` is `NotStarted`, so nothing runs in SpatialAnalyzer:
+Leaving an optional list argument out sends an empty list. The server rejects
+some lists when they are empty, and 0.5.0 makes those required parameters, so
+an omitted one is a compile error and `null` throws `ArgumentNullException`
+before any call:
 
-| Method | Inputs to supply |
+| Method | Required lists |
 | --- | --- |
-| `LocateInstrumentsUsmnAsync` | `nominalsGroup` with a non-blank name, and at least one group in `excludedGroups` |
-| `LocateInstrumentGroupToSurfaceQuickFitAsync` | At least one object in `otherObjectsToTransform` |
-| `FeatureInspectionAutoFilterAsync` | At least one entry in each of `pointNames`, `groupNames`, `cloudNames`, and `featureCheckNameList` |
+| `LocateInstrumentGroupToSurfaceQuickFitAsync` | `otherObjectsToTransform` |
+| `FeatureInspectionAutoFilterAsync` | `pointNames`, `groupNames`, `cloudNames`, and `featureCheckNameList` |
+
+An empty required list is still sent, and the server rejects it with a
+`BriosaOperationException` whose `Kind` is `Validation` and whose
+`ExecutionDisposition` is `NotStarted`, so nothing runs in SpatialAnalyzer.
+
+`LocateInstrumentsUsmnAsync` keeps both of its optional inputs. An omitted or
+empty `excludedGroups` list is sent empty, and the server then runs USMN without
+that setting. An omitted `nominalsGroup` is left out, and an empty name is sent
+blank, which SpatialAnalyzer documents as no nominals group.
+
+### Partial success
+
+An MP command that returns code 4 (PARTIAL SUCCESS) did its work but not its full
+intended effect. The method still returns its outputs and never retries. Pass
+the optional `onMpCompletion` observer to see how a call completed:
+
+```csharp
+MpCompletion? completion = null;
+string directory = await briosa.GetWorkingDirectoryAsync(
+    onMpCompletion: value => completion = value);
+bool partial = completion?.State == MpExecutionState.PartialSuccess;
+```
+
+The observer comes just before the `CancellationToken`, so pass the token by
+name when you leave the observer out. See the
+[contract major 3 migration](../../docs/contract-major-3-migration.md) for the
+other 0.5.0 changes.
 
 ## Server selection
 
@@ -112,7 +146,8 @@ A full server queue returns an overload error with NotStarted, no recovery
 action, and MayReplay guidance. The client preserves these separate facts and
 never retries automatically. The 64 KiB inbound limit may also produce a
 transport size error without typed detail. See the
-[authoritative migration guide](https://github.com/spatialanalyzer/briosa/blob/main/docs/development/runtime-redesign-migration.md).
+[authoritative migration guide](https://github.com/spatialanalyzer/briosa/blob/main/docs/development/runtime-redesign-migration.md)
+and the [contract major 3 record](https://github.com/spatialanalyzer/briosa/blob/main/docs/development/contract-major-3.md).
 
 A missing or incompatible explicit choice fails without selecting another
 installation. The choice is fixed for the session, including worker recovery.
@@ -220,9 +255,11 @@ contract against packaged servers. The retained Server 0.9.2 baseline, the
 previous contract major, must be rejected.
 Exact SA target, runtime identity, capabilities, and readiness still gate MP calls.
 
-Portable conformance covers lifecycle, identity mismatch, denied capabilities,
-typed MP and output failure, deadlines, cancellation, watchdog recovery, SDK loss,
-and owned-process cleanup. Its harness disables Control Center auto-launch and
+Portable conformance covers lifecycle, identity mismatch, denied capabilities
+with the admission profile and the denied listing, typed MP and output failure,
+SDK call faults, partial success, deadlines, cancellation, a lifecycle Connect
+whose caller stopped waiting, watchdog recovery, SDK loss, and owned-process
+cleanup: all 15 scenarios of the contract-major-3 package. Its harness disables Control Center auto-launch and
 restores the prior setting afterward. These checks use a fake SDK, without a
 SpatialAnalyzer installation or license.
 
