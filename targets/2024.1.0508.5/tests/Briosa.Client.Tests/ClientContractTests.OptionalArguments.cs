@@ -255,7 +255,9 @@ public sealed partial class ClientContractTests
             return Convert.ChangeType(1, type, CultureInfo.InvariantCulture);
         }
 
-        if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+        if (type.IsGenericType &&
+            (type.GetGenericTypeDefinition() == typeof(IEnumerable<>) ||
+                type.GetGenericTypeDefinition() == typeof(IReadOnlyList<>)))
         {
             var elementType = type.GetGenericArguments()[0];
             var values = Array.CreateInstance(elementType, 1);

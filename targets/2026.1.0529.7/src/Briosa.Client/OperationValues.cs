@@ -317,6 +317,13 @@ public readonly record struct ToleranceLimit(bool Enabled = false, double Value 
 
 public sealed record ToleranceVectorOptions
 {
+    /// <summary>
+    /// Gets options with all eight limits disabled. Pass it explicitly where an
+    /// operation requires tolerance or constraint options and you want no limits;
+    /// it is never an implicit default.
+    /// </summary>
+    public static ToleranceVectorOptions NoLimits { get; } = new();
+
     public ToleranceLimit HighX { get; init; }
     public ToleranceLimit HighY { get; init; }
     public ToleranceLimit HighZ { get; init; }
