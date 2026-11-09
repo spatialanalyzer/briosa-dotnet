@@ -440,9 +440,9 @@ public sealed record FilterProximitySettings
     public double PlanarExclusionProximity { get; init; } = 0.1;
     public double RadialInclusionProximity { get; init; } = 0.1;
     public double GeometryExtractionTolerance { get; init; } = 0.01;
-    public OffsetDirectionType SurfaceProximityMode { get; init; } = OffsetDirectionType.Both;
-    public OffsetDirectionType PlanarProximityMode { get; init; } = OffsetDirectionType.Both;
-    public OffsetDirectionType RadialProximityMode { get; init; } = OffsetDirectionType.Both;
+    public required OffsetDirectionType SurfaceProximityMode { get; init; }
+    public required OffsetDirectionType PlanarProximityMode { get; init; }
+    public required OffsetDirectionType RadialProximityMode { get; init; }
     public bool ProjectToPlane { get; init; } = true;
     public bool AssertPlaneBoundaries { get; init; } = false;
 }
@@ -705,11 +705,11 @@ public sealed record WrtlChannelStatus
 public sealed record MakeGdtDatumAnnotationOptions
 {
     public required string DatumName { get; init; }
-    public IReadOnlyList<CollectionObjectName> Objects { get; init; } = [];
-    public IReadOnlyList<CollectionItemName> GeometryRelationships { get; init; } = [];
+    public required IReadOnlyList<CollectionObjectName> Objects { get; init; }
+    public required IReadOnlyList<CollectionItemName> GeometryRelationships { get; init; }
     public SurfaceFaceList? SurfaceFaces { get; init; }
-    public CollectionObjectName? AuxiliaryObject { get; init; }
-    public CollectionItemName? AuxiliaryGeometryRelationship { get; init; }
+    public required CollectionObjectName AuxiliaryObject { get; init; }
+    public required CollectionItemName AuxiliaryGeometryRelationship { get; init; }
     public bool IsSlot { get; init; }
     public bool ForceSurfaceFeature { get; init; }
 }
@@ -718,8 +718,8 @@ public sealed record MakeGdtFeatureCheckAnnotationOptions
 {
     public required string FeatureAnnotationName { get; init; }
     public GdtFeatureType FeatureType { get; init; } = GdtFeatureType.TruePosition;
-    public IReadOnlyList<CollectionObjectName> Objects { get; init; } = [];
-    public IReadOnlyList<CollectionItemName> GeometryRelationships { get; init; } = [];
+    public required IReadOnlyList<CollectionObjectName> Objects { get; init; }
+    public required IReadOnlyList<CollectionItemName> GeometryRelationships { get; init; }
     public SurfaceFaceList? SurfaceFaces { get; init; }
     public bool DecomposeMultipleFeatures { get; init; }
     public bool AutoCreateDiameterChecks { get; init; }
@@ -736,8 +736,8 @@ public sealed record MakeGdtFeatureCheckAnnotationOptions
     public double PerUnitAreaWidthStepOverPercent { get; init; } = 50.0;
     public double PerUnitAreaCircleDiameter { get; init; }
     public double PerUnitAreaDiameterStepOver { get; init; } = 50.0;
-    public CollectionObjectName? AuxiliaryObject { get; init; }
-    public CollectionItemName? AuxiliaryGeometryRelationship { get; init; }
+    public required CollectionObjectName AuxiliaryObject { get; init; }
+    public required CollectionItemName AuxiliaryGeometryRelationship { get; init; }
     public bool UseNominalForDimensionTolerance { get; init; } = true;
     public bool UseReferenceObjectForNominal { get; init; } = true;
     public double NominalDimensionTolerance { get; init; }
@@ -760,7 +760,6 @@ public sealed record RelationshipWatchWindowTemplateOptions
     public bool ShowDeviationY { get; init; } = true;
     public bool ShowDeviationZ { get; init; } = true;
     public bool ShowDeviationMagnitude { get; init; } = true;
-    public RelationshipWatchWindowUdpSettings UdpNetworkTransmitSettings { get; init; } = new();
     public bool TransparentBackground { get; init; }
     public bool HideUnits { get; init; }
 }

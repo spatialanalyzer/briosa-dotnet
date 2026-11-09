@@ -38,7 +38,8 @@ public sealed partial class ClientContractTests
 
         var fit = await client.InstrumentOperations.LocateInstrumentsUsmnAsync(
             instruments,
-            outputGroup);
+            outputGroup,
+            ShowUsmnDialog.No);
 
         Assert.Equal(0.1, fit.RmsError);
         var request = Assert.IsType<Transport.LocateInstrumentsUsmnRequest>(
@@ -49,6 +50,7 @@ public sealed partial class ClientContractTests
         await client.InstrumentOperations.LocateInstrumentsUsmnAsync(
             instruments,
             outputGroup,
+            ShowUsmnDialog.No,
             excludedGroups: [outputGroup with { ObjectName = "Reference" }]);
 
         request = Assert.IsType<Transport.LocateInstrumentsUsmnRequest>(
@@ -137,7 +139,9 @@ public sealed partial class ClientContractTests
         }
 
         Assert.Contains($"{nameof(BriosaInstrumentOperations.QuickAlignAsync)}.nominalPoints", checkedLists);
-        Assert.Contains($"{nameof(BriosaClient.CreatePointsToObjectsMapAsync)}.points", checkedLists);
+        // C3: the server requires every list it receives in a list wrapper message,
+        // so none of those lists is optional any more.
+        Assert.DoesNotContain($"{nameof(BriosaClient.CreatePointsToObjectsMapAsync)}.points", checkedLists);
         if (failures.Count > 0)
         {
             Assert.Fail(string.Join(Environment.NewLine, failures));

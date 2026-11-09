@@ -469,6 +469,7 @@ public sealed class BriosaConstructionOperations
     public Task ConstructCrossSectionCloudAsync(
         CollectionObjectName crossSectionCloudName,
         IEnumerable<CollectionObjectName> inputClouds,
+        CollectionObjectName referenceObject,
         bool cylindricalCrossSectionMode = false,
         double startDistance = 0.0,
         double sectionSpacing = 0.0,
@@ -477,7 +478,6 @@ public sealed class BriosaConstructionOperations
         bool limitCrossSectionExtent = false,
         double radiusLimit = 0.0,
         bool projectToReferenceSurface = false,
-        CollectionObjectName? referenceObject = null,
         CloudThinningOptions? cloudThinningSettings = null,
         bool updateExistingCloud = false,
         Action<MpCompletion>? onMpCompletion = null,
@@ -621,12 +621,12 @@ public sealed class BriosaConstructionOperations
 
     public Task ConstructEllipsoidAsync(
         CollectionObjectName ellipseName,
+        Transform transformInWorkingCoordinates,
         double xAxisRadius = 5.0,
         double yAxisRadius = 4.0,
         double zAxisRadius = 3.0,
         double magnification = 1.0,
         bool uncertaintyEllipsoid = false,
-        Transform? transformInWorkingCoordinates = null,
         Color? ellipseColor = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -669,27 +669,6 @@ public sealed class BriosaConstructionOperations
             "ConstructFolders",
             request,
             Transport.ConstructFoldersResult.Parser,
-            onMpCompletion,
-            cancellationToken);
-    }
-
-    public Task ConstructFrameAsync(
-        CollectionObjectName newFrameName,
-        Action<MpCompletion>? onMpCompletion = null,
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.ConstructFrameRequest(),
-            new Dictionary<string, object?>
-            {
-                ["new_frame_name"] = newFrameName,
-                ["transform_in_working_coordinates"] = new Transform(),
-            });
-        return _client.InvokeOperationAsync(
-            "briosa.ConstructionOperations",
-            "ConstructFrame",
-            request,
-            Transport.ConstructFrameResult.Parser,
             onMpCompletion,
             cancellationToken);
     }
@@ -830,27 +809,6 @@ public sealed class BriosaConstructionOperations
             "ConstructFrameFromPointMeasurementProbingFrames",
             request,
             Transport.ConstructFrameFromPointMeasurementProbingFramesResult.Parser,
-            onMpCompletion,
-            cancellationToken);
-    }
-
-    public Task ConstructFrameFromTransformInWorldAsync(
-        CollectionObjectName newFrameName,
-        Action<MpCompletion>? onMpCompletion = null,
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.ConstructFrameFromTransformInWorldRequest(),
-            new Dictionary<string, object?>
-            {
-                ["new_frame_name"] = newFrameName,
-                ["transform_in_world_coordinates"] = new Transform(),
-            });
-        return _client.InvokeOperationAsync(
-            "briosa.ConstructionOperations",
-            "ConstructFrameFromTransformInWorld",
-            request,
-            Transport.ConstructFrameFromTransformInWorldResult.Parser,
             onMpCompletion,
             cancellationToken);
     }
@@ -1856,9 +1814,9 @@ public sealed class BriosaConstructionOperations
     }
 
     public Task<Vector> ConstructPointFromCloudPointRuntimeSelectAsync(
+        PointName constructedPointName,
         string selectionPrompt = "Select cloud point",
         bool constructPoint = false,
-        PointName? constructedPointName = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -2304,11 +2262,11 @@ public sealed class BriosaConstructionOperations
 
     public Task ConstructPointsFromSurfacesOnUvGridAsync(
         IEnumerable<CollectionObjectName> surfaceList,
+        EdgePointMode edgePointMode,
         string uvPointGroupBaseName = "UV Points",
         bool makeEachLineSeparateGroup = false,
         int numberOfUGrids = 5,
         int numberOfVGrids = 5,
-        EdgePointMode edgePointMode = EdgePointMode.IncludeEdges,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -2475,7 +2433,7 @@ public sealed class BriosaConstructionOperations
     public Task ConstructPointsShiftedInWorkingFrameAsync(
         IEnumerable<PointName> originalPoints,
         CollectionObjectName groupForNewPoints,
-        Vector? shiftVector = null,
+        Vector shiftVector,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -2524,8 +2482,8 @@ public sealed class BriosaConstructionOperations
 
     public Task ConstructPointsSubsetWithGreatestSpacingAsync(
         IEnumerable<PointName> pointsToSubsample,
+        CollectionObjectName groupForSubset,
         int subsetSize = 10,
-        CollectionObjectName? groupForSubset = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -3303,6 +3261,7 @@ public sealed class BriosaConstructionOperations
     public Task CreatePointCalloutAsync(
         CollectionItemName destinationCalloutView,
         PointName point,
+        CoordinateSystemType desiredCoordinateSystem,
         double viewXPosition = 0.0,
         double viewYPosition = 0.0,
         bool showPointCollection = false,
@@ -3316,7 +3275,6 @@ public sealed class BriosaConstructionOperations
         bool showUy = false,
         bool showUz = false,
         bool showUMag = false,
-        CoordinateSystemType desiredCoordinateSystem = CoordinateSystemType.Cartesian,
         IEnumerable<string>? notes = null,
         bool useDefaultPlacement = false,
         Action<MpCompletion>? onMpCompletion = null,
@@ -4017,9 +3975,9 @@ public sealed class BriosaConstructionOperations
     }
 
     public Task<IReadOnlyList<CollectionItemName>> MakeCollectionItemNameRefListWildcardSelectionAsync(
+        ItemType itemType,
         string collectionWildcardCriteria = "*",
         string itemWildcardCriteria = "*",
-        ItemType itemType = ItemType.Any,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -4062,7 +4020,7 @@ public sealed class BriosaConstructionOperations
 
     public Task<IReadOnlyList<CollectionObjectName>> MakeCollectionObjectNameRefListByTypeAsync(
         string collection,
-        ObjectType objectType = ObjectType.Any,
+        ObjectType objectType,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -4084,7 +4042,7 @@ public sealed class BriosaConstructionOperations
 
     public Task<IReadOnlyList<CollectionObjectName>> MakeCollectionObjectNameRefListByTypeAndColorAsync(
         string collection,
-        ObjectType objectType = ObjectType.Any,
+        ObjectType objectType,
         Color? objectColor = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -4127,8 +4085,8 @@ public sealed class BriosaConstructionOperations
     }
 
     public Task<IReadOnlyList<CollectionObjectName>> MakeCollectionObjectNameRefListRuntimeSelectAsync(
+        ObjectType objectType,
         string userPrompt = "",
-        ObjectType objectType = ObjectType.Any,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -4149,9 +4107,9 @@ public sealed class BriosaConstructionOperations
     }
 
     public Task<IReadOnlyList<CollectionObjectName>> MakeCollectionObjectNameRefListWildcardSelectionAsync(
+        ObjectType objectType,
         string collectionWildcardCriteria = "*",
         string objectWildcardCriteria = "*",
-        ObjectType objectType = ObjectType.Any,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -4173,8 +4131,8 @@ public sealed class BriosaConstructionOperations
     }
 
     public Task<CollectionObjectName> MakeCollectionObjectNameRuntimeSelectAsync(
+        ObjectType objectType,
         string userPrompt = "",
-        ObjectType objectType = ObjectType.Any,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -4755,7 +4713,7 @@ public sealed class BriosaConstructionOperations
         PointName pointToProject,
         CollectionObjectName surfaceEdge,
         CollectionObjectName surfaceName,
-        Vector? edgeOffsetDirection = null,
+        Vector edgeOffsetDirection,
         double edgeOffsetDistance = 0.01,
         bool generateOutputVectorLines = false,
         Action<MpCompletion>? onMpCompletion = null,
@@ -5001,10 +4959,10 @@ public sealed class BriosaGdtOperations
 
     public Task EnableDisableDatumAlignmentForFeatureCheckAsync(
         CollectionItemName featureCheck,
+        CollectionItemName alignment,
         bool enableDatumAlignment = true,
         bool enableCustomInitialAlignment = false,
         bool enableInitialDatumAlignment = true,
-        CollectionItemName? alignment = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -5083,9 +5041,9 @@ public sealed class BriosaGdtOperations
         IEnumerable<CollectionObjectName> groupNames,
         IEnumerable<CollectionObjectName> cloudNames,
         IEnumerable<CollectionItemName> featureCheckNameList,
+        OffsetDirectionType offsetDirection,
         double surfaceOffset = 0.1,
         double edgeOffset = 0.1,
-        OffsetDirectionType offsetDirection = OffsetDirectionType.Both,
         bool includePointsWithinCylinderAxisProximity = false,
         bool enforceMaxPointsPerFaceInOutput = false,
         int maxPointsPerFace = 0,
@@ -5607,11 +5565,11 @@ public sealed class BriosaGdtOperations
 
 
     public Task SetGdtOptionsAsync(
+        GdtDistanceBetweenMode distanceBetweenMode,
+        GdtEvaluationMethod evaluationMethod,
         bool useHighPoints = false,
         bool extrapolateAxialExtent = true,
         bool excludeFromAutoEvaluation = true,
-        GdtDistanceBetweenMode distanceBetweenMode = GdtDistanceBetweenMode.Centroid,
-        GdtEvaluationMethod evaluationMethod = GdtEvaluationMethod.None,
         bool createActualFeatures = false,
         bool createSolvedPoints = false,
         double crossSectionCriteria = 0.039370,
@@ -5970,12 +5928,12 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         CollectionObjectName nominalGroup,
         CollectionObjectName resultsGroup,
+        string deviationVectorGroupName,
         double pointDistanceThreshold = 0.5,
         double vectorAxisThreshold = 0.25,
         bool projectResultsToNominalVector = false,
         double warblerRampStartDistance = 12.0,
         bool showWatchWindow = false,
-        string? deviationVectorGroupName = null,
         bool makeUnmeasuredGroup = false,
         bool measureEachPointOnlyOnce = false,
         Action<MpCompletion>? onMpCompletion = null,
@@ -6150,7 +6108,7 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId instrument,
         PointName outputTargetName,
         PointName nominalPoint,
-        ToleranceVectorOptions? tolerance = null,
+        ToleranceVectorOptions tolerance,
         FileReference? htmlPromptFile = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -6177,7 +6135,7 @@ public sealed class BriosaInstrumentOperations
     public Task<TcpFixtureUncertainties> CalculateTcpFixtureUncertaintiesAsync(
         CollectionObjectName tcpFixture,
         IEnumerable<PointName> tcpMeasurements,
-        Transform? tcpInWorking = null,
+        Transform tcpInWorking,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -6242,14 +6200,14 @@ public sealed class BriosaInstrumentOperations
         CollectionInstrumentId stationaryInstrument,
         CollectionInstrumentId movingInstrument,
         PointName collimationPoint,
+        CollimationTiltMode tiltMode,
+        CollimationBaselineMethod baselineMethod,
+        PointName scalePoint1,
+        PointName scalePoint2,
+        PointName notMeasuredByMovingInstrument,
+        PointName asMeasuredByMovingInstrument,
         bool zeroMovingInstrument = false,
-        CollimationTiltMode tiltMode = CollimationTiltMode.FullCollimation,
-        CollimationBaselineMethod baselineMethod = CollimationBaselineMethod.DeterminedByValue,
         double baselineDistance = 0.0,
-        PointName? scalePoint1 = null,
-        PointName? scalePoint2 = null,
-        PointName? notMeasuredByMovingInstrument = null,
-        PointName? asMeasuredByMovingInstrument = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -7699,10 +7657,10 @@ public sealed class BriosaInstrumentOperations
     public Task<FitErrorResult> LocateInstrumentsUsmnAsync(
         IEnumerable<CollectionInstrumentId> instruments,
         CollectionObjectName outputGroup,
+        ShowUsmnDialog showUsmnDialog,
         CollectionObjectName? nominalsGroup = null,
         bool moveInWorkingFrame = false,
         bool autoRejectOutliersAndResolve = false,
-        ShowUsmnDialog showUsmnDialog = ShowUsmnDialog.No,
         double maximumAcceptableRmsError = 0.0,
         double maximumAcceptableError = 0.0,
         IEnumerable<CollectionObjectName>? excludedGroups = null,
@@ -8776,9 +8734,9 @@ public sealed class BriosaInstrumentOperations
 
     public Task SetObservationCollimationShotOptionsAsync(
         PointName point,
+        CollectionInstrumentId targetedInstrument,
         int observationIndex = 0,
         bool isCollimationShot = false,
-        CollectionInstrumentId? targetedInstrument = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -8955,7 +8913,7 @@ public sealed class BriosaInstrumentOperations
     }
 
     public Task SetTargetComputationOptionsAsync(
-        TargetComputationMethod computationMethod = TargetComputationMethod.UseMostRecentShotFromEachFace,
+        TargetComputationMethod computationMethod,
         bool ignoreDistanceMeasurements = false,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -10000,27 +9958,6 @@ public sealed class BriosaRobotCalibrationApplianceNodeOperations
 
     public Task SetCalibrationApplianceNodeMeasurementOffsetTransformAsync(
         CollectionObjectName calibrationApplianceNode,
-        Action<MpCompletion>? onMpCompletion = null,
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.SetCalibrationApplianceNodeMeasurementOffsetTransformRequest(),
-            new Dictionary<string, object?>
-            {
-                ["calibration_appliance_node"] = calibrationApplianceNode,
-                ["measurement_offset_transform"] = new Transform(),
-            });
-        return _client.InvokeOperationAsync(
-            "briosa.RobotCalibrationApplianceNodeOperations",
-            "SetCalibrationApplianceNodeMeasurementOffsetTransform",
-            request,
-            Transport.SetCalibrationApplianceNodeMeasurementOffsetTransformResult.Parser,
-            onMpCompletion,
-            cancellationToken);
-    }
-
-    public Task SetCalibrationApplianceNodeMeasurementOffsetTransformAsync(
-        CollectionObjectName calibrationApplianceNode,
         Transform measurementOffsetTransform,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -10799,32 +10736,6 @@ public sealed class BriosaRobotOperations
     /// </remarks>
     public Task SetRobotCalibrationMeasurementOffsetInToolFrameAsync(
         CollectionMachineId machineId,
-        string calibrationName = "",
-        Action<MpCompletion>? onMpCompletion = null,
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.SetRobotCalibrationMeasurementOffsetInToolFrameRequest(),
-            new Dictionary<string, object?>
-            {
-                ["machine_id"] = machineId,
-                ["calibration_name"] = calibrationName,
-                ["measurement_frame"] = new Transform(),
-            });
-        return _client.InvokeOperationAsync(
-            "briosa.RobotOperations",
-            "SetRobotCalibrationMeasurementOffsetInToolFrame",
-            request,
-            Transport.SetRobotCalibrationMeasurementOffsetInToolFrameResult.Parser,
-            onMpCompletion,
-            cancellationToken);
-    }
-
-    /// <remarks>
-    /// <c>measurementFrame</c>: MP qualifier: relative to tool.<br/>
-    /// </remarks>
-    public Task SetRobotCalibrationMeasurementOffsetInToolFrameAsync(
-        CollectionMachineId machineId,
         string calibrationName,
         Transform measurementFrame,
         Action<MpCompletion>? onMpCompletion = null,
@@ -10852,32 +10763,6 @@ public sealed class BriosaRobotOperations
     /// </remarks>
     public Task SetRobotCalibrationToolFrameAsync(
         CollectionMachineId machineId,
-        string calibrationName = "",
-        Action<MpCompletion>? onMpCompletion = null,
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.SetRobotCalibrationToolFrameRequest(),
-            new Dictionary<string, object?>
-            {
-                ["machine_id"] = machineId,
-                ["calibration_name"] = calibrationName,
-                ["tool_frame"] = new Transform(),
-            });
-        return _client.InvokeOperationAsync(
-            "briosa.RobotOperations",
-            "SetRobotCalibrationToolFrame",
-            request,
-            Transport.SetRobotCalibrationToolFrameResult.Parser,
-            onMpCompletion,
-            cancellationToken);
-    }
-
-    /// <remarks>
-    /// <c>toolFrame</c>: MP qualifier: relative to flange.<br/>
-    /// </remarks>
-    public Task SetRobotCalibrationToolFrameAsync(
-        CollectionMachineId machineId,
         string calibrationName,
         Transform toolFrame,
         Action<MpCompletion>? onMpCompletion = null,
@@ -10896,31 +10781,6 @@ public sealed class BriosaRobotOperations
             "SetRobotCalibrationToolFrame",
             request,
             Transport.SetRobotCalibrationToolFrameResult.Parser,
-            onMpCompletion,
-            cancellationToken);
-    }
-
-    public Task SetRobotMachineBaseTransformAsync(
-        CollectionMachineId machineId,
-        CollectionObjectName referenceFrame,
-        int numberOfSteps = 0,
-        Action<MpCompletion>? onMpCompletion = null,
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.SetRobotMachineBaseTransformRequest(),
-            new Dictionary<string, object?>
-            {
-                ["machine_id"] = machineId,
-                ["destination_transform"] = new Transform(),
-                ["reference_frame"] = referenceFrame,
-                ["number_of_steps"] = numberOfSteps,
-            });
-        return _client.InvokeOperationAsync(
-            "briosa.RobotOperations",
-            "SetRobotMachineBaseTransform",
-            request,
-            Transport.SetRobotMachineBaseTransformResult.Parser,
             onMpCompletion,
             cancellationToken);
     }

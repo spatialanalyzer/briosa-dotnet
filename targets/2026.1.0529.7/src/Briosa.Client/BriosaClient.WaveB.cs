@@ -1073,8 +1073,8 @@ public sealed partial class BriosaClient
     public Task AutoFilterCloudsToNominalGeometry2DAsync(
         IEnumerable<CollectionItemName> autoFilterTargetRelationships,
         IEnumerable<CollectionObjectName> clouds,
+        FilterProximitySettings filterProximitySettings2D,
         CloudThinningOptions? cloudThinningSettings = null,
-        FilterProximitySettings? filterProximitySettings2D = null,
         double geometryExtractionTolerance = 0.01,
         bool useFeatureSpecificFilterSettings = false,
         Action<MpCompletion>? onMpCompletion = null,
@@ -1103,8 +1103,8 @@ public sealed partial class BriosaClient
     public Task AutoFilterCloudsToNominalGeometry3DAsync(
         IEnumerable<CollectionItemName> autoFilterTargetRelationships,
         IEnumerable<CollectionObjectName> clouds,
+        FilterProximitySettings filterProximitySettings3D,
         CloudThinningOptions? cloudThinningSettings = null,
-        FilterProximitySettings? filterProximitySettings3D = null,
         bool useFeatureSpecificFilterSettings = false,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -1130,12 +1130,12 @@ public sealed partial class BriosaClient
 
     public Task AutoFilterPointsGroupsCloudsToSurfaceFacesAsync(
         IEnumerable<CollectionObjectName> surfaces,
-        IEnumerable<PointName>? points = null,
-        IEnumerable<CollectionObjectName>? groups = null,
-        IEnumerable<CollectionObjectName>? clouds = null,
+        IEnumerable<PointName> points,
+        IEnumerable<CollectionObjectName> groups,
+        IEnumerable<CollectionObjectName> clouds,
+        OffsetDirectionType offsetDirection,
         double surfaceOffset = 0.1,
         double edgeOffset = 0.1,
-        OffsetDirectionType offsetDirection = OffsetDirectionType.Both,
         bool enforceMaxPointsPerFaceInOutput = false,
         int maxPointsPerFace = 0,
         CloudThinningOptions? cloudThinningSettings = null,
@@ -1173,7 +1173,7 @@ public sealed partial class BriosaClient
     public Task AutoFilterPointsToNominalGeometry3DAsync(
         IEnumerable<CollectionItemName> autoFilterTargetRelationships,
         IEnumerable<PointName> points,
-        FilterProximitySettings? filterProximitySettings3D = null,
+        FilterProximitySettings filterProximitySettings3D,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -1219,8 +1219,8 @@ public sealed partial class BriosaClient
     public Task CreatePointsToObjectsMapAsync(
         string pointsToObjectsMapName,
         IEnumerable<CollectionObjectName> objects,
-        IEnumerable<PointName>? points = null,
-        IEnumerable<CollectionObjectName>? groups = null,
+        IEnumerable<PointName> points,
+        IEnumerable<CollectionObjectName> groups,
         double proximityTolerance = 0.0,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -1268,8 +1268,8 @@ public sealed partial class BriosaClient
         string collectionContainingRelationships,
         IEnumerable<CollectionObjectName> objectsToMove,
         IEnumerable<CollectionInstrumentId> instrumentsToMove,
+        FitDofOptions motionToAllow,
         SolverMode solverMode = SolverMode.GaussNewton,
-        FitDofOptions? motionToAllow = null,
         bool enableRandomizedStart = false,
         bool useFitDialog = false,
         Action<MpCompletion>? onMpCompletion = null,
@@ -1300,8 +1300,8 @@ public sealed partial class BriosaClient
         CollectionItemName relationshipName,
         CollectionObjectName cloudName,
         IEnumerable<PointName> seedPoints,
-        GeometryType geometryType = GeometryType.Circle,
-        IEnumerable<PointName>? boundingPoints = null,
+        GeometryType geometryType,
+        IEnumerable<PointName> boundingPoints,
         double tolerance = 0.1,
         bool reverseNormal = false,
         int planarPointCount = 1000,
@@ -1604,7 +1604,7 @@ public sealed partial class BriosaClient
         CollectionItemName relationshipName,
         CollectionObjectName firstReferenceGeometry,
         CollectionObjectName secondReferenceGeometry,
-        DynamicCircleMode constructionMode = DynamicCircleMode.CylinderAndPlaneHoldPlaneNormal,
+        DynamicCircleMode constructionMode,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -1630,7 +1630,7 @@ public sealed partial class BriosaClient
         CollectionItemName relationshipName,
         CollectionObjectName firstReferenceGeometry,
         CollectionObjectName secondReferenceGeometry,
-        DynamicEllipseMode constructionMode = DynamicEllipseMode.CylinderAndPlaneIntersection,
+        DynamicEllipseMode constructionMode,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -1656,7 +1656,7 @@ public sealed partial class BriosaClient
         CollectionItemName relationshipName,
         CollectionObjectName firstReferenceGeometry,
         CollectionObjectName secondReferenceGeometry,
-        DynamicLineMode constructionMode = DynamicLineMode.IntersectionOfTwoPlanes,
+        DynamicLineMode constructionMode,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -1682,7 +1682,7 @@ public sealed partial class BriosaClient
         CollectionItemName relationshipName,
         CollectionObjectName firstReferenceGeometry,
         CollectionObjectName secondReferenceGeometry,
-        DynamicPlaneMode constructionMode = DynamicPlaneMode.BisectTwoPlanes,
+        DynamicPlaneMode constructionMode,
         double offsetPlaneOffset = 0.0,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -1710,8 +1710,8 @@ public sealed partial class BriosaClient
         CollectionItemName relationshipName,
         CollectionObjectName firstReferenceGeometry,
         CollectionObjectName secondReferenceGeometry,
-        DynamicPointMode constructionMode = DynamicPointMode.IntersectionLineAndPlane,
-        CollectionObjectName? thirdReferenceGeometry = null,
+        DynamicPointMode constructionMode,
+        CollectionObjectName thirdReferenceGeometry,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -1738,8 +1738,8 @@ public sealed partial class BriosaClient
         CollectionItemName relationshipName,
         CollectionObjectName firstFrameName,
         CollectionObjectName secondFrameName,
-        ToleranceScalarOptions? orientationTolerance = null,
-        ToleranceVectorOptions? positionTolerance = null,
+        ToleranceScalarOptions orientationTolerance,
+        ToleranceVectorOptions positionTolerance,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -1918,7 +1918,7 @@ public sealed partial class BriosaClient
         CollectionItemName relationshipName,
         IEnumerable<CollectionObjectName> pointGroupsInRelationship,
         IEnumerable<CollectionObjectName> objectsInRelationship,
-        ProjectionOptions? projectionOptions = null,
+        ProjectionOptions projectionOptions,
         bool autoUpdateAVectorGroup = false,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -1972,7 +1972,7 @@ public sealed partial class BriosaClient
         CollectionItemName relationshipName,
         IEnumerable<CollectionObjectName> pointCloudsInRelationship,
         IEnumerable<CollectionObjectName> objectsInRelationship,
-        ProjectionOptions? projectionOptions = null,
+        ProjectionOptions projectionOptions,
         bool autoUpdateAVectorGroup = false,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -2028,7 +2028,7 @@ public sealed partial class BriosaClient
         CollectionItemName relationshipName,
         IEnumerable<PointName> pointsInRelationship,
         IEnumerable<CollectionObjectName> objectsInRelationship,
-        ProjectionOptions? projectionOptions = null,
+        ProjectionOptions projectionOptions,
         bool autoUpdateAVectorGroup = false,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -2111,8 +2111,8 @@ public sealed partial class BriosaClient
     public Task MoveCollectionsByMinimizingRelationshipsAsync(
         IEnumerable<string> collectionsToMove,
         IEnumerable<CollectionItemName> relationshipsToMinimize,
+        FitDofOptions motionToAllow,
         SolverMode solverMode = SolverMode.GaussNewton,
-        FitDofOptions? motionToAllow = null,
         bool useFitDialog = false,
         double convergenceThreshold = 0.0,
         Action<MpCompletion>? onMpCompletion = null,
@@ -2144,44 +2144,8 @@ public sealed partial class BriosaClient
     /// <c>showDeviationZ</c>: MP qualifier: Rz.<br/>
     /// </remarks>
     public Task RelationshipWatchWindowTemplateAsync(
-        Action<MpCompletion>? onMpCompletion = null,
-        CancellationToken cancellationToken = default)
-    {
-        var request = OperationProtocolMapper.BuildRequest(
-            new Transport.RelationshipWatchWindowTemplateRequest(),
-            new Dictionary<string, object?>
-            {
-                ["watch_window_template_name"] = null,
-                ["linear_precision"] = 4,
-                ["angular_precision"] = 3,
-                ["font"] = new Font(),
-                ["text_color"] = new Color(),
-                ["background_color"] = new Color(),
-                ["highlight_color"] = new Color(),
-                ["show_deviation_x"] = true,
-                ["show_deviation_y"] = true,
-                ["show_deviation_z"] = true,
-                ["show_deviation_magnitude"] = true,
-                ["udp_network_transmit_settings"] = new RelationshipWatchWindowUdpSettings(),
-                ["transparent_background"] = false,
-                ["hide_units"] = false,
-            });
-        return InvokeOperationAsync(
-            "briosa.RelationshipOperations",
-            "RelationshipWatchWindowTemplate",
-            request,
-            Transport.RelationshipWatchWindowTemplateResult.Parser,
-            onMpCompletion,
-            cancellationToken);
-    }
-
-    /// <remarks>
-    /// <c>showDeviationX</c>: MP qualifier: Rx.<br/>
-    /// <c>showDeviationY</c>: MP qualifier: Ry.<br/>
-    /// <c>showDeviationZ</c>: MP qualifier: Rz.<br/>
-    /// </remarks>
-    public Task RelationshipWatchWindowTemplateAsync(
-        CollectionObjectName? watchWindowTemplateName,
+        CollectionObjectName watchWindowTemplateName,
+        RelationshipWatchWindowUdpSettings udpNetworkTransmitSettings,
         RelationshipWatchWindowTemplateOptions? options = null,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -2202,7 +2166,7 @@ public sealed partial class BriosaClient
                 ["show_deviation_y"] = options.ShowDeviationY,
                 ["show_deviation_z"] = options.ShowDeviationZ,
                 ["show_deviation_magnitude"] = options.ShowDeviationMagnitude,
-                ["udp_network_transmit_settings"] = options.UdpNetworkTransmitSettings,
+                ["udp_network_transmit_settings"] = udpNetworkTransmitSettings,
                 ["transparent_background"] = options.TransparentBackground,
                 ["hide_units"] = options.HideUnits,
             });
@@ -2247,8 +2211,8 @@ public sealed partial class BriosaClient
 
     public Task SetObjectToObjectDirectionRelationshipTolerancesAsync(
         CollectionItemName relationshipName,
-        ToleranceScalarOptions? angleBetweenVectorsTolerances = null,
-        ToleranceScalarOptions? mutualPerpendicularLengthTolerances = null,
+        ToleranceScalarOptions angleBetweenVectorsTolerances,
+        ToleranceScalarOptions mutualPerpendicularLengthTolerances,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
@@ -2315,8 +2279,8 @@ public sealed partial class BriosaClient
 
     public Task SetPointsToPointsRelationshipAssociatedDataAsync(
         CollectionItemName relationshipName,
-        IEnumerable<PointName>? nominalPoints = null,
-        IEnumerable<PointName>? actualPoints = null,
+        IEnumerable<PointName> nominalPoints,
+        IEnumerable<PointName> actualPoints,
         bool ignoreEmptyArguments = true,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
@@ -2341,10 +2305,10 @@ public sealed partial class BriosaClient
 
     public Task SetRelationshipAssociatedDataAsync(
         CollectionItemName relationshipName,
-        IEnumerable<PointName>? individualPoints = null,
-        IEnumerable<CollectionObjectName>? pointGroups = null,
-        IEnumerable<CollectionObjectName>? pointClouds = null,
-        IEnumerable<CollectionObjectName>? objects = null,
+        IEnumerable<PointName> individualPoints,
+        IEnumerable<CollectionObjectName> pointGroups,
+        IEnumerable<CollectionObjectName> pointClouds,
+        IEnumerable<CollectionObjectName> objects,
         bool ignoreEmptyArguments = true,
         Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)

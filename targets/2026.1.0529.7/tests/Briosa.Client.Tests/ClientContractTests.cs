@@ -199,14 +199,26 @@ public sealed partial class ClientContractTests
                     GroupName = "Measured",
                     TargetName = "P1",
                 },
-            ]);
+            ],
+            groups:
+            [
+                new CollectionObjectName
+                {
+                    CollectionName = "Points",
+                    ObjectName = "Measured",
+                    ObjectType = ObjectType.PointGroup,
+                },
+            ],
+            clouds: [],
+            offsetDirection: OffsetDirectionType.Both);
         var filterRequest =
             Assert.IsType<Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesRequest>(
                 transport.LastOperationRequest);
-        Assert.Single(filterRequest.Points.Values);
-        Assert.Null(filterRequest.Groups);
-        Assert.Null(filterRequest.Clouds);
-        Assert.Equal("P1", filterRequest.Points.Values[0].TargetName);
+        Assert.Equal("P1", Assert.Single(filterRequest.Points.Values).TargetName);
+        Assert.Equal("Measured", Assert.Single(filterRequest.Groups.Values).ObjectName);
+        // An empty required list is sent empty, for the server to reject.
+        Assert.Empty(filterRequest.Clouds.Values);
+        Assert.Equal(Transport.OffsetDirectionType.Both, filterRequest.OffsetDirection);
     }
 
     [Fact]
