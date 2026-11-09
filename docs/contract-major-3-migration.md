@@ -186,6 +186,10 @@ these, which are now required (both targets unless noted):
   `UdpNetworkTransmitSettings`. Pass the settings to
   `RelationshipWatchWindowTemplateAsync`, where `new
   RelationshipWatchWindowUdpSettings()` sends the server's defaults.
+- `ReportOutputOptions` must name exactly one destination, `ExternalPath` or
+  `EmbeddedFile`. Naming neither now fails before any call, as naming both
+  already did, with `ArgumentException`: `report-output-destination-missing` or
+  `report-output-destination-conflict`.
 - An input the server checks only when you pass it stays optional, as do the D2
   omissions above.
 

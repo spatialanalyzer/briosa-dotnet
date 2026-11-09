@@ -252,6 +252,12 @@ public sealed partial class ClientContractTests
             return new Transform { Values = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1] };
         }
 
+        // Given report output options name exactly one destination.
+        if (type == typeof(ReportOutputOptions))
+        {
+            return new ReportOutputOptions { OutputType = ReportOutputType.SaReport, ExternalPath = "Sample" };
+        }
+
         if (type.IsEnum)
         {
             return Enum.GetValues(type)
