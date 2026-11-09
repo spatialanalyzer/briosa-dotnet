@@ -80,8 +80,11 @@ public sealed partial class ClientContractTests
         Assert.Equal(4, completion?.MpResultCode);
     }
 
-    [Fact]
-    public async Task SuccessWithoutMpExecutionDetailsIsAProtocolError()
+    // C1: every success is checked, whether or not the caller observes it.
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task SuccessWithoutMpExecutionDetailsIsAProtocolError(bool observed)
     {
         var transport = new FakeTransport
         {
@@ -96,10 +99,110 @@ public sealed partial class ClientContractTests
         var completions = new List<MpCompletion>();
 
         var failure = await Assert.ThrowsAsync<BriosaProtocolException>(
-            () => client.GetActiveCollectionNameAsync(onMpCompletion: completions.Add));
+            () => observed
+                ? client.GetActiveCollectionNameAsync(onMpCompletion: completions.Add)
+                : client.GetActiveCollectionNameAsync());
 
         Assert.Equal("mp-execution-missing", failure.DiagnosticCode);
         Assert.Empty(completions);
+    }
+
+    // C1: the worker reports success only after it reads MP code 2 (Succeeded)
+    // or 4 (PartialSuccess), and the server copies that code. A missing code,
+    // or a code that disagrees with the state, is a protocol-contract failure.
+    [Theory]
+    [InlineData(Transport.MpExecutionState.Succeeded, null, true)]
+    [InlineData(Transport.MpExecutionState.Succeeded, null, false)]
+    [InlineData(Transport.MpExecutionState.PartialSuccess, null, true)]
+    [InlineData(Transport.MpExecutionState.PartialSuccess, null, false)]
+    [InlineData(Transport.MpExecutionState.Succeeded, 4, true)]
+    [InlineData(Transport.MpExecutionState.Succeeded, 3, false)]
+    [InlineData(Transport.MpExecutionState.PartialSuccess, 2, true)]
+    [InlineData(Transport.MpExecutionState.PartialSuccess, 0, false)]
+    public async Task SuccessWhoseMpResultCodeIsMissingOrDisagreesWithItsStateIsAProtocolError(
+        Transport.MpExecutionState state,
+        int? code,
+        bool observed)
+    {
+        var execution = new Transport.MpExecutionDetails { State = state };
+        if (code is { } value)
+        {
+            execution.MpResultCode = value;
+        }
+
+        var transport = new FakeTransport
+        {
+            OperationResponse = new Transport.GetActiveCollectionNameResult
+            {
+                CurrentlyActiveCollectionName = "Inspection",
+                Execution = execution,
+            },
+        };
+        await using var client = CreateClient(new FakeServerLauncher(), transport);
+        await client.StartAsync();
+        var completions = new List<MpCompletion>();
+
+        var failure = await Assert.ThrowsAsync<BriosaProtocolException>(
+            () => observed
+                ? client.GetActiveCollectionNameAsync(onMpCompletion: completions.Add)
+                : client.GetActiveCollectionNameAsync());
+
+        Assert.Equal("mp-execution-result-code", failure.DiagnosticCode);
+        Assert.Empty(completions);
+    }
+
+    [Fact]
+    public async Task GetWorkingDirectoryRequiresTheMpResultCode()
+    {
+        var transport = new FakeTransport
+        {
+            WorkingDirectoryExecution = new Transport.MpExecutionDetails
+            {
+                State = Transport.MpExecutionState.Succeeded,
+            },
+        };
+        await using var client = CreateClient(new FakeServerLauncher(), transport);
+        await client.StartAsync();
+
+        var failure = await Assert.ThrowsAsync<BriosaProtocolException>(
+            () => client.GetWorkingDirectoryAsync());
+
+        Assert.Equal("mp-execution-result-code", failure.DiagnosticCode);
+    }
+
+    // C1: the observer runs after the execution check and before the outputs are
+    // mapped, so it reports the completion even when output mapping then fails.
+    [Fact]
+    public async Task ObserverReceivesTheCompletionEvenWhenOutputMappingFails()
+    {
+        var transport = new FakeTransport
+        {
+            OperationResponse = new Transport.GetVectorVariableResult
+            {
+                Execution = Execution(Transport.MpExecutionState.PartialSuccess, 4),
+            },
+        };
+        await using var client = CreateClient(new FakeServerLauncher(), transport);
+        await client.StartAsync();
+        var completions = new List<MpCompletion>();
+
+        var failure = await Assert.ThrowsAsync<BriosaProtocolException>(
+            () => client.GetVectorVariableAsync("Offset", onMpCompletion: completions.Add));
+
+        Assert.Equal("required-output-missing:value", failure.DiagnosticCode);
+        var completion = Assert.Single(completions);
+        Assert.Equal(MpExecutionState.PartialSuccess, completion.State);
+        Assert.Equal(4, completion.MpResultCode);
+    }
+
+    // C1: a completion always carries its MP code, so the public type says so.
+    [Fact]
+    public void MpCompletionAlwaysCarriesItsMpResultCode()
+    {
+        var property = typeof(MpCompletion).GetProperty(nameof(MpCompletion.MpResultCode))!;
+
+        Assert.Equal(typeof(int), property.PropertyType);
+        Assert.True(property.IsDefined(typeof(System.Runtime.CompilerServices.RequiredMemberAttribute), inherit: false));
     }
 
     [Theory]
