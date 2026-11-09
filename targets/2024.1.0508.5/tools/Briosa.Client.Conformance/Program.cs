@@ -392,7 +392,7 @@ static async Task AssertDeadlineAsync(BriosaClient briosa)
 {
     var exception = await RequireThrowsAsync<BriosaTransportException>(
         () => briosa.GetWorkingDirectoryAsync());
-    Require(exception.DiagnosticCode == "grpc-DeadlineExceeded",
+    Require(exception.DiagnosticCode == "transport-deadline-exceeded",
         "The caller deadline did not remain a transport outcome.");
     await Task.Delay(400);
     try
@@ -400,7 +400,7 @@ static async Task AssertDeadlineAsync(BriosaClient briosa)
         _ = await briosa.GetWorkingDirectoryAsync();
     }
     catch (BriosaTransportException recoveryException)
-        when (recoveryException.DiagnosticCode == "grpc-DeadlineExceeded")
+        when (recoveryException.DiagnosticCode == "transport-deadline-exceeded")
     {
         // If the initial deadline expired before worker dispatch, this call consumes
         // the one scripted delay. A final caller-initiated read verifies recovery.

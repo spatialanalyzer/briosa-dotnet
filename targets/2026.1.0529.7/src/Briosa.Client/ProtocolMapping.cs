@@ -174,9 +174,33 @@ internal static class ProtocolMapping
         }
 
         return new BriosaTransportException(
-            $"grpc-{exception.StatusCode}",
+            TransportDiagnosticCode(exception.StatusCode),
             exception);
     }
+
+    // A failure without a typed trailer reports `transport-` plus the gRPC status
+    // name in lower kebab case, as briosa-js and briosa-py do. Cancelled never gets
+    // here; it is OperationCanceledException above.
+    private static string TransportDiagnosticCode(StatusCode status) => status switch
+    {
+        StatusCode.OK => "transport-ok",
+        StatusCode.Unknown => "transport-unknown",
+        StatusCode.InvalidArgument => "transport-invalid-argument",
+        StatusCode.DeadlineExceeded => "transport-deadline-exceeded",
+        StatusCode.NotFound => "transport-not-found",
+        StatusCode.AlreadyExists => "transport-already-exists",
+        StatusCode.PermissionDenied => "transport-permission-denied",
+        StatusCode.ResourceExhausted => "transport-resource-exhausted",
+        StatusCode.FailedPrecondition => "transport-failed-precondition",
+        StatusCode.Aborted => "transport-aborted",
+        StatusCode.OutOfRange => "transport-out-of-range",
+        StatusCode.Unimplemented => "transport-unimplemented",
+        StatusCode.Internal => "transport-internal",
+        StatusCode.Unavailable => "transport-unavailable",
+        StatusCode.DataLoss => "transport-data-loss",
+        StatusCode.Unauthenticated => "transport-unauthenticated",
+        _ => "transport-failure",
+    };
 
     // Every successful MP result carries its execution details, checked on every
     // call whether or not the caller observes them. A success is Succeeded with
