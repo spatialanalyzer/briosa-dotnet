@@ -390,3 +390,41 @@ public sealed record WorldFixedXyzTransformVectors
     public required Vector OrientationInWorking { get; init; }
     public required double Scale { get; init; }
 }
+
+// The quick fit's result fields as they arrive on the wire (#45).
+internal sealed record QuickFitErrors
+{
+    public double RmsError { get; init; }
+    public double MaximumAbsoluteError { get; init; }
+}
+
+// GetRobotMachineModelLinkParameters' flat wire result, in field order.
+internal sealed record RobotModelLinkParameterValues
+{
+    public RobotModelLinkType LinkType { get; init; }
+    public double DhAlphaComponent { get; init; }
+    public double DhAComponent { get; init; }
+    public double DhDComponent { get; init; }
+    public double DhThetaComponent { get; init; }
+    public double DhXAxisDeflectionFactor { get; init; }
+    public double DhYAxisDeflectionFactor { get; init; }
+    public double DhZAxisDeflectionFactor { get; init; }
+    public double SixDofXComponent { get; init; }
+    public double SixDofYComponent { get; init; }
+    public double SixDofZComponent { get; init; }
+    public double SixDofRxComponent { get; init; }
+    public double SixDofRyComponent { get; init; }
+    public double SixDofRzComponent { get; init; }
+    public RobotActiveJointComponent ActiveJointComponent { get; init; }
+    public double EncoderValue { get; init; }
+    public double EncoderOffsetValue { get; init; }
+    public double MinimumEncoderLimit { get; init; }
+    public double MaximumEncoderLimit { get; init; }
+    public bool EncoderSenseNegative { get; init; }
+    public bool IncludeAdditionalEncoder { get; init; }
+    public int AdditionalEncoderIndexOffset { get; init; }
+    public bool AdditionalEncoderSenseNegative { get; init; }
+    public double SegmentOriginMassKg { get; init; }
+    public double SegmentCgMassKg { get; init; }
+    public Vector SegmentCgInSegment { get; init; } = new();
+}

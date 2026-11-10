@@ -68,7 +68,8 @@ static async Task RunScenarioAsync(string scenario)
     {
         var startOptions = scenario switch
         {
-            "control-plane-only" => new BriosaStartOptions
+            // lifecycle-cancellation drives the SDK lifecycle itself.
+            "control-plane-only" or "lifecycle-cancellation" => new BriosaStartOptions
             {
                 StartSpatialAnalyzerSdk = false,
                 LaunchSpatialAnalyzer = false,
@@ -126,6 +127,15 @@ static async Task RunScenarioAsync(string scenario)
                     briosa,
                     OperationFailureKind.OutputRetrievalFailure,
                     ExecutionDisposition.Completed);
+                break;
+            case "sdk-call-faulted":
+                await AssertSdkCallFaultedAsync(briosa);
+                break;
+            case "mp-partial-success":
+                await AssertMpPartialSuccessAsync(briosa);
+                break;
+            case "lifecycle-cancellation":
+                await AssertLifecycleCancellationAsync(briosa);
                 break;
             case "deadline":
                 await AssertDeadlineAsync(briosa);
@@ -200,12 +210,171 @@ static async Task AssertCapabilityDeniedAsync(BriosaClient briosa)
     var snapshot = await briosa.GetServerSnapshotAsync();
     Require(!snapshot.Supports(WorkingDirectoryMethod),
         "A policy-denied operation remained advertised.");
+
+    // Contract major 3: the packaged profile, each admitted capability's reviewed
+    // classification, and the diagnostic listing of denied operations.
+    Require(snapshot.AdmissionProfile == "standard",
+        "Discovery did not report the packaged standard admission profile.");
+    Require(!string.IsNullOrEmpty(snapshot.PolicyFingerprint),
+        "Discovery did not report a policy fingerprint.");
+    Require(snapshot.Operations.Count > 0 && snapshot.Operations.All(operation =>
+            operation.Admission == OperationAdmission.Admitted &&
+            operation.DurationClass is not (OperationDurationClass.Unspecified or OperationDurationClass.Unknown) &&
+            operation.ValidationStatus is not (OperationValidationStatus.Unspecified or OperationValidationStatus.Unknown)),
+        "An admitted capability lacks its reviewed classification.");
+    var denied = await briosa.GetDeniedOperationsAsync();
+    Require(denied.AdmissionProfile == snapshot.AdmissionProfile &&
+            denied.PolicyFingerprint == snapshot.PolicyFingerprint,
+        "The denied listing did not report the policy it was taken under.");
+    var workingDirectory = denied.Operations.SingleOrDefault(
+        operation => operation.FullyQualifiedMethod == WorkingDirectoryMethod);
+    Require(workingDirectory?.Admission == OperationAdmission.DeniedOverride,
+        "The denied listing did not report the override that denies the operation.");
+    Require(denied.Operations.All(operation => operation.Admission != OperationAdmission.Admitted),
+        "The denied listing reported an admitted operation.");
+    var refreshed = await briosa.GetServerSnapshotAsync();
+    Require(!refreshed.Supports(WorkingDirectoryMethod) &&
+            refreshed.PolicyFingerprint == snapshot.PolicyFingerprint,
+        "The denied listing changed the admitted capabilities.");
+
     var exception = await RequireThrowsAsync<BriosaOperationException>(
         () => briosa.GetWorkingDirectoryAsync());
     Require(exception.Kind == OperationFailureKind.PolicyDenied,
         "Policy denial did not map to the typed public error.");
     Require(exception.ExecutionDisposition == ExecutionDisposition.NotStarted,
         "Policy denial reported an invalid execution disposition.");
+}
+
+// The fake worker faults in ExecuteStep: the fault is its own kind, its phase is
+// the disposition, and the next call succeeds on the same generation.
+static async Task AssertSdkCallFaultedAsync(BriosaClient briosa)
+{
+    var exception = await RequireThrowsAsync<BriosaOperationException>(
+        () => briosa.GetWorkingDirectoryAsync());
+    Require(exception.Kind == OperationFailureKind.SdkCallFaulted &&
+            exception.DiagnosticCode == "sdk-execute-step-faulted",
+        "The SDK call fault was not reported as its own kind.");
+    Require(exception.OperationId == "file_operations.get_working_directory",
+        "The operation identity was not preserved.");
+    Require(exception.ExecutionDisposition == ExecutionDisposition.StartedOutcomeUnknown &&
+            exception.RecoveryGuidance == RecoveryGuidance.None &&
+            exception.ReplayGuidance == ReplayGuidance.ReconcileBeforeReplay,
+        "The SDK call fault phase or guidance was not preserved.");
+    Require(exception.MpExecution is { State: MpExecutionState.ResultUnavailable, MpResultCode: null },
+        "The SDK call fault's MP execution details were not preserved.");
+    _ = await briosa.GetWorkingDirectoryAsync();
+}
+
+// MP code 4 is a success with its output, and each call observes its own MP
+// completion. The third call's output is unavailable: the typed failure keeps
+// PartialSuccess and the code.
+static async Task AssertMpPartialSuccessAsync(BriosaClient briosa)
+{
+    var completions = new List<MpCompletion>();
+    var directory = await briosa.GetWorkingDirectoryAsync(onMpCompletion: completions.Add);
+    Require(!string.IsNullOrEmpty(directory) &&
+            completions is [{ State: MpExecutionState.PartialSuccess, MpResultCode: 4 }],
+        "The partial success was not returned with its MP completion.");
+
+    completions.Clear();
+    directory = await briosa.GetWorkingDirectoryAsync(onMpCompletion: completions.Add);
+    Require(!string.IsNullOrEmpty(directory) &&
+            completions is [{ State: MpExecutionState.Succeeded, MpResultCode: 2 }],
+        "The full success did not report its own MP completion.");
+
+    completions.Clear();
+    var exception = await RequireThrowsAsync<BriosaOperationException>(
+        () => briosa.GetWorkingDirectoryAsync(onMpCompletion: completions.Add));
+    Require(exception.Kind == OperationFailureKind.OutputRetrievalFailure &&
+            exception.ExecutionDisposition == ExecutionDisposition.Completed &&
+            exception.ReplayGuidance == ReplayGuidance.DoNotReplay,
+        "The output failure after partial success was not preserved.");
+    var keptPartialSuccess = exception.MpExecution is
+    {
+        State: MpExecutionState.PartialSuccess,
+        MpResultCode: 4,
+        OutputRetrievals: [{ State: OutputRetrievalState.Failed }],
+    };
+    Require(keptPartialSuccess, "The typed failure did not keep the partial success.");
+    Require(completions.Count == 0, "A failed call reported an MP completion.");
+}
+
+// An accepted Connect continues after its caller stops waiting (briosa#305).
+static async Task AssertLifecycleCancellationAsync(BriosaClient briosa)
+{
+    var application = await briosa.GetSpatialAnalyzerStateAsync();
+    var externalRunning = application is
+    {
+        ApplicationState: SpatialAnalyzerApplicationState.Running,
+        Ownership: SpatialAnalyzerOwnership.External,
+        ApplicationGeneration: not null,
+    };
+    Require(externalRunning, "The external application is not running.");
+    var started = await briosa.StartSpatialAnalyzerSdkAsync();
+    var startedDisconnected = started is
+    {
+        SdkState: SpatialAnalyzerSdkState.Running,
+        ConnectionState: SpatialAnalyzerConnectionState.Disconnected,
+        SdkGeneration: not null,
+        ReadyForMp: false,
+    };
+    Require(startedDisconnected, "The SDK did not start disconnected.");
+    var generation = started.SdkGeneration;
+
+    // 1. The caller stops waiting after about a second, which surfaces as .NET
+    //    cancellation. The client invents no disposition and does not retry.
+    using (var deadline = new CancellationTokenSource(TimeSpan.FromSeconds(1)))
+    {
+        await RequireThrowsAsync<OperationCanceledException>(
+            () => briosa.ConnectToSpatialAnalyzerAsync(deadline.Token));
+    }
+
+    // 2. The accepted Connect still runs, so a second one is a transition in progress.
+    var inProgress = await RequireThrowsAsync<BriosaSpatialAnalyzerSdkException>(
+        () => briosa.ConnectToSpatialAnalyzerAsync());
+    Require(inProgress.Kind == SpatialAnalyzerSdkLifecycleFailureKind.StateConflict &&
+            inProgress.DiagnosticCode == "sdk-lifecycle-transition-in-progress" &&
+            inProgress.RecoveryGuidance == LifecycleRecoveryGuidance.RefreshState,
+        "The concurrent Connect was not a transition in progress.");
+    Require(inProgress.State.SdkGeneration == generation &&
+            inProgress.State.SdkState is SpatialAnalyzerSdkState.Connecting or SpatialAnalyzerSdkState.Verifying,
+        "The transition in progress reported another generation or phase.");
+
+    // 3. Refreshing SDK state shows the same generation ready, with no incident.
+    var ready = await WaitForSdkAsync(
+        briosa,
+        state =>
+        {
+            Require(state.SdkGeneration == generation, "The detached Connect changed the SDK generation.");
+            Require(state.SdkState is SpatialAnalyzerSdkState.Connecting or
+                    SpatialAnalyzerSdkState.Verifying or SpatialAnalyzerSdkState.Ready,
+                "The detached Connect ended unready.");
+            return state.SdkState == SpatialAnalyzerSdkState.Ready;
+        },
+        TimeSpan.FromSeconds(20));
+    var readyOnExternal = ready is
+    {
+        ReadyForMp: true,
+        ConnectionState: SpatialAnalyzerConnectionState.Connected,
+        ExecutionReadinessState: SpatialAnalyzerExecutionReadinessState.ExecutionReady,
+        RecoveryState: SpatialAnalyzerSdkRecoveryState.NotRequired,
+        LastIncident: null,
+    } && ready.ApplicationGeneration == application.ApplicationGeneration;
+    Require(readyOnExternal, "The detached Connect did not finish ready on the external application.");
+
+    // 4. MP work runs on that generation once discovery is refreshed too.
+    Require((await briosa.GetServerSnapshotAsync()).ReadyForMp,
+        "Discovery did not report MP readiness after the detached Connect.");
+    _ = await briosa.GetWorkingDirectoryAsync();
+
+    // 5. A clean stop leaves the external application running.
+    var stopped = await briosa.StopSpatialAnalyzerSdkAsync();
+    var after = await briosa.GetSpatialAnalyzerStateAsync();
+    Require(stopped.SdkState == SpatialAnalyzerSdkState.Stopped && !stopped.ReadyForMp &&
+            after.ApplicationState == SpatialAnalyzerApplicationState.Running &&
+            after.Ownership == SpatialAnalyzerOwnership.External &&
+            after.ApplicationGeneration == application.ApplicationGeneration,
+        "The SDK stop did not leave the external application running.");
 }
 
 static async Task AssertOperationFailureAsync(
@@ -226,7 +395,7 @@ static async Task AssertDeadlineAsync(BriosaClient briosa)
 {
     var exception = await RequireThrowsAsync<BriosaTransportException>(
         () => briosa.GetWorkingDirectoryAsync());
-    Require(exception.DiagnosticCode == "grpc-DeadlineExceeded",
+    Require(exception.DiagnosticCode == "transport-deadline-exceeded",
         "The caller deadline did not remain a transport outcome.");
     await Task.Delay(400);
     try
@@ -234,7 +403,7 @@ static async Task AssertDeadlineAsync(BriosaClient briosa)
         _ = await briosa.GetWorkingDirectoryAsync();
     }
     catch (BriosaTransportException recoveryException)
-        when (recoveryException.DiagnosticCode == "grpc-DeadlineExceeded")
+        when (recoveryException.DiagnosticCode == "transport-deadline-exceeded")
     {
         // If the initial deadline expired before worker dispatch, this call consumes
         // the one scripted delay. A final caller-initiated read verifies recovery.
@@ -247,7 +416,7 @@ static async Task AssertCancellationAsync(BriosaClient briosa)
 {
     using var cancellation = new CancellationTokenSource(TimeSpan.FromMilliseconds(50));
     await RequireThrowsAsync<OperationCanceledException>(
-        () => briosa.GetWorkingDirectoryAsync(cancellation.Token));
+        () => briosa.GetWorkingDirectoryAsync(cancellationToken: cancellation.Token));
     _ = await briosa.GetWorkingDirectoryAsync();
 }
 
@@ -304,9 +473,10 @@ static async Task RecoverAndReconnectAsync(BriosaClient briosa)
 
 static async Task<SpatialAnalyzerSdkLifecycleState> WaitForSdkAsync(
     BriosaClient briosa,
-    Func<SpatialAnalyzerSdkLifecycleState, bool> predicate)
+    Func<SpatialAnalyzerSdkLifecycleState, bool> predicate,
+    TimeSpan? limit = null)
 {
-    using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+    using var timeout = new CancellationTokenSource(limit ?? TimeSpan.FromSeconds(10));
     while (true)
     {
         timeout.Token.ThrowIfCancellationRequested();

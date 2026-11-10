@@ -30,15 +30,36 @@ internal static class ProtocolMapping
             ConnectionState = ConvertEnum<SpatialAnalyzerConnectionState>(serverInfo.SpatialAnalyzerConnectionState, "connection-state"),
             ExecutionReadinessState = ConvertEnum<SpatialAnalyzerExecutionReadinessState>(serverInfo.SpatialAnalyzerExecutionReadinessState, "execution-readiness-state"),
             TargetIsolationMode = ConvertEnum<TargetIsolationMode>(serverInfo.TargetIsolationMode, "target-isolation-mode"),
-            Operations = capabilities.Operations.Select(item => new BriosaOperationCapability
-            {
-                OperationId = item.OperationId,
-                GrpcService = item.GrpcService,
-                Rpc = item.Rpc,
-                FullyQualifiedMethod = item.FullyQualifiedMethod,
-            }).ToArray(),
+            AdmissionProfile = capabilities.AdmissionProfile,
+            PolicyFingerprint = capabilities.PolicyFingerprint,
+            Operations = capabilities.Operations.Select(MapCapability).ToArray(),
         };
     }
+
+    // The include_denied listing, already validated for identity: only the
+    // entries whose server-reported admission is not Admitted.
+    public static BriosaDeniedOperationListing MapDeniedCapabilities(
+        Transport.ListCapabilitiesResponse capabilities) => new()
+        {
+            AdmissionProfile = capabilities.AdmissionProfile,
+            PolicyFingerprint = capabilities.PolicyFingerprint,
+            Operations = capabilities.Operations
+                .Select(MapCapability)
+                .Where(item => item.Admission != OperationAdmission.Admitted)
+                .ToArray(),
+        };
+
+    private static BriosaOperationCapability MapCapability(Transport.OperationCapability item) => new()
+    {
+        OperationId = item.OperationId,
+        GrpcService = item.GrpcService,
+        Rpc = item.Rpc,
+        FullyQualifiedMethod = item.FullyQualifiedMethod,
+        RiskFlags = item.RiskFlags.Select(flag => ConvertOrUnknown<OperationRiskFlag>(flag)).Distinct().ToArray(),
+        DurationClass = ConvertOrUnknown<OperationDurationClass>(item.DurationClass),
+        ValidationStatus = ConvertOrUnknown<OperationValidationStatus>(item.ValidationStatus),
+        Admission = ConvertOrUnknown<OperationAdmission>(item.Admission),
+    };
 
     public static SpatialAnalyzerLifecycleState MapApplicationState(
         Transport.SpatialAnalyzerLifecycleState state)
@@ -150,13 +171,85 @@ internal static class ProtocolMapping
                 ConvertEnum<RecoveryGuidance>(operationError.RecoveryGuidance, "recovery-guidance"),
                 ConvertEnum<ReplayGuidance>(operationError.ReplayGuidance, "replay-guidance"),
                 ConvertEnum<ReplaySafety>(operationError.ReplaySafety, "replay-safety"),
-                exception);
+                exception,
+                operationError.MpExecution is null
+                    ? null
+                    : MapMpExecution(operationError.MpExecution));
         }
 
         return new BriosaTransportException(
-            $"grpc-{exception.StatusCode}",
+            TransportDiagnosticCode(exception.StatusCode),
             exception);
     }
+
+    // A failure without a typed trailer reports `transport-` plus the gRPC status
+    // name in lower kebab case, as briosa-js and briosa-py do. Cancelled never gets
+    // here; it is OperationCanceledException above.
+    private static string TransportDiagnosticCode(StatusCode status) => status switch
+    {
+        StatusCode.OK => "transport-ok",
+        StatusCode.Unknown => "transport-unknown",
+        StatusCode.InvalidArgument => "transport-invalid-argument",
+        StatusCode.DeadlineExceeded => "transport-deadline-exceeded",
+        StatusCode.NotFound => "transport-not-found",
+        StatusCode.AlreadyExists => "transport-already-exists",
+        StatusCode.PermissionDenied => "transport-permission-denied",
+        StatusCode.ResourceExhausted => "transport-resource-exhausted",
+        StatusCode.FailedPrecondition => "transport-failed-precondition",
+        StatusCode.Aborted => "transport-aborted",
+        StatusCode.OutOfRange => "transport-out-of-range",
+        StatusCode.Unimplemented => "transport-unimplemented",
+        StatusCode.Internal => "transport-internal",
+        StatusCode.Unavailable => "transport-unavailable",
+        StatusCode.DataLoss => "transport-data-loss",
+        StatusCode.Unauthenticated => "transport-unauthenticated",
+        _ => "transport-failure",
+    };
+
+    // Every successful MP result carries its execution details, checked on every
+    // call whether or not the caller observes them. A success is Succeeded with
+    // MP code 2 or PartialSuccess with MP code 4: the worker reports success only
+    // after it reads one of those codes, and the server copies it. Anything else
+    // is protocol drift.
+    public static MpCompletion MapMpCompletion(IMessage response)
+    {
+        ArgumentNullException.ThrowIfNull(response);
+        if (response.Descriptor.FindFieldByName("execution")?.Accessor.GetValue(response)
+            is not Transport.MpExecutionDetails execution)
+        {
+            throw new BriosaProtocolException("mp-execution-missing");
+        }
+
+        var state = ConvertEnum<MpExecutionState>(execution.State, "mp-execution-state");
+        if (state is not (MpExecutionState.Succeeded or MpExecutionState.PartialSuccess))
+        {
+            throw new BriosaProtocolException("mp-execution-state");
+        }
+
+        var expectedCode = state == MpExecutionState.Succeeded ? 2 : 4;
+        if (!execution.HasMpResultCode || execution.MpResultCode != expectedCode)
+        {
+            throw new BriosaProtocolException("mp-execution-result-code");
+        }
+
+        return new MpCompletion
+        {
+            State = state,
+            MpResultCode = execution.MpResultCode,
+        };
+    }
+
+    private static MpExecutionDetails MapMpExecution(Transport.MpExecutionDetails execution) => new()
+    {
+        State = ConvertEnum<MpExecutionState>(execution.State, "mp-execution-state"),
+        MpResultCode = execution.HasMpResultCode ? execution.MpResultCode : null,
+        OutputRetrievals = execution.OutputRetrievals.Select(item => new OutputRetrieval
+        {
+            FieldName = item.FieldName,
+            State = ConvertEnum<OutputRetrievalState>(item.State, "output-retrieval-state"),
+            DiagnosticCode = item.HasDiagnosticCode ? item.DiagnosticCode : null,
+        }).ToArray(),
+    };
 
     private static SpatialAnalyzerSdkIncident MapIncident(
         Transport.SpatialAnalyzerSdkIncident incident) => new()
@@ -192,6 +285,19 @@ internal static class ProtocolMapping
         }
 
         return converted;
+    }
+
+    // Discovery classification enums gain values in later revisions. An unknown
+    // value maps to the enum's Unknown member (-1) instead of failing discovery.
+    private static TPublic ConvertOrUnknown<TPublic>(Enum value)
+        where TPublic : struct, Enum
+    {
+        const int Unknown = -1;
+        var number = Convert.ToInt32(value, CultureInfo.InvariantCulture);
+        var converted = (TPublic)Enum.ToObject(typeof(TPublic), number);
+        return number != Unknown && Enum.IsDefined(converted)
+            ? converted
+            : (TPublic)Enum.ToObject(typeof(TPublic), Unknown);
     }
 
     private static bool TryParseTrailer<T>(

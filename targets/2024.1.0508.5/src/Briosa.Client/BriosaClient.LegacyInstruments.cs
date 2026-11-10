@@ -9,6 +9,7 @@ public sealed partial class BriosaClient
         CollectionName collection,
         string cribSheetName,
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -21,13 +22,14 @@ public sealed partial class BriosaClient
             });
         return InvokeOperationAsync(
             "briosa.InstrumentOperations", "RunCribSheet", request,
-            Transport.RunCribSheetResult.Parser, cancellationToken);
+            Transport.RunCribSheetResult.Parser, onMpCompletion, cancellationToken);
     }
 
     /// <summary>Projects the supplied objects using the selected instrument (Project Objects).</summary>
     public Task ProjectObjectsAsync(
         CollectionInstrumentId instrument,
         IEnumerable<CollectionObjectName> objectsToProject,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -39,12 +41,13 @@ public sealed partial class BriosaClient
             });
         return InvokeOperationAsync(
             "briosa.InstrumentOperations", "ProjectObjects", request,
-            Transport.ProjectObjectsResult.Parser, cancellationToken);
+            Transport.ProjectObjectsResult.Parser, onMpCompletion, cancellationToken);
     }
 
     /// <summary>Stops projection on the selected instrument (Stop Projection).</summary>
     public Task StopProjectionAsync(
         CollectionInstrumentId instrument,
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         var request = OperationProtocolMapper.BuildRequest(
@@ -52,6 +55,6 @@ public sealed partial class BriosaClient
             new Dictionary<string, object?> { ["instrument"] = instrument });
         return InvokeOperationAsync(
             "briosa.InstrumentOperations", "StopProjection", request,
-            Transport.StopProjectionResult.Parser, cancellationToken);
+            Transport.StopProjectionResult.Parser, onMpCompletion, cancellationToken);
     }
 }

@@ -271,7 +271,12 @@ public sealed class StartupBudgetTests
             return Sdk();
         }
 
-        public Task<string> GetWorkingDirectoryAsync(
+        public Task<Transport.ListCapabilitiesResponse> ListCapabilitiesAsync(
+            bool includeDenied,
+            CancellationToken cancellationToken) =>
+            throw new NotSupportedException();
+
+        public Task<Transport.GetWorkingDirectoryResult> GetWorkingDirectoryAsync(
             TimeSpan? timeout,
             CancellationToken cancellationToken) =>
             throw new NotSupportedException();
@@ -355,7 +360,7 @@ public sealed class StartupBudgetTests
                     : Transport.SpatialAnalyzerExecutionReadinessState.Unverified,
                 ReadyForMp = ready,
                 TargetIsolationMode = Transport.TargetIsolationMode.SingleTenant,
-                Compatibility = new Transport.CompatibilityContract { Major = 2 },
+                Compatibility = new Transport.CompatibilityContract { Major = 3 },
             };
             var capabilities = new Transport.ListCapabilitiesResponse
             {

@@ -144,6 +144,34 @@ public sealed partial class BriosaClient : IAsyncDisposable
             },
             cancellationToken);
 
+    /// <summary>
+    /// Lists the operations that the server's active policy denies, each with the
+    /// precedence step that denied it, together with the admission profile and
+    /// the policy fingerprint the listing was taken under. This is a diagnostic
+    /// listing: it never changes the admitted operations of
+    /// <see cref="GetServerSnapshotAsync"/>, and a denied operation stays denied
+    /// by the server when called.
+    /// </summary>
+    public Task<BriosaDeniedOperationListing> GetDeniedOperationsAsync(
+        CancellationToken cancellationToken = default) =>
+        RunLifecycleAsync(
+            async (session, token) =>
+            {
+                try
+                {
+                    var capabilities = await session.Transport
+                        .ListCapabilitiesAsync(includeDenied: true, token)
+                        .ConfigureAwait(false);
+                    BriosaProtocolCompatibility.ValidateCapabilities(capabilities);
+                    return ProtocolMapping.MapDeniedCapabilities(capabilities);
+                }
+                catch (RpcException exception)
+                {
+                    throw ProtocolMapping.MapRpcException(exception, token);
+                }
+            },
+            cancellationToken);
+
     /// <summary>Reads current SpatialAnalyzer application and ownership state.</summary>
     public Task<SpatialAnalyzerLifecycleState> GetSpatialAnalyzerStateAsync(
         CancellationToken cancellationToken = default) =>
@@ -297,7 +325,10 @@ public sealed partial class BriosaClient : IAsyncDisposable
             cancellationToken);
 
     /// <summary>Executes Get Working Directory once. The client never retries it.</summary>
+    /// <param name="onMpCompletion">Receives how the MP command completed when the call succeeds.</param>
+    /// <param name="cancellationToken">Cancels the client wait for the operation.</param>
     public async Task<string> GetWorkingDirectoryAsync(
+        Action<MpCompletion>? onMpCompletion = null,
         CancellationToken cancellationToken = default)
     {
         ClientSession session;
@@ -323,10 +354,15 @@ public sealed partial class BriosaClient : IAsyncDisposable
 
         try
         {
-            return await session.Transport.GetWorkingDirectoryAsync(
+            var response = await session.Transport.GetWorkingDirectoryAsync(
                     _options.CommandTimeout,
                     cancellationToken)
                 .ConfigureAwait(false);
+            var completion = ProtocolMapping.MapMpCompletion(response);
+            onMpCompletion?.Invoke(completion);
+            return response.HasDirectory
+                ? response.Directory
+                : throw new BriosaProtocolException("working-directory-missing");
         }
         catch (RpcException exception)
         {

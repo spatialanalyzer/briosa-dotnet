@@ -138,10 +138,6 @@ namespace Briosa.Client.Transport {
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.DeleteCloudPointsByRadialDistanceFromPointsResult> __Marshaller_briosa_DeleteCloudPointsByRadialDistanceFromPointsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.DeleteCloudPointsByRadialDistanceFromPointsResult.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeRequest> __Marshaller_briosa_DeleteCloudPointsByXYZRangeRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeResult> __Marshaller_briosa_DeleteCloudPointsByXYZRangeResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeResult.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.GenerateGeneralMeshRequest> __Marshaller_briosa_GenerateGeneralMeshRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GenerateGeneralMeshRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.GenerateGeneralMeshResult> __Marshaller_briosa_GenerateGeneralMeshResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GenerateGeneralMeshResult.Parser));
@@ -341,14 +337,6 @@ namespace Briosa.Client.Transport {
         "DeleteCloudPointsByRadialDistanceFromPoints",
         __Marshaller_briosa_DeleteCloudPointsByRadialDistanceFromPointsRequest,
         __Marshaller_briosa_DeleteCloudPointsByRadialDistanceFromPointsResult);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeRequest, global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeResult> __Method_DeleteCloudPointsByXYZRange = new grpc::Method<global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeRequest, global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeResult>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "DeleteCloudPointsByXYZRange",
-        __Marshaller_briosa_DeleteCloudPointsByXYZRangeRequest,
-        __Marshaller_briosa_DeleteCloudPointsByXYZRangeResult);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Briosa.Client.Transport.GenerateGeneralMeshRequest, global::Briosa.Client.Transport.GenerateGeneralMeshResult> __Method_GenerateGeneralMesh = new grpc::Method<global::Briosa.Client.Transport.GenerateGeneralMeshRequest, global::Briosa.Client.Transport.GenerateGeneralMeshResult>(
@@ -874,26 +862,6 @@ namespace Briosa.Client.Transport {
       public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.DeleteCloudPointsByRadialDistanceFromPointsResult> DeleteCloudPointsByRadialDistanceFromPointsAsync(global::Briosa.Client.Transport.DeleteCloudPointsByRadialDistanceFromPointsRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_DeleteCloudPointsByRadialDistanceFromPoints, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeResult DeleteCloudPointsByXYZRange(global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return DeleteCloudPointsByXYZRange(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeResult DeleteCloudPointsByXYZRange(global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_DeleteCloudPointsByXYZRange, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeResult> DeleteCloudPointsByXYZRangeAsync(global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return DeleteCloudPointsByXYZRangeAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeResult> DeleteCloudPointsByXYZRangeAsync(global::Briosa.Client.Transport.DeleteCloudPointsByXYZRangeRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_DeleteCloudPointsByXYZRange, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Briosa.Client.Transport.GenerateGeneralMeshResult GenerateGeneralMesh(global::Briosa.Client.Transport.GenerateGeneralMeshRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))

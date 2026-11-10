@@ -50,10 +50,6 @@ namespace Briosa.Client.Transport {
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.GetActiveCollectionNameResult> __Marshaller_briosa_GetActiveCollectionNameResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.GetActiveCollectionNameResult.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.AddCollectionInstrumentsToRefListWildcardSelectionRequest> __Marshaller_briosa_AddCollectionInstrumentsToRefListWildcardSelectionRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.AddCollectionInstrumentsToRefListWildcardSelectionRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.AddCollectionInstrumentsToRefListWildcardSelectionResult> __Marshaller_briosa_AddCollectionInstrumentsToRefListWildcardSelectionResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.AddCollectionInstrumentsToRefListWildcardSelectionResult.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.AddSurfaceToMeshOffsetAlongReferenceDirectionRequest> __Marshaller_briosa_AddSurfaceToMeshOffsetAlongReferenceDirectionRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.AddSurfaceToMeshOffsetAlongReferenceDirectionRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.AddSurfaceToMeshOffsetAlongReferenceDirectionResult> __Marshaller_briosa_AddSurfaceToMeshOffsetAlongReferenceDirectionResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.AddSurfaceToMeshOffsetAlongReferenceDirectionResult.Parser));
@@ -113,10 +109,6 @@ namespace Briosa.Client.Transport {
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.ConstructCirclesFromSurfaceFacesRuntimeSelectRequest> __Marshaller_briosa_ConstructCirclesFromSurfaceFacesRuntimeSelectRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ConstructCirclesFromSurfaceFacesRuntimeSelectRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.ConstructCirclesFromSurfaceFacesRuntimeSelectResult> __Marshaller_briosa_ConstructCirclesFromSurfaceFacesRuntimeSelectResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ConstructCirclesFromSurfaceFacesRuntimeSelectResult.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ConstructCirclesLinesFromSurfacesRequest> __Marshaller_briosa_ConstructCirclesLinesFromSurfacesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ConstructCirclesLinesFromSurfacesRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ConstructCirclesLinesFromSurfacesResult> __Marshaller_briosa_ConstructCirclesLinesFromSurfacesResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ConstructCirclesLinesFromSurfacesResult.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.ConstructCollectionRequest> __Marshaller_briosa_ConstructCollectionRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ConstructCollectionRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
@@ -470,10 +462,6 @@ namespace Briosa.Client.Transport {
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.ConstructPointsWildcardSelectionResult> __Marshaller_briosa_ConstructPointsWildcardSelectionResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ConstructPointsWildcardSelectionResult.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ConstructPolygonizedSurfaceFromPointCloudsRequest> __Marshaller_briosa_ConstructPolygonizedSurfaceFromPointCloudsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ConstructPolygonizedSurfaceFromPointCloudsRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.ConstructPolygonizedSurfaceFromPointCloudsResult> __Marshaller_briosa_ConstructPolygonizedSurfaceFromPointCloudsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ConstructPolygonizedSurfaceFromPointCloudsResult.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.ConstructScaleBarRequest> __Marshaller_briosa_ConstructScaleBarRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ConstructScaleBarRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.ConstructScaleBarResult> __Marshaller_briosa_ConstructScaleBarResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.ConstructScaleBarResult.Parser));
@@ -718,10 +706,6 @@ namespace Briosa.Client.Transport {
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.InvertTransformResult> __Marshaller_briosa_InvertTransformResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.InvertTransformResult.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeCalloutViewRefListWildcardSelectionRequest> __Marshaller_briosa_MakeCalloutViewRefListWildcardSelectionRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeCalloutViewRefListWildcardSelectionRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeCalloutViewRefListWildcardSelectionResult> __Marshaller_briosa_MakeCalloutViewRefListWildcardSelectionResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeCalloutViewRefListWildcardSelectionResult.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeCollectionInstrumentIdRuntimeSelectRequest> __Marshaller_briosa_MakeCollectionInstrumentIdRuntimeSelectRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeCollectionInstrumentIdRuntimeSelectRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeCollectionInstrumentIdRuntimeSelectResult> __Marshaller_briosa_MakeCollectionInstrumentIdRuntimeSelectResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeCollectionInstrumentIdRuntimeSelectResult.Parser));
@@ -765,10 +749,6 @@ namespace Briosa.Client.Transport {
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeCollectionObjectNameRuntimeSelectRequest> __Marshaller_briosa_MakeCollectionObjectNameRuntimeSelectRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeCollectionObjectNameRuntimeSelectRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeCollectionObjectNameRuntimeSelectResult> __Marshaller_briosa_MakeCollectionObjectNameRuntimeSelectResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeCollectionObjectNameRuntimeSelectResult.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectRequest> __Marshaller_briosa_MakeCollectionVectorGroupNameRefListRuntimeSelectRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectResult> __Marshaller_briosa_MakeCollectionVectorGroupNameRefListRuntimeSelectResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectResult.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeEventRefListWildcardSelectionRequest> __Marshaller_briosa_MakeEventRefListWildcardSelectionRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeEventRefListWildcardSelectionRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
@@ -830,17 +810,9 @@ namespace Briosa.Client.Transport {
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeVectorNameRefListFromVectorGroupResult> __Marshaller_briosa_MakeVectorNameRefListFromVectorGroupResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeVectorNameRefListFromVectorGroupResult.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeVectorNameRefListRuntimeSelectRequest> __Marshaller_briosa_MakeVectorNameRefListRuntimeSelectRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeVectorNameRefListRuntimeSelectRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeVectorNameRefListRuntimeSelectResult> __Marshaller_briosa_MakeVectorNameRefListRuntimeSelectResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeVectorNameRefListRuntimeSelectResult.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeVectorNamesUniqueInVectorGroupRequest> __Marshaller_briosa_MakeVectorNamesUniqueInVectorGroupRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeVectorNamesUniqueInVectorGroupRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.MakeVectorNamesUniqueInVectorGroupResult> __Marshaller_briosa_MakeVectorNamesUniqueInVectorGroupResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MakeVectorNamesUniqueInVectorGroupResult.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MirrorObjectsRequest> __Marshaller_briosa_MirrorObjectsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MirrorObjectsRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.MirrorObjectsResult> __Marshaller_briosa_MirrorObjectsResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MirrorObjectsResult.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.MoveObjectsPointToPointDeltaRequest> __Marshaller_briosa_MoveObjectsPointToPointDeltaRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.MoveObjectsPointToPointDeltaRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
@@ -873,10 +845,6 @@ namespace Briosa.Client.Transport {
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.RenamePointsWithNamePatternRequest> __Marshaller_briosa_RenamePointsWithNamePatternRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.RenamePointsWithNamePatternRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.RenamePointsWithNamePatternResult> __Marshaller_briosa_RenamePointsWithNamePatternResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.RenamePointsWithNamePatternResult.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetCalloutViewPropertiesRequest> __Marshaller_briosa_SetCalloutViewPropertiesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetCalloutViewPropertiesRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetCalloutViewPropertiesResult> __Marshaller_briosa_SetCalloutViewPropertiesResult = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetCalloutViewPropertiesResult.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Briosa.Client.Transport.SetCollectionInstrumentRefListVariableRequest> __Marshaller_briosa_SetCollectionInstrumentRefListVariableRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Briosa.Client.Transport.SetCollectionInstrumentRefListVariableRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
@@ -913,14 +881,6 @@ namespace Briosa.Client.Transport {
         "GetActiveCollectionName",
         __Marshaller_briosa_GetActiveCollectionNameRequest,
         __Marshaller_briosa_GetActiveCollectionNameResult);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Briosa.Client.Transport.AddCollectionInstrumentsToRefListWildcardSelectionRequest, global::Briosa.Client.Transport.AddCollectionInstrumentsToRefListWildcardSelectionResult> __Method_AddCollectionInstrumentsToRefListWildcardSelection = new grpc::Method<global::Briosa.Client.Transport.AddCollectionInstrumentsToRefListWildcardSelectionRequest, global::Briosa.Client.Transport.AddCollectionInstrumentsToRefListWildcardSelectionResult>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "AddCollectionInstrumentsToRefListWildcardSelection",
-        __Marshaller_briosa_AddCollectionInstrumentsToRefListWildcardSelectionRequest,
-        __Marshaller_briosa_AddCollectionInstrumentsToRefListWildcardSelectionResult);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Briosa.Client.Transport.AddSurfaceToMeshOffsetAlongReferenceDirectionRequest, global::Briosa.Client.Transport.AddSurfaceToMeshOffsetAlongReferenceDirectionResult> __Method_AddSurfaceToMeshOffsetAlongReferenceDirection = new grpc::Method<global::Briosa.Client.Transport.AddSurfaceToMeshOffsetAlongReferenceDirectionRequest, global::Briosa.Client.Transport.AddSurfaceToMeshOffsetAlongReferenceDirectionResult>(
@@ -1041,14 +1001,6 @@ namespace Briosa.Client.Transport {
         "ConstructCirclesFromSurfaceFacesRuntimeSelect",
         __Marshaller_briosa_ConstructCirclesFromSurfaceFacesRuntimeSelectRequest,
         __Marshaller_briosa_ConstructCirclesFromSurfaceFacesRuntimeSelectResult);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Briosa.Client.Transport.ConstructCirclesLinesFromSurfacesRequest, global::Briosa.Client.Transport.ConstructCirclesLinesFromSurfacesResult> __Method_ConstructCirclesLinesFromSurfaces = new grpc::Method<global::Briosa.Client.Transport.ConstructCirclesLinesFromSurfacesRequest, global::Briosa.Client.Transport.ConstructCirclesLinesFromSurfacesResult>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "ConstructCirclesLinesFromSurfaces",
-        __Marshaller_briosa_ConstructCirclesLinesFromSurfacesRequest,
-        __Marshaller_briosa_ConstructCirclesLinesFromSurfacesResult);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Briosa.Client.Transport.ConstructCollectionRequest, global::Briosa.Client.Transport.ConstructCollectionResult> __Method_ConstructCollection = new grpc::Method<global::Briosa.Client.Transport.ConstructCollectionRequest, global::Briosa.Client.Transport.ConstructCollectionResult>(
@@ -1755,14 +1707,6 @@ namespace Briosa.Client.Transport {
         __Marshaller_briosa_ConstructPointsWildcardSelectionResult);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Briosa.Client.Transport.ConstructPolygonizedSurfaceFromPointCloudsRequest, global::Briosa.Client.Transport.ConstructPolygonizedSurfaceFromPointCloudsResult> __Method_ConstructPolygonizedSurfaceFromPointClouds = new grpc::Method<global::Briosa.Client.Transport.ConstructPolygonizedSurfaceFromPointCloudsRequest, global::Briosa.Client.Transport.ConstructPolygonizedSurfaceFromPointCloudsResult>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "ConstructPolygonizedSurfaceFromPointClouds",
-        __Marshaller_briosa_ConstructPolygonizedSurfaceFromPointCloudsRequest,
-        __Marshaller_briosa_ConstructPolygonizedSurfaceFromPointCloudsResult);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Briosa.Client.Transport.ConstructScaleBarRequest, global::Briosa.Client.Transport.ConstructScaleBarResult> __Method_ConstructScaleBar = new grpc::Method<global::Briosa.Client.Transport.ConstructScaleBarRequest, global::Briosa.Client.Transport.ConstructScaleBarResult>(
         grpc::MethodType.Unary,
         __ServiceName,
@@ -2251,14 +2195,6 @@ namespace Briosa.Client.Transport {
         __Marshaller_briosa_InvertTransformResult);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Briosa.Client.Transport.MakeCalloutViewRefListWildcardSelectionRequest, global::Briosa.Client.Transport.MakeCalloutViewRefListWildcardSelectionResult> __Method_MakeCalloutViewRefListWildcardSelection = new grpc::Method<global::Briosa.Client.Transport.MakeCalloutViewRefListWildcardSelectionRequest, global::Briosa.Client.Transport.MakeCalloutViewRefListWildcardSelectionResult>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "MakeCalloutViewRefListWildcardSelection",
-        __Marshaller_briosa_MakeCalloutViewRefListWildcardSelectionRequest,
-        __Marshaller_briosa_MakeCalloutViewRefListWildcardSelectionResult);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Briosa.Client.Transport.MakeCollectionInstrumentIdRuntimeSelectRequest, global::Briosa.Client.Transport.MakeCollectionInstrumentIdRuntimeSelectResult> __Method_MakeCollectionInstrumentIdRuntimeSelect = new grpc::Method<global::Briosa.Client.Transport.MakeCollectionInstrumentIdRuntimeSelectRequest, global::Briosa.Client.Transport.MakeCollectionInstrumentIdRuntimeSelectResult>(
         grpc::MethodType.Unary,
         __ServiceName,
@@ -2345,14 +2281,6 @@ namespace Briosa.Client.Transport {
         "MakeCollectionObjectNameRuntimeSelect",
         __Marshaller_briosa_MakeCollectionObjectNameRuntimeSelectRequest,
         __Marshaller_briosa_MakeCollectionObjectNameRuntimeSelectResult);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Briosa.Client.Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectRequest, global::Briosa.Client.Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectResult> __Method_MakeCollectionVectorGroupNameRefListRuntimeSelect = new grpc::Method<global::Briosa.Client.Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectRequest, global::Briosa.Client.Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectResult>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "MakeCollectionVectorGroupNameRefListRuntimeSelect",
-        __Marshaller_briosa_MakeCollectionVectorGroupNameRefListRuntimeSelectRequest,
-        __Marshaller_briosa_MakeCollectionVectorGroupNameRefListRuntimeSelectResult);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Briosa.Client.Transport.MakeEventRefListWildcardSelectionRequest, global::Briosa.Client.Transport.MakeEventRefListWildcardSelectionResult> __Method_MakeEventRefListWildcardSelection = new grpc::Method<global::Briosa.Client.Transport.MakeEventRefListWildcardSelectionRequest, global::Briosa.Client.Transport.MakeEventRefListWildcardSelectionResult>(
@@ -2475,28 +2403,12 @@ namespace Briosa.Client.Transport {
         __Marshaller_briosa_MakeVectorNameRefListFromVectorGroupResult);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Briosa.Client.Transport.MakeVectorNameRefListRuntimeSelectRequest, global::Briosa.Client.Transport.MakeVectorNameRefListRuntimeSelectResult> __Method_MakeVectorNameRefListRuntimeSelect = new grpc::Method<global::Briosa.Client.Transport.MakeVectorNameRefListRuntimeSelectRequest, global::Briosa.Client.Transport.MakeVectorNameRefListRuntimeSelectResult>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "MakeVectorNameRefListRuntimeSelect",
-        __Marshaller_briosa_MakeVectorNameRefListRuntimeSelectRequest,
-        __Marshaller_briosa_MakeVectorNameRefListRuntimeSelectResult);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Briosa.Client.Transport.MakeVectorNamesUniqueInVectorGroupRequest, global::Briosa.Client.Transport.MakeVectorNamesUniqueInVectorGroupResult> __Method_MakeVectorNamesUniqueInVectorGroup = new grpc::Method<global::Briosa.Client.Transport.MakeVectorNamesUniqueInVectorGroupRequest, global::Briosa.Client.Transport.MakeVectorNamesUniqueInVectorGroupResult>(
         grpc::MethodType.Unary,
         __ServiceName,
         "MakeVectorNamesUniqueInVectorGroup",
         __Marshaller_briosa_MakeVectorNamesUniqueInVectorGroupRequest,
         __Marshaller_briosa_MakeVectorNamesUniqueInVectorGroupResult);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Briosa.Client.Transport.MirrorObjectsRequest, global::Briosa.Client.Transport.MirrorObjectsResult> __Method_MirrorObjects = new grpc::Method<global::Briosa.Client.Transport.MirrorObjectsRequest, global::Briosa.Client.Transport.MirrorObjectsResult>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "MirrorObjects",
-        __Marshaller_briosa_MirrorObjectsRequest,
-        __Marshaller_briosa_MirrorObjectsResult);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Briosa.Client.Transport.MoveObjectsPointToPointDeltaRequest, global::Briosa.Client.Transport.MoveObjectsPointToPointDeltaResult> __Method_MoveObjectsPointToPointDelta = new grpc::Method<global::Briosa.Client.Transport.MoveObjectsPointToPointDeltaRequest, global::Briosa.Client.Transport.MoveObjectsPointToPointDeltaResult>(
@@ -2561,14 +2473,6 @@ namespace Briosa.Client.Transport {
         "RenamePointsWithNamePattern",
         __Marshaller_briosa_RenamePointsWithNamePatternRequest,
         __Marshaller_briosa_RenamePointsWithNamePatternResult);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Briosa.Client.Transport.SetCalloutViewPropertiesRequest, global::Briosa.Client.Transport.SetCalloutViewPropertiesResult> __Method_SetCalloutViewProperties = new grpc::Method<global::Briosa.Client.Transport.SetCalloutViewPropertiesRequest, global::Briosa.Client.Transport.SetCalloutViewPropertiesResult>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "SetCalloutViewProperties",
-        __Marshaller_briosa_SetCalloutViewPropertiesRequest,
-        __Marshaller_briosa_SetCalloutViewPropertiesResult);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Briosa.Client.Transport.SetCollectionInstrumentRefListVariableRequest, global::Briosa.Client.Transport.SetCollectionInstrumentRefListVariableResult> __Method_SetCollectionInstrumentRefListVariable = new grpc::Method<global::Briosa.Client.Transport.SetCollectionInstrumentRefListVariableRequest, global::Briosa.Client.Transport.SetCollectionInstrumentRefListVariableResult>(
@@ -2706,26 +2610,6 @@ namespace Briosa.Client.Transport {
       public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.GetActiveCollectionNameResult> GetActiveCollectionNameAsync(global::Briosa.Client.Transport.GetActiveCollectionNameRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetActiveCollectionName, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.AddCollectionInstrumentsToRefListWildcardSelectionResult AddCollectionInstrumentsToRefListWildcardSelection(global::Briosa.Client.Transport.AddCollectionInstrumentsToRefListWildcardSelectionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return AddCollectionInstrumentsToRefListWildcardSelection(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.AddCollectionInstrumentsToRefListWildcardSelectionResult AddCollectionInstrumentsToRefListWildcardSelection(global::Briosa.Client.Transport.AddCollectionInstrumentsToRefListWildcardSelectionRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_AddCollectionInstrumentsToRefListWildcardSelection, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.AddCollectionInstrumentsToRefListWildcardSelectionResult> AddCollectionInstrumentsToRefListWildcardSelectionAsync(global::Briosa.Client.Transport.AddCollectionInstrumentsToRefListWildcardSelectionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return AddCollectionInstrumentsToRefListWildcardSelectionAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.AddCollectionInstrumentsToRefListWildcardSelectionResult> AddCollectionInstrumentsToRefListWildcardSelectionAsync(global::Briosa.Client.Transport.AddCollectionInstrumentsToRefListWildcardSelectionRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_AddCollectionInstrumentsToRefListWildcardSelection, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Briosa.Client.Transport.AddSurfaceToMeshOffsetAlongReferenceDirectionResult AddSurfaceToMeshOffsetAlongReferenceDirection(global::Briosa.Client.Transport.AddSurfaceToMeshOffsetAlongReferenceDirectionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
@@ -3026,26 +2910,6 @@ namespace Briosa.Client.Transport {
       public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ConstructCirclesFromSurfaceFacesRuntimeSelectResult> ConstructCirclesFromSurfaceFacesRuntimeSelectAsync(global::Briosa.Client.Transport.ConstructCirclesFromSurfaceFacesRuntimeSelectRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_ConstructCirclesFromSurfaceFacesRuntimeSelect, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.ConstructCirclesLinesFromSurfacesResult ConstructCirclesLinesFromSurfaces(global::Briosa.Client.Transport.ConstructCirclesLinesFromSurfacesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return ConstructCirclesLinesFromSurfaces(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.ConstructCirclesLinesFromSurfacesResult ConstructCirclesLinesFromSurfaces(global::Briosa.Client.Transport.ConstructCirclesLinesFromSurfacesRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_ConstructCirclesLinesFromSurfaces, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ConstructCirclesLinesFromSurfacesResult> ConstructCirclesLinesFromSurfacesAsync(global::Briosa.Client.Transport.ConstructCirclesLinesFromSurfacesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return ConstructCirclesLinesFromSurfacesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ConstructCirclesLinesFromSurfacesResult> ConstructCirclesLinesFromSurfacesAsync(global::Briosa.Client.Transport.ConstructCirclesLinesFromSurfacesRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_ConstructCirclesLinesFromSurfaces, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Briosa.Client.Transport.ConstructCollectionResult ConstructCollection(global::Briosa.Client.Transport.ConstructCollectionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
@@ -4808,26 +4672,6 @@ namespace Briosa.Client.Transport {
         return CallInvoker.AsyncUnaryCall(__Method_ConstructPointsWildcardSelection, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.ConstructPolygonizedSurfaceFromPointCloudsResult ConstructPolygonizedSurfaceFromPointClouds(global::Briosa.Client.Transport.ConstructPolygonizedSurfaceFromPointCloudsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return ConstructPolygonizedSurfaceFromPointClouds(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.ConstructPolygonizedSurfaceFromPointCloudsResult ConstructPolygonizedSurfaceFromPointClouds(global::Briosa.Client.Transport.ConstructPolygonizedSurfaceFromPointCloudsRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_ConstructPolygonizedSurfaceFromPointClouds, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ConstructPolygonizedSurfaceFromPointCloudsResult> ConstructPolygonizedSurfaceFromPointCloudsAsync(global::Briosa.Client.Transport.ConstructPolygonizedSurfaceFromPointCloudsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return ConstructPolygonizedSurfaceFromPointCloudsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.ConstructPolygonizedSurfaceFromPointCloudsResult> ConstructPolygonizedSurfaceFromPointCloudsAsync(global::Briosa.Client.Transport.ConstructPolygonizedSurfaceFromPointCloudsRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_ConstructPolygonizedSurfaceFromPointClouds, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Briosa.Client.Transport.ConstructScaleBarResult ConstructScaleBar(global::Briosa.Client.Transport.ConstructScaleBarRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return ConstructScaleBar(request, new grpc::CallOptions(headers, deadline, cancellationToken));
@@ -6048,26 +5892,6 @@ namespace Briosa.Client.Transport {
         return CallInvoker.AsyncUnaryCall(__Method_InvertTransform, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.MakeCalloutViewRefListWildcardSelectionResult MakeCalloutViewRefListWildcardSelection(global::Briosa.Client.Transport.MakeCalloutViewRefListWildcardSelectionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return MakeCalloutViewRefListWildcardSelection(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.MakeCalloutViewRefListWildcardSelectionResult MakeCalloutViewRefListWildcardSelection(global::Briosa.Client.Transport.MakeCalloutViewRefListWildcardSelectionRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_MakeCalloutViewRefListWildcardSelection, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeCalloutViewRefListWildcardSelectionResult> MakeCalloutViewRefListWildcardSelectionAsync(global::Briosa.Client.Transport.MakeCalloutViewRefListWildcardSelectionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return MakeCalloutViewRefListWildcardSelectionAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeCalloutViewRefListWildcardSelectionResult> MakeCalloutViewRefListWildcardSelectionAsync(global::Briosa.Client.Transport.MakeCalloutViewRefListWildcardSelectionRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_MakeCalloutViewRefListWildcardSelection, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Briosa.Client.Transport.MakeCollectionInstrumentIdRuntimeSelectResult MakeCollectionInstrumentIdRuntimeSelect(global::Briosa.Client.Transport.MakeCollectionInstrumentIdRuntimeSelectRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return MakeCollectionInstrumentIdRuntimeSelect(request, new grpc::CallOptions(headers, deadline, cancellationToken));
@@ -6286,26 +6110,6 @@ namespace Briosa.Client.Transport {
       public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeCollectionObjectNameRuntimeSelectResult> MakeCollectionObjectNameRuntimeSelectAsync(global::Briosa.Client.Transport.MakeCollectionObjectNameRuntimeSelectRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_MakeCollectionObjectNameRuntimeSelect, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectResult MakeCollectionVectorGroupNameRefListRuntimeSelect(global::Briosa.Client.Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return MakeCollectionVectorGroupNameRefListRuntimeSelect(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectResult MakeCollectionVectorGroupNameRefListRuntimeSelect(global::Briosa.Client.Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_MakeCollectionVectorGroupNameRefListRuntimeSelect, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectResult> MakeCollectionVectorGroupNameRefListRuntimeSelectAsync(global::Briosa.Client.Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return MakeCollectionVectorGroupNameRefListRuntimeSelectAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectResult> MakeCollectionVectorGroupNameRefListRuntimeSelectAsync(global::Briosa.Client.Transport.MakeCollectionVectorGroupNameRefListRuntimeSelectRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_MakeCollectionVectorGroupNameRefListRuntimeSelect, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Briosa.Client.Transport.MakeEventRefListWildcardSelectionResult MakeEventRefListWildcardSelection(global::Briosa.Client.Transport.MakeEventRefListWildcardSelectionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
@@ -6608,26 +6412,6 @@ namespace Briosa.Client.Transport {
         return CallInvoker.AsyncUnaryCall(__Method_MakeVectorNameRefListFromVectorGroup, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.MakeVectorNameRefListRuntimeSelectResult MakeVectorNameRefListRuntimeSelect(global::Briosa.Client.Transport.MakeVectorNameRefListRuntimeSelectRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return MakeVectorNameRefListRuntimeSelect(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.MakeVectorNameRefListRuntimeSelectResult MakeVectorNameRefListRuntimeSelect(global::Briosa.Client.Transport.MakeVectorNameRefListRuntimeSelectRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_MakeVectorNameRefListRuntimeSelect, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeVectorNameRefListRuntimeSelectResult> MakeVectorNameRefListRuntimeSelectAsync(global::Briosa.Client.Transport.MakeVectorNameRefListRuntimeSelectRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return MakeVectorNameRefListRuntimeSelectAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeVectorNameRefListRuntimeSelectResult> MakeVectorNameRefListRuntimeSelectAsync(global::Briosa.Client.Transport.MakeVectorNameRefListRuntimeSelectRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_MakeVectorNameRefListRuntimeSelect, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Briosa.Client.Transport.MakeVectorNamesUniqueInVectorGroupResult MakeVectorNamesUniqueInVectorGroup(global::Briosa.Client.Transport.MakeVectorNamesUniqueInVectorGroupRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return MakeVectorNamesUniqueInVectorGroup(request, new grpc::CallOptions(headers, deadline, cancellationToken));
@@ -6646,26 +6430,6 @@ namespace Briosa.Client.Transport {
       public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MakeVectorNamesUniqueInVectorGroupResult> MakeVectorNamesUniqueInVectorGroupAsync(global::Briosa.Client.Transport.MakeVectorNamesUniqueInVectorGroupRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_MakeVectorNamesUniqueInVectorGroup, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.MirrorObjectsResult MirrorObjects(global::Briosa.Client.Transport.MirrorObjectsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return MirrorObjects(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.MirrorObjectsResult MirrorObjects(global::Briosa.Client.Transport.MirrorObjectsRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_MirrorObjects, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MirrorObjectsResult> MirrorObjectsAsync(global::Briosa.Client.Transport.MirrorObjectsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return MirrorObjectsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.MirrorObjectsResult> MirrorObjectsAsync(global::Briosa.Client.Transport.MirrorObjectsRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_MirrorObjects, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Briosa.Client.Transport.MoveObjectsPointToPointDeltaResult MoveObjectsPointToPointDelta(global::Briosa.Client.Transport.MoveObjectsPointToPointDeltaRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
@@ -6826,26 +6590,6 @@ namespace Briosa.Client.Transport {
       public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.RenamePointsWithNamePatternResult> RenamePointsWithNamePatternAsync(global::Briosa.Client.Transport.RenamePointsWithNamePatternRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_RenamePointsWithNamePattern, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.SetCalloutViewPropertiesResult SetCalloutViewProperties(global::Briosa.Client.Transport.SetCalloutViewPropertiesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return SetCalloutViewProperties(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Briosa.Client.Transport.SetCalloutViewPropertiesResult SetCalloutViewProperties(global::Briosa.Client.Transport.SetCalloutViewPropertiesRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_SetCalloutViewProperties, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetCalloutViewPropertiesResult> SetCalloutViewPropertiesAsync(global::Briosa.Client.Transport.SetCalloutViewPropertiesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return SetCalloutViewPropertiesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Briosa.Client.Transport.SetCalloutViewPropertiesResult> SetCalloutViewPropertiesAsync(global::Briosa.Client.Transport.SetCalloutViewPropertiesRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_SetCalloutViewProperties, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Briosa.Client.Transport.SetCollectionInstrumentRefListVariableResult SetCollectionInstrumentRefListVariable(global::Briosa.Client.Transport.SetCollectionInstrumentRefListVariableRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))

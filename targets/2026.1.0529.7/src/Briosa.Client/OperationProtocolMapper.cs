@@ -283,9 +283,12 @@ internal static class OperationProtocolMapper
             Color color when color.Red > byte.MaxValue ||
                 color.Green > byte.MaxValue ||
                 color.Blue > byte.MaxValue => "color-channel-out-of-range",
+            // Given options name exactly one destination, as the server requires.
             ReportOutputOptions options when
                 options.ExternalPath is not null && options.EmbeddedFile is not null =>
                 "report-output-destination-conflict",
+            ReportOutputOptions { ExternalPath: null, EmbeddedFile: null } =>
+                "report-output-destination-missing",
             _ => null,
         };
 

@@ -2501,6 +2501,10 @@ namespace Briosa.Client.Transport {
     private readonly static string CalibrationNameDefaultValue = "";
 
     private string calibrationName_;
+    /// <summary>
+    /// Required and not empty (major 3): an omitted, empty or whitespace-only value is
+    /// rejected before dispatch.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string CalibrationName {
@@ -9975,6 +9979,10 @@ namespace Briosa.Client.Transport {
     private readonly static double Joint1DefaultValue = 0D;
 
     private double joint1_;
+    /// <summary>
+    /// Every joint is required (major 3): an omitted joint is rejected before dispatch
+    /// instead of being sent as 0.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double Joint1 {
@@ -16860,6 +16868,11 @@ namespace Briosa.Client.Transport {
     private readonly static double DhAlphaComponentDefaultValue = 0D;
 
     private double dhAlphaComponent_;
+    /// <summary>
+    /// The scalar parameters from dh_alpha_component through segment_cg_mass_kg are
+    /// required (major 3): a request that omits one is rejected before dispatch instead
+    /// of overwriting it with 0 or false.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double DhAlphaComponent {
@@ -18570,6 +18583,9 @@ namespace Briosa.Client.Transport {
     private readonly static double ParameterValueDefaultValue = 0D;
 
     private double parameterValue_;
+    /// <summary>
+    /// Required (major 3): an omitted value is rejected before dispatch instead of being sent as 0.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double ParameterValue {

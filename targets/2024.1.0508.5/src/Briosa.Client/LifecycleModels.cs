@@ -140,6 +140,15 @@ public enum SpatialAnalyzerLifecycleFailureKind
     SdkNotStopped,
     Timeout,
     Internal,
+
+    /// <summary>
+    /// The caller cancelled while it waited. A remote caller rarely receives this
+    /// kind: a cancelled call surfaces as <see cref="OperationCanceledException"/>.
+    /// </summary>
+    CallerCancelled,
+
+    /// <summary>The caller's gRPC deadline ended its wait.</summary>
+    CallerDeadlineExceeded,
 }
 
 public enum SpatialAnalyzerSdkLifecycleFailureKind
@@ -163,6 +172,15 @@ public enum SpatialAnalyzerSdkLifecycleFailureKind
     SdkConnectionFailed,
     ReconnectNotRequired,
     SdkRecoveryRequired,
+
+    /// <summary>
+    /// The caller cancelled while it waited. A remote caller rarely receives this
+    /// kind: a cancelled call surfaces as <see cref="OperationCanceledException"/>.
+    /// </summary>
+    CallerCancelled,
+
+    /// <summary>The caller's gRPC deadline ended its wait.</summary>
+    CallerDeadlineExceeded,
 }
 
 public enum LifecycleRecoveryGuidance

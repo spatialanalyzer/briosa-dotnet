@@ -24,12 +24,6 @@ public enum BSplinePointSortMode
     ClosestNeighborsInCurveDirection = 3,
 }
 
-public enum CircleLineMode
-{
-    Circle = 1,
-    Line = 2,
-}
-
 public enum CloudBoxType
 {
     WorldAxisAlignedBox = 1,
@@ -235,19 +229,6 @@ public enum InstrumentPositionReportingFrame
     Working = 3,
 }
 
-public enum MeshOrientationType
-{
-    UseCurrentPointOfView = 1,
-    UseCurrentWorkingFrame = 2,
-}
-
-public enum MirrorFramePlane
-{
-    XY = 1,
-    XZ = 2,
-    YZ = 3,
-}
-
 public enum OffsetDirectionType
 {
     Both = 1,
@@ -451,19 +432,24 @@ public sealed record FeatureCheckReportingOptions
     public required bool ShowLowerTierTables { get; init; }
 }
 
+/// <summary>
+/// The proximity settings of an Auto Filter operation. Every member is required:
+/// the server sends each one to SpatialAnalyzer as given, and the distances are in
+/// the job's units, so the client assumes no value.
+/// </summary>
 public sealed record FilterProximitySettings
 {
-    public double SurfaceInclusionProximity { get; init; } = 0.1;
-    public double EdgeExclusionProximity { get; init; } = 0.1;
-    public double PlanarInclusionProximity { get; init; } = 0.5;
-    public double PlanarExclusionProximity { get; init; } = 0.1;
-    public double RadialInclusionProximity { get; init; } = 0.1;
-    public double GeometryExtractionTolerance { get; init; } = 0.01;
-    public OffsetDirectionType SurfaceProximityMode { get; init; } = OffsetDirectionType.Both;
-    public OffsetDirectionType PlanarProximityMode { get; init; } = OffsetDirectionType.Both;
-    public OffsetDirectionType RadialProximityMode { get; init; } = OffsetDirectionType.Both;
-    public bool ProjectToPlane { get; init; } = true;
-    public bool AssertPlaneBoundaries { get; init; } = false;
+    public required double SurfaceInclusionProximity { get; init; }
+    public required double EdgeExclusionProximity { get; init; }
+    public required double PlanarInclusionProximity { get; init; }
+    public required double PlanarExclusionProximity { get; init; }
+    public required double RadialInclusionProximity { get; init; }
+    public required double GeometryExtractionTolerance { get; init; }
+    public required OffsetDirectionType SurfaceProximityMode { get; init; }
+    public required OffsetDirectionType PlanarProximityMode { get; init; }
+    public required OffsetDirectionType RadialProximityMode { get; init; }
+    public required bool ProjectToPlane { get; init; }
+    public required bool AssertPlaneBoundaries { get; init; }
 }
 
 public sealed record FitDofOptions
@@ -724,11 +710,11 @@ public sealed record WrtlChannelStatus
 public sealed record MakeGdtDatumAnnotationOptions
 {
     public required string DatumName { get; init; }
-    public IReadOnlyList<CollectionObjectName> Objects { get; init; } = [];
-    public IReadOnlyList<CollectionItemName> GeometryRelationships { get; init; } = [];
+    public required IReadOnlyList<CollectionObjectName> Objects { get; init; }
+    public required IReadOnlyList<CollectionItemName> GeometryRelationships { get; init; }
     public SurfaceFaceList? SurfaceFaces { get; init; }
-    public CollectionObjectName? AuxiliaryObject { get; init; }
-    public CollectionItemName? AuxiliaryGeometryRelationship { get; init; }
+    public required CollectionObjectName AuxiliaryObject { get; init; }
+    public required CollectionItemName AuxiliaryGeometryRelationship { get; init; }
     public bool IsSlot { get; init; }
     public bool ForceSurfaceFeature { get; init; }
 }
@@ -737,8 +723,8 @@ public sealed record MakeGdtFeatureCheckAnnotationOptions
 {
     public required string FeatureAnnotationName { get; init; }
     public GdtFeatureType FeatureType { get; init; } = GdtFeatureType.TruePosition;
-    public IReadOnlyList<CollectionObjectName> Objects { get; init; } = [];
-    public IReadOnlyList<CollectionItemName> GeometryRelationships { get; init; } = [];
+    public required IReadOnlyList<CollectionObjectName> Objects { get; init; }
+    public required IReadOnlyList<CollectionItemName> GeometryRelationships { get; init; }
     public SurfaceFaceList? SurfaceFaces { get; init; }
     public bool DecomposeMultipleFeatures { get; init; }
     public bool AutoCreateDiameterChecks { get; init; }
@@ -755,8 +741,8 @@ public sealed record MakeGdtFeatureCheckAnnotationOptions
     public double PerUnitAreaWidthStepOverPercent { get; init; } = 50.0;
     public double PerUnitAreaCircleDiameter { get; init; }
     public double PerUnitAreaDiameterStepOver { get; init; } = 50.0;
-    public CollectionObjectName? AuxiliaryObject { get; init; }
-    public CollectionItemName? AuxiliaryGeometryRelationship { get; init; }
+    public required CollectionObjectName AuxiliaryObject { get; init; }
+    public required CollectionItemName AuxiliaryGeometryRelationship { get; init; }
     public bool UseNominalForDimensionTolerance { get; init; } = true;
     public bool UseReferenceObjectForNominal { get; init; } = true;
     public double NominalDimensionTolerance { get; init; }
@@ -779,37 +765,40 @@ public sealed record RelationshipWatchWindowTemplateOptions
     public bool ShowDeviationY { get; init; } = true;
     public bool ShowDeviationZ { get; init; } = true;
     public bool ShowDeviationMagnitude { get; init; } = true;
-    public RelationshipWatchWindowUdpSettings UdpNetworkTransmitSettings { get; init; } = new();
     public bool TransparentBackground { get; init; }
     public bool HideUnits { get; init; }
 }
 
+/// <summary>
+/// Every parameter of one robot model link. All members are required, so the
+/// client fills nothing in: the server rejects a request that omits one of the
+/// 22 scalar parameters instead of overwriting it with 0 or false.
+/// </summary>
 public sealed record RobotModelLinkConfiguration
 {
-    public RobotModelLinkType LinkType { get; init; } = RobotModelLinkType.Dh;
-    public double DhAlphaComponent { get; init; }
-    public double DhAComponent { get; init; }
-    public double DhDComponent { get; init; }
-    public double DhThetaComponent { get; init; }
-    public double DhXAxisDeflectionFactor { get; init; }
-    public double DhYAxisDeflectionFactor { get; init; }
-    public double DhZAxisDeflectionFactor { get; init; }
-    public double SixDofXComponent { get; init; }
-    public double SixDofYComponent { get; init; }
-    public double SixDofZComponent { get; init; }
-    public double SixDofRxComponent { get; init; }
-    public double SixDofRyComponent { get; init; }
-    public double SixDofRzComponent { get; init; }
-    public RobotActiveJointComponent ActiveJointComponent { get; init; }
-        = RobotActiveJointComponent.None;
-    public double EncoderOffsetValue { get; init; }
-    public double MinimumEncoderLimit { get; init; }
-    public double MaximumEncoderLimit { get; init; }
-    public bool EncoderSenseNegative { get; init; }
-    public bool IncludeAdditionalEncoder { get; init; }
-    public int AdditionalEncoderIndexOffset { get; init; }
-    public bool AdditionalEncoderSenseNegative { get; init; }
-    public double SegmentOriginMassKg { get; init; }
-    public double SegmentCgMassKg { get; init; }
-    public Vector SegmentCgInSegment { get; init; } = new(0.0, 0.0, 0.0);
+    public required RobotModelLinkType LinkType { get; init; }
+    public required double DhAlphaComponent { get; init; }
+    public required double DhAComponent { get; init; }
+    public required double DhDComponent { get; init; }
+    public required double DhThetaComponent { get; init; }
+    public required double DhXAxisDeflectionFactor { get; init; }
+    public required double DhYAxisDeflectionFactor { get; init; }
+    public required double DhZAxisDeflectionFactor { get; init; }
+    public required double SixDofXComponent { get; init; }
+    public required double SixDofYComponent { get; init; }
+    public required double SixDofZComponent { get; init; }
+    public required double SixDofRxComponent { get; init; }
+    public required double SixDofRyComponent { get; init; }
+    public required double SixDofRzComponent { get; init; }
+    public required RobotActiveJointComponent ActiveJointComponent { get; init; }
+    public required double EncoderOffsetValue { get; init; }
+    public required double MinimumEncoderLimit { get; init; }
+    public required double MaximumEncoderLimit { get; init; }
+    public required bool EncoderSenseNegative { get; init; }
+    public required bool IncludeAdditionalEncoder { get; init; }
+    public required int AdditionalEncoderIndexOffset { get; init; }
+    public required bool AdditionalEncoderSenseNegative { get; init; }
+    public required double SegmentOriginMassKg { get; init; }
+    public required double SegmentCgMassKg { get; init; }
+    public required Vector SegmentCgInSegment { get; init; }
 }

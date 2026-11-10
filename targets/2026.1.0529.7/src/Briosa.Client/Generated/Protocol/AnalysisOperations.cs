@@ -6755,7 +6755,8 @@ namespace Briosa.Client.Transport {
     public const int StartingConditionGeometryFieldNumber = 8;
     private global::Briosa.Client.Transport.CollectionObjectName startingConditionGeometry_;
     /// <summary>
-    /// Optional in the MP editor; the existing API presence and omission behavior is unchanged.
+    /// Optional (major 3): omitted when absent, so SpatialAnalyzer fits without a starting
+    /// geometry; an empty name is rejected.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -7541,7 +7542,8 @@ namespace Briosa.Client.Transport {
     public const int StartingConditionGeometryFieldNumber = 9;
     private global::Briosa.Client.Transport.CollectionObjectName startingConditionGeometry_;
     /// <summary>
-    /// Optional in the MP editor; the existing API presence and omission behavior is unchanged.
+    /// Optional (major 3): omitted when absent, so SpatialAnalyzer fits without a starting
+    /// geometry; an empty name is rejected.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -8346,7 +8348,8 @@ namespace Briosa.Client.Transport {
     public const int StartingConditionGeometryFieldNumber = 8;
     private global::Briosa.Client.Transport.CollectionObjectName startingConditionGeometry_;
     /// <summary>
-    /// Optional in the MP editor; the existing API presence and omission behavior is unchanged.
+    /// Optional (major 3): omitted when absent, so SpatialAnalyzer fits without a starting
+    /// geometry; an empty name is rejected.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]

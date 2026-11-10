@@ -251,13 +251,24 @@ public sealed record Vector
 
 public sealed record Transform
 {
-    public double[] Values { get; init; } =
-    [
-        1, 0, 0, 0,
-        0, 1, 0, 0,
-        0, 0, 1, 0,
-        0, 0, 0, 1,
-    ];
+    /// <summary>
+    /// Gets an identity transform, for a caller who wants one. Each read returns a
+    /// fresh value. The client never sends an identity in place of a transform
+    /// the caller left out.
+    /// </summary>
+    public static Transform Identity => new()
+    {
+        Values =
+        [
+            1, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 1,
+        ],
+    };
+
+    /// <summary>Gets the 16 values of the 4×4 transform matrix.</summary>
+    public required double[] Values { get; init; }
 }
 
 public sealed record WorldTransform
@@ -318,6 +329,13 @@ public readonly record struct ToleranceLimit(bool Enabled = false, double Value 
 
 public sealed record ToleranceVectorOptions
 {
+    /// <summary>
+    /// Gets options with all eight limits disabled. Pass it explicitly where an
+    /// operation requires tolerance or constraint options and you want no limits;
+    /// it is never an implicit default.
+    /// </summary>
+    public static ToleranceVectorOptions NoLimits { get; } = new();
+
     public ToleranceLimit HighX { get; init; }
     public ToleranceLimit HighY { get; init; }
     public ToleranceLimit HighZ { get; init; }
@@ -344,7 +362,7 @@ public sealed record EmbeddedReportFile
 
 public sealed record ReportOutputOptions
 {
-    public ReportOutputType OutputType { get; init; } = ReportOutputType.SaReport;
+    public required ReportOutputType OutputType { get; init; }
     public string? ExternalPath { get; init; }
     public EmbeddedReportFile? EmbeddedFile { get; init; }
 }

@@ -15435,7 +15435,7 @@ namespace Briosa.Client.Transport {
 
     private bool overwriteExistingFile_;
     /// <summary>
-    /// False appends to the existing file.
+    /// False fails if the file already exists; it does not append.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]

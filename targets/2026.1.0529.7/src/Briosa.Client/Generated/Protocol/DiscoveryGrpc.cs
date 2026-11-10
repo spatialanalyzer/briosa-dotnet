@@ -155,7 +155,8 @@ namespace Briosa.Client.Transport {
         return CallInvoker.AsyncUnaryCall(__Method_GetServerInfo, null, options, request);
       }
       /// <summary>
-      /// Lists only implemented operations enabled by the active runtime policy.
+      /// Lists implemented operations enabled by the active runtime policy, with
+      /// their reviewed classification. include_denied also lists denied operations.
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
       /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
@@ -168,7 +169,8 @@ namespace Briosa.Client.Transport {
         return ListCapabilities(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       /// <summary>
-      /// Lists only implemented operations enabled by the active runtime policy.
+      /// Lists implemented operations enabled by the active runtime policy, with
+      /// their reviewed classification. include_denied also lists denied operations.
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
@@ -179,7 +181,8 @@ namespace Briosa.Client.Transport {
         return CallInvoker.BlockingUnaryCall(__Method_ListCapabilities, null, options, request);
       }
       /// <summary>
-      /// Lists only implemented operations enabled by the active runtime policy.
+      /// Lists implemented operations enabled by the active runtime policy, with
+      /// their reviewed classification. include_denied also lists denied operations.
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
       /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
@@ -192,7 +195,8 @@ namespace Briosa.Client.Transport {
         return ListCapabilitiesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       /// <summary>
-      /// Lists only implemented operations enabled by the active runtime policy.
+      /// Lists implemented operations enabled by the active runtime policy, with
+      /// their reviewed classification. include_denied also lists denied operations.
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>

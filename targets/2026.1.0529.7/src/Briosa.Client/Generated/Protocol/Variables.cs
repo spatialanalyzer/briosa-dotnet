@@ -1286,6 +1286,10 @@ namespace Briosa.Client.Transport {
     private readonly static string NameDefaultValue = "";
 
     private string name_;
+    /// <summary>
+    /// Required and not empty (major 3): an omitted, empty or whitespace-only value is
+    /// rejected before dispatch.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Name {
@@ -1705,6 +1709,10 @@ namespace Briosa.Client.Transport {
     private readonly static string VariableWildcardCriteriaDefaultValue = "";
 
     private string variableWildcardCriteria_;
+    /// <summary>
+    /// Required and not empty (major 3): an omitted, empty or whitespace-only value is
+    /// rejected before dispatch.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string VariableWildcardCriteria {

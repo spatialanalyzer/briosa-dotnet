@@ -1779,6 +1779,9 @@ namespace Briosa.Client.Transport {
     private readonly static int VectorIndexDefaultValue = 0;
 
     private int vectorIndex_;
+    /// <summary>
+    /// Required (major 3): an omitted value is rejected before dispatch instead of being sent as 0.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int VectorIndex {
@@ -2245,6 +2248,10 @@ namespace Briosa.Client.Transport {
     private readonly static string VectorNameDefaultValue = "";
 
     private string vectorName_;
+    /// <summary>
+    /// Required and not empty (major 3): an omitted, empty or whitespace-only value is
+    /// rejected before dispatch.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string VectorName {

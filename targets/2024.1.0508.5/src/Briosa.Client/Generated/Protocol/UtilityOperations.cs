@@ -913,6 +913,10 @@ namespace Briosa.Client.Transport {
     private readonly static string FolderPathDefaultValue = "";
 
     private string folderPath_;
+    /// <summary>
+    /// Required and not empty (major 3): an omitted, empty or whitespace-only value is
+    /// rejected before dispatch.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string FolderPath {
@@ -12573,6 +12577,9 @@ namespace Briosa.Client.Transport {
     private readonly static double ScaleFactorDefaultValue = 0D;
 
     private double scaleFactor_;
+    /// <summary>
+    /// Required (major 3): an omitted value is rejected before dispatch instead of being sent as 0.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double ScaleFactor {
@@ -21327,7 +21334,7 @@ namespace Briosa.Client.Transport {
     public const int ProfileFileNameFieldNumber = 2;
     private global::Briosa.Client.Transport.FileReference profileFileName_;
     /// <summary>
-    /// Optional in the MP editor; the existing API presence and omission behavior is unchanged.
+    /// Optional (major 3): omitted when absent; an empty path is rejected.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]

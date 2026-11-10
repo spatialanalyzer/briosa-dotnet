@@ -73,15 +73,18 @@ public sealed partial class ClientContractTests
     public void ProtocolIdentityMatchesReviewedCompatibilityArtifact()
     {
         Assert.Equal(
-            "briosa-protocol-0.9.0-dev.1-sa-2026.1.0529.7",
+            "briosa-protocol-0.10.0-dev.1-sa-2026.1.0529.7",
             Transport.BriosaProtocolIdentity.ArtifactName);
+        Assert.Equal("0.10.0-dev.1", Transport.BriosaProtocolIdentity.BriosaVersion);
         Assert.Equal("briosa", Transport.BriosaProtocolIdentity.ProtocolPackage);
         Assert.Equal(
             "standard-protobuf-grpc",
             Transport.BriosaProtocolIdentity.ClientGenerationContract);
         Assert.Equal(
-            "89b59aa0ddd05ea868d94c4e4a4f89ee0fbcbccb",
+            "2960705eb3152646513dca2b5d2043cd7cfffb75",
             Transport.BriosaProtocolIdentity.SourceRevision);
+        Assert.Equal(3U, Transport.BriosaProtocolIdentity.CompatibilityMajor);
+        Assert.Equal(0U, Transport.BriosaProtocolIdentity.CompatibilityRevision);
         Assert.Equal(
             "2026.1.0529.7",
             Transport.BriosaProtocolIdentity.SpatialAnalyzerTarget);
@@ -130,8 +133,8 @@ public sealed partial class ClientContractTests
             .Select(method => method.Name)
             .ToHashSet(StringComparer.Ordinal);
 
-        Assert.Equal(613, operationNames.Length);
-        Assert.Equal(613, operationNames.Distinct().Count());
+        Assert.Equal(604, operationNames.Length);
+        Assert.Equal(604, operationNames.Distinct().Count());
         Assert.All(operationNames, operation => Assert.Contains(operation + "Async", publicMethods));
     }
 
@@ -196,14 +199,26 @@ public sealed partial class ClientContractTests
                     GroupName = "Measured",
                     TargetName = "P1",
                 },
-            ]);
+            ],
+            groups:
+            [
+                new CollectionObjectName
+                {
+                    CollectionName = "Points",
+                    ObjectName = "Measured",
+                    ObjectType = ObjectType.PointGroup,
+                },
+            ],
+            clouds: [],
+            offsetDirection: OffsetDirectionType.Both);
         var filterRequest =
             Assert.IsType<Transport.AutoFilterPointsGroupsCloudsToSurfaceFacesRequest>(
                 transport.LastOperationRequest);
-        Assert.Single(filterRequest.Points.Values);
-        Assert.Null(filterRequest.Groups);
-        Assert.Null(filterRequest.Clouds);
-        Assert.Equal("P1", filterRequest.Points.Values[0].TargetName);
+        Assert.Equal("P1", Assert.Single(filterRequest.Points.Values).TargetName);
+        Assert.Equal("Measured", Assert.Single(filterRequest.Groups.Values).ObjectName);
+        // An empty required list is sent empty, for the server to reject.
+        Assert.Empty(filterRequest.Clouds.Values);
+        Assert.Equal(Transport.OffsetDirectionType.Both, filterRequest.OffsetDirection);
     }
 
     [Fact]
@@ -646,6 +661,16 @@ public sealed partial class ClientContractTests
         public int CloseApplicationCount { get; private set; }
         public RpcException? LaunchFailure { get; init; }
         public bool PublishReadySnapshot { get; init; } = true;
+
+        // A real server sends MP execution details with every success. Unless a
+        // test opts out, a response without them gets a plain success.
+        public bool FillMissingExecution { get; init; } = true;
+        public Transport.MpExecutionDetails? WorkingDirectoryExecution { get; set; }
+        public List<Transport.OperationCapability> DeniedOperations { get; } = [];
+        public string DeniedListingTarget { get; init; } =
+            Transport.BriosaProtocolIdentity.SpatialAnalyzerTarget;
+        public string? DeniedListingProfile { get; init; }
+        public string? DeniedListingFingerprint { get; init; }
         public IMessage? OperationResponse { get; set; }
         public IMessage? LastOperationRequest { get; private set; }
         public string? LastOperationService { get; private set; }
@@ -657,6 +682,23 @@ public sealed partial class ClientContractTests
             Calls.Add("snapshot");
             return Task.FromResult(MatchingSnapshot(
                 _connected && PublishReadySnapshot));
+        }
+
+        public Task<Transport.ListCapabilitiesResponse> ListCapabilitiesAsync(
+            bool includeDenied,
+            CancellationToken cancellationToken)
+        {
+            Calls.Add(includeDenied ? "list-capabilities:include-denied" : "list-capabilities");
+            var (_, capabilities) = MatchingSnapshot(_connected && PublishReadySnapshot);
+            capabilities.SpatialAnalyzerTarget = DeniedListingTarget;
+            if (includeDenied)
+            {
+                capabilities.Operations.Add(DeniedOperations);
+                capabilities.AdmissionProfile = DeniedListingProfile ?? capabilities.AdmissionProfile;
+                capabilities.PolicyFingerprint = DeniedListingFingerprint ?? capabilities.PolicyFingerprint;
+            }
+
+            return Task.FromResult(capabilities);
         }
 
         public Task<Transport.SpatialAnalyzerLifecycleState> GetApplicationStateAsync(
@@ -737,12 +779,16 @@ public sealed partial class ClientContractTests
             return Task.FromResult(SdkState());
         }
 
-        public Task<string> GetWorkingDirectoryAsync(
+        public Task<Transport.GetWorkingDirectoryResult> GetWorkingDirectoryAsync(
             TimeSpan? timeout,
             CancellationToken cancellationToken)
         {
             Calls.Add("get-working-directory");
-            return Task.FromResult("C:\\Working");
+            return Task.FromResult(new Transport.GetWorkingDirectoryResult
+            {
+                Directory = "C:\\Working",
+                Execution = WorkingDirectoryExecution ?? SucceededExecution(),
+            });
         }
 
         public Task<IMessage> InvokeOperationAsync(
@@ -757,9 +803,19 @@ public sealed partial class ClientContractTests
             LastOperationService = service;
             LastOperationRpc = rpc;
             LastOperationRequest = request;
-            return Task.FromResult(
-                OperationResponse ?? responseParser.ParseFrom(Array.Empty<byte>()));
+            var response = OperationResponse ?? responseParser.ParseFrom(Array.Empty<byte>());
+            if (FillMissingExecution &&
+                response.Descriptor.FindFieldByName("execution") is { } execution &&
+                execution.Accessor.GetValue(response) is null)
+            {
+                execution.Accessor.SetValue(response, SucceededExecution());
+            }
+
+            return Task.FromResult(response);
         }
+
+        public static Transport.MpExecutionDetails SucceededExecution() =>
+            new() { State = Transport.MpExecutionState.Succeeded, MpResultCode = 2 };
 
         public ValueTask DisposeAsync() => ValueTask.CompletedTask;
 
@@ -829,12 +885,14 @@ public sealed partial class ClientContractTests
                     : Transport.SpatialAnalyzerExecutionReadinessState.Unverified,
                 ReadyForMp = ready,
                 TargetIsolationMode = Transport.TargetIsolationMode.SingleTenant,
-                Compatibility = new Transport.CompatibilityContract { Major = 2 },
+                Compatibility = new Transport.CompatibilityContract { Major = 3 },
             };
             var capabilities = new Transport.ListCapabilitiesResponse
             {
                 ProtocolPackage = Transport.BriosaProtocolIdentity.ProtocolPackage,
                 SpatialAnalyzerTarget = Transport.BriosaProtocolIdentity.SpatialAnalyzerTarget,
+                AdmissionProfile = "standard",
+                PolicyFingerprint = "sha256:" + new string('c', 64),
             };
             capabilities.Operations.Add(new Transport.OperationCapability
             {
@@ -842,6 +900,9 @@ public sealed partial class ClientContractTests
                 GrpcService = "briosa.FileOperations",
                 Rpc = "GetWorkingDirectory",
                 FullyQualifiedMethod = "/briosa.FileOperations/GetWorkingDirectory",
+                DurationClass = Transport.OperationDurationClass.Quick,
+                ValidationStatus = Transport.OperationValidationStatus.NoRecordedGap,
+                Admission = Transport.OperationAdmission.Admitted,
             });
             return (server, capabilities);
         }

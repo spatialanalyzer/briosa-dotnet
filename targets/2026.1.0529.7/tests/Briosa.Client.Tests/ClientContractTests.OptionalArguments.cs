@@ -38,7 +38,8 @@ public sealed partial class ClientContractTests
 
         var fit = await client.InstrumentOperations.LocateInstrumentsUsmnAsync(
             instruments,
-            outputGroup);
+            outputGroup,
+            ShowUsmnDialog.No);
 
         Assert.Equal(0.1, fit.RmsError);
         var request = Assert.IsType<Transport.LocateInstrumentsUsmnRequest>(
@@ -49,6 +50,7 @@ public sealed partial class ClientContractTests
         await client.InstrumentOperations.LocateInstrumentsUsmnAsync(
             instruments,
             outputGroup,
+            ShowUsmnDialog.No,
             excludedGroups: [outputGroup with { ObjectName = "Reference" }]);
 
         request = Assert.IsType<Transport.LocateInstrumentsUsmnRequest>(
@@ -137,7 +139,9 @@ public sealed partial class ClientContractTests
         }
 
         Assert.Contains($"{nameof(BriosaInstrumentOperations.QuickAlignAsync)}.nominalPoints", checkedLists);
-        Assert.Contains($"{nameof(BriosaClient.CreatePointsToObjectsMapAsync)}.points", checkedLists);
+        // C3: the server requires every list it receives in a list wrapper message,
+        // so none of those lists is optional any more.
+        Assert.DoesNotContain($"{nameof(BriosaClient.CreatePointsToObjectsMapAsync)}.points", checkedLists);
         if (failures.Count > 0)
         {
             Assert.Fail(string.Join(Environment.NewLine, failures));
@@ -219,7 +223,10 @@ public sealed partial class ClientContractTests
             .ToArray();
     }
 
+    // An MP argument that defaults to null. The onMpCompletion observer is a call
+    // control, not an MP argument.
     private static bool DefaultsToNull(ParameterInfo parameter) =>
+        parameter.ParameterType != typeof(Action<MpCompletion>) &&
         parameter.HasDefaultValue &&
         parameter.DefaultValue is null &&
         (!parameter.ParameterType.IsValueType ||
@@ -240,6 +247,17 @@ public sealed partial class ClientContractTests
             return "Sample";
         }
 
+        if (type == typeof(Transform))
+        {
+            return new Transform { Values = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1] };
+        }
+
+        // Given report output options name exactly one destination.
+        if (type == typeof(ReportOutputOptions))
+        {
+            return new ReportOutputOptions { OutputType = ReportOutputType.SaReport, ExternalPath = "Sample" };
+        }
+
         if (type.IsEnum)
         {
             return Enum.GetValues(type)
@@ -252,7 +270,9 @@ public sealed partial class ClientContractTests
             return Convert.ChangeType(1, type, CultureInfo.InvariantCulture);
         }
 
-        if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+        if (type.IsGenericType &&
+            (type.GetGenericTypeDefinition() == typeof(IEnumerable<>) ||
+                type.GetGenericTypeDefinition() == typeof(IReadOnlyList<>)))
         {
             var elementType = type.GetGenericArguments()[0];
             var values = Array.CreateInstance(elementType, 1);
