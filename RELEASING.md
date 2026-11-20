@@ -31,8 +31,9 @@ publishes the draft GitHub release.
    all CI checks passing. Keep target-specific package names and stable imports.
    Each target README is also its package's README on the registry, so in the
    same PR make both describe the release:
-   - the Package Identity command installs the release version from the
-     registry, with no local `--source`;
+   - the Package Identity install command installs the release version from
+     the registry, with no local `--source`, and the local-build commands use
+     the release version with a local suffix, such as `<version>-local.1`;
    - the compatibility paragraph names the release version, the behavioral
      contract it requires, and the servers it rejects, with no
      development-checkout or "not a published compatibility claim" wording.

@@ -18,8 +18,18 @@ The NuGet package and assembly are both named `Briosa.2026.1.0529.7`. Install th
 dotnet add package Briosa.2026.1.0529.7 --version 0.5.0
 ```
 
-To try a local build instead, pack it as in [Build and test](#build-and-test) and
-add `--source` with the folder that holds the package.
+To try a local build instead, give it a version of its own. NuGet installs a
+package from its global packages folder whenever that folder already holds the
+same ID and version, so a local build numbered `0.5.0` would install the cached
+copy. Pack with a local suffix from `targets/2026.1.0529.7/`, then add that
+version from your project:
+
+```powershell
+dotnet pack src/Briosa.Client/Briosa.Client.csproj -c Release -o artifacts/local-package --version-suffix local.1
+dotnet add package Briosa.2026.1.0529.7 --version 0.5.0-local.1 --source C:\path\to\briosa-dotnet\targets\2026.1.0529.7\artifacts\local-package
+```
+
+Use a new suffix, such as `local.2`, for each rebuild.
 
 Exact SpatialAnalyzer targets use separate package and assembly identities,
 while application code continues to use the stable `Briosa` namespace. An
