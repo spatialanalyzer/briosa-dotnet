@@ -241,9 +241,11 @@ if (completion?.State == MpExecutionState.PartialSuccess)
     because a false success that discards the open job would be worse than a
     false failure.
 - A typed failure keeps its MP details in `BriosaOperationException.MpExecution`.
-  If an output can't be retrieved after code 4, the call fails with
-  `OutputRetrievalFailure`, and its `MpExecution` stays `PartialSuccess` with
-  code 4.
+  If an output can't be retrieved after code 4, the call fails and the observer
+  doesn't run. The kind is `SdkCallFaulted` when an output getter threw, and
+  `OutputRetrievalFailure` when a getter returned no usable value or the worker
+  couldn't deliver the result (diagnostic `worker-output-encoding-rejected`).
+  With either kind, `MpExecution` stays `PartialSuccess` with code 4.
 - The client checks every success, whether or not you observe it. A success is
   a protocol error, `BriosaProtocolException`, in three cases:
   - it has no MP execution details (`mp-execution-missing`);
@@ -260,8 +262,11 @@ if (completion?.State == MpExecutionState.PartialSuccess)
 - `OperationFailureKind.SdkCallFaulted` reports that an SDK call threw during the
   MP sequence. `ExecutionDisposition` carries the phase: `NotStarted` before the
   MP step, `StartedOutcomeUnknown` during it (reconcile before replaying), and
-  `Completed` when an output getter threw after MP success.
-  `MpExecution.OutputRetrievals` then tells the read outputs from the failed one.
+  `Completed` when an output getter threw after MP code 2 or 4. `MpExecution`
+  then keeps `Succeeded` with 2 or `PartialSuccess` with 4, and its
+  `OutputRetrievals` are the per-output states the server reports. They don't
+  always identify the getter that threw: if the worker had to withhold that
+  evidence, every output is reported failed.
 - Both lifecycle failure kinds gain `CallerCancelled` and
   `CallerDeadlineExceeded`. A cancelled lifecycle call still surfaces as
   `OperationCanceledException`, never as a state conflict.

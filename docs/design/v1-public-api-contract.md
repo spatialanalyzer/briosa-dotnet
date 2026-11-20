@@ -198,9 +198,13 @@ From contract major 3, an MP command that returns code 4 (PARTIAL SUCCESS) did
 its work but not its full intended effect, except for the four operations below.
 The server reports it as a success, so the method never retries it and returns
 its outputs when all of them are retrieved. If an output can't be retrieved, the
-method throws `BriosaOperationException` whose `Kind` is
-`OutputRetrievalFailure`, and its `MpExecution` keeps `State` `PartialSuccess`
-and code 4.
+method throws `BriosaOperationException`. Its `Kind` is `SdkCallFaulted` when an
+output getter threw, and `OutputRetrievalFailure` when a getter returned no
+usable value or the worker couldn't deliver the result (diagnostic
+`worker-output-encoding-rejected`). With either kind, its `MpExecution` keeps
+`State` `PartialSuccess` and code 4, and its `OutputRetrievals` are the
+per-output states the server reports. They don't always identify the getter
+that failed, because an undeliverable result can mark every output failed.
 A caller that needs to know passes the optional `onMpCompletion` observer. The
 client calls it once, synchronously, before the returned task completes, and
 only for a successful call. Its `MpCompletion` value has the state and the MP

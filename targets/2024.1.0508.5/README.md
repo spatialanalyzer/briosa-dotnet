@@ -165,10 +165,18 @@ bool partial = completion?.State == MpExecutionState.PartialSuccess;
 ```
 
 If an output can't be retrieved after code 4, the method throws
-`BriosaOperationException` whose `Kind` is `OutputRetrievalFailure`, and the
-observer doesn't run. The exception's `MpExecution` still has `State`
-`PartialSuccess` and `MpResultCode` 4, and its `OutputRetrievals` show which
-output failed.
+`BriosaOperationException`, and the observer doesn't run. The exception's `Kind`
+depends on what went wrong:
+
+- `OutputRetrievalFailure` when an output's SDK getter returned no usable value,
+  or when the worker couldn't deliver the result, for example because an output
+  was too large;
+- `SdkCallFaulted` when an output's SDK getter threw.
+
+With either kind, the exception's `MpExecution` still has `State`
+`PartialSuccess` and `MpResultCode` 4. Its `OutputRetrievals` are the per-output
+states the server reports. They don't always identify the getter that failed:
+when the worker can't deliver a result, every output can be marked failed.
 
 For these four methods, code 4 throws `BriosaOperationException` whose `Kind` is
 `MpFailure`, with code 4 in its `MpExecution`, and the observer doesn't run:
