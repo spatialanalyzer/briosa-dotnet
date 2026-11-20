@@ -29,7 +29,7 @@ types are gone:
 | Removed | Notes |
 | --- | --- |
 | `MirrorObjectsAsync`, with `MirrorFramePlane` | SpatialAnalyzer rejects it on both targets. |
-| `DeleteCloudPointsByXYZRangeAsync` | There is no X Y Z box delete. `DeleteCloudPointsByRadialDistanceFromPointsAsync` deletes by distance instead, has different semantics, and is not licensed-validated yet. |
+| `DeleteCloudPointsByXYZRangeAsync` | There is no X Y Z box delete. `DeleteCloudPointsByRadialDistanceFromPointsAsync` deletes by distance instead and has different semantics; a licensed session validated it on both targets for one cloud and one point. |
 | `ConstructCirclesLinesFromSurfacesAsync`, with `CircleLineMode` | SpatialAnalyzer rejects it on both targets. |
 | `AddCollectionInstrumentsToRefListWildcardSelectionAsync` | SpatialAnalyzer rejects it on both targets. |
 | `MakeCalloutViewRefListWildcardSelectionAsync`, both `SetCalloutViewPropertiesAsync` overloads | Select callout views with `MakeCollectionItemNameRefListWildcardSelectionAsync`. |
@@ -313,9 +313,9 @@ if (completion?.State == MpExecutionState.PartialSuccess)
   `SetRobotMachineModelLinkParametersAsync`, `SetActiveRobotCalibrationAsync`,
   `SetRobotCalibrationToolFrameAsync`,
   `SetRobotCalibrationMeasurementOffsetInToolFrameAsync` and
-  `SetProbeOffsetFrameOfflineAsync`) need the `device` or `full` profile or an
-  override. Operations that open or block on operator UI need the explicit
-  interactive opt-in.
+  `SetProbeOffsetFrameOfflineAsync`) need the `device` or `full` profile,
+  `Flags:device_config=allow`, or a per-operation `allow` override. Operations
+  that open or block on operator UI need the explicit interactive opt-in.
 - The facades of denied operations stay. The multi-call device, trapping,
   watch, robot-interface and appliance session workflows are exclusive, and
   every profile, flag and override denies them for now: a call fails with
