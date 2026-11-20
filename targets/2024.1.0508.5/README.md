@@ -50,8 +50,25 @@ that isn't already cached fails with `NU1101`.
 dotnet add package Briosa.2024.1.0508.5 --version 0.5.0-local.1
 ```
 
-Use a new suffix, such as `local.2`, for each rebuild. When you're done, remove
-the `briosa-local` entry, or the file if you created it.
+Use a new suffix, such as `local.2`, for each rebuild.
+
+When you're done, first set the reference back to the version you used before,
+such as `0.5.0`:
+
+```powershell
+dotnet add package Briosa.2024.1.0508.5 --version 0.5.0
+```
+
+If you added the package only for the trial, remove it instead:
+
+```powershell
+dotnet remove package Briosa.2024.1.0508.5
+```
+
+Then remove the `briosa-local` entry, or the file if you created it, and run
+`dotnet restore`. Removing only the entry would leave the project on the local
+version: your global packages folder keeps restoring it, and a machine without
+that copy restores `0.5.0` instead, with warning `NU1603`.
 
 Exact SpatialAnalyzer targets use separate package and assembly identities,
 while application code continues to use the stable `Briosa` namespace. An

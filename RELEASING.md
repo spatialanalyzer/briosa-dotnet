@@ -35,6 +35,8 @@ publishes the draft GitHub release.
      release version from the registry, with no local `--source`, and the
      local-build commands use the release version with a local suffix, such as
      `<version>-local.1`;
+   - in both target READMEs, the local-build cleanup sets the reference back to
+     the release version, and its `NU1603` sentence names that version;
    - in both target READMEs, the compatibility paragraph names the release
      version, the behavioral contract it requires, and the servers it rejects,
      with no development-checkout or "not a published compatibility claim"
