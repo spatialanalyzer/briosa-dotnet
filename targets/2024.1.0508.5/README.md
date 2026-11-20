@@ -12,14 +12,14 @@ Windows x64. Its full protocol identity is pinned in
 
 ## Package Identity
 
-The next version is not published yet. Build the candidate locally and use its
-package path or feed in the installation command below.
-
 The NuGet package and assembly are both named `Briosa.2024.1.0508.5`. Install the package with:
 
 ```powershell
-dotnet add package Briosa.2024.1.0508.5 --version 0.5.0 --source C:\path\to\artifacts\package
+dotnet add package Briosa.2024.1.0508.5 --version 0.5.0
 ```
+
+To try a local build instead, pack it as in [Build and test](#build-and-test) and
+add `--source` with the folder that holds the package.
 
 Exact SpatialAnalyzer targets use separate package and assembly identities,
 while application code continues to use the stable `Briosa` namespace. An
@@ -143,12 +143,12 @@ canonical stores, explicit search roots, and supported local layouts. It validat
 receipts and manifests, filters the exact SA target and compatibility contract,
 and selects the highest compatible stable release. No internet access is needed.
 
-This development checkout prepares client 0.5.0 for behavioral contract **3.0**
-(major 3, revision at least 0). It is not a published compatibility claim.
-Servers of other contract majors, including the major-2 Server 0.9 releases,
-and servers without contract metadata, including Server 0.6.1, are rejected
-before launch. Protocol and source pins remain exact build inputs;
-startup verifies the running server against its selected installation.
+Client 0.5.0 requires behavioral contract **3.0** (major 3, revision at least
+0), which Briosa Server 0.10.0 introduces. Servers of other contract majors,
+including the major-2 Server 0.9 releases, and servers without contract
+metadata, including Server 0.6.1, are rejected before launch. Use client 0.4.0
+with the Server 0.9 releases. Protocol and source pins remain exact build
+inputs; startup verifies the running server against its selected installation.
 
 The three robot methods Get Robot Machine Parameter, Start Robot Machine
 Interface, and Stop Robot Machine Interface now take a collection/instrument
