@@ -214,10 +214,16 @@ await briosa.SetPointNotesAsync(
     cancellationToken: cancellationToken);
 ~~~
 
-Four operations report code 4 as an ordinary `MpFailure`, because their target
-documentation says the work was not done: Construct Point From Survey Target
-Center, Open SA File, Open Template File, and Set Report Options For Object. A
-success response without MP execution details, with another state, or whose MP
+Four operations report code 4 as an ordinary `MpFailure` on both targets:
+Construct Point From Survey Target Center, Open SA File, Open Template File, and
+Set Report Options For Object. The target documentation says code 4 leaves their
+work undone, except that the SA 2024 documentation doesn't list code 4 for the
+two open-file commands. Those are on the SA 2024 list by maintainer decision
+([spatialanalyzer/briosa#351](https://github.com/spatialanalyzer/briosa/issues/351)),
+because a false success that discards the open job would be worse than a false
+failure.
+
+A success response without MP execution details, with another state, or whose MP
 code is missing or doesn't match its state is a protocol error.
 
 ### Collections

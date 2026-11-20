@@ -226,10 +226,19 @@ if (completion?.State == MpExecutionState.PartialSuccess)
   `int`.
 - A call that passed its token positionally must now name it:
   `GetWorkingDirectoryAsync(cancellationToken: token)`.
-- Four operations report code 4 as an ordinary `MpFailure` with code 4, because
-  their target documentation says the work was not done:
-  `ConstructPointFromSurveyTargetCenterAsync`, `OpenSaFileAsync`,
-  `OpenTemplateFileAsync` and `SetReportOptionsForObjectAsync`.
+- Four operations report code 4 as an ordinary `MpFailure` with code 4 on both
+  targets:
+  - `ConstructPointFromSurveyTargetCenterAsync` and
+    `SetReportOptionsForObjectAsync`, because the documentation of both targets
+    says code 4 leaves their work undone: no target point was found, or report
+    options are not available for the object;
+  - `OpenSaFileAsync` and `OpenTemplateFileAsync`. The SA 2026 documentation
+    says code 4 means the file was found but could not be opened. The SA 2024
+    documentation doesn't list code 4 for them. They are on the SA 2024 list by
+    maintainer decision
+    ([spatialanalyzer/briosa#351](https://github.com/spatialanalyzer/briosa/issues/351)),
+    because a false success that discards the open job would be worse than a
+    false failure.
 - A typed failure keeps its MP details in `BriosaOperationException.MpExecution`.
   A partial success whose output could not be read stays `PartialSuccess` there.
 - The client checks every success, whether or not you observe it. A success is
