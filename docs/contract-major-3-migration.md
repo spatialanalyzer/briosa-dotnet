@@ -202,8 +202,9 @@ these, which are now required (both targets unless noted):
 ## Partial success and the MP completion of a call
 
 MP code 4 (PARTIAL SUCCESS) means the command did its work but not its full
-intended effect. The server reports it as a success, so the call returns its
-outputs normally. The client never throws for it and never retries it.
+intended effect, except for the four operations below. The server reports it as
+a success, so the call returns its outputs normally when all of them are
+retrieved. The client never retries it.
 
 To see how a call's MP command completed, pass the new `onMpCompletion`
 observer. Every MP method takes it as an optional parameter just before its
@@ -240,7 +241,9 @@ if (completion?.State == MpExecutionState.PartialSuccess)
     because a false success that discards the open job would be worse than a
     false failure.
 - A typed failure keeps its MP details in `BriosaOperationException.MpExecution`.
-  A partial success whose output could not be read stays `PartialSuccess` there.
+  If an output can't be retrieved after code 4, the call fails with
+  `OutputRetrievalFailure`, and its `MpExecution` stays `PartialSuccess` with
+  code 4.
 - The client checks every success, whether or not you observe it. A success is
   a protocol error, `BriosaProtocolException`, in three cases:
   - it has no MP execution details (`mp-execution-missing`);

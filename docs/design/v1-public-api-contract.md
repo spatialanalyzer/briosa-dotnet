@@ -195,8 +195,12 @@ appropriate nullable or domain-specific representation.
 ### MP completion and partial success
 
 From contract major 3, an MP command that returns code 4 (PARTIAL SUCCESS) did
-its work but not its full intended effect. The server reports it as a success,
-so the method returns its outputs, never throws for it, and never retries it.
+its work but not its full intended effect, except for the four operations below.
+The server reports it as a success, so the method never retries it and returns
+its outputs when all of them are retrieved. If an output can't be retrieved, the
+method throws `BriosaOperationException` whose `Kind` is
+`OutputRetrievalFailure`, and its `MpExecution` keeps `State` `PartialSuccess`
+and code 4.
 A caller that needs to know passes the optional `onMpCompletion` observer. The
 client calls it once, synchronously, before the returned task completes, and
 only for a successful call. Its `MpCompletion` value has the state and the MP

@@ -130,10 +130,12 @@ blank, which SpatialAnalyzer documents as no nominals group.
 
 ### Partial success
 
-An MP command that returns code 4 (PARTIAL SUCCESS) did its work but not its full
-intended effect. The method never retries it and, apart from the four methods
-below, still returns its outputs. Pass the optional `onMpCompletion` observer to
-see how a call completed:
+For most methods, MP code 4 (PARTIAL SUCCESS) means the command did its work but
+not its full intended effect. The method never retries it, and it returns its
+outputs when all of them are retrieved. For four methods, listed below, the
+SA 2026 documentation says code 4 leaves their work undone, so they report it as
+a failure. Pass the optional `onMpCompletion` observer to see how a call
+completed:
 
 ```csharp
 MpCompletion? completion = null;
@@ -142,11 +144,16 @@ string directory = await briosa.GetWorkingDirectoryAsync(
 bool partial = completion?.State == MpExecutionState.PartialSuccess;
 ```
 
-For four methods, code 4 throws `BriosaOperationException` whose `Kind` is
+If an output can't be retrieved after code 4, the method throws
+`BriosaOperationException` whose `Kind` is `OutputRetrievalFailure`, and the
+observer doesn't run. The exception's `MpExecution` still has `State`
+`PartialSuccess` and `MpResultCode` 4, and its `OutputRetrievals` show which
+output failed.
+
+For these four methods, code 4 throws `BriosaOperationException` whose `Kind` is
 `MpFailure`, with code 4 in its `MpExecution`, and the observer doesn't run:
 `ConstructPointFromSurveyTargetCenterAsync`, `OpenSaFileAsync`,
-`OpenTemplateFileAsync`, and `SetReportOptionsForObjectAsync`. The SA 2026
-documentation says code 4 leaves their work undone.
+`OpenTemplateFileAsync`, and `SetReportOptionsForObjectAsync`.
 
 The observer comes just before the `CancellationToken`, so pass the token by
 name when you leave the observer out. See the
