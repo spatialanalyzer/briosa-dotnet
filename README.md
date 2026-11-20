@@ -43,7 +43,8 @@ for each change:
   explicit identity;
 - every MP method takes an optional `onMpCompletion` observer before its
   `CancellationToken`, which reports a partial success (MP code 4) without
-  changing the return type;
+  changing the return type, except for four methods that report code 4 as an
+  `MpFailure`;
 - typed failures add `SdkCallFaulted`, MP execution details, and the lifecycle
   caller kinds, and a transport failure without a typed trailer reports
   `transport-<status>` (such as `transport-deadline-exceeded`) instead of

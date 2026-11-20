@@ -120,8 +120,9 @@ blank, which SpatialAnalyzer documents as no nominals group.
 ### Partial success
 
 An MP command that returns code 4 (PARTIAL SUCCESS) did its work but not its full
-intended effect. The method still returns its outputs and never retries. Pass
-the optional `onMpCompletion` observer to see how a call completed:
+intended effect. The method never retries it and, apart from the four methods
+below, still returns its outputs. Pass the optional `onMpCompletion` observer to
+see how a call completed:
 
 ```csharp
 MpCompletion? completion = null;
@@ -129,6 +130,16 @@ string directory = await briosa.GetWorkingDirectoryAsync(
     onMpCompletion: value => completion = value);
 bool partial = completion?.State == MpExecutionState.PartialSuccess;
 ```
+
+For four methods, code 4 throws `BriosaOperationException` whose `Kind` is
+`MpFailure`, with code 4 in its `MpExecution`, and the observer doesn't run:
+
+- `ConstructPointFromSurveyTargetCenterAsync` and `SetReportOptionsForObjectAsync`,
+  because the SA 2024 documentation says code 4 leaves their work undone;
+- `OpenSaFileAsync` and `OpenTemplateFileAsync`, by maintainer decision
+  ([spatialanalyzer/briosa#351](https://github.com/spatialanalyzer/briosa/issues/351)):
+  the SA 2024 documentation doesn't list code 4 for them, and a false success
+  that discards the open job would be worse than a false failure.
 
 The observer comes just before the `CancellationToken`, so pass the token by
 name when you leave the observer out. See the
