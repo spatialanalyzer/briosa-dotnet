@@ -21,15 +21,37 @@ dotnet add package Briosa.2024.1.0508.5 --version 0.5.0
 To try a local build instead, give it a version of its own. NuGet installs a
 package from its global packages folder whenever that folder already holds the
 same ID and version, so a local build numbered `0.5.0` would install the cached
-copy. Pack with a local suffix from `targets/2024.1.0508.5/`, then add that
-version from your project:
+copy. Pack with a local suffix from `targets/2024.1.0508.5/`:
 
 ```powershell
 dotnet pack src/Briosa.Client/Briosa.Client.csproj -c Release -o artifacts/local-package --version-suffix local.1
-dotnet add package Briosa.2024.1.0508.5 --version 0.5.0-local.1 --source C:\path\to\briosa-dotnet\targets\2024.1.0508.5\artifacts\local-package
 ```
 
-Use a new suffix, such as `local.2`, for each rebuild.
+Then add the package folder to your project's package sources, next to the feeds
+that supply its dependencies. Add a `briosa-local` entry to the `nuget.config`
+in your project's folder, or create the file with this content. Without a
+`<clear />`, it keeps the feeds of your other NuGet configuration files, such as
+nuget.org:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="briosa-local" value="C:\path\to\briosa-dotnet\targets\2024.1.0508.5\artifacts\local-package" />
+  </packageSources>
+</configuration>
+```
+
+Finally, add that version from your project. Don't pass the folder with
+`--source` instead: that replaces your feeds for the restore, so any package
+that isn't already cached fails with `NU1101`.
+
+```powershell
+dotnet add package Briosa.2024.1.0508.5 --version 0.5.0-local.1
+```
+
+Use a new suffix, such as `local.2`, for each rebuild. When you're done, remove
+the `briosa-local` entry, or the file if you created it.
 
 Exact SpatialAnalyzer targets use separate package and assembly identities,
 while application code continues to use the stable `Briosa` namespace. An
