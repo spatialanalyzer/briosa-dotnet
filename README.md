@@ -27,7 +27,7 @@ promotion.
 
 The 0.3.0 API naming changes are described in the [MP argument migration guide](docs/mp-argument-name-migration.md).
 
-## 0.5.0 (unreleased): contract major 3
+## 0.5.0: contract major 3
 
 Client 0.5.0 adopts behavioral contract major 3 (Briosa Server 0.10.0) in both
 products, and selects only major-3 servers. It breaks source compatibility on

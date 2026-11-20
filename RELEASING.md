@@ -29,25 +29,30 @@ publishes the draft GitHub release.
 
 1. Update both targets' package versions together, review the PR, and merge with
    all CI checks passing. Keep target-specific package names and stable imports.
-   Each target README is also its package's README on the registry, so in the
-   same PR make both describe the release:
-   - the Package Identity install command installs the release version from
-     the registry, with no local `--source`, and the local-build commands use
-     the release version with a local suffix, such as `<version>-local.1`;
-   - the compatibility paragraph names the release version, the behavioral
-     contract it requires, and the servers it rejects, with no
-     development-checkout or "not a published compatibility claim" wording.
+   In the same PR, make the READMEs describe the release. Each target README is
+   also its package's README on the registry:
+   - in both target READMEs, the Package Identity install command installs the
+     release version from the registry, with no local `--source`, and the
+     local-build commands use the release version with a local suffix, such as
+     `<version>-local.1`;
+   - in both target READMEs, the compatibility paragraph names the release
+     version, the behavioral contract it requires, and the servers it rejects,
+     with no development-checkout or "not a published compatibility claim"
+     wording;
+   - in the root README, the version table and the heading of the release's
+     section name the release version, with no "unreleased" label.
 
-   0.4.0 and 0.5.0 both shipped development-checkout wording in these READMEs.
+   0.4.0 and 0.5.0 both shipped development-checkout wording in the target
+   READMEs, and 0.5.0 also shipped an "unreleased" label in the root README.
 2. Optional dry run: dispatch `release.yml` on `main`, or on a branch, with
    `version=<version>` and `publish=false`. It runs the release checks and the
    complete CI matrix (protocol drift, conformance, tests, formatting, packaging,
    and installed-package smoke checks) and publishes nothing. Download the
    `packages-<SA target>` artifacts when needed for inspection.
-3. Before dispatching, read both target READMEs on `main` and confirm that their
-   Package Identity command and compatibility paragraph describe this release,
-   as in step 1. Then dispatch `release.yml` on `main` with `version=<version>`
-   (without `v`) and `publish=true`. The workflow rejects tag refs, branches
+3. Before dispatching, read the root README and both target READMEs on `main` and
+   confirm that they describe this release, as in step 1. Then dispatch
+   `release.yml` on `main` with `version=<version>` (without `v`) and
+   `publish=true`. The workflow rejects tag refs, branches
    other than `main`, a version that differs from either target's package
    version, wrong target identities, and an existing `v<version>` tag at another
    commit. It rebuilds and validates both targets, then creates a draft GitHub
