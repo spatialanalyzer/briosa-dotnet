@@ -287,7 +287,7 @@ portable results do not imply v1.0 readiness or validation on physical instrumen
 
 ### SA 2024 differences
 
-The facade implements the reviewed 996-operation SA 2024 surface. It omits later
+The facade implements the reviewed 987-operation SA 2024 surface. It omits later
 commands and the three scan operations whose SDK bindings are unavailable in
 this release. See the authoritative [compatibility record](https://github.com/spatialanalyzer/briosa/blob/v0.6.1/targets/2024.1.0508.5/docs/development/sa2024-compatibility.md)
 for the complete command and field differences.
