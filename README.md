@@ -27,7 +27,7 @@ promotion.
 
 The 0.3.0 API naming changes are described in the [MP argument migration guide](docs/mp-argument-name-migration.md).
 
-## 0.5.0 (unreleased): contract major 3
+## 0.5.0: contract major 3
 
 Client 0.5.0 adopts behavioral contract major 3 (Briosa Server 0.10.0) in both
 products, and selects only major-3 servers. It breaks source compatibility on
@@ -43,7 +43,8 @@ for each change:
   explicit identity;
 - every MP method takes an optional `onMpCompletion` observer before its
   `CancellationToken`, which reports a partial success (MP code 4) without
-  changing the return type;
+  changing the return type, except for four methods that report code 4 as an
+  `MpFailure`;
 - typed failures add `SdkCallFaulted`, MP execution details, and the lifecycle
   caller kinds, and a transport failure without a typed trailer reports
   `transport-<status>` (such as `transport-deadline-exceeded`) instead of

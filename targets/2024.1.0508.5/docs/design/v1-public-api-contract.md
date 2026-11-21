@@ -195,8 +195,16 @@ appropriate nullable or domain-specific representation.
 ### MP completion and partial success
 
 From contract major 3, an MP command that returns code 4 (PARTIAL SUCCESS) did
-its work but not its full intended effect. The server reports it as a success,
-so the method returns its outputs, never throws for it, and never retries it.
+its work but not its full intended effect, except for the four operations below.
+The server reports it as a success, so the method never retries it and returns
+its outputs when all of them are retrieved. If an output can't be retrieved, the
+method throws `BriosaOperationException`. Its `Kind` is `SdkCallFaulted` when an
+output getter threw, and `OutputRetrievalFailure` when a getter returned no
+usable value or the worker couldn't deliver the result (diagnostic
+`worker-output-encoding-rejected`). With either kind, its `MpExecution` keeps
+`State` `PartialSuccess` and code 4, and its `OutputRetrievals` are the
+per-output states the server reports. They don't always identify the getter
+that failed, because an undeliverable result can mark every output failed.
 A caller that needs to know passes the optional `onMpCompletion` observer. The
 client calls it once, synchronously, before the returned task completes, and
 only for a successful call. Its `MpCompletion` value has the state and the MP
@@ -214,10 +222,15 @@ await briosa.SetPointNotesAsync(
     cancellationToken: cancellationToken);
 ~~~
 
-Four operations report code 4 as an ordinary `MpFailure`, because their target
-documentation says the work was not done: Construct Point From Survey Target
-Center, Open SA File, Open Template File, and Set Report Options For Object. A
-success response without MP execution details, with another state, or whose MP
+Four operations report code 4 as an ordinary `MpFailure`. Construct Point From
+Survey Target Center and Set Report Options For Object do so because the SA 2024
+documentation says code 4 leaves their work undone. Open SA File and Open
+Template File do so by maintainer decision
+([spatialanalyzer/briosa#351](https://github.com/spatialanalyzer/briosa/issues/351)):
+the SA 2024 documentation doesn't list code 4 for them, and a false success that
+discards the open job would be worse than a false failure.
+
+A success response without MP execution details, with another state, or whose MP
 code is missing or doesn't match its state is a protocol error.
 
 ### Collections

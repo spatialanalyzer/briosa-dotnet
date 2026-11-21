@@ -12,14 +12,63 @@ Windows x64. Its full protocol identity is pinned in
 
 ## Package Identity
 
-The next version is not published yet. Build the candidate locally and use its
-package path or feed in the installation command below.
-
 The NuGet package and assembly are both named `Briosa.2024.1.0508.5`. Install the package with:
 
 ```powershell
-dotnet add package Briosa.2024.1.0508.5 --version 0.5.0 --source C:\path\to\artifacts\package
+dotnet add package Briosa.2024.1.0508.5 --version 0.5.0
 ```
+
+To try a local build instead, give it a version of its own. NuGet installs a
+package from its global packages folder whenever that folder already holds the
+same ID and version, so a local build numbered `0.5.0` would install the cached
+copy. Pack with a local suffix from `targets/2024.1.0508.5/`:
+
+```powershell
+dotnet pack src/Briosa.Client/Briosa.Client.csproj -c Release -o artifacts/local-package --version-suffix local.1
+```
+
+Then add the package folder to your project's package sources, next to the feeds
+that supply its dependencies. Add a `briosa-local` entry to the `nuget.config`
+in your project's folder, or create the file with this content. Without a
+`<clear />`, it keeps the feeds of your other NuGet configuration files, such as
+nuget.org:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="briosa-local" value="C:\path\to\briosa-dotnet\targets\2024.1.0508.5\artifacts\local-package" />
+  </packageSources>
+</configuration>
+```
+
+Finally, add that version from your project. Don't pass the folder with
+`--source` instead: that replaces your feeds for the restore, so any package
+that isn't already cached fails with `NU1101`.
+
+```powershell
+dotnet add package Briosa.2024.1.0508.5 --version 0.5.0-local.1
+```
+
+Use a new suffix, such as `local.2`, for each rebuild.
+
+When you're done, first set the reference back to the version you used before,
+such as `0.5.0`:
+
+```powershell
+dotnet add package Briosa.2024.1.0508.5 --version 0.5.0
+```
+
+If you added the package only for the trial, remove it instead:
+
+```powershell
+dotnet remove package Briosa.2024.1.0508.5
+```
+
+Then remove the `briosa-local` entry, or the file if you created it, and run
+`dotnet restore`. Removing only the entry would leave the project on the local
+version: your global packages folder keeps restoring it, and a machine without
+that copy restores `0.5.0` instead, with warning `NU1603`.
 
 Exact SpatialAnalyzer targets use separate package and assembly identities,
 while application code continues to use the stable `Briosa` namespace. An
@@ -119,9 +168,11 @@ blank, which SpatialAnalyzer documents as no nominals group.
 
 ### Partial success
 
-An MP command that returns code 4 (PARTIAL SUCCESS) did its work but not its full
-intended effect. The method still returns its outputs and never retries. Pass
-the optional `onMpCompletion` observer to see how a call completed:
+For most methods, MP code 4 (PARTIAL SUCCESS) means the command did its work but
+not its full intended effect. The method never retries it, and it returns its
+outputs when all of them are retrieved. Four methods, listed below, report
+code 4 as a failure instead. Pass the optional `onMpCompletion` observer to see
+how a call completed:
 
 ```csharp
 MpCompletion? completion = null;
@@ -129,6 +180,30 @@ string directory = await briosa.GetWorkingDirectoryAsync(
     onMpCompletion: value => completion = value);
 bool partial = completion?.State == MpExecutionState.PartialSuccess;
 ```
+
+If an output can't be retrieved after code 4, the method throws
+`BriosaOperationException`, and the observer doesn't run. The exception's `Kind`
+depends on what went wrong:
+
+- `OutputRetrievalFailure` when an output's SDK getter returned no usable value,
+  or when the worker couldn't deliver the result, for example because an output
+  was too large;
+- `SdkCallFaulted` when an output's SDK getter threw.
+
+With either kind, the exception's `MpExecution` still has `State`
+`PartialSuccess` and `MpResultCode` 4. Its `OutputRetrievals` are the per-output
+states the server reports. They don't always identify the getter that failed:
+when the worker can't deliver a result, every output can be marked failed.
+
+For these four methods, code 4 throws `BriosaOperationException` whose `Kind` is
+`MpFailure`, with code 4 in its `MpExecution`, and the observer doesn't run:
+
+- `ConstructPointFromSurveyTargetCenterAsync` and `SetReportOptionsForObjectAsync`,
+  because the SA 2024 documentation says code 4 leaves their work undone;
+- `OpenSaFileAsync` and `OpenTemplateFileAsync`, by maintainer decision
+  ([spatialanalyzer/briosa#351](https://github.com/spatialanalyzer/briosa/issues/351)):
+  the SA 2024 documentation doesn't list code 4 for them, and a false success
+  that discards the open job would be worse than a false failure.
 
 The observer comes just before the `CancellationToken`, so pass the token by
 name when you leave the observer out. See the
@@ -143,12 +218,12 @@ canonical stores, explicit search roots, and supported local layouts. It validat
 receipts and manifests, filters the exact SA target and compatibility contract,
 and selects the highest compatible stable release. No internet access is needed.
 
-This development checkout prepares client 0.5.0 for behavioral contract **3.0**
-(major 3, revision at least 0). It is not a published compatibility claim.
-Servers of other contract majors, including the major-2 Server 0.9 releases,
-and servers without contract metadata, including Server 0.6.1, are rejected
-before launch. Protocol and source pins remain exact build inputs;
-startup verifies the running server against its selected installation.
+Client 0.5.0 requires behavioral contract **3.0** (major 3, revision at least
+0), which Briosa Server 0.10.0 introduces. Servers of other contract majors,
+including the major-2 Server 0.9 releases, and servers without contract
+metadata, including Server 0.6.1, are rejected before launch. Use client 0.4.0
+with the Server 0.9 releases. Protocol and source pins remain exact build
+inputs; startup verifies the running server against its selected installation.
 
 The three robot methods Get Robot Machine Parameter, Start Robot Machine
 Interface, and Stop Robot Machine Interface now take a collection/instrument
@@ -287,7 +362,7 @@ portable results do not imply v1.0 readiness or validation on physical instrumen
 
 ### SA 2024 differences
 
-The facade implements the reviewed 996-operation SA 2024 surface. It omits later
+The facade implements the reviewed 987-operation SA 2024 surface. It omits later
 commands and the three scan operations whose SDK bindings are unavailable in
 this release. See the authoritative [compatibility record](https://github.com/spatialanalyzer/briosa/blob/v0.6.1/targets/2024.1.0508.5/docs/development/sa2024-compatibility.md)
 for the complete command and field differences.

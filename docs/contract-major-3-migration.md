@@ -29,7 +29,7 @@ types are gone:
 | Removed | Notes |
 | --- | --- |
 | `MirrorObjectsAsync`, with `MirrorFramePlane` | SpatialAnalyzer rejects it on both targets. |
-| `DeleteCloudPointsByXYZRangeAsync` | There is no X Y Z box delete. `DeleteCloudPointsByRadialDistanceFromPointsAsync` deletes by distance instead, has different semantics, and is not licensed-validated yet. |
+| `DeleteCloudPointsByXYZRangeAsync` | There is no X Y Z box delete. `DeleteCloudPointsByRadialDistanceFromPointsAsync` deletes by distance instead and has different semantics; a licensed session validated it on both targets for one cloud and one point. |
 | `ConstructCirclesLinesFromSurfacesAsync`, with `CircleLineMode` | SpatialAnalyzer rejects it on both targets. |
 | `AddCollectionInstrumentsToRefListWildcardSelectionAsync` | SpatialAnalyzer rejects it on both targets. |
 | `MakeCalloutViewRefListWildcardSelectionAsync`, both `SetCalloutViewPropertiesAsync` overloads | Select callout views with `MakeCollectionItemNameRefListWildcardSelectionAsync`. |
@@ -202,8 +202,9 @@ these, which are now required (both targets unless noted):
 ## Partial success and the MP completion of a call
 
 MP code 4 (PARTIAL SUCCESS) means the command did its work but not its full
-intended effect. The server reports it as a success, so the call returns its
-outputs normally. The client never throws for it and never retries it.
+intended effect, except for the four operations below. The server reports it as
+a success, so the call returns its outputs normally when all of them are
+retrieved. The client never retries it.
 
 To see how a call's MP command completed, pass the new `onMpCompletion`
 observer. Every MP method takes it as an optional parameter just before its
@@ -226,12 +227,25 @@ if (completion?.State == MpExecutionState.PartialSuccess)
   `int`.
 - A call that passed its token positionally must now name it:
   `GetWorkingDirectoryAsync(cancellationToken: token)`.
-- Four operations report code 4 as an ordinary `MpFailure` with code 4, because
-  their target documentation says the work was not done:
-  `ConstructPointFromSurveyTargetCenterAsync`, `OpenSaFileAsync`,
-  `OpenTemplateFileAsync` and `SetReportOptionsForObjectAsync`.
+- Four operations report code 4 as an ordinary `MpFailure` with code 4 on both
+  targets:
+  - `ConstructPointFromSurveyTargetCenterAsync` and
+    `SetReportOptionsForObjectAsync`, because the documentation of both targets
+    says code 4 leaves their work undone: no target point was found, or report
+    options are not available for the object;
+  - `OpenSaFileAsync` and `OpenTemplateFileAsync`. The SA 2026 documentation
+    says code 4 means the file was found but could not be opened. The SA 2024
+    documentation doesn't list code 4 for them. They are on the SA 2024 list by
+    maintainer decision
+    ([spatialanalyzer/briosa#351](https://github.com/spatialanalyzer/briosa/issues/351)),
+    because a false success that discards the open job would be worse than a
+    false failure.
 - A typed failure keeps its MP details in `BriosaOperationException.MpExecution`.
-  A partial success whose output could not be read stays `PartialSuccess` there.
+  If an output can't be retrieved after code 4, the call fails and the observer
+  doesn't run. The kind is `SdkCallFaulted` when an output getter threw, and
+  `OutputRetrievalFailure` when a getter returned no usable value or the worker
+  couldn't deliver the result (diagnostic `worker-output-encoding-rejected`).
+  With either kind, `MpExecution` stays `PartialSuccess` with code 4.
 - The client checks every success, whether or not you observe it. A success is
   a protocol error, `BriosaProtocolException`, in three cases:
   - it has no MP execution details (`mp-execution-missing`);
@@ -248,8 +262,11 @@ if (completion?.State == MpExecutionState.PartialSuccess)
 - `OperationFailureKind.SdkCallFaulted` reports that an SDK call threw during the
   MP sequence. `ExecutionDisposition` carries the phase: `NotStarted` before the
   MP step, `StartedOutcomeUnknown` during it (reconcile before replaying), and
-  `Completed` when an output getter threw after MP success.
-  `MpExecution.OutputRetrievals` then tells the read outputs from the failed one.
+  `Completed` when an output getter threw after MP code 2 or 4. `MpExecution`
+  then keeps `Succeeded` with 2 or `PartialSuccess` with 4, and its
+  `OutputRetrievals` are the per-output states the server reports. They don't
+  always identify the getter that threw: if the worker had to withhold that
+  evidence, every output is reported failed.
 - Both lifecycle failure kinds gain `CallerCancelled` and
   `CallerDeadlineExceeded`. A cancelled lifecycle call still surfaces as
   `OperationCanceledException`, never as a state conflict.
@@ -304,9 +321,9 @@ if (completion?.State == MpExecutionState.PartialSuccess)
   `SetRobotMachineModelLinkParametersAsync`, `SetActiveRobotCalibrationAsync`,
   `SetRobotCalibrationToolFrameAsync`,
   `SetRobotCalibrationMeasurementOffsetInToolFrameAsync` and
-  `SetProbeOffsetFrameOfflineAsync`) need the `device` or `full` profile or an
-  override. Operations that open or block on operator UI need the explicit
-  interactive opt-in.
+  `SetProbeOffsetFrameOfflineAsync`) need the `device` or `full` profile,
+  `Flags:device_config=allow`, or a per-operation `allow` override. Operations
+  that open or block on operator UI need the explicit interactive opt-in.
 - The facades of denied operations stay. The multi-call device, trapping,
   watch, robot-interface and appliance session workflows are exclusive, and
   every profile, flag and override denies them for now: a call fails with
