@@ -37,11 +37,17 @@ types are gone:
 | `MakeCollectionVectorGroupNameRefListRuntimeSelectAsync` | Nothing replaces it. |
 | `MakeVectorNameRefListRuntimeSelectAsync` | SpatialAnalyzer never rejected it, but no operator could complete the selection on either target, so it is unverified. It can return in a 3.x revision once a licensed session verifies it. |
 
-## Defaults that now wait
+## Request defaults that changed
+
+Ten request defaults changed. The five `measureImmediately` defaults and
+`autoStart` are now `true`, so measurement begins without waiting for the
+operator. `waitForComplete` and the two `acknowledgeArrival` defaults are now
+`true`, so those calls wait for completion or arrival. `promptOnMissingComponents`
+is now `false`, so CAD import skips its missing-component prompt.
 
 The server denies the old values of these defaults: without the interactive
-opt-in for the measure and prompt options, and always for the non-waiting
-values. A caller that relied on an old default passes it explicitly.
+opt-in for the measure, start, and prompt options, and always for the
+non-waiting values. A caller that relied on an old default passes it explicitly.
 
 | Method | Parameter | 0.4.0 | 0.5.0 |
 | --- | --- | --- | --- |

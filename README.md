@@ -36,8 +36,9 @@ for each change:
 
 - nine operations are removed: eight failed on both exact targets in licensed
   probe sessions, and no operator could complete the ninth;
-- ten request defaults now wait, for example `measureImmediately` defaults to
-  `true`;
+- ten request defaults changed: six start measurement without waiting for the
+  operator (for example `measureImmediately` defaults to `true`), three wait
+  for completion or arrival, and one skips a prompt;
 - no default or overload fills in an input the server requires: each one is a
   required parameter or a `required` member, with `Transform.Identity` for an
   explicit identity;
