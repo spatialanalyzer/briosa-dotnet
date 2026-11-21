@@ -16,7 +16,7 @@ namespace Briosa.Client.Tests;
 // don't exercise these mappings, so each rule is checked on the built request.
 public sealed partial class ClientContractTests
 {
-    // The ten request defaults that now wait: the client sends the new value,
+    // The ten changed request defaults: the client sends the new value,
     // and an explicit caller value unchanged.
     [Theory]
     [InlineData(nameof(BriosaInstrumentOperations.MeasureSinglePointHereAsync), "measureImmediately", true)]
