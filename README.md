@@ -34,8 +34,8 @@ products, and selects only major-3 servers. It breaks source compatibility on
 purpose; see the [contract major 3 migration](docs/contract-major-3-migration.md)
 for each change:
 
-- nine operations that SpatialAnalyzer rejects or no operator could complete are
-  removed;
+- nine operations are removed: eight failed on both exact targets in licensed
+  probe sessions, and no operator could complete the ninth;
 - ten request defaults now wait, for example `measureImmediately` defaults to
   `true`;
 - no default or overload fills in an input the server requires: each one is a

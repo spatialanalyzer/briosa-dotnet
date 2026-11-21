@@ -31,8 +31,8 @@ types are gone:
 | `MirrorObjectsAsync`, with `MirrorFramePlane` | SpatialAnalyzer rejects it on both targets. |
 | `DeleteCloudPointsByXYZRangeAsync` | There is no X Y Z box delete. `DeleteCloudPointsByRadialDistanceFromPointsAsync` deletes by distance instead and has different semantics; a licensed session validated it on both targets for one cloud and one point. |
 | `ConstructCirclesLinesFromSurfacesAsync`, with `CircleLineMode` | SpatialAnalyzer rejects it on both targets. |
-| `AddCollectionInstrumentsToRefListWildcardSelectionAsync` | SpatialAnalyzer rejects it on both targets. |
-| `MakeCalloutViewRefListWildcardSelectionAsync`, both `SetCalloutViewPropertiesAsync` overloads | Select callout views with `MakeCollectionItemNameRefListWildcardSelectionAsync`. |
+| `AddCollectionInstrumentsToRefListWildcardSelectionAsync` | SpatialAnalyzer reported success (MP code 2) on both targets, but reading the input list back returned nothing, and the MP documents no return argument. A caller that needs an instrument list can build it directly. |
+| `MakeCalloutViewRefListWildcardSelectionAsync`, both `SetCalloutViewPropertiesAsync` overloads | Select callout views with `MakeCollectionItemNameRefListWildcardSelectionAsync` and the callout-view item type. It uses a different MP step, and that item type has not been observed on a licensed run. Nothing replaces setting callout view properties on a list. |
 | `ConstructPolygonizedSurfaceFromPointCloudsAsync`, with `MeshOrientationType` | Nothing replaces it. |
 | `MakeCollectionVectorGroupNameRefListRuntimeSelectAsync` | Nothing replaces it. |
 | `MakeVectorNameRefListRuntimeSelectAsync` | SpatialAnalyzer never rejected it, but no operator could complete the selection on either target, so it is unverified. It can return in a 3.x revision once a licensed session verifies it. |
