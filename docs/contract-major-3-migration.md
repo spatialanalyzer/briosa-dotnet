@@ -31,7 +31,7 @@ types are gone:
 | `MirrorObjectsAsync`, with `MirrorFramePlane` | SpatialAnalyzer rejects it on both targets. |
 | `DeleteCloudPointsByXYZRangeAsync` | There is no X Y Z box delete. `DeleteCloudPointsByRadialDistanceFromPointsAsync` deletes by distance instead and has different semantics; a licensed session validated it on both targets for one cloud and one point. |
 | `ConstructCirclesLinesFromSurfacesAsync`, with `CircleLineMode` | SpatialAnalyzer rejects it on both targets. |
-| `AddCollectionInstrumentsToRefListWildcardSelectionAsync` | SpatialAnalyzer reported success (MP code 2) on both targets, but reading the input list back returned nothing, and the MP documents no return argument. Nothing replaces it. |
+| `AddCollectionInstrumentsToRefListWildcardSelectionAsync` | SpatialAnalyzer reported success (MP code 2) on both targets, but reading the input list back returned nothing, and the MP documents no return argument. A caller that needs an instrument list can build it directly. |
 | `MakeCalloutViewRefListWildcardSelectionAsync`, both `SetCalloutViewPropertiesAsync` overloads | Select callout views with `MakeCollectionItemNameRefListWildcardSelectionAsync`. |
 | `ConstructPolygonizedSurfaceFromPointCloudsAsync`, with `MeshOrientationType` | Nothing replaces it. |
 | `MakeCollectionVectorGroupNameRefListRuntimeSelectAsync` | Nothing replaces it. |
