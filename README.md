@@ -33,9 +33,9 @@ The 0.3.0 API naming changes are described in the [MP argument migration guide](
 ## 0.5.1 (for Server 0.10.x)
 
 Client 0.5.1 adds to 0.5.0 without breaking it: an application written for
-0.5.0 compiles and behaves the same, except in the three failure cases below,
-each a fix. It uses what Server 0.10.1 adds and works with Server 0.10.0
-unchanged, where each addition below reports that the server sent nothing:
+0.5.0 compiles and behaves the same, except in the four differences listed
+below. It uses what Server 0.10.1 adds and works with Server 0.10.0 unchanged,
+where each addition below reports that the server sent nothing:
 
 - with Server 0.10.1 and later, a startup whose
   `BriosaStartOptions.StartupTimeout` is left unset sizes its budget from the
@@ -65,8 +65,8 @@ unchanged, where each addition below reports that the server sent nothing:
   which shows a 1 MiB result received whole, and conformance runs keep the
   server logs of a failed scenario as a CI artifact.
 
-With either server, it differs from 0.5.0 in exactly three failure cases, each
-a fix:
+With either server, it differs from 0.5.0 in exactly four ways: three failure
+cases, each a fix, and what serializers see:
 
 - a start that fails before the client owns the server it launched stops that
   server itself, whether it ended through its budget, another failure, or
@@ -81,10 +81,19 @@ a fix:
   (about 49.7 days) throws `ArgumentOutOfRangeException` for parameter `delay`.
   A fraction of a millisecond is ignored, so 4,294,967,294.9999 ms is accepted;
 - resource cleanup is attempted in full. When one close throws, the other
-  resources are still released, a failed start keeps its own error, and
-  `StopAsync` or `DisposeAsync` reports the close failure once every close has
-  been attempted. A pending start that faulted, with any exception, no longer
-  keeps `StopAsync` or `DisposeAsync` from closing its session.
+  resources are still released, and a failed start keeps its own error.
+  `StopAsync` and `DisposeAsync` close the transport and the server even when
+  the SDK shutdown that comes first fails, and report that failure, or else a
+  close failure, once every close has been attempted. A pending start that
+  faulted, with any exception, no longer keeps them from closing its session.
+  Each close is attempted once: if stopping the server process itself fails,
+  the error is reported and the client does not retry;
+- reflection-based serializers, and other code that enumerates the members of
+  `BriosaServerSnapshot` and `BriosaOperationCapability`, see their 0.5.1
+  members (`LifecycleBounds` and `ConfiguredInteractionMode`; `PolicyDenial`
+  and `RequestOptions`), so a reader that rejects unknown members needs
+  updating. Equality, hashing and `ToString()` are unchanged when the server
+  sends none of the new values.
 
 The product guides describe each addition:
 [SA 2024](targets/2024.1.0508.5/README.md#usage),

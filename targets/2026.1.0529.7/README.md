@@ -131,7 +131,9 @@ A second lifecycle call meanwhile fails with
 `sdk-lifecycle-transition-in-progress`: refresh state and retry later. A start
 that fails before the client owns the server it launched stops that server
 itself; once the client owns it, a later `StopAsync()` or `DisposeAsync()` stops
-it. Each close is attempted even when another one throws.
+it. Each close is attempted once, even when another one throws; if stopping
+the server process itself fails, the error is reported and the client does not
+retry.
 
 The client retains lifecycle generations and supplies RPC guards automatically.
 Typed lifecycle failures, compatibility failures, ambiguous MP completion, and
@@ -174,7 +176,10 @@ Server 0.10.0, which sends none of this, each value below is `null` or
 
 The new members take no part in the equality or hash code of
 `BriosaServerSnapshot` and `BriosaOperationCapability`, and `ToString()` shows
-them only when the server sent them, so both records behave as in client 0.5.0.
+them only when the server sent them, so both records compare, hash and print as
+in client 0.5.0. Reflection-based serializers, and other code that enumerates
+their members, do see the new members, so a reader that rejects unknown members
+needs updating.
 
 See the [Briosa documentation](https://spatialanalyzer.github.io/briosa-docs/api/dotnet/)
 for the client API overview. The target-specific source and locked protocol define

@@ -412,8 +412,8 @@ minutes and only its timer ends the start, and after a failed start readiness
 alone decides MP admission, as in client 0.5.0. The sizing advice below still
 applies.
 
-With any server, client 0.5.1 differs from client 0.5.0 in exactly three
-failure cases, each a fix:
+With any server, client 0.5.1 differs from client 0.5.0 in exactly four ways:
+three failure cases, each a fix, and what serializers see:
 
 1. A start that fails before the client owns the server it launched, whether
    through its budget, another failure, or disposal of the client, stops that
@@ -426,10 +426,18 @@ failure cases, each a fix:
    ignored, so 4,294,967,294.9999 ms is accepted. A later `StartAsync` with
    valid options then works, and `DisposeAsync` no longer rethrows.
 3. Resource cleanup is attempted in full. When one close throws, the others
-   still run, a failed start keeps its own error, and `StopAsync` or
-   `DisposeAsync` reports the close failure once every close has been
-   attempted. A pending start that faulted, with any exception, no longer keeps
-   them from closing its session.
+   still run, and a failed start keeps its own error. `StopAsync` and
+   `DisposeAsync` close the transport and the server even when the SDK shutdown
+   that comes first fails, and report that failure, or else a close failure,
+   once every close has been attempted. A pending start that faulted, with any
+   exception, no longer keeps them from closing its session. Each close is
+   attempted once; a failed close is reported, not retried.
+4. Reflection-based serializers, and other code that enumerates the members of
+   `BriosaServerSnapshot` and `BriosaOperationCapability`, see their 0.5.1
+   members (`LifecycleBounds` and `ConfiguredInteractionMode`; `PolicyDenial`
+   and `RequestOptions`), so a reader that rejects unknown members needs
+   updating. Equality, hashing and `ToString()` are unchanged when the server
+   sends none of the new values.
 
 The default follows the server's default lifecycle bounds
 ([spatialanalyzer/briosa#298](https://github.com/spatialanalyzer/briosa/pull/298),
@@ -549,7 +557,7 @@ fails discovery.
 as they did in client 0.5.0. Their 0.5.1 members take no part in equality or
 hashing, so a value rebuilt from its 0.5.0 members stays equal to the one the
 client returned, and `ToString()` shows a 0.5.1 member only when the server sent
-it. A Server 0.10.0 reply therefore prints exactly as in 0.5.0. When the enclosing message decodes, an absent, inconsistent,
+it. A Server 0.10.0 reply therefore prints exactly as in 0.5.0. Reflection-based serializers do see the 0.5.1 members, the fourth difference from 0.5.0 listed above. When the enclosing message decodes, an absent, inconsistent,
 or unrecognized denial detail never changes the typed failure or a capability's
 admission; a message that cannot be decoded is still a protocol error.
 
