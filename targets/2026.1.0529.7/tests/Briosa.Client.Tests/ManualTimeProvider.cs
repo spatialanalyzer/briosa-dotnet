@@ -10,6 +10,8 @@ internal sealed class ManualTimeProvider : TimeProvider
     private readonly object _sync = new();
     private readonly List<ManualTimer> _timers = [];
     private long _now;
+    private int _readsUntilJump = -1;
+    private long _jump;
 
     public override long TimestampFrequency => TimeSpan.TicksPerSecond;
 
@@ -28,7 +30,48 @@ internal sealed class ManualTimeProvider : TimeProvider
     {
         lock (_sync)
         {
-            return _now;
+            var reading = _now;
+            if (_readsUntilJump > 0 && --_readsUntilJump == 0)
+            {
+                // Time passes between this reading and the next, without
+                // running timers: a thread descheduled mid-decision.
+                _now += _jump;
+                _readsUntilJump = -1;
+            }
+
+            return reading;
+        }
+    }
+
+    // After the next <paramref name="reads"/> clock readings, moves the clock by
+    // <paramref name="by"/> without running timers.
+    public void AdvanceAfterReads(int reads, TimeSpan by)
+    {
+        ArgumentOutOfRangeException.ThrowIfLessThan(reads, 1);
+        lock (_sync)
+        {
+            _readsUntilJump = reads;
+            _jump = by.Ticks;
+        }
+    }
+
+    // Runs every active timer's callback now, whatever its due time: a timer
+    // callback that was already in flight when a later deadline replaced it.
+    public void FireActiveTimersEarly()
+    {
+        ManualTimer[] active;
+        lock (_sync)
+        {
+            active = _timers.Where(timer => timer.DueTicks is not null).ToArray();
+            foreach (var timer in active)
+            {
+                timer.DueTicks = null;
+            }
+        }
+
+        foreach (var timer in active)
+        {
+            timer.Fire();
         }
     }
 

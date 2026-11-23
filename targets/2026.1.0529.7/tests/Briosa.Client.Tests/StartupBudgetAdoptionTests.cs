@@ -206,6 +206,134 @@ public sealed class StartupBudgetAdoptionTests
         Assert.Equal(Bootstrap, budget.Deadline);
     }
 
+    // With lifecycle bounds present, a late discovery expires the startup even
+    // when the allowance its phases need is missing: a missing allowance keeps
+    // the bootstrap deadline, and that deadline has passed.
+    [Theory]
+    [InlineData(true, true, true)]
+    [InlineData(true, false, true)]
+    [InlineData(true, true, false)]
+    [InlineData(false, false, false)]
+    public void LateDiscoveryWithAMissingAllowanceStillExpires(bool startSdk, bool launch, bool connect)
+    {
+        var options = new BriosaStartOptions
+        {
+            StartSpatialAnalyzerSdk = startSdk,
+            LaunchSpatialAnalyzer = launch,
+            ConnectToSpatialAnalyzer = connect,
+        };
+        var partial = Published with
+        {
+            StartupWithLaunch = null,
+            StartupWithoutLaunch = null,
+            LaunchSpatialAnalyzer = null,
+        };
+        var clock = new ManualTimeProvider();
+        using var budget = new StartupBudget(options, clock);
+        clock.AdvanceWithoutFiringTimers(TimeSpan.FromSeconds(121));
+
+        Assert.Throws<OperationCanceledException>(() => budget.Adopt(partial, options));
+
+        Assert.True(budget.Token.IsCancellationRequested);
+        Assert.Equal(Bootstrap, budget.Deadline);
+    }
+
+    // Before the deadline, a missing allowance leaves everything as armed.
+    [Fact]
+    public void AMissingAllowanceBeforeTheDeadlineChangesNothing()
+    {
+        var clock = new ManualTimeProvider();
+        using var budget = new StartupBudget(BriosaStartOptions.Default, clock);
+        clock.AdvanceWithoutFiringTimers(TimeSpan.FromSeconds(119));
+
+        budget.Adopt(Published with { StartupWithLaunch = null }, BriosaStartOptions.Default);
+
+        Assert.False(budget.Token.IsCancellationRequested);
+        Assert.Equal(Bootstrap, budget.Deadline);
+        Assert.Equal(Bootstrap, clock.NextDueTime());
+    }
+
+    // The decision reads the clock at 119 s and the timer is armed at 121 s:
+    // the remaining delay is measured when arming, so the timer falls due at the
+    // adopted absolute deadline (320 s), not two seconds after it.
+    [Fact]
+    public void TheTimerIsArmedFromTheClockAtTheMomentOfArming()
+    {
+        var clock = new ManualTimeProvider();
+        using var budget = new StartupBudget(BriosaStartOptions.Default, clock);
+        clock.Advance(TimeSpan.FromSeconds(119));
+        clock.AdvanceAfterReads(1, TimeSpan.FromSeconds(2));
+
+        budget.Adopt(Published, BriosaStartOptions.Default);
+
+        Assert.Equal(TimeSpan.FromSeconds(121), clock.Elapsed);
+        Assert.Equal(TimeSpan.FromSeconds(320), budget.Deadline);
+        Assert.Equal(TimeSpan.FromSeconds(320), clock.NextDueTime());
+        clock.Advance(TimeSpan.FromSeconds(199) - TimeSpan.FromTicks(1));
+        Assert.False(budget.Token.IsCancellationRequested);
+        clock.Advance(TimeSpan.FromTicks(1));
+        Assert.True(budget.Token.IsCancellationRequested);
+    }
+
+    // If arming finds the adopted deadline already passed, the startup expires.
+    [Fact]
+    public void ArmingPastTheAdoptedDeadlineExpires()
+    {
+        var clock = new ManualTimeProvider();
+        using var budget = new StartupBudget(BriosaStartOptions.Default, clock);
+        clock.Advance(TimeSpan.FromSeconds(119));
+        clock.AdvanceAfterReads(1, TimeSpan.FromSeconds(300));
+
+        Assert.Throws<OperationCanceledException>(
+            () => budget.Adopt(Published, BriosaStartOptions.Default));
+
+        Assert.True(budget.Token.IsCancellationRequested);
+    }
+
+    // The bootstrap timer callback runs after the adopted deadline replaced it:
+    // it checks the active deadline and re-arms instead of cancelling.
+    [Fact]
+    public void ASupersededTimerCallbackKeepsTheAdoptedDeadline()
+    {
+        var clock = new ManualTimeProvider();
+        using var budget = new StartupBudget(BriosaStartOptions.Default, clock);
+        clock.Advance(TimeSpan.FromSeconds(10));
+        budget.Adopt(Published, BriosaStartOptions.Default);
+        clock.AdvanceWithoutFiringTimers(TimeSpan.FromSeconds(110));
+
+        clock.FireActiveTimersEarly();
+
+        Assert.False(budget.Token.IsCancellationRequested);
+        Assert.Equal(TimeSpan.FromSeconds(320), clock.NextDueTime());
+        clock.Advance(TimeSpan.FromSeconds(200));
+        Assert.True(budget.Token.IsCancellationRequested);
+    }
+
+    // Without adoption the callback trusts its timer, as the 0.5.0 budget did.
+    [Fact]
+    public void WithoutAdoptionTheTimerCallbackEndsTheBudget()
+    {
+        var clock = new ManualTimeProvider();
+        using var budget = new StartupBudget(BriosaStartOptions.Default, clock);
+        budget.Adopt(null, BriosaStartOptions.Default);
+
+        clock.Advance(Bootstrap);
+
+        Assert.True(budget.Token.IsCancellationRequested);
+    }
+
+    [Fact]
+    public void ATimerAfterDisposalDoesNothing()
+    {
+        var clock = new ManualTimeProvider();
+        var budget = new StartupBudget(BriosaStartOptions.Default, clock);
+        budget.Dispose();
+
+        clock.Advance(TimeSpan.FromMinutes(5));
+
+        Assert.Null(clock.NextDueTime());
+    }
+
     [Fact]
     public void AnAlreadyExpiredStartupStaysExpired()
     {

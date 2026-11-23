@@ -15,19 +15,31 @@ namespace Briosa;
 // 5. deadline = t0 + max(120 s, allowance + 20 s). An expired startup is never
 //    revived, and a delay that cannot be scheduled keeps the existing deadline.
 // 6. No individual lifecycle RPC gets a default deadline of its own.
+//
+// The budget keeps one absolute deadline, measured from t0, under one lock.
+// Adoption and the timer callback both decide against it. Until a deadline is
+// adopted, the callback trusts its timer, as the CancellationTokenSource timer
+// of client 0.5.0 did. Once one is adopted, the callback cancels only when the
+// clock has reached the active deadline and re-arms for the rest otherwise, so
+// a stale or superseded timer never ends a startup early.
 internal sealed class StartupBudget : IDisposable
 {
     // Server host startup, process observation, installation discovery, and
     // round trips, which the server's allowances exclude.
     internal static readonly TimeSpan ClientMargin = TimeSpan.FromSeconds(20);
 
-    // The longest delay a CancellationTokenSource timer accepts.
+    // The longest delay a TimeProvider timer accepts.
     internal static readonly TimeSpan MaximumTimerDelay = TimeSpan.FromMilliseconds(uint.MaxValue - 1L);
 
+    private readonly object _sync = new();
     private readonly TimeProvider _timeProvider;
     private readonly long _start;
     private readonly bool _adoptable;
+    private readonly ITimer _timer;
     private TimeSpan _deadline;
+    private bool _adopted;
+    private bool _expired;
+    private bool _disposed;
     private bool _adoptionConsidered;
 
     public StartupBudget(BriosaStartOptions options, TimeProvider timeProvider)
@@ -38,15 +50,34 @@ internal sealed class StartupBudget : IDisposable
         _start = timeProvider.GetTimestamp();
         _deadline = options.StartupTimeout;
         _adoptable = !options.StartupTimeoutIsExplicit;
-        Source = new CancellationTokenSource(_deadline, timeProvider);
+        Source = new CancellationTokenSource();
+        // Like CancellationTokenSource's own timer, the callback does not carry
+        // the caller's execution context.
+        using (ExecutionContext.SuppressFlow())
+        {
+            _timer = timeProvider.CreateTimer(
+                static state => ((StartupBudget)state!).OnTimer(),
+                this,
+                _deadline,
+                Timeout.InfiniteTimeSpan);
+        }
     }
 
     public CancellationTokenSource Source { get; }
 
     public CancellationToken Token => Source.Token;
 
-    // The current deadline, measured from t0.
-    internal TimeSpan Deadline => _deadline;
+    // The active deadline, measured from t0.
+    internal TimeSpan Deadline
+    {
+        get
+        {
+            lock (_sync)
+            {
+                return _deadline;
+            }
+        }
+    }
 
     // Called with the first validated startup snapshot: server information and
     // capabilities whose live identity matches the selected installation. Later
@@ -60,43 +91,42 @@ internal sealed class StartupBudget : IDisposable
         }
 
         _adoptionConsidered = true;
-        if (SelectAllowance(bounds, options) is not { } allowance)
+        if (bounds is null)
         {
-            // Nothing to adopt: the bootstrap deadline stays exactly as armed.
+            // No lifecycle bounds, as from Server 0.10.0: the bootstrap deadline
+            // and its timer stay exactly as armed.
             return;
         }
 
-        var now = _timeProvider.GetElapsedTime(_start);
-        if (Source.IsCancellationRequested || now >= _deadline)
+        bool expire;
+        lock (_sync)
         {
-            // The bootstrap deadline has passed, even if its timer callback has
-            // not run yet. Never extend it, and submit no further phase.
-            Expire();
+            expire = _expired || ElapsedNow() >= _deadline || AdoptLocked(bounds, options);
+            if (expire)
+            {
+                _expired = true;
+            }
         }
 
-        var deadline = Max(BriosaStartOptions.DefaultStartupTimeout, allowance + ClientMargin);
-        if (deadline <= now)
+        if (expire)
         {
-            Expire();
+            // The deadline has passed, even if its timer callback has not run
+            // yet. Never extend it, and submit no further phase.
+            Source.Cancel();
+            Source.Token.ThrowIfCancellationRequested();
         }
-
-        if (deadline <= _deadline)
-        {
-            return;
-        }
-
-        var delay = deadline - now;
-        if (delay > MaximumTimerDelay)
-        {
-            // Cannot be scheduled: keep the bootstrap deadline rather than clamp.
-            return;
-        }
-
-        Source.CancelAfter(delay);
-        _deadline = deadline;
     }
 
-    public void Dispose() => Source.Dispose();
+    public void Dispose()
+    {
+        lock (_sync)
+        {
+            _disposed = true;
+        }
+
+        _timer.Dispose();
+        Source.Dispose();
+    }
 
     // The server allowance for the selected phases, or null when the selection
     // has no server phase or an allowance it needs is unavailable.
@@ -121,11 +151,74 @@ internal sealed class StartupBudget : IDisposable
         };
     }
 
-    private void Expire()
+    // Returns true when the startup must expire now. Called under the lock, with
+    // the clock before the active deadline.
+    private bool AdoptLocked(LifecycleBounds bounds, BriosaStartOptions options)
     {
-        Source.Cancel();
-        Source.Token.ThrowIfCancellationRequested();
+        if (SelectAllowance(bounds, options) is not { } allowance)
+        {
+            return false;
+        }
+
+        var deadline = Max(BriosaStartOptions.DefaultStartupTimeout, allowance + ClientMargin);
+        if (deadline <= _deadline)
+        {
+            return false;
+        }
+
+        // Read the clock again at the moment of arming, so time spent since the
+        // decision counts against the remaining delay.
+        var remaining = deadline - ElapsedNow();
+        if (remaining <= TimeSpan.Zero)
+        {
+            return true;
+        }
+
+        if (remaining > MaximumTimerDelay)
+        {
+            // Cannot be scheduled: keep the bootstrap deadline rather than clamp.
+            return false;
+        }
+
+        _deadline = deadline;
+        _adopted = true;
+        _timer.Change(remaining, Timeout.InfiniteTimeSpan);
+        return false;
     }
+
+    private void OnTimer()
+    {
+        lock (_sync)
+        {
+            if (_expired || _disposed)
+            {
+                return;
+            }
+
+            var now = ElapsedNow();
+            if (_adopted && now < _deadline)
+            {
+                // The bootstrap timer that the adopted deadline superseded, or a
+                // timer that fired early: keep the active deadline.
+                _timer.Change(_deadline - now, Timeout.InfiniteTimeSpan);
+                return;
+            }
+
+            _expired = true;
+        }
+
+        // Outside the lock: cancellation runs the token's callbacks inline.
+        try
+        {
+            Source.Cancel();
+        }
+        catch (ObjectDisposedException)
+        {
+            // The startup finished and disposed the budget as the timer fired.
+        }
+    }
+
+    private TimeSpan ElapsedNow() => _timeProvider.GetElapsedTime(_start);
 
     private static TimeSpan Max(TimeSpan left, TimeSpan right) => left >= right ? left : right;
 }

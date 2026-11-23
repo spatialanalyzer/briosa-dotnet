@@ -216,6 +216,57 @@ public sealed class StartupBudgetTests
         Assert.True(launcher.Server.Disposed);
     }
 
+    // The same late discovery, when the server publishes bounds without the
+    // allowance the selected phases need: the bootstrap deadline still holds.
+    [Fact]
+    public async Task LateDiscoveryWithPartialBoundsExpiresWithoutAnotherPhase()
+    {
+        var clock = new ManualTimeProvider();
+        var launcher = new RecordingLauncher();
+        var partial = ServerBounds(startupWithLaunch: 300_000);
+        partial.ClearStartupWithLaunchMilliseconds();
+        Assert.True(partial.HasStartSdkMilliseconds);
+        var transport = new RecordingTransport
+        {
+            Clock = clock,
+            SnapshotAt = [TimeSpan.FromSeconds(121)],
+            FireTimersAtSnapshot = false,
+            Bounds = [partial],
+        };
+        await using var client = CreateClient(new BriosaClientOptions(), transport, clock, launcher);
+
+        var exception = await Assert.ThrowsAsync<BriosaStartupException>(() => client.StartAsync());
+
+        Assert.Equal("startup-timeout", exception.DiagnosticCode);
+        Assert.Equal(["snapshot"], transport.Calls.Select(call => call.Name));
+        Assert.True(launcher.Server.Disposed);
+    }
+
+    // Server 0.10.0 publishes no bounds: the same late discovery proceeds until
+    // the bootstrap timer itself fires, exactly as client 0.5.0 did.
+    [Fact]
+    public async Task LateDiscoveryWithoutBoundsLeavesTheBootstrapTimerInCharge()
+    {
+        var clock = new ManualTimeProvider();
+        var transport = new RecordingTransport
+        {
+            HangAt = "start-sdk",
+            Clock = clock,
+            SnapshotAt = [TimeSpan.FromSeconds(121)],
+            FireTimersAtSnapshot = false,
+        };
+        await using var client = CreateClient(new BriosaClientOptions(), transport, clock);
+
+        var start = client.StartAsync();
+        var hang = await transport.Reached.Task.ConfigureAwait(true);
+
+        Assert.False(hang.IsCancellationRequested);
+        clock.Advance(TimeSpan.Zero);
+        Assert.True(hang.IsCancellationRequested);
+        var exception = await Assert.ThrowsAsync<BriosaStartupException>(() => start).ConfigureAwait(true);
+        Assert.Equal("startup-timeout", exception.DiagnosticCode);
+    }
+
     // The refresh after Connect never restarts or re-adopts the budget.
     [Fact]
     public async Task ThePostConnectRefreshKeepsTheAdoptedDeadline()
