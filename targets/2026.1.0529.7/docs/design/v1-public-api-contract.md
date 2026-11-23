@@ -389,26 +389,41 @@ timer, whether you set the budget or not. It checks before it attaches the
 server it launched, immediately before each startup request is sent (after the
 request is built, and between the two discovery requests of the refresh after
 Connect), and before it accepts readiness and admits MP commands. No startup
-request is sent after the deadline. A start that ends this way fails with
-`startup-timeout`, and an MP command issued afterwards is refused in the client
-(`mp-command-admission-closed`) without reaching the server. A step that fails
-after the deadline but before the timer has fired, for example because the
-server is unavailable or sent a reply the client cannot read, also reports
-`startup-timeout`, with that failure as its `InnerException`; before the
-deadline it keeps its own error.
+request is sent after the deadline. The refresh after Connect is mapped and
+validated before that last check, so the time mapping takes counts against the
+budget. A start that ends this way fails with `startup-timeout`, and an MP
+command issued afterwards is refused in the client
+(`mp-command-admission-closed`) without reaching the server. It stays refused
+whatever state the client reads afterwards: only a published startup admits MP
+commands, so stop the client and start it again. A step that fails after the
+deadline but before the timer has fired, for example because the server is
+unavailable or sent a reply the client cannot read, including one whose state is
+missing, also reports `startup-timeout`, with that failure as its
+`InnerException`; before the deadline it keeps its own error.
 
 With Server 0.10.0, which publishes no lifecycle bounds, the budget stays two
-minutes and only its timer ends the start, as in client 0.5.0, and the sizing
-advice below still applies.
+minutes and only its timer ends the start, and after a failed start readiness
+alone decides MP admission, as in client 0.5.0. The sizing advice below still
+applies.
 
-With any server, a start that ends before the client has attached the server it
-launched, whether through its budget, a failure, or disposal of the client,
-stops that server process; client 0.5.0 could leave it running. Once the client
-has attached the server, a start that fails leaves it to `StopAsync` or
-`DisposeAsync`, which stop it, as before. A `StartupTimeout` longer than
-4,294,967,294 milliseconds (about 49.7 days) fails `StartAsync` with
-`ArgumentOutOfRangeException` for parameter `delay`, as in client 0.5.0, and
-the client stays usable.
+With any server, client 0.5.1 differs from client 0.5.0 in exactly three
+failure cases, each a fix:
+
+1. A start that fails before the client owns the server it launched, whether
+   through its budget, another failure, or disposal of the client, stops that
+   server process itself; client 0.5.0 could leave it running. Once the client
+   owns the server, a failed start leaves it to a later `StopAsync` or
+   `DisposeAsync`, which stops it, as before.
+2. A `StartupTimeout` of 4,294,967,295 whole milliseconds or more (about 49.7
+   days) still fails `StartAsync` with `ArgumentOutOfRangeException` for
+   parameter `delay`, as in client 0.5.0. A fraction of a millisecond is
+   ignored, so 4,294,967,294.9999 ms is accepted. A later `StartAsync` with
+   valid options then works, and `DisposeAsync` no longer rethrows.
+3. Resource cleanup is attempted in full. When one close throws, the others
+   still run, a failed start keeps its own error, and `StopAsync` or
+   `DisposeAsync` reports the close failure once every close has been
+   attempted. A pending start that faulted, with any exception, no longer keeps
+   them from closing its session.
 
 The default follows the server's default lifecycle bounds
 ([spatialanalyzer/briosa#298](https://github.com/spatialanalyzer/briosa/pull/298),

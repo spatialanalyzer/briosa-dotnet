@@ -33,9 +33,9 @@ The 0.3.0 API naming changes are described in the [MP argument migration guide](
 ## 0.5.1 (for Server 0.10.x)
 
 Client 0.5.1 adds to 0.5.0 without breaking it: an application written for
-0.5.0 compiles and behaves the same, apart from the two fixes below. It uses
-what Server 0.10.1 adds and works with Server 0.10.0 unchanged, where each
-addition below reports that the server sent nothing:
+0.5.0 compiles and behaves the same, except in the three failure cases below,
+each a fix. It uses what Server 0.10.1 adds and works with Server 0.10.0
+unchanged, where each addition below reports that the server sent nothing:
 
 - with Server 0.10.1 and later, a startup whose
   `BriosaStartOptions.StartupTimeout` is left unset sizes its budget from the
@@ -45,8 +45,10 @@ addition below reports that the server sent nothing:
 - with Server 0.10.1 and later, the client also checks the startup budget
   against the clock before each startup request, so no step starts after the
   deadline, and a step that fails after it reports `startup-timeout` with that
-  failure as its `InnerException`. With Server 0.10.0 only the budget's timer
-  ends a start, as in 0.5.0;
+  failure as its `InnerException`. A start that failed keeps MP commands
+  refused, whatever state the client reads afterwards; stop the client and start
+  it again. With Server 0.10.0 only the budget's timer ends a start, and
+  readiness alone decides MP admission, as in 0.5.0;
 - with Server 0.10.1 and later, the server snapshot reports the server's
   lifecycle wait allowances (`LifecycleBounds`) and the SpatialAnalyzer
   interaction mode it is configured to set (`ConfiguredInteractionMode`), which
@@ -63,18 +65,26 @@ addition below reports that the server sent nothing:
   which shows a 1 MiB result received whole, and conformance runs keep the
   server logs of a failed scenario as a CI artifact.
 
-It also fixes two startup faults of 0.5.0, with either server:
+With either server, it differs from 0.5.0 in exactly three failure cases, each
+a fix:
 
-- a startup that times out now always stops the server process the client
-  started. Client 0.5.0 left that process running when the start ended after
-  the server answered discovery but before the client attached it, through its
-  budget or because the client was disposed meanwhile; in the second case
-  `DisposeAsync` also threw `ObjectDisposedException`. Once the client has
-  attached the server, a start that fails still leaves it to `StopAsync` or
-  `DisposeAsync`, which stop it, as before;
-- a `StartupTimeout` longer than 4,294,967,294 milliseconds (about 49.7 days)
-  still fails `StartAsync` with `ArgumentOutOfRangeException` for parameter
-  `delay`, but no longer leaves the client unable to start again or be disposed.
+- a start that fails before the client owns the server it launched stops that
+  server itself, whether it ended through its budget, another failure, or
+  disposal of the client meanwhile. Client 0.5.0 left that process running when
+  the start ended after the server answered discovery but before the client took
+  ownership, and in the disposal case `DisposeAsync` also threw
+  `ObjectDisposedException`. Once the client owns the server, a failed start
+  leaves it to a later `StopAsync` or `DisposeAsync`, which stops it, as before;
+- after a start rejected for an out-of-range `StartupTimeout`, a later
+  `StartAsync` with valid options works and `DisposeAsync` no longer rethrows.
+  The rejection itself is unchanged: 4,294,967,295 whole milliseconds or more
+  (about 49.7 days) throws `ArgumentOutOfRangeException` for parameter `delay`.
+  A fraction of a millisecond is ignored, so 4,294,967,294.9999 ms is accepted;
+- resource cleanup is attempted in full. When one close throws, the other
+  resources are still released, a failed start keeps its own error, and
+  `StopAsync` or `DisposeAsync` reports the close failure once every close has
+  been attempted. A pending start that faulted, with any exception, no longer
+  keeps `StopAsync` or `DisposeAsync` from closing its session.
 
 The product guides describe each addition:
 [SA 2024](targets/2024.1.0508.5/README.md#usage),

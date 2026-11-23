@@ -115,7 +115,8 @@ have already run out is not extended
 Once the server has published that allowance, the client also checks the
 budget, set or not, against the clock before each startup request, so no step
 starts after the deadline; a step that fails after it reports `startup-timeout`
-with that failure as `InnerException`.
+with that failure as `InnerException`. A start that failed then keeps MP
+commands refused until the client is stopped and started again.
 With Server 0.10.0, which publishes no allowance, the budget stays two minutes:
 if you raise that server's `Briosa:Worker:StartupTimeout`,
 `Briosa:Worker:ReadinessProbeTimeout`, or
@@ -128,8 +129,9 @@ already accepted, so the SDK can still become ready
 ([spatialanalyzer/briosa#315](https://github.com/spatialanalyzer/briosa/pull/315)).
 A second lifecycle call meanwhile fails with
 `sdk-lifecycle-transition-in-progress`: refresh state and retry later. A start
-that fails before the client has attached the server it launched stops that
-server; after that, `StopAsync()` or `DisposeAsync()` stops it.
+that fails before the client owns the server it launched stops that server
+itself; once the client owns it, a later `StopAsync()` or `DisposeAsync()` stops
+it. Each close is attempted even when another one throws.
 
 The client retains lifecycle generations and supplies RPC guards automatically.
 Typed lifecycle failures, compatibility failures, ambiguous MP completion, and
