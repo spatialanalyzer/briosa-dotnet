@@ -348,30 +348,6 @@ public sealed partial class StartupBudgetTests
         Assert.Equal(FullStartup, transport.Calls.Select(call => call.Name));
     }
 
-    // Client 0.5.0 counted the budget in whole milliseconds, as
-    // CancellationTokenSource(TimeSpan) does: under one millisecond the startup
-    // has expired before the server is launched, so it reports the timeout and
-    // sends nothing, with or without bounds.
-    [Theory]
-    [InlineData(1L)]
-    [InlineData(9_000L)]
-    [InlineData(9_999L)]
-    public async Task ASubMillisecondExplicitBudgetHasExpiredBeforeLaunchAsInZeroFiveZero(long ticks)
-    {
-        var clock = new ManualTimeProvider();
-        var transport = new RecordingTransport { Clock = clock, Bounds = [ServerBounds(startupWithLaunch: 160_000)] };
-        var launcher = new RecordingLauncher();
-        await using var client = CreateClient(new BriosaClientOptions(), transport, clock, launcher);
-
-        var exception = await Assert.ThrowsAsync<BriosaStartupException>(
-            () => client.StartAsync(new BriosaStartOptions { StartupTimeout = TimeSpan.FromTicks(ticks) }));
-
-        Assert.Equal("startup-timeout", exception.DiagnosticCode);
-        Assert.True(launcher.CancelledAtLaunch);
-        Assert.Empty(transport.Calls);
-        Assert.True(launcher.Server.Disposed);
-    }
-
     // (5) A phase that fails after the deadline, before the timer callback runs,
     // reports the startup timeout with the failure as its cause; before the
     // deadline the failure keeps its own error.

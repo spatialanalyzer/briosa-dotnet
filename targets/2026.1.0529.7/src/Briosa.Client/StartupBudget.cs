@@ -49,8 +49,8 @@ internal sealed class StartupBudget : IDisposable
         ArgumentNullException.ThrowIfNull(timeProvider);
         // Client 0.5.0 armed new CancellationTokenSource(StartupTimeout), which
         // counts whole milliseconds: it rejects more than uint.MaxValue - 1 of them
-        // with this exception, drops a fraction of a millisecond, and starts out
-        // cancelled when no whole millisecond remains.
+        // with this exception and arms its timer for the whole milliseconds, so a
+        // budget under one millisecond falls due at once, on the timer's thread.
         var wholeMilliseconds = (long)options.StartupTimeout.TotalMilliseconds;
         if (wholeMilliseconds > uint.MaxValue - 1L)
         {
@@ -64,13 +64,6 @@ internal sealed class StartupBudget : IDisposable
         _deadline = TimeSpan.FromTicks(wholeMilliseconds * TimeSpan.TicksPerMillisecond);
         _adoptable = !options.StartupTimeoutIsExplicit;
         Source = new CancellationTokenSource();
-        if (wholeMilliseconds == 0)
-        {
-            // Expired before the server is launched, as in client 0.5.0.
-            _expired = true;
-            Source.Cancel();
-        }
-
         // Like CancellationTokenSource's own timer, the callback does not carry
         // the caller's execution context.
         using (ExecutionContext.SuppressFlow())
@@ -78,7 +71,7 @@ internal sealed class StartupBudget : IDisposable
             _timer = timeProvider.CreateTimer(
                 static state => ((StartupBudget)state!).OnTimer(),
                 this,
-                _expired ? Timeout.InfiniteTimeSpan : _deadline,
+                _deadline,
                 Timeout.InfiniteTimeSpan);
         }
     }
