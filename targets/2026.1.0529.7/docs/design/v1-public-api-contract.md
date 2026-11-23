@@ -194,7 +194,7 @@ appropriate nullable or domain-specific representation.
 
 ### MP completion and partial success
 
-From contract major 3, an MP command that returns code 4 (PARTIAL SUCCESS) did
+With Server 0.10.0 and later, an MP command that returns code 4 (PARTIAL SUCCESS) did
 its work but not its full intended effect, except for the four operations below.
 The server reports it as a success, so the method never retries it and returns
 its outputs when all of them are retrieved. If an output can't be retrieved, the
@@ -383,8 +383,32 @@ states:
    cancellation stays independent of it, and lifecycle methods still add no
    deadline of their own.
 
+Once the server has published lifecycle bounds, as Server 0.10.1 and later do,
+the client also decides the budget against the clock instead of waiting for its
+timer, whether you set the budget or not. It checks before it attaches the
+server it launched, immediately before each startup request is sent (after the
+request is built, and between the two discovery requests of the refresh after
+Connect), and before it accepts readiness and admits MP commands. No startup
+request is sent after the deadline. A start that ends this way fails with
+`startup-timeout`, and an MP command issued afterwards is refused in the client
+(`mp-command-admission-closed`) without reaching the server. A step that fails
+after the deadline but before the timer has fired, for example because the
+server is unavailable or sent a reply the client cannot read, also reports
+`startup-timeout`, with that failure as its `InnerException`; before the
+deadline it keeps its own error.
+
 With Server 0.10.0, which publishes no lifecycle bounds, the budget stays two
-minutes exactly as in client 0.5.0, and the sizing advice below still applies.
+minutes and only its timer ends the start, as in client 0.5.0, and the sizing
+advice below still applies.
+
+With any server, a start that ends before the client has attached the server it
+launched, whether through its budget, a failure, or disposal of the client,
+stops that server process; client 0.5.0 could leave it running. Once the client
+has attached the server, a start that fails leaves it to `StopAsync` or
+`DisposeAsync`, which stop it, as before. A `StartupTimeout` longer than
+4,294,967,294 milliseconds (about 49.7 days) fails `StartAsync` with
+`ArgumentOutOfRangeException` for parameter `delay`, as in client 0.5.0, and
+the client stays usable.
 
 The default follows the server's default lifecycle bounds
 ([spatialanalyzer/briosa#298](https://github.com/spatialanalyzer/briosa/pull/298),
@@ -416,9 +440,9 @@ with the default 30 s application startup need at least 90 + 60 + 30 + 10 =
 Lifecycle methods take only a `CancellationToken`. The client adds no per-call
 lifecycle deadline, and `CommandTimeout` applies only to MP commands.
 
-When a caller stops waiting during an SDK start, connection, or recovery, a
-contract-major-3 server
-([spatialanalyzer/briosa#315](https://github.com/spatialanalyzer/briosa/pull/315))
+When a caller stops waiting during an SDK start, connection, or recovery, the
+server, from Server 0.10.0
+([spatialanalyzer/briosa#315](https://github.com/spatialanalyzer/briosa/pull/315)),
 finishes an exchange it has already accepted under its own bounds, whether the
 caller stopped waiting through the startup budget or a cancellation. A request
 cancelled before acceptance changes nothing. A second call meanwhile fails with

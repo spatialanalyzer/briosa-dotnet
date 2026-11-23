@@ -33,15 +33,20 @@ The 0.3.0 API naming changes are described in the [MP argument migration guide](
 ## 0.5.1 (for Server 0.10.x)
 
 Client 0.5.1 adds to 0.5.0 without breaking it: an application written for
-0.5.0 compiles and behaves the same. It uses what Server 0.10.1 adds and works
-with Server 0.10.0 unchanged, where each addition below reports that the server
-sent nothing:
+0.5.0 compiles and behaves the same, apart from the two fixes below. It uses
+what Server 0.10.1 adds and works with Server 0.10.0 unchanged, where each
+addition below reports that the server sent nothing:
 
 - with Server 0.10.1 and later, a startup whose
   `BriosaStartOptions.StartupTimeout` is left unset sizes its budget from the
   server's published startup allowance: the longer of two minutes and that
   allowance plus 20 seconds. A timeout you set is always used as is, including
   an explicit two minutes. With Server 0.10.0 the budget stays two minutes;
+- with Server 0.10.1 and later, the client also checks the startup budget
+  against the clock before each startup request, so no step starts after the
+  deadline, and a step that fails after it reports `startup-timeout` with that
+  failure as its `InnerException`. With Server 0.10.0 only the budget's timer
+  ends a start, as in 0.5.0;
 - with Server 0.10.1 and later, the server snapshot reports the server's
   lifecycle wait allowances (`LifecycleBounds`) and the SpatialAnalyzer
   interaction mode it is configured to set (`ConfiguredInteractionMode`), which
@@ -57,6 +62,19 @@ sent nothing:
 - the conformance fixture runs the server's optional `large-result` scenario,
   which shows a 1 MiB result received whole, and conformance runs keep the
   server logs of a failed scenario as a CI artifact.
+
+It also fixes two startup faults of 0.5.0, with either server:
+
+- a startup that times out now always stops the server process the client
+  started. Client 0.5.0 left that process running when the start ended after
+  the server answered discovery but before the client attached it, through its
+  budget or because the client was disposed meanwhile, and `DisposeAsync` then
+  threw `ObjectDisposedException`. Once the client has attached the server, a
+  start that fails still leaves it to `StopAsync` or `DisposeAsync`, which stop
+  it, as before;
+- a `StartupTimeout` longer than 4,294,967,294 milliseconds (about 49.7 days)
+  still fails `StartAsync` with `ArgumentOutOfRangeException` for parameter
+  `delay`, but no longer leaves the client unable to start again or be disposed.
 
 The product guides describe each addition:
 [SA 2024](targets/2024.1.0508.5/README.md#usage),

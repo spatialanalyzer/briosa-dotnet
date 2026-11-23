@@ -112,6 +112,10 @@ the budget the longer of two minutes and that allowance plus 20 seconds, counted
 from the start of the call. It only ever grows, and a start whose two minutes
 have already run out is not extended
 ([shared rule](https://github.com/spatialanalyzer/briosa/blob/main/docs/architecture/client-library-behavioral-contract.md#startup-budget-from-published-lifecycle-bounds)).
+Once the server has published that allowance, the client also checks the
+budget, set or not, against the clock before each startup request, so no step
+starts after the deadline; a step that fails after it reports `startup-timeout`
+with that failure as `InnerException`.
 With Server 0.10.0, which publishes no allowance, the budget stays two minutes:
 if you raise that server's `Briosa:Worker:StartupTimeout`,
 `Briosa:Worker:ReadinessProbeTimeout`, or
@@ -123,7 +127,9 @@ SDK, read the SDK state before retrying: the server finishes a step it has
 already accepted, so the SDK can still become ready
 ([spatialanalyzer/briosa#315](https://github.com/spatialanalyzer/briosa/pull/315)).
 A second lifecycle call meanwhile fails with
-`sdk-lifecycle-transition-in-progress`: refresh state and retry later.
+`sdk-lifecycle-transition-in-progress`: refresh state and retry later. A start
+that fails before the client has attached the server it launched stops that
+server; after that, `StopAsync()` or `DisposeAsync()` stops it.
 
 The client retains lifecycle generations and supplies RPC guards automatically.
 Typed lifecycle failures, compatibility failures, ambiguous MP completion, and
