@@ -159,8 +159,14 @@ Server 0.10.0, which sends none of this, each value below is `null` or
   `BriosaOperationCapability`, and on an `OperationRequestOption`: which policy
   step denied (`PolicyDenialRule`), the denied risk flag, the admission profile,
   or the request field the server attributed the denial to. It never changes the
-  failure's `Kind` or the capability's `Admission`. A value this client does not
-  recognize maps to an `Unknown` member and never fails discovery.
+  failure's `Kind` or the capability's `Admission`, and the exception carries it
+  only when its `Kind` is `PolicyDenied`. A value this client does not
+  recognize, including a flag name, maps to an `Unknown` member and never fails
+  discovery.
+
+The new members take no part in the equality or hash code of
+`BriosaServerSnapshot` and `BriosaOperationCapability`, and `ToString()` shows
+them only when the server sent them, so both records behave as in client 0.5.0.
 
 See the [Briosa documentation](https://spatialanalyzer.github.io/briosa-docs/api/dotnet/)
 for the client API overview. The target-specific source and locked protocol define

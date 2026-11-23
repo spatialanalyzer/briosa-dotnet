@@ -55,9 +55,20 @@ this client must still accept with unchanged behavior; run it with
 
 When the packaged runner offers optional scenarios (Server 0.10.1 and later),
 `Test-Conformance.ps1` also requests `large-result` and records it in the
-evidence under `scenarios` and `optionalScenarios`. The fixture computes the
+evidence under `scenarios` and `optionalScenarios`. It also gives the fixture
+240 seconds (`-FixtureTimeoutSeconds`, recorded as `fixtureTimeoutSeconds`):
+with Server 0.10.1 and the runner's 30-second fake-worker startup bound, the
+client's startup budget is 180 seconds, so a hang ends in the client's typed
+startup timeout before the runner stops the fixture. The evidence's
+`client.version` is the supplied package's version for a package run and this
+source's version otherwise; `client.fixtureVersion` is always this source's.
+The fixture computes the
 UTF-8 length and SHA-256 of the directory this client returned and reports them,
-never the value. The rejection path requests no optional scenario.
+never the value. The rejection path requests no optional scenario. The fixture
+decides whether a server publishes the Server 0.10.1 additions from the
+`ContractRevision` of the installation that discovery selected (1 or later),
+never from the server's version label, which is `0.2.0-ci` in the server's own
+CI.
 
 Set `BRIOSA_CONFORMANCE_DIAGNOSTICS_DIRECTORY` to keep a failing scenario's
 failure message, server log digest, fixture output, and server log files; CI

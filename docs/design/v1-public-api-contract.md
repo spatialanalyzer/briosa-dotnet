@@ -307,8 +307,10 @@ with the MP state, the result code, and each output's retrieval. Every
 that threw, with its phase in `ExecutionDisposition`. With Server 0.10.1 and
 later, a `PolicyDenied` failure also carries `PolicyDenial`, the typed denial
 detail described under [discovery and admission](#discovery-and-admission).
-Server 0.10.0 sends none, and the property is then `null`; the detail never
-changes the kind, disposition, or guidance. The lifecycle exceptions'
+Server 0.10.0 sends none, and the property is then `null`. It is `null` for
+every other kind too, even if detail arrives with one, so only a policy denial
+names a policy step. The detail never changes the kind, disposition, or
+guidance. The lifecycle exceptions'
 kinds include `CallerCancelled` and `CallerDeadlineExceeded`, but a cancelled
 call surfaces as `OperationCanceledException`, never as a state conflict.
 
@@ -497,12 +499,18 @@ of it, and client 0.5.1 then reports each as absent, so it works with both:
   value: the `PolicyDenialRule`, the denied risk flag of a flag denial, the
   admission profile of a profile denial, and the request field the server
   attributed the denial to. The flag name maps to `OperationRiskFlag` through
-  one mapping, with `Unknown` for a name this client does not know; the name as
-  sent stays in `DeniedFlagName`.
+  one mapping, with `Unknown` for a name this client does not know; the client
+  keeps no copy of the name as sent.
 
 An unknown rule, effect, condition, omission, or admission value maps to its
 enum's `Unknown` member: it is unknown metadata, never permission, and never
-fails discovery. When the enclosing message decodes, an absent, inconsistent,
+fails discovery.
+
+`BriosaServerSnapshot` and `BriosaOperationCapability` compare, hash, and print
+as they did in client 0.5.0. Their 0.5.1 members take no part in equality or
+hashing, so a value rebuilt from its 0.5.0 members stays equal to the one the
+client returned, and `ToString()` shows a 0.5.1 member only when the server sent
+it. A Server 0.10.0 reply therefore prints exactly as in 0.5.0. When the enclosing message decodes, an absent, inconsistent,
 or unrecognized denial detail never changes the typed failure or a capability's
 admission; a message that cannot be decoded is still a protocol error.
 
