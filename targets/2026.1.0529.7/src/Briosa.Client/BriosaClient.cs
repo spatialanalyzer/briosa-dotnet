@@ -13,6 +13,7 @@ public sealed partial class BriosaClient : IAsyncDisposable
     private readonly BriosaClientOptions _options;
     private readonly IBriosaServerLauncher _serverLauncher;
     private readonly IClientTransportFactory _transportFactory;
+    private readonly TimeProvider _timeProvider;
     private readonly SemaphoreSlim _gate = new(1, 1);
     private ClientSession? _session;
     private Task? _startTask;
@@ -31,7 +32,8 @@ public sealed partial class BriosaClient : IAsyncDisposable
     internal BriosaClient(
         BriosaClientOptions options,
         IBriosaServerLauncher serverLauncher,
-        IClientTransportFactory transportFactory)
+        IClientTransportFactory transportFactory,
+        TimeProvider? timeProvider = null)
     {
         ArgumentNullException.ThrowIfNull(options);
         ArgumentNullException.ThrowIfNull(serverLauncher);
@@ -40,6 +42,7 @@ public sealed partial class BriosaClient : IAsyncDisposable
         _options = options;
         _serverLauncher = serverLauncher;
         _transportFactory = transportFactory;
+        _timeProvider = timeProvider ?? TimeProvider.System;
         ConstructionOperations = new BriosaConstructionOperations(this);
         GdtOperations = new BriosaGdtOperations(this);
         InstrumentOperations = new BriosaInstrumentOperations(this);
@@ -424,8 +427,10 @@ public sealed partial class BriosaClient : IAsyncDisposable
         IOwnedBriosaServer? server = null;
         IClientTransport? transport = null;
         ClientSession? session = null;
-        using var startupCts = new CancellationTokenSource(options.StartupTimeout);
-        var token = startupCts.Token;
+        // One monotonic start instant and one overall budget for every phase.
+        using var budget = new StartupBudget(options, _timeProvider);
+        var startupCts = budget.Source;
+        var token = budget.Token;
 
         try
         {
@@ -433,6 +438,9 @@ public sealed partial class BriosaClient : IAsyncDisposable
             transport = _transportFactory.Create(server.Address);
             var snapshot = await WaitForServerAsync(server, transport, token)
                 .ConfigureAwait(false);
+            // The first validated snapshot: an omitted StartupTimeout adopts the
+            // server's published startup allowance once, here and never again.
+            budget.Adopt(snapshot.LifecycleBounds, options);
             session = new ClientSession(server, transport, snapshot);
 
             await _gate.WaitAsync(token).ConfigureAwait(false);

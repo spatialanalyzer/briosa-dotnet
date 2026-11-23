@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using Google.Protobuf;
 using Grpc.Core;
 using System.Globalization;
@@ -33,8 +34,65 @@ internal static class ProtocolMapping
             AdmissionProfile = capabilities.AdmissionProfile,
             PolicyFingerprint = capabilities.PolicyFingerprint,
             Operations = capabilities.Operations.Select(MapCapability).ToArray(),
+            LifecycleBounds = serverInfo.LifecycleBounds is null
+                ? null
+                : MapLifecycleBounds(serverInfo.LifecycleBounds),
+            ConfiguredInteractionMode = MapInteractionMode(
+                serverInfo.ConfiguredSpatialAnalyzerInteractionMode),
         };
     }
+
+    // Server 0.10.1 and later publish these; Server 0.10.0 does not. Each value
+    // falls back on its own: an absent or zero allowance is unavailable, never
+    // unbounded, and leaves the others usable.
+    private static LifecycleBounds MapLifecycleBounds(Transport.LifecycleBounds bounds) => new()
+    {
+        StartSdk = Allowance(bounds.HasStartSdkMilliseconds, bounds.StartSdkMilliseconds),
+        LaunchSpatialAnalyzer = Allowance(bounds.HasLaunchSpatialAnalyzerMilliseconds, bounds.LaunchSpatialAnalyzerMilliseconds),
+        ConnectToSpatialAnalyzer = Allowance(bounds.HasConnectSpatialAnalyzerMilliseconds, bounds.ConnectSpatialAnalyzerMilliseconds),
+        RecoverSdk = Allowance(bounds.HasRecoverSdkMilliseconds, bounds.RecoverSdkMilliseconds),
+        StopSdk = Allowance(bounds.HasStopSdkMilliseconds, bounds.StopSdkMilliseconds),
+        CloseOwnedSpatialAnalyzer = Allowance(bounds.HasCloseOwnedSpatialAnalyzerMilliseconds, bounds.CloseOwnedSpatialAnalyzerMilliseconds),
+        StartupWithLaunch = Allowance(bounds.HasStartupWithLaunchMilliseconds, bounds.StartupWithLaunchMilliseconds),
+        StartupWithoutLaunch = Allowance(bounds.HasStartupWithoutLaunchMilliseconds, bounds.StartupWithoutLaunchMilliseconds),
+        HostGracefulShutdown = MapShutdownBound(bounds.HostGracefulShutdown),
+    };
+
+    private static TimeSpan? Allowance(bool present, uint milliseconds) =>
+        present && milliseconds > 0 ? TimeSpan.FromMilliseconds(milliseconds) : null;
+
+    // Read from the limit case, never from a bare finite getter: an absent bound,
+    // an unset or unrecognized case, zero, or a finite value too large for a
+    // TimeSpan is unavailable.
+    private static GracefulShutdownBound MapShutdownBound(Transport.GracefulShutdownBound? bound) =>
+        bound?.LimitCase switch
+        {
+            Transport.GracefulShutdownBound.LimitOneofCase.FiniteMilliseconds
+                when bound.FiniteMilliseconds is > 0 and <= MaximumTimeSpanMilliseconds =>
+                new GracefulShutdownBound
+                {
+                    Kind = GracefulShutdownBoundKind.Finite,
+                    Limit = TimeSpan.FromTicks((long)bound.FiniteMilliseconds * TimeSpan.TicksPerMillisecond),
+                },
+            Transport.GracefulShutdownBound.LimitOneofCase.Unbounded =>
+                new GracefulShutdownBound { Kind = GracefulShutdownBoundKind.Unbounded },
+            _ => GracefulShutdownBound.Unavailable,
+        };
+
+    // The largest whole number of milliseconds that a TimeSpan can hold.
+    private const ulong MaximumTimeSpanMilliseconds = (ulong)(long.MaxValue / TimeSpan.TicksPerMillisecond);
+
+    // Configuration only, never SpatialAnalyzer's live mode. Mapped by name;
+    // UNSPECIFIED (Server 0.10.0) and any value this client does not know are Unknown.
+    private static ConfiguredSpatialAnalyzerInteractionMode MapInteractionMode(
+        Transport.ConfiguredSpatialAnalyzerInteractionMode mode) => mode switch
+        {
+            Transport.ConfiguredSpatialAnalyzerInteractionMode.Unchanged => ConfiguredSpatialAnalyzerInteractionMode.Unchanged,
+            Transport.ConfiguredSpatialAnalyzerInteractionMode.Silent => ConfiguredSpatialAnalyzerInteractionMode.Silent,
+            Transport.ConfiguredSpatialAnalyzerInteractionMode.Automatic => ConfiguredSpatialAnalyzerInteractionMode.Automatic,
+            Transport.ConfiguredSpatialAnalyzerInteractionMode.Manual => ConfiguredSpatialAnalyzerInteractionMode.Manual,
+            _ => ConfiguredSpatialAnalyzerInteractionMode.Unknown,
+        };
 
     // The include_denied listing, already validated for identity: only the
     // entries whose server-reported admission is not Admitted.
@@ -59,7 +117,65 @@ internal static class ProtocolMapping
         DurationClass = ConvertOrUnknown<OperationDurationClass>(item.DurationClass),
         ValidationStatus = ConvertOrUnknown<OperationValidationStatus>(item.ValidationStatus),
         Admission = ConvertOrUnknown<OperationAdmission>(item.Admission),
+        // Informational detail from Server 0.10.1 and later. It never changes
+        // Admission, which stays exactly what the server reported.
+        PolicyDenial = MapPolicyDenial(item.PolicyDenial),
+        // Absent (Server 0.10.0) is "not described" and stays null; present and
+        // empty is "none apply".
+        RequestOptions = item.RequestOptions?.Options.Select(MapRequestOption).ToArray(),
     };
+
+    private static OperationRequestOption MapRequestOption(Transport.OperationRequestOption option) => new()
+    {
+        FieldName = option.FieldName,
+        Effect = ConvertOrUnknown<OperationRequestOptionEffect>(option.Effect),
+        Condition = ConvertOrUnknown<OperationRequestOptionCondition>(option.Condition),
+        EnablingEnumValues = option.EnablingEnumValues.ToArray(),
+        Omission = ConvertOrUnknown<OperationRequestOptionOmission>(option.Omission),
+        Admission = ConvertOrUnknown<OperationAdmission>(option.Admission),
+        PolicyDenial = MapPolicyDenial(option.PolicyDenial),
+    };
+
+    // The shared denial detail of a failed call, a capability, and a request
+    // option. It is mapped as sent and never validated against the kind or
+    // admission it accompanies: an inconsistent or unrecognized detail changes
+    // neither. An unknown rule is Unknown, never permission.
+    internal static PolicyDenialDetails? MapPolicyDenial(Transport.PolicyDenialDetails? detail) =>
+        detail is null
+            ? null
+            : new PolicyDenialDetails
+            {
+                Rule = ConvertOrUnknown<PolicyDenialRule>(detail.Rule),
+                DeniedFlag = detail.HasDeniedFlag ? MapDeniedFlag(detail.DeniedFlag) : null,
+                DeniedFlagName = detail.HasDeniedFlag ? detail.DeniedFlag : null,
+                AdmissionProfile = detail.HasAdmissionProfile ? detail.AdmissionProfile : null,
+                RequestOptionField = detail.HasRequestOptionField ? detail.RequestOptionField : null,
+            };
+
+    // The one mapping from a denied_flag name to the public risk flag. The name
+    // is the lowercase suffix of an OperationRiskFlag value name in the pinned
+    // protocol, compared ordinally. Any other name, including "unspecified", is
+    // Unknown.
+    internal static OperationRiskFlag MapDeniedFlag(string name) =>
+        RiskFlagsByName.TryGetValue(name, out var flag)
+            ? ConvertOrUnknown<OperationRiskFlag>(flag)
+            : OperationRiskFlag.Unknown;
+
+    private const string RiskFlagValuePrefix = "OPERATION_RISK_FLAG_";
+
+    private static readonly FrozenDictionary<string, Transport.OperationRiskFlag> RiskFlagsByName =
+        Transport.DiscoveryReflection.Descriptor.EnumTypes
+            .Single(type => type.Name == nameof(Transport.OperationRiskFlag))
+            .Values
+            .Where(value => value.Number != 0 &&
+                value.Name.StartsWith(RiskFlagValuePrefix, StringComparison.Ordinal))
+            .ToFrozenDictionary(
+                value => AsciiLowerCase(value.Name[RiskFlagValuePrefix.Length..]),
+                value => (Transport.OperationRiskFlag)value.Number,
+                StringComparer.Ordinal);
+
+    private static string AsciiLowerCase(string value) =>
+        new(value.Select(c => c is >= 'A' and <= 'Z' ? (char)(c + 32) : c).ToArray());
 
     public static SpatialAnalyzerLifecycleState MapApplicationState(
         Transport.SpatialAnalyzerLifecycleState state)
@@ -174,7 +290,8 @@ internal static class ProtocolMapping
                 exception,
                 operationError.MpExecution is null
                     ? null
-                    : MapMpExecution(operationError.MpExecution));
+                    : MapMpExecution(operationError.MpExecution),
+                MapPolicyDenial(operationError.PolicyDenial));
         }
 
         return new BriosaTransportException(
