@@ -195,8 +195,15 @@ internal sealed class StartupBudget : IDisposable
             _disposed = true;
         }
 
-        _timer.Dispose();
-        Source.Dispose();
+        // The token source is released even when the timer's disposal throws.
+        try
+        {
+            _timer.Dispose();
+        }
+        finally
+        {
+            Source.Dispose();
+        }
     }
 
     // The server allowance for the selected phases, or null when the selection

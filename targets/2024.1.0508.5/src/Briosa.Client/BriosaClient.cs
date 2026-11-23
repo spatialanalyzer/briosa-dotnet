@@ -432,6 +432,7 @@ public sealed partial class BriosaClient : IAsyncDisposable
         ClientSession? session = null;
         StartupBudget? budget = null;
         var completed = false;
+        var startTaskCleared = false;
 
         try
         {
@@ -499,6 +500,7 @@ public sealed partial class BriosaClient : IAsyncDisposable
                         .ConfigureAwait(false));
             }
 
+            BriosaServerSnapshot? refreshedSnapshot = null;
             if (options.ConnectToSpatialAnalyzer)
             {
                 var sdk = await EnsureSdkStateAsync(session, token).ConfigureAwait(false);
@@ -515,26 +517,43 @@ public sealed partial class BriosaClient : IAsyncDisposable
                     .ConfigureAwait(false);
                 // Map and validate the refresh first, then decide: the time mapping
                 // takes counts against the budget, and a mapping error after the
-                // deadline becomes the timeout's cause. Accepting the refreshed
-                // ready state and publishing the startup is one decision: nothing
-                // awaits between this check and publication, so a timeout leaves
-                // MP admission closed.
-                var refreshedSnapshot = ProtocolMapping.MapSnapshot(
+                // deadline becomes the timeout's cause.
+                refreshedSnapshot = ProtocolMapping.MapSnapshot(
                     refreshed.ServerInfo,
                     refreshed.Capabilities);
-                budget.EnsureWithinBudget();
-                session.UpdateSnapshot(refreshedSnapshot);
-                if (!session.Snapshot.ReadyForMp || session.SdkState?.ReadyForMp != true)
+            }
+
+            if (budget.Enforced)
+            {
+                // With published bounds, the last budget check, committing the
+                // refreshed state, publishing readiness and ending the pending start
+                // happen together under the client's gate, so nothing that can wait
+                // sits between the last check and the moment the startup becomes
+                // usable. A timeout leaves the startup unpublished and MP admission
+                // closed.
+                await _gate.WaitAsync(token).ConfigureAwait(false);
+                try
                 {
-                    throw new BriosaProtocolException("startup-readiness-not-established");
+                    budget.EnsureWithinBudget();
+                    CommitRefreshedSnapshot(session, refreshedSnapshot);
+                    session.PublishStartup();
+                    session.Transport.BeforeSubmit = null;
+                    _startTask = null;
+                    startTaskCleared = true;
+                }
+                finally
+                {
+                    _gate.Release();
                 }
             }
             else
             {
-                budget.EnsureWithinBudget();
+                // Without published bounds, as from Server 0.10.0, the sequence of
+                // client 0.5.0: commit, publish, then end the pending start below.
+                CommitRefreshedSnapshot(session, refreshedSnapshot);
+                session.PublishStartup();
             }
 
-            session.PublishStartup();
             completed = true;
         }
         catch (RpcException exception) when (budget is { Source.IsCancellationRequested: true })
@@ -581,23 +600,54 @@ public sealed partial class BriosaClient : IAsyncDisposable
             // release is attempted even when another one throws, and the startup's
             // own failure stays the one its callers see.
             var teardownFailure = await DisposeAllAsync(transport, server).ConfigureAwait(false);
-            budget?.Dispose();
-            await _gate.WaitAsync().ConfigureAwait(false);
             try
             {
-                _startTask = null;
+                budget?.Dispose();
             }
-            finally
+#pragma warning disable CA1031 // Ending the pending start must not depend on the budget's disposal.
+            catch (Exception exception)
+#pragma warning restore CA1031
             {
-                _gate.Release();
+                teardownFailure ??= ExceptionDispatchInfo.Capture(exception);
             }
 
-            // Only a startup that failed leaves anything here to release, so a
-            // teardown failure is reported only if it is the sole failure.
+            if (!startTaskCleared)
+            {
+                await _gate.WaitAsync().ConfigureAwait(false);
+                try
+                {
+                    _startTask = null;
+                }
+                finally
+                {
+                    _gate.Release();
+                }
+            }
+
+            // The startup's own failure stays the one its callers see; a teardown
+            // failure is reported only if it is the sole failure.
             if (completed)
             {
                 teardownFailure?.Throw();
             }
+        }
+    }
+
+    // Commits the snapshot refreshed after Connect, if there is one, and requires
+    // the readiness it reports, as client 0.5.0 did.
+    private static void CommitRefreshedSnapshot(
+        ClientSession session,
+        BriosaServerSnapshot? refreshedSnapshot)
+    {
+        if (refreshedSnapshot is null)
+        {
+            return;
+        }
+
+        session.UpdateSnapshot(refreshedSnapshot);
+        if (!session.Snapshot.ReadyForMp || session.SdkState?.ReadyForMp != true)
+        {
+            throw new BriosaProtocolException("startup-readiness-not-established");
         }
     }
 
@@ -823,12 +873,22 @@ public sealed partial class BriosaClient : IAsyncDisposable
                 return;
             }
 
-            await session.WaitForCommandsAsync().ConfigureAwait(false);
-            await StopSdkBestEffortAsync(session).ConfigureAwait(false);
-            // The server is closed even when the transport close throws; a close
-            // failure is reported once every close has been attempted.
-            var closeFailure = await DisposeAllAsync(session.Transport, session.Server)
-                .ConfigureAwait(false);
+            ExceptionDispatchInfo? closeFailure;
+            try
+            {
+                await session.WaitForCommandsAsync().ConfigureAwait(false);
+                await StopSdkBestEffortAsync(session).ConfigureAwait(false);
+            }
+            finally
+            {
+                // The transport and the server are closed whatever the shutdown
+                // above threw, and the server even when the transport close throws.
+                // A shutdown failure stays the one reported; otherwise a close
+                // failure is reported once every close has been attempted.
+                closeFailure = await DisposeAllAsync(session.Transport, session.Server)
+                    .ConfigureAwait(false);
+            }
+
             closeFailure?.Throw();
         }
         finally

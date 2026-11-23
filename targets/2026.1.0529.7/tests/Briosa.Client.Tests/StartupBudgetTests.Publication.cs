@@ -241,6 +241,81 @@ public sealed partial class StartupBudgetTests
         await Assert.ThrowsAsync<ArgumentNullException>(() => client.StartAsync());
     }
 
+    // With bounds, the client's gate is held across the deadline: the refresh is
+    // mapped at 319 s against a 320 s deadline and the startup then waits for the
+    // gate, behind which an MP call is queued. The startup ends in its timeout, and
+    // the queued MP call never reaches the transport.
+    [Fact]
+    public async Task WithBoundsAGateHeldAcrossTheDeadlineNeverLetsTheStartupPublish()
+    {
+        var clock = new ManualTimeProvider();
+        SemaphoreSlim? gate = null;
+        var holding = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        var transport = new RecordingTransport
+        {
+            Clock = clock,
+            Bounds = [ServerBounds(startupWithLaunch: 300_000)],
+            BeforeAnswer = index =>
+            {
+                if (index == 1)
+                {
+                    clock.AdvanceWithoutFiringTimers(TimeSpan.FromSeconds(319) - clock.Elapsed);
+                    gate!.Wait();
+                    holding.TrySetResult();
+                }
+            },
+        };
+        await using var client = CreateClient(new BriosaClientOptions(), transport, clock);
+        gate = Gate(client);
+
+        var start = client.StartAsync();
+        await holding.Task.ConfigureAwait(true);
+        await Task.Delay(100).ConfigureAwait(true);
+        var queued = client.GetWorkingDirectoryAsync();
+        clock.Advance(TimeSpan.FromSeconds(321) - clock.Elapsed);
+        gate.Release();
+
+        Assert.Equal("startup-timeout", (await Assert.ThrowsAsync<BriosaStartupException>(() => start)).DiagnosticCode);
+        await Assert.ThrowsAsync<BriosaLifecycleException>(() => queued);
+        Assert.Equal(0, transport.MpCalls);
+        await AssertMpAdmissionClosedAsync(client, transport);
+    }
+
+    // The Server 0.10.0 counterpart, as in client 0.5.0: the startup publishes
+    // after its refresh at 119 s and then waits for the held gate; once the gate
+    // is released at 121 s it succeeds and MP commands are admitted.
+    [Fact]
+    public async Task WithoutBoundsAGateHeldAcrossTheDeadlineLetsThePublishedStartupFinishAsInZeroFiveZero()
+    {
+        var clock = new ManualTimeProvider();
+        SemaphoreSlim? gate = null;
+        var holding = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        var transport = new RecordingTransport
+        {
+            Clock = clock,
+            BeforeAnswer = index =>
+            {
+                if (index == 1)
+                {
+                    clock.AdvanceWithoutFiringTimers(TimeSpan.FromSeconds(119) - clock.Elapsed);
+                    gate!.Wait();
+                    holding.TrySetResult();
+                }
+            },
+        };
+        await using var client = CreateClient(new BriosaClientOptions(), transport, clock);
+        gate = Gate(client);
+
+        var start = client.StartAsync();
+        await holding.Task.ConfigureAwait(true);
+        await Task.Delay(100).ConfigureAwait(true);
+        clock.Advance(TimeSpan.FromSeconds(121) - clock.Elapsed);
+        gate.Release();
+
+        await start.ConfigureAwait(true);
+        await AssertMpAdmittedAsync(client, transport);
+    }
+
     private static async Task RefreshAsync(BriosaClient client, string read)
     {
         switch (read)

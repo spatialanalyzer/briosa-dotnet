@@ -1,5 +1,7 @@
 #pragma warning disable CA2000 // Test doubles are disposed through the client session under test.
 
+using Grpc.Core;
+
 namespace Briosa.Client.Tests;
 
 /// <summary>
@@ -129,6 +131,112 @@ public sealed partial class StartupBudgetTests
         if (how == "stop")
         {
             await client.DisposeAsync();
+        }
+    }
+
+    // After a control-plane start, the SDK-state read during shutdown answers
+    // without its State, or fails with UNAVAILABLE. Both closes still happen. The
+    // read's ArgumentNullException stays the one reported, as in 0.5.0, and
+    // UNAVAILABLE stays the best-effort failure that 0.5.0 ignored.
+    [Theory]
+    [InlineData("missing-state", "stop")]
+    [InlineData("missing-state", "dispose")]
+    [InlineData("unavailable", "stop")]
+    [InlineData("unavailable", "dispose")]
+    public async Task AFailedShutdownReadStillClosesTheTransportAndTheServer(string failure, string how)
+    {
+        var launcher = new RecordingLauncher();
+        var transport = new RecordingTransport
+        {
+            MissingStateFor = failure == "missing-state" ? ["get-sdk-state"] : [],
+            DuringCall = (name, occurrence) => failure == "unavailable" && name == "get-sdk-state"
+                ? throw new RpcException(new Status(StatusCode.Unavailable, "transport down"))
+                : Task.CompletedTask,
+        };
+        var client = CreateClient(new BriosaClientOptions(), transport, launcher: launcher);
+        await client.StartAsync(new BriosaStartOptions
+        {
+            StartSpatialAnalyzerSdk = false,
+            LaunchSpatialAnalyzer = false,
+            ConnectToSpatialAnalyzer = false,
+        });
+
+        Func<Task> close = how == "stop" ? () => client.StopAsync() : () => client.DisposeAsync().AsTask();
+        if (failure == "missing-state")
+        {
+            await Assert.ThrowsAsync<ArgumentNullException>(close);
+        }
+        else
+        {
+            await close();
+        }
+
+        Assert.Contains("get-sdk-state", transport.Calls.Select(call => call.Name));
+        Assert.True(transport.Disposed);
+        Assert.True(launcher.Server.Disposed);
+        if (how == "stop")
+        {
+            await client.DisposeAsync();
+        }
+    }
+
+    // The budget's timer throws when it is disposed after a timeout before
+    // ownership. The startup still reports its timeout, its server is stopped,
+    // and the start is no longer pending.
+    [Fact]
+    public async Task ATimerThatThrowsOnDisposalKeepsTheStartupTimeout()
+    {
+        var clock = new ManualTimeProvider();
+        var launcher = new RecordingLauncher();
+        var transport = new RecordingTransport
+        {
+            Clock = clock,
+            SnapshotAt = [TimeSpan.FromMilliseconds(55)],
+            Bounds = [ServerBounds(startupWithLaunch: 300_000)],
+        };
+        await using var client = CreateClient(
+            new BriosaClientOptions(),
+            transport,
+            new TimersThatThrowOnDisposal(clock),
+            launcher);
+
+        var exception = await Assert.ThrowsAsync<BriosaStartupException>(
+            () => client.StartAsync(new BriosaStartOptions { StartupTimeout = TimeSpan.FromMilliseconds(10) }));
+
+        Assert.Equal("startup-timeout", exception.DiagnosticCode);
+        Assert.True(launcher.Server.Disposed);
+        var notStarted = await Assert.ThrowsAsync<BriosaLifecycleException>(() => client.GetServerSnapshotAsync());
+        Assert.Equal("client-not-started", notStarted.DiagnosticCode);
+    }
+
+    // The manual clock, except that each timer throws IOException from Dispose
+    // after it has disposed itself.
+    private sealed class TimersThatThrowOnDisposal(ManualTimeProvider clock) : TimeProvider
+    {
+        public override long TimestampFrequency => clock.TimestampFrequency;
+
+        public override long GetTimestamp() => clock.GetTimestamp();
+
+        public override ITimer CreateTimer(TimerCallback callback, object? state, TimeSpan dueTime, TimeSpan period) =>
+            new ThrowingTimer(clock.CreateTimer(callback, state, dueTime, period));
+
+        private sealed class ThrowingTimer(ITimer timer) : ITimer
+        {
+            public bool Change(TimeSpan dueTime, TimeSpan period) => timer.Change(dueTime, period);
+
+#pragma warning disable CA1065 // The test injects exactly this failure.
+            public void Dispose()
+            {
+                timer.Dispose();
+                throw new IOException("timer disposal failed");
+            }
+#pragma warning restore CA1065
+
+            public ValueTask DisposeAsync()
+            {
+                Dispose();
+                return ValueTask.CompletedTask;
+            }
         }
     }
 }

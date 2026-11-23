@@ -14,6 +14,48 @@ public sealed class RecordCompatibilityTests
     private static readonly OperationRiskFlag[] Flags = [OperationRiskFlag.FilesystemRead];
 
     [Fact]
+    public void DocumentedDifferenceSerializersSeeTheNewSnapshotAndCapabilityMembers()
+    {
+        // A documented difference from client 0.5.0, not hidden: a reflection-based
+        // serializer such as System.Text.Json writes the 0.5.1 members, so a reader
+        // that rejects unknown members needs updating. Equality, hashing and text
+        // are unchanged when the server sends none of the new values.
+        var capability = new BriosaOperationCapability
+        {
+            OperationId = "file_operations.get_working_directory",
+            GrpcService = "briosa.FileOperations",
+            Rpc = "GetWorkingDirectory",
+            FullyQualifiedMethod = "/briosa.FileOperations/GetWorkingDirectory",
+        };
+        var snapshot = new BriosaServerSnapshot
+        {
+            BriosaVersion = "0.10.0",
+            SourceRevision = new string('a', 40),
+            ProtocolPackage = "briosa",
+            SpatialAnalyzerTarget = "2026.1.0529.7",
+            Operations = [capability],
+        };
+
+        var serialized = System.Text.Json.JsonSerializer.SerializeToElement(snapshot);
+
+        Assert.Equal(
+            [
+                "BriosaVersion", "SourceRevision", "ProtocolPackage", "SpatialAnalyzerTarget", "ReadyForMp",
+                "WorkerState", "ConnectionState", "ExecutionReadinessState", "TargetIsolationMode",
+                "AdmissionProfile", "PolicyFingerprint", "Operations",
+                "LifecycleBounds", "ConfiguredInteractionMode",
+            ],
+            serialized.EnumerateObject().Select(member => member.Name));
+        Assert.Equal(
+            [
+                "OperationId", "GrpcService", "Rpc", "FullyQualifiedMethod", "RiskFlags", "DurationClass",
+                "ValidationStatus", "Admission",
+                "PolicyDenial", "RequestOptions",
+            ],
+            serialized.GetProperty("Operations")[0].EnumerateObject().Select(member => member.Name));
+    }
+
+    [Fact]
     public void ACapabilityComparesByItsZeroFiveZeroMembersOnly()
     {
         var plain = Capability();

@@ -561,7 +561,7 @@ public sealed partial class StartupBudgetTests
             CancellationToken cancellationToken)
         {
             await RecordAsync("get-sdk-state", cancellationToken).ConfigureAwait(false);
-            return Sdk();
+            return MissingStateFor.Contains("get-sdk-state") ? null! : Sdk();
         }
 
         public async Task<Transport.SpatialAnalyzerSdkLifecycleState> StartSdkAsync(
