@@ -4,6 +4,9 @@
     <TargetFramework>net10.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <NoWarn>$(NoWarn);CA2007</NoWarn>
+    <!-- Program.cs is also built against published packages; this source build
+         references client 0.5.1, so it also asserts the 0.5.1 additions. -->
+    <DefineConstants>$(DefineConstants);BRIOSA_CLIENT_0_5_1</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

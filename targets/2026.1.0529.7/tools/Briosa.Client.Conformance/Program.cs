@@ -1,31 +1,64 @@
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using Briosa;
 
+// This fixture uses only the public client API. The server's retained-client
+// gate also builds it against published packages, so everything outside
+// BRIOSA_CLIENT_0_5_1 must compile against the 0.5.0 package unchanged.
 const string ContractId = "briosa.first-party-client.v1";
 const string WorkingDirectoryMethod = "/briosa.FileOperations/GetWorkingDirectory";
 
 var arguments = ParseArguments(args);
-var contract = JsonDocument.Parse(await File.ReadAllTextAsync(arguments.ContractPath));
+using var contract = JsonDocument.Parse(await File.ReadAllTextAsync(arguments.ContractPath));
 Require(
     contract.RootElement.GetProperty("contract_id").GetString() == ContractId,
     "The fixture received an unsupported conformance contract.");
-Require(
-    contract.RootElement.GetProperty("scenarios").EnumerateArray().Any(
-        item => item.GetProperty("id").GetString() == arguments.Scenario),
-    "The requested scenario is absent from the conformance contract.");
+// A scenario comes from the scenarios every fixture runs, or from the optional
+// scenarios that the test script asked the runner for.
+var definition = FindScenario(contract.RootElement, "scenarios", arguments.Scenario) ??
+    FindScenario(contract.RootElement, "optional_scenarios", arguments.Scenario) ??
+    throw new InvalidOperationException("The requested scenario is absent from the conformance contract.");
 
-await RunScenarioAsync(arguments.Scenario);
+var receipt = await RunScenarioAsync(arguments.Scenario, definition);
 
-await Console.Out.WriteLineAsync(JsonSerializer.Serialize(new
+var report = new JsonObject
 {
-    schema_version = 1,
-    contract_id = ContractId,
-    scenario = arguments.Scenario,
-    success = true,
-}));
-
-static async Task RunScenarioAsync(string scenario)
+    ["schema_version"] = 1,
+    ["contract_id"] = ContractId,
+    ["scenario"] = arguments.Scenario,
+    ["success"] = true,
+};
+if (receipt is not null)
 {
+    report["working_directory"] = receipt;
+}
+
+await Console.Out.WriteLineAsync(report.ToJsonString());
+
+static JsonElement? FindScenario(JsonElement contract, string list, string scenario)
+{
+    if (!contract.TryGetProperty(list, out var items) || items.ValueKind != JsonValueKind.Array)
+    {
+        return null;
+    }
+
+    foreach (var item in items.EnumerateArray())
+    {
+        if (item.GetProperty("id").GetString() == scenario)
+        {
+            return item;
+        }
+    }
+
+    return null;
+}
+
+// Returns the large-result receipt, or null for every other scenario.
+static async Task<JsonObject?> RunScenarioAsync(string scenario, JsonElement definition)
+{
+    JsonObject? receipt = null;
     if (Environment.GetEnvironmentVariable("BRIOSA_CONFORMANCE_EXPECT_INCOMPATIBLE") == "1")
     {
         Require(scenario == "control-plane-only", "Rejection must run without SDK or application startup.");
@@ -51,7 +84,7 @@ static async Task RunScenarioAsync(string scenario)
         }
         catch (BriosaStartupException error) when (error.DiagnosticCode == "server-installation-incompatible")
         {
-            return;
+            return null;
         }
     }
 
@@ -96,7 +129,7 @@ static async Task RunScenarioAsync(string scenario)
             await RequireThrowsAsync<BriosaCompatibilityException>(
                 () => briosa.StartAsync(startOptions));
             await CleanupApplicationAsync(briosa);
-            return;
+            return null;
         }
 
         await briosa.StartAsync(startOptions);
@@ -152,6 +185,9 @@ static async Task RunScenarioAsync(string scenario)
             case "owned-cleanup":
                 await AssertDefaultReadyAsync(briosa);
                 break;
+            case "large-result":
+                receipt = await AssertLargeResultAsync(briosa, definition);
+                break;
             default:
                 throw new InvalidOperationException(
                     $"Unsupported conformance scenario '{scenario}'.");
@@ -166,6 +202,29 @@ static async Task RunScenarioAsync(string scenario)
             await briosa.StopAsync();
         }
     }
+
+    return receipt;
+}
+
+// The server returns a result at the 1 MiB worker response budget (briosa#399).
+// The length and digest come from the value this client returned, never from
+// the contract, and the report carries them instead of the value.
+static async Task<JsonObject> AssertLargeResultAsync(BriosaClient briosa, JsonElement definition)
+{
+    var expected = definition.GetProperty("expected_working_directory");
+    var directory = await briosa.GetWorkingDirectoryAsync();
+    var bytes = Encoding.UTF8.GetBytes(directory);
+    var length = bytes.LongLength;
+    var sha256 = Convert.ToHexStringLower(SHA256.HashData(bytes));
+    Require(
+        length == expected.GetProperty("utf8_length").GetInt64() &&
+            string.Equals(sha256, expected.GetProperty("sha256").GetString(), StringComparison.Ordinal),
+        "The large result was not received whole.");
+    return new JsonObject
+    {
+        ["utf8_length"] = length,
+        ["sha256"] = sha256,
+    };
 }
 
 static async Task AssertControlPlaneOnlyAsync(BriosaClient briosa)
@@ -194,6 +253,9 @@ static async Task AssertDefaultReadyAsync(BriosaClient briosa)
     _ = await briosa.GetWorkingDirectoryAsync();
     // Positional arguments exercise old and new packaged parameter names.
     await briosa.CloudDisplayControlAsync(3, 2);
+#if BRIOSA_CLIENT_0_5_1
+    AssertServerInfoAdditions(snapshot);
+#endif
 }
 
 static async Task AssertAttachExistingAsync(BriosaClient briosa)
@@ -243,7 +305,66 @@ static async Task AssertCapabilityDeniedAsync(BriosaClient briosa)
         "Policy denial did not map to the typed public error.");
     Require(exception.ExecutionDisposition == ExecutionDisposition.NotStarted,
         "Policy denial reported an invalid execution disposition.");
+#if BRIOSA_CLIENT_0_5_1
+    AssertDenialAdditions(snapshot, workingDirectory!, exception);
+#endif
 }
+
+#if BRIOSA_CLIENT_0_5_1
+// Server 0.10.1 and later publish their lifecycle bounds, configured interaction
+// mode, request options, and typed denial detail. Server 0.10.0 publishes none
+// of them, and client 0.5.1 then reports each of them as absent.
+static bool PublishesServerAdditions(BriosaServerSnapshot snapshot)
+{
+    var core = snapshot.BriosaVersion.Split('-', '+')[0];
+    return Version.TryParse(core, out var version) && version >= new Version(0, 10, 1);
+}
+
+static void AssertServerInfoAdditions(BriosaServerSnapshot snapshot)
+{
+    if (PublishesServerAdditions(snapshot))
+    {
+        var bounds = snapshot.LifecycleBounds;
+        Require(bounds?.StartSdk is not null && bounds.LaunchSpatialAnalyzer is not null &&
+                bounds.ConnectToSpatialAnalyzer is not null && bounds.StartupWithLaunch is not null &&
+                bounds.StartupWithoutLaunch is not null,
+            "Server 0.10.1 did not publish its lifecycle bounds.");
+        Require(snapshot.ConfiguredInteractionMode != ConfiguredSpatialAnalyzerInteractionMode.Unknown,
+            "Server 0.10.1 did not report its configured interaction mode.");
+        Require(snapshot.Operations.All(operation => operation.RequestOptions is not null),
+            "Server 0.10.1 did not describe every capability's request options.");
+    }
+    else
+    {
+        Require(snapshot.LifecycleBounds is null &&
+                snapshot.ConfiguredInteractionMode == ConfiguredSpatialAnalyzerInteractionMode.Unknown &&
+                snapshot.Operations.All(operation => operation.RequestOptions is null && operation.PolicyDenial is null),
+            "The Server 0.10.0 discovery additions were not reported as absent.");
+    }
+}
+
+static void AssertDenialAdditions(
+    BriosaServerSnapshot snapshot,
+    BriosaOperationCapability denied,
+    BriosaOperationException exception)
+{
+    AssertServerInfoAdditions(snapshot);
+    if (PublishesServerAdditions(snapshot))
+    {
+        Require(exception.PolicyDenial is { Rule: PolicyDenialRule.Override, DeniedFlag: null, RequestOptionField: null },
+            "The denied call did not carry the override's typed denial detail.");
+        Require(denied.PolicyDenial is { Rule: PolicyDenialRule.Override } && denied.RequestOptions is not null,
+            "The denied listing did not carry the override's typed denial detail.");
+        Require(snapshot.Operations.All(operation => operation.PolicyDenial is null),
+            "An admitted capability carried denial detail.");
+    }
+    else
+    {
+        Require(exception.PolicyDenial is null && denied.PolicyDenial is null && denied.RequestOptions is null,
+            "The Server 0.10.0 denial detail was not reported as absent.");
+    }
+}
+#endif
 
 // The fake worker faults in ExecuteStep: the fault is its own kind, its phase is
 // the disposition, and the next call succeeds on the same generation.

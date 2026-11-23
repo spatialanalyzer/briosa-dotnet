@@ -76,13 +76,25 @@ try {
     if (-not (Test-Path -LiteralPath $fixture -PathType Leaf)) {
         throw "Build the .NET conformance fixture before running the shared suite."
     }
-    & $runner `
-        -Scenario $selectedScenarios `
-        -FixtureCommand "dotnet" `
-        -FixtureArguments @($fixture)
+    $scenarios = Get-Content (Join-Path $packageRoot "contract/scenarios.json") -Raw | ConvertFrom-Json
+    # Optional scenarios run only on request. Ask for the ones this fixture knows
+    # when the runner and its contract offer them (Server 0.10.1 and later); older
+    # runners, such as the retained 0.9.2 and released 0.10.0 ones, offer none.
+    $offeredOptional = @(
+        if ($scenarios.PSObject.Properties.Name -contains 'optional_scenarios') { @($scenarios.optional_scenarios.id) })
+    $requestedOptional = @(
+        if (-not $ExpectIncompatible -and (Get-Command $runner).Parameters.ContainsKey('OptionalScenario')) {
+            @('large-result') | Where-Object { $_ -in $offeredOptional }
+        })
+    $runnerArguments = @{
+        Scenario = $selectedScenarios
+        FixtureCommand = "dotnet"
+        FixtureArguments = @($fixture)
+    }
+    if ($requestedOptional.Count -gt 0) { $runnerArguments.OptionalScenario = $requestedOptional }
+    & $runner @runnerArguments
     if (-not [string]::IsNullOrWhiteSpace($EvidencePath)) {
         $protocol = Get-Content (Join-Path $repositoryRoot "protocol.lock.json") -Raw | ConvertFrom-Json
-        $scenarios = Get-Content (Join-Path $packageRoot "contract/scenarios.json") -Raw | ConvertFrom-Json
         $clientRoot = (Split-Path (Split-Path $repositoryRoot -Parent) -Parent).Replace('\', '/')
         $clientRevision = [string](& git -c "safe.directory=$clientRoot" -C $clientRoot rev-parse HEAD)
         if ($LASTEXITCODE -ne 0) { throw "Cannot identify client source for evidence." }
@@ -110,7 +122,8 @@ try {
             server = $lock.artifact
             target = $lock.target
             scenarioContract = $lock.contract
-            scenarios = $(if ($ExpectIncompatible) { @('installation-contract-rejected') } else { @($scenarios.scenarios.id) })
+            scenarios = $(if ($ExpectIncompatible) { @('installation-contract-rejected') } else { @($scenarios.scenarios.id) + $requestedOptional })
+            optionalScenarios = @($requestedOptional)
         }
         $destination = [IO.Path]::GetFullPath($EvidencePath, $repositoryRoot)
         [IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($destination)) | Out-Null

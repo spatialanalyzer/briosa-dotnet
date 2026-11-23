@@ -107,15 +107,24 @@ jobs:
           ./eng/Import-ProtocolArtifact.ps1
           -ArtifactPath "artifacts/protocol/${{ steps.protocol.outputs.artifact_file_name }}"
 
-      - name: Download pinned client conformance artifact
+      - name: Download pinned client conformance artifacts
         shell: pwsh
         run: |
+          # conformance.lock.json pins the server the client must reject (0.9.2);
+          # released-conformance.lock.json pins the published server it must
+          # still work with unchanged (0.10.0). Test-Conformance.ps1 verifies both.
           $outputDirectory = Join-Path $PWD 'artifacts/conformance'
           New-Item -ItemType Directory -Path $outputDirectory -Force | Out-Null
-          $releaseBase = "https://github.com/spatialanalyzer/briosa/releases/download/v${{ steps.protocol.outputs.conformance_version }}"
-          $fileName = "${{ steps.protocol.outputs.conformance_file_name }}"
-          Invoke-WebRequest "$releaseBase/$fileName" -OutFile (Join-Path $outputDirectory $fileName)
-          Invoke-WebRequest "$releaseBase/$fileName.sha256" -OutFile (Join-Path $outputDirectory "$fileName.sha256")
+          foreach ($lockPath in @('conformance.lock.json', 'released-conformance.lock.json')) {
+            $lock = Get-Content $lockPath -Raw | ConvertFrom-Json
+            if ($lock.target.spatial_analyzer -ne '${{ steps.protocol.outputs.spatial_analyzer_target }}') {
+              throw "$lockPath must target the same exact SA release as protocol.lock.json."
+            }
+            $releaseBase = "https://github.com/spatialanalyzer/briosa/releases/download/v$($lock.artifact.briosa_version)"
+            $fileName = $lock.artifact.file_name
+            Invoke-WebRequest "$releaseBase/$fileName" -OutFile (Join-Path $outputDirectory $fileName)
+            Invoke-WebRequest "$releaseBase/$fileName.sha256" -OutFile (Join-Path $outputDirectory "$fileName.sha256")
+          }
 
       - name: Build
         run: dotnet build Briosa.DotNet.slnx -c Release --no-restore
@@ -123,16 +132,49 @@ jobs:
       - name: Test
         run: dotnet test Briosa.DotNet.slnx -c Release --no-build --no-restore
 
+      # Conformance diagnostics: a runner that supports it (Server 0.10.0 and
+      # later) saves a failing scenario's failure message, server log digest,
+      # fixture output and server log files under
+      # BRIOSA_CONFORMANCE_DIAGNOSTICS_DIRECTORY, one folder per step; the last
+      # step of the job uploads them when the job fails. Heap dumps on timeout
+      # (BRIOSA_CONFORMANCE_DUMP_ON_TIMEOUT) stay off, because they hold process
+      # memory and the upload would publish them. Briosa__Worker__StartupTimeout
+      # gives the fake worker's first start 30 s on a slow runner; the runner
+      # from Server 0.10.1 sets the same value itself and keeps a caller's.
+      #
+      # The legs that expect a rejection use the frozen Server 0.9.2 runner,
+      # which has neither the diagnostics directory nor the 180 s fixture
+      # timeout. They are exempt: the client rejects that installation before
+      # launch, so no server or worker starts and no server log exists; the
+      # fixture's stderr is in the step log.
       - name: Run shared client conformance suite
         shell: pwsh
+        env:
+          BRIOSA_CONFORMANCE_DIAGNOSTICS_DIRECTORY: ${{ runner.temp }}/conformance-diagnostics/legacy-server
+          Briosa__Worker__StartupTimeout: '00:00:30'
         run: >
           ./eng/Test-Conformance.ps1
           -ArtifactPath "artifacts/conformance/${{ steps.protocol.outputs.conformance_file_name }}"
           -EvidencePath artifacts/legacy-conformance-evidence.json
           -ExpectIncompatible
 
+      - name: Test the released server
+        shell: pwsh
+        env:
+          BRIOSA_CONFORMANCE_DIAGNOSTICS_DIRECTORY: ${{ runner.temp }}/conformance-diagnostics/released-server
+          Briosa__Worker__StartupTimeout: '00:00:30'
+        run: |
+          $lock = Get-Content released-conformance.lock.json -Raw | ConvertFrom-Json
+          ./eng/Test-Conformance.ps1 `
+            -ArtifactPath "artifacts/conformance/$($lock.artifact.file_name)" `
+            -LockPath released-conformance.lock.json `
+            -EvidencePath artifacts/released-conformance-evidence.json
+
       - name: Test the contract-aware server from pinned source
         shell: pwsh
+        env:
+          BRIOSA_CONFORMANCE_DIAGNOSTICS_DIRECTORY: ${{ runner.temp }}/conformance-diagnostics/current-server
+          Briosa__Worker__StartupTimeout: '00:00:30'
         run: >
           ./eng/Test-CurrentServerConformance.ps1
           -SourceTarget "${{ github.workspace }}/briosa-source/targets/${{ matrix.sa-target }}"
@@ -143,6 +185,7 @@ jobs:
           name: compatibility-${{ matrix.sa-target }}
           path: |
             targets/${{ matrix.sa-target }}/artifacts/legacy-conformance-evidence.json
+            targets/${{ matrix.sa-target }}/artifacts/released-conformance-evidence.json
             targets/${{ matrix.sa-target }}/artifacts/current-conformance/evidence.json
           if-no-files-found: error
           retention-days: 90
@@ -166,8 +209,11 @@ jobs:
         shell: pwsh
         run: ./eng/Test-PackageConsumer.ps1
 
-      - name: Test actual client package against both server generations
+      - name: Test actual client package against the rejected, released, and current servers
         shell: pwsh
+        env:
+          BRIOSA_CONFORMANCE_DIAGNOSTICS_DIRECTORY: ${{ runner.temp }}/conformance-diagnostics/package
+          Briosa__Worker__StartupTimeout: '00:00:30'
         run: ./eng/Test-PackageCompatibility.ps1
 
       - name: Retain packaged cross-version compatibility evidence
@@ -177,6 +223,15 @@ jobs:
           path: targets/${{ matrix.sa-target }}/artifacts/*-package-evidence.json
           if-no-files-found: error
           retention-days: 90
+
+      - name: Retain conformance diagnostics of a failed job
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: conformance-diagnostics-${{ matrix.sa-target }}-attempt-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/conformance-diagnostics
+          if-no-files-found: ignore
+          retention-days: 14
 
       - name: Retain validated release packages
         if: inputs.upload-release-artifacts
