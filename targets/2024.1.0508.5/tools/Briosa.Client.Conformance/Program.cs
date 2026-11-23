@@ -62,11 +62,7 @@ static async Task<JsonObject?> RunScenarioAsync(string scenario, JsonElement def
     if (Environment.GetEnvironmentVariable("BRIOSA_CONFORMANCE_EXPECT_INCOMPATIBLE") == "1")
     {
         Require(scenario == "control-plane-only", "Rejection must run without SDK or application startup.");
-        var selection = new BriosaServerSelection
-        {
-            ExecutablePath = Environment.GetEnvironmentVariable("BRIOSA_SERVER_PATH"),
-            AllowPrerelease = true,
-        };
+        var selection = FixtureServerSelection();
         var report = BriosaInstallations.Discover(selection);
         Require(report.Selected is null && report.DiagnosticCode == "server-installation-incompatible",
             "The packaged server was not rejected for contract incompatibility.");
@@ -117,11 +113,7 @@ static async Task<JsonObject?> RunScenarioAsync(string scenario, JsonElement def
 
         startOptions = startOptions with
         {
-            ServerSelection = new BriosaServerSelection
-            {
-                ExecutablePath = Environment.GetEnvironmentVariable("BRIOSA_SERVER_PATH"),
-                AllowPrerelease = true,
-            },
+            ServerSelection = FixtureServerSelection(),
         };
 
         if (scenario == "identity-mismatch")
@@ -253,6 +245,7 @@ static async Task AssertDefaultReadyAsync(BriosaClient briosa)
     _ = await briosa.GetWorkingDirectoryAsync();
     // Positional arguments exercise old and new packaged parameter names.
     await briosa.CloudDisplayControlAsync(3, 2);
+    AssertRebuiltValuesStayEqual(snapshot);
 #if BRIOSA_CLIENT_0_5_1
     AssertServerInfoAdditions(snapshot);
 #endif
@@ -312,17 +305,22 @@ static async Task AssertCapabilityDeniedAsync(BriosaClient briosa)
 
 #if BRIOSA_CLIENT_0_5_1
 // Server 0.10.1 and later publish their lifecycle bounds, configured interaction
-// mode, request options, and typed denial detail. Server 0.10.0 publishes none
-// of them, and client 0.5.1 then reports each of them as absent.
-static bool PublishesServerAdditions(BriosaServerSnapshot snapshot)
+// mode, request options, and typed denial detail, and declare compatibility
+// revision 1. Server 0.10.0 publishes none of them and declares revision 0; client
+// 0.5.1 then reports each of them as absent. The expectation comes from the
+// installation that discovery selected, independently of the reply under test,
+// and never from the version label: the server's own CI labels its packages
+// 0.2.0-ci.
+static bool PublishesServerAdditions()
 {
-    var core = snapshot.BriosaVersion.Split('-', '+')[0];
-    return Version.TryParse(core, out var version) && version >= new Version(0, 10, 1);
+    var selected = BriosaInstallations.Discover(FixtureServerSelection()).Selected ??
+        throw new InvalidOperationException("The fixture could not identify the selected server installation.");
+    return selected.ContractRevision >= 1;
 }
 
 static void AssertServerInfoAdditions(BriosaServerSnapshot snapshot)
 {
-    if (PublishesServerAdditions(snapshot))
+    if (PublishesServerAdditions())
     {
         var bounds = snapshot.LifecycleBounds;
         Require(bounds?.StartSdk is not null && bounds.LaunchSpatialAnalyzer is not null &&
@@ -349,7 +347,7 @@ static void AssertDenialAdditions(
     BriosaOperationException exception)
 {
     AssertServerInfoAdditions(snapshot);
-    if (PublishesServerAdditions(snapshot))
+    if (PublishesServerAdditions())
     {
         Require(exception.PolicyDenial is { Rule: PolicyDenialRule.Override, DeniedFlag: null, RequestOptionField: null },
             "The denied call did not carry the override's typed denial detail.");
@@ -628,6 +626,55 @@ static async Task CleanupApplicationAsync(BriosaClient briosa)
         await briosa.CloseOwnedSpatialAnalyzerAsync();
     }
 }
+
+// A value rebuilt from its 0.5.0 members compares and hashes equal to the one
+// the client returned, as in 0.5.0, whatever later members the server filled
+// in. Uses only the 0.5.0 API, so a consumer built against 0.5.0 keeps working.
+static void AssertRebuiltValuesStayEqual(BriosaServerSnapshot snapshot)
+{
+    var rebuilt = new BriosaServerSnapshot
+    {
+        BriosaVersion = snapshot.BriosaVersion,
+        SourceRevision = snapshot.SourceRevision,
+        ProtocolPackage = snapshot.ProtocolPackage,
+        SpatialAnalyzerTarget = snapshot.SpatialAnalyzerTarget,
+        ReadyForMp = snapshot.ReadyForMp,
+        WorkerState = snapshot.WorkerState,
+        ConnectionState = snapshot.ConnectionState,
+        ExecutionReadinessState = snapshot.ExecutionReadinessState,
+        TargetIsolationMode = snapshot.TargetIsolationMode,
+        AdmissionProfile = snapshot.AdmissionProfile,
+        PolicyFingerprint = snapshot.PolicyFingerprint,
+        Operations = snapshot.Operations,
+    };
+    Require(rebuilt.Equals(snapshot) && rebuilt.GetHashCode() == snapshot.GetHashCode() &&
+            new HashSet<BriosaServerSnapshot> { snapshot }.Contains(rebuilt),
+        "A snapshot rebuilt from its members did not compare equal.");
+    var capabilities = new HashSet<BriosaOperationCapability>(snapshot.Operations);
+    foreach (var operation in snapshot.Operations)
+    {
+        var copy = new BriosaOperationCapability
+        {
+            OperationId = operation.OperationId,
+            GrpcService = operation.GrpcService,
+            Rpc = operation.Rpc,
+            FullyQualifiedMethod = operation.FullyQualifiedMethod,
+            RiskFlags = operation.RiskFlags,
+            DurationClass = operation.DurationClass,
+            ValidationStatus = operation.ValidationStatus,
+            Admission = operation.Admission,
+        };
+        Require(copy.Equals(operation) && copy.GetHashCode() == operation.GetHashCode() && capabilities.Contains(copy),
+            "A capability rebuilt from its members did not compare equal.");
+    }
+}
+
+// The packaged server that the runner names, whatever its release label.
+static BriosaServerSelection FixtureServerSelection() => new()
+{
+    ExecutablePath = Environment.GetEnvironmentVariable("BRIOSA_SERVER_PATH"),
+    AllowPrerelease = true,
+};
 
 static async Task<TException> RequireThrowsAsync<TException>(Func<Task> action)
     where TException : Exception

@@ -92,6 +92,16 @@ try {
         FixtureArguments = @($fixture)
     }
     if ($requestedOptional.Count -gt 0) { $runnerArguments.OptionalScenario = $requestedOptional }
+    # With Server 0.10.1 and the runner's 30 s fake-worker startup bound, the client
+    # waits up to 180 s for startup (160 s published plus its 20 s margin), as long
+    # as the newest runner's default fixture timeout. Give the fixture 60 s more,
+    # so a hang ends in the client's typed startup timeout before the runner kills
+    # it. Every retained runner accepts the parameter (5 to 600 s).
+    $fixtureTimeoutSeconds = $null
+    if ((Get-Command $runner).Parameters.ContainsKey('FixtureTimeoutSeconds')) {
+        $fixtureTimeoutSeconds = 240
+        $runnerArguments.FixtureTimeoutSeconds = $fixtureTimeoutSeconds
+    }
     & $runner @runnerArguments
     if (-not [string]::IsNullOrWhiteSpace($EvidencePath)) {
         $protocol = Get-Content (Join-Path $repositoryRoot "protocol.lock.json") -Raw | ConvertFrom-Json
@@ -109,7 +119,9 @@ try {
             licensedSpatialAnalyzer = $false
             client = @{
                 repository = "https://github.com/spatialanalyzer/briosa-dotnet"
-                version = ([xml](Get-Content (Join-Path $repositoryRoot "src/Briosa.Client/Briosa.Client.csproj") -Raw)).Project.PropertyGroup.VersionPrefix
+                # The client under test: the supplied package, or this source.
+                version = $(if ($ClientPackage) { [string]$ClientPackage.version } else { ([xml](Get-Content (Join-Path $repositoryRoot "src/Briosa.Client/Briosa.Client.csproj") -Raw)).Project.PropertyGroup.VersionPrefix })
+                fixtureVersion = ([xml](Get-Content (Join-Path $repositoryRoot "src/Briosa.Client/Briosa.Client.csproj") -Raw)).Project.PropertyGroup.VersionPrefix
                 sourceRevision = $(if ($ClientPackage) { $ClientPackage.sourceRevision } else { $clientRevision })
                 uncommittedChanges = $(if (-not $ClientPackage) { $dirty } else { $null })
                 fixtureSourceRevision = $clientRevision
@@ -124,6 +136,7 @@ try {
             scenarioContract = $lock.contract
             scenarios = $(if ($ExpectIncompatible) { @('installation-contract-rejected') } else { @($scenarios.scenarios.id) + $requestedOptional })
             optionalScenarios = @($requestedOptional)
+            fixtureTimeoutSeconds = $fixtureTimeoutSeconds
         }
         $destination = [IO.Path]::GetFullPath($EvidencePath, $repositoryRoot)
         [IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($destination)) | Out-Null
