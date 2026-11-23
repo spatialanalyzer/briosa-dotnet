@@ -303,7 +303,11 @@ The handwritten .NET exception boundary uses:
 `ReplaySafety`, and, when the failure relates to the MP command, `MpExecution`
 with the MP state, the result code, and each output's retrieval. Every
 `OperationFailureKind` is a distinct member: `SdkCallFaulted` reports an SDK call
-that threw, with its phase in `ExecutionDisposition`. The lifecycle exceptions'
+that threw, with its phase in `ExecutionDisposition`. With Server 0.10.1 and
+later, a `PolicyDenied` failure also carries `PolicyDenial`, the typed denial
+detail described under [discovery and admission](#discovery-and-admission).
+Server 0.10.0 sends none, and the property is then `null`; the detail never
+changes the kind, disposition, or guidance. The lifecycle exceptions'
 kinds include `CallerCancelled` and `CallerDeadlineExceeded`, but a cancelled
 call surfaces as `OperationCanceledException`, never as a state conflict.
 
@@ -349,6 +353,42 @@ Cancelling the `CancellationToken` passed to `StartAsync` only stops that caller
 from waiting and surfaces as `OperationCanceledException`; the start continues
 until it completes or its budget expires.
 
+From client 0.5.1, a budget you set is always the budget, including an explicit
+two minutes. When you leave `StartupTimeout` unset, the client starts with two
+minutes and, with Server 0.10.1 and later, sizes the budget once from the
+startup allowance that the server publishes in its lifecycle bounds, as the
+[shared client contract](https://github.com/spatialanalyzer/briosa/blob/main/docs/architecture/client-library-behavioral-contract.md#startup-budget-from-published-lifecycle-bounds)
+states:
+
+1. The budget is counted from the moment `StartAsync` begins, before the server
+   is launched.
+2. At the first validated discovery of the server, meaning its information and
+   capabilities with a live identity that matches the selected installation,
+   the client takes the allowance for the selected phases:
+
+   | Selected phases | Allowance |
+   | --- | --- |
+   | Start SDK, launch, and connect | `LifecycleBounds.StartupWithLaunch` |
+   | Start SDK and connect | `LifecycleBounds.StartupWithoutLaunch` |
+   | Start SDK and launch | `StartSdk` + `LaunchSpatialAnalyzer` |
+   | Start SDK only | `StartSdk` |
+   | Launch only | `LaunchSpatialAnalyzer` |
+   | None | none: there is no server phase |
+
+3. The budget becomes the longer of two minutes and that allowance plus 20
+   seconds, still counted from the start, so it only ever grows. If the two
+   minutes have run out by the time the server is first discovered, the start
+   expires at once: a late discovery never extends it.
+4. If an allowance that the selection needs is missing or zero, or the new
+   budget is too long to schedule as a timer, the budget stays two minutes. The
+   client never adds up a partial budget.
+5. The refresh after Connect never changes the budget, the caller's
+   cancellation stays independent of it, and lifecycle methods still add no
+   deadline of their own.
+
+With Server 0.10.0, which publishes no lifecycle bounds, the budget stays two
+minutes exactly as in client 0.5.0, and the sizing advice below still applies.
+
 The default follows the server's default lifecycle bounds
 ([spatialanalyzer/briosa#298](https://github.com/spatialanalyzer/briosa/pull/298),
 [#315](https://github.com/spatialanalyzer/briosa/pull/315)) for the ordinary
@@ -369,8 +409,8 @@ observation further until
 [spatialanalyzer/briosa#317](https://github.com/spatialanalyzer/briosa/issues/317)
 lands.
 
-When the server's lifecycle bounds are raised, size the client budget to at
-least three times `StartupTimeout`, plus `ReadinessProbeTimeout`, plus
+With Server 0.10.0, or when you set the budget yourself, size it to at least
+three times `StartupTimeout`, plus `ReadinessProbeTimeout`, plus
 `ApplicationStartupTimeout` when launching, plus 10 s, plus a margin. For
 example, a server `StartupTimeout` of 30 s and `ReadinessProbeTimeout` of 60 s
 with the default 30 s application startup need at least 90 + 60 + 30 + 10 =
@@ -429,6 +469,41 @@ recomputes admission and never pre-validates request options.
 `BriosaDeniedOperationListing`: the admission profile and policy fingerprint it
 was taken under, and the denied operations with their denial reasons. It never
 adds them to the snapshot.
+
+Server 0.10.1 and later add the following to discovery; Server 0.10.0 sends none
+of it, and client 0.5.1 then reports each as absent, so it works with both:
+
+- `BriosaServerSnapshot.LifecycleBounds` holds the server's lifecycle wait
+  allowances as optional `TimeSpan` values. The value is `null` when the server
+  publishes none, and an allowance that is absent or zero is `null`:
+  unavailable, never unbounded. `HostGracefulShutdown` is `Unavailable`,
+  `Finite` with its `Limit`, or `Unbounded`, read from the bound's case; an
+  absent, zero, or unrecognized bound is `Unavailable`. Each value falls back on
+  its own, so a missing host bound leaves the startup allowances usable.
+- `BriosaServerSnapshot.ConfiguredInteractionMode` is the SpatialAnalyzer
+  interaction mode the server is configured to set after each Connect, never
+  SpatialAnalyzer's live mode. `Unknown` stands for an unreported value, as from
+  Server 0.10.0, and for a value this client does not recognize.
+- `BriosaOperationCapability.RequestOptions` lists the reviewed request options
+  of each operation: `null` means the server did not describe them (Server
+  0.10.0), and an empty list means none apply. Each `OperationRequestOption`
+  names its field, effect, condition, enabling enum value names, and omission,
+  and what the policy decides for a request that turns on that option alone.
+  The description never permits anything, and the client never pre-validates a
+  request from it.
+- `BriosaOperationCapability.PolicyDenial`, `OperationRequestOption.PolicyDenial`,
+  and `BriosaOperationException.PolicyDenial` carry one `PolicyDenialDetails`
+  value: the `PolicyDenialRule`, the denied risk flag of a flag denial, the
+  admission profile of a profile denial, and the request field the server
+  attributed the denial to. The flag name maps to `OperationRiskFlag` through
+  one mapping, with `Unknown` for a name this client does not know; the name as
+  sent stays in `DeniedFlagName`.
+
+An unknown rule, effect, condition, omission, or admission value maps to its
+enum's `Unknown` member: it is unknown metadata, never permission, and never
+fails discovery. When the enclosing message decodes, an absent, inconsistent,
+or unrecognized denial detail never changes the typed failure or a capability's
+admission; a message that cannot be decoded is still a protocol error.
 
 ### Public API verification
 

@@ -1,8 +1,9 @@
 # Releasing NuGet clients
 
 Each release publishes two independent exact-SA products. The current package
-version is `0.5.0`. It is independent of the Briosa Server version; the
-generated protocol is pinned to the contract-major-3 checkpoint `0.10.0-dev.1`.
+version is `0.5.1`. It is independent of the Briosa Server version; the
+generated protocol is pinned to the checkpoint `0.10.1-dev.1`, built from the
+Server 0.10.1 source at `d405779027085b3dc26dc09c62a669820db5c164`.
 This procedure does not establish licensed runtime or enterprise Artifactory
 validation, which remain outstanding before v1.0 promotion.
 
