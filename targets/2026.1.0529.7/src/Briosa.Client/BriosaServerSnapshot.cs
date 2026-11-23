@@ -66,6 +66,78 @@ public sealed record BriosaServerSnapshot
             item.FullyQualifiedMethod,
             fullyQualifiedMethod,
             StringComparison.Ordinal));
+
+    /// <summary>
+    /// Compares the members that client 0.5.0 compared, as its record equality
+    /// did. <see cref="LifecycleBounds"/> and <see cref="ConfiguredInteractionMode"/>,
+    /// added in 0.5.1, take no part, so a snapshot compares and hashes as it did
+    /// in 0.5.0 whatever the server publishes.
+    /// </summary>
+    public bool Equals(BriosaServerSnapshot? other) =>
+        ReferenceEquals(this, other) ||
+        other is not null &&
+        EqualityContract == other.EqualityContract &&
+        EqualityComparer<string>.Default.Equals(BriosaVersion, other.BriosaVersion) &&
+        EqualityComparer<string>.Default.Equals(SourceRevision, other.SourceRevision) &&
+        EqualityComparer<string>.Default.Equals(ProtocolPackage, other.ProtocolPackage) &&
+        EqualityComparer<string>.Default.Equals(SpatialAnalyzerTarget, other.SpatialAnalyzerTarget) &&
+        ReadyForMp == other.ReadyForMp &&
+        WorkerState == other.WorkerState &&
+        ConnectionState == other.ConnectionState &&
+        ExecutionReadinessState == other.ExecutionReadinessState &&
+        TargetIsolationMode == other.TargetIsolationMode &&
+        EqualityComparer<string>.Default.Equals(AdmissionProfile, other.AdmissionProfile) &&
+        EqualityComparer<string>.Default.Equals(PolicyFingerprint, other.PolicyFingerprint) &&
+        EqualityComparer<IReadOnlyList<BriosaOperationCapability>>.Default.Equals(Operations, other.Operations);
+
+    /// <summary>Hashes the members that <see cref="Equals(BriosaServerSnapshot?)"/> compares.</summary>
+    public override int GetHashCode()
+    {
+        var hash = new HashCode();
+        hash.Add(EqualityContract);
+        hash.Add(BriosaVersion);
+        hash.Add(SourceRevision);
+        hash.Add(ProtocolPackage);
+        hash.Add(SpatialAnalyzerTarget);
+        hash.Add(ReadyForMp);
+        hash.Add(WorkerState);
+        hash.Add(ConnectionState);
+        hash.Add(ExecutionReadinessState);
+        hash.Add(TargetIsolationMode);
+        hash.Add(AdmissionProfile);
+        hash.Add(PolicyFingerprint);
+        hash.Add(Operations);
+        return hash.ToHashCode();
+    }
+
+    // The 0.5.0 members in the 0.5.0 format, then a 0.5.1 member only when the
+    // server published it, so a reply without them prints as it did in 0.5.0.
+    private bool PrintMembers(System.Text.StringBuilder builder)
+    {
+        builder.Append("BriosaVersion = ").Append((object)BriosaVersion);
+        builder.Append(", SourceRevision = ").Append((object)SourceRevision);
+        builder.Append(", ProtocolPackage = ").Append((object)ProtocolPackage);
+        builder.Append(", SpatialAnalyzerTarget = ").Append((object)SpatialAnalyzerTarget);
+        builder.Append(", ReadyForMp = ").Append(ReadyForMp);
+        builder.Append(", WorkerState = ").Append(WorkerState.ToString());
+        builder.Append(", ConnectionState = ").Append(ConnectionState.ToString());
+        builder.Append(", ExecutionReadinessState = ").Append(ExecutionReadinessState.ToString());
+        builder.Append(", TargetIsolationMode = ").Append(TargetIsolationMode.ToString());
+        builder.Append(", AdmissionProfile = ").Append((object)AdmissionProfile);
+        builder.Append(", PolicyFingerprint = ").Append((object)PolicyFingerprint);
+        builder.Append(", Operations = ").Append((object)Operations);
+        if (LifecycleBounds is not null)
+        {
+            builder.Append(", LifecycleBounds = ").Append(LifecycleBounds);
+        }
+
+        if (ConfiguredInteractionMode != ConfiguredSpatialAnalyzerInteractionMode.Unknown)
+        {
+            builder.Append(", ConfiguredInteractionMode = ").Append(ConfiguredInteractionMode.ToString());
+        }
+
+        return true;
+    }
 }
 
 /// <summary>
@@ -145,6 +217,66 @@ public sealed record BriosaOperationCapability
     /// a request from this description; the server decides each request.
     /// </remarks>
     public IReadOnlyList<OperationRequestOption>? RequestOptions { get; init; }
+
+    /// <summary>
+    /// Compares the members that client 0.5.0 compared, as its record equality
+    /// did. <see cref="PolicyDenial"/> and <see cref="RequestOptions"/>, added in
+    /// 0.5.1, take no part, so a capability compares and hashes as it did in 0.5.0
+    /// whatever the server publishes.
+    /// </summary>
+    public bool Equals(BriosaOperationCapability? other) =>
+        ReferenceEquals(this, other) ||
+        other is not null &&
+        EqualityContract == other.EqualityContract &&
+        EqualityComparer<string>.Default.Equals(OperationId, other.OperationId) &&
+        EqualityComparer<string>.Default.Equals(GrpcService, other.GrpcService) &&
+        EqualityComparer<string>.Default.Equals(Rpc, other.Rpc) &&
+        EqualityComparer<string>.Default.Equals(FullyQualifiedMethod, other.FullyQualifiedMethod) &&
+        EqualityComparer<IReadOnlyList<OperationRiskFlag>>.Default.Equals(RiskFlags, other.RiskFlags) &&
+        DurationClass == other.DurationClass &&
+        ValidationStatus == other.ValidationStatus &&
+        Admission == other.Admission;
+
+    /// <summary>Hashes the members that <see cref="Equals(BriosaOperationCapability?)"/> compares.</summary>
+    public override int GetHashCode()
+    {
+        var hash = new HashCode();
+        hash.Add(EqualityContract);
+        hash.Add(OperationId);
+        hash.Add(GrpcService);
+        hash.Add(Rpc);
+        hash.Add(FullyQualifiedMethod);
+        hash.Add(RiskFlags);
+        hash.Add(DurationClass);
+        hash.Add(ValidationStatus);
+        hash.Add(Admission);
+        return hash.ToHashCode();
+    }
+
+    // The 0.5.0 members in the 0.5.0 format, then a 0.5.1 member only when the
+    // server sent it, so a Server 0.10.0 capability prints as it did in 0.5.0.
+    private bool PrintMembers(System.Text.StringBuilder builder)
+    {
+        builder.Append("OperationId = ").Append((object)OperationId);
+        builder.Append(", GrpcService = ").Append((object)GrpcService);
+        builder.Append(", Rpc = ").Append((object)Rpc);
+        builder.Append(", FullyQualifiedMethod = ").Append((object)FullyQualifiedMethod);
+        builder.Append(", RiskFlags = ").Append((object)RiskFlags);
+        builder.Append(", DurationClass = ").Append(DurationClass.ToString());
+        builder.Append(", ValidationStatus = ").Append(ValidationStatus.ToString());
+        builder.Append(", Admission = ").Append(Admission.ToString());
+        if (PolicyDenial is not null)
+        {
+            builder.Append(", PolicyDenial = ").Append(PolicyDenial);
+        }
+
+        if (RequestOptions is not null)
+        {
+            builder.Append(", RequestOptions = ").Append((object)RequestOptions);
+        }
+
+        return true;
+    }
 }
 
 /// <summary>
