@@ -12,9 +12,9 @@ internal static class BriosaProtocolIdentity
     public const string BriosaVersion = "0.10.1-dev.1";
     /// <summary>Gets the immutable Briosa source revision used to build the artifact.</summary>
     public const string SourceRevision = "d405779027085b3dc26dc09c62a669820db5c164";
-    /// <summary>Gets the required behavioral contract major.</summary>
+    /// <summary>Gets the behavioral contract major that the protocol artifact declares and the client requires.</summary>
     public const uint CompatibilityMajor = 3;
-    /// <summary>Gets the minimum behavioral contract revision.</summary>
+    /// <summary>Gets the behavioral contract revision that the protocol artifact declares. The client's minimum is ServerSelectionPolicy.MinimumCompatibilityRevision.</summary>
     public const uint CompatibilityRevision = 1;
     /// <summary>Gets the aggregate canonical protobuf-source fingerprint.</summary>
     public const string ProtocolSchemaSha256 = "1c7151ff2d35b5420fe2cf366cc07ecbb7968701dc56e44cbce3b2512437e168";
