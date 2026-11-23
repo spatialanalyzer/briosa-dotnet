@@ -9,11 +9,13 @@ Independent exact-target clients for the [Briosa SpatialAnalyzer bridge](https:/
 | 2024.1.0508.5 | [SA 2024](targets/2024.1.0508.5/README.md) | 0.5.0 |
 | 2026.1.0529.7 | [SA 2026](targets/2026.1.0529.7/README.md) | 0.5.0 |
 
-Choose the package for your exact SA installation. Each product pins its own
-generation artifact and retains Server 0.9.2, the previous contract major, as a
-tested rejection baseline. The 0.5 client line selects side-by-side servers
-using behavioral contract 3.0. Client package versions
-are independent of the Briosa server version. See [Releasing](RELEASING.md) for
+Choose the package for your exact SA installation. Client 0.5.x works with
+Briosa Server 0.10.x and does not work with Server 0.9.x or earlier (clients
+0.4.x and earlier do not work with Server 0.10.x). For server releases after
+0.10.0, a patch update keeps the same clients working; a minor update may
+require a client upgrade. Each product pins its own generation artifact and
+retains Server 0.9.2 as a tested rejection baseline. Client package versions are
+independent of the Briosa server version. See [Releasing](RELEASING.md) for
 registry publishing and validation.
 
 Package names include the SA target; application namespaces/imports remain stable.
@@ -27,12 +29,13 @@ promotion.
 
 The 0.3.0 API naming changes are described in the [MP argument migration guide](docs/mp-argument-name-migration.md).
 
-## 0.5.0: contract major 3
+## 0.5.0 (for Server 0.10.x)
 
-Client 0.5.0 adopts behavioral contract major 3 (Briosa Server 0.10.0) in both
-products, and selects only major-3 servers. It breaks source compatibility on
-purpose; see the [contract major 3 migration](docs/contract-major-3-migration.md)
-for each change:
+Client 0.5.x works with Server 0.10.x. Before launch, it checks that the
+installation matches the exact SA target and declares support for this client.
+It rejects Server 0.9.x and earlier. Client 0.5.0 breaks source compatibility on
+purpose in both products; see the
+[Client 0.5.0 migration guide](docs/client-0.5-migration.md) for each change:
 
 - nine operations are removed: eight failed on both exact targets in licensed
   probe sessions, and no operator could complete the ninth;
