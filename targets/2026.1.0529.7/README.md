@@ -139,7 +139,7 @@ Every input the server requires is a required parameter, or a `required` member
 of its input value, so omitting one is a compile error. No default, overload or
 empty value fills one in. Where you want the identity transform, pass
 `Transform.Identity`. The
-[Client 0.5.0 migration guide](../../docs/client-0.5-migration.md) lists every
+[Client 0.5.0 migration guide](https://github.com/spatialanalyzer/briosa-dotnet/blob/main/docs/client-0.5-migration.md) lists every
 input that became required in 0.5.0.
 
 Leaving an optional list argument out sends an empty list. The server rejects
@@ -204,7 +204,7 @@ For these four methods, code 4 throws `BriosaOperationException` whose `Kind` is
 
 The observer comes just before the `CancellationToken`, so pass the token by
 name when you leave the observer out. See the
-[Client 0.5.0 migration guide](../../docs/client-0.5-migration.md) for the
+[Client 0.5.0 migration guide](https://github.com/spatialanalyzer/briosa-dotnet/blob/main/docs/client-0.5-migration.md) for the
 other 0.5.0 changes.
 
 ## Server selection
@@ -216,13 +216,16 @@ receipts and manifests, filters for the exact SA target and a compatible server
 release, and selects the highest compatible stable release. No internet access is
 needed.
 
-Client 0.5.x works with Briosa Server 0.10.x (Client 0.5.0 was published with
-Server 0.10.0). Server 0.9.x and earlier releases, including Server 0.9.2 and
-Server 0.6.1, are rejected before launch, and clients 0.4.x and earlier do not
-work with Server 0.10.x. Use client 0.4.0 with Server 0.9.x releases. A server
-patch release stays compatible with the same clients; a minor release may break
-compatibility. Protocol and source pins remain exact build inputs; startup
-verifies the running server against its selected installation.
+Client 0.5.x works with Briosa Server 0.10.x (Client 0.5.0 was tested with
+Server 0.10.0). Before launch, discovery checks that the installation matches
+the exact SA target and declares support for this client: Server 0.9.x and
+earlier releases (including Server 0.9.2) and installations with missing
+compatibility information (including Server 0.6.1) are rejected before launch,
+and clients 0.4.x and earlier do not work with Server 0.10.x. Use client 0.4.0
+with Server 0.9.x releases. For server releases after 0.10.0, a patch update
+keeps the same clients working; a minor update may require a client upgrade.
+Protocol and source pins remain exact build inputs; startup verifies the running
+server against its selected installation.
 
 The three robot methods Get Robot Machine Parameter, Start Robot Machine
 Interface, and Stop Robot Machine Interface now take a collection/instrument
@@ -346,7 +349,7 @@ Portable conformance covers lifecycle, identity mismatch, denied capabilities
 with the admission profile and the denied listing, typed MP and output failure,
 SDK call faults, partial success, deadlines, cancellation, a lifecycle Connect
 whose caller stopped waiting, watchdog recovery, SDK loss, and owned-process
-cleanup: all 15 scenarios of the Server 0.10.x conformance package. Its harness disables Control Center auto-launch and
+cleanup: all 15 fake-SDK scenarios tested with Client 0.5.0 and Server 0.10.0. Its harness disables Control Center auto-launch and
 restores the prior setting afterward. These checks use a fake SDK, without a
 SpatialAnalyzer installation or license.
 

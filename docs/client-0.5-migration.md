@@ -17,13 +17,14 @@ migrations.
 
 ## Server selection
 
-Client 0.5.x selects and accepts only Briosa Server 0.10.x installations. It
-rejects Server 0.9.x and earlier releases before launch, with
-`server-installation-incompatible` during discovery. Clients 0.4.x and earlier
-do not work with Server 0.10.x; keep client 0.4.0 for applications that must
-run against Server 0.9.x. A server patch release stays compatible with the same
-clients; a minor release may break compatibility. The two clients and servers
-install side by side.
+Client 0.5.x works with Server 0.10.x. Before launch, it checks that the
+installation matches the exact SA target and declares support for this client.
+It rejects Server 0.9.x and earlier (with `server-installation-incompatible`
+during discovery). Clients 0.4.x and earlier do not work with Server 0.10.x;
+keep client 0.4.0 for applications that must run against Server 0.9.x. For
+server releases after 0.10.0, a patch update keeps the same clients working; a
+minor update may require a client upgrade. The two clients and servers install
+side by side.
 
 ## Removed operations
 
@@ -39,7 +40,7 @@ types are gone:
 | `MakeCalloutViewRefListWildcardSelectionAsync`, both `SetCalloutViewPropertiesAsync` overloads | Select callout views with `MakeCollectionItemNameRefListWildcardSelectionAsync` and the callout-view item type. It uses a different MP step, and that item type has not been observed on a licensed run. Nothing replaces setting callout view properties on a list. |
 | `ConstructPolygonizedSurfaceFromPointCloudsAsync`, with `MeshOrientationType` | Nothing replaces it. |
 | `MakeCollectionVectorGroupNameRefListRuntimeSelectAsync` | Nothing replaces it. |
-| `MakeVectorNameRefListRuntimeSelectAsync` | SpatialAnalyzer never rejected it, but no operator could complete the selection on either target, so it is unverified. It can return in a later Server 0.10.x release once a licensed session verifies it. |
+| `MakeVectorNameRefListRuntimeSelectAsync` | SpatialAnalyzer never rejected it, but no operator could complete the selection on either target, so it is unverified. It can return in a later compatible server release once a licensed session verifies it. |
 
 ## Request defaults that changed
 
@@ -320,7 +321,7 @@ if (completion?.State == MpExecutionState.PartialSuccess)
   `PolicyFingerprint`. Compare the fingerprint only for equality.
 - Each `BriosaOperationCapability` reports its reviewed `RiskFlags`,
   `DurationClass`, `ValidationStatus` and `Admission`, exactly as the server
-  sends them. A value from a later server release maps to `Unknown`.
+  sends them. An unrecognized value from a compatible server maps to `Unknown`.
 - `GetDeniedOperationsAsync` returns a `BriosaDeniedOperationListing`: the
   admission profile and the policy fingerprint the listing was taken under, and
   the operations the active policy denies, each with the precedence step that

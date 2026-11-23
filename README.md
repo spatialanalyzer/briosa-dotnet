@@ -11,11 +11,12 @@ Independent exact-target clients for the [Briosa SpatialAnalyzer bridge](https:/
 
 Choose the package for your exact SA installation. Client 0.5.x works with
 Briosa Server 0.10.x and does not work with Server 0.9.x or earlier (clients
-0.4.x and earlier do not work with Server 0.10.x). A server patch release stays
-compatible with the same clients; a minor release may break compatibility. Each
-product pins its own generation artifact and retains Server 0.9.2 as a tested
-rejection baseline. Client package versions are independent of the Briosa server
-version. See [Releasing](RELEASING.md) for registry publishing and validation.
+0.4.x and earlier do not work with Server 0.10.x). For server releases after
+0.10.0, a patch update keeps the same clients working; a minor update may
+require a client upgrade. Each product pins its own generation artifact and
+retains Server 0.9.2 as a tested rejection baseline. Client package versions are
+independent of the Briosa server version. See [Releasing](RELEASING.md) for
+registry publishing and validation.
 
 Package names include the SA target; application namespaces/imports remain stable.
 See each product guide for installation and examples. Run development commands
@@ -30,9 +31,10 @@ The 0.3.0 API naming changes are described in the [MP argument migration guide](
 
 ## 0.5.0 (for Server 0.10.x)
 
-Client 0.5.0 targets Briosa Server 0.10.0 (and compatible Server 0.10.x
-releases) in both products, and selects only Server 0.10.x installations. It
-breaks source compatibility on purpose; see the
+Client 0.5.x works with Server 0.10.x. Before launch, it checks that the
+installation matches the exact SA target and declares support for this client.
+It rejects Server 0.9.x and earlier. Client 0.5.0 breaks source compatibility on
+purpose in both products; see the
 [Client 0.5.0 migration guide](docs/client-0.5-migration.md) for each change:
 
 - nine operations are removed: eight failed on both exact targets in licensed
