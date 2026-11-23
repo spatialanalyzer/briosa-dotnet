@@ -455,10 +455,11 @@ public sealed partial class BriosaClient : IAsyncDisposable
             try
             {
                 ThrowIfDisposed();
-                // A cancelled wait can still be granted the gate. A startup whose
-                // budget has ended never takes ownership; the finally below stops
-                // the server it launched.
-                token.ThrowIfCancellationRequested();
+                // With published bounds, a startup whose budget has ended never
+                // takes ownership, even if its cancelled wait was granted the gate;
+                // the finally below stops the server it launched. Without them, as
+                // in client 0.5.0, a granted wait takes ownership, and the session
+                // stops the server.
                 budget.EnsureWithinBudget();
                 _session = candidate;
             }
