@@ -41,11 +41,21 @@ internal sealed class StartupBudget : IDisposable
     private bool _expired;
     private bool _disposed;
     private bool _adoptionConsidered;
+    private bool _enforced;
 
     public StartupBudget(BriosaStartOptions options, TimeProvider timeProvider)
     {
         ArgumentNullException.ThrowIfNull(options);
         ArgumentNullException.ThrowIfNull(timeProvider);
+        // Client 0.5.0 armed new CancellationTokenSource(StartupTimeout), which
+        // rejects more than uint.MaxValue - 1 whole milliseconds with this exception.
+        if ((long)options.StartupTimeout.TotalMilliseconds > uint.MaxValue - 1L)
+        {
+#pragma warning disable CA2208 // The 0.5.0 exception named the CancellationTokenSource parameter.
+            throw new ArgumentOutOfRangeException("delay");
+#pragma warning restore CA2208
+        }
+
         _timeProvider = timeProvider;
         _start = timeProvider.GetTimestamp();
         _deadline = options.StartupTimeout;
@@ -79,13 +89,18 @@ internal sealed class StartupBudget : IDisposable
         }
     }
 
+    // Whether the first validated snapshot published lifecycle bounds, so that
+    // EnsureWithinBudget checks the deadline against the clock. False for Server
+    // 0.10.0, which publishes none.
+    internal bool Enforced => _enforced;
+
     // Called with the first validated startup snapshot: server information and
     // capabilities whose live identity matches the selected installation. Later
     // snapshots, such as the refresh after Connect, never restart the budget.
     public void Adopt(LifecycleBounds? bounds, BriosaStartOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
-        if (!_adoptable || _adoptionConsidered)
+        if (_adoptionConsidered)
         {
             return;
         }
@@ -94,14 +109,18 @@ internal sealed class StartupBudget : IDisposable
         if (bounds is null)
         {
             // No lifecycle bounds, as from Server 0.10.0: the bootstrap deadline
-            // and its timer stay exactly as armed.
+            // and its timer stay exactly as armed, and nothing else is checked.
             return;
         }
 
+        // Published bounds: from here on the startup is decided against the
+        // clock, whether or not the timeout can grow, so a timer callback that
+        // has not run yet never lets a phase start after the deadline.
+        _enforced = true;
         bool expire;
         lock (_sync)
         {
-            expire = _expired || ElapsedNow() >= _deadline || AdoptLocked(bounds, options);
+            expire = _expired || ElapsedNow() >= _deadline || (_adoptable && AdoptLocked(bounds, options));
             if (expire)
             {
                 _expired = true;
@@ -112,9 +131,58 @@ internal sealed class StartupBudget : IDisposable
         {
             // The deadline has passed, even if its timer callback has not run
             // yet. Never extend it, and submit no further phase.
-            Source.Cancel();
-            Source.Token.ThrowIfCancellationRequested();
+            Expire();
         }
+    }
+
+    // With published bounds, ends the startup when its budget was cancelled or
+    // the clock has reached the active deadline, whether or not the timer callback
+    // has run. Called before each lifecycle submission and before the startup
+    // accepts readiness and is published. Without published bounds it does
+    // nothing, so a Server 0.10.0 startup runs as in client 0.5.0.
+    public void EnsureWithinBudget()
+    {
+        if (!_enforced)
+        {
+            return;
+        }
+
+        bool expire;
+        lock (_sync)
+        {
+            expire = _expired || Source.IsCancellationRequested || ElapsedNow() >= _deadline;
+            if (expire)
+            {
+                _expired = true;
+            }
+        }
+
+        if (expire)
+        {
+            Expire();
+        }
+    }
+
+    // With published bounds, whether the budget was cancelled or the clock has
+    // reached the active deadline. Without them, always false. It changes nothing,
+    // so an exception filter can ask.
+    public bool HasExpired()
+    {
+        if (!_enforced)
+        {
+            return false;
+        }
+
+        lock (_sync)
+        {
+            return _expired || Source.IsCancellationRequested || ElapsedNow() >= _deadline;
+        }
+    }
+
+    private void Expire()
+    {
+        Source.Cancel();
+        Source.Token.ThrowIfCancellationRequested();
     }
 
     public void Dispose()

@@ -334,6 +334,42 @@ public sealed class StartupBudgetAdoptionTests
         Assert.Null(clock.NextDueTime());
     }
 
+    // With published bounds, an explicit budget never grows but is checked against
+    // the clock before each phase, whether or not its timer callback has run.
+    [Fact]
+    public void AnExplicitBudgetWithPublishedBoundsIsCheckedAgainstTheClock()
+    {
+        var options = new BriosaStartOptions { StartupTimeout = TimeSpan.FromSeconds(60) };
+        var clock = new ManualTimeProvider();
+        using var budget = new StartupBudget(options, clock);
+        budget.Adopt(Published, options);
+        budget.EnsureWithinBudget();
+        clock.AdvanceWithoutFiringTimers(TimeSpan.FromSeconds(60));
+
+        Assert.True(budget.Enforced);
+        Assert.Equal(TimeSpan.FromSeconds(60), budget.Deadline);
+        Assert.Throws<OperationCanceledException>(budget.EnsureWithinBudget);
+        Assert.True(budget.Token.IsCancellationRequested);
+    }
+
+    // Without published bounds, nothing but the timer ends the startup, as in
+    // client 0.5.0.
+    [Fact]
+    public void WithoutPublishedBoundsNothingButTheTimerEndsTheStartup()
+    {
+        var clock = new ManualTimeProvider();
+        using var budget = new StartupBudget(BriosaStartOptions.Default, clock);
+        budget.Adopt(null, BriosaStartOptions.Default);
+        clock.AdvanceWithoutFiringTimers(TimeSpan.FromSeconds(500));
+
+        budget.EnsureWithinBudget();
+
+        Assert.False(budget.Enforced);
+        Assert.False(budget.Token.IsCancellationRequested);
+        clock.Advance(TimeSpan.Zero);
+        Assert.True(budget.Token.IsCancellationRequested);
+    }
+
     [Fact]
     public void AnAlreadyExpiredStartupStaysExpired()
     {

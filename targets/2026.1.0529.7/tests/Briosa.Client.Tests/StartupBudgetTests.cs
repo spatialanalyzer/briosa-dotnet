@@ -12,7 +12,7 @@ namespace Briosa.Client.Tests;
 /// reported as startup-timeout whichever phase it interrupts, and pins that lifecycle
 /// calls carry no client-imposed per-call deadline.
 /// </summary>
-public sealed class StartupBudgetTests
+public sealed partial class StartupBudgetTests
 {
     // Server defaults, identical in both targets.
     // Briosa:Worker:StartupTimeout: worker launch, COM activation, Ready, ConnectEx, and
@@ -410,10 +410,44 @@ public sealed class StartupBudgetTests
         // entry publishes none, as Server 0.10.0 does.
         public Transport.LifecycleBounds?[] Bounds { get; init; } = [];
 
+        // Runs inside each call, after it is recorded and before it answers, with
+        // the call's name and occurrence (from 1): a test moves the clock or holds
+        // the call there. The fake then answers whatever the token says, as a
+        // reply already on its way would.
+        public Func<string, int, Task>? DuringCall { get; init; }
+
+        public bool Disposed { get; private set; }
+
+        // The startup's submission check, which the real transport runs after it
+        // builds a request and immediately before the RPC; this fake runs it at
+        // the same point, so a refused submission is never recorded.
+        public Action? BeforeSubmit { get; set; }
+
+        // Runs while a call's request is built, before the submission check, with
+        // the call's name and the occurrence it would have.
+        public Action<string, int>? WhileBuildingRequest { get; init; }
+
+        // Replaces the application state that Launch returns.
+        public Transport.SpatialAnalyzerLifecycleState? LaunchReply { get; init; }
+
+        // How many capability listings were submitted after server information.
+        public int CapabilitySubmissions { get; private set; }
+
+        // How many MP commands reached this transport.
+        public int MpCalls { get; private set; }
+
         private async Task RecordAsync(string name, CancellationToken cancellationToken)
         {
+            WhileBuildingRequest?.Invoke(name, Calls.Count(call => call.Name == name) + 1);
+            BeforeSubmit?.Invoke();
             Calls.Add(new(name, cancellationToken));
-            if (name != HangAt || Calls.Count(call => call.Name == name) != HangAtOccurrence)
+            var occurrence = Calls.Count(call => call.Name == name);
+            if (DuringCall is not null)
+            {
+                await DuringCall(name, occurrence).ConfigureAwait(false);
+            }
+
+            if (name != HangAt || occurrence != HangAtOccurrence)
             {
                 return;
             }
@@ -448,6 +482,10 @@ public sealed class StartupBudgetTests
             }
 
             await RecordAsync("snapshot", cancellationToken).ConfigureAwait(false);
+            // Server information has answered; the capability listing is the
+            // second discovery RPC, checked on its own.
+            BeforeSubmit?.Invoke();
+            CapabilitySubmissions++;
             var (server, capabilities) = Snapshot(_connected);
             if (index < Bounds.Length && Bounds[index] is { } bounds)
             {
@@ -469,7 +507,7 @@ public sealed class StartupBudgetTests
             CancellationToken cancellationToken)
         {
             await RecordAsync("launch-sa", cancellationToken).ConfigureAwait(false);
-            return Application(running: true);
+            return LaunchReply ?? Application(running: true);
         }
 
         public async Task<Transport.SpatialAnalyzerLifecycleState> CloseApplicationAsync(
@@ -533,8 +571,11 @@ public sealed class StartupBudgetTests
 
         public Task<Transport.GetWorkingDirectoryResult> GetWorkingDirectoryAsync(
             TimeSpan? timeout,
-            CancellationToken cancellationToken) =>
+            CancellationToken cancellationToken)
+        {
+            MpCalls++;
             throw new NotSupportedException();
+        }
 
         public Task<IMessage> InvokeOperationAsync(
             string service,
@@ -542,10 +583,17 @@ public sealed class StartupBudgetTests
             IMessage request,
             MessageParser responseParser,
             TimeSpan? timeout,
-            CancellationToken cancellationToken) =>
+            CancellationToken cancellationToken)
+        {
+            MpCalls++;
             throw new NotSupportedException();
+        }
 
-        public ValueTask DisposeAsync() => ValueTask.CompletedTask;
+        public ValueTask DisposeAsync()
+        {
+            Disposed = true;
+            return ValueTask.CompletedTask;
+        }
 
         private static Transport.SpatialAnalyzerLifecycleState Application(bool running)
         {
