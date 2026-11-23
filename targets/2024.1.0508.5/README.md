@@ -393,7 +393,7 @@ cleanup: all 15 fake-SDK scenarios tested with Client 0.5.0 and Server 0.10.0.
 Client 0.5.1 runs them against the released Server 0.10.0 and against Server
 0.10.1 built from its pinned source, where it also runs the optional
 `large-result` scenario: a result of 1,046,528 characters, the server's 1 MiB
-worker response budget, received whole. Its harness disables Control Center auto-launch and
+worker response budget, received whole. The harness disables Control Center auto-launch and
 restores the prior setting afterward. These checks use a fake SDK, without a
 SpatialAnalyzer installation or license.
 
