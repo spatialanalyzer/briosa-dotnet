@@ -68,10 +68,10 @@ It also fixes two startup faults of 0.5.0, with either server:
 - a startup that times out now always stops the server process the client
   started. Client 0.5.0 left that process running when the start ended after
   the server answered discovery but before the client attached it, through its
-  budget or because the client was disposed meanwhile, and `DisposeAsync` then
-  threw `ObjectDisposedException`. Once the client has attached the server, a
-  start that fails still leaves it to `StopAsync` or `DisposeAsync`, which stop
-  it, as before;
+  budget or because the client was disposed meanwhile; in the second case
+  `DisposeAsync` also threw `ObjectDisposedException`. Once the client has
+  attached the server, a start that fails still leaves it to `StopAsync` or
+  `DisposeAsync`, which stop it, as before;
 - a `StartupTimeout` longer than 4,294,967,294 milliseconds (about 49.7 days)
   still fails `StartAsync` with `ArgumentOutOfRangeException` for parameter
   `delay`, but no longer leaves the client unable to start again or be disposed.
