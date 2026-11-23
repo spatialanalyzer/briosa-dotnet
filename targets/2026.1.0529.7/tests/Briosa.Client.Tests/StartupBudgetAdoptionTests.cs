@@ -94,6 +94,38 @@ public sealed class StartupBudgetAdoptionTests
         Assert.Equal(TimeSpan.FromSeconds(expectedSeconds), clock.NextDueTime());
     }
 
+    // An explicit budget counts whole milliseconds, as the
+    // CancellationTokenSource(TimeSpan) of client 0.5.0 did: a fraction of a
+    // millisecond is dropped, and with no whole millisecond the budget starts out
+    // cancelled, before any timer.
+    [Theory]
+    [InlineData(1L, 0)]
+    [InlineData(9_999L, 0)]
+    [InlineData(10_000L, 1)]
+    [InlineData(15_000L, 1)]
+    [InlineData(600_000_009_999L, 60_000_000)]
+    public void AnExplicitBudgetCountsWholeMilliseconds(long ticks, long milliseconds)
+    {
+        var clock = new ManualTimeProvider();
+        using var budget = new StartupBudget(
+            new BriosaStartOptions { StartupTimeout = TimeSpan.FromTicks(ticks) },
+            clock);
+
+        Assert.Equal(TimeSpan.FromMilliseconds(milliseconds), budget.Deadline);
+        if (milliseconds == 0)
+        {
+            Assert.True(budget.Token.IsCancellationRequested);
+            Assert.Null(clock.NextDueTime());
+            return;
+        }
+
+        Assert.False(budget.Token.IsCancellationRequested);
+        clock.Advance(TimeSpan.FromMilliseconds(milliseconds) - TimeSpan.FromTicks(1));
+        Assert.False(budget.Token.IsCancellationRequested);
+        clock.Advance(TimeSpan.FromTicks(1));
+        Assert.True(budget.Token.IsCancellationRequested);
+    }
+
     // The deadline is measured from t0, so time already spent counts.
     [Fact]
     public void TheAdoptedDeadlineCountsFromTheStartInstant()

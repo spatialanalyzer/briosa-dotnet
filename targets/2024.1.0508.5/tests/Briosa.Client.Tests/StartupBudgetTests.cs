@@ -353,10 +353,15 @@ public sealed partial class StartupBudgetTests
     {
         public RecordingServer Server { get; } = new();
 
+        public bool? CancelledAtLaunch { get; private set; }
+
         public Task<IOwnedBriosaServer> LaunchAsync(
             BriosaLoggingOptions? logging,
-            CancellationToken cancellationToken) =>
-            Task.FromResult<IOwnedBriosaServer>(Server);
+            CancellationToken cancellationToken)
+        {
+            CancelledAtLaunch = cancellationToken.IsCancellationRequested;
+            return Task.FromResult<IOwnedBriosaServer>(Server);
+        }
     }
 
     private sealed class RecordingServer : IOwnedBriosaServer

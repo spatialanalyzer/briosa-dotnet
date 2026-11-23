@@ -48,8 +48,11 @@ internal sealed class StartupBudget : IDisposable
         ArgumentNullException.ThrowIfNull(options);
         ArgumentNullException.ThrowIfNull(timeProvider);
         // Client 0.5.0 armed new CancellationTokenSource(StartupTimeout), which
-        // rejects more than uint.MaxValue - 1 whole milliseconds with this exception.
-        if ((long)options.StartupTimeout.TotalMilliseconds > uint.MaxValue - 1L)
+        // counts whole milliseconds: it rejects more than uint.MaxValue - 1 of them
+        // with this exception, drops a fraction of a millisecond, and starts out
+        // cancelled when no whole millisecond remains.
+        var wholeMilliseconds = (long)options.StartupTimeout.TotalMilliseconds;
+        if (wholeMilliseconds > uint.MaxValue - 1L)
         {
 #pragma warning disable CA2208 // The 0.5.0 exception named the CancellationTokenSource parameter.
             throw new ArgumentOutOfRangeException("delay");
@@ -58,9 +61,16 @@ internal sealed class StartupBudget : IDisposable
 
         _timeProvider = timeProvider;
         _start = timeProvider.GetTimestamp();
-        _deadline = options.StartupTimeout;
+        _deadline = TimeSpan.FromTicks(wholeMilliseconds * TimeSpan.TicksPerMillisecond);
         _adoptable = !options.StartupTimeoutIsExplicit;
         Source = new CancellationTokenSource();
+        if (wholeMilliseconds == 0)
+        {
+            // Expired before the server is launched, as in client 0.5.0.
+            _expired = true;
+            Source.Cancel();
+        }
+
         // Like CancellationTokenSource's own timer, the callback does not carry
         // the caller's execution context.
         using (ExecutionContext.SuppressFlow())
@@ -68,7 +78,7 @@ internal sealed class StartupBudget : IDisposable
             _timer = timeProvider.CreateTimer(
                 static state => ((StartupBudget)state!).OnTimer(),
                 this,
-                _deadline,
+                _expired ? Timeout.InfiniteTimeSpan : _deadline,
                 Timeout.InfiniteTimeSpan);
         }
     }
