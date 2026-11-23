@@ -338,6 +338,7 @@ public sealed partial class StartupBudgetTests
     [Theory]
     [InlineData(42_949_672_940_000L)]
     [InlineData(42_949_672_949_000L)]
+    [InlineData(42_949_672_949_999L)]
     public async Task TheLargestAcceptedExplicitBudgetStillStarts(long ticks)
     {
         var transport = new RecordingTransport();
@@ -522,16 +523,47 @@ public sealed partial class StartupBudgetTests
 
     // An MP command issued at once after a startup ended by its timeout fails in
     // the client and never reaches the transport.
+    // Covers Get Working Directory, the flat active-context API, and one operation
+    // from each of the five operation groups.
     private static async Task AssertMpAdmissionClosedAsync(BriosaClient client, RecordingTransport transport)
     {
-        var closed = await Assert.ThrowsAsync<BriosaLifecycleException>(() => client.GetWorkingDirectoryAsync())
-            .ConfigureAwait(false);
-        Assert.Equal("mp-command-admission-closed", closed.DiagnosticCode);
-        var operation = await Assert.ThrowsAsync<BriosaLifecycleException>(() => client.GetActiveCollectionNameAsync())
-            .ConfigureAwait(false);
-        Assert.Equal("mp-command-admission-closed", operation.DiagnosticCode);
+        foreach (var command in MpCommands(client))
+        {
+            var closed = await Assert.ThrowsAsync<BriosaLifecycleException>(command).ConfigureAwait(false);
+            Assert.Equal("mp-command-admission-closed", closed.DiagnosticCode);
+        }
+
         Assert.Equal(0, transport.MpCalls);
     }
+
+    // The same commands, each admitted and reaching the transport.
+    private static async Task AssertMpAdmittedAsync(BriosaClient client, RecordingTransport transport)
+    {
+        var before = transport.MpCalls;
+        var commands = MpCommands(client);
+        foreach (var command in commands)
+        {
+            await Assert.ThrowsAsync<NotSupportedException>(command).ConfigureAwait(false);
+        }
+
+        Assert.Equal(before + commands.Length, transport.MpCalls);
+    }
+
+    private static Func<Task>[] MpCommands(BriosaClient client) =>
+    [
+        () => client.GetWorkingDirectoryAsync(),
+        () => client.GetActiveCollectionNameAsync(),
+        () => client.ConstructionOperations.ClearHiddenPointBarDatabaseAsync(),
+        () => client.GdtOperations.DatumAlignmentAsync(
+            new CollectionItemName { CollectionName = "A", ItemName = "Check" },
+            [],
+            []),
+        () => client.InstrumentOperations.ActivateDeactivateInstrumentToolbarAsync(
+            new CollectionInstrumentId { CollectionName = "A", InstrumentId = 1 }),
+        () => client.RobotCalibrationApplianceNodeOperations.AddCalibrationApplianceNodeAsync(
+            new CollectionObjectName { CollectionName = "A", ObjectName = "Node", ObjectType = ObjectType.Any }),
+        () => client.RobotOperations.AddRobotMachineManipKinAsync(new FileReference { Path = "kinematics.txt" }),
+    ];
 
     private static async Task WaitUntilAsync(Func<bool> condition)
     {

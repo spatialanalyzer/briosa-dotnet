@@ -365,10 +365,13 @@ public sealed partial class StartupBudgetTests
         public bool HasExited => false;
         public bool Disposed { get; private set; }
 
+        // Thrown by DisposeAsync after the close is recorded.
+        public Exception? DisposeFailure { get; set; }
+
         public ValueTask DisposeAsync()
         {
             Disposed = true;
-            return ValueTask.CompletedTask;
+            return DisposeFailure is null ? ValueTask.CompletedTask : ValueTask.FromException(DisposeFailure);
         }
     }
 
@@ -436,6 +439,23 @@ public sealed partial class StartupBudgetTests
         // How many MP commands reached this transport.
         public int MpCalls { get; private set; }
 
+        // Calls whose reply arrives with its State submessage absent, as the
+        // generated transport then returns null.
+        public string[] MissingStateFor { get; init; } = [];
+
+        // Shapes each snapshot's server information, by call order from 0.
+        public Action<int, Transport.GetServerInfoResponse>? ShapeServerInfo { get; init; }
+
+        // How many capabilities each connected snapshot lists.
+        public int ConnectedCapabilityCount { get; init; }
+
+        // Thrown by DisposeAsync after the close is recorded.
+        public Exception? DisposeFailure { get; set; }
+
+        // Runs once a snapshot's reply is built, just before it is returned, with
+        // the snapshot's index from 0: the moment the reply arrives.
+        public Action<int>? BeforeAnswer { get; init; }
+
         private async Task RecordAsync(string name, CancellationToken cancellationToken)
         {
             WhileBuildingRequest?.Invoke(name, Calls.Count(call => call.Name == name) + 1);
@@ -492,6 +512,25 @@ public sealed partial class StartupBudgetTests
                 server.LifecycleBounds = bounds;
             }
 
+            ShapeServerInfo?.Invoke(index, server);
+            if (_connected && ConnectedCapabilityCount > 0)
+            {
+                for (var count = 0; count < ConnectedCapabilityCount; count++)
+                {
+                    capabilities.Operations.Add(new Transport.OperationCapability
+                    {
+                        OperationId = "file_operations.get_working_directory",
+                        GrpcService = "briosa.FileOperations",
+                        Rpc = "GetWorkingDirectory",
+                        FullyQualifiedMethod = "/briosa.FileOperations/GetWorkingDirectory",
+                        DurationClass = Transport.OperationDurationClass.Quick,
+                        ValidationStatus = Transport.OperationValidationStatus.NoRecordedGap,
+                        Admission = Transport.OperationAdmission.Admitted,
+                    });
+                }
+            }
+
+            BeforeAnswer?.Invoke(index);
             return (server, capabilities);
         }
 
@@ -507,7 +546,7 @@ public sealed partial class StartupBudgetTests
             CancellationToken cancellationToken)
         {
             await RecordAsync("launch-sa", cancellationToken).ConfigureAwait(false);
-            return LaunchReply ?? Application(running: true);
+            return MissingStateFor.Contains("launch-sa") ? null! : LaunchReply ?? Application(running: true);
         }
 
         public async Task<Transport.SpatialAnalyzerLifecycleState> CloseApplicationAsync(
@@ -531,7 +570,7 @@ public sealed partial class StartupBudgetTests
             await RecordAsync("start-sdk", cancellationToken).ConfigureAwait(false);
             _sdkGeneration++;
             _connected = false;
-            return Sdk();
+            return MissingStateFor.Contains("start-sdk") ? null! : Sdk();
         }
 
         public async Task<Transport.SpatialAnalyzerSdkLifecycleState> ConnectSdkAsync(
@@ -539,9 +578,10 @@ public sealed partial class StartupBudgetTests
             bool reconnect,
             CancellationToken cancellationToken)
         {
-            await RecordAsync(reconnect ? "reconnect-sdk" : "connect-sdk", cancellationToken).ConfigureAwait(false);
+            var name = reconnect ? "reconnect-sdk" : "connect-sdk";
+            await RecordAsync(name, cancellationToken).ConfigureAwait(false);
             _connected = true;
-            return Sdk();
+            return MissingStateFor.Contains(name) ? null! : Sdk();
         }
 
         public async Task<Transport.SpatialAnalyzerSdkLifecycleState> StopSdkAsync(
@@ -592,7 +632,7 @@ public sealed partial class StartupBudgetTests
         public ValueTask DisposeAsync()
         {
             Disposed = true;
-            return ValueTask.CompletedTask;
+            return DisposeFailure is null ? ValueTask.CompletedTask : ValueTask.FromException(DisposeFailure);
         }
 
         private static Transport.SpatialAnalyzerLifecycleState Application(bool running)

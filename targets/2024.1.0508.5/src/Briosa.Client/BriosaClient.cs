@@ -1,3 +1,4 @@
+using System.Runtime.ExceptionServices;
 using Grpc.Core;
 
 namespace Briosa;
@@ -430,6 +431,7 @@ public sealed partial class BriosaClient : IAsyncDisposable
         IClientTransport? transport = null;
         ClientSession? session = null;
         StartupBudget? budget = null;
+        var completed = false;
 
         try
         {
@@ -449,7 +451,12 @@ public sealed partial class BriosaClient : IAsyncDisposable
             // as from Server 0.10.0, only the budget's timer ends the startup.
             budget.Adopt(snapshot.LifecycleBounds, options);
             budget.EnsureWithinBudget();
-            var candidate = new ClientSession(server, transport, snapshot);
+            var candidate = new ClientSession(server, transport, snapshot)
+            {
+                // With published bounds, only a published startup admits MP
+                // commands, so a refresh after a failed start never reopens them.
+                AdmissionRequiresPublishedStartup = budget.Enforced,
+            };
 
             await _gate.WaitAsync(token).ConfigureAwait(false);
             try
@@ -506,13 +513,17 @@ public sealed partial class BriosaClient : IAsyncDisposable
                         .ConfigureAwait(false)));
                 var refreshed = await session.Transport.GetServerSnapshotAsync(token)
                     .ConfigureAwait(false);
-                // Accepting the refreshed ready state and publishing the startup is
-                // one decision: nothing awaits between this check and publication,
-                // so a timeout leaves MP admission closed.
-                budget.EnsureWithinBudget();
-                session.UpdateSnapshot(ProtocolMapping.MapSnapshot(
+                // Map and validate the refresh first, then decide: the time mapping
+                // takes counts against the budget, and a mapping error after the
+                // deadline becomes the timeout's cause. Accepting the refreshed
+                // ready state and publishing the startup is one decision: nothing
+                // awaits between this check and publication, so a timeout leaves
+                // MP admission closed.
+                var refreshedSnapshot = ProtocolMapping.MapSnapshot(
                     refreshed.ServerInfo,
-                    refreshed.Capabilities));
+                    refreshed.Capabilities);
+                budget.EnsureWithinBudget();
+                session.UpdateSnapshot(refreshedSnapshot);
                 if (!session.Snapshot.ReadyForMp || session.SdkState?.ReadyForMp != true)
                 {
                     throw new BriosaProtocolException("startup-readiness-not-established");
@@ -524,6 +535,7 @@ public sealed partial class BriosaClient : IAsyncDisposable
             }
 
             session.PublishStartup();
+            completed = true;
         }
         catch (RpcException exception) when (budget is { Source.IsCancellationRequested: true })
         {
@@ -532,14 +544,16 @@ public sealed partial class BriosaClient : IAsyncDisposable
             throw new BriosaStartupException("startup-timeout", exception);
         }
         catch (Exception exception) when (
-            exception is RpcException or BriosaException &&
+            exception is RpcException or BriosaException or ArgumentNullException &&
             exception is not BriosaStartupException &&
             budget is not null && budget.HasExpired())
         {
             // With published bounds, a phase that fails or returns a malformed reply
             // after the deadline, before the timer callback runs, reports the
-            // timeout, with that failure as its cause. Before the deadline, and
-            // without published bounds, the failure keeps its own error.
+            // timeout, with that failure as its cause. That includes a reply whose
+            // state is missing, which mapping rejects with ArgumentNullException.
+            // Before the deadline, and without published bounds, the failure keeps
+            // its own error.
             throw new BriosaStartupException("startup-timeout", exception);
         }
         catch (RpcException exception) when (session is not null)
@@ -563,17 +577,10 @@ public sealed partial class BriosaClient : IAsyncDisposable
 
             // Whatever ended the startup before the session took ownership, such
             // as a timeout or disposal while waiting to publish the session, the
-            // server process this startup launched does not outlive it.
-            if (transport is not null)
-            {
-                await transport.DisposeAsync().ConfigureAwait(false);
-            }
-
-            if (server is not null)
-            {
-                await server.DisposeAsync().ConfigureAwait(false);
-            }
-
+            // server process this startup launched does not outlive it. Each
+            // release is attempted even when another one throws, and the startup's
+            // own failure stays the one its callers see.
+            var teardownFailure = await DisposeAllAsync(transport, server).ConfigureAwait(false);
             budget?.Dispose();
             await _gate.WaitAsync().ConfigureAwait(false);
             try
@@ -584,7 +591,42 @@ public sealed partial class BriosaClient : IAsyncDisposable
             {
                 _gate.Release();
             }
+
+            // Only a startup that failed leaves anything here to release, so a
+            // teardown failure is reported only if it is the sole failure.
+            if (completed)
+            {
+                teardownFailure?.Throw();
+            }
         }
+    }
+
+    // Disposes each resource in order, attempting every one even when an earlier
+    // one throws, and returns the first failure.
+    private static async Task<ExceptionDispatchInfo?> DisposeAllAsync(
+        params IAsyncDisposable?[] resources)
+    {
+        ExceptionDispatchInfo? failure = null;
+        foreach (var resource in resources)
+        {
+            if (resource is null)
+            {
+                continue;
+            }
+
+            try
+            {
+                await resource.DisposeAsync().ConfigureAwait(false);
+            }
+#pragma warning disable CA1031 // Every resource is released whatever an earlier one threw.
+            catch (Exception exception)
+#pragma warning restore CA1031
+            {
+                failure ??= ExceptionDispatchInfo.Capture(exception);
+            }
+        }
+
+        return failure;
     }
 
     private static async Task<BriosaServerSnapshot> WaitForServerAsync(
@@ -753,12 +795,14 @@ public sealed partial class BriosaClient : IAsyncDisposable
                 {
                     await pendingStart.ConfigureAwait(false);
                 }
-                catch (Exception exception) when (
-                    exception is BriosaException or ObjectDisposedException)
+#pragma warning disable CA1031 // The startup's fault belongs to its own callers.
+                catch (Exception)
+#pragma warning restore CA1031
                 {
-                    // The startup's own caller saw this failure. A startup that
-                    // ended because the client was disposed meanwhile is not a
-                    // failure of this stop.
+                    // The startup's own callers see its failure, whatever its type,
+                    // on the startup's task. This stop still detaches and closes the
+                    // session that startup left, so a fault never leaves the server
+                    // running and unreachable.
                 }
             }
 
@@ -781,8 +825,11 @@ public sealed partial class BriosaClient : IAsyncDisposable
 
             await session.WaitForCommandsAsync().ConfigureAwait(false);
             await StopSdkBestEffortAsync(session).ConfigureAwait(false);
-            await session.Transport.DisposeAsync().ConfigureAwait(false);
-            await session.Server.DisposeAsync().ConfigureAwait(false);
+            // The server is closed even when the transport close throws; a close
+            // failure is reported once every close has been attempted.
+            var closeFailure = await DisposeAllAsync(session.Transport, session.Server)
+                .ConfigureAwait(false);
+            closeFailure?.Throw();
         }
         finally
         {
@@ -848,6 +895,12 @@ public sealed partial class BriosaClient : IAsyncDisposable
         public SpatialAnalyzerSdkLifecycleState? SdkState { get; private set; }
         public bool StartupCompleted { get; private set; }
 
+        // Set when the first validated snapshot published lifecycle bounds: MP
+        // commands are then admitted only once the startup is published, so a
+        // state refresh after a failed start never reopens them. Without bounds,
+        // as in client 0.5.0, readiness alone decides.
+        public bool AdmissionRequiresPublishedStartup { get; init; }
+
         public void UpdateSdkState(SpatialAnalyzerSdkLifecycleState state)
         {
             SdkState = state;
@@ -877,6 +930,7 @@ public sealed partial class BriosaClient : IAsyncDisposable
 
         private void RefreshCommandAdmission() =>
             _commandAdmissionOpen =
+                (StartupCompleted || !AdmissionRequiresPublishedStartup) &&
                 Snapshot.ReadyForMp && SdkState?.ReadyForMp == true;
 
         public bool TryEnterCommand()
