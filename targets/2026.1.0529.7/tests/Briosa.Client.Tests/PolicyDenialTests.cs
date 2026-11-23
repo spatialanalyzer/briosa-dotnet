@@ -30,7 +30,6 @@ public sealed class PolicyDenialTests
         var detail = Assert.IsType<PolicyDenialDetails>(mapped.PolicyDenial);
         Assert.Equal(PolicyDenialRule.Flag, detail.Rule);
         Assert.Equal(OperationRiskFlag.InteractiveUi, detail.DeniedFlag);
-        Assert.Equal("interactive_ui", detail.DeniedFlagName);
         Assert.Equal("show_results_dialog", detail.RequestOptionField);
         Assert.Null(detail.AdmissionProfile);
     }
@@ -50,7 +49,6 @@ public sealed class PolicyDenialTests
         Assert.Equal(PolicyDenialRule.Profile, detail.Rule);
         Assert.Equal("standard", detail.AdmissionProfile);
         Assert.Null(detail.DeniedFlag);
-        Assert.Null(detail.DeniedFlagName);
         Assert.Null(detail.RequestOptionField);
     }
 
@@ -102,28 +100,51 @@ public sealed class PolicyDenialTests
         Assert.Equal(
             rule switch { 0 => PolicyDenialRule.Unspecified, 1 => PolicyDenialRule.Profile, 2 => PolicyDenialRule.Flag, _ => PolicyDenialRule.Unknown },
             detail.Rule);
-        Assert.Equal(deniedFlag, detail.DeniedFlagName);
-        if (deniedFlag is not null)
-        {
-            Assert.Equal(
-                deniedFlag == "physical_motion" ? OperationRiskFlag.PhysicalMotion : OperationRiskFlag.Unknown,
-                detail.DeniedFlag);
-        }
+        Assert.Equal(
+            deniedFlag switch { null => null, "physical_motion" => OperationRiskFlag.PhysicalMotion, _ => OperationRiskFlag.Unknown },
+            detail.DeniedFlag);
     }
 
-    // A detail on another kind of failure is shown as sent; the kind stays.
+    // Only a policy denial names a policy step: detail that arrives with another
+    // kind is not shown, and that failure is otherwise exactly as without it.
     [Fact]
-    public void DetailOnAnotherFailureKindLeavesThatKind()
+    public void DetailOnAnotherFailureKindIsNotShown()
     {
-        var error = PolicyDenied();
-        error.Kind = Transport.OperationFailureKind.Validation;
-        error.ExecutionDisposition = Transport.ExecutionDisposition.NotStarted;
-        error.PolicyDenial = new Transport.PolicyDenialDetails { Rule = Transport.PolicyDenialRule.Override };
+        var bare = PolicyDenied();
+        bare.Kind = Transport.OperationFailureKind.Validation;
+        bare.DiagnosticCode = "request-validation-failed";
+        var detailed = bare.Clone();
+        detailed.PolicyDenial = new Transport.PolicyDenialDetails
+        {
+            Rule = Transport.PolicyDenialRule.Flag,
+            DeniedFlag = "physical_motion",
+        };
 
-        var mapped = Map(error);
+        var mapped = Map(detailed);
 
         Assert.Equal(OperationFailureKind.Validation, mapped.Kind);
-        Assert.Equal(PolicyDenialRule.Override, mapped.PolicyDenial?.Rule);
+        Assert.Null(mapped.PolicyDenial);
+        AssertSameFailure(Map(bare), mapped);
+    }
+
+    // A value a server sends never reaches the public detail as text: an
+    // unrecognized flag name is only Unknown, and the record's text never
+    // carries it.
+    [Fact]
+    public void AnUnrecognizedFlagNameIsNotCopiedIntoTheDetail()
+    {
+        var error = PolicyDenied();
+        error.PolicyDenial = new Transport.PolicyDenialDetails
+        {
+            Rule = Transport.PolicyDenialRule.Flag,
+            DeniedFlag = "review/test-marker",
+        };
+
+        var detail = Assert.IsType<PolicyDenialDetails>(Map(error).PolicyDenial);
+
+        Assert.Equal(OperationRiskFlag.Unknown, detail.DeniedFlag);
+        Assert.DoesNotContain("review/test-marker", detail.ToString(), StringComparison.Ordinal);
+        Assert.Null(typeof(PolicyDenialDetails).GetProperty("DeniedFlagName"));
     }
 
     // Fields a later server adds inside the detail are skipped.

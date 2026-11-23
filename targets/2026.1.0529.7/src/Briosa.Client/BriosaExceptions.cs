@@ -207,12 +207,14 @@ public sealed class BriosaOperationException : BriosaException
 
     /// <summary>
     /// Gets which policy step denied the call, or <see langword="null"/> when the
-    /// server sent no detail.
+    /// server sent no detail or <see cref="Kind"/> is not
+    /// <see cref="OperationFailureKind.PolicyDenied"/>.
     /// </summary>
     /// <remarks>
     /// Server 0.10.1 and later send it with every
     /// <see cref="OperationFailureKind.PolicyDenied"/> failure; Server 0.10.0
-    /// never sends it. It is informational: <see cref="Kind"/>,
+    /// never sends it. Detail that arrives with another kind is inconsistent and
+    /// is not shown. It is informational: <see cref="Kind"/>,
     /// <see cref="ExecutionDisposition"/>, and the guidance are the same with or
     /// without it, and an inconsistent or unrecognized detail never changes them.
     /// </remarks>

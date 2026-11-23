@@ -66,18 +66,10 @@ public sealed record PolicyDenialDetails
     /// </summary>
     /// <remarks>
     /// When several flags are set to deny, the server names the first in risk
-    /// flag declaration order. A flag name that this client does not know is
-    /// <see cref="OperationRiskFlag.Unknown"/>; its text is in
-    /// <see cref="DeniedFlagName"/>.
+    /// flag declaration order. A flag name that this client does not know, for
+    /// example one a later server adds, is <see cref="OperationRiskFlag.Unknown"/>.
     /// </remarks>
     public OperationRiskFlag? DeniedFlag { get; init; }
-
-    /// <summary>
-    /// Gets the flag name exactly as the server sent it, the lowercase suffix of
-    /// the protobuf risk flag value name such as <c>physical_motion</c>, or
-    /// <see langword="null"/> when the server named none.
-    /// </summary>
-    public string? DeniedFlagName { get; init; }
 
     /// <summary>
     /// Gets the active admission profile for a <see cref="PolicyDenialRule.Profile"/>

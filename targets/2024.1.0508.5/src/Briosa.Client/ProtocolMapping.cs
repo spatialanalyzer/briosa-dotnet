@@ -147,7 +147,6 @@ internal static class ProtocolMapping
             {
                 Rule = ConvertOrUnknown<PolicyDenialRule>(detail.Rule),
                 DeniedFlag = detail.HasDeniedFlag ? MapDeniedFlag(detail.DeniedFlag) : null,
-                DeniedFlagName = detail.HasDeniedFlag ? detail.DeniedFlag : null,
                 AdmissionProfile = detail.HasAdmissionProfile ? detail.AdmissionProfile : null,
                 RequestOptionField = detail.HasRequestOptionField ? detail.RequestOptionField : null,
             };
@@ -279,9 +278,15 @@ internal static class ProtocolMapping
 
         if (TryParseTrailer(exception, OperationErrorTrailer, Transport.OperationError.Parser, out var operationError))
         {
+            var kind = ConvertEnum<OperationFailureKind>(operationError.Kind, "operation-failure-kind");
+            // Only a policy denial names a policy step. Detail on any other kind
+            // is inconsistent and is dropped; the failure is unchanged.
+            var policyDenial = kind == OperationFailureKind.PolicyDenied
+                ? MapPolicyDenial(operationError.PolicyDenial)
+                : null;
             return new BriosaOperationException(
                 operationError.OperationId,
-                ConvertEnum<OperationFailureKind>(operationError.Kind, "operation-failure-kind"),
+                kind,
                 operationError.DiagnosticCode,
                 ConvertEnum<ExecutionDisposition>(operationError.ExecutionDisposition, "execution-disposition"),
                 ConvertEnum<RecoveryGuidance>(operationError.RecoveryGuidance, "recovery-guidance"),
@@ -291,7 +296,7 @@ internal static class ProtocolMapping
                 operationError.MpExecution is null
                     ? null
                     : MapMpExecution(operationError.MpExecution),
-                MapPolicyDenial(operationError.PolicyDenial));
+                policyDenial);
         }
 
         return new BriosaTransportException(
