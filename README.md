@@ -86,14 +86,18 @@ cases, each a fix, and what serializers see:
   the SDK shutdown that comes first fails, and report that failure, or else a
   close failure, once every close has been attempted. A pending start that
   faulted, with any exception, no longer keeps them from closing its session.
-  Each close is attempted once: if stopping the server process itself fails,
-  the error is reported and the client does not retry;
+  Each close is attempted once. If the server close is the only failure to
+  report, the caller receives that error. A later stop or disposal does not
+  retry it.
 - reflection-based serializers, and other code that enumerates the members of
   `BriosaServerSnapshot` and `BriosaOperationCapability`, see their 0.5.1
   members (`LifecycleBounds` and `ConfiguredInteractionMode`; `PolicyDenial`
   and `RequestOptions`), so a reader that rejects unknown members needs
   updating. Equality, hashing and `ToString()` are unchanged when the server
-  sends none of the new values.
+  sends none of the new values. Code that enumerates public members also sees
+  `BriosaOperationException.PolicyDenial` and the added properties on
+  `Briosa.Client.Transport.GetServerInfoResponse`, `OperationCapability` and
+  `OperationError`.
 
 The product guides describe each addition:
 [SA 2024](targets/2024.1.0508.5/README.md#usage),

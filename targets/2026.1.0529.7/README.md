@@ -2,8 +2,8 @@
 
 `Briosa.2026.1.0529.7` is the asynchronous .NET client for the open-source
 [Briosa](https://github.com/spatialanalyzer/briosa) SpatialAnalyzer bridge.
-It provides an idiomatic lifecycle API and handwritten MP methods while keeping
-generated gRPC types private.
+It provides an idiomatic lifecycle API and handwritten MP methods alongside
+generated gRPC types.
 
 The package does not include SpatialAnalyzer, the SA SDK, or a license. The
 current package targets SpatialAnalyzer `2026.1.0529.7` exactly and .NET 10 on
@@ -131,9 +131,14 @@ A second lifecycle call meanwhile fails with
 `sdk-lifecycle-transition-in-progress`: refresh state and retry later. A start
 that fails before the client owns the server it launched stops that server
 itself; once the client owns it, a later `StopAsync()` or `DisposeAsync()` stops
-it. Each close is attempted once, even when another one throws; if stopping
-the server process itself fails, the error is reported and the client does not
-retry.
+it. Each close is attempted once. If the server close is the only failure to
+report, the caller receives that error. A later stop or disposal does not retry
+it.
+
+After `StartAsync` rejects a `StartupTimeout` of 4,294,967,295 whole
+milliseconds or more, a later start with valid options can run and
+`DisposeAsync` no longer rethrows that error. A stop or disposal waiting for a
+faulted start still attempts both closes.
 
 The client retains lifecycle generations and supplies RPC guards automatically.
 Typed lifecycle failures, compatibility failures, ambiguous MP completion, and
@@ -179,7 +184,10 @@ The new members take no part in the equality or hash code of
 them only when the server sent them, so both records compare, hash and print as
 in client 0.5.0. Reflection-based serializers, and other code that enumerates
 their members, do see the new members, so a reader that rejects unknown members
-needs updating.
+needs updating. Code that enumerates public members also sees
+`BriosaOperationException.PolicyDenial` and the added properties on
+`Briosa.Client.Transport.GetServerInfoResponse`, `OperationCapability` and
+`OperationError`.
 
 See the [Briosa documentation](https://spatialanalyzer.github.io/briosa-docs/api/dotnet/)
 for the client API overview. The target-specific source and locked protocol define

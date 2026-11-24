@@ -425,13 +425,17 @@ three failure cases, each a fix, and what serializers see:
    that comes first fails, and report that failure, or else a close failure,
    once every close has been attempted. A pending start that faulted, with any
    exception, no longer keeps them from closing its session. Each close is
-   attempted once; a failed close is reported, not retried.
+   attempted once. If the server close is the only failure to report, the caller
+   receives that error. A later stop or disposal does not retry it.
 4. Reflection-based serializers, and other code that enumerates the members of
    `BriosaServerSnapshot` and `BriosaOperationCapability`, see their 0.5.1
    members (`LifecycleBounds` and `ConfiguredInteractionMode`; `PolicyDenial`
    and `RequestOptions`), so a reader that rejects unknown members needs
    updating. Equality, hashing and `ToString()` are unchanged when the server
-   sends none of the new values.
+   sends none of the new values. Code that enumerates public members also sees
+   `BriosaOperationException.PolicyDenial` and the added properties on
+   `Briosa.Client.Transport.GetServerInfoResponse`, `OperationCapability` and
+   `OperationError`.
 
 The default follows the server's default lifecycle bounds
 ([spatialanalyzer/briosa#298](https://github.com/spatialanalyzer/briosa/pull/298),
