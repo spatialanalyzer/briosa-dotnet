@@ -73,18 +73,20 @@ public sealed partial class ClientContractTests
     public void ProtocolIdentityMatchesReviewedCompatibilityArtifact()
     {
         Assert.Equal(
-            "briosa-protocol-0.10.0-dev.1-sa-2024.1.0508.5",
+            "briosa-protocol-0.10.1-dev.1-sa-2024.1.0508.5",
             Transport.BriosaProtocolIdentity.ArtifactName);
-        Assert.Equal("0.10.0-dev.1", Transport.BriosaProtocolIdentity.BriosaVersion);
+        Assert.Equal("0.10.1-dev.1", Transport.BriosaProtocolIdentity.BriosaVersion);
         Assert.Equal("briosa", Transport.BriosaProtocolIdentity.ProtocolPackage);
         Assert.Equal(
             "standard-protobuf-grpc",
             Transport.BriosaProtocolIdentity.ClientGenerationContract);
         Assert.Equal(
-            "2960705eb3152646513dca2b5d2043cd7cfffb75",
+            "d405779027085b3dc26dc09c62a669820db5c164",
             Transport.BriosaProtocolIdentity.SourceRevision);
         Assert.Equal(3U, Transport.BriosaProtocolIdentity.CompatibilityMajor);
-        Assert.Equal(0U, Transport.BriosaProtocolIdentity.CompatibilityRevision);
+        // The artifact declares revision 1; the client still requires only 0.
+        Assert.Equal(1U, Transport.BriosaProtocolIdentity.CompatibilityRevision);
+        Assert.Equal(0U, ServerSelectionPolicy.MinimumCompatibilityRevision);
         Assert.Equal(
             "2024.1.0508.5",
             Transport.BriosaProtocolIdentity.SpatialAnalyzerTarget);
@@ -672,6 +674,9 @@ public sealed partial class ClientContractTests
         public string? DeniedListingProfile { get; init; }
         public string? DeniedListingFingerprint { get; init; }
         public IMessage? OperationResponse { get; set; }
+
+        // A typed failure the next operation call throws instead of responding.
+        public RpcException? OperationFailure { get; init; }
         public IMessage? LastOperationRequest { get; private set; }
         public string? LastOperationService { get; private set; }
         public string? LastOperationRpc { get; private set; }
@@ -803,6 +808,11 @@ public sealed partial class ClientContractTests
             LastOperationService = service;
             LastOperationRpc = rpc;
             LastOperationRequest = request;
+            if (OperationFailure is not null)
+            {
+                throw OperationFailure;
+            }
+
             var response = OperationResponse ?? responseParser.ParseFrom(Array.Empty<byte>());
             if (FillMissingExecution &&
                 response.Descriptor.FindFieldByName("execution") is { } execution &&

@@ -2,6 +2,7 @@
 param(
     [string]$PackageDirectory = 'artifacts/package',
     [string]$LegacyArtifact,
+    [string]$ReleasedArtifact,
     [string]$CurrentArtifact,
     [string]$CurrentLock = 'artifacts/current-conformance/conformance.lock.json',
     [string]$FixtureExecutable = 'dotnet'
@@ -13,20 +14,37 @@ $version = ([xml](Get-Content (Join-Path $root 'src/Briosa.Client/Briosa.Client.
 $packages = @(Get-ChildItem -LiteralPath ([IO.Path]::GetFullPath($PackageDirectory, $root)) -Filter '*.nupkg' -File)
 if ($packages.Count -ne 1) { throw 'Expected exactly one target client package.' }
 $legacy = Get-Content (Join-Path $root 'conformance.lock.json') -Raw | ConvertFrom-Json
+$released = Get-Content (Join-Path $root 'released-conformance.lock.json') -Raw | ConvertFrom-Json
 $current = Get-Content ([IO.Path]::GetFullPath($CurrentLock, $root)) -Raw | ConvertFrom-Json
 if (-not $LegacyArtifact) { $LegacyArtifact = Join-Path $root "artifacts/conformance/$($legacy.artifact.file_name)" }
+if (-not $ReleasedArtifact) { $ReleasedArtifact = Join-Path $root "artifacts/conformance/$($released.artifact.file_name)" }
 if (-not $CurrentArtifact) { $CurrentArtifact = Join-Path $root "artifacts/current-conformance/$($current.artifact.file_name)" }
-foreach ($pair in @(
-    @{ name = 'legacy'; artifact = $LegacyArtifact; lock = 'conformance.lock.json' },
-    @{ name = 'current'; artifact = $CurrentArtifact; lock = $CurrentLock }
-)) {
-    $arguments = @{
-        ExpectIncompatible = $pair.name -eq 'legacy'
-        ClientPackagePath = $packages[0].FullName
-        ClientPackageSha256 = (Get-FileHash $packages[0].FullName -Algorithm SHA256).Hash.ToLowerInvariant()
-        ClientVersion = $version; ArtifactPath = $pair.artifact; LockPath = $pair.lock
-        EvidencePath = Join-Path $root "artifacts/$($pair.name)-package-evidence.json"
-        FixtureExecutable = $FixtureExecutable
+# legacy: the newest server the client must reject before launch (0.9.2).
+# released: the published server the client must still work with unchanged (0.10.0).
+# current: the server built from the pinned protocol source.
+# A failing scenario's diagnostics go to one folder per server generation, so the
+# same scenario name from two servers never collides.
+$diagnostics = [Environment]::GetEnvironmentVariable('BRIOSA_CONFORMANCE_DIAGNOSTICS_DIRECTORY')
+try {
+    foreach ($pair in @(
+        @{ name = 'legacy'; artifact = $LegacyArtifact; lock = 'conformance.lock.json' },
+        @{ name = 'released'; artifact = $ReleasedArtifact; lock = 'released-conformance.lock.json' },
+        @{ name = 'current'; artifact = $CurrentArtifact; lock = $CurrentLock }
+    )) {
+        if (-not [string]::IsNullOrWhiteSpace($diagnostics)) {
+            [Environment]::SetEnvironmentVariable('BRIOSA_CONFORMANCE_DIAGNOSTICS_DIRECTORY', (Join-Path $diagnostics $pair.name))
+        }
+        $arguments = @{
+            ExpectIncompatible = $pair.name -eq 'legacy'
+            ClientPackagePath = $packages[0].FullName
+            ClientPackageSha256 = (Get-FileHash $packages[0].FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+            ClientVersion = $version; ArtifactPath = $pair.artifact; LockPath = $pair.lock
+            EvidencePath = Join-Path $root "artifacts/$($pair.name)-package-evidence.json"
+            FixtureExecutable = $FixtureExecutable
+        }
+        & (Join-Path $PSScriptRoot 'Test-PublishedClientConformance.ps1') @arguments
     }
-    & (Join-Path $PSScriptRoot 'Test-PublishedClientConformance.ps1') @arguments
+}
+finally {
+    [Environment]::SetEnvironmentVariable('BRIOSA_CONFORMANCE_DIAGNOSTICS_DIRECTORY', $diagnostics)
 }

@@ -15,8 +15,16 @@ internal static class ServerSelectionPolicy
     internal const string LegacyVersion = "0.6.1";
     internal const string LegacyRevision = "32a3b56ba4ae31ea5ec6ec3b2aa051eb61c866aa";
 
+    // The minimum revision this client requires, in installation selection and
+    // in live discovery alike. The generated protocol identity carries the
+    // revision of the imported artifact (1, from Server 0.10.1), but this client
+    // uses the revision 1 fields only when a server sends them, so it still
+    // accepts Server 0.10.0, which declares revision 0. Live coordinates must
+    // still match the selected installation's manifest exactly.
+    internal const uint MinimumCompatibilityRevision = 0;
+
     internal static bool Compatible(uint major, uint revision, string version, string source,
-        uint requiredMajor = Identity.CompatibilityMajor, uint minimumRevision = Identity.CompatibilityRevision) =>
+        uint requiredMajor = Identity.CompatibilityMajor, uint minimumRevision = MinimumCompatibilityRevision) =>
         major == requiredMajor && major > 0 && revision >= minimumRevision ||
         major == 0 && revision == 0 && requiredMajor == 1 && minimumRevision == 0 &&
         version == LegacyVersion && source == LegacyRevision;
@@ -24,7 +32,7 @@ internal static class ServerSelectionPolicy
     internal static (BriosaInstallation? Selected, string? Code) Select(
         IReadOnlyList<BriosaInstallation> candidates, BriosaServerSelection options,
         string target = Identity.SpatialAnalyzerTarget,
-        uint requiredMajor = Identity.CompatibilityMajor, uint minimumRevision = Identity.CompatibilityRevision)
+        uint requiredMajor = Identity.CompatibilityMajor, uint minimumRevision = MinimumCompatibilityRevision)
     {
         var eligible = candidates.Where(c =>
             c.SpatialAnalyzerTarget == target && c.RuntimeIdentifier == "win-x64" &&

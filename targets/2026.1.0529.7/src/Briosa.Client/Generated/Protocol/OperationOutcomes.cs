@@ -31,69 +31,82 @@ namespace Briosa.Client.Transport {
             "b2RlIqgBChJNcEV4ZWN1dGlvbkRldGFpbHMSJwoFc3RhdGUYASABKA4yGC5i",
             "cmlvc2EuTXBFeGVjdXRpb25TdGF0ZRIbCg5tcF9yZXN1bHRfY29kZRgCIAEo",
             "BUgAiAEBEjkKEW91dHB1dF9yZXRyaWV2YWxzGAMgAygLMh4uYnJpb3NhLk91",
-            "dHB1dFJldHJpZXZhbERldGFpbHNCEQoPX21wX3Jlc3VsdF9jb2RlIs8DCg5P",
-            "cGVyYXRpb25FcnJvchIUCgxvcGVyYXRpb25faWQYASABKAkSKgoEa2luZBgC",
-            "IAEoDjIcLmJyaW9zYS5PcGVyYXRpb25GYWlsdXJlS2luZBIXCg9kaWFnbm9z",
-            "dGljX2NvZGUYAyABKAkSHgoRd29ya2VyX2dlbmVyYXRpb24YBSABKAVIAIgB",
-            "ARI1CgxtcF9leGVjdXRpb24YBiABKAsyGi5icmlvc2EuTXBFeGVjdXRpb25E",
-            "ZXRhaWxzSAGIAQESOwoVZXhlY3V0aW9uX2Rpc3Bvc2l0aW9uGAcgASgOMhwu",
-            "YnJpb3NhLkV4ZWN1dGlvbkRpc3Bvc2l0aW9uEjMKEXJlY292ZXJ5X2d1aWRh",
-            "bmNlGAggASgOMhguYnJpb3NhLlJlY292ZXJ5R3VpZGFuY2USLwoPcmVwbGF5",
-            "X2d1aWRhbmNlGAkgASgOMhYuYnJpb3NhLlJlcGxheUd1aWRhbmNlEisKDXJl",
-            "cGxheV9zYWZldHkYCiABKA4yFC5icmlvc2EuUmVwbGF5U2FmZXR5QhQKEl93",
-            "b3JrZXJfZ2VuZXJhdGlvbkIPCg1fbXBfZXhlY3V0aW9uSgQIBBAFUg5yZXRy",
-            "eV9ndWlkYW5jZSqiAgoQTXBFeGVjdXRpb25TdGF0ZRIiCh5NUF9FWEVDVVRJ",
-            "T05fU1RBVEVfVU5TUEVDSUZJRUQQABIgChxNUF9FWEVDVVRJT05fU1RBVEVf",
-            "U1VDQ0VFREVEEAESLAooTVBfRVhFQ1VUSU9OX1NUQVRFX0VYRUNVVEVfU1RF",
-            "UF9SRUpFQ1RFRBACEh0KGU1QX0VYRUNVVElPTl9TVEFURV9GQUlMRUQQAxIp",
-            "CiVNUF9FWEVDVVRJT05fU1RBVEVfUkVTVUxUX1VOQVZBSUxBQkxFEAQSKAok",
-            "TVBfRVhFQ1VUSU9OX1NUQVRFX0FSR1VNRU5UX1JFSkVDVEVEEAUSJgoiTVBf",
-            "RVhFQ1VUSU9OX1NUQVRFX1BBUlRJQUxfU1VDQ0VTUxAGKrEBChRPdXRwdXRS",
-            "ZXRyaWV2YWxTdGF0ZRImCiJPVVRQVVRfUkVUUklFVkFMX1NUQVRFX1VOU1BF",
-            "Q0lGSUVEEAASJAogT1VUUFVUX1JFVFJJRVZBTF9TVEFURV9SRVRSSUVWRUQQ",
-            "ARIoCiRPVVRQVVRfUkVUUklFVkFMX1NUQVRFX05PVF9BVFRFTVBURUQQAhIh",
-            "Ch1PVVRQVVRfUkVUUklFVkFMX1NUQVRFX0ZBSUxFRBADKrwBChRFeGVjdXRp",
-            "b25EaXNwb3NpdGlvbhIlCiFFWEVDVVRJT05fRElTUE9TSVRJT05fVU5TUEVD",
-            "SUZJRUQQABIlCiFFWEVDVVRJT05fRElTUE9TSVRJT05fTk9UX1NUQVJURUQQ",
-            "ARIxCi1FWEVDVVRJT05fRElTUE9TSVRJT05fU1RBUlRFRF9PVVRDT01FX1VO",
-            "S05PV04QAhIjCh9FWEVDVVRJT05fRElTUE9TSVRJT05fQ09NUExFVEVEEAMq",
-            "2wEKEFJlY292ZXJ5R3VpZGFuY2USIQodUkVDT1ZFUllfR1VJREFOQ0VfVU5T",
-            "UEVDSUZJRUQQABIaChZSRUNPVkVSWV9HVUlEQU5DRV9OT05FEAESKAokUkVD",
-            "T1ZFUllfR1VJREFOQ0VfV0FJVF9GT1JfUkVBRElORVNTEAISKAokUkVDT1ZF",
-            "UllfR1VJREFOQ0VfV09SS0VSX1JFUExBQ0VNRU5UEAMSNAowUkVDT1ZFUllf",
-            "R1VJREFOQ0VfT1BFUkFUT1JfSU5URVJWRU5USU9OX1JFUVVJUkVEEAQqoQEK",
-            "DlJlcGxheUd1aWRhbmNlEh8KG1JFUExBWV9HVUlEQU5DRV9VTlNQRUNJRklF",
-            "RBAAEiEKHVJFUExBWV9HVUlEQU5DRV9ET19OT1RfUkVQTEFZEAESHgoaUkVQ",
-            "TEFZX0dVSURBTkNFX01BWV9SRVBMQVkQAhIrCidSRVBMQVlfR1VJREFOQ0Vf",
-            "UkVDT05DSUxFX0JFRk9SRV9SRVBMQVkQAyp6CgxSZXBsYXlTYWZldHkSHQoZ",
-            "UkVQTEFZX1NBRkVUWV9VTlNQRUNJRklFRBAAEhYKElJFUExBWV9TQUZFVFlf",
-            "U0FGRRABEhgKFFJFUExBWV9TQUZFVFlfVU5TQUZFEAISGQoVUkVQTEFZX1NB",
-            "RkVUWV9VTktOT1dOEAMq0QYKFE9wZXJhdGlvbkZhaWx1cmVLaW5kEiYKIk9Q",
-            "RVJBVElPTl9GQUlMVVJFX0tJTkRfVU5TUEVDSUZJRUQQABIlCiFPUEVSQVRJ",
-            "T05fRkFJTFVSRV9LSU5EX1ZBTElEQVRJT04QARImCiJPUEVSQVRJT05fRkFJ",
-            "TFVSRV9LSU5EX1VOU1VQUE9SVEVEEAISNwozT1BFUkFUSU9OX0ZBSUxVUkVf",
-            "S0lORF9TUEFUSUFMX0FOQUxZWkVSX1VOQVZBSUxBQkxFEAMSLQopT1BFUkFU",
-            "SU9OX0ZBSUxVUkVfS0lORF9XT1JLRVJfVU5BVkFJTEFCTEUQBBIrCidPUEVS",
-            "QVRJT05fRkFJTFVSRV9LSU5EX0NBTExFUl9DQU5DRUxMRUQQBRIzCi9PUEVS",
-            "QVRJT05fRkFJTFVSRV9LSU5EX0NBTExFUl9ERUFETElORV9FWENFRURFRBAG",
-            "EjIKLk9QRVJBVElPTl9GQUlMVVJFX0tJTkRfV09SS0VSX1dBVENIRE9HX1RJ",
-            "TUVPVVQQBxIpCiVPUEVSQVRJT05fRkFJTFVSRV9LSU5EX1dPUktFUl9GQUlM",
-            "VVJFEAgSMAosT1BFUkFUSU9OX0ZBSUxVUkVfS0lORF9FWEVDVVRFX1NURVBf",
-            "UkVKRUNURUQQCRIlCiFPUEVSQVRJT05fRkFJTFVSRV9LSU5EX01QX0ZBSUxV",
-            "UkUQChIzCi9PUEVSQVRJT05fRkFJTFVSRV9LSU5EX09VVFBVVF9SRVRSSUVW",
-            "QUxfRkFJTFVSRRALEiMKH09QRVJBVElPTl9GQUlMVVJFX0tJTkRfSU5URVJO",
-            "QUwQDBIoCiRPUEVSQVRJT05fRkFJTFVSRV9LSU5EX1BPTElDWV9ERU5JRUQQ",
-            "DRI2CjJPUEVSQVRJT05fRkFJTFVSRV9LSU5EX01QX1JFU1VMVF9SRVRSSUVW",
-            "QUxfRkFJTFVSRRAOEjAKLE9QRVJBVElPTl9GQUlMVVJFX0tJTkRfU0RLX0FS",
-            "R1VNRU5UX1JFSkVDVEVEEA8SJQohT1BFUkFUSU9OX0ZBSUxVUkVfS0lORF9P",
-            "VkVSTE9BREVEEBASKwonT1BFUkFUSU9OX0ZBSUxVUkVfS0lORF9TREtfQ0FM",
-            "TF9GQVVMVEVEEBFCCaoCBkJyaW9zYWIGcHJvdG8z"));
+            "dHB1dFJldHJpZXZhbERldGFpbHNCEQoPX21wX3Jlc3VsdF9jb2RlItkBChNQ",
+            "b2xpY3lEZW5pYWxEZXRhaWxzEiYKBHJ1bGUYASABKA4yGC5icmlvc2EuUG9s",
+            "aWN5RGVuaWFsUnVsZRIYCgtkZW5pZWRfZmxhZxgCIAEoCUgAiAEBEiEKFHJl",
+            "cXVlc3Rfb3B0aW9uX2ZpZWxkGAMgASgJSAGIAQESHgoRYWRtaXNzaW9uX3By",
+            "b2ZpbGUYBCABKAlIAogBAUIOCgxfZGVuaWVkX2ZsYWdCFwoVX3JlcXVlc3Rf",
+            "b3B0aW9uX2ZpZWxkQhQKEl9hZG1pc3Npb25fcHJvZmlsZSKaBAoOT3BlcmF0",
+            "aW9uRXJyb3ISFAoMb3BlcmF0aW9uX2lkGAEgASgJEioKBGtpbmQYAiABKA4y",
+            "HC5icmlvc2EuT3BlcmF0aW9uRmFpbHVyZUtpbmQSFwoPZGlhZ25vc3RpY19j",
+            "b2RlGAMgASgJEh4KEXdvcmtlcl9nZW5lcmF0aW9uGAUgASgFSACIAQESNQoM",
+            "bXBfZXhlY3V0aW9uGAYgASgLMhouYnJpb3NhLk1wRXhlY3V0aW9uRGV0YWls",
+            "c0gBiAEBEjsKFWV4ZWN1dGlvbl9kaXNwb3NpdGlvbhgHIAEoDjIcLmJyaW9z",
+            "YS5FeGVjdXRpb25EaXNwb3NpdGlvbhIzChFyZWNvdmVyeV9ndWlkYW5jZRgI",
+            "IAEoDjIYLmJyaW9zYS5SZWNvdmVyeUd1aWRhbmNlEi8KD3JlcGxheV9ndWlk",
+            "YW5jZRgJIAEoDjIWLmJyaW9zYS5SZXBsYXlHdWlkYW5jZRIrCg1yZXBsYXlf",
+            "c2FmZXR5GAogASgOMhQuYnJpb3NhLlJlcGxheVNhZmV0eRI3Cg1wb2xpY3lf",
+            "ZGVuaWFsGAsgASgLMhsuYnJpb3NhLlBvbGljeURlbmlhbERldGFpbHNIAogB",
+            "AUIUChJfd29ya2VyX2dlbmVyYXRpb25CDwoNX21wX2V4ZWN1dGlvbkIQCg5f",
+            "cG9saWN5X2RlbmlhbEoECAQQBVIOcmV0cnlfZ3VpZGFuY2UqogIKEE1wRXhl",
+            "Y3V0aW9uU3RhdGUSIgoeTVBfRVhFQ1VUSU9OX1NUQVRFX1VOU1BFQ0lGSUVE",
+            "EAASIAocTVBfRVhFQ1VUSU9OX1NUQVRFX1NVQ0NFRURFRBABEiwKKE1QX0VY",
+            "RUNVVElPTl9TVEFURV9FWEVDVVRFX1NURVBfUkVKRUNURUQQAhIdChlNUF9F",
+            "WEVDVVRJT05fU1RBVEVfRkFJTEVEEAMSKQolTVBfRVhFQ1VUSU9OX1NUQVRF",
+            "X1JFU1VMVF9VTkFWQUlMQUJMRRAEEigKJE1QX0VYRUNVVElPTl9TVEFURV9B",
+            "UkdVTUVOVF9SRUpFQ1RFRBAFEiYKIk1QX0VYRUNVVElPTl9TVEFURV9QQVJU",
+            "SUFMX1NVQ0NFU1MQBiqxAQoUT3V0cHV0UmV0cmlldmFsU3RhdGUSJgoiT1VU",
+            "UFVUX1JFVFJJRVZBTF9TVEFURV9VTlNQRUNJRklFRBAAEiQKIE9VVFBVVF9S",
+            "RVRSSUVWQUxfU1RBVEVfUkVUUklFVkVEEAESKAokT1VUUFVUX1JFVFJJRVZB",
+            "TF9TVEFURV9OT1RfQVRURU1QVEVEEAISIQodT1VUUFVUX1JFVFJJRVZBTF9T",
+            "VEFURV9GQUlMRUQQAyq8AQoURXhlY3V0aW9uRGlzcG9zaXRpb24SJQohRVhF",
+            "Q1VUSU9OX0RJU1BPU0lUSU9OX1VOU1BFQ0lGSUVEEAASJQohRVhFQ1VUSU9O",
+            "X0RJU1BPU0lUSU9OX05PVF9TVEFSVEVEEAESMQotRVhFQ1VUSU9OX0RJU1BP",
+            "U0lUSU9OX1NUQVJURURfT1VUQ09NRV9VTktOT1dOEAISIwofRVhFQ1VUSU9O",
+            "X0RJU1BPU0lUSU9OX0NPTVBMRVRFRBADKtsBChBSZWNvdmVyeUd1aWRhbmNl",
+            "EiEKHVJFQ09WRVJZX0dVSURBTkNFX1VOU1BFQ0lGSUVEEAASGgoWUkVDT1ZF",
+            "UllfR1VJREFOQ0VfTk9ORRABEigKJFJFQ09WRVJZX0dVSURBTkNFX1dBSVRf",
+            "Rk9SX1JFQURJTkVTUxACEigKJFJFQ09WRVJZX0dVSURBTkNFX1dPUktFUl9S",
+            "RVBMQUNFTUVOVBADEjQKMFJFQ09WRVJZX0dVSURBTkNFX09QRVJBVE9SX0lO",
+            "VEVSVkVOVElPTl9SRVFVSVJFRBAEKqEBCg5SZXBsYXlHdWlkYW5jZRIfChtS",
+            "RVBMQVlfR1VJREFOQ0VfVU5TUEVDSUZJRUQQABIhCh1SRVBMQVlfR1VJREFO",
+            "Q0VfRE9fTk9UX1JFUExBWRABEh4KGlJFUExBWV9HVUlEQU5DRV9NQVlfUkVQ",
+            "TEFZEAISKwonUkVQTEFZX0dVSURBTkNFX1JFQ09OQ0lMRV9CRUZPUkVfUkVQ",
+            "TEFZEAMqegoMUmVwbGF5U2FmZXR5Eh0KGVJFUExBWV9TQUZFVFlfVU5TUEVD",
+            "SUZJRUQQABIWChJSRVBMQVlfU0FGRVRZX1NBRkUQARIYChRSRVBMQVlfU0FG",
+            "RVRZX1VOU0FGRRACEhkKFVJFUExBWV9TQUZFVFlfVU5LTk9XThADKtEGChRP",
+            "cGVyYXRpb25GYWlsdXJlS2luZBImCiJPUEVSQVRJT05fRkFJTFVSRV9LSU5E",
+            "X1VOU1BFQ0lGSUVEEAASJQohT1BFUkFUSU9OX0ZBSUxVUkVfS0lORF9WQUxJ",
+            "REFUSU9OEAESJgoiT1BFUkFUSU9OX0ZBSUxVUkVfS0lORF9VTlNVUFBPUlRF",
+            "RBACEjcKM09QRVJBVElPTl9GQUlMVVJFX0tJTkRfU1BBVElBTF9BTkFMWVpF",
+            "Ul9VTkFWQUlMQUJMRRADEi0KKU9QRVJBVElPTl9GQUlMVVJFX0tJTkRfV09S",
+            "S0VSX1VOQVZBSUxBQkxFEAQSKwonT1BFUkFUSU9OX0ZBSUxVUkVfS0lORF9D",
+            "QUxMRVJfQ0FOQ0VMTEVEEAUSMwovT1BFUkFUSU9OX0ZBSUxVUkVfS0lORF9D",
+            "QUxMRVJfREVBRExJTkVfRVhDRUVERUQQBhIyCi5PUEVSQVRJT05fRkFJTFVS",
+            "RV9LSU5EX1dPUktFUl9XQVRDSERPR19USU1FT1VUEAcSKQolT1BFUkFUSU9O",
+            "X0ZBSUxVUkVfS0lORF9XT1JLRVJfRkFJTFVSRRAIEjAKLE9QRVJBVElPTl9G",
+            "QUlMVVJFX0tJTkRfRVhFQ1VURV9TVEVQX1JFSkVDVEVEEAkSJQohT1BFUkFU",
+            "SU9OX0ZBSUxVUkVfS0lORF9NUF9GQUlMVVJFEAoSMwovT1BFUkFUSU9OX0ZB",
+            "SUxVUkVfS0lORF9PVVRQVVRfUkVUUklFVkFMX0ZBSUxVUkUQCxIjCh9PUEVS",
+            "QVRJT05fRkFJTFVSRV9LSU5EX0lOVEVSTkFMEAwSKAokT1BFUkFUSU9OX0ZB",
+            "SUxVUkVfS0lORF9QT0xJQ1lfREVOSUVEEA0SNgoyT1BFUkFUSU9OX0ZBSUxV",
+            "UkVfS0lORF9NUF9SRVNVTFRfUkVUUklFVkFMX0ZBSUxVUkUQDhIwCixPUEVS",
+            "QVRJT05fRkFJTFVSRV9LSU5EX1NES19BUkdVTUVOVF9SRUpFQ1RFRBAPEiUK",
+            "IU9QRVJBVElPTl9GQUlMVVJFX0tJTkRfT1ZFUkxPQURFRBAQEisKJ09QRVJB",
+            "VElPTl9GQUlMVVJFX0tJTkRfU0RLX0NBTExfRkFVTFRFRBARKtkBChBQb2xp",
+            "Y3lEZW5pYWxSdWxlEiIKHlBPTElDWV9ERU5JQUxfUlVMRV9VTlNQRUNJRklF",
+            "RBAAEh4KGlBPTElDWV9ERU5JQUxfUlVMRV9QUk9GSUxFEAESGwoXUE9MSUNZ",
+            "X0RFTklBTF9SVUxFX0ZMQUcQAhIfChtQT0xJQ1lfREVOSUFMX1JVTEVfT1ZF",
+            "UlJJREUQAxIgChxQT0xJQ1lfREVOSUFMX1JVTEVfRVhDTFVTSVZFEAQSIQod",
+            "UE9MSUNZX0RFTklBTF9SVUxFX1VOUkVWSUVXRUQQBUIJqgIGQnJpb3NhYgZw",
+            "cm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Briosa.Client.Transport.MpExecutionState), typeof(global::Briosa.Client.Transport.OutputRetrievalState), typeof(global::Briosa.Client.Transport.ExecutionDisposition), typeof(global::Briosa.Client.Transport.RecoveryGuidance), typeof(global::Briosa.Client.Transport.ReplayGuidance), typeof(global::Briosa.Client.Transport.ReplaySafety), typeof(global::Briosa.Client.Transport.OperationFailureKind), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Briosa.Client.Transport.MpExecutionState), typeof(global::Briosa.Client.Transport.OutputRetrievalState), typeof(global::Briosa.Client.Transport.ExecutionDisposition), typeof(global::Briosa.Client.Transport.RecoveryGuidance), typeof(global::Briosa.Client.Transport.ReplayGuidance), typeof(global::Briosa.Client.Transport.ReplaySafety), typeof(global::Briosa.Client.Transport.OperationFailureKind), typeof(global::Briosa.Client.Transport.PolicyDenialRule), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.OutputRetrievalDetails), global::Briosa.Client.Transport.OutputRetrievalDetails.Parser, new[]{ "FieldName", "State", "DiagnosticCode" }, new[]{ "DiagnosticCode" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.MpExecutionDetails), global::Briosa.Client.Transport.MpExecutionDetails.Parser, new[]{ "State", "MpResultCode", "OutputRetrievals" }, new[]{ "MpResultCode" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.OperationError), global::Briosa.Client.Transport.OperationError.Parser, new[]{ "OperationId", "Kind", "DiagnosticCode", "WorkerGeneration", "MpExecution", "ExecutionDisposition", "RecoveryGuidance", "ReplayGuidance", "ReplaySafety" }, new[]{ "WorkerGeneration", "MpExecution" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.PolicyDenialDetails), global::Briosa.Client.Transport.PolicyDenialDetails.Parser, new[]{ "Rule", "DeniedFlag", "RequestOptionField", "AdmissionProfile" }, new[]{ "DeniedFlag", "RequestOptionField", "AdmissionProfile" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Briosa.Client.Transport.OperationError), global::Briosa.Client.Transport.OperationError.Parser, new[]{ "OperationId", "Kind", "DiagnosticCode", "WorkerGeneration", "MpExecution", "ExecutionDisposition", "RecoveryGuidance", "ReplayGuidance", "ReplaySafety", "PolicyDenial" }, new[]{ "WorkerGeneration", "MpExecution", "PolicyDenial" }, null, null, null)
           }));
     }
     #endregion
@@ -201,6 +214,40 @@ namespace Briosa.Client.Transport {
     /// getter threw after MP success. No automatic retry.
     /// </summary>
     [pbr::OriginalName("OPERATION_FAILURE_KIND_SDK_CALL_FAULTED")] SdkCallFaulted = 17,
+  }
+
+  /// <summary>
+  /// The step of the active admission policy that denied a call or an operation.
+  /// Each value names the same step as one denied value of OperationAdmission in
+  /// discovery: PROFILE and DENIED_PROFILE, FLAG and DENIED_FLAG, OVERRIDE and
+  /// DENIED_OVERRIDE, EXCLUSIVE and DENIED_EXCLUSIVE, UNREVIEWED and
+  /// DENIED_UNREVIEWED. The numbers differ, so match the two enums by name.
+  /// </summary>
+  public enum PolicyDenialRule {
+    [pbr::OriginalName("POLICY_DENIAL_RULE_UNSPECIFIED")] Unspecified = 0,
+    /// <summary>
+    /// The profile, widened by flags set to allow, does not admit every risk flag,
+    /// or the read-only effect filter excludes the operation.
+    /// </summary>
+    [pbr::OriginalName("POLICY_DENIAL_RULE_PROFILE")] Profile = 1,
+    /// <summary>
+    /// A risk flag is set to deny.
+    /// </summary>
+    [pbr::OriginalName("POLICY_DENIAL_RULE_FLAG")] Flag = 2,
+    /// <summary>
+    /// A per-operation override is set to deny.
+    /// </summary>
+    [pbr::OriginalName("POLICY_DENIAL_RULE_OVERRIDE")] Override = 3,
+    /// <summary>
+    /// An exclusive workflow, which no setting admits in the current isolation
+    /// mode. A request whose options leave work running after the call returns is one.
+    /// </summary>
+    [pbr::OriginalName("POLICY_DENIAL_RULE_EXCLUSIVE")] Exclusive = 4,
+    /// <summary>
+    /// The operation's classification metadata is not reviewed, or the request
+    /// cannot be read against the operation's reviewed request options.
+    /// </summary>
+    [pbr::OriginalName("POLICY_DENIAL_RULE_UNREVIEWED")] Unreviewed = 5,
   }
 
   #endregion
@@ -777,6 +824,382 @@ namespace Briosa.Client.Transport {
   }
 
   /// <summary>
+  /// Value-free detail of a policy denial, shared by a denied call and by
+  /// discovery. Server 0.10.1 and later send it. Server 0.10.0 does not, and
+  /// clients built for Server 0.10.0, such as the 0.5.0 clients, ignore it.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class PolicyDenialDetails : pb::IMessage<PolicyDenialDetails>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<PolicyDenialDetails> _parser = new pb::MessageParser<PolicyDenialDetails>(() => new PolicyDenialDetails());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<PolicyDenialDetails> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Briosa.Client.Transport.OperationOutcomesReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public PolicyDenialDetails() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public PolicyDenialDetails(PolicyDenialDetails other) : this() {
+      rule_ = other.rule_;
+      deniedFlag_ = other.deniedFlag_;
+      requestOptionField_ = other.requestOptionField_;
+      admissionProfile_ = other.admissionProfile_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public PolicyDenialDetails Clone() {
+      return new PolicyDenialDetails(this);
+    }
+
+    /// <summary>Field number for the "rule" field.</summary>
+    public const int RuleFieldNumber = 1;
+    private global::Briosa.Client.Transport.PolicyDenialRule rule_ = global::Briosa.Client.Transport.PolicyDenialRule.Unspecified;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Briosa.Client.Transport.PolicyDenialRule Rule {
+      get { return rule_; }
+      set {
+        rule_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "denied_flag" field.</summary>
+    public const int DeniedFlagFieldNumber = 2;
+    private readonly static string DeniedFlagDefaultValue = "";
+
+    private string deniedFlag_;
+    /// <summary>
+    /// The risk flag set to deny that decided, as the lowercase suffix of its
+    /// OperationRiskFlag value name: for example "physical_motion" for
+    /// OPERATION_RISK_FLAG_PHYSICAL_MOTION. Present exactly when rule is FLAG, and
+    /// never "unspecified". When several of the request's flags are set to deny,
+    /// it names the first in OperationRiskFlag declaration order. A newer server
+    /// can name a flag that an older client does not know.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string DeniedFlag {
+      get { return deniedFlag_ ?? DeniedFlagDefaultValue; }
+      set {
+        deniedFlag_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "denied_flag" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasDeniedFlag {
+      get { return deniedFlag_ != null; }
+    }
+    /// <summary>Clears the value of the "denied_flag" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearDeniedFlag() {
+      deniedFlag_ = null;
+    }
+
+    /// <summary>Field number for the "request_option_field" field.</summary>
+    public const int RequestOptionFieldFieldNumber = 3;
+    private readonly static string RequestOptionFieldDefaultValue = "";
+
+    private string requestOptionField_;
+    /// <summary>
+    /// The protobuf field name of the request option the server attributed the
+    /// denial to, for example "show_results_dialog"; never a request value. When a
+    /// request turns on several options with the deciding effect, it names the
+    /// first in the server's reviewed order, which need not be the only cause.
+    /// Absent when the operation's reviewed row decided, and when the request could
+    /// not be read against its reviewed options.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RequestOptionField {
+      get { return requestOptionField_ ?? RequestOptionFieldDefaultValue; }
+      set {
+        requestOptionField_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "request_option_field" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRequestOptionField {
+      get { return requestOptionField_ != null; }
+    }
+    /// <summary>Clears the value of the "request_option_field" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRequestOptionField() {
+      requestOptionField_ = null;
+    }
+
+    /// <summary>Field number for the "admission_profile" field.</summary>
+    public const int AdmissionProfileFieldNumber = 4;
+    private readonly static string AdmissionProfileDefaultValue = "";
+
+    private string admissionProfile_;
+    /// <summary>
+    /// The active admission profile: read-only, standard, device, or full.
+    /// Present exactly when rule is PROFILE.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string AdmissionProfile {
+      get { return admissionProfile_ ?? AdmissionProfileDefaultValue; }
+      set {
+        admissionProfile_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "admission_profile" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAdmissionProfile {
+      get { return admissionProfile_ != null; }
+    }
+    /// <summary>Clears the value of the "admission_profile" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAdmissionProfile() {
+      admissionProfile_ = null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as PolicyDenialDetails);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(PolicyDenialDetails other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Rule != other.Rule) return false;
+      if (DeniedFlag != other.DeniedFlag) return false;
+      if (RequestOptionField != other.RequestOptionField) return false;
+      if (AdmissionProfile != other.AdmissionProfile) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Rule != global::Briosa.Client.Transport.PolicyDenialRule.Unspecified) hash ^= Rule.GetHashCode();
+      if (HasDeniedFlag) hash ^= DeniedFlag.GetHashCode();
+      if (HasRequestOptionField) hash ^= RequestOptionField.GetHashCode();
+      if (HasAdmissionProfile) hash ^= AdmissionProfile.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Rule != global::Briosa.Client.Transport.PolicyDenialRule.Unspecified) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) Rule);
+      }
+      if (HasDeniedFlag) {
+        output.WriteRawTag(18);
+        output.WriteString(DeniedFlag);
+      }
+      if (HasRequestOptionField) {
+        output.WriteRawTag(26);
+        output.WriteString(RequestOptionField);
+      }
+      if (HasAdmissionProfile) {
+        output.WriteRawTag(34);
+        output.WriteString(AdmissionProfile);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Rule != global::Briosa.Client.Transport.PolicyDenialRule.Unspecified) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) Rule);
+      }
+      if (HasDeniedFlag) {
+        output.WriteRawTag(18);
+        output.WriteString(DeniedFlag);
+      }
+      if (HasRequestOptionField) {
+        output.WriteRawTag(26);
+        output.WriteString(RequestOptionField);
+      }
+      if (HasAdmissionProfile) {
+        output.WriteRawTag(34);
+        output.WriteString(AdmissionProfile);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Rule != global::Briosa.Client.Transport.PolicyDenialRule.Unspecified) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Rule);
+      }
+      if (HasDeniedFlag) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(DeniedFlag);
+      }
+      if (HasRequestOptionField) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RequestOptionField);
+      }
+      if (HasAdmissionProfile) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AdmissionProfile);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(PolicyDenialDetails other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Rule != global::Briosa.Client.Transport.PolicyDenialRule.Unspecified) {
+        Rule = other.Rule;
+      }
+      if (other.HasDeniedFlag) {
+        DeniedFlag = other.DeniedFlag;
+      }
+      if (other.HasRequestOptionField) {
+        RequestOptionField = other.RequestOptionField;
+      }
+      if (other.HasAdmissionProfile) {
+        AdmissionProfile = other.AdmissionProfile;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Rule = (global::Briosa.Client.Transport.PolicyDenialRule) input.ReadEnum();
+            break;
+          }
+          case 18: {
+            DeniedFlag = input.ReadString();
+            break;
+          }
+          case 26: {
+            RequestOptionField = input.ReadString();
+            break;
+          }
+          case 34: {
+            AdmissionProfile = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Rule = (global::Briosa.Client.Transport.PolicyDenialRule) input.ReadEnum();
+            break;
+          }
+          case 18: {
+            DeniedFlag = input.ReadString();
+            break;
+          }
+          case 26: {
+            RequestOptionField = input.ReadString();
+            break;
+          }
+          case 34: {
+            AdmissionProfile = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
   /// Typed, value-free detail carried in briosa-operation-error-bin metadata.
   /// </summary>
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
@@ -795,7 +1218,7 @@ namespace Briosa.Client.Transport {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Briosa.Client.Transport.OperationOutcomesReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Briosa.Client.Transport.OperationOutcomesReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -825,6 +1248,7 @@ namespace Briosa.Client.Transport {
       recoveryGuidance_ = other.recoveryGuidance_;
       replayGuidance_ = other.replayGuidance_;
       replaySafety_ = other.replaySafety_;
+      policyDenial_ = other.policyDenial_ != null ? other.policyDenial_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -957,6 +1381,23 @@ namespace Briosa.Client.Transport {
       }
     }
 
+    /// <summary>Field number for the "policy_denial" field.</summary>
+    public const int PolicyDenialFieldNumber = 11;
+    private global::Briosa.Client.Transport.PolicyDenialDetails policyDenial_;
+    /// <summary>
+    /// The policy step that denied the call. Server 0.10.1 and later set it on
+    /// every POLICY_DENIED failure and on no other kind. Server 0.10.0 does not set
+    /// it, and clients built for Server 0.10.0 ignore it.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Briosa.Client.Transport.PolicyDenialDetails PolicyDenial {
+      get { return policyDenial_; }
+      set {
+        policyDenial_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -981,6 +1422,7 @@ namespace Briosa.Client.Transport {
       if (RecoveryGuidance != other.RecoveryGuidance) return false;
       if (ReplayGuidance != other.ReplayGuidance) return false;
       if (ReplaySafety != other.ReplaySafety) return false;
+      if (!object.Equals(PolicyDenial, other.PolicyDenial)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -997,6 +1439,7 @@ namespace Briosa.Client.Transport {
       if (RecoveryGuidance != global::Briosa.Client.Transport.RecoveryGuidance.Unspecified) hash ^= RecoveryGuidance.GetHashCode();
       if (ReplayGuidance != global::Briosa.Client.Transport.ReplayGuidance.Unspecified) hash ^= ReplayGuidance.GetHashCode();
       if (ReplaySafety != global::Briosa.Client.Transport.ReplaySafety.Unspecified) hash ^= ReplaySafety.GetHashCode();
+      if (policyDenial_ != null) hash ^= PolicyDenial.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1051,6 +1494,10 @@ namespace Briosa.Client.Transport {
         output.WriteRawTag(80);
         output.WriteEnum((int) ReplaySafety);
       }
+      if (policyDenial_ != null) {
+        output.WriteRawTag(90);
+        output.WriteMessage(PolicyDenial);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1097,6 +1544,10 @@ namespace Briosa.Client.Transport {
         output.WriteRawTag(80);
         output.WriteEnum((int) ReplaySafety);
       }
+      if (policyDenial_ != null) {
+        output.WriteRawTag(90);
+        output.WriteMessage(PolicyDenial);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1133,6 +1584,9 @@ namespace Briosa.Client.Transport {
       }
       if (ReplaySafety != global::Briosa.Client.Transport.ReplaySafety.Unspecified) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ReplaySafety);
+      }
+      if (policyDenial_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(PolicyDenial);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1175,6 +1629,12 @@ namespace Briosa.Client.Transport {
       }
       if (other.ReplaySafety != global::Briosa.Client.Transport.ReplaySafety.Unspecified) {
         ReplaySafety = other.ReplaySafety;
+      }
+      if (other.policyDenial_ != null) {
+        if (policyDenial_ == null) {
+          PolicyDenial = new global::Briosa.Client.Transport.PolicyDenialDetails();
+        }
+        PolicyDenial.MergeFrom(other.PolicyDenial);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1234,6 +1694,13 @@ namespace Briosa.Client.Transport {
             ReplaySafety = (global::Briosa.Client.Transport.ReplaySafety) input.ReadEnum();
             break;
           }
+          case 90: {
+            if (policyDenial_ == null) {
+              PolicyDenial = new global::Briosa.Client.Transport.PolicyDenialDetails();
+            }
+            input.ReadMessage(PolicyDenial);
+            break;
+          }
         }
       }
     #endif
@@ -1290,6 +1757,13 @@ namespace Briosa.Client.Transport {
           }
           case 80: {
             ReplaySafety = (global::Briosa.Client.Transport.ReplaySafety) input.ReadEnum();
+            break;
+          }
+          case 90: {
+            if (policyDenial_ == null) {
+              PolicyDenial = new global::Briosa.Client.Transport.PolicyDenialDetails();
+            }
+            input.ReadMessage(PolicyDenial);
             break;
           }
         }

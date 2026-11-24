@@ -40,11 +40,15 @@ try {
     [IO.Directory]::CreateDirectory($feed) | Out-Null
     Copy-Item -LiteralPath $package -Destination (Join-Path $feed "$expectedName.$ClientVersion.nupkg")
     Copy-Item -LiteralPath (Join-Path $targetRoot 'tools/Briosa.Client.Conformance/Program.cs') -Destination $consumer
+    # The fixture asserts the client 0.5.1 additions only against a package that has them,
+    # so the same source still builds against the published 0.5.0 packages.
+    $clientCore = [version]($ClientVersion -split '[-+]', 2)[0]
+    $fixtureConstants = $(if ($clientCore -ge [version]'0.5.1') { '<DefineConstants>$(DefineConstants);BRIOSA_CLIENT_0_5_1</DefineConstants>' } else { '' })
     $project = @"
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable>$fixtureConstants
   </PropertyGroup>
   <ItemGroup><PackageReference Include="$expectedName" Version="[$ClientVersion]" /></ItemGroup>
 </Project>

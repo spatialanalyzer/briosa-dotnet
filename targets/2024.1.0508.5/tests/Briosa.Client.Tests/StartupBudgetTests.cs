@@ -12,7 +12,7 @@ namespace Briosa.Client.Tests;
 /// reported as startup-timeout whichever phase it interrupts, and pins that lifecycle
 /// calls carry no client-imposed per-call deadline.
 /// </summary>
-public sealed class StartupBudgetTests
+public sealed partial class StartupBudgetTests
 {
     // Server defaults, identical in both targets.
     // Briosa:Worker:StartupTimeout: worker launch, COM activation, Ready, ConnectEx, and
@@ -138,26 +138,241 @@ public sealed class StartupBudgetTests
         Assert.All(transport.Calls, call => Assert.False(call.Token.CanBeCanceled));
     }
 
+    // Server 0.10.0 publishes no lifecycle bounds: the omitted budget stays two
+    // minutes and the startup RPCs are exactly those of client 0.5.0.
+    [Fact]
+    public async Task WithoutPublishedBoundsTheOmittedBudgetStaysTwoMinutes()
+    {
+        var clock = new ManualTimeProvider();
+        var transport = new RecordingTransport { HangAt = "connect-sdk", Clock = clock };
+        await using var client = CreateClient(new BriosaClientOptions(), transport, clock);
+
+        var start = client.StartAsync();
+        var hang = await transport.Reached.Task.ConfigureAwait(true);
+
+        Assert.Equal(
+            ["snapshot", "start-sdk", "launch-sa", "connect-sdk"],
+            transport.Calls.Select(call => call.Name));
+        await AssertExpiresAtAsync(clock, start, TimeSpan.FromMinutes(2), hang);
+    }
+
+    [Fact]
+    public async Task TheOmittedBudgetAdoptsThePublishedAllowanceAtTheFirstSnapshot()
+    {
+        var clock = new ManualTimeProvider();
+        var transport = new RecordingTransport
+        {
+            HangAt = "connect-sdk",
+            Clock = clock,
+            SnapshotAt = [TimeSpan.FromSeconds(10)],
+            Bounds = [ServerBounds(startupWithLaunch: 300_000)],
+        };
+        await using var client = CreateClient(new BriosaClientOptions(), transport, clock);
+
+        var start = client.StartAsync();
+        var hang = await transport.Reached.Task.ConfigureAwait(true);
+
+        await AssertExpiresAtAsync(clock, start, TimeSpan.FromSeconds(320), hang);
+    }
+
+    [Fact]
+    public async Task AnExplicitTwoMinuteBudgetIsNotAdopted()
+    {
+        var clock = new ManualTimeProvider();
+        var transport = new RecordingTransport
+        {
+            HangAt = "connect-sdk",
+            Clock = clock,
+            Bounds = [ServerBounds(startupWithLaunch: 300_000)],
+        };
+        await using var client = CreateClient(new BriosaClientOptions(), transport, clock);
+
+        var start = client.StartAsync(new BriosaStartOptions { StartupTimeout = TimeSpan.FromMinutes(2) });
+        var hang = await transport.Reached.Task.ConfigureAwait(true);
+
+        await AssertExpiresAtAsync(clock, start, TimeSpan.FromMinutes(2), hang);
+    }
+
+    // A snapshot validated at 121 s, before the bootstrap timer callback has run,
+    // never extends the budget for a 300 s allowance, and no further phase starts.
+    [Fact]
+    public async Task LateDiscoveryExpiresWithoutAnotherPhase()
+    {
+        var clock = new ManualTimeProvider();
+        var launcher = new RecordingLauncher();
+        var transport = new RecordingTransport
+        {
+            Clock = clock,
+            SnapshotAt = [TimeSpan.FromSeconds(121)],
+            FireTimersAtSnapshot = false,
+            Bounds = [ServerBounds(startupWithLaunch: 300_000)],
+        };
+        await using var client = CreateClient(new BriosaClientOptions(), transport, clock, launcher);
+
+        var exception = await Assert.ThrowsAsync<BriosaStartupException>(() => client.StartAsync());
+
+        Assert.Equal("startup-timeout", exception.DiagnosticCode);
+        Assert.Equal(["snapshot"], transport.Calls.Select(call => call.Name));
+        Assert.True(launcher.Server.Disposed);
+    }
+
+    // The same late discovery, when the server publishes bounds without the
+    // allowance the selected phases need: the bootstrap deadline still holds.
+    [Fact]
+    public async Task LateDiscoveryWithPartialBoundsExpiresWithoutAnotherPhase()
+    {
+        var clock = new ManualTimeProvider();
+        var launcher = new RecordingLauncher();
+        var partial = ServerBounds(startupWithLaunch: 300_000);
+        partial.ClearStartupWithLaunchMilliseconds();
+        Assert.True(partial.HasStartSdkMilliseconds);
+        var transport = new RecordingTransport
+        {
+            Clock = clock,
+            SnapshotAt = [TimeSpan.FromSeconds(121)],
+            FireTimersAtSnapshot = false,
+            Bounds = [partial],
+        };
+        await using var client = CreateClient(new BriosaClientOptions(), transport, clock, launcher);
+
+        var exception = await Assert.ThrowsAsync<BriosaStartupException>(() => client.StartAsync());
+
+        Assert.Equal("startup-timeout", exception.DiagnosticCode);
+        Assert.Equal(["snapshot"], transport.Calls.Select(call => call.Name));
+        Assert.True(launcher.Server.Disposed);
+    }
+
+    // Server 0.10.0 publishes no bounds: the same late discovery proceeds until
+    // the bootstrap timer itself fires, exactly as client 0.5.0 did.
+    [Fact]
+    public async Task LateDiscoveryWithoutBoundsLeavesTheBootstrapTimerInCharge()
+    {
+        var clock = new ManualTimeProvider();
+        var transport = new RecordingTransport
+        {
+            HangAt = "start-sdk",
+            Clock = clock,
+            SnapshotAt = [TimeSpan.FromSeconds(121)],
+            FireTimersAtSnapshot = false,
+        };
+        await using var client = CreateClient(new BriosaClientOptions(), transport, clock);
+
+        var start = client.StartAsync();
+        var hang = await transport.Reached.Task.ConfigureAwait(true);
+
+        Assert.False(hang.IsCancellationRequested);
+        clock.Advance(TimeSpan.Zero);
+        Assert.True(hang.IsCancellationRequested);
+        var exception = await Assert.ThrowsAsync<BriosaStartupException>(() => start).ConfigureAwait(true);
+        Assert.Equal("startup-timeout", exception.DiagnosticCode);
+    }
+
+    // The refresh after Connect never restarts or re-adopts the budget.
+    [Fact]
+    public async Task ThePostConnectRefreshKeepsTheAdoptedDeadline()
+    {
+        var clock = new ManualTimeProvider();
+        var transport = new RecordingTransport
+        {
+            HangAt = "snapshot",
+            HangAtOccurrence = 2,
+            Clock = clock,
+            SnapshotAt = [TimeSpan.Zero, TimeSpan.FromSeconds(100)],
+            Bounds = [ServerBounds(startupWithLaunch: 150_000), ServerBounds(startupWithLaunch: 900_000)],
+        };
+        await using var client = CreateClient(new BriosaClientOptions(), transport, clock);
+
+        var start = client.StartAsync();
+        var hang = await transport.Reached.Task.ConfigureAwait(true);
+
+        await AssertExpiresAtAsync(clock, start, TimeSpan.FromSeconds(170), hang);
+    }
+
+    [Fact]
+    public async Task CallerCancellationStaysIndependentOfTheAdoptedBudget()
+    {
+        var clock = new ManualTimeProvider();
+        var transport = new RecordingTransport
+        {
+            HangAt = "connect-sdk",
+            Clock = clock,
+            Bounds = [ServerBounds(startupWithLaunch: 300_000)],
+        };
+        await using var client = CreateClient(new BriosaClientOptions(), transport, clock);
+        using var caller = new CancellationTokenSource();
+
+        var start = client.StartAsync(caller.Token);
+        var hang = await transport.Reached.Task.ConfigureAwait(true);
+        await caller.CancelAsync();
+
+        var exception = await Assert.ThrowsAnyAsync<OperationCanceledException>(() => start);
+        Assert.Equal(caller.Token, exception.CancellationToken);
+        Assert.False(hang.IsCancellationRequested);
+        clock.Advance(TimeSpan.FromSeconds(320));
+        Assert.True(hang.IsCancellationRequested);
+    }
+
+    private static async Task AssertExpiresAtAsync(
+        ManualTimeProvider clock,
+        Task start,
+        TimeSpan deadline,
+        CancellationToken budget)
+    {
+        clock.Advance(deadline - clock.Elapsed - TimeSpan.FromTicks(1));
+        Assert.False(budget.IsCancellationRequested, $"The budget expired before {deadline}.");
+        Assert.False(start.IsCompleted);
+        clock.Advance(TimeSpan.FromTicks(1));
+        Assert.True(budget.IsCancellationRequested, $"The budget did not expire at {deadline}.");
+        var exception = await Assert.ThrowsAsync<BriosaStartupException>(() => start).ConfigureAwait(true);
+        Assert.Equal("startup-timeout", exception.DiagnosticCode);
+    }
+
+    private static Transport.LifecycleBounds ServerBounds(uint startupWithLaunch) => new()
+    {
+        StartSdkMilliseconds = 45_000,
+        LaunchSpatialAnalyzerMilliseconds = 30_000,
+        ConnectSpatialAnalyzerMilliseconds = 60_000,
+        RecoverSdkMilliseconds = 55_000,
+        StopSdkMilliseconds = 15_000,
+        CloseOwnedSpatialAnalyzerMilliseconds = 30_000,
+        StartupWithLaunchMilliseconds = startupWithLaunch,
+        StartupWithoutLaunchMilliseconds = 70_000,
+        HostGracefulShutdown = new Transport.GracefulShutdownBound { FiniteMilliseconds = 105_000 },
+    };
+
     private static BriosaClient CreateClient(
         BriosaClientOptions options,
-        RecordingTransport transport) =>
-        new(options, new RecordingLauncher(), new RecordingTransportFactory(transport));
+        RecordingTransport transport,
+        TimeProvider? timeProvider = null,
+        RecordingLauncher? launcher = null) =>
+        new(options, launcher ?? new RecordingLauncher(), new RecordingTransportFactory(transport), timeProvider);
 
     private sealed record RecordedCall(string Name, CancellationToken Token);
 
     private sealed class RecordingLauncher : IBriosaServerLauncher
     {
+        public RecordingServer Server { get; } = new();
+
         public Task<IOwnedBriosaServer> LaunchAsync(
             BriosaLoggingOptions? logging,
             CancellationToken cancellationToken) =>
-            Task.FromResult<IOwnedBriosaServer>(new RecordingServer());
+            Task.FromResult<IOwnedBriosaServer>(Server);
     }
 
     private sealed class RecordingServer : IOwnedBriosaServer
     {
         public Uri Address { get; } = new("http://127.0.0.1:49152");
         public bool HasExited => false;
-        public ValueTask DisposeAsync() => ValueTask.CompletedTask;
+        public bool Disposed { get; private set; }
+
+        // Thrown by DisposeAsync after the close is recorded.
+        public Exception? DisposeFailure { get; set; }
+
+        public ValueTask DisposeAsync()
+        {
+            Disposed = true;
+            return DisposeFailure is null ? ValueTask.CompletedTask : ValueTask.FromException(DisposeFailure);
+        }
     }
 
     private sealed class RecordingTransportFactory(RecordingTransport transport)
@@ -170,6 +385,7 @@ public sealed class StartupBudgetTests
     {
         private int _sdkGeneration;
         private bool _connected;
+        private int _snapshots;
 
         public List<RecordedCall> Calls { get; } = [];
 
@@ -177,13 +393,86 @@ public sealed class StartupBudgetTests
         // StatusCode.Cancelled once its token is cancelled.
         public string? HangAt { get; init; }
 
+        // Which call of HangAt hangs, counting from 1.
+        public int HangAtOccurrence { get; init; } = 1;
+
+        // Receives the hanging call's token once that call is reached.
+        public TaskCompletionSource<CancellationToken> Reached { get; } =
+            new(TaskCreationOptions.RunContinuationsAsynchronously);
+
+        public ManualTimeProvider? Clock { get; init; }
+
+        // The clock reading at which each snapshot call is observed, by call order.
+        public TimeSpan[] SnapshotAt { get; init; } = [];
+
+        // Whether moving the clock to a snapshot's reading runs the timers that
+        // fall due. False models a timer callback that has not run yet.
+        public bool FireTimersAtSnapshot { get; init; } = true;
+
+        // The lifecycle bounds each snapshot publishes, by call order. A missing
+        // entry publishes none, as Server 0.10.0 does.
+        public Transport.LifecycleBounds?[] Bounds { get; init; } = [];
+
+        // Runs inside each call, after it is recorded and before it answers, with
+        // the call's name and occurrence (from 1): a test moves the clock or holds
+        // the call there. The fake then answers whatever the token says, as a
+        // reply already on its way would.
+        public Func<string, int, Task>? DuringCall { get; init; }
+
+        public bool Disposed { get; private set; }
+
+        // The startup's submission check, which the real transport runs after it
+        // builds a request and immediately before the RPC; this fake runs it at
+        // the same point, so a refused submission is never recorded.
+        public Action? BeforeSubmit { get; set; }
+
+        // Runs while a call's request is built, before the submission check, with
+        // the call's name and the occurrence it would have.
+        public Action<string, int>? WhileBuildingRequest { get; init; }
+
+        // Replaces the application state that Launch returns.
+        public Transport.SpatialAnalyzerLifecycleState? LaunchReply { get; init; }
+
+        // How many capability listings were submitted after server information.
+        public int CapabilitySubmissions { get; private set; }
+
+        // How many MP commands reached this transport.
+        public int MpCalls { get; private set; }
+
+        // Calls whose reply arrives with its State submessage absent, as the
+        // generated transport then returns null.
+        public string[] MissingStateFor { get; init; } = [];
+
+        // Shapes each snapshot's server information, by call order from 0.
+        public Action<int, Transport.GetServerInfoResponse>? ShapeServerInfo { get; init; }
+
+        // How many capabilities each connected snapshot lists.
+        public int ConnectedCapabilityCount { get; init; }
+
+        // Thrown by DisposeAsync after the close is recorded.
+        public Exception? DisposeFailure { get; set; }
+
+        // Runs once a snapshot's reply is built, just before it is returned, with
+        // the snapshot's index from 0: the moment the reply arrives.
+        public Action<int>? BeforeAnswer { get; init; }
+
         private async Task RecordAsync(string name, CancellationToken cancellationToken)
         {
+            WhileBuildingRequest?.Invoke(name, Calls.Count(call => call.Name == name) + 1);
+            BeforeSubmit?.Invoke();
             Calls.Add(new(name, cancellationToken));
-            if (name != HangAt)
+            var occurrence = Calls.Count(call => call.Name == name);
+            if (DuringCall is not null)
+            {
+                await DuringCall(name, occurrence).ConfigureAwait(false);
+            }
+
+            if (name != HangAt || occurrence != HangAtOccurrence)
             {
                 return;
             }
+
+            Reached.TrySetResult(cancellationToken);
 
             try
             {
@@ -198,8 +487,51 @@ public sealed class StartupBudgetTests
         public async Task<(Transport.GetServerInfoResponse, Transport.ListCapabilitiesResponse)>
             GetServerSnapshotAsync(CancellationToken cancellationToken)
         {
+            var index = _snapshots++;
+            if (Clock is not null && index < SnapshotAt.Length && SnapshotAt[index] > Clock.Elapsed)
+            {
+                var by = SnapshotAt[index] - Clock.Elapsed;
+                if (FireTimersAtSnapshot)
+                {
+                    Clock.Advance(by);
+                }
+                else
+                {
+                    Clock.AdvanceWithoutFiringTimers(by);
+                }
+            }
+
             await RecordAsync("snapshot", cancellationToken).ConfigureAwait(false);
-            return Snapshot(_connected);
+            // Server information has answered; the capability listing is the
+            // second discovery RPC, checked on its own.
+            BeforeSubmit?.Invoke();
+            CapabilitySubmissions++;
+            var (server, capabilities) = Snapshot(_connected);
+            if (index < Bounds.Length && Bounds[index] is { } bounds)
+            {
+                server.LifecycleBounds = bounds;
+            }
+
+            ShapeServerInfo?.Invoke(index, server);
+            if (_connected && ConnectedCapabilityCount > 0)
+            {
+                for (var count = 0; count < ConnectedCapabilityCount; count++)
+                {
+                    capabilities.Operations.Add(new Transport.OperationCapability
+                    {
+                        OperationId = "file_operations.get_working_directory",
+                        GrpcService = "briosa.FileOperations",
+                        Rpc = "GetWorkingDirectory",
+                        FullyQualifiedMethod = "/briosa.FileOperations/GetWorkingDirectory",
+                        DurationClass = Transport.OperationDurationClass.Quick,
+                        ValidationStatus = Transport.OperationValidationStatus.NoRecordedGap,
+                        Admission = Transport.OperationAdmission.Admitted,
+                    });
+                }
+            }
+
+            BeforeAnswer?.Invoke(index);
+            return (server, capabilities);
         }
 
         public async Task<Transport.SpatialAnalyzerLifecycleState> GetApplicationStateAsync(
@@ -214,7 +546,7 @@ public sealed class StartupBudgetTests
             CancellationToken cancellationToken)
         {
             await RecordAsync("launch-sa", cancellationToken).ConfigureAwait(false);
-            return Application(running: true);
+            return MissingStateFor.Contains("launch-sa") ? null! : LaunchReply ?? Application(running: true);
         }
 
         public async Task<Transport.SpatialAnalyzerLifecycleState> CloseApplicationAsync(
@@ -229,7 +561,7 @@ public sealed class StartupBudgetTests
             CancellationToken cancellationToken)
         {
             await RecordAsync("get-sdk-state", cancellationToken).ConfigureAwait(false);
-            return Sdk();
+            return MissingStateFor.Contains("get-sdk-state") ? null! : Sdk();
         }
 
         public async Task<Transport.SpatialAnalyzerSdkLifecycleState> StartSdkAsync(
@@ -238,7 +570,7 @@ public sealed class StartupBudgetTests
             await RecordAsync("start-sdk", cancellationToken).ConfigureAwait(false);
             _sdkGeneration++;
             _connected = false;
-            return Sdk();
+            return MissingStateFor.Contains("start-sdk") ? null! : Sdk();
         }
 
         public async Task<Transport.SpatialAnalyzerSdkLifecycleState> ConnectSdkAsync(
@@ -246,9 +578,10 @@ public sealed class StartupBudgetTests
             bool reconnect,
             CancellationToken cancellationToken)
         {
-            await RecordAsync(reconnect ? "reconnect-sdk" : "connect-sdk", cancellationToken).ConfigureAwait(false);
+            var name = reconnect ? "reconnect-sdk" : "connect-sdk";
+            await RecordAsync(name, cancellationToken).ConfigureAwait(false);
             _connected = true;
-            return Sdk();
+            return MissingStateFor.Contains(name) ? null! : Sdk();
         }
 
         public async Task<Transport.SpatialAnalyzerSdkLifecycleState> StopSdkAsync(
@@ -278,8 +611,11 @@ public sealed class StartupBudgetTests
 
         public Task<Transport.GetWorkingDirectoryResult> GetWorkingDirectoryAsync(
             TimeSpan? timeout,
-            CancellationToken cancellationToken) =>
+            CancellationToken cancellationToken)
+        {
+            MpCalls++;
             throw new NotSupportedException();
+        }
 
         public Task<IMessage> InvokeOperationAsync(
             string service,
@@ -287,10 +623,17 @@ public sealed class StartupBudgetTests
             IMessage request,
             MessageParser responseParser,
             TimeSpan? timeout,
-            CancellationToken cancellationToken) =>
+            CancellationToken cancellationToken)
+        {
+            MpCalls++;
             throw new NotSupportedException();
+        }
 
-        public ValueTask DisposeAsync() => ValueTask.CompletedTask;
+        public ValueTask DisposeAsync()
+        {
+            Disposed = true;
+            return DisposeFailure is null ? ValueTask.CompletedTask : ValueTask.FromException(DisposeFailure);
+        }
 
         private static Transport.SpatialAnalyzerLifecycleState Application(bool running)
         {

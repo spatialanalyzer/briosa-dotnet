@@ -1,7 +1,9 @@
 #pragma warning disable CA2000 // Test doubles are disposed through the client session under test.
 
 using System.Reflection;
+using Google.Protobuf;
 using Google.Protobuf.Reflection;
+using Grpc.Core;
 using Transport = Briosa.Client.Transport;
 
 namespace Briosa.Client.Tests;
@@ -193,6 +195,37 @@ public sealed partial class ClientContractTests
         var completion = Assert.Single(completions);
         Assert.Equal(MpExecutionState.PartialSuccess, completion.State);
         Assert.Equal(4, completion.MpResultCode);
+    }
+
+    // An SDK call fault after MP code 4 is a failure, not a completion: the call
+    // throws the typed fault with the partial success inside it, and the
+    // observer is never called. Only a success reports an MP completion.
+    [Fact]
+    public async Task SdkCallFaultAfterPartialSuccessSkipsTheObserver()
+    {
+        var transport = new FakeTransport
+        {
+            OperationFailure = new RpcException(
+                new Status(StatusCode.Internal, "not parsed"),
+                new Metadata
+                {
+                    { "briosa-operation-error-bin", TypedFailureTests.SdkCallFaultAfterPartialSuccess().ToByteArray() },
+                }),
+        };
+        await using var client = CreateClient(new FakeServerLauncher(), transport);
+        await client.StartAsync();
+        var completions = new List<MpCompletion>();
+
+        var failure = await Assert.ThrowsAsync<BriosaOperationException>(
+            () => client.GetActiveCollectionNameAsync(onMpCompletion: completions.Add));
+
+        Assert.Equal(OperationFailureKind.SdkCallFaulted, failure.Kind);
+        Assert.Equal(ExecutionDisposition.Completed, failure.ExecutionDisposition);
+        Assert.Equal(ReplayGuidance.DoNotReplay, failure.ReplayGuidance);
+        Assert.Equal(MpExecutionState.PartialSuccess, failure.MpExecution?.State);
+        Assert.Equal(4, failure.MpExecution?.MpResultCode);
+        Assert.Empty(completions);
+        Assert.Single(transport.Calls, call => call.StartsWith("operation:", StringComparison.Ordinal));
     }
 
     // C1: a completion always carries its MP code, so the public type says so.

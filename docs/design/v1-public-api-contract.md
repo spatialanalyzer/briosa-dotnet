@@ -194,7 +194,7 @@ appropriate nullable or domain-specific representation.
 
 ### MP completion and partial success
 
-From contract major 3, an MP command that returns code 4 (PARTIAL SUCCESS) did
+With Server 0.10.0 and later, an MP command that returns code 4 (PARTIAL SUCCESS) did
 its work but not its full intended effect, except for the four operations below.
 The server reports it as a success, so the method never retries it and returns
 its outputs when all of them are retrieved. If an output can't be retrieved, the
@@ -304,7 +304,13 @@ The handwritten .NET exception boundary uses:
 `ReplaySafety`, and, when the failure relates to the MP command, `MpExecution`
 with the MP state, the result code, and each output's retrieval. Every
 `OperationFailureKind` is a distinct member: `SdkCallFaulted` reports an SDK call
-that threw, with its phase in `ExecutionDisposition`. The lifecycle exceptions'
+that threw, with its phase in `ExecutionDisposition`. With Server 0.10.1 and
+later, a `PolicyDenied` failure also carries `PolicyDenial`, the typed denial
+detail described under [discovery and admission](#discovery-and-admission).
+Server 0.10.0 sends none, and the property is then `null`. It is `null` for
+every other kind too, even if detail arrives with one, so only a policy denial
+names a policy step. The detail never changes the kind, disposition, or
+guidance. The lifecycle exceptions'
 kinds include `CallerCancelled` and `CallerDeadlineExceeded`, but a cancelled
 call surfaces as `OperationCanceledException`, never as a state conflict.
 
@@ -350,6 +356,93 @@ Cancelling the `CancellationToken` passed to `StartAsync` only stops that caller
 from waiting and surfaces as `OperationCanceledException`; the start continues
 until it completes or its budget expires.
 
+From client 0.5.1, a budget you set is always the budget, including an explicit
+two minutes. When you leave `StartupTimeout` unset, the client starts with two
+minutes and, with Server 0.10.1 and later, sizes the budget once from the
+startup allowance that the server publishes in its lifecycle bounds, as the
+[shared client contract](https://github.com/spatialanalyzer/briosa/blob/main/docs/architecture/client-library-behavioral-contract.md#startup-budget-from-published-lifecycle-bounds)
+states:
+
+1. The budget is counted from the moment `StartAsync` begins, before the server
+   is launched.
+2. At the first validated discovery of the server, meaning its information and
+   capabilities with a live identity that matches the selected installation,
+   the client takes the allowance for the selected phases:
+
+   | Selected phases | Allowance |
+   | --- | --- |
+   | Start SDK, launch, and connect | `LifecycleBounds.StartupWithLaunch` |
+   | Start SDK and connect | `LifecycleBounds.StartupWithoutLaunch` |
+   | Start SDK and launch | `StartSdk` + `LaunchSpatialAnalyzer` |
+   | Start SDK only | `StartSdk` |
+   | Launch only | `LaunchSpatialAnalyzer` |
+   | None | none: there is no server phase |
+
+3. The budget becomes the longer of two minutes and that allowance plus 20
+   seconds, still counted from the start, so it only ever grows. If the two
+   minutes have run out by the time the server is first discovered, the start
+   expires at once: a late discovery never extends it.
+4. If an allowance that the selection needs is missing or zero, or the new
+   budget is too long to schedule as a timer, the budget stays two minutes. The
+   client never adds up a partial budget.
+5. The refresh after Connect never changes the budget, the caller's
+   cancellation stays independent of it, and lifecycle methods still add no
+   deadline of their own.
+
+Once the server has published lifecycle bounds, as Server 0.10.1 and later do,
+the client also decides the budget against the clock instead of waiting for its
+timer, whether you set the budget or not. It checks before it attaches the
+server it launched, immediately before each startup request is sent (after the
+request is built, and between the two discovery requests of the refresh after
+Connect), and before it accepts readiness and admits MP commands. No startup
+request is sent after the deadline. The refresh after Connect is mapped and
+validated before that last check, so the time mapping takes counts against the
+budget. A start that ends this way fails with `startup-timeout`, and an MP
+command issued afterwards is refused in the client
+(`mp-command-admission-closed`) without reaching the server. It stays refused
+whatever state the client reads afterwards: only a published startup admits MP
+commands, so stop the client and start it again. A step that fails after the
+deadline but before the timer has fired, for example because the server is
+unavailable or sent a reply the client cannot read, including one whose state is
+missing, also reports `startup-timeout`, with that failure as its
+`InnerException`; before the deadline it keeps its own error.
+
+With Server 0.10.0, which publishes no lifecycle bounds, the budget stays two
+minutes and only its timer ends the start, and after a failed start readiness
+alone decides MP admission, as in client 0.5.0. The sizing advice below still
+applies.
+
+With any server, client 0.5.1 differs from client 0.5.0 in exactly four ways:
+three failure cases, each a fix, and what serializers see:
+
+1. A start that fails before the client owns the server it launched, whether
+   through its budget, another failure, or disposal of the client, stops that
+   server process itself; client 0.5.0 could leave it running. Once the client
+   owns the server, a failed start leaves it to a later `StopAsync` or
+   `DisposeAsync`, which stops it, as before.
+2. A `StartupTimeout` of 4,294,967,295 whole milliseconds or more (about 49.7
+   days) still fails `StartAsync` with `ArgumentOutOfRangeException` for
+   parameter `delay`, as in client 0.5.0. A fraction of a millisecond is
+   ignored, so 4,294,967,294.9999 ms is accepted. A later `StartAsync` with
+   valid options then works, and `DisposeAsync` no longer rethrows.
+3. Resource cleanup is attempted in full. When one close throws, the others
+   still run, and a failed start keeps its own error. `StopAsync` and
+   `DisposeAsync` close the transport and the server even when the SDK shutdown
+   that comes first fails, and report that failure, or else a close failure,
+   once every close has been attempted. A pending start that faulted, with any
+   exception, no longer keeps them from closing its session. Each close is
+   attempted once. If the server close is the only failure to report, the caller
+   receives that error. A later stop or disposal does not retry it.
+4. Reflection-based serializers, and other code that enumerates the members of
+   `BriosaServerSnapshot` and `BriosaOperationCapability`, see their 0.5.1
+   members (`LifecycleBounds` and `ConfiguredInteractionMode`; `PolicyDenial`
+   and `RequestOptions`), so a reader that rejects unknown members needs
+   updating. Equality, hashing and `ToString()` are unchanged when the server
+   sends none of the new values. Code that enumerates public members also sees
+   `BriosaOperationException.PolicyDenial` and the added properties on
+   `Briosa.Client.Transport.GetServerInfoResponse`, `OperationCapability` and
+   `OperationError`.
+
 The default follows the server's default lifecycle bounds
 ([spatialanalyzer/briosa#298](https://github.com/spatialanalyzer/briosa/pull/298),
 [#315](https://github.com/spatialanalyzer/briosa/pull/315)) for the ordinary
@@ -370,8 +463,8 @@ observation further until
 [spatialanalyzer/briosa#317](https://github.com/spatialanalyzer/briosa/issues/317)
 lands.
 
-When the server's lifecycle bounds are raised, size the client budget to at
-least three times `StartupTimeout`, plus `ReadinessProbeTimeout`, plus
+With Server 0.10.0, or when you set the budget yourself, size it to at least
+three times `StartupTimeout`, plus `ReadinessProbeTimeout`, plus
 `ApplicationStartupTimeout` when launching, plus 10 s, plus a margin. For
 example, a server `StartupTimeout` of 30 s and `ReadinessProbeTimeout` of 60 s
 with the default 30 s application startup need at least 90 + 60 + 30 + 10 =
@@ -380,9 +473,9 @@ with the default 30 s application startup need at least 90 + 60 + 30 + 10 =
 Lifecycle methods take only a `CancellationToken`. The client adds no per-call
 lifecycle deadline, and `CommandTimeout` applies only to MP commands.
 
-When a caller stops waiting during an SDK start, connection, or recovery, a
-contract-major-3 server
-([spatialanalyzer/briosa#315](https://github.com/spatialanalyzer/briosa/pull/315))
+When a caller stops waiting during an SDK start, connection, or recovery, the
+server, from Server 0.10.0
+([spatialanalyzer/briosa#315](https://github.com/spatialanalyzer/briosa/pull/315)),
 finishes an exchange it has already accepted under its own bounds, whether the
 caller stopped waiting through the startup budget or a cancellation. A request
 cancelled before acceptance changes nothing. A second call meanwhile fails with
@@ -430,6 +523,47 @@ recomputes admission and never pre-validates request options.
 `BriosaDeniedOperationListing`: the admission profile and policy fingerprint it
 was taken under, and the denied operations with their denial reasons. It never
 adds them to the snapshot.
+
+Server 0.10.1 and later add the following to discovery; Server 0.10.0 sends none
+of it, and client 0.5.1 then reports each as absent, so it works with both:
+
+- `BriosaServerSnapshot.LifecycleBounds` holds the server's lifecycle wait
+  allowances as optional `TimeSpan` values. The value is `null` when the server
+  publishes none, and an allowance that is absent or zero is `null`:
+  unavailable, never unbounded. `HostGracefulShutdown` is `Unavailable`,
+  `Finite` with its `Limit`, or `Unbounded`, read from the bound's case; an
+  absent, zero, or unrecognized bound is `Unavailable`. Each value falls back on
+  its own, so a missing host bound leaves the startup allowances usable.
+- `BriosaServerSnapshot.ConfiguredInteractionMode` is the SpatialAnalyzer
+  interaction mode the server is configured to set after each Connect, never
+  SpatialAnalyzer's live mode. `Unknown` stands for an unreported value, as from
+  Server 0.10.0, and for a value this client does not recognize.
+- `BriosaOperationCapability.RequestOptions` lists the reviewed request options
+  of each operation: `null` means the server did not describe them (Server
+  0.10.0), and an empty list means none apply. Each `OperationRequestOption`
+  names its field, effect, condition, enabling enum value names, and omission,
+  and what the policy decides for a request that turns on that option alone.
+  The description never permits anything, and the client never pre-validates a
+  request from it.
+- `BriosaOperationCapability.PolicyDenial`, `OperationRequestOption.PolicyDenial`,
+  and `BriosaOperationException.PolicyDenial` carry one `PolicyDenialDetails`
+  value: the `PolicyDenialRule`, the denied risk flag of a flag denial, the
+  admission profile of a profile denial, and the request field the server
+  attributed the denial to. The flag name maps to `OperationRiskFlag` through
+  one mapping, with `Unknown` for a name this client does not know; the client
+  keeps no copy of the name as sent.
+
+An unknown rule, effect, condition, omission, or admission value maps to its
+enum's `Unknown` member: it is unknown metadata, never permission, and never
+fails discovery.
+
+`BriosaServerSnapshot` and `BriosaOperationCapability` compare, hash, and print
+as they did in client 0.5.0. Their 0.5.1 members take no part in equality or
+hashing, so a value rebuilt from its 0.5.0 members stays equal to the one the
+client returned, and `ToString()` shows a 0.5.1 member only when the server sent
+it. A Server 0.10.0 reply therefore prints exactly as in 0.5.0. Reflection-based serializers do see the 0.5.1 members, the fourth difference from 0.5.0 listed above. When the enclosing message decodes, an absent, inconsistent,
+or unrecognized denial detail never changes the typed failure or a capability's
+admission; a message that cannot be decoded is still a protocol error.
 
 ### Public API verification
 

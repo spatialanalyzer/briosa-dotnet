@@ -1,3 +1,4 @@
+using System.Runtime.ExceptionServices;
 using Grpc.Core;
 
 namespace Briosa;
@@ -13,6 +14,7 @@ public sealed partial class BriosaClient : IAsyncDisposable
     private readonly BriosaClientOptions _options;
     private readonly IBriosaServerLauncher _serverLauncher;
     private readonly IClientTransportFactory _transportFactory;
+    private readonly TimeProvider _timeProvider;
     private readonly SemaphoreSlim _gate = new(1, 1);
     private ClientSession? _session;
     private Task? _startTask;
@@ -31,7 +33,8 @@ public sealed partial class BriosaClient : IAsyncDisposable
     internal BriosaClient(
         BriosaClientOptions options,
         IBriosaServerLauncher serverLauncher,
-        IClientTransportFactory transportFactory)
+        IClientTransportFactory transportFactory,
+        TimeProvider? timeProvider = null)
     {
         ArgumentNullException.ThrowIfNull(options);
         ArgumentNullException.ThrowIfNull(serverLauncher);
@@ -40,6 +43,7 @@ public sealed partial class BriosaClient : IAsyncDisposable
         _options = options;
         _serverLauncher = serverLauncher;
         _transportFactory = transportFactory;
+        _timeProvider = timeProvider ?? TimeProvider.System;
         ConstructionOperations = new BriosaConstructionOperations(this);
         GdtOperations = new BriosaGdtOperations(this);
         InstrumentOperations = new BriosaInstrumentOperations(this);
@@ -421,33 +425,66 @@ public sealed partial class BriosaClient : IAsyncDisposable
 
     private async Task StartCoreAsync(BriosaStartOptions options)
     {
+        // Until the client's session owns them, the server and transport that this
+        // startup created belong to this method, which releases them on any exit.
         IOwnedBriosaServer? server = null;
         IClientTransport? transport = null;
         ClientSession? session = null;
-        using var startupCts = new CancellationTokenSource(options.StartupTimeout);
-        var token = startupCts.Token;
+        StartupBudget? budget = null;
+        var completed = false;
+        var startTaskCleared = false;
 
         try
         {
+            // One monotonic start instant and one overall budget for every phase.
+            budget = new StartupBudget(options, _timeProvider);
+            var token = budget.Token;
             server = await _serverLauncher.LaunchAsync(options, token).ConfigureAwait(false);
             transport = _transportFactory.Create(server.Address);
             var snapshot = await WaitForServerAsync(server, transport, token)
                 .ConfigureAwait(false);
-            session = new ClientSession(server, transport, snapshot);
+            // The first validated snapshot: an omitted StartupTimeout adopts the
+            // server's published startup allowance once, here and never again.
+            // With published bounds, the budget is decided against the clock from
+            // here on: before ownership passes, before each lifecycle submission
+            // (the transport's BeforeSubmit check, after the request is built), and
+            // before readiness is accepted and the startup published. Without them,
+            // as from Server 0.10.0, only the budget's timer ends the startup.
+            budget.Adopt(snapshot.LifecycleBounds, options);
+            budget.EnsureWithinBudget();
+            var candidate = new ClientSession(server, transport, snapshot)
+            {
+                // With published bounds, only a published startup admits MP
+                // commands, so a refresh after a failed start never reopens them.
+                AdmissionRequiresPublishedStartup = budget.Enforced,
+            };
 
             await _gate.WaitAsync(token).ConfigureAwait(false);
             try
             {
                 ThrowIfDisposed();
-                _session = session;
+                // With published bounds, a startup whose budget has ended never
+                // takes ownership, even if its cancelled wait was granted the gate;
+                // the finally below stops the server it launched. Without them, as
+                // in client 0.5.0, a granted wait takes ownership, and the session
+                // stops the server.
+                budget.EnsureWithinBudget();
+                _session = candidate;
             }
             finally
             {
                 _gate.Release();
             }
 
+            // The session owns the server and transport now; StopAsync and
+            // DisposeAsync release them.
+            session = candidate;
             server = null;
             transport = null;
+            if (budget.Enforced)
+            {
+                session.Transport.BeforeSubmit = budget.EnsureWithinBudget;
+            }
 
             if (options.StartSpatialAnalyzerSdk)
             {
@@ -463,6 +500,7 @@ public sealed partial class BriosaClient : IAsyncDisposable
                         .ConfigureAwait(false));
             }
 
+            BriosaServerSnapshot? refreshedSnapshot = null;
             if (options.ConnectToSpatialAnalyzer)
             {
                 var sdk = await EnsureSdkStateAsync(session, token).ConfigureAwait(false);
@@ -477,59 +515,177 @@ public sealed partial class BriosaClient : IAsyncDisposable
                         .ConfigureAwait(false)));
                 var refreshed = await session.Transport.GetServerSnapshotAsync(token)
                     .ConfigureAwait(false);
-                session.UpdateSnapshot(ProtocolMapping.MapSnapshot(
+                // Map and validate the refresh first, then decide: the time mapping
+                // takes counts against the budget, and a mapping error after the
+                // deadline becomes the timeout's cause.
+                refreshedSnapshot = ProtocolMapping.MapSnapshot(
                     refreshed.ServerInfo,
-                    refreshed.Capabilities));
-                if (!session.Snapshot.ReadyForMp || session.SdkState?.ReadyForMp != true)
-                {
-                    throw new BriosaProtocolException("startup-readiness-not-established");
-                }
+                    refreshed.Capabilities);
             }
 
-            session.PublishStartup();
+            if (budget.Enforced)
+            {
+                // With published bounds, the last budget check, committing the
+                // refreshed state, publishing readiness and ending the pending start
+                // happen together under the client's gate, so nothing that can wait
+                // sits between the last check and the moment the startup becomes
+                // usable. A timeout leaves the startup unpublished and MP admission
+                // closed.
+                await _gate.WaitAsync(token).ConfigureAwait(false);
+                try
+                {
+                    var timerFailure = budget.StopTimer();
+                    budget.EnsureWithinBudget();
+                    CommitRefreshedSnapshot(session, refreshedSnapshot);
+                    timerFailure?.Throw();
+                    session.PublishStartup();
+                    session.Transport.BeforeSubmit = null;
+                    _startTask = null;
+                    startTaskCleared = true;
+                }
+                finally
+                {
+                    _gate.Release();
+                }
+            }
+            else
+            {
+                // Without published bounds, as from Server 0.10.0, the sequence of
+                // client 0.5.0: commit, publish, then end the pending start below.
+                CommitRefreshedSnapshot(session, refreshedSnapshot);
+                session.PublishStartup();
+            }
+
+            completed = true;
         }
-        catch (RpcException exception) when (startupCts.IsCancellationRequested)
+        catch (RpcException exception) when (budget is { Source.IsCancellationRequested: true })
         {
             // gRPC reports the expired budget as a cancelled call. Only the budget
             // cancels this token; a caller's own cancellation stops StartAsync waiting.
+            throw new BriosaStartupException("startup-timeout", exception);
+        }
+        catch (Exception exception) when (
+            exception is RpcException or BriosaException or ArgumentNullException &&
+            exception is not BriosaStartupException &&
+            budget is not null && budget.HasExpired())
+        {
+            // With published bounds, a phase that fails or returns a malformed reply
+            // after the deadline, before the timer callback runs, reports the
+            // timeout, with that failure as its cause. That includes a reply whose
+            // state is missing, which mapping rejects with ArgumentNullException.
+            // Before the deadline, and without published bounds, the failure keeps
+            // its own error.
             throw new BriosaStartupException("startup-timeout", exception);
         }
         catch (RpcException exception) when (session is not null)
         {
             throw ProtocolMapping.MapRpcException(
                 exception,
-                token,
+                budget!.Token,
                 session.ApplicationState);
         }
-        catch (OperationCanceledException exception) when (startupCts.IsCancellationRequested)
+        catch (OperationCanceledException exception) when (budget is { Source.IsCancellationRequested: true })
         {
             throw new BriosaStartupException("startup-timeout", exception);
         }
         finally
         {
-            if (session is null)
+            // The budget check belongs to this startup only.
+            if (session is not null)
             {
-                if (transport is not null)
-                {
-                    await transport.DisposeAsync().ConfigureAwait(false);
-                }
-
-                if (server is not null)
-                {
-                    await server.DisposeAsync().ConfigureAwait(false);
-                }
+                session.Transport.BeforeSubmit = null;
             }
 
-            await _gate.WaitAsync().ConfigureAwait(false);
+            // Whatever ended the startup before the session took ownership, such
+            // as a timeout or disposal while waiting to publish the session, the
+            // server process this startup launched does not outlive it. Each
+            // release is attempted even when another one throws, and the startup's
+            // own failure stays the one its callers see.
+            var teardownFailure = await DisposeAllAsync(transport, server).ConfigureAwait(false);
             try
             {
-                _startTask = null;
+                if (!startTaskCleared)
+                {
+                    await _gate.WaitAsync().ConfigureAwait(false);
+                    try
+                    {
+                        _startTask = null;
+                    }
+                    finally
+                    {
+                        _gate.Release();
+                    }
+                }
             }
             finally
             {
-                _gate.Release();
+                // On the path without bounds the startup token, as in 0.5.0,
+                // stays armed through the gate wait that ends the pending start.
+                try
+                {
+                    budget?.Dispose();
+                }
+#pragma warning disable CA1031 // A startup failure takes precedence over a budget disposal failure.
+                catch (Exception exception)
+#pragma warning restore CA1031
+                {
+                    teardownFailure ??= ExceptionDispatchInfo.Capture(exception);
+                }
+            }
+
+            // The startup's own failure stays the one its callers see; a teardown
+            // failure is reported only if it is the sole failure.
+            if (completed)
+            {
+                teardownFailure?.Throw();
             }
         }
+    }
+
+    // Commits the snapshot refreshed after Connect, if there is one, and requires
+    // the readiness it reports, as client 0.5.0 did.
+    private static void CommitRefreshedSnapshot(
+        ClientSession session,
+        BriosaServerSnapshot? refreshedSnapshot)
+    {
+        if (refreshedSnapshot is null)
+        {
+            return;
+        }
+
+        session.UpdateSnapshot(refreshedSnapshot);
+        if (!session.Snapshot.ReadyForMp || session.SdkState?.ReadyForMp != true)
+        {
+            throw new BriosaProtocolException("startup-readiness-not-established");
+        }
+    }
+
+    // Disposes each resource in order, attempting every one even when an earlier
+    // one throws, and returns the first failure.
+    private static async Task<ExceptionDispatchInfo?> DisposeAllAsync(
+        params IAsyncDisposable?[] resources)
+    {
+        ExceptionDispatchInfo? failure = null;
+        foreach (var resource in resources)
+        {
+            if (resource is null)
+            {
+                continue;
+            }
+
+            try
+            {
+                await resource.DisposeAsync().ConfigureAwait(false);
+            }
+#pragma warning disable CA1031 // Every resource is released whatever an earlier one threw.
+            catch (Exception exception)
+#pragma warning restore CA1031
+            {
+                failure ??= ExceptionDispatchInfo.Capture(exception);
+            }
+        }
+
+        return failure;
     }
 
     private static async Task<BriosaServerSnapshot> WaitForServerAsync(
@@ -698,8 +854,14 @@ public sealed partial class BriosaClient : IAsyncDisposable
                 {
                     await pendingStart.ConfigureAwait(false);
                 }
-                catch (BriosaException)
+#pragma warning disable CA1031 // The startup's fault belongs to its own callers.
+                catch (Exception)
+#pragma warning restore CA1031
                 {
+                    // The startup's own callers see its failure, whatever its type,
+                    // on the startup's task. This stop still detaches and closes the
+                    // session that startup left, so a fault never leaves the server
+                    // running and unreachable.
                 }
             }
 
@@ -720,10 +882,23 @@ public sealed partial class BriosaClient : IAsyncDisposable
                 return;
             }
 
-            await session.WaitForCommandsAsync().ConfigureAwait(false);
-            await StopSdkBestEffortAsync(session).ConfigureAwait(false);
-            await session.Transport.DisposeAsync().ConfigureAwait(false);
-            await session.Server.DisposeAsync().ConfigureAwait(false);
+            ExceptionDispatchInfo? closeFailure;
+            try
+            {
+                await session.WaitForCommandsAsync().ConfigureAwait(false);
+                await StopSdkBestEffortAsync(session).ConfigureAwait(false);
+            }
+            finally
+            {
+                // The transport and the server are closed whatever the shutdown
+                // above threw, and the server even when the transport close throws.
+                // A shutdown failure stays the one reported; otherwise a close
+                // failure is reported once every close has been attempted.
+                closeFailure = await DisposeAllAsync(session.Transport, session.Server)
+                    .ConfigureAwait(false);
+            }
+
+            closeFailure?.Throw();
         }
         finally
         {
@@ -789,6 +964,12 @@ public sealed partial class BriosaClient : IAsyncDisposable
         public SpatialAnalyzerSdkLifecycleState? SdkState { get; private set; }
         public bool StartupCompleted { get; private set; }
 
+        // Set when the first validated snapshot published lifecycle bounds: MP
+        // commands are then admitted only once the startup is published, so a
+        // state refresh after a failed start never reopens them. Without bounds,
+        // as in client 0.5.0, readiness alone decides.
+        public bool AdmissionRequiresPublishedStartup { get; init; }
+
         public void UpdateSdkState(SpatialAnalyzerSdkLifecycleState state)
         {
             SdkState = state;
@@ -818,6 +999,7 @@ public sealed partial class BriosaClient : IAsyncDisposable
 
         private void RefreshCommandAdmission() =>
             _commandAdmissionOpen =
+                (StartupCompleted || !AdmissionRequiresPublishedStartup) &&
                 Snapshot.ReadyForMp && SdkState?.ReadyForMp == true;
 
         public bool TryEnterCommand()

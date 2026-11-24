@@ -33,11 +33,110 @@ public sealed record BriosaServerSnapshot
     /// <summary>Gets the operations the active policy admits, ordered by operation ID.</summary>
     public required IReadOnlyList<BriosaOperationCapability> Operations { get; init; }
 
+    /// <summary>
+    /// Gets the lifecycle wait allowances that the server computes from its own
+    /// configuration, or <see langword="null"/> when the server publishes none.
+    /// </summary>
+    /// <remarks>
+    /// Server 0.10.1 and later publish them; Server 0.10.0 does not, and the
+    /// client then keeps its fixed defaults. Each allowance covers only the
+    /// server's own work. None includes transport time, and none promises that a
+    /// response arrives or that a process exits within it. With Server 0.10.1 and
+    /// later, a startup whose <see cref="BriosaStartOptions.StartupTimeout"/> is
+    /// left unset sizes its budget from these allowances.
+    /// </remarks>
+    public LifecycleBounds? LifecycleBounds { get; init; }
+
+    /// <summary>
+    /// Gets the SpatialAnalyzer interaction mode that the server is configured to
+    /// set after each verified Connect. This is the server's configuration, never
+    /// the mode SpatialAnalyzer is using now: SpatialAnalyzer has no getter for
+    /// it, and an operator or a Set Interaction Mode call can change it at any
+    /// time.
+    /// </summary>
+    /// <remarks>
+    /// Server 0.10.1 and later report it. Against Server 0.10.0, and for a value
+    /// this client does not recognize, it is
+    /// <see cref="ConfiguredSpatialAnalyzerInteractionMode.Unknown"/>.
+    /// </remarks>
+    public ConfiguredSpatialAnalyzerInteractionMode ConfiguredInteractionMode { get; init; }
+
     public bool Supports(string fullyQualifiedMethod) =>
         Operations.Any(item => string.Equals(
             item.FullyQualifiedMethod,
             fullyQualifiedMethod,
             StringComparison.Ordinal));
+
+    /// <summary>
+    /// Compares the members that client 0.5.0 compared, as its record equality
+    /// did. <see cref="LifecycleBounds"/> and <see cref="ConfiguredInteractionMode"/>,
+    /// added in 0.5.1, take no part, so a snapshot compares and hashes as it did
+    /// in 0.5.0 whatever the server publishes.
+    /// </summary>
+    public bool Equals(BriosaServerSnapshot? other) =>
+        ReferenceEquals(this, other) ||
+        other is not null &&
+        EqualityContract == other.EqualityContract &&
+        EqualityComparer<string>.Default.Equals(BriosaVersion, other.BriosaVersion) &&
+        EqualityComparer<string>.Default.Equals(SourceRevision, other.SourceRevision) &&
+        EqualityComparer<string>.Default.Equals(ProtocolPackage, other.ProtocolPackage) &&
+        EqualityComparer<string>.Default.Equals(SpatialAnalyzerTarget, other.SpatialAnalyzerTarget) &&
+        ReadyForMp == other.ReadyForMp &&
+        WorkerState == other.WorkerState &&
+        ConnectionState == other.ConnectionState &&
+        ExecutionReadinessState == other.ExecutionReadinessState &&
+        TargetIsolationMode == other.TargetIsolationMode &&
+        EqualityComparer<string>.Default.Equals(AdmissionProfile, other.AdmissionProfile) &&
+        EqualityComparer<string>.Default.Equals(PolicyFingerprint, other.PolicyFingerprint) &&
+        EqualityComparer<IReadOnlyList<BriosaOperationCapability>>.Default.Equals(Operations, other.Operations);
+
+    /// <summary>Hashes the members that <see cref="Equals(BriosaServerSnapshot?)"/> compares.</summary>
+    public override int GetHashCode()
+    {
+        var hash = EqualityContract.GetHashCode();
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(BriosaVersion));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(SourceRevision));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ProtocolPackage));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(SpatialAnalyzerTarget));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<bool>.Default.GetHashCode(ReadyForMp));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<WorkerRuntimeState>.Default.GetHashCode(WorkerState));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<SpatialAnalyzerConnectionState>.Default.GetHashCode(ConnectionState));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<SpatialAnalyzerExecutionReadinessState>.Default.GetHashCode(ExecutionReadinessState));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<TargetIsolationMode>.Default.GetHashCode(TargetIsolationMode));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(AdmissionProfile));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PolicyFingerprint));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<IReadOnlyList<BriosaOperationCapability>>.Default.GetHashCode(Operations));
+        return hash;
+    }
+
+    // The 0.5.0 members in the 0.5.0 format, then a 0.5.1 member only when the
+    // server published it, so a reply without them prints as it did in 0.5.0.
+    private bool PrintMembers(System.Text.StringBuilder builder)
+    {
+        builder.Append("BriosaVersion = ").Append((object)BriosaVersion);
+        builder.Append(", SourceRevision = ").Append((object)SourceRevision);
+        builder.Append(", ProtocolPackage = ").Append((object)ProtocolPackage);
+        builder.Append(", SpatialAnalyzerTarget = ").Append((object)SpatialAnalyzerTarget);
+        builder.Append(", ReadyForMp = ").Append(ReadyForMp);
+        builder.Append(", WorkerState = ").Append(WorkerState.ToString());
+        builder.Append(", ConnectionState = ").Append(ConnectionState.ToString());
+        builder.Append(", ExecutionReadinessState = ").Append(ExecutionReadinessState.ToString());
+        builder.Append(", TargetIsolationMode = ").Append(TargetIsolationMode.ToString());
+        builder.Append(", AdmissionProfile = ").Append((object)AdmissionProfile);
+        builder.Append(", PolicyFingerprint = ").Append((object)PolicyFingerprint);
+        builder.Append(", Operations = ").Append((object)Operations);
+        if (LifecycleBounds is not null)
+        {
+            builder.Append(", LifecycleBounds = ").Append(LifecycleBounds);
+        }
+
+        if (ConfiguredInteractionMode != ConfiguredSpatialAnalyzerInteractionMode.Unknown)
+        {
+            builder.Append(", ConfiguredInteractionMode = ").Append(ConfiguredInteractionMode.ToString());
+        }
+
+        return true;
+    }
 }
 
 /// <summary>
@@ -59,7 +158,9 @@ public sealed record BriosaDeniedOperationListing
 
     /// <summary>
     /// Gets each denied operation, with the precedence step that denied it in
-    /// <see cref="BriosaOperationCapability.Admission"/>.
+    /// <see cref="BriosaOperationCapability.Admission"/>. With Server 0.10.1 and
+    /// later, <see cref="BriosaOperationCapability.PolicyDenial"/> also carries
+    /// the typed denial detail.
     /// </summary>
     public required IReadOnlyList<BriosaOperationCapability> Operations { get; init; }
 }
@@ -90,6 +191,298 @@ public sealed record BriosaOperationCapability
     /// reports it. The client never recomputes admission.
     /// </summary>
     public OperationAdmission Admission { get; init; }
+
+    /// <summary>
+    /// Gets which policy step denied this operation's reviewed row, or
+    /// <see langword="null"/> when the server sent no detail.
+    /// </summary>
+    /// <remarks>
+    /// Server 0.10.1 and later send it exactly when <see cref="Admission"/> is a
+    /// denied value; Server 0.10.0 never sends it. It is informational: an
+    /// absent, inconsistent, or unrecognized detail never changes
+    /// <see cref="Admission"/>.
+    /// </remarks>
+    public PolicyDenialDetails? PolicyDenial { get; init; }
+
+    /// <summary>
+    /// Gets the operation's reviewed request options, or <see langword="null"/>
+    /// when the server did not describe them.
+    /// </summary>
+    /// <remarks>
+    /// Server 0.10.1 and later describe them for every operation, with an empty
+    /// list when no request option applies. Server 0.10.0 does not, so the value
+    /// is <see langword="null"/>, which means "not described", never "none
+    /// apply". The list order carries no meaning. The client never pre-validates
+    /// a request from this description; the server decides each request.
+    /// </remarks>
+    public IReadOnlyList<OperationRequestOption>? RequestOptions { get; init; }
+
+    /// <summary>
+    /// Compares the members that client 0.5.0 compared, as its record equality
+    /// did. <see cref="PolicyDenial"/> and <see cref="RequestOptions"/>, added in
+    /// 0.5.1, take no part, so a capability compares and hashes as it did in 0.5.0
+    /// whatever the server publishes.
+    /// </summary>
+    public bool Equals(BriosaOperationCapability? other) =>
+        ReferenceEquals(this, other) ||
+        other is not null &&
+        EqualityContract == other.EqualityContract &&
+        EqualityComparer<string>.Default.Equals(OperationId, other.OperationId) &&
+        EqualityComparer<string>.Default.Equals(GrpcService, other.GrpcService) &&
+        EqualityComparer<string>.Default.Equals(Rpc, other.Rpc) &&
+        EqualityComparer<string>.Default.Equals(FullyQualifiedMethod, other.FullyQualifiedMethod) &&
+        EqualityComparer<IReadOnlyList<OperationRiskFlag>>.Default.Equals(RiskFlags, other.RiskFlags) &&
+        DurationClass == other.DurationClass &&
+        ValidationStatus == other.ValidationStatus &&
+        Admission == other.Admission;
+
+    /// <summary>Hashes the members that <see cref="Equals(BriosaOperationCapability?)"/> compares.</summary>
+    public override int GetHashCode()
+    {
+        var hash = EqualityContract.GetHashCode();
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(OperationId));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(GrpcService));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Rpc));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(FullyQualifiedMethod));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<IReadOnlyList<OperationRiskFlag>>.Default.GetHashCode(RiskFlags));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<OperationDurationClass>.Default.GetHashCode(DurationClass));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<OperationValidationStatus>.Default.GetHashCode(ValidationStatus));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<OperationAdmission>.Default.GetHashCode(Admission));
+        return hash;
+    }
+
+    // The 0.5.0 members in the 0.5.0 format, then a 0.5.1 member only when the
+    // server sent it, so a Server 0.10.0 capability prints as it did in 0.5.0.
+    private bool PrintMembers(System.Text.StringBuilder builder)
+    {
+        builder.Append("OperationId = ").Append((object)OperationId);
+        builder.Append(", GrpcService = ").Append((object)GrpcService);
+        builder.Append(", Rpc = ").Append((object)Rpc);
+        builder.Append(", FullyQualifiedMethod = ").Append((object)FullyQualifiedMethod);
+        builder.Append(", RiskFlags = ").Append((object)RiskFlags);
+        builder.Append(", DurationClass = ").Append(DurationClass.ToString());
+        builder.Append(", ValidationStatus = ").Append(ValidationStatus.ToString());
+        builder.Append(", Admission = ").Append(Admission.ToString());
+        if (PolicyDenial is not null)
+        {
+            builder.Append(", PolicyDenial = ").Append(PolicyDenial);
+        }
+
+        if (RequestOptions is not null)
+        {
+            builder.Append(", RequestOptions = ").Append((object)RequestOptions);
+        }
+
+        return true;
+    }
+}
+
+/// <summary>
+/// One reviewed request option: a request field whose value turns on operator UI
+/// or leaves work running after the call returns. Server 0.10.1 and later
+/// describe them in discovery.
+/// </summary>
+/// <remarks>
+/// The description never permits anything. The server decides each actual
+/// request, with every option it turns on taken together, and can deny an
+/// admitted operation for its options with a typed
+/// <see cref="OperationFailureKind.PolicyDenied"/> failure. The client never
+/// pre-validates a request from this description.
+/// </remarks>
+public sealed record OperationRequestOption
+{
+    /// <summary>Gets the option's field name in the operation's protobuf request message.</summary>
+    public required string FieldName { get; init; }
+
+    /// <summary>Gets what the option turns on.</summary>
+    public OperationRequestOptionEffect Effect { get; init; }
+
+    /// <summary>Gets which values of the field turn the effect on.</summary>
+    public OperationRequestOptionCondition Condition { get; init; }
+
+    /// <summary>
+    /// Gets, for <see cref="OperationRequestOptionCondition.WhenOneOf"/>, the
+    /// protobuf enum value names that turn the effect on. Any enum number the
+    /// server does not recognize turns it on too. Empty for every other condition.
+    /// </summary>
+    public IReadOnlyList<string> EnablingEnumValues { get; init; } = [];
+
+    /// <summary>Gets what omitting the field does.</summary>
+    public OperationRequestOptionOmission Omission { get; init; }
+
+    /// <summary>
+    /// Gets what the active policy decides for a request that turns on this
+    /// option alone, with every other request option inactive. It answers that
+    /// one question only.
+    /// </summary>
+    public OperationAdmission Admission { get; init; }
+
+    /// <summary>
+    /// Gets which policy step denies such a request, or <see langword="null"/>
+    /// when the server sent no detail. The server sends it exactly when
+    /// <see cref="Admission"/> is a denied value.
+    /// </summary>
+    public PolicyDenialDetails? PolicyDenial { get; init; }
+}
+
+/// <summary>What a request option turns on. A later protocol value maps to <see cref="Unknown"/>.</summary>
+public enum OperationRequestOptionEffect
+{
+    /// <summary>A value that this client does not know. It is unknown metadata, never permission.</summary>
+    Unknown = -1,
+    Unspecified = 0,
+
+    /// <summary>The request opens or blocks on operator UI: it gains the interactive UI risk flag and the interactive duration class.</summary>
+    InteractiveUi = 1,
+
+    /// <summary>The call returns while device or operator work keeps running: the request is an exclusive workflow.</summary>
+    BackgroundWork = 2,
+}
+
+/// <summary>Which values of a request option's field turn its effect on. A later protocol value maps to <see cref="Unknown"/>.</summary>
+public enum OperationRequestOptionCondition
+{
+    /// <summary>A value that this client does not know. It is unknown metadata, never permission.</summary>
+    Unknown = -1,
+    Unspecified = 0,
+
+    /// <summary>A Boolean field set to true.</summary>
+    WhenTrue = 1,
+
+    /// <summary>A Boolean field set to false.</summary>
+    WhenFalse = 2,
+
+    /// <summary>A message field that is present.</summary>
+    WhenPresent = 3,
+
+    /// <summary>A string field that is present and not empty.</summary>
+    WhenNonEmpty = 4,
+
+    /// <summary>An enum field set to one of <see cref="OperationRequestOption.EnablingEnumValues"/>, or to any number the server does not recognize.</summary>
+    WhenOneOf = 5,
+}
+
+/// <summary>What omitting a request option's field does. A later protocol value maps to <see cref="Unknown"/>.</summary>
+public enum OperationRequestOptionOmission
+{
+    /// <summary>A value that this client does not know. It is unknown metadata, never permission.</summary>
+    Unknown = -1,
+    Unspecified = 0,
+
+    /// <summary>Omitting the field does not turn the effect on.</summary>
+    DoesNotActivate = 1,
+
+    /// <summary>Omitting the field turns the effect on.</summary>
+    Activates = 2,
+
+    /// <summary>The request mapping requires the field: once mapping is reached, omitting it fails validation before worker dispatch.</summary>
+    Required = 3,
+}
+
+/// <summary>
+/// The lifecycle wait allowances that Server 0.10.1 and later compute from their
+/// own effective configuration. An allowance that the server did not send, or
+/// sent as zero, is <see langword="null"/>: unavailable, never unbounded.
+/// </summary>
+/// <remarks>
+/// Each allowance covers only the server's own work, from the event its server
+/// documentation names. None includes transport or network time, and none
+/// promises that a response reaches the caller or that any process exits within
+/// it. A missing allowance affects only its own purpose: the others stay usable.
+/// </remarks>
+public sealed record LifecycleBounds
+{
+    /// <summary>Gets the Start SDK allowance, from the server's acceptance of the request to its typed outcome.</summary>
+    public TimeSpan? StartSdk { get; init; }
+
+    /// <summary>Gets the Launch SpatialAnalyzer allowance, from the start of the application process until its main window is ready or the process exits.</summary>
+    public TimeSpan? LaunchSpatialAnalyzer { get; init; }
+
+    /// <summary>Gets the Connect and Reconnect allowance, from the server's acceptance of the request to its typed outcome.</summary>
+    public TimeSpan? ConnectToSpatialAnalyzer { get; init; }
+
+    /// <summary>Gets the Recover SDK allowance, from the server's acceptance of the request to the replacement's typed outcome.</summary>
+    public TimeSpan? RecoverSdk { get; init; }
+
+    /// <summary>Gets the Stop SDK allowance, from the start of the worker stop to its typed outcome.</summary>
+    public TimeSpan? StopSdk { get; init; }
+
+    /// <summary>Gets the Close Owned SpatialAnalyzer allowance, from the application's acceptance of the close request until its process exits.</summary>
+    public TimeSpan? CloseOwnedSpatialAnalyzer { get; init; }
+
+    /// <summary>
+    /// Gets the server's sizing rule for a startup that starts the SDK, launches
+    /// SpatialAnalyzer, and connects. It is not a server deadline, and it
+    /// excludes the client's own server startup, discovery, and round trips.
+    /// </summary>
+    public TimeSpan? StartupWithLaunch { get; init; }
+
+    /// <summary>Gets the same sizing rule for a startup that starts the SDK and connects without launching.</summary>
+    public TimeSpan? StartupWithoutLaunch { get; init; }
+
+    /// <summary>
+    /// Gets the most a graceful stop of the server host may wait before it
+    /// cancels the remaining shutdown work. Its expiry does not prove that the
+    /// worker was released or that any process exited.
+    /// </summary>
+    public GracefulShutdownBound HostGracefulShutdown { get; init; } = GracefulShutdownBound.Unavailable;
+}
+
+/// <summary>
+/// A graceful shutdown allowance: unavailable, finite, or explicitly unbounded.
+/// The client never reads an absent or unrecognized bound as unbounded.
+/// </summary>
+public sealed record GracefulShutdownBound
+{
+    internal static GracefulShutdownBound Unavailable { get; } = new();
+
+    /// <summary>Gets which kind of bound the server published.</summary>
+    public GracefulShutdownBoundKind Kind { get; init; }
+
+    /// <summary>Gets the finite allowance when <see cref="Kind"/> is <see cref="GracefulShutdownBoundKind.Finite"/>; otherwise <see langword="null"/>.</summary>
+    public TimeSpan? Limit { get; init; }
+}
+
+/// <summary>Which kind of graceful shutdown bound the server published.</summary>
+public enum GracefulShutdownBoundKind
+{
+    /// <summary>
+    /// No usable bound: the server sent none, sent zero, sent a case this client
+    /// does not recognize, or sent a finite value too large to represent.
+    /// </summary>
+    Unavailable = 0,
+
+    /// <summary>A positive finite bound, in <see cref="GracefulShutdownBound.Limit"/>.</summary>
+    Finite = 1,
+
+    /// <summary>The server host is configured with no graceful shutdown time limit.</summary>
+    Unbounded = 2,
+}
+
+/// <summary>
+/// The SpatialAnalyzer interaction mode that a server is configured to set after
+/// each verified Connect. It describes server configuration, never the mode
+/// SpatialAnalyzer is using now, and it is separate from the MP and MP dialog
+/// interaction modes.
+/// </summary>
+public enum ConfiguredSpatialAnalyzerInteractionMode
+{
+    /// <summary>
+    /// Not reported, as by Server 0.10.0, or a value this client does not recognize.
+    /// </summary>
+    Unknown = 0,
+
+    /// <summary>The server never sets the mode and leaves SpatialAnalyzer's mode untouched.</summary>
+    Unchanged = 1,
+
+    /// <summary>The server sets Silent after each verified Connect.</summary>
+    Silent = 2,
+
+    /// <summary>The server sets Automatic after each verified Connect.</summary>
+    Automatic = 3,
+
+    /// <summary>The server sets Manual after each verified Connect.</summary>
+    Manual = 4,
 }
 
 /// <summary>The reviewed risk vocabulary. A later protocol value maps to <see cref="Unknown"/>.</summary>

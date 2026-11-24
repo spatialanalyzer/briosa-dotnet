@@ -23,8 +23,17 @@ public enum MpExecutionState
 
     /// <summary>
     /// SpatialAnalyzer returned MP code 4 (PARTIAL SUCCESS): the command did its
-    /// work but did not have its full intended effect. A call that completes this
-    /// way is a success and is never replayed.
+    /// work but did not have its full intended effect. The client never replays
+    /// it. When every output is read, the call succeeds: it returns the outputs,
+    /// and its <see cref="MpCompletion"/> reports this state. When an output
+    /// cannot be read, the call fails instead, with
+    /// <see cref="OperationFailureKind.OutputRetrievalFailure"/>, or with
+    /// <see cref="OperationFailureKind.SdkCallFaulted"/> when the output getter
+    /// threw. The failure's <see cref="BriosaOperationException.MpExecution"/>
+    /// keeps this state and MP code 4, and its output retrievals show which
+    /// output failed. Code 4 from an operation on the server's exception list is
+    /// not this state: it arrives as <see cref="OperationFailureKind.MpFailure"/>
+    /// with state <see cref="Failed"/> and code 4.
     /// </summary>
     PartialSuccess,
 }

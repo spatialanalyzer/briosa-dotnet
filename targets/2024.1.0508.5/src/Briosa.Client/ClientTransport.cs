@@ -7,6 +7,12 @@ namespace Briosa;
 
 internal interface IClientTransport : IAsyncDisposable
 {
+    // Runs after a lifecycle request is built and immediately before its RPC is
+    // submitted. A startup whose server published lifecycle bounds sets it to its
+    // budget check while it runs, so nothing is submitted past the deadline; it is
+    // null otherwise. Test doubles that ignore it keep the default.
+    Action? BeforeSubmit { get => null; set { } }
+
     Task<(Transport.GetServerInfoResponse ServerInfo, Transport.ListCapabilitiesResponse Capabilities)>
         GetServerSnapshotAsync(CancellationToken cancellationToken);
 
@@ -86,13 +92,18 @@ internal sealed class GrpcClientTransport : IClientTransport
         _callInvoker = _channel.CreateCallInvoker();
     }
 
+    public Action? BeforeSubmit { get; set; }
+
     public async Task<(Transport.GetServerInfoResponse, Transport.ListCapabilitiesResponse)>
         GetServerSnapshotAsync(CancellationToken cancellationToken)
     {
+        var request = new Transport.GetServerInfoRequest();
+        BeforeSubmit?.Invoke();
         var serverInfo = await _discovery.GetServerInfoAsync(
-                new Transport.GetServerInfoRequest(),
+                request,
                 cancellationToken: cancellationToken)
             .ResponseAsync.ConfigureAwait(false);
+        // ListCapabilitiesAsync checks again, between the two discovery RPCs.
         var capabilities = await ListCapabilitiesAsync(includeDenied: false, cancellationToken)
             .ConfigureAwait(false);
         return (serverInfo, capabilities);
@@ -100,18 +111,26 @@ internal sealed class GrpcClientTransport : IClientTransport
 
     public async Task<Transport.ListCapabilitiesResponse> ListCapabilitiesAsync(
         bool includeDenied,
-        CancellationToken cancellationToken) =>
-        await _discovery.ListCapabilitiesAsync(
-                new Transport.ListCapabilitiesRequest { IncludeDenied = includeDenied },
+        CancellationToken cancellationToken)
+    {
+        var request = new Transport.ListCapabilitiesRequest { IncludeDenied = includeDenied };
+        BeforeSubmit?.Invoke();
+        return await _discovery.ListCapabilitiesAsync(
+                request,
                 cancellationToken: cancellationToken)
             .ResponseAsync.ConfigureAwait(false);
+    }
 
     public async Task<Transport.SpatialAnalyzerLifecycleState> GetApplicationStateAsync(
-        CancellationToken cancellationToken) =>
-        (await _application.GetSpatialAnalyzerStateAsync(
-                new Transport.GetSpatialAnalyzerStateRequest(),
+        CancellationToken cancellationToken)
+    {
+        var request = new Transport.GetSpatialAnalyzerStateRequest();
+        BeforeSubmit?.Invoke();
+        return (await _application.GetSpatialAnalyzerStateAsync(
+                request,
                 cancellationToken: cancellationToken)
             .ResponseAsync.ConfigureAwait(false)).State;
+    }
 
     public async Task<Transport.SpatialAnalyzerLifecycleState> LaunchApplicationAsync(
         SpatialAnalyzerLaunchOptions options,
@@ -130,6 +149,8 @@ internal sealed class GrpcClientTransport : IClientTransport
             request.QuickStartInstrumentName = options.QuickStartInstrumentName;
         }
 
+        // Every option is read; nothing between this check and the RPC.
+        BeforeSubmit?.Invoke();
         return (await _application.LaunchSpatialAnalyzerAsync(
                 request,
                 cancellationToken: cancellationToken)
@@ -138,28 +159,40 @@ internal sealed class GrpcClientTransport : IClientTransport
 
     public async Task<Transport.SpatialAnalyzerLifecycleState> CloseApplicationAsync(
         int expectedGeneration,
-        CancellationToken cancellationToken) =>
-        (await _application.CloseOwnedSpatialAnalyzerAsync(
-                new Transport.CloseOwnedSpatialAnalyzerRequest
-                {
-                    ExpectedApplicationGeneration = expectedGeneration,
-                },
+        CancellationToken cancellationToken)
+    {
+        var request = new Transport.CloseOwnedSpatialAnalyzerRequest
+        {
+            ExpectedApplicationGeneration = expectedGeneration,
+        };
+        BeforeSubmit?.Invoke();
+        return (await _application.CloseOwnedSpatialAnalyzerAsync(
+                request,
                 cancellationToken: cancellationToken)
             .ResponseAsync.ConfigureAwait(false)).State;
+    }
 
     public async Task<Transport.SpatialAnalyzerSdkLifecycleState> GetSdkStateAsync(
-        CancellationToken cancellationToken) =>
-        (await _sdk.GetSpatialAnalyzerSdkStateAsync(
-                new Transport.GetSpatialAnalyzerSdkStateRequest(),
+        CancellationToken cancellationToken)
+    {
+        var request = new Transport.GetSpatialAnalyzerSdkStateRequest();
+        BeforeSubmit?.Invoke();
+        return (await _sdk.GetSpatialAnalyzerSdkStateAsync(
+                request,
                 cancellationToken: cancellationToken)
             .ResponseAsync.ConfigureAwait(false)).State;
+    }
 
     public async Task<Transport.SpatialAnalyzerSdkLifecycleState> StartSdkAsync(
-        CancellationToken cancellationToken) =>
-        (await _sdk.StartSpatialAnalyzerSdkAsync(
-                new Transport.StartSpatialAnalyzerSdkRequest(),
+        CancellationToken cancellationToken)
+    {
+        var request = new Transport.StartSpatialAnalyzerSdkRequest();
+        BeforeSubmit?.Invoke();
+        return (await _sdk.StartSpatialAnalyzerSdkAsync(
+                request,
                 cancellationToken: cancellationToken)
             .ResponseAsync.ConfigureAwait(false)).State;
+    }
 
     public async Task<Transport.SpatialAnalyzerSdkLifecycleState> ConnectSdkAsync(
         int expectedGeneration,
@@ -168,46 +201,58 @@ internal sealed class GrpcClientTransport : IClientTransport
     {
         if (reconnect)
         {
+            var reconnectRequest = new Transport.ReconnectToSpatialAnalyzerRequest
+            {
+                ExpectedSdkGeneration = expectedGeneration,
+            };
+            BeforeSubmit?.Invoke();
             return (await _sdk.ReconnectToSpatialAnalyzerAsync(
-                    new Transport.ReconnectToSpatialAnalyzerRequest
-                    {
-                        ExpectedSdkGeneration = expectedGeneration,
-                    },
+                    reconnectRequest,
                     cancellationToken: cancellationToken)
                 .ResponseAsync.ConfigureAwait(false)).State;
         }
 
+        var request = new Transport.ConnectToSpatialAnalyzerRequest
+        {
+            ExpectedSdkGeneration = expectedGeneration,
+        };
+        BeforeSubmit?.Invoke();
         return (await _sdk.ConnectToSpatialAnalyzerAsync(
-                new Transport.ConnectToSpatialAnalyzerRequest
-                {
-                    ExpectedSdkGeneration = expectedGeneration,
-                },
+                request,
                 cancellationToken: cancellationToken)
             .ResponseAsync.ConfigureAwait(false)).State;
     }
 
     public async Task<Transport.SpatialAnalyzerSdkLifecycleState> StopSdkAsync(
         int expectedGeneration,
-        CancellationToken cancellationToken) =>
-        (await _sdk.StopSpatialAnalyzerSdkAsync(
-                new Transport.StopSpatialAnalyzerSdkRequest
-                {
-                    ExpectedSdkGeneration = expectedGeneration,
-                },
+        CancellationToken cancellationToken)
+    {
+        var request = new Transport.StopSpatialAnalyzerSdkRequest
+        {
+            ExpectedSdkGeneration = expectedGeneration,
+        };
+        BeforeSubmit?.Invoke();
+        return (await _sdk.StopSpatialAnalyzerSdkAsync(
+                request,
                 cancellationToken: cancellationToken)
             .ResponseAsync.ConfigureAwait(false)).State;
+    }
 
     public async Task<Transport.SpatialAnalyzerSdkLifecycleState> RecoverSdkAsync(
         int expectedGeneration,
-        CancellationToken cancellationToken) =>
-        (await _sdk.RecoverSpatialAnalyzerSdkAsync(
-                new Transport.RecoverSpatialAnalyzerSdkRequest
-                {
-                    ExpectedSdkGeneration = expectedGeneration,
-                    Mode = Transport.SpatialAnalyzerSdkRecoveryMode.ReplaceWithoutReplay,
-                },
+        CancellationToken cancellationToken)
+    {
+        var request = new Transport.RecoverSpatialAnalyzerSdkRequest
+        {
+            ExpectedSdkGeneration = expectedGeneration,
+            Mode = Transport.SpatialAnalyzerSdkRecoveryMode.ReplaceWithoutReplay,
+        };
+        BeforeSubmit?.Invoke();
+        return (await _sdk.RecoverSpatialAnalyzerSdkAsync(
+                request,
                 cancellationToken: cancellationToken)
             .ResponseAsync.ConfigureAwait(false)).State;
+    }
 
     public async Task<Transport.GetWorkingDirectoryResult> GetWorkingDirectoryAsync(
         TimeSpan? timeout,

@@ -113,6 +113,72 @@ public sealed class TypedFailureTests
             });
     }
 
+    // An output getter that throws after MP code 4: the SDK call fault keeps the
+    // partial success and its code, and the retrieved and failed outputs apart.
+    [Fact]
+    public void SdkCallFaultAfterPartialSuccessKeepsTheMpCodeAndOutputsApart()
+    {
+        var error = SdkCallFaultAfterPartialSuccess();
+
+        var mapped = Assert.IsType<BriosaOperationException>(ProtocolMapping.MapRpcException(
+            OperationFailure(error, StatusCode.Internal),
+            CancellationToken.None));
+
+        Assert.Equal(OperationFailureKind.SdkCallFaulted, mapped.Kind);
+        Assert.Equal("sdk-output-getter-faulted", mapped.DiagnosticCode);
+        Assert.Equal(ExecutionDisposition.Completed, mapped.ExecutionDisposition);
+        Assert.Equal(RecoveryGuidance.None, mapped.RecoveryGuidance);
+        Assert.Equal(ReplayGuidance.DoNotReplay, mapped.ReplayGuidance);
+        var execution = Assert.IsType<MpExecutionDetails>(mapped.MpExecution);
+        Assert.Equal(MpExecutionState.PartialSuccess, execution.State);
+        Assert.Equal(4, execution.MpResultCode);
+        Assert.Collection(
+            execution.OutputRetrievals,
+            retrieved =>
+            {
+                Assert.Equal("vector_representation", retrieved.FieldName);
+                Assert.Equal(OutputRetrievalState.Retrieved, retrieved.State);
+            },
+            failed =>
+            {
+                Assert.Equal("x_value", failed.FieldName);
+                Assert.Equal(OutputRetrievalState.Failed, failed.State);
+                Assert.Equal("sdk-output-getter-faulted", failed.DiagnosticCode);
+            });
+        Assert.Null(mapped.PolicyDenial);
+    }
+
+    internal static Transport.OperationError SdkCallFaultAfterPartialSuccess()
+    {
+        var error = new Transport.OperationError
+        {
+            OperationId = "analysis_operations.get_point_coordinate",
+            Kind = Transport.OperationFailureKind.SdkCallFaulted,
+            DiagnosticCode = "sdk-output-getter-faulted",
+            ExecutionDisposition = Transport.ExecutionDisposition.Completed,
+            RecoveryGuidance = Transport.RecoveryGuidance.None,
+            ReplayGuidance = Transport.ReplayGuidance.DoNotReplay,
+            ReplaySafety = Transport.ReplaySafety.Safe,
+            MpExecution = new Transport.MpExecutionDetails
+            {
+                State = Transport.MpExecutionState.PartialSuccess,
+                MpResultCode = 4,
+            },
+        };
+        error.MpExecution.OutputRetrievals.Add(new Transport.OutputRetrievalDetails
+        {
+            FieldName = "vector_representation",
+            State = Transport.OutputRetrievalState.Retrieved,
+        });
+        error.MpExecution.OutputRetrievals.Add(new Transport.OutputRetrievalDetails
+        {
+            FieldName = "x_value",
+            State = Transport.OutputRetrievalState.Failed,
+            DiagnosticCode = "sdk-output-getter-faulted",
+        });
+        return error;
+    }
+
     // The third call of the mp-partial-success scenario: MP code 4 whose output
     // could not be read stays PartialSuccess inside the typed failure.
     [Fact]

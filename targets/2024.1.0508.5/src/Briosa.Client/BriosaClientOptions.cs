@@ -92,20 +92,62 @@ public sealed record BriosaStartOptions
     /// with diagnostic <c>startup-timeout</c>.
     /// </summary>
     /// <remarks>
+    /// <para>
+    /// A value you set is the budget, always, including an explicit two minutes.
+    /// When you leave it unset, the budget starts at two minutes, the value this
+    /// property returns. Against Server 0.10.1 and later, which publish their
+    /// lifecycle bounds, the client then sizes it once from the server's own
+    /// startup allowance for the selected phases, at the first validated discovery
+    /// of the server: the budget becomes the longer of two minutes and that
+    /// allowance plus 20 seconds, counted from the start of the call. It only ever
+    /// grows, it never revives a startup whose two minutes have already run out,
+    /// and it stays two minutes when the server publishes no usable allowance.
+    /// Against Server 0.10.0, which publishes none, the budget is two minutes, as
+    /// in client 0.5.0.
+    /// </para>
+    /// <para>
     /// The default of two minutes covers the server's default worst case of 100 seconds
     /// (SDK start 10 s, SpatialAnalyzer launch 30 s, Connect with readiness probe and
     /// application association 60 s) plus 20 seconds for server host startup, process
-    /// observation, and round trips. Raise it when the server's lifecycle bounds are
-    /// raised. Expiry during an in-flight RPC is reported the same way; cancelling the
+    /// observation, and round trips. With Server 0.10.0, raise it when the server's
+    /// lifecycle bounds are raised. Expiry during an in-flight RPC is reported the same way; cancelling the
     /// caller's token only stops that caller from waiting. A server that includes
     /// spatialanalyzer/briosa#315 finishes an SDK start or connection it has accepted
     /// after the client stops waiting; older servers, including released 0.9 builds,
     /// cancel it, which can leave the SDK stopped or faulted.
+    /// </para>
+    /// <para>
+    /// Equality of two <see cref="BriosaStartOptions"/> values compares this budget
+    /// only, as in client 0.5.0: an unset budget equals an explicit two minutes.
+    /// </para>
     /// </remarks>
-    public TimeSpan StartupTimeout { get; init; } = TimeSpan.FromMinutes(2);
+    public TimeSpan StartupTimeout
+    {
+        get => _startupTimeout.Value;
+        init => _startupTimeout = new StartupTimeoutSetting(value, IsExplicit: true);
+    }
+
+    private readonly StartupTimeoutSetting _startupTimeout = new(DefaultStartupTimeout, IsExplicit: false);
 
     /// <summary>Gets the ordinary ready-for-MP startup procedure.</summary>
     public static BriosaStartOptions Default { get; } = new();
+
+    // The budget when StartupTimeout is left unset, and the floor of an adopted
+    // budget. Expression-bodied so that Default, initialized above, sees it.
+    internal static TimeSpan DefaultStartupTimeout => TimeSpan.FromMinutes(2);
+
+    // Whether the caller set StartupTimeout. An explicit value always wins over
+    // the server's published allowance, including an explicit two minutes.
+    internal bool StartupTimeoutIsExplicit => _startupTimeout.IsExplicit;
+
+    // Equality and hash use the value only, so record equality of the options is
+    // what it was in 0.5.0, when no explicit flag existed.
+    private sealed record StartupTimeoutSetting(TimeSpan Value, bool IsExplicit)
+    {
+        public bool Equals(StartupTimeoutSetting? other) => other is not null && Value == other.Value;
+
+        public override int GetHashCode() => Value.GetHashCode();
+    }
 
     internal void Validate()
     {

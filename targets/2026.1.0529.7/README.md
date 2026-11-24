@@ -2,8 +2,8 @@
 
 `Briosa.2026.1.0529.7` is the asynchronous .NET client for the open-source
 [Briosa](https://github.com/spatialanalyzer/briosa) SpatialAnalyzer bridge.
-It provides an idiomatic lifecycle API and handwritten MP methods while keeping
-generated gRPC types private.
+It provides an idiomatic lifecycle API and handwritten MP methods alongside
+generated gRPC types.
 
 The package does not include SpatialAnalyzer, the SA SDK, or a license. The
 current package targets SpatialAnalyzer `2026.1.0529.7` exactly and .NET 10 on
@@ -15,12 +15,12 @@ Windows x64. Its full protocol identity is pinned in
 The NuGet package and assembly are both named `Briosa.2026.1.0529.7`. Install the package with:
 
 ```powershell
-dotnet add package Briosa.2026.1.0529.7 --version 0.5.0
+dotnet add package Briosa.2026.1.0529.7 --version 0.5.1
 ```
 
 To try a local build instead, give it a version of its own. NuGet installs a
 package from its global packages folder whenever that folder already holds the
-same ID and version, so a local build numbered `0.5.0` would install the cached
+same ID and version, so a local build numbered `0.5.1` would install the cached
 copy. Pack with a local suffix from `targets/2026.1.0529.7/`:
 
 ```powershell
@@ -47,16 +47,16 @@ Finally, add that version from your project. Don't pass the folder with
 that isn't already cached fails with `NU1101`.
 
 ```powershell
-dotnet add package Briosa.2026.1.0529.7 --version 0.5.0-local.1
+dotnet add package Briosa.2026.1.0529.7 --version 0.5.1-local.1
 ```
 
 Use a new suffix, such as `local.2`, for each rebuild.
 
 When you're done, first set the reference back to the version you used before,
-such as `0.5.0`:
+such as `0.5.1`:
 
 ```powershell
-dotnet add package Briosa.2026.1.0529.7 --version 0.5.0
+dotnet add package Briosa.2026.1.0529.7 --version 0.5.1
 ```
 
 If you added the package only for the trial, remove it instead:
@@ -68,7 +68,7 @@ dotnet remove package Briosa.2026.1.0529.7
 Then remove the `briosa-local` entry, or the file if you created it, and run
 `dotnet restore`. Removing only the entry would leave the project on the local
 version: your global packages folder keeps restoring it, and a machine without
-that copy restores `0.5.0` instead, with warning `NU1603`.
+that copy restores `0.5.1` instead, with warning `NU1603`.
 
 Exact SpatialAnalyzer targets use separate package and assembly identities,
 while application code continues to use the stable `Briosa` namespace. An
@@ -101,19 +101,44 @@ eligible application that is already running. The application and SDK also have
 distinct state, launch, connect, stop, and recovery methods. `StopAsync()` and
 `DisposeAsync()` stop the owned server and SDK but never close SpatialAnalyzer.
 
-`BriosaStartOptions.StartupTimeout` bounds the whole `StartAsync()` and defaults
-to two minutes. That covers the server's default worst case of about 100 seconds
-for a start that launches SpatialAnalyzer, with a 20-second margin. If you raise
-the server's `Briosa:Worker:StartupTimeout`, `Briosa:Worker:ReadinessProbeTimeout`,
-or `Briosa:SpatialAnalyzer:ApplicationStartupTimeout`, raise the client budget
-too; the [public API contract](docs/design/v1-public-api-contract.md#startup-and-lifecycle-time-budgets)
+`BriosaStartOptions.StartupTimeout` bounds the whole `StartAsync()`. A value you
+set is always the budget, including an explicit two minutes. Left unset, the
+budget is two minutes, which covers the server's default worst case of about
+100 seconds for a start that launches SpatialAnalyzer, with a 20-second margin.
+With Server 0.10.1 and later, an unset budget then follows the server's own
+configuration: at the first discovery of the server, the client takes the
+startup allowance that the server publishes for the selected phases and makes
+the budget the longer of two minutes and that allowance plus 20 seconds, counted
+from the start of the call. It only ever grows, and a start whose two minutes
+have already run out is not extended
+([shared rule](https://github.com/spatialanalyzer/briosa/blob/main/docs/architecture/client-library-behavioral-contract.md#startup-budget-from-published-lifecycle-bounds)).
+Once the server has published that allowance, the client also checks the
+budget, set or not, against the clock before each startup request, so no step
+starts after the deadline; a step that fails after it reports `startup-timeout`
+with that failure as `InnerException`. A start that failed then keeps MP
+commands refused until the client is stopped and started again.
+With Server 0.10.0, which publishes no allowance, the budget stays two minutes:
+if you raise that server's `Briosa:Worker:StartupTimeout`,
+`Briosa:Worker:ReadinessProbeTimeout`, or
+`Briosa:SpatialAnalyzer:ApplicationStartupTimeout`, raise the client budget too;
+the [public API contract](docs/design/v1-public-api-contract.md#startup-and-lifecycle-time-budgets)
 shows how to size it. Lifecycle methods add no deadline of their own. If the
 budget expires or you cancel while the server is starting or connecting the
 SDK, read the SDK state before retrying: the server finishes a step it has
 already accepted, so the SDK can still become ready
 ([spatialanalyzer/briosa#315](https://github.com/spatialanalyzer/briosa/pull/315)).
 A second lifecycle call meanwhile fails with
-`sdk-lifecycle-transition-in-progress`: refresh state and retry later.
+`sdk-lifecycle-transition-in-progress`: refresh state and retry later. A start
+that fails before the client owns the server it launched stops that server
+itself; once the client owns it, a later `StopAsync()` or `DisposeAsync()` stops
+it. Each close is attempted once. If the server close is the only failure to
+report, the caller receives that error. A later stop or disposal does not retry
+it.
+
+After `StartAsync` rejects a `StartupTimeout` of 4,294,967,295 whole
+milliseconds or more, a later start with valid options can run and
+`DisposeAsync` no longer rethrows that error. A stop or disposal waiting for a
+faulted start still attempts both closes.
 
 The client retains lifecycle generations and supplies RPC guards automatically.
 Typed lifecycle failures, compatibility failures, ambiguous MP completion, and
@@ -128,6 +153,41 @@ fingerprint, and each admitted operation's risk flags, duration class,
 validation status, and admission. `GetDeniedOperationsAsync()` returns the
 operations the policy denies, with the reason, and the admission profile and
 policy fingerprint the listing was taken under; it never makes them callable.
+
+With Server 0.10.1 and later, discovery and policy denials say more. Against
+Server 0.10.0, which sends none of this, each value below is `null` or
+`Unknown`, and everything else behaves as in client 0.5.0:
+
+- `BriosaServerSnapshot.LifecycleBounds`: the server's lifecycle wait
+  allowances, each an optional `TimeSpan` (`null` when the server sent none or
+  zero, never unbounded), and the host's graceful shutdown bound as
+  `Unavailable`, `Finite`, or `Unbounded`.
+- `BriosaServerSnapshot.ConfiguredInteractionMode`: the SpatialAnalyzer
+  interaction mode the server is configured to set after each Connect. It is the
+  server's configuration, not the mode SpatialAnalyzer is using now.
+- `BriosaOperationCapability.RequestOptions`: each operation's reviewed request
+  options, the request fields that turn on operator UI or leave work running,
+  with what the policy decides for each one alone. `null` means the server did
+  not describe them; an empty list means none apply. The client never checks a
+  request against them; the server decides each call.
+- `PolicyDenial` on `BriosaOperationException`, on a denied
+  `BriosaOperationCapability`, and on an `OperationRequestOption`: which policy
+  step denied (`PolicyDenialRule`), the denied risk flag, the admission profile,
+  or the request field the server attributed the denial to. It never changes the
+  failure's `Kind` or the capability's `Admission`, and the exception carries it
+  only when its `Kind` is `PolicyDenied`. A value this client does not
+  recognize, including a flag name, maps to an `Unknown` member and never fails
+  discovery.
+
+The new members take no part in the equality or hash code of
+`BriosaServerSnapshot` and `BriosaOperationCapability`, and `ToString()` shows
+them only when the server sent them, so both records compare, hash and print as
+in client 0.5.0. Reflection-based serializers, and other code that enumerates
+their members, do see the new members, so a reader that rejects unknown members
+needs updating. Code that enumerates public members also sees
+`BriosaOperationException.PolicyDenial` and the added properties on
+`Briosa.Client.Transport.GetServerInfoResponse`, `OperationCapability` and
+`OperationError`.
 
 See the [Briosa documentation](https://spatialanalyzer.github.io/briosa-docs/api/dotnet/)
 for the client API overview. The target-specific source and locked protocol define
@@ -216,8 +276,10 @@ receipts and manifests, filters for the exact SA target and a compatible server
 release, and selects the highest compatible stable release. No internet access is
 needed.
 
-Client 0.5.x works with Briosa Server 0.10.x (Client 0.5.0 was tested with
-Server 0.10.0). Before launch, discovery checks that the installation matches
+Client 0.5.x works with Briosa Server 0.10.x. Client 0.5.0 was tested with
+Server 0.10.0. Client 0.5.1 is tested with the released Server 0.10.0 and with
+Server 0.10.1 built from the source it pins, and it keeps working with Server
+0.10.0 unchanged. Before launch, discovery checks that the installation matches
 the exact SA target and declares support for this client: Server 0.9.x and
 earlier releases (including Server 0.9.2) and installations with missing
 compatibility information (including Server 0.6.1) are rejected before launch,
@@ -270,7 +332,7 @@ owns these rules and the [compatibility matrix](https://github.com/spatialanalyz
 distinguishes tested pairs from declared forward compatibility.
 
 ```csharp
-var selection = new BriosaServerSelection { Version = "0.10.0-dev.1", AllowPrerelease = true };
+var selection = new BriosaServerSelection { Version = "0.10.1-dev.1", AllowPrerelease = true };
 var report = BriosaInstallations.Discover(selection); // no process launch
 await briosa.StartAsync(new BriosaStartOptions { ServerSelection = selection });
 
@@ -290,6 +352,7 @@ dotnet restore Briosa.DotNet.slnx --locked-mode
 dotnet build Briosa.DotNet.slnx -c Release --no-restore
 dotnet test Briosa.DotNet.slnx -c Release --no-build --no-restore
 ./eng/Test-Conformance.ps1 -ArtifactPath C:\path\to\briosa-client-conformance-0.9.2-sa-2026.1.0529.7-win-x64.zip -ExpectIncompatible
+./eng/Test-Conformance.ps1 -ArtifactPath C:\path\to\briosa-client-conformance-0.10.0-sa-2026.1.0529.7-win-x64.zip -LockPath released-conformance.lock.json
 dotnet pack src/Briosa.Client/Briosa.Client.csproj -c Release --no-build --no-restore -o artifacts/package
 ./eng/Test-PackageIdentity.ps1
 ./eng/Test-PackageConsumer.ps1
@@ -306,12 +369,12 @@ script:
 
 ```powershell
 ./eng/Import-ProtocolArtifact.ps1 `
-  -ArtifactPath C:\path\to\briosa-protocol-0.10.0-dev.1-sa-2026.1.0529.7.zip `
+  -ArtifactPath C:\path\to\briosa-protocol-0.10.1-dev.1-sa-2026.1.0529.7.zip `
   -Update `
   -SourceChannel source_commit_bootstrap
 
 ./eng/Import-ProtocolArtifact.ps1 `
-  -ArtifactPath C:\path\to\briosa-protocol-0.10.0-dev.1-sa-2026.1.0529.7.zip
+  -ArtifactPath C:\path\to\briosa-protocol-0.10.1-dev.1-sa-2026.1.0529.7.zip
 ```
 
 Never edit `src/Briosa.Client/Generated` or `protocol.lock.json` by hand.
@@ -342,14 +405,19 @@ and [server observability guide](https://github.com/spatialanalyzer/briosa/blob/
 
 This package pins its generation artifact and tests compatibility against
 packaged servers. Client 0.5.x works with Server 0.10.x; the retained Server
-0.9.2 baseline (from the incompatible 0.9.x line) must be rejected.
+0.9.2 baseline (from the incompatible 0.9.x line) must be rejected, and the
+released Server 0.10.0 must keep working unchanged.
 Exact SA target, runtime identity, capabilities, and readiness still gate MP calls.
 
 Portable conformance covers lifecycle, identity mismatch, denied capabilities
 with the admission profile and the denied listing, typed MP and output failure,
 SDK call faults, partial success, deadlines, cancellation, a lifecycle Connect
 whose caller stopped waiting, watchdog recovery, SDK loss, and owned-process
-cleanup: all 15 fake-SDK scenarios tested with Client 0.5.0 and Server 0.10.0. Its harness disables Control Center auto-launch and
+cleanup: all 15 fake-SDK scenarios tested with Client 0.5.0 and Server 0.10.0.
+Client 0.5.1 runs them against the released Server 0.10.0 and against Server
+0.10.1 built from its pinned source, where it also runs the optional
+`large-result` scenario: a result of 1,046,528 characters, the server's 1 MiB
+worker response budget, received whole. The harness disables Control Center auto-launch and
 restores the prior setting afterward. These checks use a fake SDK, without a
 SpatialAnalyzer installation or license.
 
