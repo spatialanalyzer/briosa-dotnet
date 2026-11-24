@@ -534,8 +534,10 @@ public sealed partial class BriosaClient : IAsyncDisposable
                 await _gate.WaitAsync(token).ConfigureAwait(false);
                 try
                 {
+                    var timerFailure = budget.StopTimer();
                     budget.EnsureWithinBudget();
                     CommitRefreshedSnapshot(session, refreshedSnapshot);
+                    timerFailure?.Throw();
                     session.PublishStartup();
                     session.Transport.BeforeSubmit = null;
                     _startTask = null;
@@ -602,25 +604,32 @@ public sealed partial class BriosaClient : IAsyncDisposable
             var teardownFailure = await DisposeAllAsync(transport, server).ConfigureAwait(false);
             try
             {
-                budget?.Dispose();
+                if (!startTaskCleared)
+                {
+                    await _gate.WaitAsync().ConfigureAwait(false);
+                    try
+                    {
+                        _startTask = null;
+                    }
+                    finally
+                    {
+                        _gate.Release();
+                    }
+                }
             }
-#pragma warning disable CA1031 // Ending the pending start must not depend on the budget's disposal.
-            catch (Exception exception)
-#pragma warning restore CA1031
+            finally
             {
-                teardownFailure ??= ExceptionDispatchInfo.Capture(exception);
-            }
-
-            if (!startTaskCleared)
-            {
-                await _gate.WaitAsync().ConfigureAwait(false);
+                // On the path without bounds the startup token, as in 0.5.0,
+                // stays armed through the gate wait that ends the pending start.
                 try
                 {
-                    _startTask = null;
+                    budget?.Dispose();
                 }
-                finally
+#pragma warning disable CA1031 // A startup failure takes precedence over a budget disposal failure.
+                catch (Exception exception)
+#pragma warning restore CA1031
                 {
-                    _gate.Release();
+                    teardownFailure ??= ExceptionDispatchInfo.Capture(exception);
                 }
             }
 

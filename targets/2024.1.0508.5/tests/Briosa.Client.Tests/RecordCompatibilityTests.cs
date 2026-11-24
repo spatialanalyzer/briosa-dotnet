@@ -14,6 +14,55 @@ public sealed class RecordCompatibilityTests
     private static readonly OperationRiskFlag[] Flags = [OperationRiskFlag.FilesystemRead];
 
     [Fact]
+    public void ACapabilityUsesTheZeroFiveZeroCompilerHash()
+    {
+        var capability = Capability();
+        var expected = CompilerRecordHash(typeof(BriosaOperationCapability),
+            capability.OperationId.GetHashCode(StringComparison.Ordinal),
+            capability.GrpcService.GetHashCode(StringComparison.Ordinal),
+            capability.Rpc.GetHashCode(StringComparison.Ordinal),
+            capability.FullyQualifiedMethod.GetHashCode(StringComparison.Ordinal),
+            capability.RiskFlags.GetHashCode(),
+            capability.DurationClass.GetHashCode(),
+            capability.ValidationStatus.GetHashCode(),
+            capability.Admission.GetHashCode());
+
+        Assert.Equal(expected, capability.GetHashCode());
+        var clone = capability with { };
+        Assert.Equal(capability, clone);
+        Assert.Equal(capability.ToString(), clone.ToString());
+        Assert.Equal(capability, capability with { RequestOptions = [] });
+    }
+
+    [Fact]
+    public void ASnapshotUsesTheZeroFiveZeroCompilerHash()
+    {
+        var snapshot = Snapshot();
+        var expected = CompilerRecordHash(typeof(BriosaServerSnapshot),
+            snapshot.BriosaVersion.GetHashCode(StringComparison.Ordinal),
+            snapshot.SourceRevision.GetHashCode(StringComparison.Ordinal),
+            snapshot.ProtocolPackage.GetHashCode(StringComparison.Ordinal),
+            snapshot.SpatialAnalyzerTarget.GetHashCode(StringComparison.Ordinal),
+            snapshot.ReadyForMp.GetHashCode(),
+            snapshot.WorkerState.GetHashCode(),
+            snapshot.ConnectionState.GetHashCode(),
+            snapshot.ExecutionReadinessState.GetHashCode(),
+            snapshot.TargetIsolationMode.GetHashCode(),
+            snapshot.AdmissionProfile.GetHashCode(StringComparison.Ordinal),
+            snapshot.PolicyFingerprint.GetHashCode(StringComparison.Ordinal),
+            snapshot.Operations.GetHashCode());
+
+        Assert.Equal(expected, snapshot.GetHashCode());
+        var clone = snapshot with { };
+        Assert.Equal(snapshot, clone);
+        Assert.Equal(snapshot.ToString(), clone.ToString());
+        Assert.Equal(snapshot, snapshot with { ConfiguredInteractionMode = ConfiguredSpatialAnalyzerInteractionMode.Silent });
+    }
+
+    private static int CompilerRecordHash(Type equalityContract, params int[] memberHashes) =>
+        memberHashes.Aggregate(equalityContract.GetHashCode(), (hash, member) => unchecked(-1521134295 * hash + member));
+
+    [Fact]
     public void DocumentedDifferenceSerializersSeeTheNewSnapshotAndCapabilityMembers()
     {
         // A documented difference from client 0.5.0, not hidden: a reflection-based

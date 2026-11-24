@@ -93,21 +93,20 @@ public sealed record BriosaServerSnapshot
     /// <summary>Hashes the members that <see cref="Equals(BriosaServerSnapshot?)"/> compares.</summary>
     public override int GetHashCode()
     {
-        var hash = new HashCode();
-        hash.Add(EqualityContract);
-        hash.Add(BriosaVersion);
-        hash.Add(SourceRevision);
-        hash.Add(ProtocolPackage);
-        hash.Add(SpatialAnalyzerTarget);
-        hash.Add(ReadyForMp);
-        hash.Add(WorkerState);
-        hash.Add(ConnectionState);
-        hash.Add(ExecutionReadinessState);
-        hash.Add(TargetIsolationMode);
-        hash.Add(AdmissionProfile);
-        hash.Add(PolicyFingerprint);
-        hash.Add(Operations);
-        return hash.ToHashCode();
+        var hash = EqualityContract.GetHashCode();
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(BriosaVersion));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(SourceRevision));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ProtocolPackage));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(SpatialAnalyzerTarget));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<bool>.Default.GetHashCode(ReadyForMp));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<WorkerRuntimeState>.Default.GetHashCode(WorkerState));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<SpatialAnalyzerConnectionState>.Default.GetHashCode(ConnectionState));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<SpatialAnalyzerExecutionReadinessState>.Default.GetHashCode(ExecutionReadinessState));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<TargetIsolationMode>.Default.GetHashCode(TargetIsolationMode));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(AdmissionProfile));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PolicyFingerprint));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<IReadOnlyList<BriosaOperationCapability>>.Default.GetHashCode(Operations));
+        return hash;
     }
 
     // The 0.5.0 members in the 0.5.0 format, then a 0.5.1 member only when the
@@ -240,17 +239,16 @@ public sealed record BriosaOperationCapability
     /// <summary>Hashes the members that <see cref="Equals(BriosaOperationCapability?)"/> compares.</summary>
     public override int GetHashCode()
     {
-        var hash = new HashCode();
-        hash.Add(EqualityContract);
-        hash.Add(OperationId);
-        hash.Add(GrpcService);
-        hash.Add(Rpc);
-        hash.Add(FullyQualifiedMethod);
-        hash.Add(RiskFlags);
-        hash.Add(DurationClass);
-        hash.Add(ValidationStatus);
-        hash.Add(Admission);
-        return hash.ToHashCode();
+        var hash = EqualityContract.GetHashCode();
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(OperationId));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(GrpcService));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Rpc));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<string>.Default.GetHashCode(FullyQualifiedMethod));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<IReadOnlyList<OperationRiskFlag>>.Default.GetHashCode(RiskFlags));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<OperationDurationClass>.Default.GetHashCode(DurationClass));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<OperationValidationStatus>.Default.GetHashCode(ValidationStatus));
+        hash = unchecked(hash * -1521134295 + EqualityComparer<OperationAdmission>.Default.GetHashCode(Admission));
+        return hash;
     }
 
     // The 0.5.0 members in the 0.5.0 format, then a 0.5.1 member only when the

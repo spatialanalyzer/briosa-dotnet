@@ -188,17 +188,37 @@ internal sealed class StartupBudget : IDisposable
         Source.Token.ThrowIfCancellationRequested();
     }
 
-    public void Dispose()
+    // Stop the timer once. The source remains available for the final deadline check.
+    internal System.Runtime.ExceptionServices.ExceptionDispatchInfo? StopTimer()
     {
         lock (_sync)
         {
+            if (_disposed)
+            {
+                return null;
+            }
+
             _disposed = true;
         }
 
-        // The token source is released even when the timer's disposal throws.
         try
         {
             _timer.Dispose();
+            return null;
+        }
+#pragma warning disable CA1031 // A startup or readiness failure takes precedence over a timer failure.
+        catch (Exception exception)
+#pragma warning restore CA1031
+        {
+            return System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(exception);
+        }
+    }
+
+    public void Dispose()
+    {
+        try
+        {
+            StopTimer()?.Throw();
         }
         finally
         {

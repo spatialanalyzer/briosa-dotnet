@@ -209,6 +209,41 @@ public sealed partial class StartupBudgetTests
         Assert.Equal("client-not-started", notStarted.DiagnosticCode);
     }
 
+    [Fact]
+    public async Task WithBoundsATimerDisposalFailureLeavesStartupUnpublished()
+    {
+        var clock = new ManualTimeProvider();
+        var throwingClock = new TimersThatThrowOnDisposal(clock);
+        var notReady = new RecordingTransport
+        {
+            Bounds = [ServerBounds(startupWithLaunch: 300_000)],
+            ShapeServerInfo = (index, info) =>
+            {
+                if (index == 1)
+                {
+                    info.ReadyForMp = false;
+                }
+            },
+        };
+        await using (var rejectedClient = CreateClient(new BriosaClientOptions(), notReady, throwingClock))
+        {
+            var readinessFailure = await Assert.ThrowsAsync<BriosaProtocolException>(() => rejectedClient.StartAsync());
+            Assert.Equal("startup-readiness-not-established", readinessFailure.DiagnosticCode);
+        }
+
+        var ready = new RecordingTransport { Bounds = [ServerBounds(startupWithLaunch: 300_000)] };
+        await using var client = CreateClient(new BriosaClientOptions(), ready, throwingClock);
+
+        var timerFailure = await Assert.ThrowsAsync<IOException>(() => client.StartAsync());
+        Assert.Equal("timer disposal failed", timerFailure.Message);
+
+        var commandFailure = await Record.ExceptionAsync(() => client.GetWorkingDirectoryAsync());
+        var retryFailure = await Record.ExceptionAsync(() => client.StartAsync());
+        Assert.Equal(0, ready.MpCalls);
+        Assert.Equal("mp-command-admission-closed", Assert.IsType<BriosaLifecycleException>(commandFailure).DiagnosticCode);
+        Assert.Equal("startup-partially-completed", Assert.IsType<BriosaLifecycleException>(retryFailure).DiagnosticCode);
+    }
+
     // The manual clock, except that each timer throws IOException from Dispose
     // after it has disposed itself.
     private sealed class TimersThatThrowOnDisposal(ManualTimeProvider clock) : TimeProvider

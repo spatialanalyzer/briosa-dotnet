@@ -1,6 +1,7 @@
 #pragma warning disable CA2000 // Test doubles are disposed through the client session under test.
 
 using System.Diagnostics;
+using System.Reflection;
 
 namespace Briosa.Client.Tests;
 
@@ -314,6 +315,55 @@ public sealed partial class StartupBudgetTests
 
         await start.ConfigureAwait(true);
         await AssertMpAdmittedAsync(client, transport);
+    }
+
+    [Fact]
+    public async Task WithoutBoundsTheStartupTokenCancelsWhileTheFinalGateIsHeld()
+    {
+        var clock = new ManualTimeProvider();
+        var refreshing = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        var reply = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        var transport = new RecordingTransport
+        {
+            DuringCall = (name, occurrence) =>
+            {
+                if (name != "snapshot" || occurrence != 2)
+                {
+                    return Task.CompletedTask;
+                }
+
+                refreshing.SetResult();
+                return reply.Task;
+            },
+        };
+        await using var client = CreateClient(new BriosaClientOptions(), transport, clock);
+        var timeout = TimeSpan.FromSeconds(2);
+        var start = client.StartAsync(new BriosaStartOptions { StartupTimeout = timeout });
+        await refreshing.Task.WaitAsync(TimeSpan.FromSeconds(10));
+        var startupToken = transport.Calls[^1].Token;
+        var gate = Gate(client);
+        await gate.WaitAsync();
+        Task queued;
+        try
+        {
+            reply.SetResult();
+            // No other call is queued yet. Wait for the startup's final gate
+            // wait so the deadline falls after the ready reply was processed.
+            var waitQueue = typeof(SemaphoreSlim).GetField("m_asyncHead", BindingFlags.NonPublic | BindingFlags.Instance)!;
+            Assert.True(await Task.Run(() => SpinWait.SpinUntil(
+                () => waitQueue.GetValue(gate) is not null, TimeSpan.FromSeconds(10))));
+            queued = client.GetWorkingDirectoryAsync();
+            clock.Advance(timeout + TimeSpan.FromMilliseconds(1));
+        }
+        finally
+        {
+            gate.Release();
+        }
+
+        await start.WaitAsync(TimeSpan.FromSeconds(10));
+        await Assert.ThrowsAsync<NotSupportedException>(() => queued);
+        Assert.Equal(1, transport.MpCalls);
+        Assert.True(startupToken.IsCancellationRequested);
     }
 
     private static async Task RefreshAsync(BriosaClient client, string read)
